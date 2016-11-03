@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 设置全局属性 -->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="cacheEnabled" value="true" />
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+	
+	<!-- <plugins>
+		mybatis分页插件
+    	<plugin interceptor="com.github.pagehelper.PageHelper">
+        	<property name="dialect" value="mysql"/>
+        	将RowBounds第一个参数offset当成pageNum页码使用
+        	<property name="offsetAsPageNum" value="true"/>
+        	<property name="rowBoundsWithCount" value="true"/>
+    	</plugin>
+	</plugins> -->
+
+
+	<!-- 包含所有mybatis映射文件 -->
+	<mappers>
+		<mapper resource="com/codyy/slr/mapper/.*xml"/>
+	</mappers>
+</configuration>
+
