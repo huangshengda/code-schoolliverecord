@@ -12,12 +12,30 @@
 	   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	   http://www.springframework.org/schema/task
        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+       
 	<context:component-scan base-package="com.codyy.slr"
 		use-default-filters="false">
 		<context:include-filter type="regex"
 			expression="com.codyy.slr.controller.*" />
 	</context:component-scan>
+	
 	<context:annotation-config />
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<!-- 配置Fastjson支持 -->
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes" value="application/json" />
+				<property name="features">
+					<list>
+						<value>WriteMapNullValue</value>
+						<value>QuoteFieldNames</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
