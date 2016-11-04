@@ -22,7 +22,7 @@
 
 	<!-- 包含所有mybatis映射文件 -->
 	<mappers>
-		<mapper resource="com/codyy/slr/mapper/.*xml"/>
+		<mapper resource="com/codyy/slr/mapper/TestMapper.xml"/>
 	</mappers>
 </configuration>
 
