@@ -14,6 +14,6 @@ public class TestService {
 	private TestDao1 testDao1;
 	
 	public List<String> getNames(){
-		return null;
+		return testDao1.getNames();
 	}
 }

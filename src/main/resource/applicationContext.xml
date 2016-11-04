@@ -16,7 +16,7 @@
      
 	<!-- 指定自动注入根路径 -->
 	<context:component-scan base-package="com.codyy.slr" use-default-filters="false">
-		<context:include-filter type="regex" expression="com.codyy.slr.dao.TestDao1" />
+		<context:include-filter type="regex" expression="com.codyy.slr.dao.*" />
 		<context:include-filter type="regex" expression="com.codyy.slr.service.*" />
 		<context:include-filter type="regex" expression="com.codyy.slr.controller.*" />
 	</context:component-scan>
@@ -60,11 +60,6 @@
 		<!-- 验证连接有效与否的SQL，不同的数据库配置不同 -->
 		<property name="validationQuery" value="select 1 " />
 		<property name="filters" value="stat" />
-		<!-- <property name="proxyFilters">
-			<list>
-				<ref bean="logFilter" />
-			</list>
-		</property> -->
 	</bean>
 
 	<!-- 配置sqlSessionFactory -->
@@ -79,7 +74,7 @@
 
 	<!-- spring扫描mapper文件 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.codyy.slr.mapper" />
+		<property name="basePackage" value="com.codyy.slr.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 

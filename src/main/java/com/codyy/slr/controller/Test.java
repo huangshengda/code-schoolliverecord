@@ -35,7 +35,9 @@ public class Test {
 	
 	@RequestMapping("getNames")
 	@ResponseBody
-	public List<String> getNames() {
-		return testService.getNames();
+	public String getNames() {
+		return testService.getNames().get(0);
 	}
+	
+	
 }

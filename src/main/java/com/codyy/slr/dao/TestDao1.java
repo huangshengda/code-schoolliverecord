@@ -6,5 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component 
 public interface TestDao1 {
+	void updateName();
+	
 	List<String> getNames();
 }
