@@ -13,10 +13,10 @@
 	   http://www.springframework.org/schema/task
        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
        
-	<context:component-scan base-package="com.codyy.slr"
-		use-default-filters="false">
-		<context:include-filter type="regex"
-			expression="com.codyy.slr.controller.*" />
+	<context:component-scan base-package="com.codyy.*" use-default-filters="false">
+		<context:include-filter type="regex" expression="com.codyy.slr.controller.*" />
+		<context:include-filter type="regex" expression="com.codyy.common.testUI.*" />
+		<context:include-filter type="regex" expression="com.codyy.smp.service.controller.*" />
 	</context:component-scan>
 	
 	<context:annotation-config />
@@ -36,12 +36,12 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/" />
+		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 

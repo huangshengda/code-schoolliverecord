@@ -104,4 +104,12 @@
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<!-- testUI配置 -->
+	<bean class="com.codyy.common.testUI.TestUIConfig" >
+	<!--  
+		<property name="requiredAnnotationHandler">
+			<bean class="com.codyy.smp.service.util.ValidateRequiredAnnotationHandler"></bean>
+		</property> 
+	-->	
+	</bean>
 </beans>
