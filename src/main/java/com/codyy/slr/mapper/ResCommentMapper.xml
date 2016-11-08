@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.codyy.slr.dao.ResCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.codyy.slr.entity.ResComment" >
+    <id column="RESOURCE_COMMENT_ID" property="resourceCommentId" jdbcType="VARCHAR" />
+    <result column="RESOURCE_ID" property="resourceId" jdbcType="VARCHAR" />
+    <result column="COMMENT_USER_ID" property="commentUserId" jdbcType="VARCHAR" />
+    <result column="COMMENT_CONTENT" property="commentContent" jdbcType="VARCHAR" />
+    <result column="PARENT_COMMENT_ID" property="parentCommentId" jdbcType="VARCHAR" />
+    <result column="REPLY_TO_USER_ID" property="replyToUserId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RESOURCE_COMMENT_ID, RESOURCE_ID, COMMENT_USER_ID, COMMENT_CONTENT, PARENT_COMMENT_ID, 
+    REPLY_TO_USER_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_comment
+    where RESOURCE_COMMENT_ID = #{resourceCommentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from res_comment
+    where RESOURCE_COMMENT_ID = #{resourceCommentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.codyy.slr.entity.ResComment" >
+    insert into res_comment (RESOURCE_COMMENT_ID, RESOURCE_ID, COMMENT_USER_ID, 
+      COMMENT_CONTENT, PARENT_COMMENT_ID, REPLY_TO_USER_ID, 
+      CREATE_TIME)
+    values (#{resourceCommentId,jdbcType=VARCHAR}, #{resourceId,jdbcType=VARCHAR}, #{commentUserId,jdbcType=VARCHAR}, 
+      #{commentContent,jdbcType=VARCHAR}, #{parentCommentId,jdbcType=VARCHAR}, #{replyToUserId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.codyy.slr.entity.ResComment" >
+    insert into res_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceCommentId != null" >
+        RESOURCE_COMMENT_ID,
+      </if>
+      <if test="resourceId != null" >
+        RESOURCE_ID,
+      </if>
+      <if test="commentUserId != null" >
+        COMMENT_USER_ID,
+      </if>
+      <if test="commentContent != null" >
+        COMMENT_CONTENT,
+      </if>
+      <if test="parentCommentId != null" >
+        PARENT_COMMENT_ID,
+      </if>
+      <if test="replyToUserId != null" >
+        REPLY_TO_USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceCommentId != null" >
+        #{resourceCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserId != null" >
+        #{commentUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCommentId != null" >
+        #{parentCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="replyToUserId != null" >
+        #{replyToUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codyy.slr.entity.ResComment" >
+    update res_comment
+    <set >
+      <if test="resourceId != null" >
+        RESOURCE_ID = #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserId != null" >
+        COMMENT_USER_ID = #{commentUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null" >
+        COMMENT_CONTENT = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCommentId != null" >
+        PARENT_COMMENT_ID = #{parentCommentId,jdbcType=VARCHAR},
+      </if>
+      <if test="replyToUserId != null" >
+        REPLY_TO_USER_ID = #{replyToUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RESOURCE_COMMENT_ID = #{resourceCommentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codyy.slr.entity.ResComment" >
+    update res_comment
+    set RESOURCE_ID = #{resourceId,jdbcType=VARCHAR},
+      COMMENT_USER_ID = #{commentUserId,jdbcType=VARCHAR},
+      COMMENT_CONTENT = #{commentContent,jdbcType=VARCHAR},
+      PARENT_COMMENT_ID = #{parentCommentId,jdbcType=VARCHAR},
+      REPLY_TO_USER_ID = #{replyToUserId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where RESOURCE_COMMENT_ID = #{resourceCommentId,jdbcType=VARCHAR}
+  </update>
+</mapper>
