@@ -1,7 +1,7 @@
 package com.codyy.slr.vo;
 
 /**
- * 首页点播资源VO
+ * 资源VO
  * @author huangshengda
  *
  */
@@ -12,8 +12,9 @@ public class ResourceListVo {
 	private String classleveName;
 	private String subjectName;
 	private String author;
+	private String createUserName;
 	private int viewCnt;
-	
+	private String thumbPath;
 	
 	
 	public ResourceListVo() {
@@ -30,54 +31,70 @@ public class ResourceListVo {
 		this.viewCnt = viewCnt;
 		this.thumbPath = thumbPath;
 	}
-	
-	
-	
-	public String getResId() {
+
+	public String getResourceId() {
 		return resourceId;
 	}
-	public void setResId(String resId) {
-		this.resourceId = resId;
+
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId;
 	}
-	private String thumbPath;
-	
-	public String getResName() {
+
+	public String getResourceName() {
 		return resourceName;
 	}
-	public void setResName(String resName) {
-		this.resourceName = resName;
+
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
 	}
+
 	public String getClassleveName() {
 		return classleveName;
 	}
+
 	public void setClassleveName(String classleveName) {
 		this.classleveName = classleveName;
 	}
+
 	public String getSubjectName() {
 		return subjectName;
 	}
+
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
+
 	public String getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+	public String getCreateUserName() {
+		return createUserName;
+	}
+
+	public void setCreateUserName(String createUserName) {
+		this.createUserName = createUserName;
+	}
+
 	public int getViewCnt() {
 		return viewCnt;
 	}
+
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
+
 	public String getThumbPath() {
 		return thumbPath;
 	}
+
 	public void setThumbPath(String thumbPath) {
 		this.thumbPath = thumbPath;
 	}
-	
 	
 	
 }

@@ -11,6 +11,7 @@ public class HomeLiveListVo {
 	private String classlevelName;
 	private String subjectName;
 	private String author;
+	private String livingPath;
 	
 	public HomeLiveListVo(){
 		
@@ -25,6 +26,14 @@ public class HomeLiveListVo {
 	}
 
 
+	
+	public String getLivingPath() {
+		return livingPath;
+	}
+
+	public void setLivingPath(String livingPath) {
+		this.livingPath = livingPath;
+	}
 
 	public String getName() {
 		return name;

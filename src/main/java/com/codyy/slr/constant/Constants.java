@@ -16,4 +16,10 @@ public class Constants {
 	 */
 	public static final String DESC = "desc";
 	public static final String ASC = "asc";
+	
+	/**
+	 * 资源类型
+	 */
+	public static final String UPLOAD = "UPLOAD"; //上传
+	public static final String RECORD = "RECORD"; //录播
 }

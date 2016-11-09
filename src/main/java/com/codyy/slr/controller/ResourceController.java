@@ -20,7 +20,7 @@ import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**
- * 点播列表页面 我的课程页面 点播详情页
+ * 点播列表页面 我的课程页面 点播详情页 后台管理
  * @author huangshengda
  *
  */
@@ -117,6 +117,16 @@ public class ResourceController {
 	@ResponseBody
 	@RequestMapping("deleteResComment")
 	public ReturnVoOne deleteResComment(ResComment resComment) {
+		ReturnVoOne returnVoOne = new ReturnVoOne();
+		return returnVoOne;
+	}
+	
+	/**
+	 * 删除资源
+	 */
+	@ResponseBody
+	@RequestMapping("delResource")
+	public ReturnVoOne delResource(String resourceId) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		return returnVoOne;
 	}

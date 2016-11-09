@@ -9,18 +9,13 @@ public class SearchResourceParam {
 
 	private String classlevelId;
 	private String subjectId;
-	private String key;
+	private String sourceType;
+	private String resourceNameKey;
+	private String authorKey;
 	private String createUserId;
 	private String orderBy;
 	private String orderType;
 	
-	
-	public String getCreateUserId() {
-		return createUserId;
-	}
-	public void setCreateUserId(String createUserId) {
-		this.createUserId = createUserId;
-	}
 	public String getClasslevelId() {
 		return classlevelId;
 	}
@@ -33,11 +28,29 @@ public class SearchResourceParam {
 	public void setSubjectId(String subjectId) {
 		this.subjectId = subjectId;
 	}
-	public String getKey() {
-		return key;
+	public String getSourceType() {
+		return sourceType;
 	}
-	public void setKey(String key) {
-		this.key = key;
+	public void setSourceType(String sourceType) {
+		this.sourceType = sourceType;
+	}
+	public String getResourceNameKey() {
+		return resourceNameKey;
+	}
+	public void setResourceNameKey(String resourceNameKey) {
+		this.resourceNameKey = resourceNameKey;
+	}
+	public String getAuthorKey() {
+		return authorKey;
+	}
+	public void setAuthorKey(String authorKey) {
+		this.authorKey = authorKey;
+	}
+	public String getCreateUserId() {
+		return createUserId;
+	}
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
 	}
 	public String getOrderBy() {
 		return orderBy;
