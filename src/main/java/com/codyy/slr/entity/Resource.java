@@ -31,8 +31,6 @@ public class Resource {
 
     private String createUserId;
 
-    private String userId;
-
     private Date createTime;
 
     public String getResourceId() {
@@ -145,14 +143,6 @@ public class Resource {
 
     public void setCreateUserId(String createUserId) {
         this.createUserId = createUserId == null ? null : createUserId.trim();
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
     }
 
     public Date getCreateTime() {

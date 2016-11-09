@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.common.page.Page;
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
+import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.util.ParamUtil;
 import com.codyy.slr.vo.ResCommentVo;
@@ -136,8 +138,14 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("addResource")
-	public ReturnVoOne addResource() {
+	public ReturnVoOne addResource(AddResourceParam param) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
+		//校验参数
+		if(!param.validate()){
+			returnVoOne.setCode(Constants.FAILED);
+			returnVoOne.equals("参数不合法");
+		}
+		
 		return returnVoOne;
 	}
 	

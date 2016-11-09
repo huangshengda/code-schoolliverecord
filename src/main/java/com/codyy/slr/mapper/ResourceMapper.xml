@@ -16,13 +16,12 @@
     <result column="DELETE_USER_ID" property="deleteUserId" jdbcType="VARCHAR" />
     <result column="DELETE_TIME" property="deleteTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     RESOURCE_ID, RESOURCE_NAME, SUBJECT_ID, AUTHOR, THUMB_PATH, VIEW_CNT, SOURCE_TYPE, 
     STORE_PATH, LIVING_PATH, LIVING_FLAG, DELETE_FLAG, DELETE_USER_ID, DELETE_TIME, CREATE_USER_ID, 
-    USER_ID, CREATE_TIME
+    CREATE_TIME
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -39,14 +38,14 @@
       AUTHOR, THUMB_PATH, VIEW_CNT, 
       SOURCE_TYPE, STORE_PATH, LIVING_PATH, 
       LIVING_FLAG, DELETE_FLAG, DELETE_USER_ID, 
-      DELETE_TIME, CREATE_USER_ID, USER_ID, 
-      CREATE_TIME)
+      DELETE_TIME, CREATE_USER_ID, CREATE_TIME
+      )
     values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{viewCnt,jdbcType=DECIMAL}, 
       #{sourceType,jdbcType=VARCHAR}, #{storePath,jdbcType=VARCHAR}, #{livingPath,jdbcType=VARCHAR}, 
       #{livingFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
-      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.codyy.slr.entity.Resource" >
     insert into resource
@@ -92,9 +91,6 @@
       </if>
       <if test="createUserId != null" >
         CREATE_USER_ID,
-      </if>
-      <if test="userId != null" >
-        USER_ID,
       </if>
       <if test="createTime != null" >
         CREATE_TIME,
@@ -143,9 +139,6 @@
       <if test="createUserId != null" >
         #{createUserId,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -193,9 +186,6 @@
       <if test="createUserId != null" >
         CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null" >
-        USER_ID = #{userId,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null" >
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -217,7 +207,6 @@
       DELETE_USER_ID = #{deleteUserId,jdbcType=VARCHAR},
       DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
       CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-      USER_ID = #{userId,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
   </update>
