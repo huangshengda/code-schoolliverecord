@@ -69,8 +69,7 @@
 	</bean>
 
 	<!--分页-->
-	<bean id="paginationInterceptor" class="com.codyy.slr.common.page.PagePlugin">
-	</bean>
+	<bean id="paginationInterceptor" class="com.codyy.slr.common.page.PagePlugin" />
 	
 	<!-- 配置sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
