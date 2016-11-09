@@ -130,4 +130,24 @@ public class ResourceController {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		return returnVoOne;
 	}
+	
+	/**
+	 * 添加资源
+	 */
+	@ResponseBody
+	@RequestMapping("addResource")
+	public ReturnVoOne addResource() {
+		ReturnVoOne returnVoOne = new ReturnVoOne();
+		return returnVoOne;
+	}
+	
+	/**
+	 * 编辑资源
+	 */
+	@ResponseBody
+	@RequestMapping("modifyResource")
+	public ReturnVoOne modifyResource() {
+		ReturnVoOne returnVoOne = new ReturnVoOne();
+		return returnVoOne;
+	}
 }
