@@ -243,5 +243,4 @@
     delete from resource
     where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
   </delete>
-  
 </mapper>

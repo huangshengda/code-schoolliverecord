@@ -1,7 +1,5 @@
 package com.codyy.slr.dao;
 import java.util.List;
-
-import java.util.List;
 import java.util.Map;
 
 import com.codyy.slr.entity.Resource;

@@ -14,12 +14,14 @@ import com.codyy.slr.dao.ResourceMapper;
 import com.codyy.slr.entity.Resource;
 import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.util.UUIDUtils;
+import com.codyy.slr.vo.HomeLiveVo;
+import com.codyy.slr.vo.ResourceVo;
 
 @Service
 public class ResourceService {
 
 	@Autowired
-	ResourceMapper resourceMapper;
+	private ResourceMapper resourceMapper;
 	
 	
 	
@@ -55,5 +57,15 @@ public class ResourceService {
 	
 	public void delResByResId(String resourceId){
 		resourceMapper.delResByResId(resourceId);
+	}
+	
+	// 获取所有直播课程信息
+	public List<HomeLiveVo> getHomeLiveList() {
+		return resourceMapper.getHomeLiveList();
+	}
+
+	// 获取最新上传的8节课程(按上传时间降序排序)
+	public List<ResourceVo> getHomeResourceList() {
+		return resourceMapper.getHomeResourceList();
 	}
 }
