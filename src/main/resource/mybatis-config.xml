@@ -52,6 +52,7 @@
 	<!--  包含所有mybatis映射文件 -->
 	<mappers>
 		<mapper resource="com/codyy/slr/mapper/TestMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/ResourceMapper.xml"/>
 	</mappers>
 </configuration>
 
