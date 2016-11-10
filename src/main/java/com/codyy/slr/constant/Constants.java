@@ -22,4 +22,10 @@ public class Constants {
 	 */
 	public static final String UPLOAD = "UPLOAD"; //上传
 	public static final String RECORD = "RECORD"; //录播
+	
+	/**
+	 * 是否
+	 */
+	public static final String N = "N"; 
+	public static final String Y = "Y"; 
 }
