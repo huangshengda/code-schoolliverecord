@@ -3,153 +3,176 @@ package com.codyy.slr.entity;
 import java.util.Date;
 
 public class Resource {
-    private String resourceId;
+	private String resourceId;
 
-    private String resourceName;
+	private String resourceName;
 
-    private String subjectId;
+	private String subjectId;
 
-    private String author;
+	private String author;
 
-    private String thumbPath;
+	private String thumbPath;
 
-    private Long viewCnt;
+	private Long viewCnt;
 
-    private String sourceType;
+	private String sourceType;
 
-    private String storePath;
+	private String storePath;
 
-    private String livingPath;
+	private String livingPath;
 
-    private String livingFlag;
+	private String livingFlag;
 
-    private String deleteFlag;
+	private String deleteFlag;
 
-    private String deleteUserId;
+	private String deleteUserId;
 
-    private Date deleteTime;
+	private Date deleteTime;
 
-    private String createUserId;
+	private String createUserId;
 
-    private Date createTime;
+	private String userId;
 
-    public String getResourceId() {
-        return resourceId;
-    }
+	private Date createTime;
 
-    public void setResourceId(String resourceId) {
-        this.resourceId = resourceId == null ? null : resourceId.trim();
-    }
+	public String getResourceId() {
+		return resourceId;
+	}
 
-    public String getResourceName() {
-        return resourceName;
-    }
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId == null ? null : resourceId.trim();
+	}
 
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName == null ? null : resourceName.trim();
-    }
+	public String getResourceName() {
+		return resourceName;
+	}
 
-    public String getSubjectId() {
-        return subjectId;
-    }
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName == null ? null : resourceName.trim();
+	}
 
-    public void setSubjectId(String subjectId) {
-        this.subjectId = subjectId == null ? null : subjectId.trim();
-    }
+	public String getSubjectId() {
+		return subjectId;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public void setSubjectId(String subjectId) {
+		this.subjectId = subjectId == null ? null : subjectId.trim();
+	}
 
-    public void setAuthor(String author) {
-        this.author = author == null ? null : author.trim();
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public String getThumbPath() {
-        return thumbPath;
-    }
+	public void setAuthor(String author) {
+		this.author = author == null ? null : author.trim();
+	}
 
-    public void setThumbPath(String thumbPath) {
-        this.thumbPath = thumbPath == null ? null : thumbPath.trim();
-    }
+	public String getThumbPath() {
+		return thumbPath;
+	}
 
-    public Long getViewCnt() {
-        return viewCnt;
-    }
+	public void setThumbPath(String thumbPath) {
+		this.thumbPath = thumbPath == null ? null : thumbPath.trim();
+	}
 
-    public void setViewCnt(Long viewCnt) {
-        this.viewCnt = viewCnt;
-    }
+	public Long getViewCnt() {
+		return viewCnt;
+	}
 
-    public String getSourceType() {
-        return sourceType;
-    }
+	public void setViewCnt(Long viewCnt) {
+		this.viewCnt = viewCnt;
+	}
 
-    public void setSourceType(String sourceType) {
-        this.sourceType = sourceType == null ? null : sourceType.trim();
-    }
+	public String getSourceType() {
+		return sourceType;
+	}
 
-    public String getStorePath() {
-        return storePath;
-    }
+	public void setSourceType(String sourceType) {
+		this.sourceType = sourceType == null ? null : sourceType.trim();
+	}
 
-    public void setStorePath(String storePath) {
-        this.storePath = storePath == null ? null : storePath.trim();
-    }
+	public String getStorePath() {
+		return storePath;
+	}
 
-    public String getLivingPath() {
-        return livingPath;
-    }
+	public void setStorePath(String storePath) {
+		this.storePath = storePath == null ? null : storePath.trim();
+	}
 
-    public void setLivingPath(String livingPath) {
-        this.livingPath = livingPath == null ? null : livingPath.trim();
-    }
+	public String getLivingPath() {
+		return livingPath;
+	}
 
-    public String getLivingFlag() {
-        return livingFlag;
-    }
+	public void setLivingPath(String livingPath) {
+		this.livingPath = livingPath == null ? null : livingPath.trim();
+	}
 
-    public void setLivingFlag(String livingFlag) {
-        this.livingFlag = livingFlag == null ? null : livingFlag.trim();
-    }
+	public String getLivingFlag() {
+		return livingFlag;
+	}
 
-    public String getDeleteFlag() {
-        return deleteFlag;
-    }
+	public void setLivingFlag(String livingFlag) {
+		this.livingFlag = livingFlag == null ? null : livingFlag.trim();
+	}
 
-    public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
-    }
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
 
-    public String getDeleteUserId() {
-        return deleteUserId;
-    }
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
+	}
 
-    public void setDeleteUserId(String deleteUserId) {
-        this.deleteUserId = deleteUserId == null ? null : deleteUserId.trim();
-    }
+	public String getDeleteUserId() {
+		return deleteUserId;
+	}
 
-    public Date getDeleteTime() {
-        return deleteTime;
-    }
+	public void setDeleteUserId(String deleteUserId) {
+		this.deleteUserId = deleteUserId == null ? null : deleteUserId.trim();
+	}
 
-    public void setDeleteTime(Date deleteTime) {
-        this.deleteTime = deleteTime;
-    }
+	public Date getDeleteTime() {
+		return deleteTime;
+	}
 
-    public String getCreateUserId() {
-        return createUserId;
-    }
+	public void setDeleteTime(Date deleteTime) {
+		this.deleteTime = deleteTime;
+	}
+
+	public String getCreateUserId() {
+		return createUserId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId == null ? null : userId.trim();
+	}
 
     public void setCreateUserId(String createUserId) {
         this.createUserId = createUserId == null ? null : createUserId.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	@Override
+	public String toString() {
+		return "Resource [resourceId=" + resourceId + ", resourceName="
+				+ resourceName + ", subjectId=" + subjectId + ", author="
+				+ author + ", thumbPath=" + thumbPath + ", viewCnt=" + viewCnt
+				+ ", sourceType=" + sourceType + ", storePath=" + storePath
+				+ ", livingPath=" + livingPath + ", livingFlag=" + livingFlag
+				+ ", deleteFlag=" + deleteFlag + ", deleteUserId="
+				+ deleteUserId + ", deleteTime=" + deleteTime
+				+ ", createUserId=" + createUserId + ", userId=" + userId
+				+ ", createTime=" + createTime + "]";
+	}
 }

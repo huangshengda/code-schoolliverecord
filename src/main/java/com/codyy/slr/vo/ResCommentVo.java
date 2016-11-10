@@ -9,17 +9,7 @@ public class ResCommentVo extends ResComment{
 	 * 发布人名称
 	 */
 	private String userName;
-    
-	/**
-	 * 用户头像
-	 */
-    private String headPic;
-    
-    /**
-     * 图片地址
-     */
-    private String serverAddress; 
-    
+	
     /**
      * 回复谁
      */
@@ -35,12 +25,33 @@ public class ResCommentVo extends ResComment{
      */
     private List<ResCommentVo> childrenCommentList;
 
+    /**
+     * 二级评论数量
+     */
+    private int childrenCommentSize;
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public String getReplyToUserName() {
 		return replyToUserName;
 	}
 
 	public void setReplyToUserName(String replyToUserName) {
 		this.replyToUserName = replyToUserName;
+	}
+
+	public String getCreateTimeStr() {
+		return createTimeStr;
+	}
+
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
 	}
 
 	public List<ResCommentVo> getChildrenCommentList() {
@@ -51,35 +62,13 @@ public class ResCommentVo extends ResComment{
 		this.childrenCommentList = childrenCommentList;
 	}
 
-	public String getUserName() {
-		return userName;
+	public int getChildrenCommentSize() {
+		return childrenCommentSize;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setChildrenCommentSize(int childrenCommentSize) {
+		this.childrenCommentSize = childrenCommentSize;
 	}
-
-	public String getHeadPic() {
-		return headPic;
-	}
-
-	public void setHeadPic(String headPic) {
-		this.headPic = headPic;
-	}
-
-	public String getServerAddress() {
-		return serverAddress;
-	}
-
-	public void setServerAddress(String serverAddress) {
-		this.serverAddress = serverAddress;
-	}
-
-	public String getCreateTimeStr() {
-		return createTimeStr;
-	}
-
-	public void setCreateTimeStr(String createTimeStr) {
-		this.createTimeStr = createTimeStr;
-	}
+    
+    
 }

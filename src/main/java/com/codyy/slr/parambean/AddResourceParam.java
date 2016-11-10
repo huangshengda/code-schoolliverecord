@@ -1,6 +1,7 @@
 package com.codyy.slr.parambean;
 
 import com.alibaba.druid.util.StringUtils;
+import com.codyy.slr.entity.Resource;
 
 /**
  * 添加资源参数
@@ -14,6 +15,7 @@ public class AddResourceParam {
 	private String classlevelIds; //年级id字符串 ","隔开
 	private String author; //主讲老师
 	private String thumbPath;//封面路径
+	private String storePath;//存储路径
 	private String createUserId;
 	
 	public boolean validate(){
@@ -29,9 +31,21 @@ public class AddResourceParam {
 			return false;
 		}
 		
+		if(StringUtils.isEmpty(classlevelIds)){
+			return false;
+		}
+		
 		return true;
 	}
 	
+	
+	
+	public String getStorePath() {
+		return storePath;
+	}
+	public void setStorePath(String storePath) {
+		this.storePath = storePath;
+	}
 	public String getResourceName() {
 		return resourceName;
 	}
@@ -69,6 +83,17 @@ public class AddResourceParam {
 		this.createUserId = createUserId;
 	}
 
+	public Resource toResource(){
+		Resource resource = new Resource();
+		resource.setSubjectId(this.subjectId);
+		resource.setAuthor(this.author);
+		resource.setResourceName(this.resourceName);
+		resource.setThumbPath(this.thumbPath);
+		resource.setCreateUserId(this.createUserId);
+		resource.setStorePath(this.storePath);
+		return resource;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

@@ -1,66 +1,80 @@
 package com.codyy.slr.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.codyy.slr.common.page.Page;
-import com.codyy.slr.vo.HomeLiveListVo;
-import com.codyy.slr.vo.ResourceListVo;
-import com.codyy.slr.vo.ReturnVoList;
+import com.codyy.slr.constant.Constants;
+import com.codyy.slr.service.ResourceService;
+import com.codyy.slr.vo.HomeLiveVo;
+import com.codyy.slr.vo.ResourceVo;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**
- * 首页controller
- * @author huangshengda
- *
+ * File Description      : 首页资源信息查询
+ * Author                : GuangY
+ * Create Date           : 2016/11/09
+ * Reviewed By           :
+ * Reviewed Date         :
+ * Modified By           :
+ * Modified Date         :
+ * Comments              :
+ * CopyRight             : COPYRIGHT(c) www.codyy.com   All Rights Reserved(2016)
+ * *******************************************************************************************
  */
-
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
 
-	@RequestMapping("getHomeLivePageList")
+	@Autowired
+	private ResourceService resourceService;
+
+	/**
+	 * 获取所有直播课程信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping("getHomeLiveList")
 	@ResponseBody
-	public ReturnVoList<HomeLiveListVo> getHomeLivePageList(Page page){
-		
-		HomeLiveListVo homeLiveListVo= new HomeLiveListVo("湖水","一年级","语文","张三");
-		HomeLiveListVo homeLiveListVo1= new HomeLiveListVo("湖水","一年级","语文","李四");
-		HomeLiveListVo homeLiveListVo2= new HomeLiveListVo("湖水","一年级","语文","王五");
-		HomeLiveListVo homeLiveListVo3= new HomeLiveListVo("湖水","一年级","语文","赵六");
-		
-		List<HomeLiveListVo> list = new ArrayList<HomeLiveListVo>();
-		list.add(homeLiveListVo);
-		list.add(homeLiveListVo1);
-		list.add(homeLiveListVo2);
-		list.add(homeLiveListVo3);
-		
-		page.setData(list);
-		
-		ReturnVoList<HomeLiveListVo> returnResult = new ReturnVoList<HomeLiveListVo>(page);
-		return returnResult;
+	public ReturnVoOne<List<HomeLiveVo>> getHomeLiveList() {
+
+		ReturnVoOne<List<HomeLiveVo>> result = new ReturnVoOne<List<HomeLiveVo>>();
+		List<HomeLiveVo> list = resourceService.getHomeLiveList();
+
+		if (list != null) {
+			result.setData(list);
+		} else {
+			result.setCode(Constants.FAILED);
+			result.setMsg("查询失败!");
+		}
+
+		return result;
 	}
-	
+
+	/**
+	 * 获取最新上传的8节课程(按上传时间降序排序)
+	 * 
+	 * @return
+	 */
 	@RequestMapping("getHomeResourceList")
 	@ResponseBody
-	public ReturnVoOne<List<ResourceListVo>> getHomeResourceList(){
-		
-		ResourceListVo homeResourceListVo= new ResourceListVo("湖水","一年级","语文","张三",1,"image");
-		ResourceListVo homeResourceListVo1= new ResourceListVo("湖水","一年级","语文","张三",2,"image");
-		ResourceListVo homeResourceListVo2= new ResourceListVo("湖水","一年级","语文","张三",3,"image");
+	public ReturnVoOne<List<ResourceVo>> getHomeResourceList() {
 
-		
-		List<ResourceListVo> list = new ArrayList<ResourceListVo>();
-		list.add(homeResourceListVo);
-		list.add(homeResourceListVo1);
-		list.add(homeResourceListVo2);
-		
-		ReturnVoOne<List<ResourceListVo>> returnVoOne = new ReturnVoOne<List<ResourceListVo>>(list);
-		return returnVoOne;
+		ReturnVoOne<List<ResourceVo>> result = new ReturnVoOne<List<ResourceVo>>();
+		List<ResourceVo> list = resourceService.getHomeResourceList();
+
+		if (list != null) {
+			result.setData(list);
+		} else {
+			result.setCode(Constants.FAILED);
+			result.setMsg("查询失败!");
+		}
+
+		return result;
 	}
-	
+
 }

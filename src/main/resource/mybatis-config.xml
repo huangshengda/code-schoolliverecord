@@ -37,28 +37,5 @@
 		<!-- 设置触发延迟加载的方法-->
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
 	</settings> 
-	
-	<!-- <plugins>
-		mybatis分页插件
-    	<plugin interceptor="com.github.pagehelper.PageHelper">
-        	<property name="dialect" value="mysql"/>
-        	将RowBounds第一个参数offset当成pageNum页码使用
-        	<property name="offsetAsPageNum" value="true"/>
-        	<property name="rowBoundsWithCount" value="true"/>
-    	</plugin>
-	</plugins> -->
-
-
-	<!--  包含所有mybatis映射文件 -->
-	<mappers>
-		<mapper resource="com/codyy/slr/mapper/TestMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/BasicInfoKeyMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/BasicInfoValMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/ClasslevelMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/ResCommentMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/ResourceMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/SubjectMapper.xml"/>
-		<mapper resource="com/codyy/slr/mapper/UserMapper.xml"/>
-	</mappers>
 </configuration>
 

@@ -14,4 +14,6 @@ public interface ClasslevelMapper {
     int updateByPrimaryKeySelective(Classlevel record);
 
     int updateByPrimaryKey(Classlevel record);
+    
+    Classlevel selectByName(String classleveName);
 }

@@ -103,4 +103,9 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where SUBJECT_ID = #{subjectId,jdbcType=VARCHAR}
   </update>
+  
+  <!-- <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select <sql id="Base_Column_List" /> from subject where subjectName = #{subjectName} and delete_flag = 'N'
+  </select> -->
+  
 </mapper>

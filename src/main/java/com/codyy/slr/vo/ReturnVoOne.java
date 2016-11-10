@@ -5,22 +5,27 @@ import java.io.Serializable;
 import com.codyy.slr.constant.Constants;
 
 public class ReturnVoOne<T> implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private int code; // 1:成功, 0:失败
-	private String msg; 
+	private String msg;
 	private T data;
-	
-	public ReturnVoOne(T data){
-		this.code=Constants.SUCCESS;
-		this.msg="操作成功";
-		this.data=data;
+
+	public ReturnVoOne(T data) {
+		this.code = Constants.SUCCESS;
+		this.msg = "操作成功";
+		this.data = data;
+	}
+
+	public ReturnVoOne() {
+		this.msg = "操作成功";
+		this.code = Constants.SUCCESS;
 	}
 	
-	public ReturnVoOne() {
-		this.msg="操作成功";
-		this.code = Constants.SUCCESS;
+	public ReturnVoOne(int code,String msg) {
+		this.msg=msg;
+		this.code = code;
 	}
 
 	public int getCode() {
@@ -46,6 +51,5 @@ public class ReturnVoOne<T> implements Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
-	
-	
+
 }

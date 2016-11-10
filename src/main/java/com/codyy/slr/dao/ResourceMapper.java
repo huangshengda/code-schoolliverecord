@@ -1,12 +1,20 @@
 package com.codyy.slr.dao;
+import java.util.List;
+
+import java.util.List;
+import java.util.Map;
 
 import com.codyy.slr.entity.Resource;
+import com.codyy.slr.vo.HomeLiveVo;
+import com.codyy.slr.vo.ResourceVo;
 
 public interface ResourceMapper {
-    int deleteByPrimaryKey(String resourceId);
-
-    int insert(Resource record);
-
+	//获取所有直播课程信息
+	List<HomeLiveVo> getHomeLiveList();
+		
+	//获取最新上传的8节课程(按上传时间降序排序)
+	List<ResourceVo> getHomeResourceList();
+	
     int insertSelective(Resource record);
 
     Resource selectByPrimaryKey(String resourceId);
@@ -14,4 +22,25 @@ public interface ResourceMapper {
     int updateByPrimaryKeySelective(Resource record);
 
     int updateByPrimaryKey(Resource record);
+    
+    /**
+     * 添加资源
+     * @param record
+     * @return
+     */
+    int addResource(Resource record);
+    
+    /**
+     * 批量插入资源和年级关系数据
+     * @param list
+     * @return
+     */
+    int addResIdClslevelIdList(List<Map<String,String>> list);
+    
+    /**
+     * 删除资源
+     * @param resourceId
+     * @return
+     */
+    int delResByResId(String resourceId);
 }

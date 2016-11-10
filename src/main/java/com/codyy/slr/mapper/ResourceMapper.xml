@@ -23,30 +23,32 @@
     STORE_PATH, LIVING_PATH, LIVING_FLAG, DELETE_FLAG, DELETE_USER_ID, DELETE_TIME, CREATE_USER_ID, 
     CREATE_TIME
   </sql>
+  
+  <select id="getHomeLiveList" resultType="com.codyy.slr.vo.HomeLiveVo">
+		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.LIVING_PATH livingPath,
+		sub.SUBJECT_NAME subjectName,
+		(select case when count(1)=1 then cl.CLASSLEVEL_NAME else '' end from resource_r_classlevel rrc,classlevel cl
+		where rrc.RESOURCE_ID = res.RESOURCE_ID and rrc.CLASSLEVEL_ID = cl.CLASSLEVEL_ID) classlevelName
+		from resource res,subject sub where res.SUBJECT_ID = sub.SUBJECT_ID and res.LIVING_FLAG = 'Y' and res.SOURCE_TYPE = 'RECORD'
+		order by res.CREATE_TIME desc
+	</select>
+
+	<select id="getHomeResourceList" resultType="com.codyy.slr.vo.ResourceVo">
+		select * from (select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,
+		(select case when count(1)=1 then cl.CLASSLEVEL_NAME else '' end from resource_r_classlevel rrc,classlevel cl
+		where rrc.RESOURCE_ID = res.RESOURCE_ID and rrc.CLASSLEVEL_ID = cl.CLASSLEVEL_ID) classlevelName
+		from resource res,subject sub where res.SUBJECT_ID = sub.SUBJECT_ID and res.LIVING_FLAG = 'N'
+		order by res.CREATE_TIME desc) tmp limit 0,8
+	</select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from resource
     where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from resource
-    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.codyy.slr.entity.Resource" >
-    insert into resource (RESOURCE_ID, RESOURCE_NAME, SUBJECT_ID, 
-      AUTHOR, THUMB_PATH, VIEW_CNT, 
-      SOURCE_TYPE, STORE_PATH, LIVING_PATH, 
-      LIVING_FLAG, DELETE_FLAG, DELETE_USER_ID, 
-      DELETE_TIME, CREATE_USER_ID, CREATE_TIME
-      )
-    values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
-      #{author,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{viewCnt,jdbcType=DECIMAL}, 
-      #{sourceType,jdbcType=VARCHAR}, #{storePath,jdbcType=VARCHAR}, #{livingPath,jdbcType=VARCHAR}, 
-      #{livingFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
-      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
+  
   <insert id="insertSelective" parameterType="com.codyy.slr.entity.Resource" >
     insert into resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -210,4 +212,36 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
   </update>
+  
+  <!-- 添加资源 -->
+   <insert id="addResource" parameterType="com.codyy.slr.entity.Resource" >
+    insert into resource (RESOURCE_ID, RESOURCE_NAME, SUBJECT_ID, 
+      AUTHOR, THUMB_PATH, VIEW_CNT, 
+      SOURCE_TYPE, STORE_PATH, LIVING_PATH, 
+      LIVING_FLAG, DELETE_USER_ID, 
+      DELETE_TIME, CREATE_USER_ID, CREATE_TIME
+      )
+    values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{viewCnt,jdbcType=DECIMAL}, 
+      #{sourceType,jdbcType=VARCHAR}, #{storePath,jdbcType=VARCHAR}, #{livingPath,jdbcType=VARCHAR}, 
+      #{livingFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  
+  <!-- 批量插入资源和年级关系数据 -->
+  <insert id="addResIdClslevelIdList" parameterType="java.util.List" >
+	  insert into resource_r_classlevel (resource_id, classlevel_id)   
+	    values  
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	       (#{item.resourceId}, #{item.classlevelId}) 
+	    </foreach>  
+  </insert>
+  
+  <!-- 通过资源id删除资源 -->
+  <delete id="delResByResId" parameterType="java.lang.String" >
+    delete from resource
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </delete>
+  
 </mapper>
