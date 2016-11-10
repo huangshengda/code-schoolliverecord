@@ -24,4 +24,8 @@ public class ResourceService {
 	public List<ResourceVo> getHomeResourceList() {
 		return resourceMapper.getHomeResourceList();
 	}
+	
+	public boolean addResource(){
+		return true;
+	}
 }

@@ -82,11 +82,7 @@
 		<property name="plugins">
 			<ref bean="paginationInterceptor" />
 		</property>
-		<!-- 指定别名 -->
-		<property name="typeAliasesPackage"
-			value="com.codyy.slr.entity;
-			com.codyy.slr.vo;
-			com.codyy.slr.parambean" />
+		<property name="mapperLocations" value="classpath*:com/codyy/slr/mapper/*.xml" />
 	</bean>
 
 	<!-- spring扫描mapper文件 -->
@@ -129,12 +125,5 @@
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-
-	<!-- testUI配置 -->
-	<bean class="com.codyy.common.testUI.TestUIConfig">
-		<!-- <property name="requiredAnnotationHandler"> <bean class="com.codyy.smp.service.util.ValidateRequiredAnnotationHandler"></bean> 
-			</property> -->
 	</bean>
 </beans>

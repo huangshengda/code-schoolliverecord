@@ -10,7 +10,7 @@ public class ResourceVo {
 
 	private String resourceId;
 	private String resourceName;
-	private String classleveName;
+	private String classlevelName;
 	private String subjectName;
 	private String author;
 	private String thumbPath;
@@ -37,12 +37,12 @@ public class ResourceVo {
 		this.resourceName = resName;
 	}
 
-	public String getClassleveName() {
-		return classleveName;
+	public String getClasslevelName() {
+		return classlevelName;
 	}
 
-	public void setClassleveName(String classleveName) {
-		this.classleveName = classleveName;
+	public void setClasslevelName(String classlevelName) {
+		this.classlevelName = classlevelName;
 	}
 
 	public String getSubjectName() {
@@ -88,7 +88,7 @@ public class ResourceVo {
 	@Override
 	public String toString() {
 		return "ResourceVo [resourceId=" + resourceId + ", resourceName="
-				+ resourceName + ", classleveName=" + classleveName
+				+ resourceName + ", classlevelName=" + classlevelName
 				+ ", subjectName=" + subjectName + ", author=" + author
 				+ ", thumbPath=" + thumbPath + ", storePath=" + storePath
 				+ ", viewCnt=" + viewCnt + "]";

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.common.page.Page;
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
+import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.util.ParamUtil;
 import com.codyy.slr.vo.ResCommentVo;
@@ -20,7 +22,7 @@ import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**
- * 点播列表页面 我的课程页面 点播详情页
+ * 点播列表页面 我的课程页面 点播详情页 后台管理
  * @author huangshengda
  *
  */
@@ -117,6 +119,42 @@ public class ResourceController {
 	@ResponseBody
 	@RequestMapping("deleteResComment")
 	public ReturnVoOne deleteResComment(ResComment resComment) {
+		ReturnVoOne returnVoOne = new ReturnVoOne();
+		return returnVoOne;
+	}
+	
+	/**
+	 * 删除资源
+	 */
+	@ResponseBody
+	@RequestMapping("delResource")
+	public ReturnVoOne delResource(String resourceId) {
+		ReturnVoOne returnVoOne = new ReturnVoOne();
+		return returnVoOne;
+	}
+	
+	/**
+	 * 添加资源
+	 */
+	@ResponseBody
+	@RequestMapping("addResource")
+	public ReturnVoOne addResource(AddResourceParam param) {
+		ReturnVoOne returnVoOne = new ReturnVoOne();
+		//校验参数
+		if(!param.validate()){
+			returnVoOne.setCode(Constants.FAILED);
+			returnVoOne.equals("参数不合法");
+		}
+		
+		return returnVoOne;
+	}
+	
+	/**
+	 * 编辑资源
+	 */
+	@ResponseBody
+	@RequestMapping("modifyResource")
+	public ReturnVoOne modifyResource() {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		return returnVoOne;
 	}

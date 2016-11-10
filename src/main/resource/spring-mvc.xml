@@ -15,10 +15,6 @@
        
 	<context:component-scan base-package="com.codyy.*" use-default-filters="false">
 		<context:include-filter type="regex" expression="com.codyy.slr.controller.*" />
-		<!-- testUI配置 -->
-		<context:include-filter type="regex" expression="com.codyy.common.testUI.*" />
-		<context:include-filter type="regex" expression="com.codyy.smp.service.controller.*" />
-		
 	</context:component-scan>
 	
 	<context:annotation-config />
