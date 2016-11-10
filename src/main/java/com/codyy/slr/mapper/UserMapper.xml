@@ -125,4 +125,25 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
+  
+  <select id = "getUserListPageList" parameterType="com.codyy.slr.common.page.Page" resultMap="BaseResultMap">
+  SELECT *
+	FROM user t
+	WHERE
+	t.DELETE_FLAG = 'N' 
+	 <if test="map.username != null" >
+	AND
+	t.USERNAME like CONCAT('%',#{map.username},'%') ESCAPE '/'
+	</if>
+	 <if test="map.realname != null" >
+	AND
+	t.REALNAME like CONCAT('%',#{map.realname},'%') ESCAPE '/'
+	</if>
+	 <if test="map.userType != null" >
+	AND
+	t.USER_TYPE like CONCAT('%',#{map.userType},'%') ESCAPE '/'
+	</if>
+  </select>
+  
+  
 </mapper>

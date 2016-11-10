@@ -22,6 +22,11 @@ public class ReturnVoOne<T> implements Serializable {
 		this.msg="操作成功";
 		this.code = Constants.SUCCESS;
 	}
+	
+	public ReturnVoOne(int code,String msg) {
+		this.msg=msg;
+		this.code = code;
+	}
 
 	public int getCode() {
 		return code;
