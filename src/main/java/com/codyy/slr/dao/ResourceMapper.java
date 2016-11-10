@@ -13,14 +13,6 @@ public interface ResourceMapper {
 	//获取最新上传的8节课程(按上传时间降序排序)
 	List<ResourceVo> getHomeResourceList();
 	
-    int insertSelective(Resource record);
-
-    Resource selectByPrimaryKey(String resourceId);
-
-    int updateByPrimaryKeySelective(Resource record);
-
-    int updateByPrimaryKey(Resource record);
-    
     /**
      * 添加资源
      * @param record
