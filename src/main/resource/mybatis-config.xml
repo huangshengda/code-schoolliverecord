@@ -52,6 +52,13 @@
 	<!--  包含所有mybatis映射文件 -->
 	<mappers>
 		<mapper resource="com/codyy/slr/mapper/TestMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/BasicInfoKeyMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/BasicInfoValMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/ClasslevelMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/ResCommentMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/ResourceMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/SubjectMapper.xml"/>
+		<mapper resource="com/codyy/slr/mapper/UserMapper.xml"/>
 	</mappers>
 </configuration>
 
