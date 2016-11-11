@@ -1,0 +1,134 @@
+package com.codyy.slr.service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.codyy.slr.common.page.Page;
+import com.codyy.slr.dao.ResCommentMapper;
+import com.codyy.slr.entity.ResComment;
+import com.codyy.slr.util.DateUtils;
+import com.codyy.slr.util.MapUtil;
+import com.codyy.slr.util.UUIDUtils;
+import com.codyy.slr.vo.ResCommentVo;
+
+/**
+ * 评论service
+ * @author huangshengda
+ *
+ */
+@Service
+public class ResCommentService {
+
+	@Autowired
+	private ResCommentMapper commentDao;
+
+	/**
+	 * 获取一个资源的评论
+	 * @param page
+	 * @return
+	 */
+	public Page getResCommentPageList(Page page){
+		/**
+		 * 获取一级评论
+		 */
+		List<ResCommentVo> list  = commentDao.getResCommentPageList(page);
+		formatDateAndGenHeadPicUrl(list);
+		List<String> commentIdList = new ArrayList<String>();
+		for(ResCommentVo comment : list){
+			commentIdList.add(comment.getResourceCommentId());
+		}
+		
+		/**
+		 * 将二级评论根据一级评论的id分组
+		 */
+	    List<ResCommentVo> subList = getSubResCommentList(commentIdList);
+	    Map<String,List<ResCommentVo>> groupListMap = MapUtil.newHashMap();
+		for(ResCommentVo comment : subList){
+			MapUtil.groupValue(groupListMap, comment.getParentCommentId(), comment);
+		}
+	    
+		/**
+		 * 一级评论中注入二级评论
+		 */
+		for(ResCommentVo comment : list){
+			if(groupListMap.containsKey(comment.getResourceCommentId())){
+				List<ResCommentVo> childrenCommentList = groupListMap.get(comment.getResourceCommentId());
+				comment.setChildrenCommentSize(childrenCommentList.size());
+				if(childrenCommentList.size() > 5){
+					childrenCommentList = childrenCommentList.subList(0, 5);
+				}
+				comment.setChildrenCommentList(childrenCommentList);
+			} else {
+				comment.setChildrenCommentList(new ArrayList<ResCommentVo>());
+			}
+		}
+		
+		page.setData(list);
+		return page;
+	}
+
+	/**
+	 * 根据一级评论获取二级评论
+	 */
+	public List<ResCommentVo> getSubResCommentList(List<String> commentIdList) {
+		if(commentIdList == null || commentIdList.size() == 0){
+			return new ArrayList<ResCommentVo>();
+		}
+		List<ResCommentVo> subList = commentDao.getSubResCommentList(commentIdList);
+		formatDateAndGenHeadPicUrl(subList);
+		return subList;
+	}
+	
+	public Page getSubResCommentPageList(Page page){
+		List<ResCommentVo> list = commentDao.getSubResCommentPageList(page);
+		page.setData(list);
+		return page;
+	}
+
+	
+	/**
+	 * 添加评论
+	 */
+	public boolean addResComment(ResComment comment) {
+		comment.setResourceCommentId(UUIDUtils.getUUID());
+		comment.setCreateTime(new Date());
+		return commentDao.insert(comment) == 1;
+	}
+	
+	/**
+	 * 删除评论
+	 */
+	public void deleteResComment(ResComment comment) {
+		if(comment.getParentCommentId() == null){
+			List<ResCommentVo> subList = commentDao.getSubResCommentList(Arrays.asList(comment.getResourceCommentId()));
+			for(ResCommentVo view : subList){
+				commentDao.deleteByPrimaryKey(view.getResourceCommentId());
+			}
+		}
+		commentDao.deleteByPrimaryKey(comment.getResourceCommentId());
+	}
+
+	public  ResCommentVo getCommentByKeyId(String commentId){
+		return commentDao.getCommentByKeyId(commentId);
+	}
+	
+	/**
+	 * 时间格式化,生成头像路径
+	 */
+	private void formatDateAndGenHeadPicUrl(List<ResCommentVo> list){
+		for(ResCommentVo view : list){
+			view.setCreateTimeStr(DateUtils.format(view.getCreateTime(), "yyyy-MM-dd HH:mm"));
+		}
+	}
+	
+	public int getResCommentCount(String resDetailId){
+		return commentDao.getResCommentCount(resDetailId);
+	}
+	
+}

@@ -1,17 +1,26 @@
 package com.codyy.slr.dao;
 
+import java.util.List;
+
+import com.codyy.slr.common.page.Page;
 import com.codyy.slr.entity.ResComment;
+import com.codyy.slr.vo.ResCommentVo;
 
 public interface ResCommentMapper {
-    int deleteByPrimaryKey(String resourceCommentId);
 
-    int insert(ResComment record);
+		int deleteByPrimaryKey(String resourceCommentId);
 
-    int insertSelective(ResComment record);
+	    int insert(ResComment record);
 
-    ResComment selectByPrimaryKey(String resourceCommentId);
+	    ResComment selectByPrimaryKey(String resourceCommentId);
 
-    int updateByPrimaryKeySelective(ResComment record);
-
-    int updateByPrimaryKey(ResComment record);
+	    List<ResCommentVo> getResCommentPageList(Page page);
+	    
+	    List<ResCommentVo> getSubResCommentList(List<String> list);
+	    
+	    List<ResCommentVo> getSubResCommentPageList(Page page);
+	    
+	    ResCommentVo getCommentByKeyId(String commentId);
+	    
+	    int getResCommentCount(String resourceId);
 }

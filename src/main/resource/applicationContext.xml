@@ -90,40 +90,31 @@
 		<property name="basePackage" value="com.codyy.slr.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="add*" propagation="REQUIRED" rollback-for="Exception" />
-			<tx:method name="create*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="insert*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="update*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="merge*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="delete*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="remove*" propagation="REQUIRED"
-				rollback-for="Exception" />
-			<tx:method name="verify*" propagation="REQUIRED"
-				rollback-for="Exception" />
-
-			<tx:method name="select*" read-only="true" />
-			<tx:method name="query*" read-only="true" />
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="count*" read-only="true" />
-			<tx:method name="find*" read-only="true" />
-			<tx:method name="list*" read-only="true" />
-
-			<tx:method name="build*" read-only="true" rollback-for="Exception" />
-			<tx:method name="check*" read-only="true" rollback-for="Exception" />
-		</tx:attributes>
-	</tx:advice>
+	
+	<!-- 事务控制 -->
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<!-- 需要进行事物控制的方法（其实所有的方法都进行了事物控制） -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="count*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="list*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 事务控制 -->
+	 <aop:config>
+		<aop:pointcut id="txPointcut" expression="execution(* com.codyy.slr.service.*.*(..)) "/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config> 
 </beans>
