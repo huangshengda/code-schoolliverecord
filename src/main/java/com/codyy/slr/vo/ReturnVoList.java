@@ -24,7 +24,13 @@ public class ReturnVoList<T> implements Serializable {
 		this.msg="操作成功";
 		this.result = Constants.SUCCESS;
 	}
-
+	
+	public ReturnVoList(int code,String msg,List<T> list) {
+		this.msg=msg;
+		this.result = code;
+		this.data = list;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ReturnVoList(Page page) {
 		this.result = 1;

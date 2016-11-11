@@ -104,4 +104,25 @@
     where CLASSLEVEL_ID = #{classlevelId,jdbcType=VARCHAR}
   </update>
   
+   <select id = "getClasslevelList" parameterType="string" resultMap="BaseResultMap">
+  
+  	select * from subject t 
+	  where t.DELETE_FLAG = 'N' 
+	  <if test="classlevelName != null" >
+	  and t.SUBJECT_NAME like CONCAT('%',#{classlevelName},'%') ESCAPE '/'
+	  </if>
+	  ORDER BY t.SORT
+  </select>
+  
+      <update id="modifyClasslevelSort"  parameterType="java.util.List">  
+            <foreach collection="list" item="item" index="index" open="" close="" separator=";">     
+		update subject 
+                   <set>  
+                     SORT=${item.sort} 
+                   </set>  
+                   where SUBJECT_ID = ${item.classlevelId}  
+            </foreach>  
+        </update>  
+        
+  
 </mapper>
