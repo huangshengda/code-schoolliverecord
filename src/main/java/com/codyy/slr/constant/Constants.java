@@ -6,6 +6,9 @@ public class Constants {
 	public static final int FAILED = 0;
 	public static final int NOT_LOGGIN = 2;
 	
+	
+	
+	
 	/**
 	 * 排序字段
 	 */
