@@ -41,192 +41,73 @@
 		from resource res,subject sub where res.SUBJECT_ID = sub.SUBJECT_ID and res.LIVING_FLAG = 'N'
 		order by res.CREATE_TIME desc) tmp limit 0,8
 	</select>
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from resource
-    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from resource
-    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.codyy.slr.entity.Resource" >
+  	
+  	<select id="getResourcePageList" resultType="com.codyy.slr.vo.ResourceVo" parameterType="com.codyy.slr.common.page.Page">
+		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		(select case when count(1)=1 then cl.CLASSLEVEL_NAME else '' end from resource_r_classlevel rrc,classlevel cl
+		where rrc.RESOURCE_ID = res.RESOURCE_ID and rrc.CLASSLEVEL_ID = cl.CLASSLEVEL_ID) classlevelName
+		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID  
+		where res.LIVING_FLAG = 'N'
+		<if test="map != null and map.classlevelId != null and map.classlevelId != ''">
+			and 
+		</if>
+		<if test="map != null and map.subjectId != null and map.subjectId != ''">
+			and res.SUBJECT_ID=#{map.subjectId}
+		</if>
+		<if test="map != null and map.sourceType != null and map.sourceType != ''">
+			and res.SOURCE_TYPE=#{map.sourceType}
+		</if>
+		<if test="map != null and map.resourceNameKey != null and map.resourceNameKey != ''">
+			and res.RESOURCE_NAME like CONCAT('%',#{map.resourceNameKey},'%') ESCAPE '/' 
+		</if>
+		<if test="map != null and map.authorKey != null and map.authorKey != ''">
+			and res.AUTHOR like CONCAT('%',#{map.authorKey},'%') ESCAPE '/'
+		</if>
+		<if test="map != null and map.createUserId != null and map.createUserId != ''">
+			and res.CREATE_USER_ID = #{map.createUserId}
+		</if>
+		<choose>
+			<when test="map != null and map.orderBy != null and map.orderBy=='createTime'">
+				order by res.CREATE_TIME #{map.orderType}
+			</when>
+			<when test="map != null and map.orderBy != null and map.orderBy=='viewCnt'">
+				order by res.VIEW_CNT #{map.orderType}
+			</when>
+			<otherwise>
+				order by res.CREATE_TIME desc
+			</otherwise>
+		</choose>
+	</select>
+  	
+  <!-- 添加资源 -->
+   <insert id="addResource" parameterType="com.codyy.slr.entity.Resource" >
     insert into resource (RESOURCE_ID, RESOURCE_NAME, SUBJECT_ID, 
       AUTHOR, THUMB_PATH, VIEW_CNT, 
       SOURCE_TYPE, STORE_PATH, LIVING_PATH, 
-      LIVING_FLAG, DELETE_FLAG, DELETE_USER_ID, 
+      LIVING_FLAG, DELETE_USER_ID, 
       DELETE_TIME, CREATE_USER_ID, CREATE_TIME
       )
     values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{viewCnt,jdbcType=DECIMAL}, 
       #{sourceType,jdbcType=VARCHAR}, #{storePath,jdbcType=VARCHAR}, #{livingPath,jdbcType=VARCHAR}, 
-      #{livingFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
+      #{livingFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
       #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.codyy.slr.entity.Resource" >
-    insert into resource
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="resourceId != null" >
-        RESOURCE_ID,
-      </if>
-      <if test="resourceName != null" >
-        RESOURCE_NAME,
-      </if>
-      <if test="subjectId != null" >
-        SUBJECT_ID,
-      </if>
-      <if test="author != null" >
-        AUTHOR,
-      </if>
-      <if test="thumbPath != null" >
-        THUMB_PATH,
-      </if>
-      <if test="viewCnt != null" >
-        VIEW_CNT,
-      </if>
-      <if test="sourceType != null" >
-        SOURCE_TYPE,
-      </if>
-      <if test="storePath != null" >
-        STORE_PATH,
-      </if>
-      <if test="livingPath != null" >
-        LIVING_PATH,
-      </if>
-      <if test="livingFlag != null" >
-        LIVING_FLAG,
-      </if>
-      <if test="deleteFlag != null" >
-        DELETE_FLAG,
-      </if>
-      <if test="deleteUserId != null" >
-        DELETE_USER_ID,
-      </if>
-      <if test="deleteTime != null" >
-        DELETE_TIME,
-      </if>
-      <if test="createUserId != null" >
-        CREATE_USER_ID,
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="resourceId != null" >
-        #{resourceId,jdbcType=VARCHAR},
-      </if>
-      <if test="resourceName != null" >
-        #{resourceName,jdbcType=VARCHAR},
-      </if>
-      <if test="subjectId != null" >
-        #{subjectId,jdbcType=VARCHAR},
-      </if>
-      <if test="author != null" >
-        #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="thumbPath != null" >
-        #{thumbPath,jdbcType=VARCHAR},
-      </if>
-      <if test="viewCnt != null" >
-        #{viewCnt,jdbcType=DECIMAL},
-      </if>
-      <if test="sourceType != null" >
-        #{sourceType,jdbcType=VARCHAR},
-      </if>
-      <if test="storePath != null" >
-        #{storePath,jdbcType=VARCHAR},
-      </if>
-      <if test="livingPath != null" >
-        #{livingPath,jdbcType=VARCHAR},
-      </if>
-      <if test="livingFlag != null" >
-        #{livingFlag,jdbcType=CHAR},
-      </if>
-      <if test="deleteFlag != null" >
-        #{deleteFlag,jdbcType=CHAR},
-      </if>
-      <if test="deleteUserId != null" >
-        #{deleteUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteTime != null" >
-        #{deleteTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null" >
-        #{createUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
+  
+  <!-- 批量插入资源和年级关系数据 -->
+  <insert id="addResIdClslevelIdList" parameterType="java.util.List" >
+	  insert into resource_r_classlevel (resource_id, classlevel_id)   
+	    values  
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	       (#{item.resourceId}, #{item.classlevelId}) 
+	    </foreach>  
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.codyy.slr.entity.Resource" >
-    update resource
-    <set >
-      <if test="resourceName != null" >
-        RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
-      </if>
-      <if test="subjectId != null" >
-        SUBJECT_ID = #{subjectId,jdbcType=VARCHAR},
-      </if>
-      <if test="author != null" >
-        AUTHOR = #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="thumbPath != null" >
-        THUMB_PATH = #{thumbPath,jdbcType=VARCHAR},
-      </if>
-      <if test="viewCnt != null" >
-        VIEW_CNT = #{viewCnt,jdbcType=DECIMAL},
-      </if>
-      <if test="sourceType != null" >
-        SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},
-      </if>
-      <if test="storePath != null" >
-        STORE_PATH = #{storePath,jdbcType=VARCHAR},
-      </if>
-      <if test="livingPath != null" >
-        LIVING_PATH = #{livingPath,jdbcType=VARCHAR},
-      </if>
-      <if test="livingFlag != null" >
-        LIVING_FLAG = #{livingFlag,jdbcType=CHAR},
-      </if>
-      <if test="deleteFlag != null" >
-        DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
-      </if>
-      <if test="deleteUserId != null" >
-        DELETE_USER_ID = #{deleteUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteTime != null" >
-        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null" >
-        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
+  
+  <!-- 通过资源id删除资源 -->
+  <delete id="delResByResId" parameterType="java.lang.String" >
+    delete from resource
     where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.codyy.slr.entity.Resource" >
-    update resource
-    set RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
-      SUBJECT_ID = #{subjectId,jdbcType=VARCHAR},
-      AUTHOR = #{author,jdbcType=VARCHAR},
-      THUMB_PATH = #{thumbPath,jdbcType=VARCHAR},
-      VIEW_CNT = #{viewCnt,jdbcType=DECIMAL},
-      SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},
-      STORE_PATH = #{storePath,jdbcType=VARCHAR},
-      LIVING_PATH = #{livingPath,jdbcType=VARCHAR},
-      LIVING_FLAG = #{livingFlag,jdbcType=CHAR},
-      DELETE_FLAG = #{deleteFlag,jdbcType=CHAR},
-      DELETE_USER_ID = #{deleteUserId,jdbcType=VARCHAR},
-      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
-      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
-    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
-  </update>
+  </delete>
 </mapper>

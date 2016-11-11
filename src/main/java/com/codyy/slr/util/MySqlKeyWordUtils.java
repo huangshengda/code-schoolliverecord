@@ -17,14 +17,14 @@ public class MySqlKeyWordUtils {
 	
 	public static String MySqlKeyWordReplace(String str){
 		if(StringUtils.isNotBlank(str)){
-			return str./*replaceAll(FILTER_CHAR, FILTER_CHAR+FILTER_CHAR).*/replaceAll(PERCENTAGE_CHAR, FILTER_CHAR+PERCENTAGE_CHAR).replaceAll(UNDERLINE_CHAR, FILTER_CHAR+UNDERLINE_CHAR);
+			return str.replaceAll(PERCENTAGE_CHAR, FILTER_CHAR+PERCENTAGE_CHAR).replaceAll(UNDERLINE_CHAR, FILTER_CHAR+UNDERLINE_CHAR);
 		}
 		return str;
 	}
 	
 	public static String MySqlKeyWordReplaceRollback(String str){
 		if(StringUtils.isNotBlank(str)){
-			return str./*replaceAll(FILTER_CHAR+FILTER_CHAR, FILTER_CHAR).*/replaceAll(FILTER_CHAR+PERCENTAGE_CHAR, PERCENTAGE_CHAR).replaceAll(FILTER_CHAR+UNDERLINE_CHAR, UNDERLINE_CHAR);
+			return str.replaceAll(FILTER_CHAR+PERCENTAGE_CHAR, PERCENTAGE_CHAR).replaceAll(FILTER_CHAR+UNDERLINE_CHAR, UNDERLINE_CHAR);
 		}
 		return str;
 	}

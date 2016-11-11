@@ -16,6 +16,7 @@ public class ResourceVo {
 	private String thumbPath;
 	private String storePath;
 	private int viewCnt;
+	private String creatName;
 
 	public ResourceVo() {
 		super();
@@ -92,6 +93,14 @@ public class ResourceVo {
 				+ ", subjectName=" + subjectName + ", author=" + author
 				+ ", thumbPath=" + thumbPath + ", storePath=" + storePath
 				+ ", viewCnt=" + viewCnt + "]";
+	}
+
+	public String getCreatName() {
+		return creatName;
+	}
+
+	public void setCreatName(String creatName) {
+		this.creatName = creatName;
 	}
 
 }

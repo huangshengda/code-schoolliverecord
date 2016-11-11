@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +17,8 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
+import com.codyy.slr.service.ResourceService;
+import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.util.ParamUtil;
 import com.codyy.slr.vo.ResCommentVo;
 import com.codyy.slr.vo.ResourceVo;
@@ -31,6 +35,9 @@ import com.codyy.slr.vo.ReturnVoOne;
 @Controller
 @RequestMapping("/resource")
 public class ResourceController {
+	
+	@Autowired
+	private ResourceService resourceService; 
 
 	/**
 	 * 点播列表页面资源 我的课程资源列表
@@ -43,23 +50,23 @@ public class ResourceController {
 	@RequestMapping("getResourcePageList")
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getResourcePageList(Page page,SearchResourceParam param) throws Exception{
+		
+		if(StringUtils.isNotBlank(param.getResourceNameKey())){
+			param.setResourceNameKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param.getResourceNameKey()));
+		}
+		
+		if(StringUtils.isNotBlank(param.getAuthorKey())){
+			param.setAuthorKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param.getAuthorKey()));
+		}
+		
 		Map<String, Object> paramMap = ParamUtil.bean2Map(param);
 		page.setMap(paramMap);
-		ResourceVo homeResourceListVo= new ResourceVo();
-		ResourceVo homeResourceListVo1= new ResourceVo();
-		ResourceVo homeResourceListVo2= new ResourceVo();
-
 		
-		List<ResourceVo> list = new ArrayList<ResourceVo>();
-		list.add(homeResourceListVo);
-		list.add(homeResourceListVo1);
-		list.add(homeResourceListVo2);
+		page = resourceService.getResourcePageList(page);
 		
-		page.setData(list);
+		ReturnVoList<ResourceVo> result = new ReturnVoList<ResourceVo>(page);
 		
-		ReturnVoList<ResourceVo> returnList = new ReturnVoList<ResourceVo>(page);
-		
-		return returnList;
+		return result;
 	}
 	
 	@RequestMapping("getRecommendResourceList")
