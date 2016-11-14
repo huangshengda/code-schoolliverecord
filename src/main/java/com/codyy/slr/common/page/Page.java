@@ -64,5 +64,4 @@ public class Page {
 	public void setPaging(boolean isPaging) {
 		this.isPaging = isPaging;
 	}
-
 }
