@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Page {
+	
 	private int total; // 总条数
 
 	private int start; // 开始
