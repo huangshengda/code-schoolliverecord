@@ -1,5 +1,8 @@
 package com.codyy.slr.constant;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Constants {
 	
 	public static final int SUCCESS = 1;
@@ -7,7 +10,10 @@ public class Constants {
 	public static final int NOT_LOGGIN = 2;
 	
 	
-	
+	public static final List<String> DELETE = Arrays.asList("del_fun");
+	public static final List<String> EDIT = Arrays.asList("edit_fun");
+	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun","del_fun");
+	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList("view_fun","edit_fun","del_fun");
 	
 	/**
 	 * 排序字段

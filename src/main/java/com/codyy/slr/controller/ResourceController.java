@@ -25,68 +25,70 @@ import com.codyy.slr.vo.ReturnVoOne;
 
 /**
  * 点播列表页面 我的课程页面 点播详情页 后台管理
+ * 
  * @author huangshengda
  *
  */
 
-
 @Controller
 @RequestMapping("/resource")
 public class ResourceController {
-	
+
 	@Autowired
-	private ResourceService resourceService; 
-	
-	
+	private ResourceService resourceService;
+
 	/**
 	 * 点播列表页面资源 我的课程资源列表
+	 * 
 	 * @param page
 	 * @return
-	 * @throws IntrospectionException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalAccessException 
+	 * @throws IntrospectionException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
 	 */
 	@RequestMapping("getResourcePageList")
 	@ResponseBody
-	public ReturnVoList<ResourceVo> getResourcePageList(Page page,SearchResourceParam param) throws Exception{
-		
-		if(StringUtils.isNotBlank(param.getResourceNameKey())){
-			param.setResourceNameKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param.getResourceNameKey()));
+	public ReturnVoList<ResourceVo> getResourcePageList(Page page,
+			SearchResourceParam param) throws Exception {
+
+		if (StringUtils.isNotBlank(param.getResourceNameKey())) {
+			param.setResourceNameKey(MySqlKeyWordUtils
+					.MySqlKeyWordReplace(param.getResourceNameKey()));
 		}
-		
-		if(StringUtils.isNotBlank(param.getAuthorKey())){
-			param.setAuthorKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param.getAuthorKey()));
+
+		if (StringUtils.isNotBlank(param.getAuthorKey())) {
+			param.setAuthorKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param
+					.getAuthorKey()));
 		}
-		
+
 		Map<String, Object> paramMap = ParamUtil.bean2Map(param);
 		page.setMap(paramMap);
-		
+
 		page = resourceService.getResourcePageList(page);
-		
+
 		ReturnVoList<ResourceVo> result = new ReturnVoList<ResourceVo>(page);
-		
+
 		return result;
 	}
-	
+
 	@RequestMapping("getRecommendResourceList")
 	@ResponseBody
-	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(){
-		ResourceVo homeResourceListVo= new ResourceVo();
-		ResourceVo homeResourceListVo1= new ResourceVo();
-		ResourceVo homeResourceListVo2= new ResourceVo();
+	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList() {
+		ResourceVo homeResourceListVo = new ResourceVo();
+		ResourceVo homeResourceListVo1 = new ResourceVo();
+		ResourceVo homeResourceListVo2 = new ResourceVo();
 
-		
 		List<ResourceVo> list = new ArrayList<ResourceVo>();
 		list.add(homeResourceListVo);
 		list.add(homeResourceListVo1);
 		list.add(homeResourceListVo2);
-		
-		
-		ReturnVoOne<List<ResourceVo>> returnList = new ReturnVoOne<List<ResourceVo>>(list);
-		
+
+		ReturnVoOne<List<ResourceVo>> returnList = new ReturnVoOne<List<ResourceVo>>(
+				list);
+
 		return returnList;
 	}
-	
+
 	/**
 	 * 删除资源
 	 */
@@ -97,7 +99,7 @@ public class ResourceController {
 		resourceService.delResByResId(resourceId);
 		return new ReturnVoOne();
 	}
-	
+
 	/**
 	 * 添加资源
 	 */
@@ -106,22 +108,22 @@ public class ResourceController {
 	@RequestMapping("addResource")
 	public ReturnVoOne addResource(AddResourceParam param) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
-		//校验参数
-		if(!param.validate()){
+		// 校验参数
+		if (!param.validate()) {
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.equals("参数不合法");
 		}
-		
+
 		boolean flag = resourceService.addResource(param);
-		
-		if(!flag){
+
+		if (!flag) {
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.setMsg("添加资源失败");
 		}
-		
+
 		return returnVoOne;
 	}
-	
+
 	/**
 	 * 编辑资源
 	 */

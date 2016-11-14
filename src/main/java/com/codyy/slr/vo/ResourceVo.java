@@ -1,5 +1,7 @@
 package com.codyy.slr.vo;
 
+import java.util.List;
+
 /**
  * 点播资源视图类
  * 
@@ -17,6 +19,7 @@ public class ResourceVo {
 	private String storePath;
 	private int viewCnt;
 	private String creatName;
+	private List<String> opt;
 
 	public ResourceVo() {
 		super();
@@ -86,21 +89,20 @@ public class ResourceVo {
 		this.storePath = storePath;
 	}
 
-	@Override
-	public String toString() {
-		return "ResourceVo [resourceId=" + resourceId + ", resourceName="
-				+ resourceName + ", classlevelName=" + classlevelName
-				+ ", subjectName=" + subjectName + ", author=" + author
-				+ ", thumbPath=" + thumbPath + ", storePath=" + storePath
-				+ ", viewCnt=" + viewCnt + "]";
-	}
-
 	public String getCreatName() {
 		return creatName;
 	}
 
 	public void setCreatName(String creatName) {
 		this.creatName = creatName;
+	}
+
+	public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = opt;
 	}
 
 }
