@@ -58,7 +58,7 @@ public class UserController {
 				&&(user.getPassword().matches(PasswordRegex))
 				&&(user.getRealname().length()>0)
 				&&(user.getRealname().length()<11)){
-			if(userService.getUserList(page).getTotal()==0){
+			if(userService.getUserList(page).getTotalDatas()==0){
 				try {
 					count = userService.addUser(user);
 				} catch (Exception e) {
@@ -120,7 +120,7 @@ public class UserController {
 				&&(user.getPassword().matches(PasswordRegex))
 				&&(user.getRealname().length()>0)
 				&&(user.getRealname().length()<11)){
-			if(userService.getUserList(page).getTotal()==1){
+			if(userService.getUserList(page).getTotalDatas()==1){
 				try {
 					userService.editUser(user);
 				} catch (Exception e) {

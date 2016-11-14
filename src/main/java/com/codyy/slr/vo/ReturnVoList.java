@@ -12,9 +12,7 @@ public class ReturnVoList<T> implements Serializable {
 	private int result;// 1:成功, 0:业务错误,
 	private String msg;
 	private List<T> data;
-	private int count;
 	private int totalDatas;
-
 	// 分页页数
 	private int totalPages;
 	// 当前页
@@ -36,9 +34,9 @@ public class ReturnVoList<T> implements Serializable {
 		this.result = 1;
 		this.msg = "操作成功";
 		this.data = (List<T>) page.getData();
-		this.totalDatas = (int) page.getTotal();
-		this.totalPages = page.getTotal();
-		this.curPage = page.getEnd();
+		this.totalDatas = (int) page.getTotalDatas();
+		this.totalPages = page.getTotalPages();
+		this.curPage = page.getCurPage();
 	}
 
 	public int getResult() {
@@ -63,14 +61,6 @@ public class ReturnVoList<T> implements Serializable {
 
 	public void setData(List<T> data) {
 		this.data = data;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 
 	public int getTotalPages() {
