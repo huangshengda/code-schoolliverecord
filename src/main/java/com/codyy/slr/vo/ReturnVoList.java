@@ -31,7 +31,7 @@ public class ReturnVoList<T> implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public ReturnVoList(Page page) {
-		this.code = 1;
+		this.code = Constants.SUCCESS;
 		this.msg = "操作成功";
 		this.data = (List<T>) page.getData();
 		this.totalDatas = (int) page.getTotalDatas();
