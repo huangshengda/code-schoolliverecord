@@ -9,7 +9,7 @@ import com.codyy.slr.constant.Constants;
 public class ReturnVoList<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int result;// 1:成功, 0:业务错误,
+	private int code;// 1:成功, 0:业务错误,
 	private String msg;
 	private List<T> data;
 	private int totalDatas;
@@ -20,18 +20,18 @@ public class ReturnVoList<T> implements Serializable {
 
 	public ReturnVoList() {
 		this.msg="操作成功";
-		this.result = Constants.SUCCESS;
+		this.code = Constants.SUCCESS;
 	}
 	
 	public ReturnVoList(int code,String msg,List<T> list) {
 		this.msg=msg;
-		this.result = code;
+		this.code = code;
 		this.data = list;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public ReturnVoList(Page page) {
-		this.result = 1;
+		this.code = 1;
 		this.msg = "操作成功";
 		this.data = (List<T>) page.getData();
 		this.totalDatas = (int) page.getTotalDatas();
@@ -39,12 +39,12 @@ public class ReturnVoList<T> implements Serializable {
 		this.curPage = page.getCurPage();
 	}
 
-	public int getResult() {
-		return result;
+	public int getCode() {
+		return code;
 	}
 
-	public void setResult(int result) {
-		this.result = result;
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public String getMsg() {
