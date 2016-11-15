@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.BasicInfo;
-import com.codyy.slr.parambean.BasicInfoParam;
 import com.codyy.slr.service.BasicInfoService;
+import com.codyy.slr.vo.BasicInfoVo;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**
@@ -28,7 +28,7 @@ public class BasicInfoController {
 	
 	@RequestMapping("modifyBasicInfo")
 	@ResponseBody
-	public ReturnVoOne<List<BasicInfo>> modifyBasicInfo(BasicInfoParam param){
+	public ReturnVoOne<List<BasicInfo>> modifyBasicInfo(BasicInfoVo param){
 		ReturnVoOne<List<BasicInfo>> returnVoOne = new ReturnVoOne<List<BasicInfo>>();
 		try {
 			boolean flag = basicInfoService.updateBasicInfo(param);
@@ -47,10 +47,21 @@ public class BasicInfoController {
 
 	@RequestMapping("getBasicInfo")
 	@ResponseBody
-	public ReturnVoOne<List<BasicInfo>> getBasicInfo(){
-		ReturnVoOne<List<BasicInfo>> returnVoOne = new ReturnVoOne<List<BasicInfo>>();
+	public ReturnVoOne<BasicInfoVo> getBasicInfo(){
+		ReturnVoOne<BasicInfoVo> returnVoOne = new ReturnVoOne<BasicInfoVo>();
 		try {
-			returnVoOne.setData(basicInfoService.getBasicInfo());
+			BasicInfoVo param = new BasicInfoVo();
+			List<BasicInfo> list =  basicInfoService.getBasicInfo();
+			for (BasicInfo info : list) {
+				if("title".equalsIgnoreCase(info.getInfoName())){
+					param.setTitle(info.getInfoValue());
+				}else if("logoPath".equalsIgnoreCase(info.getInfoName())){
+					param.setLogoPath(info.getInfoValue());
+				}else{
+					param.setButtomMsg(info.getInfoValue());
+				}
+			}
+			returnVoOne.setData(param);
 		} catch (Exception e) {
 			returnVoOne.setMsg("获取基础信息失败");
 			returnVoOne.setCode(Constants.FAILED);

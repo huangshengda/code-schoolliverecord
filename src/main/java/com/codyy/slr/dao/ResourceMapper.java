@@ -32,9 +32,23 @@ public interface ResourceMapper {
     int addResIdClslevelIdList(List<Map<String,String>> list);
     
     /**
-     * 删除资源
+     * 删除资源(逻辑删除)
      * @param resourceId
      * @return
      */
     int delResByResId(String resourceId);
+    
+    /**
+     * 查询资源
+     * @param resourceId
+     * @return
+     */
+    Resource getResourceById(String resourceId);
+    
+    /**
+     * 获取同属
+     * @param map
+     * @return
+     */
+    List<ResourceVo> getRelatedSameAttrResourceList(Map<String,String> map);
 }

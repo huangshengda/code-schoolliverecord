@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.codyy.slr.dao.BasicInfoMapper;
 import com.codyy.slr.entity.BasicInfo;
-import com.codyy.slr.parambean.BasicInfoParam;
+import com.codyy.slr.vo.BasicInfoVo;
 
 /**
  * 
@@ -21,7 +21,7 @@ public class BasicInfoService {
 	@Autowired
 	private BasicInfoMapper basicInfoMapper;
 	
-	public boolean updateBasicInfo(BasicInfoParam param) {
+	public boolean updateBasicInfo(BasicInfoVo param) {
 		
 		BasicInfo info = new BasicInfo("title",param.getTitle());
 		BasicInfo info1 = new BasicInfo("logoPath",param.getLogoPath());

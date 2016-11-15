@@ -71,9 +71,13 @@ public class ResourceController {
 		return result;
 	}
 
+	/**
+	 * 点播详情页面推荐资源
+	 * @return
+	 */
 	@RequestMapping("getRecommendResourceList")
 	@ResponseBody
-	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList() {
+	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
 		ResourceVo homeResourceListVo = new ResourceVo();
 		ResourceVo homeResourceListVo1 = new ResourceVo();
 		ResourceVo homeResourceListVo2 = new ResourceVo();

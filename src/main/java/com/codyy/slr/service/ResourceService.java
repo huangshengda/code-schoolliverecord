@@ -94,8 +94,8 @@ public class ResourceService {
 		page.setData(list);
 		return page;
 	}
-
-	public boolean addResource() {
-		return true;
+	
+	Resource getResourceById(String resourceId){
+		return resourceMapper.getResourceById(resourceId);
 	}
 }

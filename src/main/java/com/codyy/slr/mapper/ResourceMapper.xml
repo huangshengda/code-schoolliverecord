@@ -113,7 +113,37 @@
   
   <!-- 通过资源id删除资源 -->
   <delete id="delResByResId" parameterType="java.lang.String" >
-    delete from resource
+    update resource set delete_flag = 'Y'
     where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
   </delete>
+  
+  <select id="getResourceById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 资源推荐 -->
+  <select id="getRelatedSameAttrResourceList" parameterType="java.util.Map" resultType="com.codyy.slr.vo.ResourceVo">
+  
+  
+  <!-- select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		from 
+	  (
+	  	select res.resource_id from resource r 
+	  		where r.LIVING_FLAG = 'N' AND r.DELETE_FLAG='N' 
+			order by  (1
+					  + (case r.subject_id when (select subject_id where resource_id = = #{resourceId}) then 10 else 0 end)
+					  + (case  when r.subject_id in (select classlevel_id where resource_id = #{resourceId})  then 10 else 0 end)
+	       ) LIMIT 0,5
+	   )  t left join on resource res  t.resource_id = res.resource_id 
+   			left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+			JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
+			rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+   GROUP BY res.RESOURCE_ID -->
+	   
+  </select>
 </mapper>

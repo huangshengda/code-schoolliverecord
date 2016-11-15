@@ -1,11 +1,11 @@
-package com.codyy.slr.parambean;
+package com.codyy.slr.vo;
 
 /**
  *网站基础信息请求参数 
  * @author huangshengda
  *
  */
-public class BasicInfoParam {
+public class BasicInfoVo {
 	private String  title;
 	private String logoPath;
 	private String buttomMsg;
