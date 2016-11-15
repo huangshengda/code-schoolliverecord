@@ -25,22 +25,6 @@ public class ResourceVo {
 		super();
 	}
 
-	public String getResId() {
-		return resourceId;
-	}
-
-	public void setResId(String resId) {
-		this.resourceId = resId;
-	}
-
-	public String getResName() {
-		return resourceName;
-	}
-
-	public void setResName(String resName) {
-		this.resourceName = resName;
-	}
-
 	public String getClasslevelName() {
 		return classlevelName;
 	}
@@ -103,6 +87,22 @@ public class ResourceVo {
 
 	public void setOpt(List<String> opt) {
 		this.opt = opt;
+	}
+
+	public String getResourceId() {
+		return resourceId;
+	}
+
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId;
+	}
+
+	public String getResourceName() {
+		return resourceName;
+	}
+
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
 	}
 
 }
