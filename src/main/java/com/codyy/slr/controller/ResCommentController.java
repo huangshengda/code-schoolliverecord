@@ -38,6 +38,12 @@ public class ResCommentController {
 	public ReturnVoOne addResComment(ResComment resComment) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		try {
+			// 校验参数
+			if (!resComment.validate()) {
+				returnVoOne.setCode(Constants.FAILED);
+				returnVoOne.equals("参数不合法");
+				return returnVoOne;
+			}
 			boolean flag = resCommentService.addResComment(resComment);
 			if(!flag){
 				returnVoOne.setCode(Constants.FAILED);

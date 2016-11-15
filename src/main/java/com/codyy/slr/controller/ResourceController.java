@@ -116,6 +116,7 @@ public class ResourceController {
 		if (!param.validate()) {
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.equals("参数不合法");
+			return returnVoOne;
 		}
 
 		boolean flag = resourceService.addResource(param);
