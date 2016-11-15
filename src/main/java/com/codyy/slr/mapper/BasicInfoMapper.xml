@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.codyy.slr.dao.BasicInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.codyy.slr.entity.BasicInfo" >
+    <id column="INFO_NAME" property="infoName" jdbcType="VARCHAR" />
+    <result column="INFO_VALUE" property="infoValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INFO_NAME, INFO_VALUE
+  </sql>
+	
+	<!-- <update id="updateBasicInfo" parameterType = "com.codyy.slr.entity.BasicInfo">
+		update basic_info set info_value = #{item.infoValue} where info_name = #{item.infoName}
+	</update> -->
+
+	<update id="updateBasicInfo"  parameterType="java.util.List">
+	      <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+				update basic_info 
+				<set>
+				  info_value=#{item.infoValue}
+				</set>
+				where info_name = #{item.infoName}
+		 </foreach>
+    </update>
+
+	 <select id="getBasicInfo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from basic_info
+ 	 </select>
+
+</mapper>
