@@ -94,7 +94,7 @@ public class ResourceService {
 	// 获取我的课程资源列表
 	public Page getMyResourcePageList(Page page) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		//TODO 缺少获取userId方法
+		// TODO 缺少获取userId方法
 		map.put("createUserId", "userId");
 
 		page.setMap(map);
@@ -108,14 +108,9 @@ public class ResourceService {
 		page.setData(list);
 		return page;
 	}
-	
-	//根据资源ID获取资源
-	public ResourceVo getResource(String resourceId){
+
+	// 根据资源ID获取资源
+	public ResourceVo getResource(String resourceId) {
 		return resourceMapper.getResource(resourceId);
-	}
-	
-	
-	public boolean addResource() {
-		return true;
 	}
 }
