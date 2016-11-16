@@ -1,7 +1,5 @@
 package com.codyy.slr.controller;
 
-import java.beans.IntrospectionException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.common.page.Page;
@@ -38,18 +37,16 @@ public class ResourceController {
 	private ResourceService resourceService;
 
 	/**
-	 * 点播列表页面资源 我的课程资源列表
+	 * 后台资源管理
 	 * 
 	 * @param page
 	 * @return
-	 * @throws IntrospectionException
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
+	 * 
 	 */
-	@RequestMapping("getResourcePageList")
+	@RequestMapping(value = "/getResourcePageList", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getResourcePageList(Page page,
-			SearchResourceParam param) throws Exception {
+			SearchResourceParam param) {
 
 		if (StringUtils.isNotBlank(param.getResourceNameKey())) {
 			param.setResourceNameKey(MySqlKeyWordUtils
@@ -60,20 +57,54 @@ public class ResourceController {
 			param.setAuthorKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param
 					.getAuthorKey()));
 		}
+		
+		ReturnVoList<ResourceVo> result = null;
+		
+		try{
+			Map<String, Object> paramMap = ParamUtil.bean2Map(param);
+			page.setMap(paramMap);
 
-		Map<String, Object> paramMap = ParamUtil.bean2Map(param);
-		page.setMap(paramMap);
+			page = resourceService.getResourcePageList(page);
 
-		page = resourceService.getResourcePageList(page);
-
-		ReturnVoList<ResourceVo> result = new ReturnVoList<ResourceVo>(page);
-
+			result = new ReturnVoList<ResourceVo>(page);
+		}catch(Exception e){
+			result = new ReturnVoList<ResourceVo>(Constants.FAILED, "查询失败", null);
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 
+	/**
+	 * 我的课程资源列表
+	 * 
+	 * @param page
+	 * @return
+	 * 
+	 */
+	@RequestMapping(value = "/getMyResourcePageList", method = RequestMethod.POST)
+	@ResponseBody
+	public ReturnVoList<ResourceVo> getMyResourcePageList(Page page) {
+		
+		ReturnVoList<ResourceVo> result = null;
+		
+		try{
+			
+			page = resourceService.getMyResourcePageList(page);
+			
+			result = new ReturnVoList<ResourceVo>(page);
+		}catch(Exception e){
+			result = new ReturnVoList<ResourceVo>(Constants.FAILED, "查询失败", null);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
 	@RequestMapping("getRecommendResourceList")
 	@ResponseBody
-	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList() {
+	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
 		ResourceVo homeResourceListVo = new ResourceVo();
 		ResourceVo homeResourceListVo1 = new ResourceVo();
 		ResourceVo homeResourceListVo2 = new ResourceVo();
@@ -90,14 +121,21 @@ public class ResourceController {
 	}
 
 	/**
-	 * 删除资源
+	 * 删除资源(逻辑删除)
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping("delResource")
+	@RequestMapping(value="/delResource")
 	public ReturnVoOne delResource(String resourceId) {
-		resourceService.delResByResId(resourceId);
-		return new ReturnVoOne();
+		ReturnVoOne result = null;
+		try{
+			resourceService.delResByResId(resourceId);
+			result = new ReturnVoOne();
+		}catch(Exception e){
+			result = new ReturnVoOne(Constants.FAILED,"删除失败");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	/**
@@ -112,6 +150,7 @@ public class ResourceController {
 		if (!param.validate()) {
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.equals("参数不合法");
+			return returnVoOne;
 		}
 
 		boolean flag = resourceService.addResource(param);
@@ -125,12 +164,69 @@ public class ResourceController {
 	}
 
 	/**
-	 * 编辑资源
+	 * 编辑保存资源
+	 */
+	@SuppressWarnings("rawtypes")
+	@ResponseBody
+	@RequestMapping(value="/modifyResource")
+	public ReturnVoOne modifyResource(ResourceVo res) {
+		ReturnVoOne result = null;
+		try{
+			if(resourceService.modifyResource(res)){
+				result = new ReturnVoOne();
+			}else{
+				result = new ReturnVoOne(Constants.FAILED,"编辑资源失败");
+			}
+		}catch(Exception e){
+			result = new ReturnVoOne(Constants.FAILED,"编辑资源失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * 依据资源ID获取资源详细信息
 	 */
 	@ResponseBody
-	@RequestMapping("modifyResource")
-	public ReturnVoOne modifyResource() {
-		ReturnVoOne returnVoOne = new ReturnVoOne();
-		return returnVoOne;
+	@RequestMapping(value="/getResource")
+	public ReturnVoOne<ResourceVo> getResource(String resourceId) {
+		ReturnVoOne<ResourceVo> result = null;
+		try{
+			ResourceVo resVo = resourceService.getResource(resourceId);
+			result = new ReturnVoOne<ResourceVo>(resVo);
+		}catch(Exception e){
+			result = new ReturnVoOne<ResourceVo>(Constants.FAILED,"查询失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 点播资源播放
+	 * @param resourceId
+	 */
+	@RequestMapping(value="/playResource")
+	public void playResource(String resourceId){
+		//TODO 未实行
+	}
+	
+	/**
+	 * 获取系统截图方法
+	 * @param resourcePath
+	 * @return
+	 */
+	@RequestMapping(value="/sysScreenShot")
+	@ResponseBody
+	public ReturnVoOne<String> sysScreenShot(String resourcePath){
+		ReturnVoOne<String> result = null;
+		try{
+			//TODO 根据资源路径截图
+			result = new ReturnVoOne<String>("thumb/wewwfsdfsdfasdfasfd.png");
+		}catch(Exception e){
+			result = new ReturnVoOne<String>(Constants.FAILED,"截图失败");
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

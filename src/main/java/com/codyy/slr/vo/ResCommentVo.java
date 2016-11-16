@@ -29,6 +29,21 @@ public class ResCommentVo extends ResComment{
      * 二级评论数量
      */
     private int childrenCommentSize;
+    
+    /**
+     * 操作权限
+     */
+    private List<String> opt;
+
+    
+    
+	public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = opt;
+	}
 
 	public String getUserName() {
 		return userName;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codyy.slr.common.page.Page;
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.ResCommentMapper;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.util.DateUtils;
@@ -38,7 +39,8 @@ public class ResCommentService {
 		 * 获取一级评论
 		 */
 		List<ResCommentVo> list  = commentDao.getResCommentPageList(page);
-		formatDateAndGenHeadPicUrl(list);
+		String userId = page.getMap().get("userId").toString();
+		formatDateAndSetDelFun(list,userId);
 		List<String> commentIdList = new ArrayList<String>();
 		for(ResCommentVo comment : list){
 			commentIdList.add(comment.getResourceCommentId());
@@ -47,7 +49,7 @@ public class ResCommentService {
 		/**
 		 * 将二级评论根据一级评论的id分组
 		 */
-	    List<ResCommentVo> subList = getSubResCommentList(commentIdList);
+	    List<ResCommentVo> subList = getSubResCommentList(commentIdList,userId);
 	    Map<String,List<ResCommentVo>> groupListMap = MapUtil.newHashMap();
 		for(ResCommentVo comment : subList){
 			MapUtil.groupValue(groupListMap, comment.getParentCommentId(), comment);
@@ -76,12 +78,12 @@ public class ResCommentService {
 	/**
 	 * 根据一级评论获取二级评论
 	 */
-	public List<ResCommentVo> getSubResCommentList(List<String> commentIdList) {
+	public List<ResCommentVo> getSubResCommentList(List<String> commentIdList,String userId) {
 		if(commentIdList == null || commentIdList.size() == 0){
 			return new ArrayList<ResCommentVo>();
 		}
 		List<ResCommentVo> subList = commentDao.getSubResCommentList(commentIdList);
-		formatDateAndGenHeadPicUrl(subList);
+		formatDateAndSetDelFun(subList,userId);
 		return subList;
 	}
 	
@@ -121,8 +123,11 @@ public class ResCommentService {
 	/**
 	 * 时间格式化,生成头像路径
 	 */
-	private void formatDateAndGenHeadPicUrl(List<ResCommentVo> list){
+	private void formatDateAndSetDelFun(List<ResCommentVo> list,String userId){
 		for(ResCommentVo view : list){
+			if(userId.equalsIgnoreCase(view.getCommentUserId())){
+				view.setOpt(Constants.DELETE);
+			}
 			view.setCreateTimeStr(DateUtils.format(view.getCreateTime(), "yyyy-MM-dd HH:mm"));
 		}
 	}
