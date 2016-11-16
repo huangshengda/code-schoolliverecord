@@ -10,9 +10,6 @@ import com.codyy.slr.vo.ResourceVo;
 public interface ResourceMapper {
 	//获取所有直播课程信息
 	List<HomeLiveVo> getHomeLiveList();
-		
-	//获取最新上传的8节课程(按上传时间降序排序)
-	List<ResourceVo> getHomeResourceList();
 	
 	//获取资源信息
 	List<ResourceVo> getResourcePageList(Page page);
@@ -32,9 +29,16 @@ public interface ResourceMapper {
     int addResIdClslevelIdList(List<Map<String,String>> list);
     
     /**
-     * 删除资源
+     * 删除资源(逻辑删除)
      * @param resourceId
      * @return
      */
-    int delResByResId(String resourceId);
+    int delResByResId(Resource res);
+    
+    /**
+     * 根据资源ID获取资源
+     * @param resourceId
+     * @return
+     */
+    ResourceVo getResource(String resourceId);
 }

@@ -62,7 +62,7 @@
 		<property name="testWhileIdle" value="true" />
 		<!-- 这里建议配置为TRUE，防止取到的连接不可用 -->
 		<property name="testOnBorrow" value="true" />
-		<property name="testOnReturn" value="false" />
+		<property name="testOnReturn" value="true" />
 		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
 		<property name="poolPreparedStatements" value="true" />
 		<property name="maxPoolPreparedStatementPerConnectionSize"

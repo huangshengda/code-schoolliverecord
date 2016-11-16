@@ -34,7 +34,7 @@ public class ReturnVoList<T> implements Serializable {
 		this.code = 1;
 		this.msg = "操作成功";
 		this.data = (List<T>) page.getData();
-		this.totalDatas = (int) page.getTotalDatas();
+		this.totalDatas = page.getTotalDatas();
 		this.totalPages = page.getTotalPages();
 		this.curPage = page.getCurPage();
 	}

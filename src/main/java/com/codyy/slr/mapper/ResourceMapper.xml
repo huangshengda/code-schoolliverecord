@@ -34,17 +34,6 @@
     	GROUP BY res.RESOURCE_ID
 		ORDER BY res.CREATE_TIME DESC
 	</select>
-
-	<select id="getHomeResourceList" resultType="com.codyy.slr.vo.ResourceVo">
-		SELECT res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,
-		res.STORE_PATH storePath,res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,
-		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
-		from resource res LEFT JOIN subject sub ON res.SUBJECT_ID = sub.SUBJECT_ID 
-    	JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
-		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
-    	WHERE res.LIVING_FLAG = 'N' AND res.DELETE_FLAG='N' GROUP BY res.RESOURCE_ID
-		ORDER BY res.CREATE_TIME DESC LIMIT 0,8
-	</select>
   	
   	<select id="getResourcePageList" resultType="com.codyy.slr.vo.ResourceVo" parameterType="com.codyy.slr.common.page.Page">
 		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
@@ -73,17 +62,19 @@
 			and res.CREATE_USER_ID = #{map.createUserId}
 		</if>
 		GROUP BY res.RESOURCE_ID
-		<choose>
-			<when test="map != null and map.orderBy != null and map.orderBy=='createTime'">
-				order by res.CREATE_TIME #{map.orderType}
-			</when>
-			<when test="map != null and map.orderBy != null and map.orderBy=='viewCnt'">
-				order by res.VIEW_CNT #{map.orderType}
-			</when>
-			<otherwise>
-				order by res.CREATE_TIME desc
-			</otherwise>
-		</choose>
+		order by res.CREATE_TIME desc
+	</select>
+  	
+  	<!-- 根据资源ID获取资源 -->
+  	<select id="getResource" resultType="com.codyy.slr.vo.ResourceVo" parameterType="java.lang.String">
+		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
+		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+		where res.RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+		GROUP BY res.RESOURCE_ID
 	</select>
   	
   <!-- 添加资源 -->
@@ -111,9 +102,9 @@
 	    </foreach>  
   </insert>
   
-  <!-- 通过资源id删除资源 -->
-  <delete id="delResByResId" parameterType="java.lang.String" >
-    delete from resource
-    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  <!-- 通过资源id删除资源(逻辑删除) -->
+  <delete id="delResByResId" parameterType="com.codyy.slr.entity.Resource" >
+    UPDATE resource SET DELETE_FLAG='Y',DELETE_USER_ID=#{deleteUserId,jdbcType=VARCHAR},
+    DELETE_TIME=#{deleteTime,jdbcType=TIMESTAMP} WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
   </delete>
 </mapper>
