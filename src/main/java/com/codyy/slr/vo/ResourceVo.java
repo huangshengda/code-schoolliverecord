@@ -13,7 +13,9 @@ public class ResourceVo {
 	private String resourceId;
 	private String resourceName;
 	private String classlevelName;
+	private String classlevelId;
 	private String subjectName;
+	private String subjectId;
 	private String author;
 	private String thumbPath;
 	private String storePath;
@@ -103,6 +105,22 @@ public class ResourceVo {
 
 	public void setResourceName(String resourceName) {
 		this.resourceName = resourceName;
+	}
+
+	public String getClasslevelId() {
+		return classlevelId;
+	}
+
+	public void setClasslevelId(String classlevelId) {
+		this.classlevelId = classlevelId;
+	}
+
+	public String getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(String subjectId) {
+		this.subjectId = subjectId;
 	}
 
 }

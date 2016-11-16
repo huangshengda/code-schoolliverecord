@@ -1,7 +1,5 @@
 package com.codyy.slr.controller;
 
-import java.beans.IntrospectionException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -127,7 +125,7 @@ public class ResourceController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping("delResource")
+	@RequestMapping(value="/delResource")
 	public ReturnVoOne delResource(String resourceId) {
 		ReturnVoOne result = null;
 		try{
@@ -168,11 +166,22 @@ public class ResourceController {
 	/**
 	 * 编辑保存资源
 	 */
+	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping("modifyResource")
-	public ReturnVoOne modifyResource() {
-		ReturnVoOne returnVoOne = new ReturnVoOne();
-		return returnVoOne;
+	@RequestMapping(value="/modifyResource")
+	public ReturnVoOne modifyResource(ResourceVo res) {
+		ReturnVoOne result = null;
+		try{
+			if(resourceService.modifyResource(res)){
+				result = new ReturnVoOne();
+			}else{
+				result = new ReturnVoOne(Constants.FAILED,"编辑资源失败");
+			}
+		}catch(Exception e){
+			result = new ReturnVoOne(Constants.FAILED,"编辑资源失败");
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	
@@ -180,7 +189,7 @@ public class ResourceController {
 	 * 依据资源ID获取资源详细信息
 	 */
 	@ResponseBody
-	@RequestMapping("getResource")
+	@RequestMapping(value="/getResource")
 	public ReturnVoOne<ResourceVo> getResource(String resourceId) {
 		ReturnVoOne<ResourceVo> result = null;
 		try{
@@ -188,6 +197,34 @@ public class ResourceController {
 			result = new ReturnVoOne<ResourceVo>(resVo);
 		}catch(Exception e){
 			result = new ReturnVoOne<ResourceVo>(Constants.FAILED,"查询失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 点播资源播放
+	 * @param resourceId
+	 */
+	@RequestMapping(value="/playResource")
+	public void playResource(String resourceId){
+		//TODO 未实行
+	}
+	
+	/**
+	 * 获取系统截图方法
+	 * @param resourcePath
+	 * @return
+	 */
+	@RequestMapping(value="/sysScreenShot")
+	@ResponseBody
+	public ReturnVoOne<String> sysScreenShot(String resourcePath){
+		ReturnVoOne<String> result = null;
+		try{
+			//TODO 根据资源路径截图
+			result = new ReturnVoOne<String>("thumb/wewwfsdfsdfasdfasfd.png");
+		}catch(Exception e){
+			result = new ReturnVoOne<String>(Constants.FAILED,"截图失败");
 			e.printStackTrace();
 		}
 		return result;

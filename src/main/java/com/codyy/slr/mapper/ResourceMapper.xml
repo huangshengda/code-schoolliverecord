@@ -69,8 +69,9 @@
   	<select id="getResource" resultType="com.codyy.slr.vo.ResourceVo" parameterType="java.lang.String">
 		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,
 		(case when res.LIVING_FLAG = 'Y' then res.LIVING_PATH else res.STORE_PATH end) storePath,
-		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
-		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,res.SUBJECT_ID subjectId,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName,
+		GROUP_CONCAT(cl.CLASSLEVEL_ID ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
 		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
 		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
 		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
@@ -104,9 +105,20 @@
   </insert>
   
   <!-- 通过资源id删除资源(逻辑删除) -->
-  <delete id="delResByResId" parameterType="com.codyy.slr.entity.Resource" >
+  <update id="delResByResId" parameterType="com.codyy.slr.entity.Resource" >
     UPDATE resource SET DELETE_FLAG='Y',DELETE_USER_ID=#{deleteUserId,jdbcType=VARCHAR},
     DELETE_TIME=#{deleteTime,jdbcType=TIMESTAMP} WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 更新资源信息 -->
+  <update id="modifyResource" parameterType="com.codyy.slr.vo.ResourceVo" >
+    UPDATE resource SET RESOURCE_NAME=#{resourceName,jdbcType=VARCHAR},SUBJECT_ID=#{subjectId,jdbcType=VARCHAR},
+    AUTHOR=#{author,jdbcType=VARCHAR} WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 删除资源与年级的关系 -->
+  <delete id="delResIDRClslevelID" parameterType="java.lang.String">
+  	DELETE FROM resource_r_classlevel rrc WHERE rrc.RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
   </delete>
   
   <!-- 资源推荐 -->

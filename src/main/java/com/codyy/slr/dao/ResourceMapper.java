@@ -55,4 +55,18 @@ public interface ResourceMapper {
 	 * @return
 	 */
 	List<ResourceVo> getRelatedSameAttrResourceList(Map<String, String> map);
+	
+	/**
+	 * 更新资源信息
+	 * @param res
+	 * @return
+	 */
+	int modifyResource(ResourceVo res);
+	
+	/**
+	 * 删除资源与年级的关系
+	 * @param resourceId
+	 * @return
+	 */
+	int delResIDRClslevelID(String resourceId);
 }
