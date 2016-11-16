@@ -106,21 +106,21 @@
   
    <select id = "getClasslevelList" parameterType="string" resultMap="BaseResultMap">
   
-  	select * from subject t 
+  	select * from  classlevel t 
 	  where t.DELETE_FLAG = 'N' 
 	  <if test="_parameter != null" >
-	  and t.SUBJECT_NAME like CONCAT('%',#{_parameter},'%') ESCAPE '/'
+	  and t.CLASSLEVEL_NAME like CONCAT('%',#{_parameter},'%') ESCAPE '/'
 	  </if>
 	  ORDER BY t.SORT
   </select>
   
       <update id="modifyClasslevelSort"  parameterType="java.util.List">  
             <foreach collection="list" item="item" index="index" open="" close="" separator=";">     
-		update subject 
+		update classlevel 
                    <set>  
                      SORT=${item.sort} 
                    </set>  
-                   where SUBJECT_ID = ${item.classlevelId}  
+                   where CLASSLEVEL_ID = ${item.classlevelId}  
             </foreach>  
         </update>  
         
