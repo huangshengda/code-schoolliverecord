@@ -32,8 +32,19 @@ public class Resource {
 	private String createUserId;
 
 	private String userId;
+	
+	private long size;
 
 	private Date createTime;
+
+	
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
+	}
 
 	public String getResourceId() {
 		return resourceId;

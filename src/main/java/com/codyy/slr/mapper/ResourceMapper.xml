@@ -92,13 +92,13 @@
       AUTHOR, THUMB_PATH, VIEW_CNT, 
       SOURCE_TYPE, STORE_PATH, LIVING_PATH, 
       LIVING_FLAG, DELETE_USER_ID, 
-      DELETE_TIME, CREATE_USER_ID, CREATE_TIME
+      DELETE_TIME, CREATE_USER_ID, CREATE_TIME,SIZE
       )
     values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{viewCnt,jdbcType=DECIMAL}, 
       #{sourceType,jdbcType=VARCHAR}, #{storePath,jdbcType=VARCHAR}, #{livingPath,jdbcType=VARCHAR}, 
       #{livingFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
-      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},#{size}
       )
   </insert>
   
