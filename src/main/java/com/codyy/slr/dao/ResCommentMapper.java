@@ -23,4 +23,7 @@ public interface ResCommentMapper {
 	    ResCommentVo getCommentByKeyId(String commentId);
 	    
 	    int getResCommentCount(String resourceId);
+
+		List<ResCommentVo> getAllResCommentPageList(Page page);
+
 }

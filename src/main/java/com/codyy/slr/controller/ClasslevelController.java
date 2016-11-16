@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Classlevel;
 import com.codyy.slr.service.ClasslevelService;
 import com.codyy.slr.vo.ReturnVoList;
@@ -39,7 +40,7 @@ public class ClasslevelController {
 		try {
 			classlevelList = classlevelService.getClasslevelList(classlevelName);
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "操作失败";
 			e.printStackTrace();
 		}
@@ -61,7 +62,7 @@ public class ClasslevelController {
 			code = Integer.parseInt(String.valueOf(map.get("code")));
 			msg = String.valueOf(map.get("msg"));
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "操作失败";
 			e.printStackTrace();
 		}
@@ -75,13 +76,13 @@ public class ClasslevelController {
 	@RequestMapping("delClasslevel")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> delClasslevel(Classlevel classlevel){
-		int code = 1;
+		int code = Constants.SUCCESS;
 		String msg = "删除成功";
 		classlevel.setDeleteFlag("Y");
 		classlevel.setDeleteTime(new Date());
 		if(classlevelService.modifyClasslevel(classlevel)!=1){
 			msg = "删除失败";
-			code = 0;
+			code = Constants.FAILED;
 		};
 		return new ReturnVoOne<Classlevel>(code,msg);
 	}
@@ -93,21 +94,21 @@ public class ClasslevelController {
 	@RequestMapping("modifyClasslevelName")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> modifyClasslevelName(Classlevel classlevel){
-		int code = 1;
+		int code = Constants.SUCCESS;
 		String msg = "编辑成功";
 		try {
 			List<Classlevel> list = classlevelService.getClasslevelList(classlevel.getClasslevelName());
 			if(list.size()==0){
 				if(classlevelService.modifyClasslevel(classlevel)!=1){
 					msg = "编辑失败";
-					code = 0;
+					code = Constants.FAILED;
 				};
 			}else{
 				msg = "学科名称重复";
-				code = 0;
+				code = Constants.FAILED;
 			}
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "操作失败";
 			e.printStackTrace();
 		}
@@ -134,7 +135,7 @@ public class ClasslevelController {
 		try {
 			classlevelService.modifyClasslevelSort(list);
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "排序失败";
 			e.printStackTrace();
 		}

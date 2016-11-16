@@ -30,6 +30,16 @@ public class ReturnVoList<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public ReturnVoList(Page page,int code,String msg) {
+		this.result = code;
+		this.msg = msg;
+		this.data = (List<T>) page.getData();
+		this.totalDatas = (int) page.getTotalDatas();
+		this.totalPages = page.getTotalPages();
+		this.curPage = page.getCurPage();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public ReturnVoList(Page page) {
 		this.result = 1;
 		this.msg = "操作成功";

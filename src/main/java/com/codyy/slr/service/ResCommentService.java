@@ -130,5 +130,11 @@ public class ResCommentService {
 	public int getResCommentCount(String resDetailId){
 		return commentDao.getResCommentCount(resDetailId);
 	}
+
+	public Page getAllResCommentPageList(Page page) {
+		List<ResCommentVo> list = commentDao.getAllResCommentPageList(page);
+		page.setData(list);
+		return page;
+	}
 	
 }
