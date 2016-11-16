@@ -84,6 +84,9 @@ public class ResCommentController {
 		try {
 			Map<String, Object> map = MapUtil.newHashMap();
 			map.put("resourceId", resourceId);
+			//TODO
+			//获取userId
+			map.put("userId", "userId");
 			page.setMap(map);
 			page= resCommentService.getResCommentPageList(page);
 			returnVoList = new ReturnVoList<ResCommentVo>(page);
