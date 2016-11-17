@@ -1,6 +1,9 @@
 package com.codyy.slr.entity;
 
 import java.util.Date;
+import java.util.List;
+
+import com.codyy.slr.constant.Constants;
 
 public class Subject {
     private String subjectId;
@@ -15,7 +18,18 @@ public class Subject {
 
     private Date createTime;
 
-    public String getSubjectId() {
+    private List<String> opt;
+    
+    
+    public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = Constants.EDIT_DELETE;
+	}
+
+	public String getSubjectId() {
         return subjectId;
     }
 
