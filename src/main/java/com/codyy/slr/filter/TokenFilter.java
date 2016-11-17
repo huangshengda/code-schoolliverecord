@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
@@ -42,14 +43,14 @@ public class TokenFilter implements Filter{
 		try {
 			String userId = TokenUtils.getUserToCache(token);
 			if("0".equalsIgnoreCase(userId)){
-				resp.getWriter().write(new ReturnVoOne(Constants.NOT_LOGGIN,"未登陆").toJson());
+				resp.setContentType("text/html;charset=UTF-8");
+				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN,"未登陆")));
 				return; 
 			}
 			
 			req.setAttribute("userId",userId);
 			
 			chain.doFilter(request, response);
-			
 		} catch (ExecutionException e) {
 			resp.getWriter().write(new ReturnVoOne(Constants.FAILED,"请求失败").toJson());
 			e.printStackTrace();
