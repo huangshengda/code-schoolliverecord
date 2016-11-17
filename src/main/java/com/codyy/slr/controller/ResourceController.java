@@ -108,6 +108,9 @@ public class ResourceController {
 	@RequestMapping("recommendResource/list")
 	@ResponseBody
 	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
+		//获取资源的subjectId 和 classlevelIds
+		
+		
 		ResourceVo homeResourceListVo = new ResourceVo();
 		ResourceVo homeResourceListVo1 = new ResourceVo();
 		ResourceVo homeResourceListVo2 = new ResourceVo();

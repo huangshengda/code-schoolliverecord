@@ -1,9 +1,13 @@
 package com.codyy.slr.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-    private String userId;
+public class User implements Serializable{
+
+	private static final long serialVersionUID = 7883313984780094895L;
+
+	private String userId;
 
     private String username;
 

@@ -121,7 +121,7 @@
   	DELETE FROM resource_r_classlevel rrc WHERE rrc.RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
   </delete>
   
-  <!-- 资源推荐 -->
+  <!-- 获取同学科或者同年级的资源，按匹配度高低排序 -->
   <select id="getRelatedSameAttrResourceList" parameterType="java.util.Map" resultType="com.codyy.slr.vo.ResourceVo">
   
   

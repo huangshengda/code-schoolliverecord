@@ -51,16 +51,5 @@ public class ReturnVoOne<T> implements Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
-
-	public String toJson(){
-		StringBuffer resultJson = new StringBuffer(200);
-		resultJson.append("{\"code\":")
-				  .append(code)
-				  .append(",\"msg\":")
-				  .append("\""+msg+"\"")
-				  .append("}");
-		return resultJson.toString();
-	}
-	
 	
 }
