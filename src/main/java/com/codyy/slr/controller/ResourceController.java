@@ -17,7 +17,7 @@ import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.ResourceService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
-import com.codyy.slr.util.ParamUtil;
+import com.codyy.slr.util.ParamUtils;
 import com.codyy.slr.vo.ResourceVo;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
@@ -61,7 +61,7 @@ public class ResourceController {
 		ReturnVoList<ResourceVo> result = null;
 		
 		try{
-			Map<String, Object> paramMap = ParamUtil.bean2Map(param);
+			Map<String, Object> paramMap = ParamUtils.bean2Map(param);
 			page.setMap(paramMap);
 
 			page = resourceService.getResourcePageList(page);

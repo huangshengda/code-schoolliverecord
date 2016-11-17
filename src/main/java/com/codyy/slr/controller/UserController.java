@@ -13,7 +13,7 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.service.UserService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
-import com.codyy.slr.util.SecurityUtil;
+import com.codyy.slr.util.SecurityUtils;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -32,7 +32,7 @@ public class UserController {
 		int code = Constants.SUCCESS;
 		String msg = "登陆成功";
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
-		map.put("password",SecurityUtil.MD5String(user.getPassword()));
+		map.put("password",SecurityUtils.MD5String(user.getPassword()));
 		page.setMap(map);
 		try {
 			if(userService.getUserList(page).getTotalDatas()!=1){

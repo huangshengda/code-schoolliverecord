@@ -52,4 +52,15 @@ public class ReturnVoOne<T> implements Serializable {
 		this.data = data;
 	}
 
+	public String toJson(){
+		StringBuffer resultJson = new StringBuffer(200);
+		resultJson.append("{\"code\":")
+				  .append(code)
+				  .append(",\"msg\":")
+				  .append("\""+msg+"\"")
+				  .append("}");
+		return resultJson.toString();
+	}
+	
+	
 }

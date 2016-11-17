@@ -14,7 +14,7 @@ import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 
-public class SecurityUtil {
+public class SecurityUtils {
 	//--------------------------------------MD5信息摘要方法-------------------------------------
 	public static byte[] MD5(String source){
 		byte src[] = source.getBytes();

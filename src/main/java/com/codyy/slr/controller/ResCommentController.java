@@ -11,7 +11,7 @@ import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.service.ResCommentService;
-import com.codyy.slr.util.MapUtil;
+import com.codyy.slr.util.MapUtils;
 import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.vo.ResCommentVo;
 import com.codyy.slr.vo.ReturnVoList;
@@ -83,7 +83,7 @@ public class ResCommentController {
 	public ReturnVoList<ResCommentVo> getResCommentPageList(Page page, String resourceId) {
 		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>();
 		try {
-			Map<String, Object> map = MapUtil.newHashMap();
+			Map<String, Object> map = MapUtils.newHashMap();
 			map.put("resourceId", resourceId);
 			//TODO
 			//获取userId
@@ -107,7 +107,7 @@ public class ResCommentController {
 	public ReturnVoList<ResCommentVo> getbResSuCommentPageList(Page page,String parentCommentId){
 		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>();
 		try {
-			Map<String,Object> map =  MapUtil.newHashMap();
+			Map<String,Object> map =  MapUtils.newHashMap();
 			map.put("parentCommentId", parentCommentId);
 			page.setMap(map);
 			page= resCommentService.getSubResCommentPageList(page);
@@ -129,7 +129,7 @@ public class ResCommentController {
 	public ReturnVoList<ResCommentVo> getAllResCommentPageList(Page page, String keywords,String realname) {
 		int code = Constants.SUCCESS;
 		String msg = "登陆成功";
-		Map<String, Object> map = MapUtil.newHashMap();
+		Map<String, Object> map = MapUtils.newHashMap();
 		map.put("keywords",MySqlKeyWordUtils.MySqlKeyWordReplace(keywords));
 		map.put("realname",MySqlKeyWordUtils.MySqlKeyWordReplace(realname));
 		page.setMap(map);

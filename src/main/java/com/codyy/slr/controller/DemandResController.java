@@ -14,7 +14,7 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.DemandResService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
-import com.codyy.slr.util.ParamUtil;
+import com.codyy.slr.util.ParamUtils;
 import com.codyy.slr.vo.ResourceVo;
 import com.codyy.slr.vo.ReturnVoList;
 
@@ -55,7 +55,7 @@ public class DemandResController {
 		}
 		
 		try{
-			Map<String, Object> paramMap = ParamUtil.bean2Map(param);
+			Map<String, Object> paramMap = ParamUtils.bean2Map(param);
 			page.setMap(paramMap);
 
 			page = demandResService.getDemandResPageList(page);
