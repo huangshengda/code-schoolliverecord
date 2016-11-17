@@ -96,10 +96,10 @@
 	</select>
 	
 	
-	<select id = "getAllResCommentPageList" resultMap="BaseResultMap" parameterType="com.codyy.slr.common.page.Page">
+	<select id = "getAllResCommentPageList" resultType="com.codyy.slr.vo.ResCommentVo" parameterType="com.codyy.slr.common.page.Page">
 	
 	SELECT
-		rc.COMMENT_CONTENT,rc.RESOURCE_COMMENT_ID,u.REALNAME,res.RESOURCE_NAME
+		rc.COMMENT_CONTENT commentContent,rc.RESOURCE_COMMENT_ID resourceCommentId,u.REALNAME realName,res.RESOURCE_NAME resourceName
 	FROM
 	res_comment rc
 	LEFT JOIN USER u ON u.USER_ID = rc.COMMENT_USER_ID

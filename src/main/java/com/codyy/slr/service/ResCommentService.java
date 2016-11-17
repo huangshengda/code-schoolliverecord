@@ -14,7 +14,7 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.ResCommentMapper;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.util.DateUtils;
-import com.codyy.slr.util.MapUtil;
+import com.codyy.slr.util.MapUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ResCommentVo;
 
@@ -50,9 +50,9 @@ public class ResCommentService {
 		 * 将二级评论根据一级评论的id分组
 		 */
 	    List<ResCommentVo> subList = getSubResCommentList(commentIdList,userId);
-	    Map<String,List<ResCommentVo>> groupListMap = MapUtil.newHashMap();
+	    Map<String,List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
 		for(ResCommentVo comment : subList){
-			MapUtil.groupValue(groupListMap, comment.getParentCommentId(), comment);
+			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
 		}
 	    
 		/**

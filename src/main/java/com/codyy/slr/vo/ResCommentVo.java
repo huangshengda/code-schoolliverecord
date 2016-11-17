@@ -35,10 +35,30 @@ public class ResCommentVo extends ResComment{
      */
     private List<String> opt;
 
+    private String realName;
+    
+    private String resourceName;
     
     
+    
+	public String getResourceName() {
+		return resourceName;
+	}
+
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+	}
+
 	public List<String> getOpt() {
 		return opt;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	public void setOpt(List<String> opt) {
