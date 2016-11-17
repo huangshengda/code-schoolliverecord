@@ -36,13 +36,13 @@ public class SubjectController {
 	@ResponseBody
 	public ReturnVoList<Subject> getSubjectList(String subjectName){
 		int code = Constants.SUCCESS;
-		String msg = "操作成功";
+		String msg = "查询成功";
 		List<Subject> subjectList = new ArrayList<Subject>();
 		try {
 			subjectList = subjectService.getSubjectList(subjectName);
 		} catch (Exception e) {
 			 code = Constants.FAILED;
-			 msg = "操作失败";
+			 msg = "查询失败";
 			e.printStackTrace();
 		}
 		return new ReturnVoList<Subject>(code,msg,subjectList);

@@ -143,7 +143,7 @@
 	AND
 	t.USER_TYPE like CONCAT('%',#{map.userType},'%') ESCAPE '/'
 	</if>
-	<if test="password != null" >
+	<if test="map.password != null" >
 	and t.PASSWORD = #{map.password}
 	</if>
   </select>

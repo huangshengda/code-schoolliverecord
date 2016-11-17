@@ -1,7 +1,12 @@
 package com.codyy.slr.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +18,8 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.service.UserService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
-import com.codyy.slr.util.SecurityUtils;
+import com.codyy.slr.util.TokenUtils;
+import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -24,6 +30,7 @@ public class UserController {
 	
 	final String PasswordRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|-|=|\\|/|<|>]{6,18}$";
 	
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("login")
 	public  ReturnVoOne<User> login(Page page,User user){
@@ -31,19 +38,26 @@ public class UserController {
 		int code = Constants.SUCCESS;
 		String msg = "登陆成功";
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
-		map.put("password",SecurityUtils.MD5String(user.getPassword()));
+		map.put("password",user.getPassword());
+		List<User> userList = new ArrayList<User>();
+		page.setPaging(false);
 		page.setMap(map);
 		try {
-			if(userService.getUserList(page).getTotalDatas()!=1){
+			userList = (List<User>) userService.getUserList(page).getData();
+			if(userList.size()==1){
+				user = userList.get(0);
+				user.setToken(UUIDUtils.getUUID());
+				TokenUtils.putUserIdToCache(user.getToken(),user);
+			}else{
 				code = Constants.FAILED;
-				 msg = "用户名或密码错误";
-			};
+				msg = "用户名或密码错误";
+			}
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			 msg = "登陆失败";
 			e.printStackTrace();
 		}
-		return new ReturnVoOne<User>(code,msg);
+		return new ReturnVoOne<User>(code,msg,user);
 	}
 
 	/**
@@ -51,17 +65,21 @@ public class UserController {
 	 * @param page
 	 * @param user
 	 * @return
+	 * @throws ExecutionException 
 	 */
 	@ResponseBody
 	@RequestMapping("/base/user/list")
-	public ReturnVoList<User> getUserList(Page page,User user){
+	public ReturnVoList<User> getUserList(HttpServletRequest req,Page page,User user) throws ExecutionException{
 		int code = Constants.SUCCESS;
-		String msg = "登陆成功";
+		String msg = "查询成功";
+		
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
 		map.put("userType",user.getUserType());
+		map.put("user", req.getAttribute("user"));
 		page.setMap(map);
+		user = (User) req.getAttribute("user");
 		try {
 			page = userService.getUserList(page);
 		} catch (Exception e) {
