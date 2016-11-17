@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Classlevel;
 import com.codyy.slr.service.ClasslevelService;
 import com.codyy.slr.vo.ReturnVoList;
@@ -22,7 +23,7 @@ import com.codyy.slr.vo.ReturnVoOne;
  *
  */
 @Controller
-@RequestMapping("classlevel")
+@RequestMapping("base/classlevel")
 public class ClasslevelController {
 	@Autowired
 	ClasslevelService classlevelService;
@@ -30,7 +31,7 @@ public class ClasslevelController {
 	 * 获取年级
 	 * @return
 	 */
-	@RequestMapping("getClasslevelList")
+	@RequestMapping("list")
 	@ResponseBody
 	public ReturnVoList<Classlevel> getClasslevelList(String classlevelName){
 		int code = 1;
@@ -39,7 +40,7 @@ public class ClasslevelController {
 		try {
 			classlevelList = classlevelService.getClasslevelList(classlevelName);
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "操作失败";
 			e.printStackTrace();
 		}
@@ -50,7 +51,7 @@ public class ClasslevelController {
 	 * 增加年级
 	 * @return
 	 */
-	@RequestMapping("addClasslevel")
+	@RequestMapping("add")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> addClasslevel(Classlevel classlevel){
 		int code ;
@@ -61,7 +62,7 @@ public class ClasslevelController {
 			code = Integer.parseInt(String.valueOf(map.get("code")));
 			msg = String.valueOf(map.get("msg"));
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "操作失败";
 			e.printStackTrace();
 		}
@@ -72,16 +73,16 @@ public class ClasslevelController {
 	 * 删除年级
 	 * @return
 	 */
-	@RequestMapping("delClasslevel")
+	@RequestMapping("del")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> delClasslevel(Classlevel classlevel){
-		int code = 1;
+		int code = Constants.SUCCESS;
 		String msg = "删除成功";
 		classlevel.setDeleteFlag("Y");
 		classlevel.setDeleteTime(new Date());
 		if(classlevelService.modifyClasslevel(classlevel)!=1){
 			msg = "删除失败";
-			code = 0;
+			code = Constants.FAILED;
 		};
 		return new ReturnVoOne<Classlevel>(code,msg);
 	}
@@ -90,24 +91,24 @@ public class ClasslevelController {
 	 * 修改年级名称
 	 * @return
 	 */
-	@RequestMapping("modifyClasslevelName")
+	@RequestMapping("update")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> modifyClasslevelName(Classlevel classlevel){
-		int code = 1;
+		int code = Constants.SUCCESS;
 		String msg = "编辑成功";
 		try {
 			List<Classlevel> list = classlevelService.getClasslevelList(classlevel.getClasslevelName());
 			if(list.size()==0){
 				if(classlevelService.modifyClasslevel(classlevel)!=1){
 					msg = "编辑失败";
-					code = 0;
+					code = Constants.FAILED;
 				};
 			}else{
 				msg = "学科名称重复";
-				code = 0;
+				code = Constants.FAILED;
 			}
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "操作失败";
 			e.printStackTrace();
 		}
@@ -118,7 +119,7 @@ public class ClasslevelController {
 	 * 修改年级排序
 	 * @return
 	 */
-	@RequestMapping("modifyClasslevelSort")
+	@RequestMapping("sort")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> modifyClasslevelSort(String classlevelIds){
 		int code = 1;
@@ -134,7 +135,7 @@ public class ClasslevelController {
 		try {
 			classlevelService.modifyClasslevelSort(list);
 		} catch (Exception e) {
-			 code = 0;
+			 code = Constants.FAILED;
 			 msg = "排序失败";
 			e.printStackTrace();
 		}

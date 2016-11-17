@@ -17,6 +17,7 @@ public class AddResourceParam {
 	private String thumbPath;//封面路径
 	private String storePath;//存储路径
 	private String createUserId;
+	private long size;
 	
 	public boolean validate(){
 		String resNameRegEx = "[a-zA-Z0-9\u4E00-\u9FA5]{1,20}";//中文 字母  数字 
@@ -40,6 +41,12 @@ public class AddResourceParam {
 	
 	
 	
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
+	}
 	public String getStorePath() {
 		return storePath;
 	}

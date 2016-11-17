@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 用于封装关于Map的操作
  */
 
-public final class MapUtil {  
+public final class MapUtils {  
 	
 	public static <K,V> Map<K,V> newHashMap(){
 		return new HashMap<K, V>();
@@ -57,7 +57,7 @@ public final class MapUtil {
 	 * 获取其中部分数据,转化成Map<String,Object> 
 	 */
 	public static Map<String,Object> generateParamMap(Map<String,String[]> map, String...names){
-		Map<String,Object> paramMap = MapUtil.newHashMap();
+		Map<String,Object> paramMap = MapUtils.newHashMap();
 		String[] vals = null;
 		for(String name : names){
 			vals = map.get(name);

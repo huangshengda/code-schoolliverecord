@@ -25,32 +25,26 @@
   </sql>
   
   <select id="getHomeLiveList" resultType="com.codyy.slr.vo.HomeLiveVo">
-		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.LIVING_PATH livingPath,
+		SELECT res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.LIVING_PATH livingPath,
 		sub.SUBJECT_NAME subjectName,
-		(select case when count(1)=1 then cl.CLASSLEVEL_NAME else '' end from resource_r_classlevel rrc,classlevel cl
-		where rrc.RESOURCE_ID = res.RESOURCE_ID and rrc.CLASSLEVEL_ID = cl.CLASSLEVEL_ID) classlevelName
-		from resource res,subject sub where res.SUBJECT_ID = sub.SUBJECT_ID and res.LIVING_FLAG = 'Y' and res.SOURCE_TYPE = 'RECORD'
-		order by res.CREATE_TIME desc
-	</select>
-
-	<select id="getHomeResourceList" resultType="com.codyy.slr.vo.ResourceVo">
-		select * from (select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
-		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,
-		(select case when count(1)=1 then cl.CLASSLEVEL_NAME else '' end from resource_r_classlevel rrc,classlevel cl
-		where rrc.RESOURCE_ID = res.RESOURCE_ID and rrc.CLASSLEVEL_ID = cl.CLASSLEVEL_ID) classlevelName
-		from resource res,subject sub where res.SUBJECT_ID = sub.SUBJECT_ID and res.LIVING_FLAG = 'N'
-		order by res.CREATE_TIME desc) tmp limit 0,8
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		FROM resource res LEFT JOIN subject sub ON res.SUBJECT_ID = sub.SUBJECT_ID JOIN resource_r_classlevel rrc 
+		ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+    	WHERE res.LIVING_FLAG = 'Y' AND res.DELETE_FLAG='N' AND res.SOURCE_TYPE = 'RECORD'
+    	GROUP BY res.RESOURCE_ID
+		ORDER BY res.CREATE_TIME DESC
 	</select>
   	
   	<select id="getResourcePageList" resultType="com.codyy.slr.vo.ResourceVo" parameterType="com.codyy.slr.common.page.Page">
 		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
 		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
-		(select case when count(1)=1 then cl.CLASSLEVEL_NAME else '' end from resource_r_classlevel rrc,classlevel cl
-		where rrc.RESOURCE_ID = res.RESOURCE_ID and rrc.CLASSLEVEL_ID = cl.CLASSLEVEL_ID) classlevelName
-		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID  
-		where res.LIVING_FLAG = 'N'
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
+		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+		where res.LIVING_FLAG = 'N' and res.DELETE_FLAG='N'
 		<if test="map != null and map.classlevelId != null and map.classlevelId != ''">
-			and 
+			and res.RESOURCE_ID in (select rrcl.RESOURCE_ID from resource_r_classlevel rrcl where rrcl.CLASSLEVEL_ID=#{map.classlevelId})
 		</if>
 		<if test="map != null and map.subjectId != null and map.subjectId != ''">
 			and res.SUBJECT_ID=#{map.subjectId}
@@ -67,17 +61,22 @@
 		<if test="map != null and map.createUserId != null and map.createUserId != ''">
 			and res.CREATE_USER_ID = #{map.createUserId}
 		</if>
-		<choose>
-			<when test="map != null and map.orderBy != null and map.orderBy=='createTime'">
-				order by res.CREATE_TIME #{map.orderType}
-			</when>
-			<when test="map != null and map.orderBy != null and map.orderBy=='viewCnt'">
-				order by res.VIEW_CNT #{map.orderType}
-			</when>
-			<otherwise>
-				order by res.CREATE_TIME desc
-			</otherwise>
-		</choose>
+		GROUP BY res.RESOURCE_ID
+		order by res.CREATE_TIME desc
+	</select>
+  	
+  	<!-- 根据资源ID获取资源 -->
+  	<select id="getResource" resultType="com.codyy.slr.vo.ResourceVo" parameterType="java.lang.String">
+		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,
+		(case when res.LIVING_FLAG = 'Y' then res.LIVING_PATH else res.STORE_PATH end) storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,res.SUBJECT_ID subjectId,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName,
+		GROUP_CONCAT(cl.CLASSLEVEL_ID ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
+		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+		where res.RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+		GROUP BY res.RESOURCE_ID
 	</select>
   	
   <!-- 添加资源 -->
@@ -86,13 +85,13 @@
       AUTHOR, THUMB_PATH, VIEW_CNT, 
       SOURCE_TYPE, STORE_PATH, LIVING_PATH, 
       LIVING_FLAG, DELETE_USER_ID, 
-      DELETE_TIME, CREATE_USER_ID, CREATE_TIME
+      DELETE_TIME, CREATE_USER_ID, CREATE_TIME,SIZE
       )
     values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{subjectId,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{thumbPath,jdbcType=VARCHAR}, #{viewCnt,jdbcType=DECIMAL}, 
       #{sourceType,jdbcType=VARCHAR}, #{storePath,jdbcType=VARCHAR}, #{livingPath,jdbcType=VARCHAR}, 
       #{livingFlag,jdbcType=CHAR}, #{deleteUserId,jdbcType=VARCHAR}, 
-      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      #{deleteTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},#{size}
       )
   </insert>
   
@@ -105,9 +104,43 @@
 	    </foreach>  
   </insert>
   
-  <!-- 通过资源id删除资源 -->
-  <delete id="delResByResId" parameterType="java.lang.String" >
-    delete from resource
-    where RESOURCE_ID = #{resourceId,jdbcType=VARCHAR}
+  <!-- 通过资源id删除资源(逻辑删除) -->
+  <update id="delResByResId" parameterType="com.codyy.slr.entity.Resource" >
+    UPDATE resource SET DELETE_FLAG='Y',DELETE_USER_ID=#{deleteUserId,jdbcType=VARCHAR},
+    DELETE_TIME=#{deleteTime,jdbcType=TIMESTAMP} WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 更新资源信息 -->
+  <update id="modifyResource" parameterType="com.codyy.slr.vo.ResourceVo" >
+    UPDATE resource SET RESOURCE_NAME=#{resourceName,jdbcType=VARCHAR},SUBJECT_ID=#{subjectId,jdbcType=VARCHAR},
+    AUTHOR=#{author,jdbcType=VARCHAR} WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 删除资源与年级的关系 -->
+  <delete id="delResIDRClslevelID" parameterType="java.lang.String">
+  	DELETE FROM resource_r_classlevel rrc WHERE rrc.RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
   </delete>
+  
+  <!-- 获取同学科或者同年级的资源，按匹配度高低排序 -->
+  <select id="getRelatedSameAttrResourceList" parameterType="java.util.Map" resultType="com.codyy.slr.vo.ResourceVo">
+  
+  
+  <!-- select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		from 
+	  (
+	  	select res.resource_id from resource r 
+	  		where r.LIVING_FLAG = 'N' AND r.DELETE_FLAG='N' 
+			order by  (1
+					  + (case r.subject_id when (select subject_id where resource_id = = #{resourceId}) then 10 else 0 end)
+					  + (case  when r.subject_id in (select classlevel_id where resource_id = #{resourceId})  then 10 else 0 end)
+	       ) LIMIT 0,5
+	   )  t left join on resource res  t.resource_id = res.resource_id 
+   			left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+			JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
+			rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+   GROUP BY res.RESOURCE_ID -->
+	   
+  </select>
 </mapper>

@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.service.ResourceService;
 import com.codyy.slr.vo.HomeLiveVo;
-import com.codyy.slr.vo.ResourceVo;
-import com.codyy.slr.vo.ReturnVoOne;
+import com.codyy.slr.vo.ReturnVoList;
 
 /**
  * File Description      : 首页资源信息查询
@@ -27,7 +27,7 @@ import com.codyy.slr.vo.ReturnVoOne;
  */
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/home/live")
 public class HomeController {
 
 	@Autowired
@@ -38,43 +38,19 @@ public class HomeController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("getHomeLiveList")
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoOne<List<HomeLiveVo>> getHomeLiveList() {
+	public ReturnVoList<HomeLiveVo> getHomeLiveList() {
 
-		ReturnVoOne<List<HomeLiveVo>> result = new ReturnVoOne<List<HomeLiveVo>>();
-		List<HomeLiveVo> list = resourceService.getHomeLiveList();
-
-		if (list != null) {
-			result.setData(list);
-		} else {
-			result.setCode(Constants.FAILED);
-			result.setMsg("查询失败!");
+		ReturnVoList<HomeLiveVo> result = null;
+		try{
+			List<HomeLiveVo> list = resourceService.getHomeLiveList();
+			result = new ReturnVoList<HomeLiveVo>(Constants.SUCCESS, "操作成功", list);
+		}catch(Exception e){
+			result = new ReturnVoList<HomeLiveVo>(Constants.FAILED, "查询失败", null);
+			e.printStackTrace();
 		}
-
+		
 		return result;
 	}
-
-	/**
-	 * 获取最新上传的8节课程(按上传时间降序排序)
-	 * 
-	 * @return
-	 */
-	@RequestMapping("getHomeResourceList")
-	@ResponseBody
-	public ReturnVoOne<List<ResourceVo>> getHomeResourceList() {
-
-		ReturnVoOne<List<ResourceVo>> result = new ReturnVoOne<List<ResourceVo>>();
-		List<ResourceVo> list = resourceService.getHomeResourceList();
-
-		if (list != null) {
-			result.setData(list);
-		} else {
-			result.setCode(Constants.FAILED);
-			result.setMsg("查询失败!");
-		}
-
-		return result;
-	}
-
 }

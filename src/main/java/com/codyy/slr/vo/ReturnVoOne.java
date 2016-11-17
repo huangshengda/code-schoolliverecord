@@ -27,6 +27,12 @@ public class ReturnVoOne<T> implements Serializable {
 		this.msg=msg;
 		this.code = code;
 	}
+	
+	public ReturnVoOne(int code,String msg,T data) {
+		this.msg=msg;
+		this.code = code;
+		this.data = data;
+	}
 
 	public int getCode() {
 		return code;
@@ -51,5 +57,5 @@ public class ReturnVoOne<T> implements Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
-
+	
 }

@@ -1,5 +1,7 @@
 package com.codyy.slr.vo;
 
+import java.util.List;
+
 /**
  * 点播资源视图类
  * 
@@ -11,31 +13,18 @@ public class ResourceVo {
 	private String resourceId;
 	private String resourceName;
 	private String classlevelName;
+	private String classlevelId;
 	private String subjectName;
+	private String subjectId;
 	private String author;
 	private String thumbPath;
 	private String storePath;
 	private int viewCnt;
 	private String creatName;
+	private List<String> opt;
 
 	public ResourceVo() {
 		super();
-	}
-
-	public String getResId() {
-		return resourceId;
-	}
-
-	public void setResId(String resId) {
-		this.resourceId = resId;
-	}
-
-	public String getResName() {
-		return resourceName;
-	}
-
-	public void setResName(String resName) {
-		this.resourceName = resName;
 	}
 
 	public String getClasslevelName() {
@@ -86,21 +75,52 @@ public class ResourceVo {
 		this.storePath = storePath;
 	}
 
-	@Override
-	public String toString() {
-		return "ResourceVo [resourceId=" + resourceId + ", resourceName="
-				+ resourceName + ", classlevelName=" + classlevelName
-				+ ", subjectName=" + subjectName + ", author=" + author
-				+ ", thumbPath=" + thumbPath + ", storePath=" + storePath
-				+ ", viewCnt=" + viewCnt + "]";
-	}
-
 	public String getCreatName() {
 		return creatName;
 	}
 
 	public void setCreatName(String creatName) {
 		this.creatName = creatName;
+	}
+
+	public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = opt;
+	}
+
+	public String getResourceId() {
+		return resourceId;
+	}
+
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId;
+	}
+
+	public String getResourceName() {
+		return resourceName;
+	}
+
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+	}
+
+	public String getClasslevelId() {
+		return classlevelId;
+	}
+
+	public void setClasslevelId(String classlevelId) {
+		this.classlevelId = classlevelId;
+	}
+
+	public String getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(String subjectId) {
+		this.subjectId = subjectId;
 	}
 
 }

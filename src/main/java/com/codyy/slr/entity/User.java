@@ -1,9 +1,16 @@
 package com.codyy.slr.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class User {
-    private String userId;
+import com.codyy.slr.constant.Constants;
+
+public class User implements Serializable{
+
+	private static final long serialVersionUID = 7883313984780094895L;
+
+	private String userId;
 
     private String username;
 
@@ -18,8 +25,31 @@ public class User {
     private Date deleteTime;
 
     private Date createTime;
+    
+    private String token;
+    
+    private List<String> opt;
+    
+    
+    
 
-    public String getUserId() {
+    public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = Constants.EDIT_DELETE;
+	}
+
+	public String getUserId() {
         return userId;
     }
 

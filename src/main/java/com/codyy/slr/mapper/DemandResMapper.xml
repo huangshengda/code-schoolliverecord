@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.codyy.slr.dao.DemandResMapper" >
+  	
+  	<select id="getDemandResPageList" resultType="com.codyy.slr.vo.ResourceVo" parameterType="com.codyy.slr.common.page.Page">
+		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
+		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
+		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
+		where res.LIVING_FLAG = 'N' and res.DELETE_FLAG='N'
+		<if test="map != null and map.classlevelId != null and map.classlevelId != ''">
+			and res.RESOURCE_ID in (select rrcl.RESOURCE_ID from resource_r_classlevel rrcl where rrcl.CLASSLEVEL_ID=#{map.classlevelId})
+		</if>
+		<if test="map != null and map.subjectId != null and map.subjectId != ''">
+			and res.SUBJECT_ID=#{map.subjectId}
+		</if>
+		<if test="map != null and map.resourceNameKey != null and map.resourceNameKey != ''">
+			and (res.RESOURCE_NAME like CONCAT('%',#{map.resourceNameKey},'%') ESCAPE '/'
+			or res.AUTHOR like CONCAT('%',#{map.resourceNameKey},'%') ESCAPE '/')
+		</if>
+		GROUP BY res.RESOURCE_ID
+		<choose>
+			<when test="map != null and map.orderBy != null and map.orderBy=='createTime'">
+				order by res.CREATE_TIME #{map.orderType}
+			</when>
+			<when test="map != null and map.orderBy != null and map.orderBy=='viewCnt'">
+				order by res.VIEW_CNT #{map.orderType}
+			</when>
+			<otherwise>
+				order by res.CREATE_TIME desc
+			</otherwise>
+		</choose>
+	</select>
+</mapper>

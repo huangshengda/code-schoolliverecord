@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParamUtil {
+public class ParamUtils {
 
 	
 	public static Object map2Bean(Class<?> type, Map<String,Object> map) 

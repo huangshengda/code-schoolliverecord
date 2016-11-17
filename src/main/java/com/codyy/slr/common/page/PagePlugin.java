@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.executor.ErrorContext;
@@ -31,6 +30,8 @@ import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+
+import com.codyy.slr.util.StringUtils;
 
 
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
@@ -84,7 +85,7 @@ public class PagePlugin implements Interceptor {
 					}
 					rs.close();
 					countStmt.close();
-					page.setTotal(count);
+					page.setTotalDatas(count);
 					String pageSql = generatePageSql(sql, page);
 					ReflectHelper.setValueByFieldName(boundSql, "sql", pageSql); // 将分页sql语句反射回BoundSql.
 				}
@@ -155,14 +156,14 @@ public class PagePlugin implements Interceptor {
 			StringBuffer pageSql = new StringBuffer();
 			if ("mysql".equals(dialect)) {
 				pageSql.append(sql);
-				pageSql.append(" limit " + page.getStart() + "," + (page.getEnd() - page.getStart() + 1));
+				pageSql.append(" limit " + (page.getPageSize() * (page.getCurPage() - 1)) + "," + page.getPageSize());
 			} else if ("oracle".equals(dialect)) {
 				pageSql.append("select * from (select tmp_tb.*,ROWNUM row_id from (");
 				pageSql.append(sql);
 				pageSql.append(") tmp_tb where ROWNUM<=");
-				pageSql.append((page.getEnd() + 1));
+				pageSql.append(page.getCurPage() * page.getPageSize());
 				pageSql.append(") where row_id>");
-				pageSql.append(page.getStart());
+				pageSql.append((page.getPageSize() * (page.getCurPage() - 1)) == 0 ? 0 : (page.getPageSize() * (page.getCurPage() - 1) + 1) );
 			}
 			return pageSql.toString();
 		} else {

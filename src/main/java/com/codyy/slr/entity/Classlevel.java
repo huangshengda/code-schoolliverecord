@@ -1,6 +1,9 @@
 package com.codyy.slr.entity;
 
 import java.util.Date;
+import java.util.List;
+
+import com.codyy.slr.constant.Constants;
 
 public class Classlevel {
     private String classlevelId;
@@ -14,7 +17,18 @@ public class Classlevel {
     private Date deleteTime;
 
     private Date createTime;
+    
+   private List<String> opt;
+    
+    
+    public List<String> getOpt() {
+		return opt;
+	}
 
+	public void setOpt(List<String> opt) {
+		this.opt = Constants.EDIT_DELETE;
+	}
+    
     public String getClasslevelId() {
         return classlevelId;
     }
