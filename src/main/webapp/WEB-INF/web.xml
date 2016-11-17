@@ -61,11 +61,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
-		<url-pattern>*.html</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>characterEncodingFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
 	<!-- token 验证-->
@@ -90,11 +86,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>baseServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>baseServlet</servlet-name>
-		<url-pattern>*.html</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Druid DB pool stat view -->

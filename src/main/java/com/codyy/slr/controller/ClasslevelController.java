@@ -23,7 +23,7 @@ import com.codyy.slr.vo.ReturnVoOne;
  *
  */
 @Controller
-@RequestMapping("classlevel")
+@RequestMapping("base/classlevel")
 public class ClasslevelController {
 	@Autowired
 	ClasslevelService classlevelService;
@@ -31,7 +31,7 @@ public class ClasslevelController {
 	 * 获取年级
 	 * @return
 	 */
-	@RequestMapping("getClasslevelList")
+	@RequestMapping("list")
 	@ResponseBody
 	public ReturnVoList<Classlevel> getClasslevelList(String classlevelName){
 		int code = 1;
@@ -51,7 +51,7 @@ public class ClasslevelController {
 	 * 增加年级
 	 * @return
 	 */
-	@RequestMapping("addClasslevel")
+	@RequestMapping("add")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> addClasslevel(Classlevel classlevel){
 		int code ;
@@ -73,7 +73,7 @@ public class ClasslevelController {
 	 * 删除年级
 	 * @return
 	 */
-	@RequestMapping("delClasslevel")
+	@RequestMapping("del")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> delClasslevel(Classlevel classlevel){
 		int code = Constants.SUCCESS;
@@ -91,7 +91,7 @@ public class ClasslevelController {
 	 * 修改年级名称
 	 * @return
 	 */
-	@RequestMapping("modifyClasslevelName")
+	@RequestMapping("update")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> modifyClasslevelName(Classlevel classlevel){
 		int code = Constants.SUCCESS;
@@ -119,7 +119,7 @@ public class ClasslevelController {
 	 * 修改年级排序
 	 * @return
 	 */
-	@RequestMapping("modifyClasslevelSort")
+	@RequestMapping("sort")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> modifyClasslevelSort(String classlevelIds){
 		int code = 1;

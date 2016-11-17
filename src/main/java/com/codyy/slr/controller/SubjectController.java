@@ -23,7 +23,7 @@ import com.codyy.slr.vo.ReturnVoOne;
  *
  */
 @Controller
-@RequestMapping("subject")
+@RequestMapping("/base/subject")
 public class SubjectController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class SubjectController {
 	 * 获取学科
 	 * @return
 	 */
-	@RequestMapping("getSubjectList")
+	@RequestMapping("list")
 	@ResponseBody
 	public ReturnVoList<Subject> getSubjectList(String subjectName){
 		int code = Constants.SUCCESS;
@@ -52,7 +52,7 @@ public class SubjectController {
 	 * 增加学科
 	 * @return
 	 */
-	@RequestMapping("addSubject")
+	@RequestMapping("add")
 	@ResponseBody
 	public ReturnVoOne<Subject> addSubject(Subject subject){
 		int code ;
@@ -74,7 +74,7 @@ public class SubjectController {
 	 * 删除学科
 	 * @return
 	 */
-	@RequestMapping("delSubject")
+	@RequestMapping("del")
 	@ResponseBody
 	public ReturnVoOne<Subject> delSubject(Subject subject){
 		int code = Constants.SUCCESS;
@@ -92,7 +92,7 @@ public class SubjectController {
 	 * 修改学科名称
 	 * @return
 	 */
-	@RequestMapping("modifySubjectName")
+	@RequestMapping("update")
 	@ResponseBody
 	public ReturnVoOne<Subject> modifySubject(Subject subject){
 		int code = Constants.SUCCESS;
@@ -120,7 +120,7 @@ public class SubjectController {
 	 * 修改学科排序
 	 * @return
 	 */
-	@RequestMapping("modifySubjectSort")
+	@RequestMapping("sort")
 	@ResponseBody
 	public ReturnVoOne<Subject> modifySubjectSort(String subjectIds){
 		int code = Constants.SUCCESS;

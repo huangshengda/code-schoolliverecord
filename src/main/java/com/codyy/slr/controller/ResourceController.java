@@ -43,7 +43,7 @@ public class ResourceController {
 	 * @return
 	 * 
 	 */
-	@RequestMapping(value = "/getResourcePageList", method = RequestMethod.POST)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getResourcePageList(Page page,
 			SearchResourceParam param) {
@@ -82,7 +82,7 @@ public class ResourceController {
 	 * @return
 	 * 
 	 */
-	@RequestMapping(value = "/getMyResourcePageList", method = RequestMethod.POST)
+	@RequestMapping(value = "/myResource/list", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getMyResourcePageList(Page page) {
 		
@@ -125,7 +125,7 @@ public class ResourceController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping(value="/delResource")
+	@RequestMapping(value="/delete")
 	public ReturnVoOne delResource(String resourceId) {
 		ReturnVoOne result = null;
 		try{
@@ -168,7 +168,7 @@ public class ResourceController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping(value="/modifyResource")
+	@RequestMapping(value="/update")
 	public ReturnVoOne modifyResource(ResourceVo res) {
 		ReturnVoOne result = null;
 		try{
@@ -189,7 +189,7 @@ public class ResourceController {
 	 * 依据资源ID获取资源详细信息
 	 */
 	@ResponseBody
-	@RequestMapping(value="/getResource")
+	@RequestMapping(value="/get")
 	public ReturnVoOne<ResourceVo> getResource(String resourceId) {
 		ReturnVoOne<ResourceVo> result = null;
 		try{
@@ -206,7 +206,7 @@ public class ResourceController {
 	 * 点播资源播放
 	 * @param resourceId
 	 */
-	@RequestMapping(value="/playResource")
+	@RequestMapping(value="/view")
 	public void playResource(String resourceId){
 		//TODO 未实行
 	}
@@ -216,7 +216,7 @@ public class ResourceController {
 	 * @param resourcePath
 	 * @return
 	 */
-	@RequestMapping(value="/sysScreenShot")
+	@RequestMapping(value="/sysScreenShot/get")
 	@ResponseBody
 	public ReturnVoOne<String> sysScreenShot(String resourcePath){
 		ReturnVoOne<String> result = null;

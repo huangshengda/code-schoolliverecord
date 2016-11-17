@@ -18,7 +18,6 @@ import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
 @Controller
-@RequestMapping("user")
 public class UserController {
 	@Autowired
 	private UserService userService;
@@ -54,7 +53,7 @@ public class UserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("userList")
+	@RequestMapping("/base/user/list")
 	public ReturnVoList<User> getUserList(Page page,User user){
 		int code = Constants.SUCCESS;
 		String msg = "登陆成功";
@@ -79,7 +78,7 @@ public class UserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("addUser")
+	@RequestMapping("/base/user/add")
 	public ReturnVoOne<User> addUser(User user){
 		Page page = new Page();
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -119,7 +118,7 @@ public class UserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("delUser")
+	@RequestMapping("base/user/del")
 	public ReturnVoOne<User> delUser(String userId){
 		int count = 0;
 		try {
@@ -142,7 +141,7 @@ public class UserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("editUser")
+	@RequestMapping("/base/user/update")
 	public ReturnVoOne<User> editUser(User user){
 		Page page = new Page();
 		Map<String,Object> map = new HashMap<String, Object>();
