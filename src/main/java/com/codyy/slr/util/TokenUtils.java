@@ -39,6 +39,7 @@ public class TokenUtils {
 		}
 		return userId;
 	}
+	
 	//测试
 	public static void main(String[] args) throws ExecutionException {
 		putUserIdToCache("a","11");

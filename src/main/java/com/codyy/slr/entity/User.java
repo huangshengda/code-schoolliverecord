@@ -3,6 +3,8 @@ package com.codyy.slr.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.codyy.slr.constant.Constants;
+
 public class User {
     private String userId;
 
@@ -40,7 +42,7 @@ public class User {
 	}
 
 	public void setOpt(List<String> opt) {
-		this.opt = opt;
+		this.opt = Constants.EDIT_DELETE;
 	}
 
 	public String getUserId() {
