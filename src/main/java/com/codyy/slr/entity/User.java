@@ -1,6 +1,7 @@
 package com.codyy.slr.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private String userId;
@@ -18,8 +19,31 @@ public class User {
     private Date deleteTime;
 
     private Date createTime;
+    
+    private String token;
+    
+    private List<String> opt;
+    
+    
+    
 
-    public String getUserId() {
+    public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = opt;
+	}
+
+	public String getUserId() {
         return userId;
     }
 
