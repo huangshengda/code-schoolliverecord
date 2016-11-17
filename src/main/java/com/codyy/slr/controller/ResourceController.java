@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -102,9 +105,12 @@ public class ResourceController {
 	}
 	
 	
-	@RequestMapping("getRecommendResourceList")
+	@RequestMapping("recommendResource/list")
 	@ResponseBody
 	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
+		//获取资源的subjectId 和 classlevelIds
+		
+		
 		ResourceVo homeResourceListVo = new ResourceVo();
 		ResourceVo homeResourceListVo1 = new ResourceVo();
 		ResourceVo homeResourceListVo2 = new ResourceVo();
@@ -207,7 +213,7 @@ public class ResourceController {
 	 * @param resourceId
 	 */
 	@RequestMapping(value="/view")
-	public void playResource(String resourceId){
+	public void playResource(HttpServletRequest req, HttpServletResponse res, String resourceId){
 		//TODO 未实行
 	}
 	

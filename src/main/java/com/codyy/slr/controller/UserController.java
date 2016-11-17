@@ -47,7 +47,7 @@ public class UserController {
 			if(userList.size()==1){
 				user = userList.get(0);
 				user.setToken(UUIDUtils.getUUID());
-				TokenUtils.putUserIdToCache(user.getToken(),user.getUserId());
+				TokenUtils.putUserIdToCache(user.getToken(),user);
 			}else{
 				code = Constants.FAILED;
 				msg = "用户名或密码错误";
@@ -71,13 +71,15 @@ public class UserController {
 	@RequestMapping("/base/user/list")
 	public ReturnVoList<User> getUserList(HttpServletRequest req,Page page,User user) throws ExecutionException{
 		int code = Constants.SUCCESS;
-		String msg = "登陆成功";
+		String msg = "查询成功";
+		
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
 		map.put("userType",user.getUserType());
-		map.put("userId", TokenUtils.getUserToCache(req.getAttribute("userId").toString()));
+		map.put("user", req.getAttribute("user"));
 		page.setMap(map);
+		user = (User) req.getAttribute("user");
 		try {
 			page = userService.getUserList(page);
 		} catch (Exception e) {

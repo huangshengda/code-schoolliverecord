@@ -11,7 +11,6 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.UserMapper;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.util.SecurityUtils;
-import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.util.UUIDUtils;
 
 @Service
@@ -20,11 +19,10 @@ public class UserService {
 	private UserMapper userMapper;
 	
 	public Page getUserList(Page page) {
-		User userLogin = new User();
-		String userLoginId = page.getMap().get("userId").toString();
+		User userLogin ;
 		List<User> userList = userMapper.getUserListPageList(page);
-		if(StringUtils.isNotBlank(userLoginId)){
-			userLogin =  userMapper.selectByPrimaryKey(userLoginId);
+		if((User) page.getMap().get("user") != null){
+			userLogin = (User) page.getMap().get("user");
 			for(User user:userList){
 				if("SUPER_ADMIN".equals(userLogin.getUserType())){
 					if("SUPER_ADMIN".equals(user.getUserType())){
