@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.SubjectMapper;
 import com.codyy.slr.entity.Subject;
 import com.codyy.slr.util.UUIDUtils;
@@ -25,7 +26,7 @@ public class SubjectService {
 	public Map<String,Object> addSubject(Subject subject) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		int count = 0;
-		int code = 1;
+		int code = Constants.SUCCESS;
 		String msg = "添加成功";
 		 List<Subject> list = subjectMapper.getSubjectList(null);
 		 for(Subject s:list){
@@ -40,11 +41,11 @@ public class SubjectService {
 			subject.setSubjectId(UUIDUtils.getUUID());
 			if(subjectMapper.insertSelective(subject)!=1){
 				msg = "添加失败";
-				code = 0;
+				code = Constants.FAILED;
 			};
 		}else{
 			msg = "学科名称重复";
-			code = 0;
+			code = Constants.FAILED;
 		}
 		map.put("code", code);
 		map.put("msg", msg);

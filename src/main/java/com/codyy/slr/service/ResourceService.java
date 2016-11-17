@@ -34,6 +34,7 @@ public class ResourceService {
 		resource.setSourceType(Constants.UPLOAD);
 		resource.setViewCnt(0L);
 		resource.setLivingFlag(Constants.N);
+		resource.setSize(param.getSize());
 
 		int num = resourceMapper.addResource(resource);
 		if (num == 1) {

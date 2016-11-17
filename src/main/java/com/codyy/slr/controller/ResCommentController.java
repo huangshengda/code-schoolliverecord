@@ -12,6 +12,7 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.service.ResCommentService;
 import com.codyy.slr.util.MapUtil;
+import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.vo.ResCommentVo;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
@@ -119,5 +120,27 @@ public class ResCommentController {
 		return returnVoList;
 	}
 	
+	
+	/**
+	 * 获取资源评论(所有评论)
+	 */
+	@ResponseBody
+	@RequestMapping("getAllResComment")
+	public ReturnVoList<ResCommentVo> getAllResCommentPageList(Page page, String keywords,String realname) {
+		int code = Constants.SUCCESS;
+		String msg = "登陆成功";
+		Map<String, Object> map = MapUtil.newHashMap();
+		map.put("keywords",MySqlKeyWordUtils.MySqlKeyWordReplace(keywords));
+		map.put("realname",MySqlKeyWordUtils.MySqlKeyWordReplace(realname));
+		page.setMap(map);
+		try {
+			page= resCommentService.getAllResCommentPageList(page);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>(page);
+		return returnVoList;
+	}
 	
 }
