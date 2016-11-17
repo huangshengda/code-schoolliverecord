@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -207,7 +210,7 @@ public class ResourceController {
 	 * @param resourceId
 	 */
 	@RequestMapping(value="/view")
-	public void playResource(String resourceId){
+	public void playResource(HttpServletRequest req, HttpServletResponse res, String resourceId){
 		//TODO 未实行
 	}
 	
