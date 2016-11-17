@@ -102,7 +102,7 @@ public class ResourceController {
 	}
 	
 	
-	@RequestMapping("getRecommendResourceList")
+	@RequestMapping("recommendResource/list")
 	@ResponseBody
 	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
 		ResourceVo homeResourceListVo = new ResourceVo();
