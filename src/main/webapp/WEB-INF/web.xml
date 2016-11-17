@@ -94,7 +94,7 @@
 	</servlet-mapping>
 	
 	<!-- Druid DB pool stat view -->
-	<!-- <servlet> 
+	<servlet> 
      	<servlet-name>DruidStatView</servlet-name> 
      	<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class> 
  	</servlet> 
@@ -121,7 +121,7 @@
  	<filter-mapping> 
   		<filter-name>druidWebStatFilter</filter-name> 
   		<url-pattern>/*</url-pattern> 
- 	</filter-mapping> -->
+ 	</filter-mapping>
  	
  	<!-- 404错误页面 -->
 	<error-page>

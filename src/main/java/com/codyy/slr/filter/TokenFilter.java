@@ -44,8 +44,9 @@ public class TokenFilter implements Filter{
 		String uri = req.getRequestURI();
 		
 		for (String string : excludePath) {
-			if(uri.indexOf(string) == -1){
+			if(uri.indexOf(string) != -1){
 				chain.doFilter(req, resp);
+				return;
 			}
 		}
 		
@@ -57,7 +58,7 @@ public class TokenFilter implements Filter{
 		
 		try {
 			User user = TokenUtils.getUserToCache(token);
-			if(user == null){
+			if(user == null || "0".equals(user.getUserId())){
 				resp.setContentType("text/html;charset=UTF-8");
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN,"未登陆")));
 				return; 
