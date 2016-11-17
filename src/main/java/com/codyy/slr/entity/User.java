@@ -31,8 +31,6 @@ public class User implements Serializable{
     private List<String> opt;
     
     
-    
-
     public String getToken() {
 		return token;
 	}
