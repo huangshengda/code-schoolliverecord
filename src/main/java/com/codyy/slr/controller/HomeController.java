@@ -27,7 +27,7 @@ import com.codyy.slr.vo.ReturnVoList;
  */
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/home/live")
 public class HomeController {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class HomeController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/getHomeLiveList", method = RequestMethod.POST)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnVoList<HomeLiveVo> getHomeLiveList() {
 

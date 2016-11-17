@@ -32,7 +32,7 @@ import com.codyy.slr.vo.ReturnVoList;
  */
 
 @Controller
-@RequestMapping("/vod")
+@RequestMapping("/demand")
 public class DemandResController {
 
 	@Autowired
@@ -43,7 +43,7 @@ public class DemandResController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/getDemandResPageList",method = RequestMethod.POST )
+	@RequestMapping(value = "/list",method = RequestMethod.POST )
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getDemandResPageList(Page page,
 			SearchResourceParam param) {
