@@ -22,7 +22,9 @@ public class TokenUtils {
 				@Override
 				public User load(String key) throws Exception {   
 					//在cache中查不到时返回
-					return null;
+					User user = new User();
+					user.setUserId("0");
+					return user;
 				}
 				
 			});
@@ -38,9 +40,9 @@ public class TokenUtils {
 	}
 	//测试
 	public static void main(String[] args) throws ExecutionException {
-		//putUserIdToCache("a","11");
+		putUserIdToCache("a",new User());
 		System.out.println(getUserToCache("a"));
 		System.out.println(getUserToCache("b"));
-		System.out.println(getUserToCache(null));
+		//System.out.println(getUserToCache(null));
 	}
 }

@@ -112,4 +112,33 @@ public class User implements Serializable{
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [userId=");
+		builder.append(userId);
+		builder.append(", username=");
+		builder.append(username);
+		builder.append(", realname=");
+		builder.append(realname);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", userType=");
+		builder.append(userType);
+		builder.append(", deleteFlag=");
+		builder.append(deleteFlag);
+		builder.append(", deleteTime=");
+		builder.append(deleteTime);
+		builder.append(", createTime=");
+		builder.append(createTime);
+		builder.append(", token=");
+		builder.append(token);
+		builder.append(", opt=");
+		builder.append(opt);
+		builder.append("]");
+		return builder.toString();
+	}
+    
+    
 }
