@@ -149,7 +149,7 @@ public class ResourceController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping("addResource")
+	@RequestMapping("addresource")
 	public ReturnVoOne addResource(AddResourceParam param) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		// 校验参数
@@ -222,7 +222,7 @@ public class ResourceController {
 	 * @param resourcePath
 	 * @return
 	 */
-	@RequestMapping(value="/sysScreenShot/get")
+	@RequestMapping(value="/sysscreenshot/get")
 	@ResponseBody
 	public ReturnVoOne<String> sysScreenShot(String resourcePath){
 		ReturnVoOne<String> result = null;
