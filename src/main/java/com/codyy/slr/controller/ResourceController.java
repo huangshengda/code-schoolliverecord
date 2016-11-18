@@ -85,7 +85,7 @@ public class ResourceController {
 	 * @return
 	 * 
 	 */
-	@RequestMapping(value = "/myResource/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/myresource/list", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getMyResourcePageList(Page page) {
 		
@@ -105,7 +105,7 @@ public class ResourceController {
 	}
 	
 	
-	@RequestMapping("recommendResource/list")
+	@RequestMapping("recommendresource/list")
 	@ResponseBody
 	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
 		//获取资源的subjectId 和 classlevelIds
@@ -149,7 +149,7 @@ public class ResourceController {
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
-	@RequestMapping("addResource")
+	@RequestMapping("addresource")
 	public ReturnVoOne addResource(AddResourceParam param) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		// 校验参数
@@ -222,7 +222,7 @@ public class ResourceController {
 	 * @param resourcePath
 	 * @return
 	 */
-	@RequestMapping(value="/sysScreenShot/get")
+	@RequestMapping(value="/sysscreenshot/get")
 	@ResponseBody
 	public ReturnVoOne<String> sysScreenShot(String resourcePath){
 		ReturnVoOne<String> result = null;
