@@ -1,6 +1,6 @@
 package com.codyy.slr.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -108,22 +108,22 @@ public class ResourceController {
 	@RequestMapping("recommendresource/list")
 	@ResponseBody
 	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
-		//获取资源的subjectId 和 classlevelIds
+		ReturnVoOne<List<ResourceVo>> ret = new ReturnVoOne<List<ResourceVo>>();
+		try {
+			ResourceVo resource = resourceService.getResource(resourceId);
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("subjectId", resource.getSubjectId());
+			map.put("classlevelIds", resource.getClasslevelId());
+			map.put("resourceId", resourceId);
+			
+			List<ResourceVo> list = resourceService.getRecommendResourceList(map);
+			ret.setData(list);
+		} catch (Exception e) {
+			ret.setCode(Constants.FAILED);
+			ret.setMsg("操作失败");
+		}
 		
-		
-		ResourceVo homeResourceListVo = new ResourceVo();
-		ResourceVo homeResourceListVo1 = new ResourceVo();
-		ResourceVo homeResourceListVo2 = new ResourceVo();
-
-		List<ResourceVo> list = new ArrayList<ResourceVo>();
-		list.add(homeResourceListVo);
-		list.add(homeResourceListVo1);
-		list.add(homeResourceListVo2);
-
-		ReturnVoOne<List<ResourceVo>> returnList = new ReturnVoOne<List<ResourceVo>>(
-				list);
-
-		return returnList;
+		return ret;
 	}
 
 	/**

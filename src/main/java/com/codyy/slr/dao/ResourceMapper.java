@@ -49,12 +49,11 @@ public interface ResourceMapper {
 	ResourceVo getResource(String resourceId);
 
 	/**
-	 * 获取同属
-	 * 
+	 * 查询推荐资源
 	 * @param map
 	 * @return
 	 */
-	List<ResourceVo> getRelatedSameAttrResourceList(Map<String, String> map);
+	List<ResourceVo> getRecommendResourceList(Map<String, String> map);
 	
 	/**
 	 * 更新资源信息

@@ -160,6 +160,26 @@ public class ResourceService {
 		return result;
 	}
 	
+	public List<ResourceVo> getRecommendResourceList(Map<String,String> map){
+		
+		List<ResourceVo> list = resourceMapper.getRecommendResourceList(map);
+		
+		String resourceId = map.get("resourceId");
+		
+		List<ResourceVo> result = new ArrayList<ResourceVo>();
+		
+		for (ResourceVo resourceVo : list) {
+			if(resourceVo.getResourceId().equals(resourceId)){
+				continue;
+			}
+			if(result.size() > 5){
+				break;
+			}
+			result.add(resourceVo);
+		}
+		return result;
+	}
+	
 	public void processRequest(final HttpServletRequest request, final HttpServletResponse response, String resourcePath) throws IOException {
 
 	    String videoFilename = URLDecoder.decode(request.getParameter("video"), "UTF-8");
