@@ -2,6 +2,8 @@ package com.codyy.slr.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +47,7 @@ public class DemandResController {
 	 */
 	@RequestMapping(value = "/list",method = RequestMethod.POST )
 	@ResponseBody
-	public ReturnVoList<ResourceVo> getDemandResPageList(Page page,
+	public ReturnVoList<ResourceVo> getDemandResPageList(HttpServletRequest req, Page page,
 			SearchResourceParam param) {
 		
 		ReturnVoList<ResourceVo> result = null;
@@ -58,7 +60,7 @@ public class DemandResController {
 			Map<String, Object> paramMap = ParamUtils.bean2Map(param);
 			page.setMap(paramMap);
 
-			page = demandResService.getDemandResPageList(page);
+			page = demandResService.getDemandResPageList(req, page);
 
 			result = new ReturnVoList<ResourceVo>(page);
 		}catch(Exception e){
