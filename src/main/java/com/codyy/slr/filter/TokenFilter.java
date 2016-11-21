@@ -56,6 +56,12 @@ public class TokenFilter implements Filter{
 			token = req.getParameter("token");
 		}
 		
+		if(StringUtils.isEmpty(token)){
+			resp.setContentType("text/html;charset=UTF-8");
+			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED,"请传token参数")));
+			return; 
+		}
+		
 		try {
 			User user = TokenUtils.getUserToCache(token);
 			if(user == null || "0".equals(user.getUserId())){
