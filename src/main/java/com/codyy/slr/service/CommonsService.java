@@ -1,15 +1,23 @@
 package com.codyy.slr.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import static java.nio.file.StandardOpenOption.READ;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
+
+import com.codyy.slr.util.ConfigUtils;
 
 /**
  * File Description      : 公共方法:图片、视频流下载
@@ -26,38 +34,82 @@ import org.springframework.util.StreamUtils;
 @Service
 public class CommonsService {
 	
+	private static final int BUFFER_LENGTH = 1024 * 16;
+	private static final long EXPIRE_TIME = 1000 * 60 * 60 * 24;
+	private static final Pattern RANGE_PATTERN = Pattern.compile("bytes=(?<start>\\d*)-(?<end>\\d*)");
+	
+	
 	/**
 	 * 把文件作为流返回给客服端
 	 * @throws IOException 
 	 */
-	public static void sendFileAsResponse(HttpServletResponse response, File file) throws IOException{
-		if (file !=null && file.exists()) {
-			InputStream input = null;
-			try {
-				response.addHeader("Cache-Control", "max-age=864000");
-				input = new FileInputStream(file);
-				StreamUtils.copy(input, response.getOutputStream());
-				input.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				if(input!=null){
-					input.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				if(input!=null){
-					input.close();
-				}
-			} finally {
-				if(input!=null){
-					input.close();
-				}
-			}
-		}
+	public void sendFileAsResponse(HttpServletRequest req, HttpServletResponse response, String storPath, String type) throws IOException{
+		
+		String realPath = buildFilePath(storPath, type);
+		
+		Path file = Paths.get(realPath);
+		
+		int length = (int) Files.size(file);
+	    int start = 0;
+	    int end = length - 1;
+	    
+	    String range = req.getHeader("Range");
+	    range=range==null?"":range;
+	    Matcher matcher = RANGE_PATTERN.matcher(range);
+
+	    if (matcher.matches()) {
+	      String startGroup = matcher.group("start");
+	      start = startGroup.isEmpty() ? start : Integer.valueOf(startGroup);
+	      start = start < 0 ? 0 : start;
+
+	      String endGroup = matcher.group("end");
+	      end = endGroup.isEmpty() ? end : Integer.valueOf(endGroup);
+	      end = end > length - 1 ? length - 1 : end;
+	    }
+
+	    int contentLength = end - start + 1;
+
+	    response.reset();
+	    response.setBufferSize(BUFFER_LENGTH);
+	    response.setHeader("Accept-Ranges", "bytes");
+	    response.setDateHeader("Last-Modified", Files.getLastModifiedTime(file).toMillis());
+	    response.setDateHeader("Expires", System.currentTimeMillis() + EXPIRE_TIME);
+	    response.setContentType(Files.probeContentType(file));
+	    response.setHeader("Content-Range", String.format("bytes %s-%s/%s", start, end, length));
+	    response.setHeader("Content-Length", String.format("%s", contentLength));
+	    response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+
+	    int bytesRead;
+	    int bytesLeft = contentLength;
+	    ByteBuffer buffer = ByteBuffer.allocate(BUFFER_LENGTH);
+
+	    try (SeekableByteChannel input = Files.newByteChannel(file, READ);
+	            OutputStream output = response.getOutputStream();) {
+
+	      input.position(start);
+
+	      while ((bytesRead = input.read(buffer)) != -1 && bytesLeft > 0) {
+	        buffer.clear();
+	        output.write(buffer.array(), 0, bytesLeft < bytesRead ? bytesLeft : bytesRead);
+	        bytesLeft -= bytesRead;
+	      }
+	    }
+		
 	}
 	
-	public String buildFilePath(String filePath){
-		
-		return "";
+	/**
+	 * 获取真实的文件路径
+	 * @param rootPath
+	 * @param storPath
+	 * @param type
+	 * @return
+	 */
+	public String buildFilePath(String storPath, String type){
+		String rootPath = ConfigUtils.getValue(type);
+		StringBuilder realPath = new StringBuilder();
+		realPath.append(rootPath);
+		realPath.append("/");
+		realPath.append(storPath);
+		return realPath.toString();
 	}
 }
