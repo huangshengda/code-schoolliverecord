@@ -48,10 +48,10 @@ public class ConfigUtils {
 	}
 	
 	/**
-	 * 依据key获取对应的value
-	 * @param key
-	 * @return
-	 */
+	* 依据key获取对应的value
+	* @param key
+	* @return
+	*/
 	public static String getValue(String key){
 		String value = null;
 		String keyValue = map.get(key);

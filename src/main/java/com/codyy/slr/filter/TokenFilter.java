@@ -69,11 +69,10 @@ public class TokenFilter implements Filter{
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN,"未登陆")));
 				return; 
 			}
-			
-			req.setAttribute("user",user);
-			
+			req.setAttribute("user", user);
 			chain.doFilter(req, resp);
 		} catch (ExecutionException e) {
+			resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED,"请求失败")));
 			e.printStackTrace();
 		}
