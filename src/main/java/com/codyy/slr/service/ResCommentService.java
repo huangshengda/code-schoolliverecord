@@ -49,12 +49,12 @@ public class ResCommentService {
 		/**
 		 * 将二级评论根据一级评论的id分组
 		 */
-	    List<ResCommentVo> subList = getSubResCommentList(commentIdList,userId);
-	    Map<String,List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
+		List<ResCommentVo> subList = getSubResCommentList(commentIdList,userId);
+		Map<String,List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
 		for(ResCommentVo comment : subList){
 			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
 		}
-	    
+	
 		/**
 		 * 一级评论中注入二级评论
 		 */

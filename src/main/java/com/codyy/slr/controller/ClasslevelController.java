@@ -53,7 +53,7 @@ public class ClasslevelController {
 	 */
 	@RequestMapping("add")
 	@ResponseBody
-	public ReturnVoOne<Classlevel> addClasslevel(Classlevel classlevel){
+	public ReturnVoOne<Classlevel> addClasslevel(Classlevel classlevel) {
 		int code ;
 		String msg ;
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -75,7 +75,7 @@ public class ClasslevelController {
 	 */
 	@RequestMapping("del")
 	@ResponseBody
-	public ReturnVoOne<Classlevel> delClasslevel(Classlevel classlevel){
+	public ReturnVoOne<Classlevel> delClasslevel(Classlevel classlevel) {
 		int code = Constants.SUCCESS;
 		String msg = "删除成功";
 		classlevel.setDeleteFlag("Y");
@@ -93,7 +93,7 @@ public class ClasslevelController {
 	 */
 	@RequestMapping("update")
 	@ResponseBody
-	public ReturnVoOne<Classlevel> modifyClasslevelName(Classlevel classlevel){
+	public ReturnVoOne<Classlevel> modifyClasslevelName(Classlevel classlevel) {
 		int code = Constants.SUCCESS;
 		String msg = "编辑成功";
 		try {
@@ -121,7 +121,7 @@ public class ClasslevelController {
 	 */
 	@RequestMapping("sort")
 	@ResponseBody
-	public ReturnVoOne<Classlevel> modifyClasslevelSort(String classlevelIds){
+	public ReturnVoOne<Classlevel> modifyClasslevelSort(String classlevelIds) {
 		int code = 1;
 		String msg = "排序成功";
 		String id[] = classlevelIds.split(",");

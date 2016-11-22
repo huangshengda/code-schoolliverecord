@@ -6,7 +6,7 @@ import java.util.Map;
 public class Page {
 	private int totalDatas; // 总条数
 
-	private int curPage; // 当前页
+	private int curPage = 1; // 当前页
 
 	private int pageSize = 20; // 每页显示条数(默认每页条数)
 

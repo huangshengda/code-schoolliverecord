@@ -104,7 +104,7 @@ public class ResourceController {
 		return result;
 	}
 	
-	
+	//推荐资源
 	@RequestMapping("recommendresource/list")
 	@ResponseBody
 	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
