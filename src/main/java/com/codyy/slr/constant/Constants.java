@@ -38,4 +38,16 @@ public class Constants {
 	 */
 	public static final String N = "N"; 
 	public static final String Y = "Y"; 
+	
+	/**
+	 * token过期时间
+	 */
+	public static final String EXPIRE_TIME = "expireTime";
+	
+	/**
+	 * 存储路径
+	 */
+	public static final String IMG_PATH = "img.path";
+	public static final String LIVE_PATH = "video.live.path";
+	public static final String UPLOAD_PATH = "video.upload.path";
 }

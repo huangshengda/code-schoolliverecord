@@ -3,6 +3,9 @@ package com.codyy.slr.util;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -10,39 +13,42 @@ import com.google.common.cache.LoadingCache;
 
 /**
  * token 管理工作类
+ * 
  * @author huangshengda
  *
  */
 public class TokenUtils {
+	private final static LoadingCache<String, User> tokenCache;
 	
-	//加载类时初始化
-	private final static LoadingCache<String,User> tokenCache=CacheBuilder
-			.newBuilder().expireAfterAccess(ConfigUtils.getExpireTime(), TimeUnit.MINUTES) 
-			.build(new CacheLoader<String, User>(){
-				@Override
-				public User load(String key) throws Exception {   
-					//在cache中查不到时返回
-					User user = new User();
-					user.setUserId("0");
-					return user;
-				}
-				
-			});
-	
-	
-	public static void putUserIdToCache(String token,User user){
+	private static long EXPIRETIME = 30;
+
+	// 加载类时初始化
+	static {
+		String expireTime = ConfigUtils.getValue(Constants.EXPIRE_TIME);
+		if (StringUtils.isNumeric(expireTime)) {
+			EXPIRETIME = Long.parseLong(expireTime);
+		}
+
+		tokenCache = CacheBuilder.newBuilder()
+				.expireAfterAccess(EXPIRETIME, TimeUnit.MINUTES)
+				.build(new CacheLoader<String, User>() {
+					@Override
+					public User load(String key) throws Exception {
+						// 在cache中查不到时返回
+						User user = new User();
+						user.setUserId("0");
+						return user;
+					}
+
+				});
+	}
+
+	public static void putUserIdToCache(String token, User user) {
 		tokenCache.put(token, user);
 	}
-	
-	//如果没找到 返回 tokenStr
-	public static User getUserToCache(String token) throws ExecutionException{
+
+	// 如果没找到 返回 tokenStr
+	public static User getUserToCache(String token) throws ExecutionException {
 		return tokenCache.get(token);
-	}
-	//测试
-	public static void main(String[] args) throws ExecutionException {
-		putUserIdToCache("a",new User());
-		System.out.println(getUserToCache("a"));
-		System.out.println(getUserToCache("b"));
-		//System.out.println(getUserToCache(null));
 	}
 }
