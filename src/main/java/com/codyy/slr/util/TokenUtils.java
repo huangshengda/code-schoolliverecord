@@ -17,7 +17,7 @@ public class TokenUtils {
 	
 	//加载类时初始化
 	private final static LoadingCache<String,User> tokenCache=CacheBuilder
-			.newBuilder().expireAfterAccess(ConfigUtils.getExpireTime(), TimeUnit.SECONDS) 
+			.newBuilder().expireAfterAccess(ConfigUtils.getExpireTime(), TimeUnit.MINUTES) 
 			.build(new CacheLoader<String, User>(){
 				@Override
 				public User load(String key) throws Exception {   

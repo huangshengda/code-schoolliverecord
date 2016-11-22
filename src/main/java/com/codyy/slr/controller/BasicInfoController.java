@@ -26,7 +26,7 @@ public class BasicInfoController {
 	@Autowired
 	private BasicInfoService basicInfoService;
 	
-	@RequestMapping("basicInfo/update")
+	@RequestMapping("basicinfo/update")
 	@ResponseBody
 	public ReturnVoOne<List<BasicInfo>> modifyBasicInfo(BasicInfoVo param){
 		ReturnVoOne<List<BasicInfo>> returnVoOne = new ReturnVoOne<List<BasicInfo>>();
@@ -45,7 +45,7 @@ public class BasicInfoController {
 		return returnVoOne;
 	}
 
-	@RequestMapping("basicInfo/get")
+	@RequestMapping("basicinfo/get")
 	@ResponseBody
 	public ReturnVoOne<BasicInfoVo> getBasicInfo(){
 		ReturnVoOne<BasicInfoVo> returnVoOne = new ReturnVoOne<BasicInfoVo>();

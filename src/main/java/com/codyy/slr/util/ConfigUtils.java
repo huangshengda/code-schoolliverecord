@@ -39,7 +39,7 @@ public class ConfigUtils {
 	}
 	
 	public static Integer getExpireTime() {
-		if (EXPIRE_TIME == 20) {
+		if (EXPIRE_TIME == 0) {
 			initUploadInfo();
 		}
 		return EXPIRE_TIME;
