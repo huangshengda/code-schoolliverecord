@@ -47,7 +47,6 @@ public class TokenUtils {
 		tokenCache.put(token, user);
 	}
 
-	// 如果没找到 返回 tokenStr
 	public static User getUserToCache(String token) throws ExecutionException {
 		return tokenCache.get(token);
 	}
