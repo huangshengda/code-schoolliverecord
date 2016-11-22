@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.codyy.slr.dao.DemandResMapper" >
   	
+  	<!-- 获取点播资源列表 -->
   	<select id="getDemandResPageList" resultType="com.codyy.slr.vo.ResourceVo" parameterType="com.codyy.slr.common.page.Page">
-		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.STORE_PATH storePath,
-		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,
 		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
-		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
+		from resource res left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
 		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
 		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
 		where res.LIVING_FLAG = 'N' and res.DELETE_FLAG='N'

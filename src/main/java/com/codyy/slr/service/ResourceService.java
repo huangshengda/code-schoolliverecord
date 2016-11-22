@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,9 @@ import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.ResourceMapper;
 import com.codyy.slr.entity.Resource;
+import com.codyy.slr.entity.User;
 import com.codyy.slr.parambean.AddResourceParam;
+import com.codyy.slr.util.HostConfigUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.HomeLiveVo;
 import com.codyy.slr.vo.ResourceVo;
@@ -57,11 +61,12 @@ public class ResourceService {
 	}
 
 	// 依据资源ID逻辑删除资源
-	public int delResByResId(String resourceId) {
+	public int delResByResId(HttpServletRequest req, String resourceId) {
+		User user = (User) req.getAttribute("user");
+		
 		Resource res = new Resource();
 		res.setResourceId(resourceId);
-		// TODO 缺少获取UserID的方法
-		res.setDeleteUserId("");
+		res.setDeleteUserId(user.getUserId());
 		res.setDeleteTime(new Date());
 
 		return resourceMapper.delResByResId(res);
@@ -76,16 +81,9 @@ public class ResourceService {
 	public Page getResourcePageList(Page page) {
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
 		if (list.size() >= 1) {
-			Map<String, Object> map = page.getMap();
-			if (map != null && !map.isEmpty()) {
-				Object sourceType = map.get("sourceType");
-				// 判断资源类型是否为空,不为空则为查询数据赋值查看、编辑、删除操作
-				if (sourceType != null
-						&& StringUtils.isNotBlank(sourceType.toString())) {
-					for (ResourceVo resourceVo : list) {
-						resourceVo.setOpt(Constants.VIEW_EDIT_DELETE);
-					}
-				}
+			for (ResourceVo resourceVo : list) {
+				resourceVo.setOpt(Constants.VIEW_EDIT_DELETE);
+				resourceVo.setThumbPath(null);
 			}
 		}
 		page.setData(list);
@@ -93,17 +91,18 @@ public class ResourceService {
 	}
 
 	// 获取我的课程资源列表
-	public Page getMyResourcePageList(Page page) {
+	public Page getMyResourcePageList(HttpServletRequest req, Page page) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		// TODO 缺少获取userId方法
-		map.put("createUserId", "userId");
-
+		User user = (User) req.getAttribute("user");
+		map.put("createUserId", user.getUserId());
 		page.setMap(map);
 
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
+		String contextpath = HostConfigUtils.getHost(req)+"/download/img";
 		if (list.size() >= 1) {
 			for (ResourceVo resourceVo : list) {
 				resourceVo.setOpt(Constants.DELETE);
+				resourceVo.setThumbPath(contextpath + resourceVo.getThumbPath());
 			}
 		}
 		page.setData(list);
@@ -111,8 +110,19 @@ public class ResourceService {
 	}
 
 	// 根据资源ID获取资源
-	public ResourceVo getResource(String resourceId) {
-		return resourceMapper.getResource(resourceId);
+	public ResourceVo getResource(HttpServletRequest req, String resourceId) {
+		String contextpath = HostConfigUtils.getHost(req);
+		
+		ResourceVo resVo = resourceMapper.getResource(resourceId);
+		
+		if(resVo != null){
+			resVo.setThumbPath(contextpath + "/download/img" + resVo.getThumbPath());
+			if (resVo.getLivingFlag().equals("N")) {
+				resVo.setStorePath(contextpath + "/download/" + resVo.getSourceType() + resVo.getStorePath());
+			}
+		}
+		
+		return resVo;
 	}
 
 	// 更新资源信息

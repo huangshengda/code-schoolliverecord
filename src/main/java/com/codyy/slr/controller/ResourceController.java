@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class ResourceController {
 	private ResourceService resourceService;
 
 	/**
-	 * 后台资源管理
+	 * 后台资源管理(上传、录制资源管理共用)
 	 * 
 	 * @param page
 	 * @return
@@ -87,13 +86,13 @@ public class ResourceController {
 	 */
 	@RequestMapping(value = "/myresource/list", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoList<ResourceVo> getMyResourcePageList(Page page) {
+	public ReturnVoList<ResourceVo> getMyResourcePageList(HttpServletRequest req, Page page) {
 		
 		ReturnVoList<ResourceVo> result = null;
 		
 		try{
 			
-			page = resourceService.getMyResourcePageList(page);
+			page = resourceService.getMyResourcePageList(req, page);
 			
 			result = new ReturnVoList<ResourceVo>(page);
 		}catch(Exception e){
@@ -107,10 +106,10 @@ public class ResourceController {
 	
 	@RequestMapping("recommendresource/list")
 	@ResponseBody
-	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
+	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(HttpServletRequest req, String resourceId) {
 		ReturnVoOne<List<ResourceVo>> ret = new ReturnVoOne<List<ResourceVo>>();
 		try {
-			ResourceVo resource = resourceService.getResource(resourceId);
+			ResourceVo resource = resourceService.getResource(req, resourceId);
 			Map<String,String> map = new HashMap<String,String>();
 			map.put("subjectId", resource.getSubjectId());
 			map.put("classlevelIds", resource.getClasslevelId());
@@ -132,10 +131,10 @@ public class ResourceController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping(value="/delete")
-	public ReturnVoOne delResource(String resourceId) {
+	public ReturnVoOne delResource(HttpServletRequest req, String resourceId) {
 		ReturnVoOne result = null;
 		try{
-			resourceService.delResByResId(resourceId);
+			resourceService.delResByResId(req, resourceId);
 			result = new ReturnVoOne();
 		}catch(Exception e){
 			result = new ReturnVoOne(Constants.FAILED,"删除失败");
@@ -196,10 +195,10 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/get")
-	public ReturnVoOne<ResourceVo> getResource(String resourceId) {
+	public ReturnVoOne<ResourceVo> getResource(HttpServletRequest req, String resourceId) {
 		ReturnVoOne<ResourceVo> result = null;
 		try{
-			ResourceVo resVo = resourceService.getResource(resourceId);
+			ResourceVo resVo = resourceService.getResource(req, resourceId);
 			result = new ReturnVoOne<ResourceVo>(resVo);
 		}catch(Exception e){
 			result = new ReturnVoOne<ResourceVo>(Constants.FAILED,"查询失败");
@@ -208,14 +207,6 @@ public class ResourceController {
 		return result;
 	}
 	
-	/**
-	 * 点播资源播放
-	 * @param resourceId
-	 */
-	@RequestMapping(value="/view")
-	public void playResource(HttpServletRequest req, HttpServletResponse res, String resourceId){
-		//TODO 未实行
-	}
 	
 	/**
 	 * 获取系统截图方法

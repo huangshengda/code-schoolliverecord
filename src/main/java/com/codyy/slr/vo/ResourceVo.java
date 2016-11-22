@@ -21,6 +21,9 @@ public class ResourceVo {
 	private String storePath;
 	private int viewCnt;
 	private String creatName;
+	private String size;
+	private String sourceType;
+	private String livingFlag;
 	private List<String> opt;
 
 	public ResourceVo() {
@@ -121,6 +124,30 @@ public class ResourceVo {
 
 	public void setSubjectId(String subjectId) {
 		this.subjectId = subjectId;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getSourceType() {
+		return sourceType;
+	}
+
+	public void setSourceType(String sourceType) {
+		this.sourceType = sourceType;
+	}
+
+	public String getLivingFlag() {
+		return livingFlag;
+	}
+
+	public void setLivingFlag(String livingFlag) {
+		this.livingFlag = livingFlag;
 	}
 
 }

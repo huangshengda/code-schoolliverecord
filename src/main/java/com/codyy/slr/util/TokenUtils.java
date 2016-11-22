@@ -30,7 +30,7 @@ public class TokenUtils {
 		}
 
 		tokenCache = CacheBuilder.newBuilder()
-				.expireAfterAccess(EXPIRETIME, TimeUnit.SECONDS)
+				.expireAfterAccess(EXPIRETIME, TimeUnit.MINUTES)
 				.build(new CacheLoader<String, User>() {
 					@Override
 					public User load(String key) throws Exception {
