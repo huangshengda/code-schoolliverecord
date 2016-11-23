@@ -2,6 +2,9 @@ package com.codyy.slr.controller;
 
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
+import com.codyy.slr.entity.User;
 import com.codyy.slr.service.ResCommentService;
 import com.codyy.slr.util.MapUtils;
 import com.codyy.slr.util.MySqlKeyWordUtils;
@@ -79,14 +83,13 @@ public class ResCommentController {
 	 */
 	@ResponseBody
 	@RequestMapping("/resource/comment/list")
-	public ReturnVoList<ResCommentVo> getResCommentPageList(Page page, String resourceId) {
+	public ReturnVoList<ResCommentVo> getResCommentPageList(Page page, String resourceId,HttpServletRequest req) {
+		User user =  (User) req.getAttribute("user");
 		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>();
 		try {
 			Map<String, Object> map = MapUtils.newHashMap();
 			map.put("resourceId", resourceId);
-			//TODO
-			//获取userId
-			map.put("userId", "userId");
+			map.put("userId", user.getUserId());
 			page.setMap(map);
 			page= resCommentService.getResCommentPageList(page);
 			returnVoList = new ReturnVoList<ResCommentVo>(page);

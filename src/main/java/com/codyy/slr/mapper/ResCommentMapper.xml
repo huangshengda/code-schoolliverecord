@@ -67,8 +67,8 @@
 		left join user u2 on u2.user_id = t.reply_to_user_id
 		where t.PARENT_COMMENT_ID in 
 		<foreach  collection="list"  item="id"   open="("  separator=","  close=")">  
-            #{id}  
-        </foreach>  
+			#{id}  
+		</foreach>  
 		order by t.CREATE_TIME
 	</select>
 	

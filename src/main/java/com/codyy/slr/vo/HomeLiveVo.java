@@ -13,7 +13,6 @@ public class HomeLiveVo {
 	private String classlevelName;
 	private String subjectName;
 	private String author;
-	private String livingPath;
 
 	public HomeLiveVo() {
 
@@ -58,21 +57,4 @@ public class HomeLiveVo {
 	public void setResourceName(String resourceName) {
 		this.resourceName = resourceName;
 	}
-
-	public String getLivingPath() {
-		return livingPath;
-	}
-
-	public void setLivingPath(String livingPath) {
-		this.livingPath = livingPath;
-	}
-
-	@Override
-	public String toString() {
-		return "HomeLiveVo [resourceId=" + resourceId + ", resourceName="
-				+ resourceName + ", classlevelName=" + classlevelName
-				+ ", subjectName=" + subjectName + ", author=" + author
-				+ ", livingPath=" + livingPath + "]";
-	}
-
 }

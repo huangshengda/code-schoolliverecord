@@ -18,8 +18,8 @@ import com.google.common.cache.LoadingCache;
  *
  */
 public class TokenUtils {
-
 	private final static LoadingCache<String, User> tokenCache;
+	
 	private static long EXPIRETIME = 30;
 
 	// 加载类时初始化
@@ -30,7 +30,7 @@ public class TokenUtils {
 		}
 
 		tokenCache = CacheBuilder.newBuilder()
-				.expireAfterAccess(EXPIRETIME, TimeUnit.SECONDS)
+				.expireAfterAccess(EXPIRETIME, TimeUnit.MINUTES)
 				.build(new CacheLoader<String, User>() {
 					@Override
 					public User load(String key) throws Exception {
@@ -47,7 +47,6 @@ public class TokenUtils {
 		tokenCache.put(token, user);
 	}
 
-	// 如果没找到 返回 tokenStr
 	public static User getUserToCache(String token) throws ExecutionException {
 		return tokenCache.get(token);
 	}
