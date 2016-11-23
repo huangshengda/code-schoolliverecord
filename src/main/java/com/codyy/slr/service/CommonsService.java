@@ -54,7 +54,7 @@ public class CommonsService {
 	    int end = length - 1;
 	    
 	    String range = req.getHeader("Range");
-	    range=range==null?"":range;
+	    range = range == null ? "" : range;
 	    Matcher matcher = RANGE_PATTERN.matcher(range);
 
 	    if (matcher.matches()) {

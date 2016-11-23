@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.HandlerMapping;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.service.CommonsService;
@@ -38,10 +40,9 @@ public class CommonsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/img/{imgPath}")
-	public void getImg(HttpServletRequest req, HttpServletResponse res,
-			@PathVariable(value="imgPath") String imgPath) {
-		
+	@RequestMapping(value = "/img/**")
+	public void getImg(HttpServletRequest req, HttpServletResponse res) {
+		String imgPath = extractPathFromPattern(req);
 		try {
 			commonsService.sendFileAsResponse(req, res, imgPath, Constants.IMG_PATH);
 		} catch (Exception e) {
@@ -54,14 +55,20 @@ public class CommonsController {
 		}
 	}
 	
-	@RequestMapping(value = "/video/{type}/{videoPath}")
-	public void getVideo(HttpServletRequest req, HttpServletResponse res,
-			@PathVariable(value="type") String type, @PathVariable(value="videoPath") String videoPath) {
+	/**
+	 * 获取视频流
+	 * @param req
+	 * @param res
+	 * @param videoPath
+	 */
+	@RequestMapping(value = "/video/{type}/**")
+	public void getVideo(HttpServletRequest req, HttpServletResponse res, @PathVariable(value="type") String type) {
+		String videoPath = extractPathFromPattern(req);
 		
 		try {
-			if (type.equals("live")){
+			if (type.equals("RECORD")){
 				commonsService.sendFileAsResponse(req, res, videoPath, Constants.LIVE_PATH);
-			} else if (type.equals("upload")){
+			} else if (type.equals("UPLOAD")){
 				commonsService.sendFileAsResponse(req, res, videoPath, Constants.UPLOAD_PATH);
 			}
 		} catch (Exception e) {
@@ -72,5 +79,14 @@ public class CommonsController {
 			}
 			e.printStackTrace();
 		}
+	}
+	
+	// 把指定URL后的字符串全部截断当成参数
+	// 这么做是为了防止URL中包含中文或者特殊字符（/等）时，匹配不了的问题
+	private static String extractPathFromPattern(final HttpServletRequest request)
+	{
+		String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+		String bestMatchPattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+		return new AntPathMatcher().extractPathWithinPattern(bestMatchPattern, path);
 	}
 }
