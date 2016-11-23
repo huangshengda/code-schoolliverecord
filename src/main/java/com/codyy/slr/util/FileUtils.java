@@ -26,9 +26,11 @@ public class FileUtils {
 		
 	}
 	
-	public static void delFile(String fileStr) throws IOException{
+	public static void delFile(String fileStr) throws IOException {
+		
 		Path filePath =Paths.get(fileStr);
 		Files.delete(filePath);
+		
 	}
 	
 }
