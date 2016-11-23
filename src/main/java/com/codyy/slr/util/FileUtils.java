@@ -3,6 +3,10 @@ package com.codyy.slr.util;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.util.FileCopyUtils;
@@ -16,18 +20,15 @@ public class FileUtils {
 	
 	public static void copyFile(String oriFile, String desFile) throws IOException {
 		
-		FileOutputStream os=new FileOutputStream(new File(oriFile));
-		FileSystemResource resource = new FileSystemResource(desFile);
-		
-		FileCopyUtils.copy(resource.getInputStream(),os);
+		Path ori =Paths.get(oriFile);
+		Path des =Paths.get(desFile);
+		Files.copy(ori, des,StandardCopyOption.REPLACE_EXISTING);
 		
 	}
 	
-	public static void delFile(String filePath){
-		
-		File file = new File(filePath);
-		file.delete();
-		
+	public static void delFile(String fileStr) throws IOException{
+		Path filePath =Paths.get(fileStr);
+		Files.delete(filePath);
 	}
 	
 }
