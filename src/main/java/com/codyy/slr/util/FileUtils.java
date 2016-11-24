@@ -1,15 +1,13 @@
 package com.codyy.slr.util;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.util.FileCopyUtils;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 文件工具类
@@ -33,4 +31,26 @@ public class FileUtils {
 		
 	}
 	
+	/**
+	 * 
+	 * @param fileList 返回查找到的文件目录列表
+	 * @param dir 查找的路径
+	 * @param regex 配的正则
+	 * @return
+	 * @throws IOException
+	 */
+	public static List<String> findSimilarFile(List<String> fileList,String dir, String regex) throws IOException {
+		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir)).iterator();
+		while(iterator.hasNext()) {
+			File file = iterator.next().toFile();
+			if(file.isDirectory()) {
+				findSimilarFile(fileList,file.getPath(), regex);
+			} else if(file.isFile()) {
+				if(file.getName().matches(regex)) {
+					fileList.add(file.getPath());
+				}
+			}
+		}
+		return fileList;
+	}
 }

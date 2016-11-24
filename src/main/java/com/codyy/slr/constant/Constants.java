@@ -40,6 +40,12 @@ public class Constants {
 	public static final String Y = "Y"; 
 	
 	/**
+	 * 直播课堂是否结束
+	 */
+	public static final String FINISH = "0"; 
+	public static final String NOT_FINISH = "1"; 
+	
+	/**
 	 * token过期时间
 	 */
 	public static final String EXPIRE_TIME = "expireTime";
