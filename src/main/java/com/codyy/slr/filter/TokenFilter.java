@@ -63,7 +63,9 @@ public class TokenFilter implements Filter{
 		}
 		
 		try {
-			User user = TokenUtils.getUserToCache(token);
+			//token+agent 作为key 增加破解难度
+			String agent = req.getHeader("User-Agent");
+			User user = TokenUtils.getUserToCache(token + agent);
 			if(user == null || "0".equals(user.getUserId())){
 				resp.setContentType("text/html;charset=UTF-8");
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN,"未登陆")));
