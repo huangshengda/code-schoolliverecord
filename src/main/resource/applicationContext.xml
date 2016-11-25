@@ -20,7 +20,7 @@
 	<context:component-scan base-package="com.codyy.slr" use-default-filters="false">
 		<context:include-filter type="regex" expression="com.codyy.slr.dao.*" />
 		<context:include-filter type="regex" expression="com.codyy.slr.service.*" />
-		<context:include-filter type="regex" expression="com.codyy.slr.controller.*" />
+		<context:include-filter type="regex" expression="com.codyy.slr.controller.*" /> 
 	</context:component-scan>
 
 
@@ -31,6 +31,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:jdbc.properties</value>
+				<value>classpath:config.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
@@ -109,4 +110,26 @@
 		<aop:pointcut id="txPointcut" expression="execution(* com.codyy.slr.service.*.*(..)) " />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
+	
+	<!-- 定时结束未完成的直播 -->
+	<bean id = "liveSchedule" class="com.codyy.slr.schedule.LiveSchedule">
+		<property name="resourceService" ref="resourceService"/>
+	</bean>
+	
+	<bean id="finishLiveTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="liveSchedule"/>
+		<property name="targetMethod" value="finishLive"/>
+	</bean>
+	<bean id="finishLiveTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="finishLiveTask"/>
+		<property name="cronExpression" value="${schedule.finishLiveTime}"/>
+	</bean>
+	
+	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="finishLiveTime" />	
+			</list>
+		</property>
+	</bean>
 </beans>

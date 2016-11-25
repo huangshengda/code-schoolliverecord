@@ -16,7 +16,6 @@ public class AddResourceParam {
 	private String author; //主讲老师
 	private String thumbPath;//封面路径
 	private String storePath;//存储路径
-	private String createUserId;
 	private long size;
 	
 	public boolean validate(){
@@ -83,12 +82,6 @@ public class AddResourceParam {
 	public void setThumbPath(String thumbPath) {
 		this.thumbPath = thumbPath;
 	}
-	public String getCreateUserId() {
-		return createUserId;
-	}
-	public void setCreateUserId(String createUserId) {
-		this.createUserId = createUserId;
-	}
 
 	public Resource toResource(){
 		Resource resource = new Resource();
@@ -96,7 +89,6 @@ public class AddResourceParam {
 		resource.setAuthor(this.author);
 		resource.setResourceName(this.resourceName);
 		resource.setThumbPath(this.thumbPath);
-		resource.setCreateUserId(this.createUserId);
 		resource.setStorePath(this.storePath);
 		return resource;
 	}
@@ -114,8 +106,6 @@ public class AddResourceParam {
 		builder.append(author);
 		builder.append(", thumbPath=");
 		builder.append(thumbPath);
-		builder.append(", createUserId=");
-		builder.append(createUserId);
 		builder.append("]");
 		return builder.toString();
 	}

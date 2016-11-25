@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
+import com.codyy.slr.entity.User;
 import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.ResourceService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.util.ParamUtils;
+import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ResourceVo;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
@@ -49,7 +51,6 @@ public class ResourceController {
 	@ResponseBody
 	public ReturnVoList<ResourceVo> getResourcePageList(Page page,
 			SearchResourceParam param) {
-
 		if (StringUtils.isNotBlank(param.getResourceNameKey())) {
 			param.setResourceNameKey(MySqlKeyWordUtils
 					.MySqlKeyWordReplace(param.getResourceNameKey()));
@@ -149,8 +150,9 @@ public class ResourceController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("addresource")
-	public ReturnVoOne addResource(AddResourceParam param) {
+	public ReturnVoOne addResource(AddResourceParam param, HttpServletRequest req) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
+		User user = (User) req.getAttribute("user");
 		// 校验参数
 		if (!param.validate()) {
 			returnVoOne.setCode(Constants.FAILED);
@@ -158,7 +160,7 @@ public class ResourceController {
 			return returnVoOne;
 		}
 
-		boolean flag = resourceService.addResource(param);
+		boolean flag = resourceService.addResource(param,user.getUserId());
 
 		if (!flag) {
 			returnVoOne.setCode(Constants.FAILED);
@@ -167,7 +169,7 @@ public class ResourceController {
 
 		return returnVoOne;
 	}
-
+	
 	/**
 	 * 编辑保存资源
 	 */
@@ -226,4 +228,92 @@ public class ResourceController {
 		}
 		return result;
 	}
+	
+	/**
+	 * 添加直播信息
+	 */
+	@ResponseBody
+	@RequestMapping("live/add")
+	public ReturnVoOne<String> addLiveResource(AddResourceParam param, String livePath) {
+		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
+		try {
+			// 校验参数
+			if (!param.validate() || StringUtils.isEmpty(livePath)) {
+				returnVoOne.setCode(Constants.FAILED);
+				returnVoOne.equals("参数不合法");
+				return returnVoOne;
+			}
+			
+			String liveResourceId = UUIDUtils.getUUID();
+			boolean flag = resourceService.addLiveResource(param, liveResourceId, livePath);
+			
+			if (flag) {
+				returnVoOne.setData(liveResourceId);
+			}else{
+				returnVoOne.setCode(Constants.FAILED);
+				returnVoOne.setMsg("添加资源失败");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnVoOne.setCode(Constants.FAILED);
+			returnVoOne.setMsg("添加资源失败");
+		}
+
+		return returnVoOne;
+	}
+	
+	/**
+	 * 获取直播是否结束 
+	 */
+	@ResponseBody
+	@RequestMapping("live/hasfinish")
+	public ReturnVoOne<String> hasFinish(HttpServletRequest req, String liveResourceId) {
+		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
+		try {
+			ResourceVo res = resourceService.getResource(req, liveResourceId);
+			String msg = Constants.NOT_FINISH;
+			if("N".equals(res.getLivingFlag())){
+				msg = Constants.FINISH;
+			}
+			returnVoOne.setData(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnVoOne.setCode(Constants.FAILED);
+			returnVoOne.setMsg("获取信息失败");
+		}
+		return returnVoOne;
+	}
+	
+	/**
+	 * 结束直播课程
+	 */
+	/**
+	 * 获取直播是否结束 
+	 */
+	@ResponseBody
+	@RequestMapping("live/finish")
+	public ReturnVoOne<String> has(String liveResourceId){
+		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
+		try {
+			//1更新数据库将直播路径设置为空
+			resourceService.updateLiveResourceLivingPath(liveResourceId);
+			//2查找文件
+			
+			//3合并文件
+			
+			//4移动文件
+			
+			//5删除文件
+			
+			//6将存储路径 直播状态更新到数据库
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnVoOne.setCode(Constants.FAILED);
+			returnVoOne.setMsg("获取信息失败");
+		}
+		return returnVoOne;
+	}
+	
 }

@@ -34,7 +34,8 @@ public class UserController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("login")
-	public  ReturnVoOne<User> login(Page page,User user){
+	public  ReturnVoOne<User> login(Page page,User user,HttpServletRequest req){
+		String agent = req.getHeader("User-Agent");
 		Map<String,Object> map = new HashMap<String, Object>();
 		int code = Constants.SUCCESS;
 		String msg = "登陆成功";
@@ -48,7 +49,7 @@ public class UserController {
 			if(userList.size()==1){
 				user = userList.get(0);
 				user.setToken(UUIDUtils.getUUID());
-				TokenUtils.putUserIdToCache(user.getToken(),user);
+				TokenUtils.putUserIdToCache(user.getToken()+agent,user);//token+agent 作为key 增加破解难度
 			}else{
 				code = Constants.FAILED;
 				msg = "用户名或密码错误";
