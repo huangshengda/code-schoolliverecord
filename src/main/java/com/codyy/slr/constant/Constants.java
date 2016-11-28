@@ -3,6 +3,8 @@ package com.codyy.slr.constant;
 import java.util.Arrays;
 import java.util.List;
 
+import com.codyy.slr.util.ConfigUtils;
+
 public class Constants {
 	
 	public static final int SUCCESS = 1;
@@ -53,7 +55,14 @@ public class Constants {
 	/**
 	 * 存储路径
 	 */
-	public static final String IMG_PATH = "img.path";
-	public static final String LIVE_PATH = "video.live.path";
-	public static final String UPLOAD_PATH = "video.upload.path";
+	public final static String IMG_PATH;
+	public final static String LIVE_PATH;
+	public final static String UPLOAD_PATH;
+	public final static String TEMP;
+	static{
+		IMG_PATH = ConfigUtils.getValue("img.path");
+		LIVE_PATH = ConfigUtils.getValue("video.live.path");
+		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
+		TEMP = ConfigUtils.getValue("temp");
+	}
 }
