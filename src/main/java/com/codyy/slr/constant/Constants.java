@@ -13,10 +13,8 @@ public class Constants {
 
 	public static final List<String> DELETE = Arrays.asList("del_fun");
 	public static final List<String> EDIT = Arrays.asList("edit_fun");
-	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun",
-			"del_fun");
-	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList(
-			"view_fun", "edit_fun", "del_fun");
+	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun","del_fun");
+	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList("view_fun", "edit_fun", "del_fun");
 
 	/**
 	 * 排序字段
@@ -41,7 +39,7 @@ public class Constants {
 	 */
 	public static final String IMG_TEMP = "temp";
 	public static final String IMG_REAL = "real";
-	
+
 	/**
 	 * 是否
 	 */
@@ -71,12 +69,12 @@ public class Constants {
 	 * 系统截图张数
 	 */
 	public static final String SHOT_NUM;
-	
+
 	static {
 		IMG_PATH = ConfigUtils.getValue("img.path");
 		LIVE_PATH = ConfigUtils.getValue("video.live.path");
 		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
-		TEMP = ConfigUtils.getValue("temp");
 		SHOT_NUM = ConfigUtils.getValue("sys.screen.shot");
+		TEMP = ConfigUtils.getValue("temp.path");
 	}
 }
