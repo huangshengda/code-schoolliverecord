@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
@@ -27,7 +29,9 @@ import org.springframework.stereotype.Service;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.ConfigUtils;
 import com.codyy.slr.util.FileUtils;
+import com.codyy.slr.util.HostConfigUtils;
 import com.codyy.slr.util.UUIDUtils;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 @Service
 public class SystemScreenShotService {
@@ -46,28 +50,45 @@ public class SystemScreenShotService {
 			PATH = absolutePath + "lib/ffmpeg.exe";
 		}
 	}
-
-	public void getSysScreenShot(String videoPath, String resId, String type) throws IOException, InterruptedException {
-		String imgsPath = IMG_PATH + "/" + FileUtils.creatDir(IMG_PATH);
-		if (type.equals("living")) {
-			getShotImgs(videoPath, imgsPath, resId, 1);
-		} else {
-			getShotImgs(videoPath, imgsPath, resId, 9);
+	
+	public void getUpoadScreenShot(HttpServletRequest req, String videoPath, String resId) throws IOException, InterruptedException{
+		String contextpath = HostConfigUtils.getHost(req)+"/download/img";
+		List<String> imgs = getSysScreenShot(videoPath, resId, 9);
+		List<String> imgsUrl = new ArrayList<String>();
+		
+		for(String img : imgs){
+			img = contextpath + img;
 		}
+	}
+	
+	/**
+	 * 视频截图对外接口
+	 * @param videoPath 视频地址
+	 * @param resId 资源ID
+	 * @param imgNum 截图图片张数
+	 * @return
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	public List<String> getSysScreenShot(String videoPath, String resId, int imgNum) throws IOException, InterruptedException {
+		String subDir = FileUtils.creatDir(IMG_PATH);
+		String imgsPath = IMG_PATH + "/" + subDir;
+		return getShotImgs(videoPath, imgsPath, subDir, resId, imgNum);
 	}
 
 	/**
 	 * 生成视频截图
-	 * @param videoPath
-	 * @param imgsPath
-	 * @param resId
-	 * @param imgNum
+	 * @param videoPath 视频路径
+	 * @param imgsPath 图片存储根路径
+	 * @param subDir 图片存储子路径
+	 * @param resId 资源ID
+	 * @param imgNum 截图图片张数
 	 * @return
 	 * @throws ExecuteException
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private List<String> getShotImgs(String videoPath, String imgsPath, String resId,int imgNum) throws ExecuteException, IOException, InterruptedException{
+	private List<String> getShotImgs(String videoPath, String imgsPath, String subDir, String resId,int imgNum) throws ExecuteException, IOException, InterruptedException{
 		List<String> list = new ArrayList<String>();
 		
 		int videoTime = getVideoTime(videoPath, PATH);
@@ -100,7 +121,7 @@ public class SystemScreenShotService {
 			cmdLine.addArgument(rnum);
 			cmdLine.addArgument("-t");
 			cmdLine.addArgument(endTime);
-			cmdLine.addArgument(imgsPath + "/" + resId + "_%3d.jpg");
+			cmdLine.addArgument(imgsPath + "/" + resId + "_%3d.png");
 			
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();  
@@ -113,9 +134,9 @@ public class SystemScreenShotService {
 		}
 		
 		Path dir = Paths.get(imgsPath);
-		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.jpg")){
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.png")){
 			for(Path e : stream){
-				list.add(e.getFileName().toString());
+				list.add("/" + subDir + "/" + e.getFileName().toString());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -200,16 +221,5 @@ public class SystemScreenShotService {
 		String os = System.getProperty("os.name").toLowerCase();
 		Boolean isLinux  = os.indexOf("linux") >= 0 ? true:false;
 		return isLinux;
-	}
-	
-	public static void main(String[] args) throws IOException{
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String str = sdf.format(date);
-		System.out.println(str);
-		Path dir = Paths.get("D:/imgs/"+str);
-		if(!Files.exists(dir)){
-			Files.createDirectory(dir);
-		}
 	}
 }
