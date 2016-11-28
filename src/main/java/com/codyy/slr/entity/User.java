@@ -40,11 +40,11 @@ public class User implements Serializable{
 	}
 
 	public List<String> getOpt() {
-		return opt;
+		return (opt==null?Constants.EDIT_DELETE:opt) ;
 	}
 
 	public void setOpt(List<String> opt) {
-		this.opt = Constants.EDIT_DELETE;
+		this.opt = opt;
 	}
 
 	public String getUserId() {

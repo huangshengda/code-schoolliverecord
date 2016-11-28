@@ -108,7 +108,7 @@
   	select * from subject t 
 	  where t.DELETE_FLAG = 'N' 
 	  <if test="_parameter != null" >
-	  and t.SUBJECT_NAME like CONCAT('%',#{_parameter},'%') ESCAPE '/'
+	  and t.SUBJECT_NAME = #{_parameter} 
 	  </if>
 	  ORDER BY t.SORT
   </select>
