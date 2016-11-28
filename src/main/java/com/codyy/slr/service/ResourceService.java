@@ -29,11 +29,12 @@ public class ResourceService {
 	@Autowired
 	private ResourceMapper resourceMapper;
 
-	public boolean addResource(AddResourceParam param) {
+	public boolean addResource(AddResourceParam param, String createUserId) {
 		boolean flag = true;
 		Resource resource = param.toResource();
 		String resourceId = UUIDUtils.getUUID();
 		resource.setResourceId(resourceId);
+		resource.setCreateUserId(createUserId);
 		resource.setCreateTime(new Date());
 		resource.setSourceType(Constants.UPLOAD);
 		resource.setViewCnt(0L);
@@ -52,6 +53,36 @@ public class ResourceService {
 			}
 			int num1 = resourceMapper.addResIdClslevelIdList(paramList);
 			if (num1 != paramList.size()) {
+				flag = false;
+			}
+		} else {
+			flag = false;
+		}
+		return flag;
+	}
+	
+	public boolean addLiveResource(AddResourceParam param,String liveResourceId, String livePath) {
+		boolean flag = true;
+		Resource resource = param.toResource();
+		resource.setResourceId(liveResourceId);
+		resource.setCreateTime(new Date());
+		resource.setSourceType(Constants.RECORD);
+		resource.setViewCnt(0L);
+		resource.setLivingFlag(Constants.Y);
+		resource.setLivingPath(livePath);
+
+		int num = resourceMapper.addResource(resource);
+		if (num == 1) {
+			String[] classlevelIdList = param.getClasslevelIds().split(",");
+			List<Map<String, String>> paramList = new ArrayList<Map<String, String>>();
+			for (String string : classlevelIdList) {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("resourceId", liveResourceId);
+				map.put("classlevelId", string);
+				paramList.add(map);
+			}
+			int ResClsNum = resourceMapper.addResIdClslevelIdList(paramList);
+			if (ResClsNum != paramList.size()) {
 				flag = false;
 			}
 		} else {
@@ -172,5 +203,13 @@ public class ResourceService {
 			result.add(resourceVo);
 		}
 		return result;
+	}
+	
+	public boolean updateLiveResourceLivingPath(String resourceId){
+		return resourceMapper.updateLiveResourceLivingPath(resourceId) == 1;
+	}
+	
+	public List<String> getNotFinishLiveResIds() {
+		return resourceMapper.getNotFinishLiveResIds();
 	}
 }

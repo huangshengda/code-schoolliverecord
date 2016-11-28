@@ -68,4 +68,15 @@ public interface ResourceMapper {
 	 * @return
 	 */
 	int delResIDRClslevelID(String resourceId);
+	
+	/**
+	 * 将直播路径更新为空
+	 */
+	int updateLiveResourceLivingPath(String resourceId);
+	
+	/**
+	 * 查询未结束的直播id
+	 * @return
+	 */
+	List<String> getNotFinishLiveResIds();
 }
