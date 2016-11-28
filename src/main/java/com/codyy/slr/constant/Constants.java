@@ -59,10 +59,12 @@ public class Constants {
 	public final static String LIVE_PATH;
 	public final static String UPLOAD_PATH;
 	public final static String TEMP;
+	public final static String DMS_VIDEO_PATH;
 	static{
 		IMG_PATH = ConfigUtils.getValue("img.path");
 		LIVE_PATH = ConfigUtils.getValue("video.live.path");
 		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
 		TEMP = ConfigUtils.getValue("temp.path");
+		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
 	}
 }
