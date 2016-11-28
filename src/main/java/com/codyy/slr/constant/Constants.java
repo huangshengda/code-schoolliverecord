@@ -63,6 +63,6 @@ public class Constants {
 		IMG_PATH = ConfigUtils.getValue("img.path");
 		LIVE_PATH = ConfigUtils.getValue("video.live.path");
 		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
-		TEMP = ConfigUtils.getValue("temp");
+		TEMP = ConfigUtils.getValue("temp.path");
 	}
 }

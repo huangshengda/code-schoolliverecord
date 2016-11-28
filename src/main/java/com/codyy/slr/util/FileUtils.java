@@ -2,6 +2,7 @@ package com.codyy.slr.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,11 +29,32 @@ public class FileUtils {
 
 	}
 
+	/**
+	 * 删除文件
+	 * @param fileStr
+	 * @throws IOException
+	 */
 	public static void delFile(String fileStr) throws IOException {
-
 		Path filePath = Paths.get(fileStr);
 		Files.delete(filePath);
 
+	}
+	
+	/**
+	 * 
+	 * @param dir 文件夹
+	 * @throws IOException 
+	 */
+	public static void delDirectory(String dir) throws IOException{
+		Path path = Paths.get(dir);
+		DirectoryStream<Path> paths = Files.newDirectoryStream(path);  
+		 for(Path p : paths){  
+			 Files.delete(p);
+		 }
+	}
+	
+	public static void main(String[] args) throws IOException {
+		delDirectory("e:/test");
 	}
 
 	/**
