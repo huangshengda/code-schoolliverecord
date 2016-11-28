@@ -109,4 +109,6 @@
 		<aop:pointcut id="txPointcut" expression="execution(* com.codyy.slr.service.*.*(..)) " />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
+	
+
 </beans>
