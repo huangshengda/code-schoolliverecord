@@ -129,7 +129,7 @@ public class ResCommentController {
 	@RequestMapping("/base/resource/comment/list")
 	public ReturnVoList<ResCommentVo> getAllResCommentPageList(Page page, String keywords,String realname) {
 		int code = Constants.SUCCESS;
-		String msg = "登陆成功";
+		String msg = "获取成功";
 		Map<String, Object> map = MapUtils.newHashMap();
 		map.put("keywords",MySqlKeyWordUtils.MySqlKeyWordReplace(keywords));
 		map.put("realname",MySqlKeyWordUtils.MySqlKeyWordReplace(realname));
@@ -137,10 +137,12 @@ public class ResCommentController {
 		try {
 			page= resCommentService.getAllResCommentPageList(page);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			code = Constants.FAILED;
+			msg = "获取评论失败";
 			e.printStackTrace();
+			return new ReturnVoList<ResCommentVo>(code,msg,null);
 		}
-		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>(page);
+		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>(page,code,msg);
 		return returnVoList;
 	}
 	
