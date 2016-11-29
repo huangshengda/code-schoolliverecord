@@ -27,7 +27,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import com.codyy.slr.constant.Constants;
+import com.codyy.slr.util.FileUtils;
 import com.codyy.slr.util.HostConfigUtils;
+import com.codyy.slr.util.UUIDUtils;
 
 @Service
 public class SystemScreenShotService {
@@ -222,8 +224,60 @@ public class SystemScreenShotService {
 		return isLinux;
 	}
 	
-	public static void main(String[] args) {
-		String str1 = "ddddd.mp4";
-		System.out.println(StringUtils.split(str1, ".")[0]);
+	/**
+	 * 合并视频对外接口
+	 * @param paths 视频列表
+	 * @param outPath 输出路径
+	 * @return
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	public boolean concatVideos(List<String> paths, String outPath) throws IOException, InterruptedException{
+		boolean result = false;
+		
+		String fileList = Constants.TEMP + "/" + UUIDUtils.getUUID() + ".txt";
+		
+		if (FileUtils.createFile(fileList)){ 
+			FileUtils.writeToFileByLine(paths, fileList);
+			concatVideo(fileList, outPath);
+			result = true;
+		} 
+		
+		return result;
+	}
+	
+	/**
+	 * 合并视频(具体操作命令与业务无关)
+	 * @param fileList 视频列表
+	 * @param outPath 输出路径
+	 * @throws ExecuteException
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	private void concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException{
+		if(!isLinux()){
+			fileList = fileList.replace("/", "\\");
+		}
+		
+		CommandLine cmdLine = new CommandLine(PATH);
+		cmdLine.addArgument("-f");
+		cmdLine.addArgument("concat");
+		cmdLine.addArgument("-y");
+		cmdLine.addArgument("-safe");
+		cmdLine.addArgument("0");
+		cmdLine.addArgument("-i");
+		cmdLine.addArgument(fileList);
+		cmdLine.addArgument("-c");
+		cmdLine.addArgument("copy");
+		cmdLine.addArgument(outPath);
+		
+		DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+		DefaultExecutor executor = new DefaultExecutor();  
+		executor.setExitValue(1);  
+		
+		ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
+		executor.setWatchdog(watchdog);
+		executor.execute(cmdLine,resultHandler); 
+		resultHandler.waitFor();
 	}
 }
