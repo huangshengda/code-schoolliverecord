@@ -68,4 +68,13 @@ public class LiveSchedule {
 	public void setResourceService(ResourceService resourceService) {
 		this.resourceService = resourceService;
 	}
+
+	public HandleLiveFinishService getHandleLiveFinishService() {
+		return handleLiveFinishService;
+	}
+
+	public void setHandleLiveFinishService(HandleLiveFinishService handleLiveFinishService) {
+		this.handleLiveFinishService = handleLiveFinishService;
+	}
+	
 }
