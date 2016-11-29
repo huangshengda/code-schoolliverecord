@@ -88,7 +88,6 @@ public class UploadAndDownload {
 						+ targetFile.length() + ", \"state\": \"" + "SUCCESS" + "\", \"type\": \"" + type+", \"sequence\": " + sequence
 						+ "\"}";
 				result = result.replaceAll("\\\\", "\\\\");
-	
 				// 返回
 				return new ReturnVoOne(1,result);
 			}catch (Exception e) {
