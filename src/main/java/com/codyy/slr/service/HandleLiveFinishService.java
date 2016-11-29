@@ -44,9 +44,16 @@ public class HandleLiveFinishService {
 		}else{
 			//3文件排序
 			FileUtils.sortFileByCreateTime(similarFileList);
+			log.info("LiveResourceId = " + liveResourceId + ": 合并文件开始.");
 			//3合并文件
+			log.info("LiveResourceId = " + liveResourceId + ": 合并文件结束.");
 			
 			//4移动文件
+			log.info("LiveResourceId = " + liveResourceId + ": 移动文件开始.");
+			log.info("LiveResourceId = " + liveResourceId + ": 移动文件结束.");
+			//size = 
+			//FileUtils.copyFile(oriFile, desFile);
+			
 			
 			//5删除文件
 			
