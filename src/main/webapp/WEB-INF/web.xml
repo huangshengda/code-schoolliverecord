@@ -30,7 +30,7 @@
 	<!--部署在同一容器中的Web项目，要配置不同的<param-value>，不能重复 -->
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>SchoolLiveRecord.root1</param-value>
+		<param-value>SchoolLiveRecord.root5</param-value>
 	</context-param>
 	
 	<!-- Spring监听器 -->
