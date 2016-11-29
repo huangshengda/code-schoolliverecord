@@ -1,14 +1,15 @@
 package com.codyy.slr.util;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -34,6 +35,7 @@ public class FileUtils {
 
 	/**
 	 * 删除文件
+	 * 
 	 * @param fileStr
 	 * @throws IOException
 	 */
@@ -42,24 +44,19 @@ public class FileUtils {
 		Files.delete(filePath);
 
 	}
-	
+
 	/**
 	 * 
-	 * @param dir 文件夹
-	 * @throws IOException 
+	 * @param dir
+	 *            文件夹
+	 * @throws IOException
 	 */
-	public static void delDirectory(String dir) throws IOException{
+	public static void delDirectory(String dir) throws IOException {
 		Path path = Paths.get(dir);
-		DirectoryStream<Path> paths = Files.newDirectoryStream(path);  
-		 for(Path p : paths){  
-			 Files.delete(p);
-		 }
-	}
-	
-	public static void main(String[] args) throws IOException {
-		List<File> fileList = findSimilarFile(new ArrayList<File>(), "e:/temp" , ".*");
-		sortFileByCreateTime(fileList);
-		System.out.println(fileList);
+		DirectoryStream<Path> paths = Files.newDirectoryStream(path);
+		for (Path p : paths) {
+			Files.delete(p);
+		}
 	}
 
 	/**
@@ -73,8 +70,8 @@ public class FileUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static List<File> findSimilarFile(List<File> fileList,
-			String dir, String regex) throws IOException {
+	public static List<File> findSimilarFile(List<File> fileList, String dir,
+			String regex) throws IOException {
 		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir))
 				.iterator();
 		while (iterator.hasNext()) {
@@ -90,7 +87,7 @@ public class FileUtils {
 		return fileList;
 	}
 
-	public static void sortFileByCreateTime(List<File> fileList){
+	public static void sortFileByCreateTime(List<File> fileList) {
 		if (fileList != null && fileList.size() > 0) {
 			Collections.sort(fileList, new Comparator<File>() {
 				public int compare(File file, File newFile) {
@@ -105,7 +102,7 @@ public class FileUtils {
 			});
 		}
 	}
-	
+
 	/**
 	 * 依据路径创建目录
 	 * 
@@ -124,5 +121,46 @@ public class FileUtils {
 		}
 
 		return strDate;
+	}
+
+	/**
+	 * 创建文件
+	 * 
+	 * @param path
+	 *            文件路径(绝对路径)
+	 * @return
+	 * @throws IOException
+	 */
+	public static boolean createFile(String path) throws IOException {
+		boolean result = false;
+
+		Path file = Paths.get(path);
+
+		if (!Files.exists(file)) {
+			Files.createFile(file);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/**
+	 * 写入操作
+	 * @param paths 视频地址集合
+	 * @param filePath 写入文件路径
+	 * @throws IOException
+	 */
+	public static void writeToFileByLine(List<String> paths, String filePath) throws IOException {
+		Path file = Paths.get(filePath);
+
+		BufferedWriter writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8);
+
+		for (String path : paths) {
+			writer.append("file '" + path + "'");
+			writer.newLine();
+		}
+
+		writer.flush();
+		writer.close();
 	}
 }
