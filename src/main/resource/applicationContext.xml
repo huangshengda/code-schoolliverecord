@@ -111,11 +111,14 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
 	
-	<!-- 定时结束未完成的直播 -->
+	
+	<!-- bean -->
 	<bean id = "liveSchedule" class="com.codyy.slr.schedule.LiveSchedule">
 		<property name="resourceService" ref="resourceService"/>
+		<property name="handleLiveFinishService" ref="handleLiveFinishService"/>
 	</bean>
 	
+	<!-- 定时结束未完成的直播 -->
 	<bean id="finishLiveTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="liveSchedule"/>
 		<property name="targetMethod" value="finishLive"/>
@@ -125,11 +128,23 @@
 		<property name="cronExpression" value="${schedule.finishLiveTime}"/>
 	</bean>
 	
+	<!-- 定时删除临时文件 -->
+	<bean id="delTempFilesTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="liveSchedule"/>
+		<property name="targetMethod" value="delTempFiles"/>
+	</bean>
+	<bean id="delTempFilesTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="delTempFilesTask"/>
+		<property name="cronExpression" value="${schedule.delTempFilesTime}"/>
+	</bean>
+	
 	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
 				<ref bean="finishLiveTime" />	
+				<ref bean="delTempFilesTime" />	
 			</list>
 		</property>
 	</bean>
+	
 </beans>

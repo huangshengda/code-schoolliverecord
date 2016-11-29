@@ -40,11 +40,15 @@ public class CommonsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/img/**")
-	public void getImg(HttpServletRequest req, HttpServletResponse res) {
+	@RequestMapping(value = "/img/{type}/**")
+	public void getImg(HttpServletRequest req, HttpServletResponse res, @PathVariable(value="type") String type) {
 		String imgPath = extractPathFromPattern(req);
 		try {
-			commonsService.sendFileAsResponse(req, res, imgPath, Constants.IMG_PATH);
+			if (type.equalsIgnoreCase(Constants.IMG_TEMP)){
+				commonsService.sendFileAsResponse(req, res, imgPath, Constants.TEMP);
+			} else if (type.equalsIgnoreCase(Constants.IMG_REAL)){
+				commonsService.sendFileAsResponse(req, res, imgPath, Constants.IMG_PATH);
+			}
 		} catch (Exception e) {
 			try {
 				res.sendError(404);
@@ -66,9 +70,9 @@ public class CommonsController {
 		String videoPath = extractPathFromPattern(req);
 		
 		try {
-			if (type.equals("RECORD")){
+			if (type.equalsIgnoreCase(Constants.RECORD)){
 				commonsService.sendFileAsResponse(req, res, videoPath, Constants.LIVE_PATH);
-			} else if (type.equals("UPLOAD")){
+			} else if (type.equalsIgnoreCase(Constants.UPLOAD)){
 				commonsService.sendFileAsResponse(req, res, videoPath, Constants.UPLOAD_PATH);
 			}
 		} catch (Exception e) {

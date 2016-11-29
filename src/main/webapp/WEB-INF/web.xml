@@ -21,7 +21,7 @@
 		<param-value>classpath:log4j.properties</param-value>
 	</context-param>
 	
-	<!-- 每60扫描一下log4j配置文件的变化 -->
+	<!-- 每60秒扫描一下log4j配置文件的变化 -->
 	<context-param>
 		<param-name>log4jRefreshInterval</param-name>
 		<param-value>600000</param-value>
@@ -30,7 +30,7 @@
 	<!--部署在同一容器中的Web项目，要配置不同的<param-value>，不能重复 -->
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>Administration.root5</param-value>
+		<param-value>SchoolLiveRecord.root1</param-value>
 	</context-param>
 	
 	<!-- Spring监听器 -->
@@ -65,7 +65,7 @@
 	</filter-mapping>
 	
 	<!-- token 验证-->
-	<!-- <filter>
+	<filter>
 		<filter-name>tokenFilter</filter-name>
 		<filter-class>com.codyy.slr.filter.TokenFilter</filter-class>
 		<init-param>
@@ -76,7 +76,7 @@
 	<filter-mapping>
 		<filter-name>tokenFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	
 	<!-- springMVC DispatcherServlet设置 -->
 	<servlet>

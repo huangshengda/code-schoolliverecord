@@ -19,6 +19,7 @@ import com.codyy.slr.entity.User;
 import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.ResourceService;
+import com.codyy.slr.service.SystemScreenShotService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.util.ParamUtils;
 import com.codyy.slr.util.UUIDUtils;
@@ -39,6 +40,9 @@ public class ResourceController {
 
 	@Autowired
 	private ResourceService resourceService;
+	
+	@Autowired
+	private SystemScreenShotService systemScreenShotService;
 
 	/**
 	 * 后台资源管理(上传、录制资源管理共用)
@@ -217,13 +221,13 @@ public class ResourceController {
 	 */
 	@RequestMapping(value="/sysscreenshot/get")
 	@ResponseBody
-	public ReturnVoOne<String> sysScreenShot(String resourcePath){
-		ReturnVoOne<String> result = null;
+	public ReturnVoOne<Map<String, String>> sysScreenShot(HttpServletRequest req, String resourcePath){
+		ReturnVoOne<Map<String, String>> result = null;
 		try{
-			//TODO 根据资源路径截图
-			result = new ReturnVoOne<String>("thumb/wewwfsdfsdfasdfasfd.png");
+			Map<String, String> map = systemScreenShotService.getUpoadScreenShot(req, resourcePath);
+			result = new ReturnVoOne<Map<String, String>>(map);
 		}catch(Exception e){
-			result = new ReturnVoOne<String>(Constants.FAILED,"截图失败");
+			result = new ReturnVoOne<Map<String, String>>(Constants.FAILED,"截图失败");
 			e.printStackTrace();
 		}
 		return result;

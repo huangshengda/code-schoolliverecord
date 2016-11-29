@@ -2,7 +2,6 @@ package com.codyy.slr.controller;
 
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
