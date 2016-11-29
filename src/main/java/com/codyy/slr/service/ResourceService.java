@@ -212,4 +212,8 @@ public class ResourceService {
 	public List<String> getNotFinishLiveResIds() {
 		return resourceMapper.getNotFinishLiveResIds();
 	}
+	
+	public boolean updateFinishLiveRes(Resource res){
+		return resourceMapper.updateFinishLiveRes(res) == 1;
+	}
 }
