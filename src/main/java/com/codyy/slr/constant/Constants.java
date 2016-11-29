@@ -60,10 +60,11 @@ public class Constants {
 	/**
 	 * 存储路径
 	 */
-	public static final String IMG_PATH;
-	public static final String LIVE_PATH;
-	public static final String UPLOAD_PATH;
-	public static final String TEMP;
+	public final static String IMG_PATH;
+	public final static String LIVE_PATH;
+	public final static String UPLOAD_PATH;
+	public final static String TEMP;
+	public final static String DMS_VIDEO_PATH;
 
 	/**
 	 * 系统截图张数
@@ -76,5 +77,6 @@ public class Constants {
 		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
 		SHOT_NUM = ConfigUtils.getValue("sys.screen.shot");
 		TEMP = ConfigUtils.getValue("temp.path");
+		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
 	}
 }

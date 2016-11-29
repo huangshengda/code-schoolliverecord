@@ -111,8 +111,11 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
 	
+	
+	<!-- bean -->
 	<bean id = "liveSchedule" class="com.codyy.slr.schedule.LiveSchedule">
 		<property name="resourceService" ref="resourceService"/>
+		<property name="handleLiveFinishService" ref="handleLiveFinishService"/>
 	</bean>
 	
 	<!-- 定时结束未完成的直播 -->

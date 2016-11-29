@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.util.CollectionUtils;
 
+import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
+import com.codyy.slr.service.HandleLiveFinishService;
 import com.codyy.slr.service.ResourceService;
 import com.codyy.slr.util.FileUtils;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 /**
  * 直播服务
@@ -18,7 +22,11 @@ public class LiveSchedule {
 	
 	private static final Logger log = Logger.getLogger(LiveSchedule.class);
 	
+	private static final String dmsVideoPath = Constants.DMS_VIDEO_PATH;
+	
 	private ResourceService resourceService;
+	
+	private HandleLiveFinishService handleLiveFinishService;
 	
 	/**
 	 * 结束直播
@@ -28,17 +36,13 @@ public class LiveSchedule {
 		//1 查找为结束的直播课程
 		List<String> liveResourceIdList = resourceService.getNotFinishLiveResIds();
 		System.out.println(liveResourceIdList);
-		//1更新数据库将直播路径设置为空
-		//resourceService.updateLiveResourceLivingPath(liveResourceId);
-		//2查找文件
-		
-		//3合并文件
-		
-		//4移动文件
-		
-		//5删除文件
-		
-		//6将存储路径 直播状态更新到数据库
+		if(CollectionUtils.isEmpty(liveResourceIdList)){
+			log.info("liveResourceIdList is empty.");
+		}else{
+			for (String liveResourceId : liveResourceIdList) {
+				handleLiveFinishService.finishLive(liveResourceId, dmsVideoPath);
+			}
+		}
 		log.info("finishLive end.");
 	}
 
