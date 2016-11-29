@@ -24,13 +24,18 @@ import java.util.List;
  */
 public class FileUtils {
 
-	public static void copyFile(String oriFile, String desFile)
-			throws IOException {
+	public static void copyFile(String oriFile, String desFile) throws IOException {
 
 		Path ori = Paths.get(oriFile);
 		Path des = Paths.get(desFile);
 		Files.copy(ori, des, StandardCopyOption.REPLACE_EXISTING);
+	}
 
+	public static void moveFile(String oriFile, String desFile) throws IOException {
+
+		Path ori = Paths.get(oriFile);
+		Path des = Paths.get(desFile);
+		Files.move(ori, des, StandardCopyOption.ATOMIC_MOVE);
 	}
 
 	/**
@@ -70,10 +75,8 @@ public class FileUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static List<File> findSimilarFile(List<File> fileList, String dir,
-			String regex) throws IOException {
-		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir))
-				.iterator();
+	public static List<File> findSimilarFile(List<File> fileList, String dir, String regex) throws IOException {
+		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir)).iterator();
 		while (iterator.hasNext()) {
 			File file = iterator.next().toFile();
 			if (file.isDirectory()) {
@@ -146,8 +149,11 @@ public class FileUtils {
 
 	/**
 	 * 写入操作
-	 * @param paths 视频地址集合
-	 * @param filePath 写入文件路径
+	 * 
+	 * @param paths
+	 *            视频地址集合
+	 * @param filePath
+	 *            写入文件路径
 	 * @throws IOException
 	 */
 	public static void writeToFileByLine(List<String> paths, String filePath) throws IOException {
