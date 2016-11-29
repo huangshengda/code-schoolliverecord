@@ -6,13 +6,14 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
@@ -20,21 +21,21 @@ import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.exec.ExecuteWatchdog;
 import org.apache.commons.exec.PumpStreamHandler;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import com.codyy.slr.constant.Constants;
-import com.codyy.slr.util.ConfigUtils;
-import com.codyy.slr.util.FileUtils;
-import com.codyy.slr.util.UUIDUtils;
+import com.codyy.slr.util.HostConfigUtils;
 
 @Service
 public class SystemScreenShotService {
 	private static Log log = LogFactory.getLog(SystemScreenShotService.class);
 	
+	//ffmpeg绝对路径
 	private static final String PATH;
-	private static final String IMG_PATH = ConfigUtils.getValue(Constants.IMG_PATH);
+	private static final int SHOT_NUM;
 
 	static {
 		String absolutePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
@@ -45,32 +46,51 @@ public class SystemScreenShotService {
 			absolutePath = absolutePath.substring(1, absolutePath.indexOf("classes/"));
 			PATH = absolutePath + "lib/ffmpeg.exe";
 		}
-	}
-
-	public void getSysScreenShot(String videoPath, String resId, String type) throws IOException, InterruptedException {
-		String imgsPath = IMG_PATH + "/" + FileUtils.creatDir(IMG_PATH);
-		if (type.equals("living")) {
-			getShotImgs(videoPath, imgsPath, resId, 1);
+		
+		if (StringUtils.isNumeric(Constants.SHOT_NUM)){
+			SHOT_NUM = Integer.parseInt(Constants.SHOT_NUM);
 		} else {
-			getShotImgs(videoPath, imgsPath, resId, 9);
+			SHOT_NUM = 9;
 		}
 	}
+	
+	/**
+	 * 获取系统截图
+	 * @param req
+	 * @param videoPath
+	 * @return
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getUpoadScreenShot(HttpServletRequest req, String videoPath) throws IOException, InterruptedException{
+		Map<String, String> map = new HashMap<String, String>();
+		String contextpath = HostConfigUtils.getHost(req)+"/download/img/" + Constants.IMG_TEMP;
+		String resId = StringUtils.split(videoPath, ".")[0];
+		videoPath = Constants.TEMP + "/" + videoPath;
+		List<String> imgs = getShotImgs(videoPath, resId, SHOT_NUM);
+		
+		for(String img : imgs){
+			map.put(img, contextpath + "/" + img);
+		}
+		
+		return map;
+	}
+	
 
 	/**
 	 * 生成视频截图
-	 * @param videoPath
-	 * @param imgsPath
-	 * @param resId
-	 * @param imgNum
+	 * @param videoPath 视频路径
+	 * @param resId 资源ID
+	 * @param imgNum 截图图片张数
 	 * @return
 	 * @throws ExecuteException
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private List<String> getShotImgs(String videoPath, String imgsPath, String resId,int imgNum) throws ExecuteException, IOException, InterruptedException{
+	public List<String> getShotImgs(String videoPath, String resId, int imgNum) throws ExecuteException, IOException, InterruptedException{
 		List<String> list = new ArrayList<String>();
 		
-		int videoTime = getVideoTime(videoPath, PATH);
+		int videoTime = getVideoTime(videoPath);
 		
 		if (videoTime >= 1) {
 			
@@ -95,12 +115,13 @@ public class SystemScreenShotService {
 			cmdLine.addArgument("-i");
 			cmdLine.addArgument(videoPath);
 			cmdLine.addArgument("-y");
-			cmdLine.addArgument("-f");			cmdLine.addArgument("image2");
+			cmdLine.addArgument("-f");
+			cmdLine.addArgument("image2");
 			cmdLine.addArgument("-r");
 			cmdLine.addArgument(rnum);
 			cmdLine.addArgument("-t");
 			cmdLine.addArgument(endTime);
-			cmdLine.addArgument(imgsPath + "/" + resId + "_%3d.jpg");
+			cmdLine.addArgument(Constants.TEMP + "/" + resId + "_%3d.png");
 			
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();  
@@ -112,8 +133,8 @@ public class SystemScreenShotService {
 			resultHandler.waitFor(); 
 		}
 		
-		Path dir = Paths.get(imgsPath);
-		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.jpg")){
+		Path dir = Paths.get(Constants.TEMP);
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.png")){
 			for(Path e : stream){
 				list.add(e.getFileName().toString());
 			}
@@ -127,11 +148,10 @@ public class SystemScreenShotService {
 	/**
 	 * 获取视频总时间
 	 * @param viedo_path	视频路径
-	 * @param ffmpeg_path	ffmpeg路径
 	 * @return
 	 */
-	private int getVideoTime(String videoPath, String ffmpegPath) {
-		CommandLine commands = new CommandLine(ffmpegPath);
+	private int getVideoTime(String videoPath) {
+		CommandLine commands = new CommandLine(PATH);
 		commands.addArgument("-i");
 		commands.addArgument(videoPath);
 		
@@ -202,14 +222,8 @@ public class SystemScreenShotService {
 		return isLinux;
 	}
 	
-	public static void main(String[] args) throws IOException{
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String str = sdf.format(date);
-		System.out.println(str);
-		Path dir = Paths.get("D:/imgs/"+str);
-		if(!Files.exists(dir)){
-			Files.createDirectory(dir);
-		}
+	public static void main(String[] args) {
+		String str1 = "ddddd.mp4";
+		System.out.println(StringUtils.split(str1, ".")[0]);
 	}
 }
