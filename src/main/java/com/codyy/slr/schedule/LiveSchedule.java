@@ -6,12 +6,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.util.CollectionUtils;
 
-import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.service.HandleLiveFinishService;
 import com.codyy.slr.service.ResourceService;
 import com.codyy.slr.util.FileUtils;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 /**
  * 直播服务
@@ -68,4 +66,13 @@ public class LiveSchedule {
 	public void setResourceService(ResourceService resourceService) {
 		this.resourceService = resourceService;
 	}
+
+	public HandleLiveFinishService getHandleLiveFinishService() {
+		return handleLiveFinishService;
+	}
+
+	public void setHandleLiveFinishService(HandleLiveFinishService handleLiveFinishService) {
+		this.handleLiveFinishService = handleLiveFinishService;
+	}
+	
 }
