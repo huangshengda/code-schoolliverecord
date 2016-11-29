@@ -255,7 +255,11 @@ public class SystemScreenShotService {
 	 * @throws InterruptedException
 	 */
 	private void concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException{
-		CommandLine cmdLine = new CommandLine("D:\\ffmpeg.exe");
+		if(!isLinux()){
+			fileList = fileList.replace("/", "\\");
+		}
+		
+		CommandLine cmdLine = new CommandLine(PATH);
 		cmdLine.addArgument("-f");
 		cmdLine.addArgument("concat");
 		cmdLine.addArgument("-y");
@@ -275,14 +279,5 @@ public class SystemScreenShotService {
 		executor.setWatchdog(watchdog);
 		executor.execute(cmdLine,resultHandler); 
 		resultHandler.waitFor();
-	}
-	
-	public static void main(String[] args) throws Exception {
-		SystemScreenShotService sss = new SystemScreenShotService();
-		List<String> list = new ArrayList<String>();
-		list.add("D:/11.flv");
-		list.add("D:/22.flv");
-		
-		sss.concatVideos(list, "D:/sssssss.flv");
 	}
 }
