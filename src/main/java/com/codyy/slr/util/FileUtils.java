@@ -2,11 +2,15 @@ package com.codyy.slr.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -28,11 +32,34 @@ public class FileUtils {
 
 	}
 
+	/**
+	 * 删除文件
+	 * @param fileStr
+	 * @throws IOException
+	 */
 	public static void delFile(String fileStr) throws IOException {
-
 		Path filePath = Paths.get(fileStr);
 		Files.delete(filePath);
 
+	}
+	
+	/**
+	 * 
+	 * @param dir 文件夹
+	 * @throws IOException 
+	 */
+	public static void delDirectory(String dir) throws IOException{
+		Path path = Paths.get(dir);
+		DirectoryStream<Path> paths = Files.newDirectoryStream(path);  
+		 for(Path p : paths){  
+			 Files.delete(p);
+		 }
+	}
+	
+	public static void main(String[] args) throws IOException {
+		List<File> fileList = findSimilarFile(new ArrayList<File>(), "e:/temp" , ".*");
+		sortFileByCreateTime(fileList);
+		System.out.println(fileList);
 	}
 
 	/**
@@ -46,7 +73,7 @@ public class FileUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static List<String> findSimilarFile(List<String> fileList,
+	public static List<File> findSimilarFile(List<File> fileList,
 			String dir, String regex) throws IOException {
 		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir))
 				.iterator();
@@ -56,13 +83,29 @@ public class FileUtils {
 				findSimilarFile(fileList, file.getPath(), regex);
 			} else if (file.isFile()) {
 				if (file.getName().matches(regex)) {
-					fileList.add(file.getPath());
+					fileList.add(file);
 				}
 			}
 		}
 		return fileList;
 	}
 
+	public static void sortFileByCreateTime(List<File> fileList){
+		if (fileList != null && fileList.size() > 0) {
+			Collections.sort(fileList, new Comparator<File>() {
+				public int compare(File file, File newFile) {
+					if (file.lastModified() < newFile.lastModified()) {
+						return -1;
+					} else if (file.lastModified() == newFile.lastModified()) {
+						return 0;
+					} else {
+						return 1;
+					}
+				}
+			});
+		}
+	}
+	
 	/**
 	 * 依据路径创建目录
 	 * 

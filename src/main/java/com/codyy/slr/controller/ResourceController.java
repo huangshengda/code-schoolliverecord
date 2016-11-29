@@ -26,7 +26,6 @@ import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ResourceVo;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
-import com.sun.net.httpserver.HttpServer;
 
 /**
  * 点播列表页面 我的课程页面 点播详情页 后台管理
@@ -222,14 +221,13 @@ public class ResourceController {
 	 */
 	@RequestMapping(value="/sysscreenshot/get")
 	@ResponseBody
-	public ReturnVoOne<String> sysScreenShot(HttpServletRequest req, String resourcePath){
-		ReturnVoOne<String> result = null;
+	public ReturnVoOne<Map<String, String>> sysScreenShot(HttpServletRequest req, String resourcePath){
+		ReturnVoOne<Map<String, String>> result = null;
 		try{
-			//TODO 根据资源路径截图
-			System.out.println(req.getServletContext().getRealPath("/"));
-			result = new ReturnVoOne<String>("thumb/wewwfsdfsdfasdfasfd.png");
+			Map<String, String> map = systemScreenShotService.getUpoadScreenShot(req, resourcePath);
+			result = new ReturnVoOne<Map<String, String>>(map);
 		}catch(Exception e){
-			result = new ReturnVoOne<String>(Constants.FAILED,"截图失败");
+			result = new ReturnVoOne<Map<String, String>>(Constants.FAILED,"截图失败");
 			e.printStackTrace();
 		}
 		return result;

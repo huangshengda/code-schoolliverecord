@@ -31,6 +31,7 @@
 		FROM resource res LEFT JOIN subject sub ON res.SUBJECT_ID = sub.SUBJECT_ID JOIN resource_r_classlevel rrc 
 		ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
     	WHERE res.LIVING_FLAG = 'Y' AND res.DELETE_FLAG='N' AND res.SOURCE_TYPE = 'RECORD'
+    	AND res.LIVING_PATH IS NOT NULL AND res.LIVING_PATH !=''
     	GROUP BY res.RESOURCE_ID
 		ORDER BY res.CREATE_TIME DESC
 	</select>

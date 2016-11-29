@@ -1,8 +1,11 @@
 package com.codyy.slr.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.ConfigUtils;
 import com.codyy.slr.util.UploadUtil;
 import com.codyy.slr.vo.Progress;
@@ -97,25 +101,24 @@ public class UploadAndDownload {
 	
 	@ResponseBody
 	@RequestMapping("getUploadProgress")
-	public ReturnVoOne  getUploadProgress(@RequestParam(value = "filename", required = true) String filename,
+	public ReturnVoOne<Double>  getUploadProgress(@RequestParam(value = "filename", required = true) String filename,
 			@RequestParam(value = "filesize", required = true) Integer filesize,
 			@RequestParam(value = "sequence", required = true) String sequence ,HttpServletRequest request){
-		Progress progress =new Progress();
-		Long per1;
-		try {
-			Path aa = ConfigUtils.getValue("temp");
-			Files.newDirectoryStream(dir, resId + "_*.jpg");
-			File f = new File(ConfigUtils.getValue("temp")+filename);
-			if (f.exists() && f.isFile()){  
-				per1 = f.length();  
-		    }
+		Long per1 = 0l;
+		Path dir = Paths.get(Constants.TEMP);
+		
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, filename + "*")){
+			for(Path e : stream){
+				per1 = e.toFile().length();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 			
+
 			Double per = per1*1.0 / filesize*1.0 *100;
 			
-				return new ReturnVoOne(1,result);
-			}catch (Exception e) {
-				return new ReturnVoOne(0,"上传失败");
-			}
+				return new ReturnVoOne<Double>(1,null,per);
 		
 	}
 	
