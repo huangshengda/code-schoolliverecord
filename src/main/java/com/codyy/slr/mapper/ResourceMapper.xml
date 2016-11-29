@@ -146,13 +146,17 @@
 		) DESC,res.CREATE_TIME DESC LIMIT 0,6;
   </select>
   
-  <update id="updateLiveResourceLivingPath" parameterType="java.lang.String">
+  <update id="updateLiveResourceLivingPath" parameterType = "java.lang.String">
   	update resource set living_path = null where resource_id = #{resourceId}
   </update>
   
   <!-- 查找直播未结束id -->
-  <select id = "getNotFinishLiveResIds" resultType="java.lang.String">
+  <select id = "getNotFinishLiveResIds" resultType = "java.lang.String">
   	select resource_id from resource res where res.LIVING_FLAG = 'Y' 
   </select>
+  
+  <update id = "updateFinishLiveRes" parameterType = "com.codyy.slr.entity.Resource" >
+  	update resource set THUMB_PATH = #{thumb}, STORE_PATH = #{storePath} ,LIVING_FLAG = #{livingFlag}, size = #{size}  where resource_id = #{resourceId}
+  </update>
   
 </mapper>

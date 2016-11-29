@@ -8,7 +8,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import com.codyy.slr.constant.Constants;
+import com.codyy.slr.entity.Resource;
 import com.codyy.slr.util.FileUtils;
 
 @Service
@@ -26,24 +29,41 @@ public class HandleLiveFinishService {
 		List<File> similarFileList = new ArrayList<>();
 		//2查找文件
 		try {
-			List<File> fileList= FileUtils.findSimilarFile(similarFileList, dir, liveResourceId+".*");
-			//排序
-			FileUtils.sortFileByCreateTime(fileList);
+			similarFileList= FileUtils.findSimilarFile(similarFileList, dir, liveResourceId+".*");
 		} catch (IOException e) {
 			log.error("LiveResourceId = " + liveResourceId + ": 查找相似文件失败");
 			e.printStackTrace();
 		}
-		//3合并文件
 		
-		//4移动文件
-		
-		//5删除文件
-		
-		//6截图
-		
-		//7移动截图
+		String storePath = null;//存储路径
+		String thumbPath = null;//封面路径
+		long size = 0;//资源大小
+		if(CollectionUtils.isEmpty(similarFileList)){
+			
+			log.error("LiveResourceId = " + liveResourceId + ": 查找相似文件数为０");
+		}else{
+			//3文件排序
+			FileUtils.sortFileByCreateTime(similarFileList);
+			//3合并文件
+			
+			//4移动文件
+			
+			//5删除文件
+			
+			//6截图
+			
+			//7移动截图
+		}
 		
 		//8将存储路径 (视频 图片)直播状态 更新到数据库 
+		Resource res = new Resource();
+		res.setStorePath(storePath);
+		res.setThumbPath(thumbPath);
+		res.setSize(size);
+		res.setLivingFlag(Constants.N);
+		boolean updateFlag = resourceService.updateFinishLiveRes(res);
+		log.info("update liveResource info, and result is " + (updateFlag == true ? "success" : "fail") + "." );
+		
 		log.info("finishLive end.");
 	}
 }

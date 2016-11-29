@@ -79,4 +79,10 @@ public interface ResourceMapper {
 	 * @return
 	 */
 	List<String> getNotFinishLiveResIds();
+	
+	/**
+	 * 更新结束直播课程信息
+	 * @param res
+	 */
+	int updateFinishLiveRes(Resource res);
 }
