@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
-import com.codyy.slr.util.ConfigUtils;
-
 /**
  * File Description      : 公共方法:图片、视频流下载
  * Author                : GuangY
@@ -43,9 +41,9 @@ public class CommonsService {
 	 * 把文件作为流返回给客服端
 	 * @throws IOException 
 	 */
-	public void sendFileAsResponse(HttpServletRequest req, HttpServletResponse response, String storPath, String type) throws IOException{
+	public void sendFileAsResponse(HttpServletRequest req, HttpServletResponse response, String storPath, String rootPath) throws IOException{
 		
-		String realPath = buildFilePath(storPath, type);
+		String realPath = buildFilePath(storPath, rootPath);
 		
 		Path file = Paths.get(realPath);
 		
@@ -99,13 +97,12 @@ public class CommonsService {
 	
 	/**
 	 * 获取真实的文件路径
-	 * @param rootPath
 	 * @param storPath
+	 * @param rootPath
 	 * @param type
 	 * @return
 	 */
-	public String buildFilePath(String storPath, String type){
-		String rootPath = ConfigUtils.getValue(type);
+	public String buildFilePath(String storPath, String rootPath){
 		StringBuilder realPath = new StringBuilder();
 		realPath.append(rootPath);
 		realPath.append("/");

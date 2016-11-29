@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Service;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.ConfigUtils;
 import com.codyy.slr.util.FileUtils;
+import com.codyy.slr.util.UUIDUtils;
 
 @Service
 public class SystemScreenShotService {
