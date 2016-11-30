@@ -22,7 +22,7 @@ import com.codyy.slr.vo.Progress;
 import com.codyy.slr.vo.ReturnVoOne;
 
 @Controller
-public class UploadAndDownload {
+public class UploadController {
 	
 	
 	@SuppressWarnings("rawtypes")
@@ -37,7 +37,7 @@ public class UploadAndDownload {
 		
 		String fileName = file.getOriginalFilename();
 		String suffix = filename.substring(filename.lastIndexOf('.'));
-		File targetFile = new File(ConfigUtils.getValue("img.path") ,filename+suffix);
+		File targetFile = new File(Constants.TEMP ,filename+suffix);
 		
 		if (!targetFile.exists()) {
 			targetFile.mkdirs();
@@ -73,7 +73,7 @@ public class UploadAndDownload {
 		}
 		
 		String fileName = file.getOriginalFilename();
-		File targetFile = new File(ConfigUtils.getValue("temp") ,UploadUtil.createFilename(fileName));
+		File targetFile = new File(Constants.TEMP ,UploadUtil.createFilename(fileName));
 		
 		if (!targetFile.exists()) {
 			targetFile.mkdirs();
