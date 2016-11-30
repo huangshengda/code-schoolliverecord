@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.codyy.slr.dao.DmsServerMapper" >
-  <resultMap id="BaseResultMap" type="com.codyy.slr.entity.DmsServer" >
+  <resultMap id="BaseResultMap" type="com.codyy.slr.vo.DmsServerVo" >
     <id column="SERVER_ID" property="serverId" jdbcType="VARCHAR" />
     <result column="SERVER_NAME" property="serverName" jdbcType="VARCHAR" />
     <result column="SERVER_VALUE" property="serverValue" jdbcType="VARCHAR" />
@@ -68,4 +68,16 @@
       SERVER_VALUE = #{serverValue,jdbcType=VARCHAR}
     where SERVER_ID = #{serverId,jdbcType=VARCHAR}
   </update>
+  
+  
+  <select id = "getDmsServerList" parameterType="string" resultMap="BaseResultMap">
+  
+  	select * from dmsserver t 
+where 1=1 
+<if test  = "_parameter != null">
+ and  t.SERVER_NAME = #{_parameter}
+</if>
+</select>
+  
+  
 </mapper>

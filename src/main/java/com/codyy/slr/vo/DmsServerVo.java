@@ -1,15 +1,28 @@
-package com.codyy.slr.entity;
+package com.codyy.slr.vo;
+
+import java.util.List;
+
+import com.codyy.slr.constant.Constants;
 
 
-
-public class DmsServer {
+public class DmsServerVo {
     private String serverId;
 
     private String serverName;
 
     private String serverValue;
-  
-  
+
+    private List<String> opt;
+    
+    
+    public List<String> getOpt() {
+		return (opt==null?Constants.EDIT_DELETE:opt) ;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = opt;
+	}
+    
     public String getServerId() {
         return serverId;
     }
