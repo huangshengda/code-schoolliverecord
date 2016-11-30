@@ -1,0 +1,41 @@
+<!-- 
+	页面描述：Mock测试。
+	物理文件：mockjs.html
+	对应UI稿：/.../.../xxx.png
+	创建人：liangjifei
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<script type="text/javascript" src="../../jquery/jquery-2.2.4.js" ></script>
+<script type="text/javascript" src="./dist/mock-min.js" ></script>
+<script type="text/javascript" src="./mock_data.js" ></script>
+<title>面包屑模板</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+	    url: '/my',
+	    dataType: 'json',
+	    success: function(data, status, jqXHR){
+	    	console.log(data);
+	    }
+	});
+
+	$.ajax({
+	    url: 'my.json',
+	    dataType: 'json',
+	    success: function(data, status, jqXHR) {
+	    	console.log(data);
+	    }
+	});
+});
+</script>
+</html>

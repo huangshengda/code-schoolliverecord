@@ -1,0 +1,197 @@
+<!-- 
+	页面描述：表单模板。
+	物理文件：formTemp.html
+	对应UI稿：/.../.../xxx.png
+	创建人：liangjifei
+-->
+<!--
+	设计思路：表单中会出现多种布局
+	首先，确定必有一个固定的顶层元素（样式可以是空）
+	其次，必有一个行元素
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="../css/base.css" />
+<link rel="stylesheet" type="text/css" href="../css/compnents.css" />
+<script type="text/javascript" src="../../../jquery/jquery-2.2.4.js" ></script>
+<script type="text/javascript" src="../js/Validation.js" ></script>
+<script type="text/javascript" src="../../../_tools/CDUtil.js" ></script>
+<title>表单模板</title>
+<style type="text/css">
+body{background-color: #f7f7f7;}
+.h30{height: 30px;}
+.h50{height: 50px;}
+.w500{width: 500px;}
+.w750{width: 750px;}
+.w850{width: 850px;}
+.w1200{width: 1200px;}
+.fz14{font-size: 14px;}
+.ml{margin-left: 10px;}
+.vat{vertical-align: top;}
+textarea{border: 1px solid #dddddd;}
+button{border: 0px;color: #fff;background: #1f74b6;background: linear-gradient(#3388cb,#1066a7);padding: 7px 15px;cursor: pointer;}
+input[type="text"]{
+	border: 1px solid #dddddd;
+}
+
+</style>
+</head>
+<body>
+<!-- 页面表单的顶级元素 -->
+<div class="cd-f w1200 pa10" id="container" >
+<form id="use_form" action="">
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve" >
+			<span class="cd-f-name" >
+				<label class="cd-f-notnull" >*</label><label >用户名：</label>
+			</span>
+			<span class="cd-f-value " >
+				<input type="text" class="w150 h30" data-vali="notnull,username" />
+				<i >图标</i>
+			</span>
+		</div>
+		<div class="cd-f-eve" >
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value " >
+				<input type="text" class="w150 h30" />
+			</span>
+		</div>
+		<div class="cd-f-eve" >
+			<span class="cd-f-name" >
+				<label class="cd-f-notnull" >*</label><label >这是名称：</label>
+			</span>
+			<span class="cd-f-value " >
+				<input type="text" class="w150 h30" data-vali="notnull,email" data-vali-regex="正则表达式" data-vali-msg="错误信息" />
+			</span>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve" >
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value " >
+				<input type="text" class="w150 h30" />
+			</span>
+		</div>
+		<div class="cd-f-eve" >
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value " >
+				<input type="text" class="w150 h30" />
+			</span>
+		</div>
+		<div class="cd-f-eve" >
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value " >
+				<input type="text" class="w150 h30" />
+			</span>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve" style="width: 100%;" >
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value banner" >
+				<input type="text" class="w150 h30" />
+				<input type="text" class="w150 h30 ml10" />
+				<input type="text" class="w150 h30 ml10" />
+			</span>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve" style="width: 100%;" >
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value banner" >
+				<input type="text" class="w750 h30"/>
+			</span>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve" style="width: 100%;" >
+			<span class="cd-f-name vat " >
+				<label class="cd-f-notnull" >*</label><label >这是名称：</label>
+			</span>
+			<span class="cd-f-value" >
+				<textarea class="w750 h50" data-vali="notnull,email" ></textarea>
+			</span>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve" style="width: 100%;" >
+			<span class="cd-f-name up" >
+				<label class="cd-f-notnull" >*</label><label >这是名称：</label>
+			</span>
+			<span class="cd-f-value down" >
+				<textarea class="w850 h50" data-vali="notnull,email" ></textarea>
+			</span>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" >
+		<div class="cd-f-eve">
+			<span class="cd-f-name" >
+				<label >这是名称：</label>
+			</span>
+			<span class="cd-f-value" >
+				<input type="text" class="w150 h30"/>
+			</span>
+		</div>
+		<div class="cd-f-eve">
+			<button type="button" id="use_search" >查询</button>
+		</div>
+	</div>
+	<!-- 表单中的行对象 -->
+	<div class="cd-f-row" style="text-align: center;" >
+		<button type="button" id="use_save" >保存</button>
+		<button type="button" style="margin-left: 20px;" >取消</button>
+	</div>
+</form>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	$("#use_search").click(function(){
+		CDUtil.eventMng(function(){
+			var url = "url";
+			var params= {name: "zhangsan"};
+			CDUtil.ajaxPost(url,params,function(ret){
+				alert("异步操作成功");
+			});
+		});
+	});
+	var submitFun = function(){
+		//form.submit();
+	};
+	$("#use_save").click(function(){
+		var config = {
+			//包含元素的Top容器id
+			containerId: "container",
+			formId: "use_form",
+			submitFun: submitFun
+		};
+		Validation.validation(config,function(){
+			
+		});
+	});
+
+});
+</script>
+</html>

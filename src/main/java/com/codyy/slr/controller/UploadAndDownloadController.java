@@ -18,11 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.ConfigUtils;
 import com.codyy.slr.util.UploadUtil;
-import com.codyy.slr.vo.Progress;
 import com.codyy.slr.vo.ReturnVoOne;
 
 @Controller
-public class UploadAndDownload {
+public class UploadAndDownloadController {
 	
 	
 	@SuppressWarnings("rawtypes")
