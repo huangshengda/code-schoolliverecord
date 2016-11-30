@@ -32,8 +32,8 @@ import com.codyy.slr.util.HostConfigUtils;
 import com.codyy.slr.util.UUIDUtils;
 
 @Service
-public class SystemScreenShotService {
-	private static Log log = LogFactory.getLog(SystemScreenShotService.class);
+public class HandleVideoService {
+	private static Log log = LogFactory.getLog(HandleVideoService.class);
 	
 	//ffmpeg绝对路径
 	private static final String PATH;
@@ -69,7 +69,7 @@ public class SystemScreenShotService {
 		String contextpath = HostConfigUtils.getHost(req)+"/download/img/" + Constants.IMG_TEMP;
 		String resId = StringUtils.split(videoPath, ".")[0];
 		videoPath = Constants.TEMP + "/" + videoPath;
-		List<String> imgs = getShotImgs(videoPath, resId, SHOT_NUM);
+		List<String> imgs = getShotImgs(videoPath, resId, SHOT_NUM, Constants.TEMP);
 		
 		for(String img : imgs){
 			map.put(img, contextpath + "/" + img);
@@ -89,7 +89,7 @@ public class SystemScreenShotService {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public List<String> getShotImgs(String videoPath, String resId, int imgNum) throws ExecuteException, IOException, InterruptedException{
+	public List<String> getShotImgs(String videoPath, String resId, int imgNum,String desDir) throws ExecuteException, IOException, InterruptedException{
 		List<String> list = new ArrayList<String>();
 		
 		int videoTime = getVideoTime(videoPath);
@@ -103,7 +103,7 @@ public class SystemScreenShotService {
 			if (imgNum == 1) { //只截一张图
 				if (videoTime >=5 ) { //视频总时长大于5秒,取第5秒的图片
 					startTime = "5";
-					endTime = "5";
+					endTime = "1";
 				} else { //视频总时长小于5秒,去第一秒的图片
 					endTime = "1";
 				}
@@ -123,7 +123,7 @@ public class SystemScreenShotService {
 			cmdLine.addArgument(rnum);
 			cmdLine.addArgument("-t");
 			cmdLine.addArgument(endTime);
-			cmdLine.addArgument(Constants.TEMP + "/" + resId + "_%3d.png");
+			cmdLine.addArgument(desDir + "/" + resId + "_%3d.png");
 			
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();  
@@ -135,7 +135,7 @@ public class SystemScreenShotService {
 			resultHandler.waitFor(); 
 		}
 		
-		Path dir = Paths.get(Constants.TEMP);
+		Path dir = Paths.get(desDir);
 		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.png")){
 			for(Path e : stream){
 				list.add(e.getFileName().toString());

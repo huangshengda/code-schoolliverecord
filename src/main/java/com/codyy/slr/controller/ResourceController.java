@@ -19,7 +19,7 @@ import com.codyy.slr.entity.User;
 import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.ResourceService;
-import com.codyy.slr.service.SystemScreenShotService;
+import com.codyy.slr.service.HandleVideoService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.util.ParamUtils;
 import com.codyy.slr.util.UUIDUtils;
@@ -42,7 +42,7 @@ public class ResourceController {
 	private ResourceService resourceService;
 	
 	@Autowired
-	private SystemScreenShotService systemScreenShotService;
+	private HandleVideoService handleVideoService;
 
 	/**
 	 * 后台资源管理(上传、录制资源管理共用)
@@ -224,7 +224,7 @@ public class ResourceController {
 	public ReturnVoOne<Map<String, String>> sysScreenShot(HttpServletRequest req, String resourcePath){
 		ReturnVoOne<Map<String, String>> result = null;
 		try{
-			Map<String, String> map = systemScreenShotService.getUpoadScreenShot(req, resourcePath);
+			Map<String, String> map = handleVideoService.getUpoadScreenShot(req, resourcePath);
 			result = new ReturnVoOne<Map<String, String>>(map);
 		}catch(Exception e){
 			result = new ReturnVoOne<Map<String, String>>(Constants.FAILED,"截图失败");

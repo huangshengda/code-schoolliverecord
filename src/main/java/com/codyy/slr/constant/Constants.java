@@ -56,6 +56,16 @@ public class Constants {
 	 * token过期时间
 	 */
 	public static final String EXPIRE_TIME = "expireTime";
+	
+	/**
+	 * 文件夹分割付
+	 */
+	public static final String PATH_SEPARATOR = "/";
+	
+	/**
+	 * 视频类型
+	 */
+	public static final String VIDEO_FLV = ".FLV";
 
 	/**
 	 * 存储路径
