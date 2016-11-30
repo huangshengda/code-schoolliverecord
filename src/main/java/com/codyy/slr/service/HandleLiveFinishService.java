@@ -81,7 +81,7 @@ public class HandleLiveFinishService {
 				log.info(logPrefix + "截图路径 " + thumbPath);
 			}
 			
-			//8将存储路径 (视频 图片)直播状态 更新到数据库 
+			//9将存储路径 (视频 图片)直播状态 更新到数据库 
 			Resource res = new Resource();
 			res.setResourceId(liveResourceId);
 			res.setStorePath(storePath);

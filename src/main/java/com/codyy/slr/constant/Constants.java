@@ -65,7 +65,7 @@ public class Constants {
 	/**
 	 * 视频类型
 	 */
-	public static final String VIDEO_FLV = ".FLV";
+	public static final String VIDEO_FLV = ".flv";
 
 	/**
 	 * 存储路径
