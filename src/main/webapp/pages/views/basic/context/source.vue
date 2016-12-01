@@ -54,7 +54,7 @@ export default {
   methods: {
     search_one: function(){
     var params = {};
-    CDUtil.ajaxPost("mockjs_source.json",params,function(retVO){
+    CDUtil.ajaxPost("/resource/list",params,function(retVO){
         var config = {
           //用来展示表格控件的div的id
           containerId: "use_to_load_grid",
@@ -86,7 +86,7 @@ export default {
                 layer.close(index);
                 layer.msg('删除成功!')
                });
-              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
+              /* ajaxCallPost("/resource/delete",{"num1":params.num1},callback);*/
             }
           }
       };
@@ -94,23 +94,17 @@ export default {
     });
   },
   showclass:function(){
-        var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_class_list.json',
-          success:function(data){
-            _self.classList = JSON.parse(data);
-          }
+   		var _self = this;
+        var params = {};
+        CDUtil.ajaxPost("/base/classlevel/list",params,function(retVO){
+         	_self.classList = retVO;
         });
       },
       showsubject:function(){
         var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_subject_list.json',
-          success:function(data){
-            _self.subjectList = JSON.parse(data);
-          }
+        var params = {};
+        CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
+         	_self.subjectList = retVO;
         });
       }
 }

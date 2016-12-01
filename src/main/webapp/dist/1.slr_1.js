@@ -13,14 +13,14 @@ webpackJsonp([1,3,4],[
 		"./basic.vue": 8,
 		"./basic/context/comment.vue": 36,
 		"./basic/context/component.vue": 39,
-		"./basic/context/default.vue": 42,
-		"./basic/context/management.vue": 45,
-		"./basic/context/platform.vue": 48,
-		"./basic/context/server.vue": 51,
-		"./basic/context/source.vue": 54,
-		"./basic/context/upload.vue": 59,
-		"./demand.vue": 62,
-		"./home.vue": 65
+		"./basic/context/default.vue": 44,
+		"./basic/context/management.vue": 47,
+		"./basic/context/platform.vue": 50,
+		"./basic/context/server.vue": 53,
+		"./basic/context/source.vue": 56,
+		"./basic/context/upload.vue": 61,
+		"./demand.vue": 64,
+		"./home.vue": 67
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -62,7 +62,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -73,9 +73,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-4de6ccc2", __vue_options__)
+	    hotAPI.createRecord("data-v-578512f8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-4de6ccc2", __vue_options__)
+	    hotAPI.reload("data-v-578512f8", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] basic.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -459,10 +459,10 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Sidebar.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Sidebar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-3444557c"
+	__vue_options__._scopeId = "data-v-cf46dd56"
 
 	/* hot reload */
 	if (true) {(function () {
@@ -471,9 +471,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-3444557c", __vue_options__)
+	    hotAPI.createRecord("data-v-cf46dd56", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-3444557c", __vue_options__)
+	    hotAPI.reload("data-v-cf46dd56", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Sidebar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -516,7 +516,7 @@ webpackJsonp([1,3,4],[
 
 
 	// module
-	exports.push([module.id, "\n.menu[data-v-3444557c]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-3444557c]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-3444557c]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-3444557c]{\n  background-color:#f0f0f0;\n  color:#34a150;\n}\n.menu-level1[data-v-3444557c]:hover,.menu-level1[data-v-3444557c]:visited,.menu-level1[data-v-3444557c]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n\n", ""]);
+	exports.push([module.id, "\n.menu[data-v-cf46dd56]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-cf46dd56]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-cf46dd56]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-cf46dd56]{\n  background-color:#f0f0f0;\n  color:#34a150;\n}\n.menu-level1[data-v-cf46dd56]:hover,.menu-level1[data-v-cf46dd56]:visited,.menu-level1[data-v-cf46dd56]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n\n", ""]);
 
 	// exports
 
@@ -662,10 +662,10 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\Expanding.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\Expanding.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-44f2e5e6"
+	__vue_options__._scopeId = "data-v-ca0e3326"
 
 	/* hot reload */
 	if (true) {(function () {
@@ -674,9 +674,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-44f2e5e6", __vue_options__)
+	    hotAPI.createRecord("data-v-ca0e3326", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-44f2e5e6", __vue_options__)
+	    hotAPI.reload("data-v-ca0e3326", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Expanding.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -719,7 +719,7 @@ webpackJsonp([1,3,4],[
 
 
 	// module
-	exports.push([module.id, "\n.collapse[data-v-44f2e5e6] {\n  display: none;\n&.in {\n    display: block;\n}\n}\n.collapsing[data-v-44f2e5e6] {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  transition: height .3s ease;\n}\n", ""]);
+	exports.push([module.id, "\n.collapse[data-v-ca0e3326] {\n  display: none;\n&.in {\n    display: block;\n}\n}\n.collapsing[data-v-ca0e3326] {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  transition: height .3s ease;\n}\n", ""]);
 
 	// exports
 
@@ -809,7 +809,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-44f2e5e6", module.exports)
+	     __webpack_require__(23).rerender("data-v-ca0e3326", module.exports)
 	  }
 	}
 
@@ -860,7 +860,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-3444557c", module.exports)
+	     __webpack_require__(23).rerender("data-v-cf46dd56", module.exports)
 	  }
 	}
 
@@ -890,10 +890,10 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Levelbar.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Levelbar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-224f209f"
+	__vue_options__._scopeId = "data-v-413e5fe6"
 
 	/* hot reload */
 	if (true) {(function () {
@@ -902,9 +902,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-224f209f", __vue_options__)
+	    hotAPI.createRecord("data-v-413e5fe6", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-224f209f", __vue_options__)
+	    hotAPI.reload("data-v-413e5fe6", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Levelbar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -947,7 +947,7 @@ webpackJsonp([1,3,4],[
 
 
 	// module
-	exports.push([module.id, "\n.levelbar .title[data-v-224f209f]{\n  height: 32px;\n  line-height: 32px;\n  font-size: 22px;\n  margin: 0;\n}\n.levelbar[data-v-224f209f]{\n  margin: 10px 0;\n}\n", ""]);
+	exports.push([module.id, "\n.levelbar .title[data-v-413e5fe6]{\n  height: 32px;\n  line-height: 32px;\n  font-size: 22px;\n  margin: 0;\n}\n.levelbar[data-v-413e5fe6]{\n  margin: 10px 0;\n}\n", ""]);
 
 	// exports
 
@@ -1044,7 +1044,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Breadcrumb.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Breadcrumb.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1055,9 +1055,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-1f8f3693", __vue_options__)
+	    hotAPI.createRecord("data-v-3fabc01a", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-1f8f3693", __vue_options__)
+	    hotAPI.reload("data-v-3fabc01a", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Breadcrumb.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1156,7 +1156,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-1f8f3693", module.exports)
+	     __webpack_require__(23).rerender("data-v-3fabc01a", module.exports)
 	  }
 	}
 
@@ -1180,7 +1180,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-224f209f", module.exports)
+	     __webpack_require__(23).rerender("data-v-413e5fe6", module.exports)
 	  }
 	}
 
@@ -1200,7 +1200,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-4de6ccc2", module.exports)
+	     __webpack_require__(23).rerender("data-v-578512f8", module.exports)
 	  }
 	}
 
@@ -1227,7 +1227,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\comment.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\comment.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1238,9 +1238,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-545ef1f5", __vue_options__)
+	    hotAPI.createRecord("data-v-37d3994e", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-545ef1f5", __vue_options__)
+	    hotAPI.reload("data-v-37d3994e", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] comment.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1302,7 +1302,7 @@ webpackJsonp([1,3,4],[
 	      });
 	      if (result == true) {}
 	      var params = {};
-	      CDUtil.ajaxPost("mockjs_comment.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/base/resource/comment/list", params, function (retVO) {
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
@@ -1325,7 +1325,7 @@ webpackJsonp([1,3,4],[
 	                layer.close(index);
 	                layer.msg('删除成功!');
 	              });
-	              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
+	              /* ajaxCallPost("/resource/comment/delete",{"num1":params.num1},callback);*/
 	            }
 	          }
 	        };
@@ -1399,7 +1399,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-545ef1f5", module.exports)
+	     __webpack_require__(23).rerender("data-v-37d3994e", module.exports)
 	  }
 	}
 
@@ -1410,11 +1410,14 @@ webpackJsonp([1,3,4],[
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
+	/* styles */
+	__webpack_require__(40)
+
 	/* script */
-	__vue_exports__ = __webpack_require__(40)
+	__vue_exports__ = __webpack_require__(42)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(41)
+	var __vue_template__ = __webpack_require__(43)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -1426,7 +1429,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\component.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\component.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1437,9 +1440,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-99210bda", __vue_options__)
+	    hotAPI.createRecord("data-v-e750a1a8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-99210bda", __vue_options__)
+	    hotAPI.reload("data-v-e750a1a8", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] component.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1449,6 +1452,46 @@ webpackJsonp([1,3,4],[
 
 /***/ },
 /* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(41);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(12)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(41, function() {
+				var newContent = __webpack_require__(41);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(11)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 42 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1503,10 +1546,24 @@ webpackJsonp([1,3,4],[
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	exports.default = {
 	  data: function data() {
-	    return {};
+	    return {
+	      grades: ""
+	    };
 	  },
 	  mounted: function mounted() {
 	    this.show();
@@ -1514,54 +1571,13 @@ webpackJsonp([1,3,4],[
 
 	  methods: {
 	    show: function show() {
+	      var _self = this;
 	      var params = {};
-	      CDUtil.ajaxPost("mockjs_grade.json", params, function (retVO) {
-	        var config = {
-	          //用来展示表格控件的div的id
-	          containerId: "use_to_load_grid",
-	          //用来展示表格的表头数据
-	          thead: [{ name: "年级", valuekey: "classlevelName", width: "100px" }, { name: "排序", valuekey: "sort" }, { name: "操作", valuekey: "opt", type: "opt" }],
-	          //用来展示表格的数据
-	          //这个应该是后台返回的部分
-	          gData: retVO,
-	          //是否需要分页，true：需要，不写默认需要
-	          pagingFlag: true,
-	          //执行页面查询的方法
-	          searchFun: function searchFun() {},
-	          //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	          optParams: ["classlevelId"],
-	          //表格中的行操作名称
-	          optName: { edit_fun: "编辑", del_fun: "删除" },
-	          //表格中的行操作方法
-	          optFuns: { edit_fun: function edit_fun(params, dom) {
-	              var classId = params.classlevelId;
-	              var cidParams = { 'classlevelId': classId };
-	              $.post("mockjs_edit_class.json", cidParams, function (data) {
-	                console.log(data.code);
-	                if (data.code == 1) {
-	                  $('[name="classlevelName"]').val(data.data.classlevelName);
-	                }
-	              });
-	              layer.open({
-	                type: 1,
-	                title: '编辑年级',
-	                skin: 'layui-layer-rim', //加上边框
-	                area: ['450px', '240px'], //宽高
-	                content: $("#editgrade")
-	              });
-	            }, del_fun: function del_fun(params, dom) {
-	              layer.alert('确定删除该行数据?', function (index) {
-	                layer.close(index);
-	                layer.msg('删除成功!');
-	              });
-	              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
-	            }
-	          }
-	        };
-	        Grid.initGrid(config, function () {});
+	      CDUtil.ajaxPost("/base/classlevel/list", params, function (retVO) {
+	        _self.grades = JSON.parse(retVO);
+	        console.log(_self.grades);
 	      });
 	    },
-
 	    add: function add() {
 	      layer.open({
 	        type: 1,
@@ -1576,7 +1592,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -1589,16 +1605,30 @@ webpackJsonp([1,3,4],[
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["添加年级"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	  }, ["添加年级"])]), " ", _h('div', {
 	    staticClass: "dashboard"
-	  }, [_h('div', {
-	    staticClass: "grade",
+	  }, [_h('form', {
 	    attrs: {
-	      "id": "use_to_load_grid"
+	      "action": "",
+	      "id": "grade"
 	    }
-	  }), " "])
+	  }, [_h('table', [_vm._m(0), " ", _h('tbody', [_vm._l((_vm.grades), function(grade, index) {
+	    return _h('tr', [_h('td', [_vm._s(grade.subjectName)]), " ", (index === 0) ? _h('td', [_h('i', {
+	      staticClass: "iconfont icon-movedown"
+	    })]) : [(index === (_vm.grades.length - 1)) ? _h('td', [_h('i', {
+	      staticClass: "iconfont icon-moveup"
+	    })]) : _h('td', [_h('i', {
+	      staticClass: "iconfont icon-moveup"
+	    }), _h('i', {
+	      staticClass: "iconfont icon-movedown"
+	    })]), " "], " ", " ", _vm._m(1, true)])
+	  })])])]), " "]), " ", " ", _vm._m(2), " ", " ", " ", _vm._m(3), " "])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	  return _h('thead', [_h('th', ["年级"]), _h('th', ["排序"]), _h('th', ["操作"])])
+	},function (){var _vm=this;var _h=_vm.$createElement;
+	  return _h('td', {
+	    staticClass: "colorTd"
+	  }, [_h('span', ["编辑"]), "  ", _h('span', ["删除"])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('form', {
 	    staticClass: "layBox",
@@ -1661,22 +1691,22 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-99210bda", module.exports)
+	     __webpack_require__(23).rerender("data-v-e750a1a8", module.exports)
 	  }
 	}
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(43)
+	__vue_exports__ = __webpack_require__(45)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(44)
+	var __vue_template__ = __webpack_require__(46)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -1688,7 +1718,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\default.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\default.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1699,9 +1729,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-861bce52", __vue_options__)
+	    hotAPI.createRecord("data-v-bf327fa0", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-861bce52", __vue_options__)
+	    hotAPI.reload("data-v-bf327fa0", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] default.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1710,7 +1740,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1842,7 +1872,8 @@ webpackJsonp([1,3,4],[
 	      });
 	      if (result == true) {}
 	      var params = $('#condition').serialize();
-	      CDUtil.ajaxPost("mockjs_grid_data.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
+	        console.log(retVO);
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
@@ -1867,10 +1898,10 @@ webpackJsonp([1,3,4],[
 	              $.post("mockjs_edit_data.json", useridParams, function (data) {
 	                console.log(data.code);
 	                if (data.code == 1) {
-	                  $('[name="userType1"]').val(data.data.userType);
-	                  $('[name="username1"]').val(data.data.username);
-	                  $('[name="realname1"]').val(data.data.realname);
-	                  $('[name="password1"]').val(data.data.password);
+	                  $('[name="userType"]').val(data.data.userType);
+	                  $('[name="username"]').val(data.data.username);
+	                  $('[name="realname"]').val(data.data.realname);
+	                  $('[name="password"]').val(data.data.password);
 	                }
 	              });
 	              layer.open({
@@ -1886,7 +1917,7 @@ webpackJsonp([1,3,4],[
 	              layer.alert('确定删除该行数据?', function (index) {
 	                $.ajax({
 	                  type: "post",
-	                  url: "mockjs_del_data.json", //action==url
+	                  url: "/base/user/delete", //action==url
 	                  dataType: "json", //json
 	                  data: useridParams, //传到后台的参数
 	                  success: function success(data) {
@@ -1916,7 +1947,7 @@ webpackJsonp([1,3,4],[
 	        containerId: "adduser"
 	      });
 	      var params = $('#adduser').serialize();
-	      CDUtil.ajaxPost("mockjs_grid_data.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/base/user/add", params, function (retVO) {
 	        Grid.initGrid(config, function () {});
 	      });
 	    }
@@ -1925,7 +1956,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -2040,7 +2071,7 @@ webpackJsonp([1,3,4],[
 	  }, [_h('label', ["用户名:"])]), " ", _h('span', {
 	    staticClass: "cd-f-value",
 	    attrs: {
-	      "name": "username1"
+	      "name": "username"
 	    }
 	  })]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
@@ -2051,7 +2082,7 @@ webpackJsonp([1,3,4],[
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
-	      "name": "realname1",
+	      "name": "realname",
 	      "data-vali": "notnull"
 	    }
 	  })])]), " ", _h('div', {
@@ -2063,7 +2094,7 @@ webpackJsonp([1,3,4],[
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
-	      "name": "password1",
+	      "name": "password",
 	      "data-vali": "notnull,password"
 	    }
 	  })])]), " ", _h('div', {
@@ -2074,7 +2105,7 @@ webpackJsonp([1,3,4],[
 	    staticClass: "cd-f-value"
 	  }, [_h('select', {
 	    attrs: {
-	      "name": "userType1"
+	      "name": "userType"
 	    }
 	  }, [_h('option', ["教师"])])])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
@@ -2147,22 +2178,22 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-861bce52", module.exports)
+	     __webpack_require__(23).rerender("data-v-bf327fa0", module.exports)
 	  }
 	}
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(46)
+	__vue_exports__ = __webpack_require__(48)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(47)
+	var __vue_template__ = __webpack_require__(49)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2174,7 +2205,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\management.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\management.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -2185,9 +2216,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-5405001d", __vue_options__)
+	    hotAPI.createRecord("data-v-cfb923b8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-5405001d", __vue_options__)
+	    hotAPI.reload("data-v-cfb923b8", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] management.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2196,7 +2227,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2278,7 +2309,8 @@ webpackJsonp([1,3,4],[
 	  methods: {
 	    show: function show() {
 	      var params = {};
-	      CDUtil.ajaxPost("mockjs_subject.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/base/subject/list", params, function (retVO) {
+	        console.log(retVO);
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
@@ -2309,7 +2341,7 @@ webpackJsonp([1,3,4],[
 	                layer.close(index);
 	                layer.msg('删除成功!');
 	              });
-	              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
+	              /* ajaxCallPost("/base/subject/delete",{"num1":params.num1},callback);*/
 	            }
 	          }
 	        };
@@ -2329,7 +2361,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -2342,7 +2374,7 @@ webpackJsonp([1,3,4],[
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["添加年级"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
+	  }, ["添加学科"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('div', {
 	    staticClass: "dashboard"
@@ -2414,22 +2446,22 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-5405001d", module.exports)
+	     __webpack_require__(23).rerender("data-v-cfb923b8", module.exports)
 	  }
 	}
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(49)
+	__vue_exports__ = __webpack_require__(51)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(50)
+	var __vue_template__ = __webpack_require__(52)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2441,7 +2473,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\platform.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\platform.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -2452,9 +2484,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-13f920cd", __vue_options__)
+	    hotAPI.createRecord("data-v-c1cd36d8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-13f920cd", __vue_options__)
+	    hotAPI.reload("data-v-c1cd36d8", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] platform.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2463,7 +2495,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2551,7 +2583,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -2650,22 +2682,22 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-13f920cd", module.exports)
+	     __webpack_require__(23).rerender("data-v-c1cd36d8", module.exports)
 	  }
 	}
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(52)
+	__vue_exports__ = __webpack_require__(54)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(53)
+	var __vue_template__ = __webpack_require__(55)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2677,7 +2709,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\server.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\server.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -2688,9 +2720,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-4fb6e81d", __vue_options__)
+	    hotAPI.createRecord("data-v-6fd371a4", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-4fb6e81d", __vue_options__)
+	    hotAPI.reload("data-v-6fd371a4", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] server.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2699,7 +2731,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2707,30 +2739,6 @@ webpackJsonp([1,3,4],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	//
 	//
 	//
@@ -2806,12 +2814,12 @@ webpackJsonp([1,3,4],[
 	      });
 	      if (result == true) {}
 	      var params = $('#condition').serialize();
-	      CDUtil.ajaxPost("mockjs_grid_data.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/base/dmsserver/list", params, function (retVO) {
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
 	          //用来展示表格的表头数据
-	          thead: [{ name: "用户名", valuekey: "username", width: "100px" }, { name: "姓名", valuekey: "realname" }, { name: "角色", valuekey: "userType" }, { name: "操作", valuekey: "opt", type: "opt" }],
+	          thead: [{ name: "序号", valuekey: "serverId" }, { name: "服务器名称", valuekey: "serverName" }, { name: "DMS 地址", valuekey: "serverValue" }, { name: "操作", valuekey: "opt", type: "opt" }],
 	          //用来展示表格的数据
 	          //这个应该是后台返回的部分
 	          gData: retVO,
@@ -2828,13 +2836,12 @@ webpackJsonp([1,3,4],[
 	            edit_fun: function edit_fun(params, dom) {
 	              var userId = params.userId;
 	              var useridParams = { 'userId': userId };
-	              $.post("mockjs_edit_data.json", useridParams, function (data) {
+	              $.post("/base/dmsserver/update", useridParams, function (data) {
 	                console.log(data.code);
 	                if (data.code == 1) {
-	                  $('[name="userType1"]').val(data.data.userType);
-	                  $('[name="username1"]').val(data.data.username);
-	                  $('[name="realname1"]').val(data.data.realname);
-	                  $('[name="password1"]').val(data.data.password);
+	                  $('[name="serverId"]').val(data.data.serverId);
+	                  $('[name="serverName"]').val(data.data.serverName);
+	                  $('[name="serverValue"]').val(data.data.serverValue);
 	                }
 	              });
 	              layer.open({
@@ -2850,7 +2857,7 @@ webpackJsonp([1,3,4],[
 	              layer.alert('确定删除该行数据?', function (index) {
 	                $.ajax({
 	                  type: "post",
-	                  url: "mockjs_del_data.json", //action==url
+	                  url: "/base/dmsserver/delete", //action==url
 	                  dataType: "json", //json
 	                  data: useridParams, //传到后台的参数
 	                  success: function success(data) {
@@ -2869,7 +2876,7 @@ webpackJsonp([1,3,4],[
 	    add: function add() {
 	      layer.open({
 	        type: 1,
-	        title: '添加用户',
+	        title: '添加服务器',
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '375px'], //宽高
 	        content: $("#adduser")
@@ -2880,7 +2887,7 @@ webpackJsonp([1,3,4],[
 	        containerId: "adduser"
 	      });
 	      var params = $('#adduser').serialize();
-	      CDUtil.ajaxPost("mockjs_grid_data.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/base/dmsserver/add", params, function (retVO) {
 	        Grid.initGrid(config, function () {});
 	      });
 	    }
@@ -2889,7 +2896,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -2902,24 +2909,7 @@ webpackJsonp([1,3,4],[
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["新增服务器"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _h('form', {
-	    staticClass: "layBox",
-	    attrs: {
-	      "action": "",
-	      "id": "adduser"
-	    }
-	  }, [_h('div', {
-	    staticClass: "cd-f-row"
-	  }, [_vm._m(2), " ", _vm._m(3), " ", _vm._m(4), " ", _vm._m(5), " ", _h('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(6), " ", _h('span', [_h('button', {
-	    staticClass: "lay-btn green-btn",
-	    on: {
-	      "click": _vm.addsb
-	    }
-	  }, ["确定"]), _h('button', {
-	    staticClass: "lay-btn gray-btn"
-	  }, ["取消"])])])])]), " "])
+	  }, ["新增服务器"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('div', {
 	    staticClass: "dashboard"
@@ -2933,7 +2923,7 @@ webpackJsonp([1,3,4],[
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
-	      "id": "edituser"
+	      "id": "editserver"
 	    }
 	  }, [_h('div', {
 	    staticClass: "cd-f-row"
@@ -2941,46 +2931,34 @@ webpackJsonp([1,3,4],[
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["用户名:"])]), " ", _h('span', {
+	  }, [_h('label', {
+	    staticClass: "cd-f-notnull"
+	  }, ["*"]), _h('label', ["服务器名称:"])]), " ", _h('span', {
 	    staticClass: "cd-f-value",
 	    attrs: {
-	      "name": "username1"
+	      "name": "serverName"
 	    }
-	  })]), " ", _h('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
-	    staticClass: "cd-f-name"
-	  }, [_h('label', ["姓名:"])]), " ", _h('span', {
-	    staticClass: "cd-f-value"
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
-	      "name": "realname1",
+	      "name": "serverName",
 	      "data-vali": "notnull"
 	    }
 	  })])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["密码:"])]), " ", _h('span', {
+	  }, [_h('label', {
+	    staticClass: "cd-f-notnull"
+	  }, ["*"]), _h('label', ["服务器地址:"])]), " ", _h('span', {
 	    staticClass: "cd-f-value"
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
-	      "name": "password1",
-	      "data-vali": "notnull,password"
+	      "name": "serverValue",
+	      "data-vali": "notnull"
 	    }
 	  })])]), " ", _h('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
-	    staticClass: "cd-f-name"
-	  }, [_h('label', ["角色:"])]), " ", _h('span', {
-	    staticClass: "cd-f-value"
-	  }, [_h('select', {
-	    attrs: {
-	      "name": "userType1"
-	    }
-	  }, [_h('option', ["教师"])])])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
@@ -2990,86 +2968,77 @@ webpackJsonp([1,3,4],[
 	    staticClass: "lay-btn gray-btn"
 	  }, ["取消"])])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
-	    staticClass: "cd-f-name"
-	  }, [_h('label', ["用户名:"])]), " ", _h('span', {
-	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  return _h('form', {
+	    staticClass: "layBox",
 	    attrs: {
-	      "type": "text",
-	      "name": "username",
-	      "data-vali": "notnull,username"
+	      "action": "",
+	      "id": "addserver"
 	    }
-	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	  }, [_h('div', {
+	    staticClass: "cd-f-row"
+	  }, [_h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["姓名:"])]), " ", _h('span', {
-	    staticClass: "cd-f-value"
+	  }, [_h('label', {
+	    staticClass: "cd-f-notnull"
+	  }, ["*"]), _h('label', ["服务器名称:"])]), " ", _h('span', {
+	    staticClass: "cd-f-value",
+	    attrs: {
+	      "name": "serverName"
+	    }
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
-	      "name": "realname",
+	      "name": "serverName",
 	      "data-vali": "notnull"
 	    }
-	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	  })])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["密码:"])]), " ", _h('span', {
+	  }, [_h('label', {
+	    staticClass: "cd-f-notnull"
+	  }, ["*"]), _h('label', ["服务器地址:"])]), " ", _h('span', {
 	    staticClass: "cd-f-value"
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
-	      "name": "password",
-	      "data-vali": "notnull,password"
+	      "name": "serverValue",
+	      "data-vali": "notnull"
 	    }
-	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	  })])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["角色:"])]), " ", _h('span', {
-	    staticClass: "cd-f-value"
-	  }, [_h('select', {
-	    attrs: {
-	      "name": "userType"
-	    }
-	  }, [_h('option', ["教师"])])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('span', {
-	    staticClass: "cd-f-name"
-	  }, [_h('label')])
+	  }, [_h('label')]), " ", _h('span', [_h('button', {
+	    staticClass: "lay-btn green-btn"
+	  }, ["确定"]), _h('button', {
+	    staticClass: "lay-btn gray-btn"
+	  }, ["取消"])])])])])
 	}]}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-4fb6e81d", module.exports)
+	     __webpack_require__(23).rerender("data-v-6fd371a4", module.exports)
 	  }
 	}
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(55)
+	__webpack_require__(57)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(57)
+	__vue_exports__ = __webpack_require__(59)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(58)
+	var __vue_template__ = __webpack_require__(60)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3081,7 +3050,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\source.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\source.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3092,9 +3061,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-7a4cf4f5", __vue_options__)
+	    hotAPI.createRecord("data-v-cb2d0308", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-7a4cf4f5", __vue_options__)
+	    hotAPI.reload("data-v-cb2d0308", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] source.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3103,13 +3072,13 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(56);
+	var content = __webpack_require__(58);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(12)(content, {});
@@ -3118,8 +3087,8 @@ webpackJsonp([1,3,4],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(56, function() {
-				var newContent = __webpack_require__(56);
+			module.hot.accept(58, function() {
+				var newContent = __webpack_require__(58);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3129,7 +3098,7 @@ webpackJsonp([1,3,4],[
 	}
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(11)();
@@ -3143,7 +3112,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3206,7 +3175,7 @@ webpackJsonp([1,3,4],[
 	  methods: {
 	    search_one: function search_one() {
 	      var params = {};
-	      CDUtil.ajaxPost("mockjs_source.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/resource/list", params, function (retVO) {
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
@@ -3231,7 +3200,7 @@ webpackJsonp([1,3,4],[
 	                layer.close(index);
 	                layer.msg('删除成功!');
 	              });
-	              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
+	              /* ajaxCallPost("/resource/delete",{"num1":params.num1},callback);*/
 	            }
 	          }
 	        };
@@ -3240,29 +3209,23 @@ webpackJsonp([1,3,4],[
 	    },
 	    showclass: function showclass() {
 	      var _self = this;
-	      $.ajax({
-	        type: 'POST',
-	        url: 'mockjs_class_list.json',
-	        success: function success(data) {
-	          _self.classList = JSON.parse(data);
-	        }
+	      var params = {};
+	      CDUtil.ajaxPost("/base/classlevel/list", params, function (retVO) {
+	        _self.classList = retVO;
 	      });
 	    },
 	    showsubject: function showsubject() {
 	      var _self = this;
-	      $.ajax({
-	        type: 'POST',
-	        url: 'mockjs_subject_list.json',
-	        success: function success(data) {
-	          _self.subjectList = JSON.parse(data);
-	        }
+	      var params = {};
+	      CDUtil.ajaxPost("/base/subject/list", params, function (retVO) {
+	        _self.subjectList = retVO;
 	      });
 	    }
 	  }
 	};
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -3360,22 +3323,22 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-7a4cf4f5", module.exports)
+	     __webpack_require__(23).rerender("data-v-cb2d0308", module.exports)
 	  }
 	}
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(60)
+	__vue_exports__ = __webpack_require__(62)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(61)
+	var __vue_template__ = __webpack_require__(63)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3387,7 +3350,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\upload.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\upload.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3398,9 +3361,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-a3e1904a", __vue_options__)
+	    hotAPI.createRecord("data-v-63a87d3c", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-a3e1904a", __vue_options__)
+	    hotAPI.reload("data-v-63a87d3c", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] upload.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3409,7 +3372,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3478,7 +3441,7 @@ webpackJsonp([1,3,4],[
 	      });
 	      if (result == true) {}
 	      var params = {};
-	      CDUtil.ajaxPost("mockjs_update.json", params, function (retVO) {
+	      CDUtil.ajaxPost("/resource/list", params, function (retVO) {
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
@@ -3494,7 +3457,7 @@ webpackJsonp([1,3,4],[
 	          //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
 	          optParams: ["resourceId", "creatName"],
 	          //表格中的行操作名称
-	          optName: { edit_fun: "编辑", del_fun: "删除" },
+	          optName: { view_fun: "查看", edit_fun: "编辑", del_fun: "删除" },
 	          //表格中的行操作方法
 	          optFuns: { edit_fun: function edit_fun(params, dom) {
 	              window.open('up_subject.html');
@@ -3503,8 +3466,9 @@ webpackJsonp([1,3,4],[
 	                layer.close(index);
 	                layer.msg('删除成功!');
 	              });
-	              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
-	            }
+	              /* ajaxCallPost("/resource/delete",{"num1":params.num1},callback);*/
+	            },
+	            view_fun: function view_fun() {}
 	          }
 	        };
 	        Grid.initGrid(config, function () {});
@@ -3534,7 +3498,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -3636,22 +3600,22 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-a3e1904a", module.exports)
+	     __webpack_require__(23).rerender("data-v-63a87d3c", module.exports)
 	  }
 	}
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(63)
+	__vue_exports__ = __webpack_require__(65)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(64)
+	var __vue_template__ = __webpack_require__(66)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3663,7 +3627,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\demand.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\demand.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3674,9 +3638,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-fd603eac", __vue_options__)
+	    hotAPI.createRecord("data-v-5c32db1e", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-fd603eac", __vue_options__)
+	    hotAPI.reload("data-v-5c32db1e", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] demand.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3685,7 +3649,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3750,28 +3714,28 @@ webpackJsonp([1,3,4],[
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
-	        _self.courseList = JSON.parse(retVO);
+	        _self.courseList = retVO;
 	      });
 	    },
 	    showclass: function showclass() {
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/base/classlevel/list", params, function (retVO) {
-	        _self.classList = JSON.parse(retVO);
+	        _self.classList = retVO;
 	      });
 	    },
 	    showsubject: function showsubject() {
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/base/subject/list", params, function (retVO) {
-	        _self.subjectList = JSON.parse(retVO);
+	        _self.subjectList = retVO;
 	      });
 	    }
 	  }
 	};
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -3847,25 +3811,25 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-fd603eac", module.exports)
+	     __webpack_require__(23).rerender("data-v-5c32db1e", module.exports)
 	  }
 	}
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(66)
+	__webpack_require__(68)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(68)
+	__vue_exports__ = __webpack_require__(70)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(69)
+	var __vue_template__ = __webpack_require__(71)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3877,7 +3841,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\home.vue"
+	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\home.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3888,9 +3852,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-481026fe", __vue_options__)
+	    hotAPI.createRecord("data-v-54669e85", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-481026fe", __vue_options__)
+	    hotAPI.reload("data-v-54669e85", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] home.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3899,13 +3863,13 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(67);
+	var content = __webpack_require__(69);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(12)(content, {});
@@ -3914,8 +3878,8 @@ webpackJsonp([1,3,4],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(67, function() {
-				var newContent = __webpack_require__(67);
+			module.hot.accept(69, function() {
+				var newContent = __webpack_require__(69);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3925,7 +3889,7 @@ webpackJsonp([1,3,4],[
 	}
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(11)();
@@ -3939,7 +3903,7 @@ webpackJsonp([1,3,4],[
 
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4011,7 +3975,7 @@ webpackJsonp([1,3,4],[
 	};
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
@@ -4045,7 +4009,7 @@ webpackJsonp([1,3,4],[
 	    staticClass: "tac"
 	  }, [_h('img', {
 	    attrs: {
-	      "src": __webpack_require__(70)
+	      "src": __webpack_require__(72)
 	    }
 	  })]), " "]), " ", _vm._m(1), " ", _h('div', {
 	    staticClass: "demand"
@@ -4096,12 +4060,12 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-481026fe", module.exports)
+	     __webpack_require__(23).rerender("data-v-54669e85", module.exports)
 	  }
 	}
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "8bed79dd627549783788bf671a45567f.png";

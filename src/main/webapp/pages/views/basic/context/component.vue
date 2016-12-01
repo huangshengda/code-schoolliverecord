@@ -2,10 +2,22 @@
 <div class="content">
   <div class="subBtn"><button class="btn fr" @click="add">添加年级</button></div>
  <div class="dashboard">
- 
     <!-- 表单 start -->
-    <div id="use_to_load_grid" class="grade"></div>
-    <!-- 表单 end --> 
+  <form action="" id="grade">
+    <table>
+      <thead><th>年级</th><th>排序</th><th>操作</th></thead>
+      <tbody>
+        <tr v-for="(grade,index) in grades"><td>{{grade.classlevelName}}</td>
+        <td v-if="index===0"><i class="iconfont icon-movedown"></i></td>
+        <template v-else> 
+         <td v-if="index===(grades.length-1)"><i class="iconfont icon-moveup"></i></td>
+         <td v-else><i class="iconfont icon-moveup"></i><i class="iconfont icon-movedown"></i></td>
+        </template>
+        <td class="colorTd"><span>编辑</span>&nbsp;&nbsp;<span>删除</span></td></tr>
+      </tbody>
+    </table>
+  </form>
+  <!-- 表单 start -->
   </div>
       <!-- 编辑用户弹窗表单 start -->
   <form action="" id="editgrade" class="layBox">
@@ -49,67 +61,21 @@
    export default {
     data() {
       return {
+      	grades:"",
       }
     },
      mounted () {    
       this.show()
     },
-         methods: {
+    methods: {
        show: function(){
+       	var _self = this;
         var params = {};
-        CDUtil.ajaxPost("mockjs_grade.json",params,function(retVO){
-            var config = {
-              //用来展示表格控件的div的id
-              containerId: "use_to_load_grid",
-              //用来展示表格的表头数据
-              thead: [{name:"年级",valuekey:"classlevelName",width: "100px"},
-                      {name:"排序",valuekey:"sort"},
-                      {name:"操作",valuekey:"opt",type:"opt"}
-              ],
-              //用来展示表格的数据
-              //这个应该是后台返回的部分
-              gData: retVO,
-              //是否需要分页，true：需要，不写默认需要
-              pagingFlag: true,
-              //执行页面查询的方法
-              searchFun: function(){
-
-              },
-              //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-              optParams: ["classlevelId"],
-              //表格中的行操作名称
-              optName: {edit_fun:"编辑",del_fun:"删除"},
-              //表格中的行操作方法
-              optFuns: {edit_fun:function(params,dom){
-                  var classId = params.classlevelId;
-                   var cidParams = {'classlevelId':classId};
-                      $.post("mockjs_edit_class.json", cidParams, function(data){
-                             console.log(data.code); 
-                             if(data.code == 1){
-                                $('[name="classlevelName"]').val(data.data.classlevelName);
-                              }
-                            });
-                   layer.open({
-                        type: 1,
-                        title: '编辑年级',
-                        skin: 'layui-layer-rim', //加上边框
-                        area: ['450px', '240px'], //宽高
-                        content: $("#editgrade")
-                    });
-
-                },del_fun:function(params,dom){
-                    layer.alert('确定删除该行数据?',function(index){
-                    layer.close(index);
-                    layer.msg('删除成功!')
-                   });
-                  /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
-                }
-              }
-          };
-          Grid.initGrid(config,function(){});
-        });
+        CDUtil.ajaxPost("/base/classlevel/list",params,function(retVO){
+         	_self.grades = JSON.parse(retVO);
+         	console.log(_self.grades);
+        });   
       },
-      
       add: function(){
           layer.open({
               type: 1,
@@ -120,7 +86,10 @@
            });
       },
 
-
     }
    }
 </script>
+<style>
+	.colorTd{color:#03a9f4}
+	.colorTd span{cursor: pointer;}
+</style>

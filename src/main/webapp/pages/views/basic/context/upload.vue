@@ -60,7 +60,7 @@ export default {
         });
         if(result==true){}
     var params = {};
-    CDUtil.ajaxPost("mockjs_update.json",params,function(retVO){
+    CDUtil.ajaxPost("/resource/list",params,function(retVO){
         var config = {
           //用来展示表格控件的div的id
           containerId: "use_to_load_grid",
@@ -84,7 +84,7 @@ export default {
           //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
           optParams: ["resourceId","creatName"],
           //表格中的行操作名称
-          optName: {edit_fun:"编辑",del_fun:"删除"},
+          optName: {view_fun:"查看",edit_fun:"编辑",del_fun:"删除"},
           //表格中的行操作方法
           optFuns: {edit_fun:function(params,dom){
               window.open('up_subject.html');
@@ -93,8 +93,11 @@ export default {
                 layer.close(index);
                 layer.msg('删除成功!')
                });
-              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
-            }
+              /* ajaxCallPost("/resource/delete",{"num1":params.num1},callback);*/
+            },
+            view_fun:function(){
+            	
+            },
           }
       };
       Grid.initGrid(config,function(){});

@@ -56,21 +56,21 @@
         var _self = this;
         var params = {};
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
-         	_self.courseList = JSON.parse(retVO);
+         	_self.courseList = retVO;
         });
       },
       showclass:function(){
       	var _self = this;
       	var params = {};
         CDUtil.ajaxPost("/base/classlevel/list",params,function(retVO){
-         	_self.classList = JSON.parse(retVO);
+         	_self.classList = retVO;
         });
       },
        showsubject:function(){
       	var _self = this;
       	var params = {};
         CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
-         	_self.subjectList = JSON.parse(retVO);
+         	_self.subjectList = retVO;
         });
       },
     }
