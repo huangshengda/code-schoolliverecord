@@ -34,10 +34,9 @@ import com.codyy.slr.util.UUIDUtils;
 @Service
 public class HandleVideoService {
 	private static Log log = LogFactory.getLog(HandleVideoService.class);
-	
-	//ffmpeg绝对路径
+
+	// ffmpeg绝对路径
 	private static final String PATH;
-	private static final int SHOT_NUM;
 
 	static {
 		String absolutePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
@@ -48,69 +47,67 @@ public class HandleVideoService {
 			absolutePath = absolutePath.substring(1, absolutePath.indexOf("classes/"));
 			PATH = absolutePath + "lib/ffmpeg.exe";
 		}
-		
-		if (StringUtils.isNumeric(Constants.SHOT_NUM)){
-			SHOT_NUM = Integer.parseInt(Constants.SHOT_NUM);
-		} else {
-			SHOT_NUM = 9;
-		}
 	}
-	
+
 	/**
 	 * 获取系统截图
+	 * 
 	 * @param req
 	 * @param videoPath
 	 * @return
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public Map<String, String> getUpoadScreenShot(HttpServletRequest req, String videoPath) throws IOException, InterruptedException{
+	public Map<String, String> getUpoadScreenShot(HttpServletRequest req, String videoPath) throws IOException, InterruptedException {
 		Map<String, String> map = new HashMap<String, String>();
-		String contextpath = HostConfigUtils.getHost(req)+"/download/img/" + Constants.IMG_TEMP;
+		String contextpath = HostConfigUtils.getHost(req) + "/download/img/" + Constants.IMG_TEMP;
 		String resId = StringUtils.split(videoPath, ".")[0];
 		videoPath = Constants.TEMP + "/" + videoPath;
-		List<String> imgs = getShotImgs(videoPath, resId, SHOT_NUM, Constants.TEMP);
-		
-		for(String img : imgs){
+		List<String> imgs = getShotImgs(videoPath, resId, Constants.SHOT_NUM, Constants.TEMP);
+
+		for (String img : imgs) {
 			map.put(img, contextpath + "/" + img);
 		}
-		
+
 		return map;
 	}
-	
 
 	/**
 	 * 生成视频截图
-	 * @param videoPath 视频路径
-	 * @param resId 资源ID
-	 * @param imgNum 截图图片张数
+	 * 
+	 * @param videoPath
+	 *            视频路径
+	 * @param resId
+	 *            资源ID
+	 * @param imgNum
+	 *            截图图片张数
 	 * @return
 	 * @throws ExecuteException
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public List<String> getShotImgs(String videoPath, String resId, int imgNum,String desDir) throws ExecuteException, IOException, InterruptedException{
+	public List<String> getShotImgs(String videoPath, String resId, int imgNum, String desDir) throws ExecuteException, IOException, InterruptedException {
 		List<String> list = new ArrayList<String>();
-		
+
 		int videoTime = getVideoTime(videoPath);
-		
+
 		if (videoTime >= 1) {
-			
-			String startTime = "1"; //截图开始开始时间
-			String rnum = "1"; //每隔1秒截一张图
-			String endTime = "" + (imgNum * 10); //截图终止时间
-			
-			if (imgNum == 1) { //只截一张图
-				if (videoTime >=5 ) { //视频总时长大于5秒,取第5秒的图片
+
+			String startTime = "1"; // 截图开始开始时间
+			String rnum = "1"; // 每隔1秒截一张图
+			String endTime = "" + (imgNum * 10); // 截图终止时间
+
+			if (imgNum == 1) { // 只截一张图
+				if (videoTime >= 5) { // 视频总时长大于5秒,取第5秒的图片
 					startTime = "5";
 					endTime = "1";
-				} else { //视频总时长小于5秒,去第一秒的图片
+				} else { // 视频总时长小于5秒,去第一秒的图片
 					endTime = "1";
 				}
-			} else { //截多张图
-				rnum = "0.1"; //每隔10秒截一张图
+			} else { // 截多张图
+				rnum = "0.1"; // 每隔10秒截一张图
 			}
-			
+
 			CommandLine cmdLine = new CommandLine(PATH);
 			cmdLine.addArgument("-ss");
 			cmdLine.addArgument(startTime);
@@ -124,39 +121,41 @@ public class HandleVideoService {
 			cmdLine.addArgument("-t");
 			cmdLine.addArgument(endTime);
 			cmdLine.addArgument(desDir + "/" + resId + "_%3d.png");
-			
+
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-			DefaultExecutor executor = new DefaultExecutor();  
-			executor.setExitValue(1);  
-			
+			DefaultExecutor executor = new DefaultExecutor();
+			executor.setExitValue(1);
+
 			ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
 			executor.setWatchdog(watchdog);
-			executor.execute(cmdLine,resultHandler); 
-			resultHandler.waitFor(); 
+			executor.execute(cmdLine, resultHandler);
+			resultHandler.waitFor();
 		}
-		
+
 		Path dir = Paths.get(desDir);
-		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.png")){
-			for(Path e : stream){
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.png")) {
+			for (Path e : stream) {
 				list.add(e.getFileName().toString());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return list;
 	}
-	
+
 	/**
 	 * 获取视频总时间
-	 * @param viedo_path	视频路径
+	 * 
+	 * @param viedo_path
+	 *            视频路径
 	 * @return
 	 */
 	private int getVideoTime(String videoPath) {
 		CommandLine commands = new CommandLine(PATH);
 		commands.addArgument("-i");
 		commands.addArgument(videoPath);
-		
+
 		try {
 
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -178,10 +177,10 @@ public class HandleVideoService {
 			String out = outputStream.toString();
 
 			String error = errorStream.toString();
-			
-			log.info("out:"+out);
-			log.info("error:"+error);
-			
+
+			log.info("out:" + out);
+			log.info("error:" + error);
+
 			// 从视频信息中解析时长
 			String regexDuration = "Duration: (.*?), start: (.*?), bitrate: (\\d*) kb\\/s";
 			Pattern pattern = Pattern.compile(regexDuration);
@@ -213,52 +212,59 @@ public class HandleVideoService {
 		}
 		return min;
 	}
-	
+
 	/**
 	 * 判断系统是否是linux
+	 * 
 	 * @return
 	 */
 	private static Boolean isLinux() {
 		String os = System.getProperty("os.name").toLowerCase();
-		Boolean isLinux  = os.indexOf("linux") >= 0 ? true:false;
+		Boolean isLinux = os.indexOf("linux") >= 0 ? true : false;
 		return isLinux;
 	}
-	
+
 	/**
 	 * 合并视频对外接口
-	 * @param paths 视频列表
-	 * @param outPath 输出路径
+	 * 
+	 * @param paths
+	 *            视频列表
+	 * @param outPath
+	 *            输出路径
 	 * @return
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public boolean concatVideos(List<String> paths, String outPath) throws IOException, InterruptedException{
+	public boolean concatVideos(List<String> paths, String outPath) throws IOException, InterruptedException {
 		boolean result = false;
-		
-		String fileList = Constants.TEMP + "/" + UUIDUtils.getUUID() + ".txt";
-		
-		if (FileUtils.createFile(fileList)){ 
+
+		String fileList = Constants.TEMP + Constants.PATH_SEPARATOR + UUIDUtils.getUUID() + ".txt";
+
+		if (FileUtils.createFile(fileList)) {
 			FileUtils.writeToFileByLine(paths, fileList);
 			concatVideo(fileList, outPath);
 			result = true;
-		} 
-		
+		}
+
 		return result;
 	}
-	
+
 	/**
 	 * 合并视频(具体操作命令与业务无关)
-	 * @param fileList 视频列表
-	 * @param outPath 输出路径
+	 * 
+	 * @param fileList
+	 *            视频列表
+	 * @param outPath
+	 *            输出路径
 	 * @throws ExecuteException
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private void concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException{
-		if(!isLinux()){
+	private void concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException {
+		if (!isLinux()) {
 			fileList = fileList.replace("/", "\\");
 		}
-		
+
 		CommandLine cmdLine = new CommandLine(PATH);
 		cmdLine.addArgument("-f");
 		cmdLine.addArgument("concat");
@@ -270,14 +276,14 @@ public class HandleVideoService {
 		cmdLine.addArgument("-c");
 		cmdLine.addArgument("copy");
 		cmdLine.addArgument(outPath);
-		
+
 		DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-		DefaultExecutor executor = new DefaultExecutor();  
-		executor.setExitValue(1);  
-		
+		DefaultExecutor executor = new DefaultExecutor();
+		executor.setExitValue(1);
+
 		ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
 		executor.setWatchdog(watchdog);
-		executor.execute(cmdLine,resultHandler); 
+		executor.execute(cmdLine, resultHandler);
 		resultHandler.waitFor();
 	}
 }
