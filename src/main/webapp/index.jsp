@@ -7,6 +7,7 @@
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css" href="./public/myLayer/layer/skin/layer.css">
+<%@ include file="./pages/_commons/meta.jsp"%>
 </head>
 <body>
 <div id="app"></div>
