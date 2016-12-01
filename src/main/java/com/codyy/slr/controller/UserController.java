@@ -18,6 +18,7 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.service.UserService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
+import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ReturnVoList;
@@ -161,24 +162,26 @@ public class UserController {
 	 */
 	@ResponseBody
 	@RequestMapping("/base/user/update")
-	public ReturnVoOne<User> editUser(User user){
-		Page page = new Page();
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("username", user.getRealname());
-		page.setMap(map);
+	public ReturnVoOne<User> editUser(User user,String prePassword){
 		
-		page.setPaging(false);
-		int code = Constants.SUCCESS;
+		int code=Constants.SUCCESS;
 		String msg = "操作成功";
-		if((user.getRealname().length()>0)&&(user.getRealname().length()<11)){
-			
-			if(user.getPassword()!=null){
-				if(!user.getPassword().matches(PasswordRegex)){
-					return new ReturnVoOne<User>(Constants.FAILED,"密码格式不正确");
+		if(StringUtils.isNotEmpty(prePassword)){//修改密码
+			user = userService.selectByPrimaryKey(user.getUserId());
+			if(prePassword.equals(user.getPassword())){
+				try {
+					userService.editUser(user);
+				} catch (Exception e) {
+					code=Constants.FAILED;
+					msg = "操作失败";
+					e.printStackTrace();
 				}
+			}else{
+				code=Constants.FAILED;
+				msg = "原密码错误";
 			}
-			
-			if(userService.getUserList(page).getTotalDatas()==1){
+			return new ReturnVoOne<User>(code,msg);
+		}else if((user.getRealname().length()>0)&&(user.getRealname().length()<11)){//编辑
 				try {
 					userService.editUser(user);
 				} catch (Exception e) {
@@ -186,10 +189,9 @@ public class UserController {
 					code=Constants.FAILED;
 					msg = "操作失败";
 				}
-			}
 			return new ReturnVoOne<User>(code,msg);
 		}else{
-			return new ReturnVoOne<User>(Constants.FAILED,"用户名格式不正确");
+			return new ReturnVoOne<User>(Constants.FAILED,"姓名格式不正确");
 		}
 	}
 	

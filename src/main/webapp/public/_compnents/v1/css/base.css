@@ -1,0 +1,61 @@
+/**
+ * 功能描述：设置系统基础样式
+ * 创建人：wangqiaozhen
+ * 
+ */
+
+
+/*reset*/
+body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form{margin: 0;padding: 0;}
+body{font-size:14px;font-family:"Microsoft Yahei";}
+a{text-decoration: none;}
+img{border:none;}
+
+/*base*/
+.fz12{font-size: 12px;}
+.fz16{font-size: 16px;}
+.fb{font-weight: bold;}
+.fl{float: left;}
+.fr{float: right;}
+.inb{display: inline-block;}
+.tel{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.wb{word-break: break-all;}
+.ww{word-wrap: break-word;}
+.hide{display: none;}
+.show{display: block;}
+.clearfix{zoom: 1;}
+.clearfix:after{clear: both;content: "";display: block;}
+.clear{clear:both;}
+
+.mt5{margin-top: 5px;}
+.mt10{margin-top: 10px;}
+.mt15{margin-top: 15px;}
+.mt20{margin-top: 20px;}
+.mb5{margin-bottom: 5px;}
+.mb10{margin-bottom: 10px;}
+.mb15{margin-bottom: 15px;}
+.mb20{margin-bottom: 20px;}
+.ml5{margin-left: 5px;}
+.ml10{margin-left: 10px;}
+.ml15{margin-left: 15px;}
+.ml20{margin-left: 20px;}
+.mr5{margin-right: 5px;}
+.mr10{margin-right: 10px;}
+.mr15{margin-right: 15px;}
+.mr20{margin-right: 20px;}
+.pa5{padding: 5px;}
+.pa10{padding: 10px;}
+.pa15{padding: 15px;}
+.pa20{padding: 20px;}
+
+.ma{margin: auto;}
+.tac{text-align: center;}
+.tal{text-align: left;}
+.tar{text-align: right;}
+.vam{vertical-align: middle;}
+.vab{vertical-align: bottom;}
+
+
+
+
+

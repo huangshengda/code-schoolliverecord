@@ -156,7 +156,7 @@
   </select>
   
   <update id = "updateFinishLiveRes" parameterType = "com.codyy.slr.entity.Resource" >
-  	update resource set THUMB_PATH = #{thumb}, STORE_PATH = #{storePath} ,LIVING_FLAG = #{livingFlag}, size = #{size}  where resource_id = #{resourceId}
+  	update resource set THUMB_PATH = #{thumbPath}, STORE_PATH = #{storePath} ,LIVING_FLAG = #{livingFlag}, size = #{size}  where resource_id = #{resourceId}
   </update>
   
 </mapper>

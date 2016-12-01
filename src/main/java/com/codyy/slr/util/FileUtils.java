@@ -10,11 +10,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import com.codyy.slr.constant.Constants;
 
 /**
  * 文件工具类
@@ -24,13 +29,18 @@ import java.util.List;
  */
 public class FileUtils {
 
-	public static void copyFile(String oriFile, String desFile)
-			throws IOException {
+	public static void copyFile(String oriFile, String desFile) throws IOException {
 
 		Path ori = Paths.get(oriFile);
 		Path des = Paths.get(desFile);
 		Files.copy(ori, des, StandardCopyOption.REPLACE_EXISTING);
+	}
 
+	public static void moveFile(String oriFile, String desFile) throws IOException {
+
+		Path ori = Paths.get(oriFile);
+		Path des = Paths.get(desFile);
+		Files.move(ori, des, StandardCopyOption.ATOMIC_MOVE);
 	}
 
 	/**
@@ -70,10 +80,8 @@ public class FileUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static List<File> findSimilarFile(List<File> fileList, String dir,
-			String regex) throws IOException {
-		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir))
-				.iterator();
+	public static List<File> findSimilarFile(List<File> fileList, String dir, String regex) throws IOException {
+		Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(dir)).iterator();
 		while (iterator.hasNext()) {
 			File file = iterator.next().toFile();
 			if (file.isDirectory()) {
@@ -102,25 +110,44 @@ public class FileUtils {
 			});
 		}
 	}
+	
+	public static List<String> fileList2FileStrList(List<File> fileList){
+		List<String> list = new ArrayList<>();
+		for (File file : fileList) {
+			list.add(file.getPath());
+		}
+		return list;
+	}
 
+	public static long getFileSize(String fileStr){
+		File file = new File(fileStr);
+		if(file.exists() && file.isFile()){
+			return file.length();
+		}else{
+			return 0;
+		}
+		
+	}
+	
 	/**
-	 * 依据路径创建目录
 	 * 
 	 * @param path
-	 * @return
+	 * @return absPath 绝对路径  relPath 相对路径  strDate日期字符串
 	 * @throws IOException
 	 */
-	public static String creatDir(String path) throws IOException {
-		Date date = new Date();
+	public static Map<String,String> creatDir(Date date,String path) throws IOException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String strDate = sdf.format(date);
-
-		Path dir = Paths.get(path + "/" + strDate);
+		String pathStr = path + Constants.PATH_SEPARATOR  + strDate;
+		Path dir = Paths.get(pathStr);
 		if (!Files.exists(dir)) {
 			Files.createDirectory(dir);
 		}
-
-		return strDate;
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("absPath", pathStr);
+		map.put("relPath", Constants.PATH_SEPARATOR  + strDate);
+		map.put("strDate", strDate);
+		return map;
 	}
 
 	/**
@@ -146,8 +173,11 @@ public class FileUtils {
 
 	/**
 	 * 写入操作
-	 * @param paths 视频地址集合
-	 * @param filePath 写入文件路径
+	 * 
+	 * @param paths
+	 *            视频地址集合
+	 * @param filePath
+	 *            写入文件路径
 	 * @throws IOException
 	 */
 	public static void writeToFileByLine(List<String> paths, String filePath) throws IOException {

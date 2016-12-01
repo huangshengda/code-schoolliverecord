@@ -1,12 +1,15 @@
 package com.codyy.slr.entity;
 
+
+
 public class DmsServer {
     private String serverId;
 
     private String serverName;
 
     private String serverValue;
-
+  
+  
     public String getServerId() {
         return serverId;
     }
