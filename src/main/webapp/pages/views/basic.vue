@@ -19,10 +19,6 @@
 	    Sidebar,
 	    Levelbar
 	  },
-
-	   methods: {
-	   	
-	   }
 	}
 </script>
 <style>

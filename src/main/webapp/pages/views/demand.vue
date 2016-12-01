@@ -54,32 +54,23 @@
     methods:{
        showdemand:function(){
         var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_ondemand_list.json',
-          success:function(data){
-            _self.courseList = JSON.parse(data);
-          }
+        var params = {};
+        CDUtil.ajaxPost("/demand/list",params,function(retVO){
+         	_self.courseList = JSON.parse(retVO);
         });
       },
       showclass:function(){
       	var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_class_list.json',
-          success:function(data){
-            _self.classList = JSON.parse(data);
-          }
+      	var params = {};
+        CDUtil.ajaxPost("/base/classlevel/list",params,function(retVO){
+         	_self.classList = JSON.parse(retVO);
         });
       },
        showsubject:function(){
       	var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_subject_list.json',
-          success:function(data){
-            _self.subjectList = JSON.parse(data);
-          }
+      	var params = {};
+        CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
+         	_self.subjectList = JSON.parse(retVO);
         });
       },
     }

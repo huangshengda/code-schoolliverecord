@@ -6,7 +6,7 @@
 	<display-name>schoolLiveRecord</display-name>
 	
 	<welcome-file-list>
-    	<welcome-file>login.html</welcome-file>
+    	<welcome-file>index.jsp</welcome-file>
   	</welcome-file-list>
 	
 	<!-- 加载spring配置文件 -->

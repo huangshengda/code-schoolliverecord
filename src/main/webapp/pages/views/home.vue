@@ -44,34 +44,24 @@ methods:{
      },
       show:function(){
         var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_grid_a.json',
-          success:function(data){
-            _self.posts = JSON.parse(data);
+        var params = {};
+        CDUtil.ajaxPost("/home/live/list",params,function(retVO){
+         	_self.posts = JSON.parse(retVO);
             console.log(_self.posts)
-          }
-        });
+        })
+       
       },
        showdemand:function(){
         var _self = this;
-        $.ajax({
-          type:'POST',
-          url:'mockjs_grid_demand.json',
-          success:function(data){
-            _self.courseList = JSON.parse(data);
-          }
-        });
+         var params = {};
+        CDUtil.ajaxPost("/demand/list",params,function(retVO){
+            _self.courseList = JSON.parse(retVO);
+        })
+       
       }
     }
 
     }   
-/*   search_xxx(){
-    CDUtil.ajaxPost(url,params,function(retVO){
-      
-    })
-   }*/
-
 </script>
 <style>
  body{background-color:#fff;}
