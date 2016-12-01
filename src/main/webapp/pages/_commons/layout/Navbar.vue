@@ -12,7 +12,7 @@
           </div>
           <!-- <div class="line"></div> -->
         </div>
-        <div class="out fr"><!-- 某某某<span class="g-line">|</span><i class="iconfont icon-sign-out"></i> --><button class="btn fr" @click="login">登录</button></div>
+        <div class="head-out fr"><!-- 某某某<span class="g-line">|</span><i class="iconfont icon-sign-out"></i> --><button class="btn fr" @click="login">登录</button></div>
       </div>
         <!-- 编辑用户弹窗表单 start -->
   <form action="" id="login" class="layBox mt40">
@@ -78,7 +78,7 @@ export default{
 }
 </script>
 
-<style scoped>
+<!--<style scoped>
 .router-link-active{border-bottom:2px solid #fff;}
 .navbar{
   border-radius: 0;
@@ -95,8 +95,8 @@ export default{
 
  .head{margin-left:120px;}
  .g-line{color: #14a733;font-size: 15px;margin-left:35px;margin-right:30px;}
- .out{margin-top: 30px;color: #fff;}
- .out i{vertical-align:middle;font-size: 20px;}
+ .head-out{margin-top: 30px;color: #333;}
+ .head-out i{vertical-align:middle;font-size: 20px;}
 
 #login{display: none;}
 .cd-f-eve{margin-bottom: 20px;width:100%;margin-top:0;}
@@ -109,4 +109,4 @@ input[type=checkbox]{    width: 15px;
   button{width:100%;}
 .ml30{margin-left:30px;}
  #login .cd-f-value,#login .cd-f-name{margin-right:0;}
-</style>
+</style>-->
