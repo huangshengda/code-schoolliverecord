@@ -3,6 +3,8 @@ package com.codyy.slr.constant;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.codyy.slr.util.ConfigUtils;
 
 public class Constants {
@@ -13,7 +15,7 @@ public class Constants {
 
 	public static final List<String> DELETE = Arrays.asList("del_fun");
 	public static final List<String> EDIT = Arrays.asList("edit_fun");
-	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun","del_fun");
+	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun", "del_fun");
 	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList("view_fun", "edit_fun", "del_fun");
 
 	/**
@@ -53,19 +55,19 @@ public class Constants {
 	public static final String NOT_FINISH = "1";
 
 	/**
-	 * token过期时间
-	 */
-	public static final String EXPIRE_TIME = "expireTime";
-	
-	/**
 	 * 文件夹分割付
 	 */
 	public static final String PATH_SEPARATOR = "/";
-	
+
 	/**
 	 * 视频类型
 	 */
 	public static final String VIDEO_FLV = ".flv";
+
+	/**
+	 * token过期时间
+	 */
+	public static final long EXPIRE_TIME;
 
 	/**
 	 * 存储路径
@@ -79,14 +81,69 @@ public class Constants {
 	/**
 	 * 系统截图张数
 	 */
-	public static final String SHOT_NUM;
+	public static final int SHOT_NUM;
+
+	/**
+	 * 截图超时时间
+	 */
+	public final static int SHOT_IMG_TIME;
+
+	/**
+	 * 截图失败尝试次数
+	 */
+	public final static int SHOT_IMG_TIMES;
+
+	/**
+	 * 合并超时时间
+	 */
+	public final static int CONCAT_VIDEO_TIME;
+
+	/**
+	 * 合并失败尝试次数
+	 */
+	public final static int CONCAT_VIDEO_TIMES;
 
 	static {
+		if (StringUtils.isNumeric(ConfigUtils.getValue("expireTime"))) {
+			EXPIRE_TIME = Long.parseLong(ConfigUtils.getValue("expireTime"));
+		} else {
+			EXPIRE_TIME = 30L;
+		}
+
 		IMG_PATH = ConfigUtils.getValue("img.path");
 		LIVE_PATH = ConfigUtils.getValue("video.live.path");
 		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
-		SHOT_NUM = ConfigUtils.getValue("sys.screen.shot");
 		TEMP = ConfigUtils.getValue("temp.path");
 		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
+
+		if (StringUtils.isNumeric(ConfigUtils.getValue("sys.screen.shot"))) {
+			SHOT_NUM = Integer.parseInt(ConfigUtils.getValue("sys.screen.shot"));
+		} else {
+			SHOT_NUM = 9;
+		}
+
+		if (StringUtils.isNumeric(ConfigUtils.getValue("shot.img.time"))) {
+			SHOT_IMG_TIME = Integer.parseInt(ConfigUtils.getValue("shot.img.time"));
+		} else {
+			SHOT_IMG_TIME = 60;
+		}
+
+		if (StringUtils.isNumeric(ConfigUtils.getValue("shot.img.times"))) {
+			SHOT_IMG_TIMES = Integer.parseInt(ConfigUtils.getValue("shot.img.times"));
+		} else {
+			SHOT_IMG_TIMES = 10;
+		}
+
+		if (StringUtils.isNumeric(ConfigUtils.getValue("concat.video.time"))) {
+			CONCAT_VIDEO_TIME = Integer.parseInt(ConfigUtils.getValue("concat.video.time"));
+		} else {
+			CONCAT_VIDEO_TIME = 3600;
+		}
+
+		if (StringUtils.isNumeric(ConfigUtils.getValue("concat.video.times"))) {
+			CONCAT_VIDEO_TIMES = Integer.parseInt(ConfigUtils.getValue("concat.video.times"));
+		} else {
+			CONCAT_VIDEO_TIMES = 10;
+		}
 	}
 }
