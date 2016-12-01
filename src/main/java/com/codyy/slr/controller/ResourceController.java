@@ -189,7 +189,6 @@ public class ResourceController {
 				result = new ReturnVoOne(Constants.FAILED,"编辑资源失败");
 			}
 		}catch(Exception e){
-			result = new ReturnVoOne(Constants.FAILED,"编辑资源失败");
 			e.printStackTrace();
 		}
 		return result;
@@ -248,7 +247,7 @@ public class ResourceController {
 			// 校验参数
 			if (!param.validate() || StringUtils.isEmpty(livePath)) {
 				returnVoOne.setCode(Constants.FAILED);
-				returnVoOne.equals("参数不合法");
+				returnVoOne.setMsg("参数不合法");
 				return returnVoOne;
 			}
 			
