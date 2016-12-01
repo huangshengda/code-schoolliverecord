@@ -26,6 +26,11 @@ public class DelFileThread implements Runnable{
 
 	@Override
 	public void run() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		log.info("delete dms video begin");
 		if(!CollectionUtils.isEmpty(delFileList)){
 			for (String fileStr : delFileList) {

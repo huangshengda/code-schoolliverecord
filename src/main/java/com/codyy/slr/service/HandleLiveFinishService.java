@@ -77,7 +77,7 @@ public class HandleLiveFinishService {
 					//6.删除文件
 					log.info(logPrefix +"删除视频开始.");
 					DelFileThread delFileThread = new DelFileThread(fileStrList);
-					delFileThread.run();
+					new Thread(delFileThread).start();
 					log.info(logPrefix +"删除视频结束.");
 					
 					storePath = relFilePathStr;
