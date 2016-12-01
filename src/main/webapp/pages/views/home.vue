@@ -12,7 +12,7 @@
   </div>
    <div v-else class="tac"><img src="../../public/_compnents/v1/images/empty.png"></div>
   </div>
-  <div class="s-title"><span></span><h3 class="fl">点播课程</h3><a href="onDemand" target="_blank" class="fr">更多</a></div>
+  <div class="s-title"><span></span><h3 class="demanCour fl">点播课程</h3><a href="onDemand" target="_blank" class="fr">更多</a></div>
   <div class="demand">
     <div class="col-4" v-for="course in courseList.data">
       <div class="home-img">
@@ -65,5 +65,5 @@ methods:{
 </script>
 <style>
  body{background-color:#fff;}
-
+.s-title .demanCour{margin:0;}
 </style>
