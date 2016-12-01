@@ -225,7 +225,11 @@ public class ResourceController {
 		ReturnVoOne<Map<String, String>> result = null;
 		try{
 			Map<String, String> map = handleVideoService.getUpoadScreenShot(req, resourcePath);
-			result = new ReturnVoOne<Map<String, String>>(map);
+			if (map != null && !map.isEmpty()) {
+				result = new ReturnVoOne<Map<String, String>>(map);
+			} else {
+				result = new ReturnVoOne<Map<String, String>>(Constants.FAILED,"截图失败");
+			}
 		}catch(Exception e){
 			result = new ReturnVoOne<Map<String, String>>(Constants.FAILED,"截图失败");
 			e.printStackTrace();
