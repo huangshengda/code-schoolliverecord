@@ -12,7 +12,7 @@
           </div>
           <!-- <div class="line"></div> -->
         </div>
-        <div class="out fr"><!-- 某某某<span class="g-line">|</span><i class="iconfont icon-sign-out"></i> --><button class="fr" @click="login">登录</button></div>
+        <div class="out fr"><!-- 某某某<span class="g-line">|</span><i class="iconfont icon-sign-out"></i> --><button class="btn fr" @click="login">登录</button></div>
       </div>
         <!-- 编辑用户弹窗表单 start -->
   <form action="" id="login" class="layBox mt40">
