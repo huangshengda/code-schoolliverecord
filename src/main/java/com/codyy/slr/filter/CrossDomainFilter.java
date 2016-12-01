@@ -30,8 +30,7 @@ public class CrossDomainFilter implements Filter{
 		if(rep.getHeader("Access-Control-Allow-Origin") == null ){
 			rep.setHeader("Access-Control-Allow-Origin", "*");
 		}
-		rep.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-		rep.setHeader("Access-Control-Allow-Headers", "X_FILENAME");
+		rep.setHeader("Access-Control-Allow-Methods", "GET,POST");
 		
 		/**
 		 * 如果请求为OPTIONS,那说明是浏览器对服务器的查询

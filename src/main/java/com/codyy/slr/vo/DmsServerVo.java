@@ -16,7 +16,7 @@ public class DmsServerVo {
     
     
     public List<String> getOpt() {
-		return (opt==null?Constants.EDIT_DELETE:opt) ;
+		return (opt==null ? Constants.EDIT_DELETE:opt) ;
 	}
 
 	public void setOpt(List<String> opt) {
