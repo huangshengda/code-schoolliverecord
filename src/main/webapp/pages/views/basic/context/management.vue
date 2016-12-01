@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-  <div class="subBtn"><button class="btn fr" @click="add">添加年级</button></div>
+  <div class="subBtn"><button class="btn fr" @click="add">添加学科</button></div>
  <div class="dashboard">
   <!-- 表单 start -->
   <!--   <form action="" id="grade">
@@ -72,7 +72,8 @@
          methods: {
        show: function(){
         var params = {};
-        CDUtil.ajaxPost("mockjs_subject.json",params,function(retVO){
+        CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
+        console.log(retVO);
             var config = {
               //用来展示表格控件的div的id
               containerId: "use_to_load_grid",
@@ -109,7 +110,7 @@
                     layer.close(index);
                     layer.msg('删除成功!')
                    });
-                  /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
+                  /* ajaxCallPost("/base/subject/delete",{"num1":params.num1},callback);*/
                 }
               }
           };

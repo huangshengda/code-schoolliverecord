@@ -6,31 +6,19 @@
     <div id="use_to_load_grid" ></div>
     <!-- 表单 end -->
   </div>
-    <!-- 编辑用户弹窗表单 start -->
-  <form action="" id="edituser" class="layBox">
+    <!-- 编辑服务器弹窗表单 start -->
+  <form action="" id="editserver" class="layBox">
    <div class="cd-f-row">
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value" name="username1">
-            
+          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器名称:</label></span>
+          <span class="cd-f-value" name="serverName">
+            <input type="text" name="serverName" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label>姓名:</label></span>
+          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname1" data-vali="notnull">
-          </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label>密码:</label></span>
-          <span class="cd-f-value">
-            <input type="text" name="password1" data-vali="notnull,password">
-          </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label>角色:</label></span>
-          <span class="cd-f-value">
-            <select name="userType1"><option>教师</option></select>
+            <input type="text" name="serverValue" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -41,43 +29,31 @@
         </div>
     </div>
   </form>
-    <!-- 编辑用户弹窗表单 end -->
-    <!-- 添加用户弹窗表单 start -->
-  <form action="" id="adduser" class="layBox">
+    <!-- 编辑服务器弹窗表单 end -->
+    <!-- 添加服务器弹窗表单 start -->
+  <form action="" id="addserver" class="layBox">
    <div class="cd-f-row">
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value">
-            <input type="text" name="username" data-vali="notnull,username">
+          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器名称:</label></span>
+          <span class="cd-f-value" name="serverName">
+            <input type="text" name="serverName" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label>姓名:</label></span>
+          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname" data-vali="notnull">
-          </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label>密码:</label></span>
-          <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull,password">
-          </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label>角色:</label></span>
-          <span class="cd-f-value">
-            <select name="userType"><option>教师</option></select>
+            <input type="text" name="serverValue" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label></label></span>
           <span>
-            <button class="lay-btn green-btn" @click="addsb">确定</button><button class="lay-btn gray-btn">取消</button>
+            <button class="lay-btn green-btn">确定</button><button class="lay-btn gray-btn">取消</button>
           </span>
         </div>
     </div>
   </form>
-    <!-- 添加用户弹窗表单 end -->
+    <!-- 添加服务器弹窗表单 end -->
 </div>
 </template>
 <script>
@@ -98,14 +74,14 @@
         });
         if(result==true){}
         var params = $('#condition').serialize();
-        CDUtil.ajaxPost("mockjs_grid_data.json",params,function(retVO){
+        CDUtil.ajaxPost("/base/dmsserver/list",params,function(retVO){
             var config = {
               //用来展示表格控件的div的id
               containerId: "use_to_load_grid",
               //用来展示表格的表头数据
-              thead: [{name:"用户名",valuekey:"username",width: "100px"},
-                      {name:"姓名",valuekey:"realname"},
-                      {name:"角色",valuekey:"userType"},
+              thead: [{name:"序号",valuekey:"serverId"},
+                      {name:"服务器名称",valuekey:"serverName"},
+                      {name:"DMS 地址",valuekey:"serverValue"},
                       {name:"操作",valuekey:"opt",type:"opt"}
               ],
               //用来展示表格的数据
@@ -126,13 +102,13 @@
                 edit_fun:function(params,dom){
                    var userId = params.userId;
                    var useridParams = {'userId':userId};
-                      $.post("mockjs_edit_data.json", useridParams, function(data){
+                      $.post("/base/dmsserver/update", useridParams, function(data){
                              console.log(data.code); 
                              if(data.code == 1){
-                                $('[name="userType1"]').val(data.data.userType);
-                                $('[name="username1"]').val(data.data.username);
-                                $('[name="realname1"]').val(data.data.realname);
-                                $('[name="password1"]').val(data.data.password);
+                                $('[name="serverId"]').val(data.data.serverId);
+                                $('[name="serverName"]').val(data.data.serverName);
+                                $('[name="serverValue"]').val(data.data.serverValue);
+                               
                               }
                             });
                    layer.open({
@@ -149,7 +125,7 @@
                     layer.alert('确定删除该行数据?',function(index){
                       $.ajax({
                         type: "post",
-                        url: "mockjs_del_data.json",//action==url
+                        url: "/base/dmsserver/delete",//action==url
                         dataType: "json",//json
                         data: useridParams,//传到后台的参数
                         success: function(data){
@@ -169,7 +145,7 @@
       add: function(){
           layer.open({
               type: 1,
-              title: '添加用户',
+              title: '添加服务器',
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '375px'], //宽高
               content: $("#adduser")
@@ -181,7 +157,7 @@
           containerId: "adduser",
         });
         var params = $('#adduser').serialize();
-            CDUtil.ajaxPost("mockjs_grid_data.json",params,function(retVO){
+            CDUtil.ajaxPost("/base/dmsserver/add",params,function(retVO){
             Grid.initGrid(config,function(){});  
           });
           }

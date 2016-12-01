@@ -36,26 +36,26 @@
    <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value" name="username1">
+          <span class="cd-f-value" name="username">
             
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname1" data-vali="notnull">
+            <input type="text" name="realname" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password1" data-vali="notnull,password">
+            <input type="text" name="password" data-vali="notnull,password">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
-            <select name="userType1"><option>教师</option></select>
+            <select name="userType"><option>教师</option></select>
           </span>
         </div>
         <div class="cd-f-eve">
@@ -123,7 +123,8 @@
         });
         if(result==true){}
         var params = $('#condition').serialize();
-        CDUtil.ajaxPost("mockjs_grid_data.json",params,function(retVO){
+        CDUtil.ajaxPost("/base/user/list",params,function(retVO){
+        console.log(retVO);
             var config = {
               //用来展示表格控件的div的id
               containerId: "use_to_load_grid",
@@ -154,10 +155,10 @@
                       $.post("mockjs_edit_data.json", useridParams, function(data){
                              console.log(data.code); 
                              if(data.code == 1){
-                                $('[name="userType1"]').val(data.data.userType);
-                                $('[name="username1"]').val(data.data.username);
-                                $('[name="realname1"]').val(data.data.realname);
-                                $('[name="password1"]').val(data.data.password);
+                                $('[name="userType"]').val(data.data.userType);
+                                $('[name="username"]').val(data.data.username);
+                                $('[name="realname"]').val(data.data.realname);
+                                $('[name="password"]').val(data.data.password);
                               }
                             });
                    layer.open({
@@ -174,7 +175,7 @@
                     layer.alert('确定删除该行数据?',function(index){
                       $.ajax({
                         type: "post",
-                        url: "mockjs_del_data.json",//action==url
+                        url: "/base/user/delete",//action==url
                         dataType: "json",//json
                         data: useridParams,//传到后台的参数
                         success: function(data){
@@ -206,7 +207,7 @@
           containerId: "adduser",
         });
         var params = $('#adduser').serialize();
-            CDUtil.ajaxPost("mockjs_grid_data.json",params,function(retVO){
+            CDUtil.ajaxPost("/base/user/add",params,function(retVO){
             Grid.initGrid(config,function(){});  
           });
           }

@@ -44,7 +44,7 @@
         });
         if(result==true){}
     var params = {};
-    CDUtil.ajaxPost("mockjs_comment.json",params,function(retVO){
+    CDUtil.ajaxPost("/base/resource/comment/list",params,function(retVO){
         var config = {
           //用来展示表格控件的div的id
           containerId: "use_to_load_grid",
@@ -75,7 +75,7 @@
                 layer.close(index);
                 layer.msg('删除成功!')
                });
-              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
+              /* ajaxCallPost("/resource/comment/delete",{"num1":params.num1},callback);*/
             }
           }
       };
