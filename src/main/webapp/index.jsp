@@ -1,7 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>校级轻量平台</title>
+<title>校园直录播</title>
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width">
