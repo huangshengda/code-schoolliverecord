@@ -127,12 +127,12 @@ public class SystemScreenShotService {
 			
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();  
-			executor.setExitValue(1);  
+			executor.setExitValue(1);
 			
 			ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
 			executor.setWatchdog(watchdog);
 			executor.execute(cmdLine,resultHandler); 
-			resultHandler.waitFor(); 
+			resultHandler.waitFor();
 		}
 		
 		Path dir = Paths.get(Constants.TEMP);
@@ -259,7 +259,7 @@ public class SystemScreenShotService {
 			fileList = fileList.replace("/", "\\");
 		}
 		
-		CommandLine cmdLine = new CommandLine(PATH);
+		CommandLine cmdLine = new CommandLine("D:\\ffmpeg.exe");
 		cmdLine.addArgument("-f");
 		cmdLine.addArgument("concat");
 		cmdLine.addArgument("-y");
