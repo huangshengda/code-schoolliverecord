@@ -63,7 +63,16 @@ public class HandleVideoService {
 		String contextpath = HostConfigUtils.getHost(req) + "/download/img/" + Constants.IMG_TEMP;
 		String resId = StringUtils.split(videoPath, ".")[0];
 		videoPath = Constants.TEMP + "/" + videoPath;
-		List<String> imgs = getShotImgs(videoPath, resId, Constants.SHOT_NUM, Constants.TEMP);
+		
+		List<String> imgs = null;
+		
+		//截图失败尝试次数
+		for(int i = 0; i<Constants.SHOT_IMG_TIMES; i++){
+			imgs = getShotImgs(videoPath, resId, Constants.SHOT_NUM, Constants.TEMP);
+			if (imgs !=null && !imgs.isEmpty()) {
+				break;
+			}
+		}
 
 		for (String img : imgs) {
 			map.put(img, contextpath + "/" + img);
@@ -126,10 +135,18 @@ public class HandleVideoService {
 			DefaultExecutor executor = new DefaultExecutor();
 			executor.setExitValue(1);
 
-			ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
+			ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.SHOT_IMG_TIME * 1000);
 			executor.setWatchdog(watchdog);
 			executor.execute(cmdLine, resultHandler);
 			resultHandler.waitFor();
+			
+			if (executor.isFailure(resultHandler.getExitValue())) {
+				log.error(videoPath + ":截图失败");
+			}
+			
+			if (watchdog.killedProcess()) {
+				log.error(videoPath + ":截图超时");
+			}
 		}
 
 		Path dir = Paths.get(desDir);
@@ -168,7 +185,7 @@ public class HandleVideoService {
 			DefaultExecutor executor = new DefaultExecutor();
 			executor.setExitValue(1);
 
-			ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
+			ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.SHOT_IMG_TIME * 1000);
 			executor.setWatchdog(watchdog);
 			executor.setStreamHandler(streamHandler);
 			executor.execute(commands, resultHandler);
@@ -179,7 +196,7 @@ public class HandleVideoService {
 			String error = errorStream.toString();
 
 			log.info("out:" + out);
-			log.info("error:" + error);
+			log.error("error:" + error);
 
 			// 从视频信息中解析时长
 			String regexDuration = "Duration: (.*?), start: (.*?), bitrate: (\\d*) kb\\/s";
@@ -242,8 +259,10 @@ public class HandleVideoService {
 
 		if (FileUtils.createFile(fileList)) {
 			FileUtils.writeToFileByLine(paths, fileList);
-			concatVideo(fileList, outPath);
-			result = true;
+			
+			if(concatVideo(fileList, outPath)){
+				result = true;
+			}
 		}
 
 		return result;
@@ -260,7 +279,9 @@ public class HandleVideoService {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	private void concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException {
+	private boolean concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException {
+		boolean result = true;
+		
 		if (!isLinux()) {
 			fileList = fileList.replace("/", "\\");
 		}
@@ -279,11 +300,23 @@ public class HandleVideoService {
 
 		DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 		DefaultExecutor executor = new DefaultExecutor();
-		executor.setExitValue(1);
+		executor.setExitValue(0);
 
-		ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
+		ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.CONCAT_VIDEO_TIME * 1000);
 		executor.setWatchdog(watchdog);
 		executor.execute(cmdLine, resultHandler);
 		resultHandler.waitFor();
+		
+		if (executor.isFailure(resultHandler.getExitValue())) {
+			log.error(outPath + ":合并失败");
+			result = false;
+		}
+		
+		if (watchdog.killedProcess()) {
+			log.error(outPath + ":合并超时");
+			result = false;
+		}
+		
+		return result;
 	}
 }
