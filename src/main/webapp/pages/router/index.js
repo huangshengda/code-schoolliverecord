@@ -7,7 +7,7 @@ var router = new Router({
   routes: [
     ...generateRoutes(menu),
     {
-      path: '/',
+      path: '/',  
       redirect: '/index'
     }
   ]
