@@ -25,7 +25,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.FileUtils;
@@ -136,7 +135,7 @@ public class HandleVideoService {
 			DefaultExecutor executor = new DefaultExecutor();
 			executor.setExitValue(1);
 
-			ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
+			ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.SHOT_IMG_TIME * 1000);
 			executor.setWatchdog(watchdog);
 			executor.execute(cmdLine, resultHandler);
 			resultHandler.waitFor();
@@ -186,7 +185,7 @@ public class HandleVideoService {
 			DefaultExecutor executor = new DefaultExecutor();
 			executor.setExitValue(1);
 
-			ExecuteWatchdog watchdog = new ExecuteWatchdog(5000);
+			ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.SHOT_IMG_TIME * 1000);
 			executor.setWatchdog(watchdog);
 			executor.setStreamHandler(streamHandler);
 			executor.execute(commands, resultHandler);
