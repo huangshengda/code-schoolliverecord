@@ -116,34 +116,18 @@ public class Constants {
 		TEMP = ConfigUtils.getValue("temp.path");
 		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
 
-		if (StringUtils.isNumeric(ConfigUtils.getValue("sys.screen.shot"))) {
-			SHOT_NUM = Integer.parseInt(ConfigUtils.getValue("sys.screen.shot"));
-		} else {
-			SHOT_NUM = 9;
-		}
+		SHOT_NUM = StringToInt("sys.screen.shot", 9);
+		SHOT_IMG_TIME = StringToInt("shot.img.time", 60);
+		SHOT_IMG_TIMES = StringToInt("shot.img.times", 5);
+		CONCAT_VIDEO_TIME = StringToInt("concat.video.time", 3600);
+		CONCAT_VIDEO_TIMES = StringToInt("concat.video.times", 5);
+	}
 
-		if (StringUtils.isNumeric(ConfigUtils.getValue("shot.img.time"))) {
-			SHOT_IMG_TIME = Integer.parseInt(ConfigUtils.getValue("shot.img.time"));
+	private static int StringToInt(String key, int defaultVal) {
+		if (StringUtils.isNumeric(ConfigUtils.getValue(key))) {
+			return  Integer.parseInt(ConfigUtils.getValue(key));
 		} else {
-			SHOT_IMG_TIME = 60;
-		}
-
-		if (StringUtils.isNumeric(ConfigUtils.getValue("shot.img.times"))) {
-			SHOT_IMG_TIMES = Integer.parseInt(ConfigUtils.getValue("shot.img.times"));
-		} else {
-			SHOT_IMG_TIMES = 10;
-		}
-
-		if (StringUtils.isNumeric(ConfigUtils.getValue("concat.video.time"))) {
-			CONCAT_VIDEO_TIME = Integer.parseInt(ConfigUtils.getValue("concat.video.time"));
-		} else {
-			CONCAT_VIDEO_TIME = 3600;
-		}
-
-		if (StringUtils.isNumeric(ConfigUtils.getValue("concat.video.times"))) {
-			CONCAT_VIDEO_TIMES = Integer.parseInt(ConfigUtils.getValue("concat.video.times"));
-		} else {
-			CONCAT_VIDEO_TIMES = 10;
+			return defaultVal;
 		}
 	}
 }

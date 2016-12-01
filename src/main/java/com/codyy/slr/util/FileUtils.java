@@ -111,7 +111,7 @@ public class FileUtils {
 		}
 	}
 	
-	public static List<String> fileList2FileStrList(List<File> fileList){
+	public static List<String> fileListToFileStrList(List<File> fileList){
 		List<String> list = new ArrayList<>();
 		for (File file : fileList) {
 			list.add(file.getPath());

@@ -35,9 +35,10 @@ public class LiveSchedule {
 		if(CollectionUtils.isEmpty(liveResourceIdList)){
 			log.info("liveResourceIdList is empty.");
 		}else{
-			for (String liveResourceId : liveResourceIdList) {
+			handleLiveFinishService.finishLive(liveResourceIdList.get(0));
+			/*for (String liveResourceId : liveResourceIdList) {
 				handleLiveFinishService.finishLive(liveResourceId);
-			}
+			}*/
 		}
 		log.info("finishLive end.");
 	}

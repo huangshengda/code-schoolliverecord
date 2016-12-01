@@ -13,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Resource;
+import com.codyy.slr.thread.DelFileThread;
 import com.codyy.slr.util.FileUtils;
 
 @Service
@@ -31,57 +32,81 @@ public class HandleLiveFinishService {
 		String logPrefix = "LiveResourceId = " + liveResourceId + ": ";
 		
 		Date date = new Date();
+		log.info(logPrefix + "finish start.");
 		try {
 			//1.更新数据库将直播路径设置为空
 			boolean flag = resourceService.updateLiveResourceLivingPath(liveResourceId);
-			log.info(logPrefix + " update livePath set null, and result is " + boolean2Str(flag));
+			log.info(logPrefix + "更新数据库直播路径为null,更新结果:" + boolean2Str(flag));
 			
 			//2.查找文件
 			List<File> similarFileList= FileUtils.findSimilarFile(new ArrayList<File>(), Constants.DMS_VIDEO_PATH, liveResourceId+".*");
-			log.info(logPrefix +  ": similarFileList=" + similarFileList.toString());
-			
-			//3.生成视频文件夹
-			Map<String,String> livePathMap = FileUtils.creatDir(date,Constants.LIVE_PATH);
-			
-			String absDirPathStr = livePathMap.get("absPath");//绝对路径 
-			String relDirPathStr =  livePathMap.get("relPath");//相对路径
-			
-			String absFilePathStr = absDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;//绝对路径文件
-			String relFilePathStr = relDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;//相对路径文件
-			
-			log.info(logPrefix + ": absFilePathStr=" + absFilePathStr);
+			log.info(logPrefix +  "similarFileList=" + similarFileList.toString());
 			
 			String storePath = null;//存储路径
 			String thumbPath = null;//封面路径
 			long size = 0;//资源大小
+			
 			if(CollectionUtils.isEmpty(similarFileList)){
-				log.error(logPrefix + ": 查找相似文件数为０");
+				log.error(logPrefix + "查找相似文件数为０");
 			}else{
-				//4.文件排序
+				//3.文件排序
 				FileUtils.sortFileByCreateTime(similarFileList);
-				List<String> fileStrList = FileUtils.fileList2FileStrList(similarFileList);
+				List<String> fileStrList = FileUtils.fileListToFileStrList(similarFileList);
 				
-				log.info(logPrefix + ": 合并文件开始.");
+				//4.生成视频文件夹
+				Map<String,String> livePathMap = FileUtils.creatDir(date,Constants.LIVE_PATH);
+				
+				String absDirPathStr = livePathMap.get("absPath");//绝对路径 
+				String relDirPathStr =  livePathMap.get("relPath");//相对路径
+				
+				String absFilePathStr = absDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;//绝对路径文件
+				String relFilePathStr = relDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;//相对路径文件
+				
+				log.info(logPrefix + "absFilePathStr=" + absFilePathStr);
+				
 				//5.合并文件
-				boolean concatFlag = handleVideoService.concatVideos(fileStrList, absFilePathStr);
-				log.info(logPrefix + ": 合并文件结束. result: " + boolean2Str(concatFlag));
+				log.info(logPrefix + "合并文件开始.");
+				boolean concatFlag = false;
+				int concatTimes = 0;
+				while(concatTimes < Constants.CONCAT_VIDEO_TIMES && !concatFlag){
+					concatFlag = handleVideoService.concatVideos(fileStrList, absFilePathStr);
+				}
+				log.info(logPrefix + ": 合并文件结束. 合并第"+ (concatTimes+1) +"次,result: " + boolean2Str(concatFlag));
 				
-				storePath = relFilePathStr;
+				if(concatFlag){
+					//6.删除文件
+					log.info(logPrefix +"删除视频开始.");
+					DelFileThread delFileThread = new DelFileThread(fileStrList);
+					delFileThread.run();
+					log.info(logPrefix +"删除视频结束.");
+					
+					storePath = relFilePathStr;
+					//7.获取文件大小
+					size = FileUtils.getFileSize(absFilePathStr);
+					
+					thumbPath = relFilePathStr;//赋值存储路径
+					
+					//8.生成图片文件夹
+					Map<String,String> thumbPathMap = FileUtils.creatDir(date,Constants.IMG_PATH);
+					log.info(logPrefix + "开始截图");
+					
+					//9.截图
+					int shotImgTimes = 0;
+					boolean shotImgFlag = false;
+					List<String> imgPathlist = null;
+					while(shotImgTimes < Constants.SHOT_IMG_TIMES && !shotImgFlag){
+						imgPathlist = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathMap.get("absPath"));
+						shotImgFlag = !CollectionUtils.isEmpty(imgPathlist);
+					}
+					if(shotImgFlag){
+						thumbPath =  thumbPathMap.get("relPath")+ Constants.PATH_SEPARATOR +imgPathlist.get(0);
+					}
+					log.info(logPrefix + "截图第"+ (shotImgTimes+1) +",图片 " + thumbPath);
+				}
 				
-				//6.获取文件大小
-				size = FileUtils.getFileSize(absFilePathStr);
-				thumbPath = relFilePathStr;
-				
-				log.info(logPrefix + "开始截图");
-				//7.生成图片文件夹
-				Map<String,String> thumbPathMap = FileUtils.creatDir(date,Constants.IMG_PATH);
-				//8.截图
-				List<String> list = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathMap.get("absPath"));
-				thumbPath =  thumbPathMap.get("relPath")+ Constants.PATH_SEPARATOR +list.get(0);
-				log.info(logPrefix + "截图路径 " + thumbPath);
 			}
 			
-			//9将存储路径 (视频 图片)直播状态 更新到数据库 
+			//10将存储路径 (视频 图片)直播状态 更新到数据库 
 			Resource res = new Resource();
 			res.setResourceId(liveResourceId);
 			res.setStorePath(storePath);
@@ -89,7 +114,7 @@ public class HandleLiveFinishService {
 			res.setSize(size);
 			res.setLivingFlag(Constants.N);
 			boolean updateFlag = resourceService.updateFinishLiveRes(res);
-			log.info(logPrefix + "update liveResource info, and result is " + boolean2Str(updateFlag));
+			log.info(logPrefix + "更新数据库信息, and result is " + boolean2Str(updateFlag));
 			
 			log.info(logPrefix + "finishLive end.");
 		} catch (Exception e) {
