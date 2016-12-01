@@ -133,7 +133,7 @@ public class HandleVideoService {
 
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();
-			executor.setExitValue(1);
+			executor.setExitValue(0);
 
 			ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.SHOT_IMG_TIME * 1000);
 			executor.setWatchdog(watchdog);
@@ -183,7 +183,7 @@ public class HandleVideoService {
 
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();
-			executor.setExitValue(1);
+			executor.setExitValue(0);
 
 			ExecuteWatchdog watchdog = new ExecuteWatchdog(Constants.SHOT_IMG_TIME * 1000);
 			executor.setWatchdog(watchdog);
