@@ -16,7 +16,6 @@ public class DmsServerVo {
     
     private int sort;
     
-    
     public int getSort() {
 		return sort;
 	}
