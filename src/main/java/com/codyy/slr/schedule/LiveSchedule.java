@@ -20,8 +20,6 @@ public class LiveSchedule {
 	
 	private static final Logger log = Logger.getLogger(LiveSchedule.class);
 	
-	private static final String dmsVideoPath = Constants.DMS_VIDEO_PATH;
-	
 	private ResourceService resourceService;
 	
 	private HandleLiveFinishService handleLiveFinishService;
@@ -38,7 +36,7 @@ public class LiveSchedule {
 			log.info("liveResourceIdList is empty.");
 		}else{
 			for (String liveResourceId : liveResourceIdList) {
-				handleLiveFinishService.finishLive(liveResourceId, dmsVideoPath);
+				handleLiveFinishService.finishLive(liveResourceId);
 			}
 		}
 		log.info("finishLive end.");

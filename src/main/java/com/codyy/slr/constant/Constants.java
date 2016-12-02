@@ -3,6 +3,8 @@ package com.codyy.slr.constant;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.codyy.slr.util.ConfigUtils;
 
 public class Constants {
@@ -13,7 +15,7 @@ public class Constants {
 
 	public static final List<String> DELETE = Arrays.asList("del_fun");
 	public static final List<String> EDIT = Arrays.asList("edit_fun");
-	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun","del_fun");
+	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun", "del_fun");
 	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList("view_fun", "edit_fun", "del_fun");
 
 	/**
@@ -49,13 +51,23 @@ public class Constants {
 	/**
 	 * 直播课堂是否结束
 	 */
-	public static final String FINISH = "0";
-	public static final String NOT_FINISH = "1";
+	public static final String FINISH = "finish";
+	public static final String NOT_FINISH = "notFinish";
+
+	/**
+	 * 文件夹分割付
+	 */
+	public static final String PATH_SEPARATOR = "/";
+
+	/**
+	 * 视频类型
+	 */
+	public static final String VIDEO_FLV = ".flv";
 
 	/**
 	 * token过期时间
 	 */
-	public static final String EXPIRE_TIME = "expireTime";
+	public static final long EXPIRE_TIME;
 
 	/**
 	 * 存储路径
@@ -69,14 +81,53 @@ public class Constants {
 	/**
 	 * 系统截图张数
 	 */
-	public static final String SHOT_NUM;
+	public static final int SHOT_NUM;
+
+	/**
+	 * 截图超时时间
+	 */
+	public final static int SHOT_IMG_TIME;
+
+	/**
+	 * 截图失败尝试次数
+	 */
+	public final static int SHOT_IMG_TIMES;
+
+	/**
+	 * 合并超时时间
+	 */
+	public final static int CONCAT_VIDEO_TIME;
+
+	/**
+	 * 合并失败尝试次数
+	 */
+	public final static int CONCAT_VIDEO_TIMES;
 
 	static {
+		if (StringUtils.isNumeric(ConfigUtils.getValue("expireTime"))) {
+			EXPIRE_TIME = Long.parseLong(ConfigUtils.getValue("expireTime"));
+		} else {
+			EXPIRE_TIME = 30L;
+		}
+
 		IMG_PATH = ConfigUtils.getValue("img.path");
 		LIVE_PATH = ConfigUtils.getValue("video.live.path");
 		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
-		SHOT_NUM = ConfigUtils.getValue("sys.screen.shot");
 		TEMP = ConfigUtils.getValue("temp.path");
 		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
+
+		SHOT_NUM = StringToInt("sys.screen.shot", 9);
+		SHOT_IMG_TIME = StringToInt("shot.img.time", 60);
+		SHOT_IMG_TIMES = StringToInt("shot.img.times", 5);
+		CONCAT_VIDEO_TIME = StringToInt("concat.video.time", 3600);
+		CONCAT_VIDEO_TIMES = StringToInt("concat.video.times", 5);
+	}
+
+	private static int StringToInt(String key, int defaultVal) {
+		if (StringUtils.isNumeric(ConfigUtils.getValue(key))) {
+			return  Integer.parseInt(ConfigUtils.getValue(key));
+		} else {
+			return defaultVal;
+		}
 	}
 }
