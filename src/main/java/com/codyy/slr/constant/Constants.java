@@ -51,8 +51,8 @@ public class Constants {
 	/**
 	 * 直播课堂是否结束
 	 */
-	public static final String FINISH = "0";
-	public static final String NOT_FINISH = "1";
+	public static final String FINISH = "finish";
+	public static final String NOT_FINISH = "notFinish";
 
 	/**
 	 * 文件夹分割付

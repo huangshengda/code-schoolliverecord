@@ -27,7 +27,9 @@ public class HandleLiveFinishService {
 	@Autowired
 	private HandleVideoService handleVideoService;
 	
-	public void finishLive(String liveResourceId){
+	public boolean finishLive(String liveResourceId){
+		
+		boolean finishSuccessFlag = false;
 		
 		String logPrefix = "LiveResourceId = " + liveResourceId + ": ";
 		
@@ -100,6 +102,7 @@ public class HandleLiveFinishService {
 					}
 					if(shotImgFlag){
 						thumbPath =  thumbPathMap.get("relPath")+ Constants.PATH_SEPARATOR +imgPathlist.get(0);
+						finishSuccessFlag = true;
 					}
 					log.info(logPrefix + "截图第"+ (shotImgTimes+1) +",图片 " + thumbPath);
 				}
@@ -122,6 +125,7 @@ public class HandleLiveFinishService {
 			log.info(logPrefix + "finish fail.");
 		}
 		
+		return finishSuccessFlag;
 	}
 	
 	private String boolean2Str(boolean flag){

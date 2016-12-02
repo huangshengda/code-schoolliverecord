@@ -19,6 +19,7 @@ import com.codyy.slr.entity.User;
 import com.codyy.slr.parambean.AddResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.ResourceService;
+import com.codyy.slr.service.HandleLiveFinishService;
 import com.codyy.slr.service.HandleVideoService;
 import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.util.ParamUtils;
@@ -43,6 +44,9 @@ public class ResourceController {
 	
 	@Autowired
 	private HandleVideoService handleVideoService;
+	
+	@Autowired
+	private HandleLiveFinishService handleLiveFinishService;
 
 	/**
 	 * 后台资源管理(上传、录制资源管理共用)
@@ -295,30 +299,18 @@ public class ResourceController {
 	/**
 	 * 结束直播课程
 	 */
-	/**
-	 * 获取直播是否结束 
-	 */
 	@ResponseBody
 	@RequestMapping("live/finish")
-	public ReturnVoOne<String> has(String liveResourceId){
+	public ReturnVoOne<String> finishLive(String liveResourceId){
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
-			//1更新数据库将直播路径设置为空
-			resourceService.updateLiveResourceLivingPath(liveResourceId);
-			//2查找文件
-			
-			//3合并文件
-			
-			//4移动文件
-			
-			//5删除文件
-			
-			//6将存储路径 直播状态更新到数据库
-			
+			boolean flag = handleLiveFinishService.finishLive(liveResourceId);
+			String msg = flag == true ? "结束课程成功": "结束课程失败";
+			returnVoOne.setMsg(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnVoOne.setCode(Constants.FAILED);
-			returnVoOne.setMsg("获取信息失败");
+			returnVoOne.setMsg("结束课程异常");
 		}
 		return returnVoOne;
 	}
