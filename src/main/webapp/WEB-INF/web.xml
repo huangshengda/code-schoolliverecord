@@ -6,7 +6,7 @@
 	<display-name>schoolLiveRecord</display-name>
 	
 	<welcome-file-list>
-    	<welcome-file>login.html</welcome-file>
+    	<welcome-file>index.jsp</welcome-file>
   	</welcome-file-list>
 	
 	<!-- 加载spring配置文件 -->
@@ -62,6 +62,16 @@
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 用于处理跨域 -->
+	<filter>
+		<filter-name>CrossDomainFilter</filter-name>
+		<filter-class>com.codyy.slr.filter.CrossDomainFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CrossDomainFilter</filter-name>
+		<url-pattern>/</url-pattern>
 	</filter-mapping>
 	
 	<!-- token 验证-->

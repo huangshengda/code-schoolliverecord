@@ -20,7 +20,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>角色:</label></span>
           <span class="cd-f-value ">
-            <select name="userType" data-vali="notnull"><option>学校</option></select>
+            <select name="userType" data-vali="notnull"><option>管理员</option><option>学校</option><option>学生</option></select>
           </span>
         </div>   
         <button class="sBtn" type="button" @click="search_one">查询</button>
