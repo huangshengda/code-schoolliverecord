@@ -14,8 +14,18 @@ public class DmsServerVo {
 
     private List<String> opt;
     
+    private int sort;
     
-    public List<String> getOpt() {
+    
+    public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+	public List<String> getOpt() {
 		return (opt==null?Constants.EDIT_DELETE:opt) ;
 	}
 

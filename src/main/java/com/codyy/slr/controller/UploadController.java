@@ -114,10 +114,9 @@ public class UploadController {
 			e.printStackTrace();
 		}	
 			
-
 			Double per = per1*1.0 / filesize*1.0 *100;
 			
-				return new ReturnVoOne<Double>(1,null,per);
+			return new ReturnVoOne<Double>(1,null,per);
 		
 	}
 	

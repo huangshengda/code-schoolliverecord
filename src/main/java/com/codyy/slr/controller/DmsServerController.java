@@ -31,10 +31,14 @@ public class DmsServerController {
 	@ResponseBody
 	public ReturnVoList<DmsServerVo> getDmsServerList(String dmsServerName){
 		int code = Constants.SUCCESS;
+		int i = 0;
 		String msg = "查询成功";
 		List<DmsServerVo> dmsServerList = new ArrayList<DmsServerVo>();
 		try {
 			dmsServerList = dmsServerService.getDmsServerList(dmsServerName);
+			for(DmsServerVo dmsServerVo:dmsServerList){
+				dmsServerVo.setSort(++i);
+			}
 		} catch (Exception e) {
 			 code = Constants.FAILED;
 			 msg = "查询失败";
