@@ -1,0 +1,164 @@
+﻿@charset "utf-8";
+/**
+ * 功能描述：自定义组件相关的样式
+ * 
+ * 包含样式：自定义表格、分页、表单模板样式。
+ * 依赖：base.css
+ * 创建人：liangjifei
+ */
+
+/**  查询新增修改的表单，开始  **/
+/**  Top元素样式留空，在具体项目中，对全局表单做统一样式控制  **/
+.cd-f{margin: auto;font-size: 0px;background-color: #ffffff;}
+.cd-f-row{/* padding: 8px 0px; */}
+.cd-f-eve{display: inline-block;position: relative;}
+.cd-f-notnull{color: #ff0000;font-size: 14px;}
+.cd-f-name{text-align: right;display: inline-block;height: 34px;width: 85px;}
+.cd-f-name.up{display: block;}
+.cd-f-value{text-align: left;/* width: 152px; */display: inline-block;position: relative;margin-left:5px;}
+.cd-f-value.down{display: block;width: 100%;}
+.cd-f-value.banner{position: absolute;z-index: 5;width: auto;left: 0px;padding-left: 100px;}
+.cd-f-vali{position: absolute;z-index: 10;color: #ff0000;line-height: 20px;width: 100%;font-size: 14px;}
+/**  查询条件的表单，结束   **/
+
+
+/**  表格样式，开始   **/
+.cd-g{
+	background-color: #ffffff;
+	border: 0px solid #999999;
+	padding: 20px;
+	color: #666666;
+	font-size: 14px;
+}
+.cd-g-header{
+	/* background-color: #f5f5f5; */
+	line-height: 35px;
+	padding-left: 20px;
+}
+.cd-g-header .totalnums{
+	color: #ff9c00;
+}
+.cd-g-context{
+	min-height: 452px;
+}
+.cd-g-table{
+	width: 100%;
+}
+.cd-g-table tr{
+	line-height: 40px;
+}
+.cd-g-table thead{
+	background-color: #2878b2;
+	/* color: #ffffff; */
+	font-weight: normal;
+}
+.cd-g-table th{
+	text-align: center;
+}
+.cd-g-table tbody>tr{
+	border-top: 1px solid #f4f4f4;
+}
+.cd-g-table td{
+	text-align: center;
+	white-space:nowrap;
+	overflow:  hidden;
+	white-space: nowrap;
+	-o-text-overflow: ellipsis;
+	text-overflow:  ellipsis;
+}
+.cd-g-table td i{
+	cursor: pointer;
+}
+.cd-g-table td i:hover{
+	color: #03a9f4;
+	border-bottom: 1px solid #03a9f4; 
+}
+.cd-g-table td span{
+	cursor: pointer;
+	color: #03a9f4;
+	margin: 0px 5px;
+}
+.cd-g-table td span:hover{
+	border-bottom: 1px solid #03a9f4;
+}
+.cd-g-paging{
+	padding-top: 20px;
+	text-align: center;
+	display: none;
+}
+.cd-g-paging>ul{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	vertical-align: top;
+}
+.cd-g-paging li{
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	width: 35px;
+	cursor: pointer;
+	text-align: center;
+}
+.cd-g-paging li:hover{
+	background-color: #dddddd;
+	color: #03a9f4;
+}
+.cd-g-paging li.active{
+	background-color: #f3f3f3;
+	color: #03a9f4;
+}
+/**  表格样式，结束   **/
+
+
+/**  上传按钮样式，开始   **/
+.cd-fileupshow{
+	position: relative;
+}
+.cd-fileupinput{
+	position: absolute;
+	z-index: 5;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.h5filepu-load-wap{
+	position: fixed;
+	z-index: 1000;
+	background: rgba(0,0,0,0.2);
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 300px;
+}
+.h5filepu-load-wap>img{
+}
+.h5filepu-load-wap>lable{
+	position: absolute;
+	color: #696969;
+	font-size: 25px;
+	font-weight: 900;
+	float: right;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.h5filepu-load-wap>lable:HOVER{
+	font-size: 30px;
+}
+/**  上传样式，结束   **/
+.cd-g-paging input{
+	height: 24px;
+    width: 50px;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    text-align: center;
+}
