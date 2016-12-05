@@ -1,8 +1,10 @@
 package com.codyy.slr.vo;
 
 /**
- *网站基础信息请求参数 
- * @author huangshengda
+ * 
+ * @Description: 网站基础信息请求参数bean  
+ * @author huangshengda  
+ * @date 2016年12月2日   
  *
  */
 public class BasicInfoVo {

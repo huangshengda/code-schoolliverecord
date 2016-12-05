@@ -12,7 +12,9 @@ import com.codyy.slr.vo.BasicInfoVo;
 
 /**
  * 
- * @author huangshengda
+ * @Description: TODO(这里用一句话描述这个类的作用)  
+ * @author huangshengda  
+ * @date 2016年12月2日   
  *
  */
 @Service
@@ -21,6 +23,13 @@ public class BasicInfoService {
 	@Autowired
 	private BasicInfoMapper basicInfoMapper;
 	
+	/**
+	 * 
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 * @param param
+	 * @return
+	 *
+	 */
 	public boolean updateBasicInfo(BasicInfoVo param) {
 		
 		BasicInfo info = new BasicInfo("title",param.getTitle());
