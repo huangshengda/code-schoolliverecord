@@ -141,8 +141,8 @@
 	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="finishLiveTime" />	
-				<ref bean="delTempFilesTime" />	
+				<!-- <ref bean="finishLiveTime" />	
+				<ref bean="delTempFilesTime" />	 -->
 			</list>
 		</property>
 	</bean>
