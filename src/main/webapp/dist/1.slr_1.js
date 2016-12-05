@@ -62,7 +62,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -73,9 +73,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-578512f8", __vue_options__)
+	    hotAPI.createRecord("data-v-743091b2", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-578512f8", __vue_options__)
+	    hotAPI.reload("data-v-743091b2", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] basic.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -459,10 +459,10 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Sidebar.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Sidebar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-cf46dd56"
+	__vue_options__._scopeId = "data-v-56246de2"
 
 	/* hot reload */
 	if (true) {(function () {
@@ -471,9 +471,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-cf46dd56", __vue_options__)
+	    hotAPI.createRecord("data-v-56246de2", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-cf46dd56", __vue_options__)
+	    hotAPI.reload("data-v-56246de2", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Sidebar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -516,7 +516,7 @@ webpackJsonp([1,3,4],[
 
 
 	// module
-	exports.push([module.id, "\n.menu[data-v-cf46dd56]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-cf46dd56]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-cf46dd56]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-cf46dd56]{\n  background-color:#f0f0f0;\n  color:#34a150;\n}\n.menu-level1[data-v-cf46dd56]:hover,.menu-level1[data-v-cf46dd56]:visited,.menu-level1[data-v-cf46dd56]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n\n", ""]);
+	exports.push([module.id, "\n.menu[data-v-56246de2]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-56246de2]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-56246de2]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-56246de2]{\n  background-color:#f0f0f0;\n  color:#34a150;\n}\n.menu-level1[data-v-56246de2]:hover,.menu-level1[data-v-56246de2]:visited,.menu-level1[data-v-56246de2]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n\n", ""]);
 
 	// exports
 
@@ -662,10 +662,10 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\Expanding.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\Expanding.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-ca0e3326"
+	__vue_options__._scopeId = "data-v-459e4273"
 
 	/* hot reload */
 	if (true) {(function () {
@@ -674,9 +674,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-ca0e3326", __vue_options__)
+	    hotAPI.createRecord("data-v-459e4273", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-ca0e3326", __vue_options__)
+	    hotAPI.reload("data-v-459e4273", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Expanding.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -719,7 +719,7 @@ webpackJsonp([1,3,4],[
 
 
 	// module
-	exports.push([module.id, "\n.collapse[data-v-ca0e3326] {\n  display: none;\n&.in {\n    display: block;\n}\n}\n.collapsing[data-v-ca0e3326] {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  transition: height .3s ease;\n}\n", ""]);
+	exports.push([module.id, "\n.collapse[data-v-459e4273] {\n  display: none;\n&.in {\n    display: block;\n}\n}\n.collapsing[data-v-459e4273] {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  transition: height .3s ease;\n}\n", ""]);
 
 	// exports
 
@@ -809,7 +809,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-ca0e3326", module.exports)
+	     __webpack_require__(23).rerender("data-v-459e4273", module.exports)
 	  }
 	}
 
@@ -860,7 +860,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-cf46dd56", module.exports)
+	     __webpack_require__(23).rerender("data-v-56246de2", module.exports)
 	  }
 	}
 
@@ -890,10 +890,10 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Levelbar.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Levelbar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-413e5fe6"
+	__vue_options__._scopeId = "data-v-d257c128"
 
 	/* hot reload */
 	if (true) {(function () {
@@ -902,9 +902,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-413e5fe6", __vue_options__)
+	    hotAPI.createRecord("data-v-d257c128", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-413e5fe6", __vue_options__)
+	    hotAPI.reload("data-v-d257c128", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Levelbar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -947,7 +947,7 @@ webpackJsonp([1,3,4],[
 
 
 	// module
-	exports.push([module.id, "\n.levelbar .title[data-v-413e5fe6]{\n  height: 32px;\n  line-height: 32px;\n  font-size: 22px;\n  margin: 0;\n}\n.levelbar[data-v-413e5fe6]{\n  margin: 10px 0;\n}\n", ""]);
+	exports.push([module.id, "\n.levelbar .title[data-v-d257c128]{\n  height: 32px;\n  line-height: 32px;\n  font-size: 22px;\n  margin: 0;\n}\n.levelbar[data-v-d257c128]{\n  margin: 10px 0;\n}\n", ""]);
 
 	// exports
 
@@ -1044,7 +1044,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Breadcrumb.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Breadcrumb.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1055,9 +1055,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-3fabc01a", __vue_options__)
+	    hotAPI.createRecord("data-v-f26093c0", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-3fabc01a", __vue_options__)
+	    hotAPI.reload("data-v-f26093c0", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Breadcrumb.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1156,7 +1156,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-3fabc01a", module.exports)
+	     __webpack_require__(23).rerender("data-v-f26093c0", module.exports)
 	  }
 	}
 
@@ -1180,7 +1180,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-413e5fe6", module.exports)
+	     __webpack_require__(23).rerender("data-v-d257c128", module.exports)
 	  }
 	}
 
@@ -1200,7 +1200,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-578512f8", module.exports)
+	     __webpack_require__(23).rerender("data-v-743091b2", module.exports)
 	  }
 	}
 
@@ -1227,7 +1227,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\comment.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\comment.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1238,9 +1238,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-37d3994e", __vue_options__)
+	    hotAPI.createRecord("data-v-55a337f0", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-37d3994e", __vue_options__)
+	    hotAPI.reload("data-v-55a337f0", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] comment.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1399,7 +1399,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-37d3994e", module.exports)
+	     __webpack_require__(23).rerender("data-v-55a337f0", module.exports)
 	  }
 	}
 
@@ -1429,7 +1429,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\component.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\component.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1440,9 +1440,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-e750a1a8", __vue_options__)
+	    hotAPI.createRecord("data-v-3e2ab366", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-e750a1a8", __vue_options__)
+	    hotAPI.reload("data-v-3e2ab366", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] component.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1691,7 +1691,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-e750a1a8", module.exports)
+	     __webpack_require__(23).rerender("data-v-3e2ab366", module.exports)
 	  }
 	}
 
@@ -1718,7 +1718,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\default.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\default.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -1729,9 +1729,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-bf327fa0", __vue_options__)
+	    hotAPI.createRecord("data-v-3dc18aea", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-bf327fa0", __vue_options__)
+	    hotAPI.reload("data-v-3dc18aea", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] default.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2178,7 +2178,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-bf327fa0", module.exports)
+	     __webpack_require__(23).rerender("data-v-3dc18aea", module.exports)
 	  }
 	}
 
@@ -2205,7 +2205,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\management.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\management.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -2216,9 +2216,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-cfb923b8", __vue_options__)
+	    hotAPI.createRecord("data-v-20b0f12a", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-cfb923b8", __vue_options__)
+	    hotAPI.reload("data-v-20b0f12a", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] management.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2446,7 +2446,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-cfb923b8", module.exports)
+	     __webpack_require__(23).rerender("data-v-20b0f12a", module.exports)
 	  }
 	}
 
@@ -2473,7 +2473,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\platform.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\platform.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -2484,9 +2484,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-c1cd36d8", __vue_options__)
+	    hotAPI.createRecord("data-v-a5d01dcc", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-c1cd36d8", __vue_options__)
+	    hotAPI.reload("data-v-a5d01dcc", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] platform.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2682,7 +2682,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-c1cd36d8", module.exports)
+	     __webpack_require__(23).rerender("data-v-a5d01dcc", module.exports)
 	  }
 	}
 
@@ -2709,7 +2709,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\server.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\server.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -2720,9 +2720,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-6fd371a4", __vue_options__)
+	    hotAPI.createRecord("data-v-921130ac", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-6fd371a4", __vue_options__)
+	    hotAPI.reload("data-v-921130ac", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] server.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3006,7 +3006,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-6fd371a4", module.exports)
+	     __webpack_require__(23).rerender("data-v-921130ac", module.exports)
 	  }
 	}
 
@@ -3036,7 +3036,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\source.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\source.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3047,9 +3047,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-cb2d0308", __vue_options__)
+	    hotAPI.createRecord("data-v-3ce516fc", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-cb2d0308", __vue_options__)
+	    hotAPI.reload("data-v-3ce516fc", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] source.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3309,7 +3309,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-cb2d0308", module.exports)
+	     __webpack_require__(23).rerender("data-v-3ce516fc", module.exports)
 	  }
 	}
 
@@ -3336,7 +3336,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\upload.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\basic\\context\\upload.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3347,9 +3347,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-63a87d3c", __vue_options__)
+	    hotAPI.createRecord("data-v-154fb768", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-63a87d3c", __vue_options__)
+	    hotAPI.reload("data-v-154fb768", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] upload.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3586,7 +3586,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-63a87d3c", module.exports)
+	     __webpack_require__(23).rerender("data-v-154fb768", module.exports)
 	  }
 	}
 
@@ -3613,7 +3613,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\demand.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\demand.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3624,9 +3624,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-5c32db1e", __vue_options__)
+	    hotAPI.createRecord("data-v-4aaaeaf7", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-5c32db1e", __vue_options__)
+	    hotAPI.reload("data-v-4aaaeaf7", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] demand.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3797,7 +3797,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-5c32db1e", module.exports)
+	     __webpack_require__(23).rerender("data-v-4aaaeaf7", module.exports)
 	  }
 	}
 
@@ -3827,7 +3827,7 @@ webpackJsonp([1,3,4],[
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\CodyyGitLocaltion\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\home.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\views\\home.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -3838,9 +3838,9 @@ webpackJsonp([1,3,4],[
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-54669e85", __vue_options__)
+	    hotAPI.createRecord("data-v-5553608b", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-54669e85", __vue_options__)
+	    hotAPI.reload("data-v-5553608b", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] home.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -4046,7 +4046,7 @@ webpackJsonp([1,3,4],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-54669e85", module.exports)
+	     __webpack_require__(23).rerender("data-v-5553608b", module.exports)
 	  }
 	}
 

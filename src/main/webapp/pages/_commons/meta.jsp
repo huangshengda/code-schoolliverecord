@@ -26,4 +26,9 @@ ROOT_SERVER_FILEUP = "";
  */
 ROOT_SERVER_TEST = "";
 </script>
-<link rel="stylesheet" type="text/css" href="./public/myLayer/layer/skin/layer.css">
+<link rel="stylesheet" type="text/css" href="<%=ROOT_UI_PUBLIC%>/myLayer/layer/skin/layer.css">
+<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/jquery/jquery-2.2.4.js" ></script>
+<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/myLayer/layer/layer.js" ></script>
+<script type="text/javascript" src="<%=ROOT_UI_DIST%>/slr_manifest.js" ></script>
+<script type="text/javascript" src="<%=ROOT_UI_DIST%>/slr_common.js" ></script>
+<script type="text/javascript" src="<%=ROOT_UI_DIST%>/slr_base.js" ></script>
