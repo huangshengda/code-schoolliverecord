@@ -17,3 +17,7 @@ ROOT_SERVER_FILEUP = "";
  * TEST服务端的根目录（注意别复制代码不看备注
  */
 ROOT_SERVER_TEST = "";
+/**
+ * 
+ */
+ROOT_SERVER_WS = "localhost:8080/SchoolLiveRecord";
