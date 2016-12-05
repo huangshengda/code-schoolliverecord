@@ -1613,7 +1613,7 @@ webpackJsonp([1,3,4],[
 	      "id": "grade"
 	    }
 	  }, [_h('table', [_vm._m(0), " ", _h('tbody', [_vm._l((_vm.grades), function(grade, index) {
-	    return _h('tr', [_h('td', [_vm._s(grade.subjectName)]), " ", (index === 0) ? _h('td', [_h('i', {
+	    return _h('tr', [_h('td', [_vm._s(grade.classlevelName)]), " ", (index === 0) ? _h('td', [_h('i', {
 	      staticClass: "iconfont icon-movedown"
 	    })]) : [(index === (_vm.grades.length - 1)) ? _h('td', [_h('i', {
 	      staticClass: "iconfont icon-moveup"
@@ -2054,7 +2054,7 @@ webpackJsonp([1,3,4],[
 	      "name": "userType",
 	      "data-vali": "notnull"
 	    }
-	  }, [_h('option', ["学校"])])])])
+	  }, [_h('option', ["管理员"]), _h('option', ["学校"]), _h('option', ["学生"])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('form', {
 	    staticClass: "layBox",
@@ -2797,29 +2797,25 @@ webpackJsonp([1,3,4],[
 	//
 	//
 	//
+	//
 
 	exports.default = {
 	  data: function data() {
 	    return {};
 	  },
 	  mounted: function mounted() {
-	    this.search_one();
+	    this.server();
 	  },
 
 	  methods: {
-	    search_one: function search_one() {
-	      //Validation
-	      var result = Validation.validation({
-	        containerId: "condition"
-	      });
-	      if (result == true) {}
-	      var params = $('#condition').serialize();
+	    server: function server() {
+	      var params = {};
 	      CDUtil.ajaxPost("/base/dmsserver/list", params, function (retVO) {
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
 	          //用来展示表格的表头数据
-	          thead: [{ name: "序号", valuekey: "serverId" }, { name: "服务器名称", valuekey: "serverName" }, { name: "DMS 地址", valuekey: "serverValue" }, { name: "操作", valuekey: "opt", type: "opt" }],
+	          thead: [{ name: "序号", valuekey: "" }, { name: "服务器名称", valuekey: "serverName" }, { name: "DMS 地址", valuekey: "serverValue" }, { name: "操作", valuekey: "opt", type: "opt" }],
 	          //用来展示表格的数据
 	          //这个应该是后台返回的部分
 	          gData: retVO,
@@ -2828,45 +2824,31 @@ webpackJsonp([1,3,4],[
 	          //执行页面查询的方法
 	          searchFun: function searchFun() {},
 	          //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	          optParams: ["userId", "token"],
+	          optParams: ["serverId"],
 	          //表格中的行操作名称
 	          optName: { edit_fun: "编辑", del_fun: "删除" },
 	          //表格中的行操作方法
 	          optFuns: {
 	            edit_fun: function edit_fun(params, dom) {
-	              var userId = params.userId;
-	              var useridParams = { 'userId': userId };
-	              $.post("/base/dmsserver/update", useridParams, function (data) {
-	                console.log(data.code);
-	                if (data.code == 1) {
-	                  $('[name="serverId"]').val(data.data.serverId);
-	                  $('[name="serverName"]').val(data.data.serverName);
-	                  $('[name="serverValue"]').val(data.data.serverValue);
-	                }
-	              });
+	              alert($("input[name=serverName]").val());
+	              $("input[name=serverName]").val(params.serverName);
+	              $("input[name=serverValue]").val(params.serverValue);
 	              layer.open({
 	                type: 1,
-	                title: '编辑用户',
+	                title: '编辑服务器',
 	                skin: 'layui-layer-rim', //加上边框
 	                area: ['450px', '375px'], //宽高
-	                content: $("#edituser")
+	                content: $("#editserver")
 	              });
-	            }, del_fun: function del_fun(params, dom) {
-	              var userId = params.userId;
-	              var useridParams = { 'userId': userId };
+	            },
+	            del_fun: function del_fun(params, dom) {
+
 	              layer.alert('确定删除该行数据?', function (index) {
-	                $.ajax({
-	                  type: "post",
-	                  url: "/base/dmsserver/delete", //action==url
-	                  dataType: "json", //json
-	                  data: useridParams, //传到后台的参数
-	                  success: function success(data) {
-	                    layer.close(index);
-	                    layer.msg('删除成功!');
-	                  }
-	                });
+	                var serverId = params.serverId;
+	                CDUtil.ajaxPost("/base/dmsserver/delete", serverId, function (retVO) {});
+	                layer.close(index);
+	                layer.msg('删除成功!');
 	              });
-	              /* ajaxCallPost("mockjs_grid_data.json",{"num1":params.num1},callback);*/
 	            }
 	          }
 	        };
@@ -2879,18 +2861,15 @@ webpackJsonp([1,3,4],[
 	        title: '添加服务器',
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '375px'], //宽高
-	        content: $("#adduser")
+	        content: $("#addserver")
+
 	      });
 	    },
-	    addsb: function addsb() {
-	      var result = Validation.validation({
-	        containerId: "adduser"
-	      });
-	      var params = $('#adduser').serialize();
-	      CDUtil.ajaxPost("/base/dmsserver/add", params, function (retVO) {
-	        Grid.initGrid(config, function () {});
-	      });
+	    addServerFun: function addServerFun() {
+	      var addparams = $('#addserver').serialize();
+	      CDUtil.ajaxPost("/base/dmsserver/add", addparams, function (retVO) {});
 	    }
+
 	  }
 
 	};
@@ -2909,7 +2888,24 @@ webpackJsonp([1,3,4],[
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["新增服务器"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
+	  }, ["新增服务器"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _h('form', {
+	    staticClass: "layBox",
+	    attrs: {
+	      "action": "",
+	      "id": "addserver"
+	    }
+	  }, [_h('div', {
+	    staticClass: "cd-f-row"
+	  }, [_vm._m(2), " ", _vm._m(3), " ", _h('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_vm._m(4), " ", _h('span', [_h('button', {
+	    staticClass: "lay-btn green-btn",
+	    on: {
+	      "click": _vm.addServerFun
+	    }
+	  }, ["确定"]), " ", _h('button', {
+	    staticClass: "lay-btn gray-btn"
+	  }, ["取消"])])])])]), " "])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('div', {
 	    staticClass: "dashboard"
@@ -2968,15 +2964,7 @@ webpackJsonp([1,3,4],[
 	    staticClass: "lay-btn gray-btn"
 	  }, ["取消"])])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('form', {
-	    staticClass: "layBox",
-	    attrs: {
-	      "action": "",
-	      "id": "addserver"
-	    }
-	  }, [_h('div', {
-	    staticClass: "cd-f-row"
-	  }, [_h('div', {
+	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
@@ -2993,7 +2981,9 @@ webpackJsonp([1,3,4],[
 	      "name": "serverName",
 	      "data-vali": "notnull"
 	    }
-	  })])]), " ", _h('div', {
+	  })])])
+	},function (){var _vm=this;var _h=_vm.$createElement;
+	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
 	    staticClass: "cd-f-name"
@@ -3007,15 +2997,11 @@ webpackJsonp([1,3,4],[
 	      "name": "serverValue",
 	      "data-vali": "notnull"
 	    }
-	  })])]), " ", _h('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  })])])
+	},function (){var _vm=this;var _h=_vm.$createElement;
+	  return _h('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label')]), " ", _h('span', [_h('button', {
-	    staticClass: "lay-btn green-btn"
-	  }, ["确定"]), _h('button', {
-	    staticClass: "lay-btn gray-btn"
-	  }, ["取消"])])])])])
+	  }, [_h('label')])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3191,7 +3177,7 @@ webpackJsonp([1,3,4],[
 	          //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
 	          optParams: ["resourceId", "resourceName"],
 	          //表格中的行操作名称
-	          optName: { edit_fun: "编辑", del_fun: "删除" },
+	          optName: { view_fun: "查看", edit_fun: "编辑", del_fun: "删除" },
 	          //表格中的行操作方法
 	          optFuns: { edit_fun: function edit_fun(params, dom) {
 	              window.open('up_subject.html');

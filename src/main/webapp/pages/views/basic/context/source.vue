@@ -77,7 +77,7 @@ export default {
           //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
           optParams: ["resourceId","resourceName"],
           //表格中的行操作名称
-          optName: {edit_fun:"编辑",del_fun:"删除"},
+          optName: {view_fun:"查看",edit_fun:"编辑",del_fun:"删除"},
           //表格中的行操作方法
           optFuns: {edit_fun:function(params,dom){
               window.open('up_subject.html');
