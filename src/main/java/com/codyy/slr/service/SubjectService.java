@@ -15,35 +15,43 @@ import com.codyy.slr.util.UUIDUtils;
 
 @Service
 public class SubjectService {
-	
+
 	@Autowired
 	private SubjectMapper subjectMapper;
-	
+
 	public List<Subject> getSubjectList(String subjectName) {
 		return subjectMapper.getSubjectList(subjectName);
 	}
 
-	public Map<String,Object> addSubject(Subject subject) {
-		Map<String,Object> map = new HashMap<String, Object>();
+	/**
+	 * 
+	 * @Description: 添加前要判断是否重复
+	 * @param subject
+	 * @return
+	 *
+	 */
+	public Map<String, Object> addSubject(Subject subject) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int count = 0;
 		int code = Constants.SUCCESS;
 		String msg = "添加成功";
-		 List<Subject> list = subjectMapper.getSubjectList(null);
-		 for(Subject s:list){
-			 if(subject.getSubjectName().equals(s.getSubjectName())){
-				 count ++;
-			 }
-		 }
-		if(count==0){
-			subject.setSort(list.size()+1);
+		List<Subject> list = subjectMapper.getSubjectList(null);
+		for (Subject s : list) {
+			if (subject.getSubjectName().equals(s.getSubjectName())) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			subject.setSort(list.size() + 1);
 			subject.setCreateTime(new Date());
 			subject.setDeleteFlag("N");
 			subject.setSubjectId(UUIDUtils.getUUID());
-			if(subjectMapper.insertSelective(subject)!=1){
+			if (subjectMapper.insertSelective(subject) != 1) {
 				msg = "添加失败";
 				code = Constants.FAILED;
-			};
-		}else{
+			}
+			;
+		} else {
 			msg = "学科名称重复";
 			code = Constants.FAILED;
 		}
@@ -52,7 +60,6 @@ public class SubjectService {
 		return map;
 	}
 
-
 	public int modifySubject(Subject subject) {
 		return subjectMapper.updateByPrimaryKeySelective(subject);
 	}
@@ -60,7 +67,5 @@ public class SubjectService {
 	public void modifySubjectSort(List<Subject> list) {
 		subjectMapper.modifySubjectSort(list);
 	}
-	
-	
 
 }
