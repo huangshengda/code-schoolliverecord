@@ -46,7 +46,7 @@ methods:{
         var _self = this;
         var params = {};
         CDUtil.ajaxPost("/home/live/list",params,function(retVO){
-         	_self.posts = JSON.parse(retVO);
+         	_self.posts = retVO;
             console.log(_self.posts)
         })
        
@@ -55,7 +55,7 @@ methods:{
         var _self = this;
          var params = {};
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
-            _self.courseList = JSON.parse(retVO);
+            _self.courseList = retVO;
         })
        
       }
