@@ -21,13 +21,20 @@ import com.codyy.slr.entity.User;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 
-public class TokenFilter implements Filter{
-	//不需要过滤的路径
-	private List<String> excludePath ;
+/**
+ * 
+ * @Description: Token过滤器(用户验证)  
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
+public class TokenFilter implements Filter {
+	// 不需要过滤的路径
+	private List<String> excludePath;
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		excludePath = initNotFilterUrl(filterConfig,"excludePath");
+		excludePath = initNotFilterUrl(filterConfig, "excludePath");
 	}
 
 	@Override
@@ -36,56 +43,55 @@ public class TokenFilter implements Filter{
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
-		
+
 		for (String string : excludePath) {
-			if(uri.indexOf(string) != -1){
+			if (uri.indexOf(string) != -1) {
 				chain.doFilter(req, resp);
 				return;
 			}
 		}
-		
-		//先从header中取token,如果没有再从参数中取
+
+		// 先从header中取token,如果没有再从参数中取
 		String token = req.getHeader("token");
-		if(StringUtils.isEmpty(token)){
+		if (StringUtils.isEmpty(token)) {
 			token = req.getParameter("token");
 		}
-		
-		if(StringUtils.isEmpty(token)){
+
+		if (StringUtils.isEmpty(token)) {
 			resp.setContentType("text/html;charset=UTF-8");
-			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED,"请传token参数")));
-			return; 
+			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请传token参数")));
+			return;
 		}
-		
+
 		try {
-			//token+agent 作为key 增加破解难度
+			// token+agent 作为key 增加破解难度
 			String agent = req.getHeader("User-Agent");
 			User user = TokenUtils.getUserToCache(token + agent);
-			if(user == null || "0".equals(user.getUserId())){
+			if (user == null || "0".equals(user.getUserId())) {
 				resp.setContentType("text/html;charset=UTF-8");
-				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN,"未登陆")));
-				return; 
+				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
+				return;
 			}
 			req.setAttribute("user", user);
 			chain.doFilter(req, resp);
 		} catch (ExecutionException e) {
 			resp.setContentType("text/html;charset=UTF-8");
-			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED,"请求失败")));
+			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请求失败")));
 			e.printStackTrace();
 		}
 	}
-	
+
 	private List<String> initNotFilterUrl(FilterConfig filterConfig, String param) {
 		String excludePath = filterConfig.getInitParameter(param);
 		String[] paths = excludePath.trim().split(";");
-		
+
 		List<String> list = new ArrayList<String>();
-		for(String path : paths){
+		for (String path : paths) {
 			list.add(path);
 		}
 		return list;

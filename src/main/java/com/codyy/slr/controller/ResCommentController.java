@@ -21,8 +21,10 @@ import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**
- * 资源评论
- * @author huangshengda
+ * 
+ * @Description: 资源评论  
+ * @author huangshengda  
+ * @date 2016年12月6日   
  *
  */
 @Controller
@@ -31,9 +33,12 @@ public class ResCommentController {
 	@Autowired
 	private ResCommentService resCommentService;
 
-	
 	/**
-	 * 添加资源评论
+	 * 
+	 * @Description: 添加评论  
+	 * @param resComment
+	 * @return
+	 *
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
@@ -48,7 +53,7 @@ public class ResCommentController {
 				return returnVoOne;
 			}
 			boolean flag = resCommentService.addResComment(resComment);
-			if(!flag){
+			if (!flag) {
 				returnVoOne.setCode(Constants.FAILED);
 				returnVoOne.setMsg("添加评论失败");
 			}
@@ -59,9 +64,13 @@ public class ResCommentController {
 		}
 		return returnVoOne;
 	}
-	
+
 	/**
-	 * 删除资源评论
+	 * 
+	 * @Description: 删除评论  
+	 * @param resComment
+	 * @return
+	 *
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
@@ -76,21 +85,27 @@ public class ResCommentController {
 		}
 		return returnVoOne;
 	}
-	
+
 	/**
-	 * 获取资源评论(一级评论,二级评论前五条)
+	 * 
+	 * @Description: 获取资源评论(一级评论,二级评论前五条)  
+	 * @param page
+	 * @param resourceId
+	 * @param req
+	 * @return
+	 *
 	 */
 	@ResponseBody
 	@RequestMapping("/resource/comment/list")
-	public ReturnVoList<ResCommentVo> getResCommentPageList(Page page, String resourceId,HttpServletRequest req) {
-		User user =  (User) req.getAttribute("user");
+	public ReturnVoList<ResCommentVo> getResCommentPageList(Page page, String resourceId, HttpServletRequest req) {
+		User user = (User) req.getAttribute("user");
 		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>();
 		try {
 			Map<String, Object> map = MapUtils.newHashMap();
 			map.put("resourceId", resourceId);
 			map.put("userId", user.getUserId());
 			page.setMap(map);
-			page= resCommentService.getResCommentPageList(page);
+			page = resCommentService.getResCommentPageList(page);
 			returnVoList = new ReturnVoList<ResCommentVo>(page);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,19 +114,24 @@ public class ResCommentController {
 		}
 		return returnVoList;
 	}
-	
+
 	/**
-	 * 获取资源二级评论
+	 * 
+	 * @Description: 获取资源二级评论 
+	 * @param page
+	 * @param parentCommentId
+	 * @return
+	 *
 	 */
 	@ResponseBody
 	@RequestMapping("/resource/comment/subComment/list")
-	public ReturnVoList<ResCommentVo> getbResSuCommentPageList(Page page,String parentCommentId){
+	public ReturnVoList<ResCommentVo> getbResSuCommentPageList(Page page, String parentCommentId) {
 		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>();
 		try {
-			Map<String,Object> map =  MapUtils.newHashMap();
+			Map<String, Object> map = MapUtils.newHashMap();
 			map.put("parentCommentId", parentCommentId);
 			page.setMap(map);
-			page= resCommentService.getSubResCommentPageList(page);
+			page = resCommentService.getSubResCommentPageList(page);
 			returnVoList = new ReturnVoList<ResCommentVo>(page);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,30 +140,35 @@ public class ResCommentController {
 		}
 		return returnVoList;
 	}
-	
-	
+
 	/**
-	 * 获取资源评论(所有评论)
+	 * 
+	 * @Description: 获取资源评论(所有评论)
+	 * @param page
+	 * @param keywords
+	 * @param realname
+	 * @return
+	 *
 	 */
 	@ResponseBody
 	@RequestMapping("/base/resource/comment/list")
-	public ReturnVoList<ResCommentVo> getAllResCommentPageList(Page page, String keywords,String realname) {
+	public ReturnVoList<ResCommentVo> getAllResCommentPageList(Page page, String keywords, String realname) {
 		int code = Constants.SUCCESS;
 		String msg = "获取成功";
 		Map<String, Object> map = MapUtils.newHashMap();
-		map.put("keywords",MySqlKeyWordUtils.MySqlKeyWordReplace(keywords));
-		map.put("realname",MySqlKeyWordUtils.MySqlKeyWordReplace(realname));
+		map.put("keywords", MySqlKeyWordUtils.MySqlKeyWordReplace(keywords));
+		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(realname));
 		page.setMap(map);
 		try {
-			page= resCommentService.getAllResCommentPageList(page);
+			page = resCommentService.getAllResCommentPageList(page);
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "获取评论失败";
 			e.printStackTrace();
-			return new ReturnVoList<ResCommentVo>(code,msg,null);
+			return new ReturnVoList<ResCommentVo>(code, msg, null);
 		}
-		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>(page,code,msg);
+		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>(page, code, msg);
 		return returnVoList;
 	}
-	
+
 }

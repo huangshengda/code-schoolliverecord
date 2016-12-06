@@ -2,6 +2,13 @@ package com.codyy.slr.entity;
 
 import java.util.Date;
 
+/**
+ * 
+ * @Description: 资源bean 
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
 public class Resource {
 	private String resourceId;
 
@@ -32,12 +39,11 @@ public class Resource {
 	private String createUserId;
 
 	private String userId;
-	
+
 	private long size;
 
 	private Date createTime;
 
-	
 	public long getSize() {
 		return size;
 	}
@@ -162,9 +168,9 @@ public class Resource {
 		this.userId = userId == null ? null : userId.trim();
 	}
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId == null ? null : createUserId.trim();
-    }
+	public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId == null ? null : createUserId.trim();
+	}
 
 	public Date getCreateTime() {
 		return createTime;
@@ -176,14 +182,9 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [resourceId=" + resourceId + ", resourceName="
-				+ resourceName + ", subjectId=" + subjectId + ", author="
-				+ author + ", thumbPath=" + thumbPath + ", viewCnt=" + viewCnt
-				+ ", sourceType=" + sourceType + ", storePath=" + storePath
-				+ ", livingPath=" + livingPath + ", livingFlag=" + livingFlag
-				+ ", deleteFlag=" + deleteFlag + ", deleteUserId="
-				+ deleteUserId + ", deleteTime=" + deleteTime
-				+ ", createUserId=" + createUserId + ", userId=" + userId
-				+ ", createTime=" + createTime + "]";
+		return "Resource [resourceId=" + resourceId + ", resourceName=" + resourceName + ", subjectId=" + subjectId + ", author=" + author + ", thumbPath="
+				+ thumbPath + ", viewCnt=" + viewCnt + ", sourceType=" + sourceType + ", storePath=" + storePath + ", livingPath=" + livingPath
+				+ ", livingFlag=" + livingFlag + ", deleteFlag=" + deleteFlag + ", deleteUserId=" + deleteUserId + ", deleteTime=" + deleteTime
+				+ ", createUserId=" + createUserId + ", userId=" + userId + ", createTime=" + createTime + "]";
 	}
 }
