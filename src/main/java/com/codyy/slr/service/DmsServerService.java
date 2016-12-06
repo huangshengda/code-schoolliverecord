@@ -13,6 +13,13 @@ import com.codyy.slr.entity.DmsServer;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.DmsServerVo;
 
+/**
+ * 
+ * @Description: dms服务器
+ * @author bingshaowen 
+ * @date 2016年12月6日   
+ *
+ */
 @Service
 public class DmsServerService {
 	@Autowired
@@ -22,6 +29,13 @@ public class DmsServerService {
 		return dmsServerMapper.getDmsServerList(dmsServerName);
 	}
 
+	/**
+	 * 
+	 * @Description: 添加前要判断是否重复
+	 * @param dmsServer
+	 * @return
+	 *
+	 */
 	public Map<String, Object> addDmsServer(DmsServer dmsServer) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = 0;

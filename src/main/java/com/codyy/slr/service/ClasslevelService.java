@@ -13,6 +13,13 @@ import com.codyy.slr.dao.ClasslevelMapper;
 import com.codyy.slr.entity.Classlevel;
 import com.codyy.slr.util.UUIDUtils;
 
+/**
+ * 
+ * @Description: 年级
+ * @author bingshaowen 
+ * @date 2016年12月6日   
+ *
+ */
 @Service
 public class ClasslevelService {
 
@@ -23,6 +30,13 @@ public class ClasslevelService {
 		return classlevelMapper.getClasslevelList(ClasslevelName);
 	}
 
+	/**
+	 * 
+	 * @Description: 添加前要判断是否重名
+	 * @param Classlevel
+	 * @return
+	 *
+	 */
 	public Map<String, Object> addClasslevel(Classlevel Classlevel) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = 0;
