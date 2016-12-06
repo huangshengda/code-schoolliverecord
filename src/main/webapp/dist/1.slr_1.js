@@ -3924,7 +3924,6 @@ webpackJsonp([1,3,4],[
 	//
 	//
 	//
-	//
 
 	exports.default = {
 	  data: function data() {
@@ -3945,19 +3944,24 @@ webpackJsonp([1,3,4],[
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/home/live/list", params, function (retVO) {
-	        _self.posts = JSON.parse(retVO);
-	        console.log(_self.posts);
+	        console.log(retVO);
+	        _self.posts = retVO; //JSON.parse(retVO);
 	      });
 	    },
 	    showdemand: function showdemand() {
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
-	        _self.courseList = JSON.parse(retVO);
+	        _self.courseList = retVO; //JSON.parse(retVO);
 	      });
+	    },
+	    openLiveDetail: function openLiveDetail() {
+	      window.open(ROOT_UI + '/pages/views/live/live_detail.jsp');
+	    },
+	    openDemondDetail: function openDemondDetail() {
+	      window.open(ROOT_UI + '/pages/views/demond/demond_detail.jsp');
 	    }
 	  }
-
 	};
 
 /***/ },
@@ -3982,15 +3986,15 @@ webpackJsonp([1,3,4],[
 	    }, [_vm._s(post.resourceName)]), " ", _h('div', {
 	      staticClass: "col-md-4 tel"
 	    }, [_vm._s(post.classlevelName) + "/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author)]), " ", _h('div', {
-	      staticClass: "col-md-4"
-	    }, [_h('a', {
-	      attrs: {
-	        "href": post.resourceId,
-	        "target": "_blank"
+	      staticClass: "col-md-4",
+	      on: {
+	        "click": function($event) {
+	          _vm.openLiveDetail()
+	        }
 	      }
 	    }, [_h('i', {
 	      staticClass: "iconfont icon-avpic"
-	    }), "\n      进入直播"])])])
+	    }), "\n      进入直播"])])
 	  })]) : _h('div', {
 	    staticClass: "tac"
 	  }, [_h('img', {
@@ -4001,20 +4005,21 @@ webpackJsonp([1,3,4],[
 	    staticClass: "demand"
 	  }, [_vm._l((_vm.courseList.data), function(course) {
 	    return _h('div', {
-	      staticClass: "col-4"
+	      staticClass: "col-4",
+	      on: {
+	        "click": function($event) {
+	          _vm.openDemondDetail()
+	        }
+	      }
 	    }, [_h('div', {
 	      staticClass: "home-img"
-	    }, [_h('a', {
-	      attrs: {
-	        "href": "#a"
-	      }
 	    }, [_h('img', {
 	      attrs: {
 	        "src": course.thumbPath,
 	        "width": "285",
 	        "height": "160"
 	      }
-	    })]), " ", _h('div', {
+	    }), " ", _h('div', {
 	      staticClass: "home-times"
 	    }, [_h('span', {
 	      staticClass: "fr"

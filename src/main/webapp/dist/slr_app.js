@@ -6148,13 +6148,13 @@ webpackJsonp([0,3,4],{
 	        containerId: "login"
 	      });
 	      if (result == true) {
-	        var data = {
-	          userName: $('[name="username"]').val(),
-	          userPwd: $('[name="password"]').val(),
-	          CheckCode: $('[name="auto"]').val()
+	        var params = {
+	          userName: $("#username").val(),
+	          userPwd: $("#password").val(),
+	          CheckCode: $("#auto").val()
 	        };
-	        //提交数据给Login.ashx页面处理 
-	        $.post("", data, function (result) {});
+	        //提交数据给Login.ashx页面处理
+	        CDUtil.ajaxPost("", params, function (ret) {}, isCrossDomain);
 	      }
 	    }
 	  }
@@ -6510,6 +6510,9 @@ webpackJsonp([0,3,4],{
 	    staticClass: "cd-f-eve"
 	  }, [_h('button', {
 	    staticClass: "lay-btn gray-btn",
+	    attrs: {
+	      "type": "button"
+	    },
 	    on: {
 	      "click": _vm.loginIn
 	    }
@@ -6524,6 +6527,7 @@ webpackJsonp([0,3,4],{
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
+	      "id": "username",
 	      "name": "username",
 	      "data-vali": "notnull,username"
 	    }
@@ -6538,6 +6542,7 @@ webpackJsonp([0,3,4],{
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "text",
+	      "id": "password",
 	      "name": "password",
 	      "data-vali": "notnull,password"
 	    }
@@ -6549,6 +6554,7 @@ webpackJsonp([0,3,4],{
 	    staticClass: "ml30",
 	    attrs: {
 	      "type": "checkbox",
+	      "id": "auto",
 	      "name": "auto"
 	    }
 	  }), "自动登录\n      "])

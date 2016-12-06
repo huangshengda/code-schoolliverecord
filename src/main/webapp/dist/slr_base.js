@@ -35,7 +35,7 @@ webpackJsonp([2,3,4],[
 	__webpack_require__(113);
 
 	/**  加载编码加密工具  **/
-	__webpack_require__(119);
+	window.md5 = __webpack_require__(119);
 
 	/**  加载自定义JS组件  **/
 	window.CDUtil = __webpack_require__(120);
@@ -44,7 +44,6 @@ webpackJsonp([2,3,4],[
 	window.H5fileup = __webpack_require__(123);
 	window.Paging = __webpack_require__(124);
 	window.Validation = __webpack_require__(125);
-
 	/**  加载依赖于jQuery的JS组件  **/
 	/*require('imports?$=jquery!../public/jquery/jquery.dotdotdot');
 	require('imports?$=jquery!../public/jquery-ui/jquery-ui');*/
@@ -2087,7 +2086,7 @@ webpackJsonp([2,3,4],[
 	  */
 		CDUtil.ajaxPost = function (url, params, callback, isCrossDomain) {
 			var _config = {
-				url: ROOT_SERVER + url,
+				url: url,
 				type: 'POST',
 				dataType: "json",
 				data: params,
@@ -2097,6 +2096,9 @@ webpackJsonp([2,3,4],[
 					}
 				}
 			};
+			if (url.substr(0, "/".length) == "/" || url.substr(0, "./".length) == "./") {
+				_config.url = ROOT_SERVER + url;
+			}
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
@@ -2121,6 +2123,9 @@ webpackJsonp([2,3,4],[
 					}
 				}
 			};
+			if (url.substr(0, "/".length) == "/" || url.substr(0, "./".length) == "./") {
+				_config.url = ROOT_SERVER + url;
+			}
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
