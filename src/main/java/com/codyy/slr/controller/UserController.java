@@ -65,9 +65,8 @@ public class UserController {
 			if (userList.size() == 1) {
 				user = userList.get(0);
 				user.setToken(UUIDUtils.getUUID());
-				TokenUtils.putUserIdToCache(user.getToken() + agent, user);// token+agent
-																			// 作为key
-																			// 增加破解难度
+				// token+agent作为key 增加破解难度
+				TokenUtils.putUserIdToCache(user.getToken() + agent, user);
 				if ("TEACHER".equals(user.getUserType())) {
 					user.setColumn(Constants.COLUMN_MY_COURSE);
 				} else if ("STUDENT".endsWith(user.getUserType())) {
@@ -85,6 +84,21 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return new ReturnVoOne<User>(code, msg, user);
+	}
+
+	@SuppressWarnings("rawtypes")
+	@ResponseBody
+	@RequestMapping("loginout")
+	public ReturnVoOne loginout(HttpServletRequest req) {
+		ReturnVoOne one = new ReturnVoOne();
+		try {
+			User user = (User) req.getAttribute("user");
+			TokenUtils.removeUserFormCache(user.getToken());
+		} catch (Exception e) {
+			one.setMsg("退出失败");
+			one.setCode(Constants.FAILED);
+		}
+		return one;
 	}
 
 	/**
