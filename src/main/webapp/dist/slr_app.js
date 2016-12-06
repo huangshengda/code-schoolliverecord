@@ -6113,7 +6113,7 @@ webpackJsonp([0,3,4],{
 /***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -6125,6 +6125,54 @@ webpackJsonp([0,3,4],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+	var laryIndex;
 	exports.default = {
 	  data: function data() {
 	    return {
@@ -6132,10 +6180,19 @@ webpackJsonp([0,3,4],{
 	      item: []
 	    };
 	  },
+	  mounted: function mounted() {
+	    this.init();
+	  },
 
 	  methods: {
+	    init: function init() {
+	      if (sessionStorage.getItem("loginFlag") == "1") {
+	        $("#user_info").show();
+	        $("#login_button").hide();
+	      }
+	    },
 	    login: function login() {
-	      layer.open({
+	      laryIndex = layer.open({
 	        type: 1,
 	        title: '登录',
 	        skin: 'layui-layer-rim', //加上边框
@@ -6144,62 +6201,41 @@ webpackJsonp([0,3,4],{
 	      });
 	    },
 	    loginIn: function loginIn() {
-	      var result = Validation.validation({
-	        containerId: "login"
-	      });
+	      var result = true;
+	      /*result = Validation.validation({
+	         containerId: "login"
+	       });*/
 	      if (result == true) {
 	        var params = {
-	          userName: $("#username").val(),
-	          userPwd: $("#password").val(),
+	          username: $("#username").val(),
+	          password: md5($("#password").val()),
 	          CheckCode: $("#auto").val()
 	        };
-	        //提交数据给Login.ashx页面处理
-	        CDUtil.ajaxPost("", params, function (ret) {}, isCrossDomain);
+	        console.log(params);
+	        //提交数据给到后台处理
+	        CDUtil.ajaxPost("/login", params, function (retVO) {
+	          if (retVO.code == 1) {
+	            layer.close(laryIndex);
+	            $("#user_info").show();
+	            $("#login_button").hide();
+	            sessionStorage.loginFlag = "1";
+	            sessionStorage.token = retVO.data.token;
+	          }
+	        });
 	      }
+	    },
+	    logout: function logout() {
+	      CDUtil.ajaxPost("/loginout", {}, function (retVO) {
+	        if (retVO.code == 1) {
+	          $("#user_info").hide();
+	          $("#login_button").show();
+	          sessionStorage.removeItem("loginFlag");
+	          sessionStorage.removeItem("token");
+	        }
+	      });
 	    }
 	  }
-	}; //
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+	};
 
 /***/ },
 
@@ -6492,13 +6528,29 @@ webpackJsonp([0,3,4],{
 	      }
 	    }, ["\n              " + _vm._s(item.meta.showName) + "\n             "])])
 	  })]), " "]), " ", _h('div', {
-	    staticClass: "head-out fr"
-	  }, [_h('button', {
+	    staticClass: "head-out fr",
+	    staticStyle: {
+	      "display": "none"
+	    },
+	    attrs: {
+	      "id": "user_info"
+	    }
+	  }, ["\n        某某某", _h('span', {
+	    staticClass: "g-line"
+	  }, ["|"]), " ", _h('i', {
+	    staticClass: "iconfont icon-sign-out",
+	    on: {
+	      "click": _vm.logout
+	    }
+	  })]), " ", _h('button', {
 	    staticClass: "btn fr",
+	    attrs: {
+	      "id": "login_button"
+	    },
 	    on: {
 	      "click": _vm.login
 	    }
-	  }, ["登录"])])]), " ", " ", _h('form', {
+	  }, ["登录"])]), " ", " ", _h('form', {
 	    staticClass: "layBox mt40",
 	    attrs: {
 	      "action": "",
@@ -6541,7 +6593,7 @@ webpackJsonp([0,3,4],{
 	    staticClass: "cd-f-value"
 	  }, [_h('input', {
 	    attrs: {
-	      "type": "text",
+	      "type": "password",
 	      "id": "password",
 	      "name": "password",
 	      "data-vali": "notnull,password"

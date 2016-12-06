@@ -1871,9 +1871,8 @@ webpackJsonp([1,3,4],[
 	        containerId: "condition"
 	      });
 	      if (result == true) {}
-	      var params = $('#condition').serialize();
+	      var params = {};
 	      CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
-	        console.log(retVO);
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
@@ -2297,10 +2296,13 @@ webpackJsonp([1,3,4],[
 	//
 	//
 	//
+	//
 
 	exports.default = {
 	  data: function data() {
-	    return {};
+	    return {
+	      grades: ""
+	    };
 	  },
 	  mounted: function mounted() {
 	    this.show();
@@ -2308,44 +2310,10 @@ webpackJsonp([1,3,4],[
 
 	  methods: {
 	    show: function show() {
+	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/base/subject/list", params, function (retVO) {
-	        console.log(retVO);
-	        var config = {
-	          //用来展示表格控件的div的id
-	          containerId: "use_to_load_grid",
-	          //用来展示表格的表头数据
-	          thead: [{ name: "学科", valuekey: "subjectName", width: "100px" }, { name: "排序", valuekey: "sort" }, { name: "操作", valuekey: "opt", type: "opt" }],
-	          //用来展示表格的数据
-	          //这个应该是后台返回的部分
-	          gData: retVO,
-	          //是否需要分页，true：需要，不写默认需要
-	          pagingFlag: true,
-	          //执行页面查询的方法
-	          searchFun: function searchFun() {},
-	          //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	          optParams: ["subjectId", "sort"],
-	          //表格中的行操作名称
-	          optName: { edit_fun: "编辑", del_fun: "删除" },
-	          //表格中的行操作方法
-	          optFuns: { edit_fun: function edit_fun(params, dom) {
-	              layer.open({
-	                type: 1,
-	                title: '编辑学科',
-	                skin: 'layui-layer-rim', //加上边框
-	                area: ['450px', '240px'], //宽高
-	                content: $("#editsubject")
-	              });
-	            }, del_fun: function del_fun(params, dom) {
-	              layer.alert('确定删除该行数据?', function (index) {
-	                layer.close(index);
-	                layer.msg('删除成功!');
-	              });
-	              /* ajaxCallPost("/base/subject/delete",{"num1":params.num1},callback);*/
-	            }
-	          }
-	        };
-	        Grid.initGrid(config, function () {});
+	        _self.grades = retVO;
 	      });
 	    },
 	    add: function add() {
@@ -2374,16 +2342,31 @@ webpackJsonp([1,3,4],[
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["添加学科"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
+	  }, ["添加学科"])]), " ", _h('div', {
 	    staticClass: "dashboard"
-	  }, [_h('div', {
+	  }, [_h('form', {
+	    attrs: {
+	      "action": "",
+	      "id": "grade"
+	    }
+	  }, [_h('table', [_vm._m(0), " ", _h('tbody', [_vm._l((_vm.grades), function(grade, index) {
+	    return _h('tr', [_h('td', [_vm._s(grade.subjectName)]), " ", (index === 0) ? _h('td', [_h('i', {
+	      staticClass: "iconfont icon-movedown"
+	    })]) : [(index === (_vm.grades.length - 1)) ? _h('td', [_h('i', {
+	      staticClass: "iconfont icon-moveup"
+	    })]) : _h('td', [_h('i', {
+	      staticClass: "iconfont icon-moveup"
+	    }), _h('i', {
+	      staticClass: "iconfont icon-movedown"
+	    })]), " "], " ", " ", _h('td', [_vm._s(grade.editfun) + " " + _vm._s(grade.delfun)])])
+	  })])])]), " ", " ", " ", _h('div', {
 	    staticClass: "grade",
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "])
+	  }), " "]), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	  return _h('thead', [_h('th', ["学科"]), _h('th', ["排序"]), _h('th', ["操作"])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('form', {
 	    staticClass: "layBox",
@@ -2498,7 +2481,7 @@ webpackJsonp([1,3,4],[
 /* 51 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -2555,29 +2538,14 @@ webpackJsonp([1,3,4],[
 	      var result = Validation.validation({
 	        containerId: "platform"
 	      });
-	      if (result == true) {}
-	      /* 上传文件 */
-	      /* $("#thispage_fileup_img").attr("src", ROOT + "/public/smpui/v1/images/defaultImg.png");
-	             function show_fun_ss(file,file_attr){
-	       var fileupUrl = ROOT_SERVER + "/file/upload.do?fileType=thumb";
-	       H5fileup.startFileup(file, fileupUrl, file_attr.sequence,function(ret){
-	         $("#thispage_fileup_img").attr("file-path", ret.data);
-	         $("#thispage_fileup_img").attr("file-name", file.name);
-	         $("#thispage_fileup_img").attr("src", ROOT_IMAGE + ret.data);
-	       });
-	      };
-	      var config = {
-	         allow_type: "$jpg$,$png$,$bmp$,$png$,$jpeg$",
-	         max_size: 5,
-	         show_fun: show_fun_ss,
-	         warm_fun: function(msg){
-	           /*Dialog.optips({type: 2,msg: msg});
-	         }
-	       };
-	        $("#thispage_fileup").change(function(){
-	         H5fileup.initFileupChange(config,this);
-	       });
-	      */
+	      if (result == true) {
+	        var data = {
+	          title: $('[name="title"]').val(),
+	          logoPath: $('[name="logoPath"]').val(),
+	          buttomMsg: $('[name="buttomMsg"]').val()
+	        };
+	        $.post("", data, function (result) {});
+	      }
 	    }
 	  }
 	};
@@ -2815,7 +2783,7 @@ webpackJsonp([1,3,4],[
 	          //用来展示表格控件的div的id
 	          containerId: "use_to_load_grid",
 	          //用来展示表格的表头数据
-	          thead: [{ name: "序号", valuekey: "" }, { name: "服务器名称", valuekey: "serverName" }, { name: "DMS 地址", valuekey: "serverValue" }, { name: "操作", valuekey: "opt", type: "opt" }],
+	          thead: [{ name: "序号", valuekey: "sort" }, { name: "服务器名称", valuekey: "serverName" }, { name: "DMS 地址", valuekey: "serverValue" }, { name: "操作", valuekey: "opt", type: "opt" }],
 	          //用来展示表格的数据
 	          //这个应该是后台返回的部分
 	          gData: retVO,
@@ -2830,7 +2798,6 @@ webpackJsonp([1,3,4],[
 	          //表格中的行操作方法
 	          optFuns: {
 	            edit_fun: function edit_fun(params, dom) {
-	              alert($("input[name=serverName]").val());
 	              $("input[name=serverName]").val(params.serverName);
 	              $("input[name=serverValue]").val(params.serverValue);
 	              layer.open({
@@ -2842,7 +2809,6 @@ webpackJsonp([1,3,4],[
 	              });
 	            },
 	            del_fun: function del_fun(params, dom) {
-
 	              layer.alert('确定删除该行数据?', function (index) {
 	                var serverId = params.serverId;
 	                CDUtil.ajaxPost("/base/dmsserver/delete", serverId, function (retVO) {});
@@ -3701,6 +3667,14 @@ webpackJsonp([1,3,4],[
 	      var params = {};
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
 	        _self.courseList = retVO;
+	        var config = {
+	          //这个应该是后台返回的部分
+	          gData: retVO,
+	          //是否需要分页，true：需要，不写默认需要
+	          pagingFlag: true
+
+	        };
+	        Grid.initGrid(config, function () {});
 	      });
 	    },
 	    showclass: function showclass() {
@@ -3960,6 +3934,9 @@ webpackJsonp([1,3,4],[
 	    },
 	    openDemondDetail: function openDemondDetail() {
 	      window.open(ROOT_UI + '/pages/views/demond/demond_detail.jsp');
+	    },
+	    openMore: function openMore() {
+	      window.open(ROOT_UI + '#/onDemand');
 	    }
 	  }
 	};
@@ -4001,7 +3978,20 @@ webpackJsonp([1,3,4],[
 	    attrs: {
 	      "src": __webpack_require__(72)
 	    }
-	  })]), " "]), " ", _vm._m(1), " ", _h('div', {
+	  })]), " "]), " ", _h('div', {
+	    staticClass: "s-title"
+	  }, [_h('span'), _h('h3', {
+	    staticClass: "demanCour fl"
+	  }, ["点播课程"]), _h('a', {
+	    staticClass: "fr",
+	    attrs: {
+	      "href": "javascript:;",
+	      "target": "_blank"
+	    },
+	    on: {
+	      "click": _vm.openMore
+	    }
+	  }, ["更多"])]), " ", _h('div', {
 	    staticClass: "demand"
 	  }, [_vm._l((_vm.courseList.data), function(course) {
 	    return _h('div', {
@@ -4035,18 +4025,6 @@ webpackJsonp([1,3,4],[
 	  return _h('div', {
 	    staticClass: "s-title"
 	  }, [_h('span'), _h('h3', ["直播课程"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
-	    staticClass: "s-title"
-	  }, [_h('span'), _h('h3', {
-	    staticClass: "demanCour fl"
-	  }, ["点播课程"]), _h('a', {
-	    staticClass: "fr",
-	    attrs: {
-	      "href": "onDemand",
-	      "target": "_blank"
-	    }
-	  }, ["更多"])])
 	}]}
 	if (true) {
 	  module.hot.accept()

@@ -23,9 +23,10 @@
 			type: 'POST',
 			dataType: "json",
 			data: params,
-			success: function(ret){
+			success: function(retVO){
+				sessionStorage.setItem('token',retVO.token)
 				if(typeof(callback) == "function" ){
-					callback(ret);
+					callback(retVO);
 				}
 			}
 		};
@@ -35,6 +36,10 @@
 		if(isCrossDomain){
 			_config.crossDomain = isCrossDomain;
 		}
+		_config.crossDomain = true;
+		_config.beforeSend=function(xhr){
+			xhr.setRequestHeader('token', sessionStorage.getItem('token'))
+		}; //<span style="font-family: Arial, Helvetica, sans-serif;">$.cookie('token') 这是从cookie中获取token</span>
 		$.ajax(_config);
 	};
 	/**
@@ -50,9 +55,9 @@
 			type: 'GET',
 			dataType: "json",
 			data: params,
-			success: function(ret){
+			success: function(retVO){
 				if(typeof(callback) == "function" ){
-					callback(ret);
+					callback(retVO);
 				}
 			}
 		};

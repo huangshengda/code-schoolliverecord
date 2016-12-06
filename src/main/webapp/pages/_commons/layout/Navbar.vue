@@ -12,7 +12,11 @@
           </div>
           <!-- <div class="line"></div> -->
         </div>
-        <div class="head-out fr"><!-- 某某某<span class="g-line">|</span><i class="iconfont icon-sign-out"></i> --><button class="btn fr" @click="login">登录</button></div>
+        <div class="head-out fr" style="display: none;" id="user_info" >
+          某某某<span class="g-line">|</span>
+          <i class="iconfont icon-sign-out" @click="logout" ></i>
+        </div>
+        <button class="btn fr" id="login_button" @click="login">登录</button>
       </div>
         <!-- 编辑用户弹窗表单 start -->
   <form action="" id="login" class="layBox mt40">
@@ -26,7 +30,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" id="password" name="password" data-vali="notnull,password">
+            <input type="password" id="password" name="password" data-vali="notnull,password">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -41,6 +45,7 @@
     </nav>
 </template>
 <script>
+var laryIndex  ;
 import menu from "menu"
 export default{
   data () { 
@@ -49,9 +54,18 @@ export default{
         item: [],
       }
   },
+  mounted () {    
+      this.init()
+    },
    methods:{
+    init: function(){
+      if(sessionStorage.getItem("loginFlag") == "1"){
+        $("#user_info").show();
+        $("#login_button").hide();
+      }
+    },
     login:function(){
-      layer.open({
+      laryIndex = layer.open({
           type: 1,
           title: '登录',
           skin: 'layui-layer-rim', //加上边框
@@ -60,22 +74,39 @@ export default{
       });
     },
     loginIn:function(){
-       var result = Validation.validation({
+       var result = true;
+       /*result = Validation.validation({
           containerId: "login"
-        });
+        });*/
         if(result==true){
           var params = { 
-            userName: $("#username").val(), 
-            userPwd: $("#password").val(), 
+            username: $("#username").val(), 
+            password: md5($("#password").val()), 
             CheckCode: $("#auto").val() 
           };
-          //提交数据给Login.ashx页面处理
-          CDUtil.ajaxPost("",params,function(ret){
-            
-          },isCrossDomain);
+          console.log(params);
+          //提交数据给到后台处理
+          CDUtil.ajaxPost("/login",params,function(retVO){
+            if(retVO.code == 1){
+              layer.close(laryIndex);
+              $("#user_info").show();
+              $("#login_button").hide();
+              sessionStorage.loginFlag = "1";
+              sessionStorage.token = retVO.data.token;
+            }
+          });
         }
-      
-    },
+      },
+      logout: function(){
+         CDUtil.ajaxPost("/loginout",{},function(retVO){
+            if(retVO.code == 1){
+              $("#user_info").hide();
+              $("#login_button").show();
+              sessionStorage.removeItem("loginFlag");
+              sessionStorage.removeItem("token");
+            }
+          });
+      }
    }
 }
 </script>
