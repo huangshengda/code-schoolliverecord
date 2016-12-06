@@ -47,10 +47,10 @@
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label></label></span>
-          <span>
-            <button class="lay-btn green-btn" @click="addServerFun">确定</button>
+          <!--<span>
+            <button class="lay-btn green-btn">确定</button>
             <button class="lay-btn gray-btn">取消</button>
-          </span>
+          </span>-->
         </div>
     </div>
   </form>
@@ -97,20 +97,27 @@
           //表格中的行操作方法
           optFuns: {
          	edit_fun:function(params,dom){ 
-         		$("input[name=serverName]").val(params.serverName);
-         		 $("input[name=serverValue]").val(params.serverValue);
+         	alert(params);
+         		var serId = params.serverId;
+         		var server = params;
               		 layer.open({
              	 		type: 1,
              	 		title: '编辑服务器',
               			skin: 'layui-layer-rim', //加上边框
               			area: ['450px', '375px'], //宽高
-              			content: $("#editserver")
+              			content: $("#editserver"),
+              			btn: ['yes', 'no'],
+              			yes:function(index,layero){
+              				var editparams = $('#editserver').serialize();
+      						CDUtil.ajaxPost("/base/dmsserver/update",{"serverId":serId},function(retVO){});
+      						layer.close(index);
+              			}
            			});
             	},
             del_fun:function(params,dom){
                 layer.alert('确定删除该行数据?',function(index){
                 var serverId = params.serverId;
-               	CDUtil.ajaxPost("/base/dmsserver/delete",serverId,function(retVO){
+               	CDUtil.ajaxPost("/base/dmsserver/delete",{"serverId":serverId},function(retVO){
           		});
                 layer.close(index);
                 layer.msg('删除成功!')
@@ -127,15 +134,15 @@
               title: '添加服务器',
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '375px'], //宽高
-              content: $("#addserver")
-              
+              btn: ['yes', 'no'],
+              content: $("#addserver"),
+              yes:function(index,layero){
+              	var addparams = $('#addserver').serialize();
+      			CDUtil.ajaxPost("/base/dmsserver/add",addparams,function(retVO){});
+      			layer.close(index);
+              }
            });
-      },
-    addServerFun: function(){
-    	var addparams = $('#addserver').serialize();
-        CDUtil.ajaxPost("/base/dmsserver/add",addparams,function(retVO){});
-    }
-        
+      },     
     }
 
    }
