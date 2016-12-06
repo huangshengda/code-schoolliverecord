@@ -6,38 +6,32 @@ import java.util.List;
 
 import com.codyy.slr.constant.Constants;
 
-/**
- * 
- * @Description: 用户bean  
- * @author huangshengda  
- * @date 2016年12月6日   
- *
- */
-public class User implements Serializable {
+public class User implements Serializable{
 
 	private static final long serialVersionUID = 7883313984780094895L;
 
 	private String userId;
 
-	private String username;
+    private String username;
 
-	private String realname;
+    private String realname;
 
-	private String password;
+    private String password;
 
-	private String userType;
+    private String userType;
 
-	private String deleteFlag;
+    private String deleteFlag;
 
-	private Date deleteTime;
+    private Date deleteTime;
 
-	private Date createTime;
-
-	private String token;
-
-	private List<String> opt;
-
-	public String getToken() {
+    private Date createTime;
+    
+    private String token;
+    
+    private List<String> opt;
+    
+    
+    public String getToken() {
 		return token;
 	}
 
@@ -46,7 +40,7 @@ public class User implements Serializable {
 	}
 
 	public List<String> getOpt() {
-		return (opt == null ? Constants.EDIT_DELETE : opt);
+		return (opt==null?Constants.EDIT_DELETE:opt) ;
 	}
 
 	public void setOpt(List<String> opt) {
@@ -54,68 +48,68 @@ public class User implements Serializable {
 	}
 
 	public String getUserId() {
-		return userId;
-	}
+        return userId;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId == null ? null : userId.trim();
-	}
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username == null ? null : username.trim();
-	}
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
 
-	public String getRealname() {
-		return realname;
-	}
+    public String getRealname() {
+        return realname;
+    }
 
-	public void setRealname(String realname) {
-		this.realname = realname == null ? null : realname.trim();
-	}
+    public void setRealname(String realname) {
+        this.realname = realname == null ? null : realname.trim();
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password == null ? null : password.trim();
-	}
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
 
-	public String getUserType() {
-		return userType;
-	}
+    public String getUserType() {
+        return userType;
+    }
 
-	public void setUserType(String userType) {
-		this.userType = userType == null ? null : userType.trim();
-	}
+    public void setUserType(String userType) {
+        this.userType = userType == null ? null : userType.trim();
+    }
 
-	public String getDeleteFlag() {
-		return deleteFlag;
-	}
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
 
-	public void setDeleteFlag(String deleteFlag) {
-		this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
-	}
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
+    }
 
-	public Date getDeleteTime() {
-		return deleteTime;
-	}
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
 
-	public void setDeleteTime(Date deleteTime) {
-		this.deleteTime = deleteTime;
-	}
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
 	@Override
 	public String toString() {
@@ -143,5 +137,6 @@ public class User implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
-
+    
+    
 }

@@ -1,18 +1,13 @@
 package com.codyy.slr.entity;
 
-/**
- * 
- * @Description: 网站基础信息bean  
- * @author huangshengda  
- * @date 2016年12月6日   
- *
- */
 public class BasicInfo {
-	private String infoName;
+    private String infoName;
 
-	private String infoValue;
+    private String infoValue;
 
-	public BasicInfo() {
+    
+    
+    public BasicInfo() {
 		super();
 	}
 
@@ -23,18 +18,18 @@ public class BasicInfo {
 	}
 
 	public String getInfoName() {
-		return infoName;
-	}
+        return infoName;
+    }
 
-	public void setInfoName(String infoName) {
-		this.infoName = infoName == null ? null : infoName.trim();
-	}
+    public void setInfoName(String infoName) {
+        this.infoName = infoName == null ? null : infoName.trim();
+    }
 
-	public String getInfoValue() {
-		return infoValue;
-	}
+    public String getInfoValue() {
+        return infoValue;
+    }
 
-	public void setInfoValue(String infoValue) {
-		this.infoValue = infoValue == null ? null : infoValue.trim();
-	}
+    public void setInfoValue(String infoValue) {
+        this.infoValue = infoValue == null ? null : infoValue.trim();
+    }
 }

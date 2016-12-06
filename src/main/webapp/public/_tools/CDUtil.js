@@ -19,7 +19,7 @@
 	 */
 	CDUtil.ajaxPost = function(url,params,callback,isCrossDomain){
 		var _config = {
-			url: url,
+			url: ROOT_SERVER+url,
 			type: 'POST',
 			dataType: "json",
 			data: params,
@@ -29,9 +29,6 @@
 				}
 			}
 		};
-		if(url.substr(0,"/".length)=="/"){
-			_config.url = ROOT_SERVER+url;
-		}
 		if(isCrossDomain){
 			_config.crossDomain = isCrossDomain;
 		}
@@ -56,9 +53,6 @@
 				}
 			}
 		};
-		if(url.substr(0,"/".length)=="/"){
-			_config.url = ROOT_SERVER+url;
-		}
 		if(isCrossDomain){
 			_config.crossDomain = isCrossDomain;
 		}

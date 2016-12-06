@@ -13,7 +13,7 @@ import com.codyy.slr.util.FileUtils;
 
 /**
  * 
- * @Description: 定时任务类  
+ * @Description: TODO(这里用一句话描述这个类的作用)  
  * @author huangshengda  
  * @date 2016年12月2日   
  *
@@ -28,7 +28,7 @@ public class LiveSchedule {
 
 	/**
 	 * 
-	 * @Description: 结束直播课程 
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
 	 *
 	 */
 	public void finishLive() {
@@ -46,11 +46,6 @@ public class LiveSchedule {
 		log.info("finishLive end.");
 	}
 
-	/**
-	 * 
-	 * @Description: 删除temp目录下的文件  
-	 *
-	 */
 	public void delTempFiles() {
 		log.info("del directory start");
 		try {

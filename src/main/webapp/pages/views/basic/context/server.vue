@@ -76,7 +76,7 @@
           	containerId: "use_to_load_grid",
           	//用来展示表格的表头数据
           	thead: [
-          		{name:"序号",valuekey:"sort"},
+          		{name:"序号",valuekey:""},
                 {name:"服务器名称",valuekey:"serverName"},
                 {name:"DMS 地址",valuekey:"serverValue"},
                 {name:"操作",valuekey:"opt",type:"opt"}
@@ -96,18 +96,20 @@
           optName: {edit_fun:"编辑",del_fun:"删除"},
           //表格中的行操作方法
           optFuns: {
-         	edit_fun:function(params,dom){ 
-         		$("input[name=serverName]").val(params.serverName);
-         		 $("input[name=serverValue]").val(params.serverValue);
-              		 layer.open({
-             	 		type: 1,
-             	 		title: '编辑服务器',
-              			skin: 'layui-layer-rim', //加上边框
-              			area: ['450px', '375px'], //宽高
-              			content: $("#editserver")
-           			});
-            	},
+         	edit_fun:function(params,dom){
+         	alert($("input[name=serverName]").val());
+         	$("input[name=serverName]").val(params.serverName);
+         	 $("input[name=serverValue]").val(params.serverValue);
+               layer.open({
+             	 	type: 1,
+             	 	title: '编辑服务器',
+              		skin: 'layui-layer-rim', //加上边框
+              		area: ['450px', '375px'], //宽高
+              		content: $("#editserver")
+           		});
+            },
             del_fun:function(params,dom){
+         
                 layer.alert('确定删除该行数据?',function(index){
                 var serverId = params.serverId;
                	CDUtil.ajaxPost("/base/dmsserver/delete",serverId,function(retVO){

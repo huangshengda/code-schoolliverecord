@@ -14,47 +14,39 @@ import com.codyy.slr.vo.BasicInfoVo;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**
- * 
- * @Description: 网站基础信息(标题,图片,底部信息)
- * @author huangshengda  
- * @date 2016年12月6日   
+ * 网站基本配置 
+ * @author huangshengda
  *
  */
+
 @Controller
 @RequestMapping("base")
 public class BasicInfoController {
 
 	@Autowired
 	private BasicInfoService basicInfoService;
-
-	/**
-	 * 
-	 * @Description: 更新基础信息  
-	 * @param param
-	 * @return
-	 *
-	 */
+	
 	@RequestMapping("basicinfo/update")
 	@ResponseBody
-	public ReturnVoOne<BasicInfoVo> modifyBasicInfo(BasicInfoVo param) {
+	public ReturnVoOne<BasicInfoVo> modifyBasicInfo(BasicInfoVo param){
 		ReturnVoOne<BasicInfoVo> returnVoOne = new ReturnVoOne<BasicInfoVo>();
 		try {
 			boolean flag = basicInfoService.updateBasicInfo(param);
-			if (flag) {
+			if(flag){
 				BasicInfoVo res = new BasicInfoVo();
-				List<BasicInfo> list = basicInfoService.getBasicInfo();
+				List<BasicInfo> list =  basicInfoService.getBasicInfo();
 				for (BasicInfo info : list) {
-					if ("title".equalsIgnoreCase(info.getInfoName())) {
+					if("title".equalsIgnoreCase(info.getInfoName())){
 						res.setTitle(info.getInfoValue());
-					} else if ("logoPath".equalsIgnoreCase(info.getInfoName())) {
+					}else if("logoPath".equalsIgnoreCase(info.getInfoName())){
 						res.setLogoPath(info.getInfoValue());
-					} else {
+					}else{
 						res.setButtomMsg(info.getInfoValue());
 					}
 				}
 				returnVoOne.setData(res);
-
-			} else {
+				
+			}else{
 				returnVoOne.setMsg("修改基础信息失败");
 				returnVoOne.setCode(Constants.FAILED);
 			}
@@ -62,29 +54,23 @@ public class BasicInfoController {
 			returnVoOne.setMsg("修改基础信息失败");
 			returnVoOne.setCode(Constants.FAILED);
 		}
-
+		
 		return returnVoOne;
 	}
 
-	/**
-	 * 
-	 * @Description: 查询基础信息  
-	 * @return
-	 *
-	 */
 	@RequestMapping("basicinfo/get")
 	@ResponseBody
-	public ReturnVoOne<BasicInfoVo> getBasicInfo() {
+	public ReturnVoOne<BasicInfoVo> getBasicInfo(){
 		ReturnVoOne<BasicInfoVo> returnVoOne = new ReturnVoOne<BasicInfoVo>();
 		try {
 			BasicInfoVo param = new BasicInfoVo();
-			List<BasicInfo> list = basicInfoService.getBasicInfo();
+			List<BasicInfo> list =  basicInfoService.getBasicInfo();
 			for (BasicInfo info : list) {
-				if ("title".equalsIgnoreCase(info.getInfoName())) {
+				if("title".equalsIgnoreCase(info.getInfoName())){
 					param.setTitle(info.getInfoValue());
-				} else if ("logoPath".equalsIgnoreCase(info.getInfoName())) {
+				}else if("logoPath".equalsIgnoreCase(info.getInfoName())){
 					param.setLogoPath(info.getInfoValue());
-				} else {
+				}else{
 					param.setButtomMsg(info.getInfoValue());
 				}
 			}
@@ -95,5 +81,6 @@ public class BasicInfoController {
 		}
 		return returnVoOne;
 	}
-
+	
+	
 }

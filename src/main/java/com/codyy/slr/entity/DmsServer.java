@@ -1,40 +1,36 @@
 package com.codyy.slr.entity;
 
-/**
- * 
- * @Description: DMSServer地址bean  
- * @author huangshengda  
- * @date 2016年12月6日   
- *
- */
+
+
 public class DmsServer {
-	private String serverId;
+    private String serverId;
 
-	private String serverName;
+    private String serverName;
 
-	private String serverValue;
+    private String serverValue;
+  
+  
+    public String getServerId() {
+        return serverId;
+    }
 
-	public String getServerId() {
-		return serverId;
-	}
+    public void setServerId(String serverId) {
+        this.serverId = serverId == null ? null : serverId.trim();
+    }
 
-	public void setServerId(String serverId) {
-		this.serverId = serverId == null ? null : serverId.trim();
-	}
+    public String getServerName() {
+        return serverName;
+    }
 
-	public String getServerName() {
-		return serverName;
-	}
+    public void setServerName(String serverName) {
+        this.serverName = serverName == null ? null : serverName.trim();
+    }
 
-	public void setServerName(String serverName) {
-		this.serverName = serverName == null ? null : serverName.trim();
-	}
+    public String getServerValue() {
+        return serverValue;
+    }
 
-	public String getServerValue() {
-		return serverValue;
-	}
-
-	public void setServerValue(String serverValue) {
-		this.serverValue = serverValue == null ? null : serverValue.trim();
-	}
+    public void setServerValue(String serverValue) {
+        this.serverValue = serverValue == null ? null : serverValue.trim();
+    }
 }

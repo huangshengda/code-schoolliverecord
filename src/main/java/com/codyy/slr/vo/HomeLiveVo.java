@@ -1,10 +1,9 @@
 package com.codyy.slr.vo;
 
 /**
+ * 直播课程视图类
  * 
- * @Description: 直播课程视图类  
- * @author huangshengda  
- * @date 2016年12月6日   
+ * @author GuangY
  *
  */
 public class HomeLiveVo {

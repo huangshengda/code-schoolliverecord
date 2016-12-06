@@ -122,8 +122,9 @@
           containerId: "condition",
         });
         if(result==true){}
-        var params = {}; 
+        var params = $('#condition').serialize();
         CDUtil.ajaxPost("/base/user/list",params,function(retVO){
+        console.log(retVO);
             var config = {
               //用来展示表格控件的div的id
               containerId: "use_to_load_grid",

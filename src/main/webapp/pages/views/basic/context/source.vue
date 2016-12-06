@@ -72,7 +72,7 @@ export default {
           pagingFlag: true,
           //执行页面查询的方法
           searchFun: function(){
-			
+
           },
           //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
           optParams: ["resourceId","resourceName"],
