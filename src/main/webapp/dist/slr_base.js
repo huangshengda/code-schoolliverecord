@@ -2096,12 +2096,13 @@ webpackJsonp([2,3,4],[
 					}
 				}
 			};
-			if (url.substr(0, "/".length) == "/" || url.substr(0, "./".length) == "./") {
+			if (url.substr(0, "/".length) == "/") {
 				_config.url = ROOT_SERVER + url;
 			}
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
+			_config.crossDomain = true;
 			$.ajax(_config);
 		};
 		/**
@@ -2123,7 +2124,7 @@ webpackJsonp([2,3,4],[
 					}
 				}
 			};
-			if (url.substr(0, "/".length) == "/" || url.substr(0, "./".length) == "./") {
+			if (url.substr(0, "/".length) == "/") {
 				_config.url = ROOT_SERVER + url;
 			}
 			if (isCrossDomain) {
