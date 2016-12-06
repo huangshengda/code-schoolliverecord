@@ -1,10 +1,10 @@
 {
   "name": "g",
   "version": "0.0.0",
-  "description": "1. `npm i` 1. `npm run dev` 1. 在浏览器中输入地址 `127.0.0.1:8080`",
+  "description": "1. `npm i` 1. `npm run dev` 1. 在浏览器中输入地址 `127.0.0.1:8000`",
   "main": "index.html",
   "scripts": {
-    "dev": "webpack-dev-server  --port 8080 --hot",
+    "dev": "webpack-dev-server  --port 8000 --hot",
     "build": "webpack -p --progress --hide-modules"
   },
   "author": "Joel",
