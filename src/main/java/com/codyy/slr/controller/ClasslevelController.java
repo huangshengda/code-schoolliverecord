@@ -85,7 +85,7 @@ public class ClasslevelController {
 	 * @return
 	 *
 	 */
-	@RequestMapping("del")
+	@RequestMapping("delete")
 	@ResponseBody
 	public ReturnVoOne<Classlevel> delClasslevel(Classlevel classlevel) {
 		int code = Constants.SUCCESS;
