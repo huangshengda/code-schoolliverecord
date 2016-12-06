@@ -7,6 +7,13 @@ import org.apache.commons.lang.StringUtils;
 
 import com.codyy.slr.util.ConfigUtils;
 
+/**
+ * 
+ * @Description: 常量类  
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
 public class Constants {
 
 	public static final int SUCCESS = 1;
@@ -18,6 +25,9 @@ public class Constants {
 	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun", "del_fun");
 	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList("view_fun", "edit_fun", "del_fun");
 
+	public static final List<String> COLUMN_BASE = Arrays.asList("首页", "点播", "基础设置");// 管理员
+	public static final List<String> COLUMN_MY_COURSE = Arrays.asList("首页", "点播", "我的课程");// 老师
+	public static final List<String> COLUMN = Arrays.asList("首页", "点播");
 	/**
 	 * 排序字段
 	 */
@@ -125,7 +135,7 @@ public class Constants {
 
 	private static int StringToInt(String key, int defaultVal) {
 		if (StringUtils.isNumeric(ConfigUtils.getValue(key))) {
-			return  Integer.parseInt(ConfigUtils.getValue(key));
+			return Integer.parseInt(ConfigUtils.getValue(key));
 		} else {
 			return defaultVal;
 		}
