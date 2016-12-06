@@ -15,8 +15,8 @@ import com.codyy.slr.util.UUIDUtils;
 
 /**
  * 
- * @Description: 年级
- * @author bingshaowen 
+ * @Description: 年级Service  
+ * @author huangshengda  
  * @date 2016年12月6日   
  *
  */
@@ -67,10 +67,23 @@ public class ClasslevelService {
 		return map;
 	}
 
+	/**
+	 * 
+	 * @Description: 修改年级 
+	 * @param Classlevel
+	 * @return
+	 *
+	 */
 	public int modifyClasslevel(Classlevel Classlevel) {
 		return classlevelMapper.updateByPrimaryKeySelective(Classlevel);
 	}
 
+	/**
+	 * 
+	 * @Description: 修改排序 
+	 * @param list
+	 *
+	 */
 	public void modifyClasslevelSort(List<Classlevel> list) {
 		classlevelMapper.modifyClasslevelSort(list);
 	}
