@@ -29,7 +29,7 @@ require('../public/_module/css/slr_base.css');
 require('../public/_module/icon/iconfont.css');
 
 /**  加载编码加密工具  **/
-require('../public/md5/md5');
+window.md5 = require('../public/md5/md5');
 
 /**  加载自定义JS组件  **/
 window.CDUtil = require('../public/_tools/CDUtil');
@@ -38,7 +38,6 @@ window.Grid = require('../public/_compnents/v1/js/Grid');
 window.H5fileup = require('../public/_compnents/v1/js/H5fileup');
 window.Paging = require('../public/_compnents/v1/js/Paging');
 window.Validation = require('../public/_compnents/v1/js/Validation');
-
 /**  加载依赖于jQuery的JS组件  **/
 /*require('imports?$=jquery!../public/jquery/jquery.dotdotdot');
 require('imports?$=jquery!../public/jquery-ui/jquery-ui');*/

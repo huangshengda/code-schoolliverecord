@@ -13,6 +13,13 @@ import com.codyy.slr.dao.ClasslevelMapper;
 import com.codyy.slr.entity.Classlevel;
 import com.codyy.slr.util.UUIDUtils;
 
+/**
+ * 
+ * @Description: 年级Service  
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
 @Service
 public class ClasslevelService {
 
@@ -23,6 +30,13 @@ public class ClasslevelService {
 		return classlevelMapper.getClasslevelList(ClasslevelName);
 	}
 
+	/**
+	 * 
+	 * @Description:添加年级  
+	 * @param Classlevel
+	 * @return
+	 *
+	 */
 	public Map<String, Object> addClasslevel(Classlevel Classlevel) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = 0;
@@ -53,10 +67,23 @@ public class ClasslevelService {
 		return map;
 	}
 
+	/**
+	 * 
+	 * @Description: 修改年级 
+	 * @param Classlevel
+	 * @return
+	 *
+	 */
 	public int modifyClasslevel(Classlevel Classlevel) {
 		return classlevelMapper.updateByPrimaryKeySelective(Classlevel);
 	}
 
+	/**
+	 * 
+	 * @Description: 修改排序 
+	 * @param list
+	 *
+	 */
 	public void modifyClasslevelSort(List<Classlevel> list) {
 		classlevelMapper.modifyClasslevelSort(list);
 	}

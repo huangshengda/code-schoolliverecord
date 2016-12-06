@@ -3,11 +3,12 @@
   <div class="subBtn"><button class="btn fr" @click="add">添加学科</button></div>
  <div class="dashboard">
   <!-- 表单 start -->
-  <!--   <form action="" id="grade">
+    <form action="" id="grade">
     <table>
-      <thead><th>年级</th><th>排序</th><th>操作</th></thead>
+      <thead><th>学科</th><th>排序</th><th>操作</th></thead>
       <tbody>
-        <tr v-for="(grade,index) in grades"><td>{{grade.name}}</td>
+        <tr v-for="(grade,index) in grades">
+        <td>{{grade.subjectName}}</td>
         <td v-if="index===0"><i class="iconfont icon-movedown"></i></td>
         <template v-else> 
          <td v-if="index===(grades.length-1)"><i class="iconfont icon-moveup"></i></td>
@@ -16,7 +17,7 @@
         <td>{{grade.editfun}}&nbsp;{{grade.delfun}}</td></tr>
       </tbody>
     </table>
-  </form> -->
+  </form> 
   <!-- 表单 start -->
     <!-- 表单 start -->
     <div id="use_to_load_grid" class="grade"></div>
@@ -64,6 +65,7 @@
    export default {
     data() {
       return {
+       grades:"",
       }
     },
      mounted () {    
@@ -71,50 +73,10 @@
     },
          methods: {
        show: function(){
+       var _self = this;
         var params = {};
         CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
-        console.log(retVO);
-            var config = {
-              //用来展示表格控件的div的id
-              containerId: "use_to_load_grid",
-              //用来展示表格的表头数据
-              thead: [{name:"学科",valuekey:"subjectName",width: "100px"},
-                      {name:"排序",valuekey:"sort"},
-                      {name:"操作",valuekey:"opt",type:"opt"}
-              ],
-              //用来展示表格的数据
-              //这个应该是后台返回的部分
-              gData: retVO,
-              //是否需要分页，true：需要，不写默认需要
-              pagingFlag: true,
-              //执行页面查询的方法
-              searchFun: function(){
-
-              },
-              //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-              optParams: ["subjectId","sort"],
-              //表格中的行操作名称
-              optName: {edit_fun:"编辑",del_fun:"删除"},
-              //表格中的行操作方法
-              optFuns: {edit_fun:function(params,dom){
-                   layer.open({
-                        type: 1,
-                        title: '编辑学科',
-                        skin: 'layui-layer-rim', //加上边框
-                        area: ['450px', '240px'], //宽高
-                        content: $("#editsubject")
-                    });
-
-                },del_fun:function(params,dom){
-                    layer.alert('确定删除该行数据?',function(index){
-                    layer.close(index);
-                    layer.msg('删除成功!')
-                   });
-                  /* ajaxCallPost("/base/subject/delete",{"num1":params.num1},callback);*/
-                }
-              }
-          };
-          Grid.initGrid(config,function(){});
+        	_self.grades = retVO;  
         });
       },
       add: function(){
