@@ -56,7 +56,15 @@
         var _self = this;
         var params = {};
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
-         	_self.courseList = retVO;
+        _self.courseList = retVO;
+          var config = {      	
+         	 //这个应该是后台返回的部分
+        	  gData: retVO,
+         	 //是否需要分页，true：需要，不写默认需要
+         	 pagingFlag: true,
+         	 
+         	};
+         	Grid.initGrid(config,function(){});
         });
       },
       showclass:function(){

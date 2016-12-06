@@ -49,32 +49,15 @@
         var result = Validation.validation({
           containerId: "platform",
         });
-        if(result==true){}
-         /* 上传文件 */
-         /* $("#thispage_fileup_img").attr("src", ROOT + "/public/smpui/v1/images/defaultImg.png");
-       
-        function show_fun_ss(file,file_attr){
-          var fileupUrl = ROOT_SERVER + "/file/upload.do?fileType=thumb";
-          H5fileup.startFileup(file, fileupUrl, file_attr.sequence,function(ret){
-            $("#thispage_fileup_img").attr("file-path", ret.data);
-            $("#thispage_fileup_img").attr("file-name", file.name);
-            $("#thispage_fileup_img").attr("src", ROOT_IMAGE + ret.data);
-          });
-        };
-        var config = {
-            allow_type: "$jpg$,$png$,$bmp$,$png$,$jpeg$",
-            max_size: 5,
-            show_fun: show_fun_ss,
-            warm_fun: function(msg){
-              /*Dialog.optips({type: 2,msg: msg});
-            }
-          };
-
-          $("#thispage_fileup").change(function(){
-            H5fileup.initFileupChange(config,this);
-          });
-*/
-      }
+        if(result==true){
+          var data = { 
+            title: $('[name="title"]').val(), 
+            logoPath: $('[name="logoPath"]').val(), 
+            buttomMsg: $('[name="buttomMsg"]').val() 
+          }; 
+          $.post("",data,function(result){ })
+        }
+        }
     }
    }
 </script>
