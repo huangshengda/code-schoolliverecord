@@ -60,8 +60,8 @@ public class ResourceService {
 		}
 		return flag;
 	}
-	
-	public boolean addLiveResource(AddResourceParam param,String liveResourceId, String livePath) {
+
+	public boolean addLiveResource(AddResourceParam param, String liveResourceId, String livePath) {
 		boolean flag = true;
 		Resource resource = param.toResource();
 		resource.setResourceId(liveResourceId);
@@ -94,7 +94,7 @@ public class ResourceService {
 	// 依据资源ID逻辑删除资源
 	public int delResByResId(HttpServletRequest req, String resourceId) {
 		User user = (User) req.getAttribute("user");
-		
+
 		Resource res = new Resource();
 		res.setResourceId(resourceId);
 		res.setDeleteUserId(user.getUserId());
@@ -129,7 +129,7 @@ public class ResourceService {
 		page.setMap(map);
 
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
-		String contextpath = HostConfigUtils.getHost(req)+"/download/img";
+		String contextpath = HostConfigUtils.getHost(req) + "/download/img";
 		if (list.size() >= 1) {
 			for (ResourceVo resourceVo : list) {
 				resourceVo.setOpt(Constants.DELETE);
@@ -143,16 +143,16 @@ public class ResourceService {
 	// 根据资源ID获取资源
 	public ResourceVo getResource(HttpServletRequest req, String resourceId) {
 		String contextpath = HostConfigUtils.getHost(req);
-		
+
 		ResourceVo resVo = resourceMapper.getResource(resourceId);
-		
-		if(resVo != null){
+
+		if (resVo != null) {
 			resVo.setThumbPath(contextpath + "/download/img" + resVo.getThumbPath());
 			if (resVo.getLivingFlag().equals("N")) {
 				resVo.setStorePath(contextpath + "/download/" + resVo.getSourceType() + resVo.getStorePath());
 			}
 		}
-		
+
 		return resVo;
 	}
 
@@ -184,36 +184,36 @@ public class ResourceService {
 		}
 		return result;
 	}
-	
-	public List<ResourceVo> getRecommendResourceList(Map<String,String> map){
-		
+
+	public List<ResourceVo> getRecommendResourceList(Map<String, String> map) {
+
 		List<ResourceVo> list = resourceMapper.getRecommendResourceList(map);
-		
+
 		String resourceId = map.get("resourceId");
-		
+
 		List<ResourceVo> result = new ArrayList<ResourceVo>();
-		
+
 		for (ResourceVo resourceVo : list) {
-			if(resourceVo.getResourceId().equals(resourceId)){
+			if (resourceVo.getResourceId().equals(resourceId)) {
 				continue;
 			}
-			if(result.size() > 5){
+			if (result.size() > 5) {
 				break;
 			}
 			result.add(resourceVo);
 		}
 		return result;
 	}
-	
-	public boolean updateLiveResourceLivingPath(String resourceId){
+
+	public boolean updateLiveResourceLivingPath(String resourceId) {
 		return resourceMapper.updateLiveResourceLivingPath(resourceId) == 1;
 	}
-	
+
 	public List<String> getNotFinishLiveResIds() {
 		return resourceMapper.getNotFinishLiveResIds();
 	}
-	
-	public boolean updateFinishLiveRes(Resource res){
+
+	public boolean updateFinishLiveRes(Resource res) {
 		return resourceMapper.updateFinishLiveRes(res) == 1;
 	}
 }

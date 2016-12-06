@@ -12,29 +12,33 @@ import com.codyy.slr.service.ResourceService;
 import com.codyy.slr.util.FileUtils;
 
 /**
- * 直播服务
- * @author huangshengda
+ * 
+ * @Description: TODO(这里用一句话描述这个类的作用)  
+ * @author huangshengda  
+ * @date 2016年12月2日   
  *
  */
 public class LiveSchedule {
-	
+
 	private static final Logger log = Logger.getLogger(LiveSchedule.class);
-	
+
 	private ResourceService resourceService;
-	
+
 	private HandleLiveFinishService handleLiveFinishService;
-	
+
 	/**
-	 * 结束直播
+	 * 
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 *
 	 */
-	public void finishLive(){
+	public void finishLive() {
 		log.info("finishLive start");
-		//1 查找为结束的直播课程
+		// 1 查找为结束的直播课程
 		List<String> liveResourceIdList = resourceService.getNotFinishLiveResIds();
 		System.out.println(liveResourceIdList);
-		if(CollectionUtils.isEmpty(liveResourceIdList)){
+		if (CollectionUtils.isEmpty(liveResourceIdList)) {
 			log.info("liveResourceIdList is empty.");
-		}else{
+		} else {
 			for (String liveResourceId : liveResourceIdList) {
 				handleLiveFinishService.finishLive(liveResourceId);
 			}
@@ -42,11 +46,7 @@ public class LiveSchedule {
 		log.info("finishLive end.");
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public void delTempFiles(){
+	public void delTempFiles() {
 		log.info("del directory start");
 		try {
 			FileUtils.delDirectory(Constants.TEMP);
@@ -56,7 +56,7 @@ public class LiveSchedule {
 		}
 		log.info("del directory end.");
 	}
-	
+
 	public ResourceService getResourceService() {
 		return resourceService;
 	}
@@ -71,6 +71,7 @@ public class LiveSchedule {
 
 	public void setHandleLiveFinishService(HandleLiveFinishService handleLiveFinishService) {
 		this.handleLiveFinishService = handleLiveFinishService;
+
 	}
-	
+
 }

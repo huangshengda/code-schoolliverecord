@@ -15,35 +15,36 @@ import com.codyy.slr.util.UUIDUtils;
 
 @Service
 public class ClasslevelService {
-	
+
 	@Autowired
 	private ClasslevelMapper classlevelMapper;
-	
+
 	public List<Classlevel> getClasslevelList(String ClasslevelName) {
 		return classlevelMapper.getClasslevelList(ClasslevelName);
 	}
 
-	public Map<String,Object> addClasslevel(Classlevel Classlevel) {
-		Map<String,Object> map = new HashMap<String, Object>();
+	public Map<String, Object> addClasslevel(Classlevel Classlevel) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int count = 0;
 		int code = Constants.SUCCESS;
 		String msg = "添加成功";
-		 List<Classlevel> list = classlevelMapper.getClasslevelList(null);
-		 for(Classlevel s:list){
-			 if(Classlevel.getClasslevelName().equals(s.getClasslevelName())){
-				 count ++;
-			 }
-		 }
-		if(count==0){
-			Classlevel.setSort(list.size()+1);
+		List<Classlevel> list = classlevelMapper.getClasslevelList(null);
+		for (Classlevel s : list) {
+			if (Classlevel.getClasslevelName().equals(s.getClasslevelName())) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			Classlevel.setSort(list.size() + 1);
 			Classlevel.setCreateTime(new Date());
 			Classlevel.setDeleteFlag("N");
 			Classlevel.setClasslevelId(UUIDUtils.getUUID());
-			if(classlevelMapper.insertSelective(Classlevel)!=1){
+			if (classlevelMapper.insertSelective(Classlevel) != 1) {
 				msg = "添加失败";
 				code = Constants.FAILED;
-			};
-		}else{
+			}
+			;
+		} else {
 			msg = "学科名称重复";
 			code = Constants.FAILED;
 		}
@@ -52,7 +53,6 @@ public class ClasslevelService {
 		return map;
 	}
 
-
 	public int modifyClasslevel(Classlevel Classlevel) {
 		return classlevelMapper.updateByPrimaryKeySelective(Classlevel);
 	}
@@ -60,7 +60,5 @@ public class ClasslevelService {
 	public void modifyClasslevelSort(List<Classlevel> list) {
 		classlevelMapper.modifyClasslevelSort(list);
 	}
-	
-	
 
 }

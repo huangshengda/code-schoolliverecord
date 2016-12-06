@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,7 @@
   <meta name="renderer" content="webkit">  
   <title>上传课程资源</title>
   <meta name="viewport" content="width=device-width">
-  <script type="text/javascript" src="../../../public/_config/sys_front_config.js" ></script>
-  <script type="text/javascript" src="../../../public/jquery/jquery-2.2.4.js" ></script>
-  <script type="text/javascript" src="../../../dist/slr_manifest.js" ></script>
-  <script type="text/javascript" src="../../../dist/slr_common.js" ></script>
-  <script type="text/javascript" src="../../../dist/slr_base.js" ></script>
+  <%@ include file="../../_commons/meta.jsp"%>
   <style type="text/css">
 	body{background-color: #f5f8fa;}
 	.cd-f-eve{width:100%;margin-bottom:30px;}
@@ -28,20 +25,21 @@
 	}
 	.cd-f-value span{margin-right:30px;}
 	.up-item{background-color:#f5f8fa;padding:15px;margin-bottom:10px;}
+	.w800{width: 800px;}
+	.input-fileup{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		z-index: 9;
+		width: 150px !important;
+		height: 28px;
+		opacity: 0;
+		cursor: pointer !important;
+	}
   </style>
 </head>
 <body>
-<nav data-v-c4f038aa="" role="navigation" class="navbar navbar-default"><div data-v-c4f038aa="" class="wamp">
-  <img data-v-c4f038aa="" src="../../../public/_module/images/logo.png" class="inb"> 
-  <div data-v-c4f038aa="" class="head inb"><div data-v-c4f038aa="" class="navHead">
-    <span data-v-c4f038aa=""><a href="/#/index" class="router-link-active" data-v-c4f038aa="">
-              首页
-             </a></span><span data-v-c4f038aa=""><a href="/#/onDemand" class="" data-v-c4f038aa="">
-              点播
-             </a></span><span data-v-c4f038aa=""><a href="/#/basic" class="" data-v-c4f038aa="">
-              基础管理
-             </a></span></div> </div> <div data-v-c4f038aa="" class="out fr"><button data-v-c4f038aa="" class="fr">登录</button></div></div>  <form data-v-c4f038aa="" action="" id="login" class="layBox mt40"><div data-v-c4f038aa="" class="cd-f-row"><div data-v-c4f038aa="" class="cd-f-eve"><span data-v-c4f038aa="" class="cd-f-name"><label data-v-c4f038aa="">用户名:</label></span> <span data-v-c4f038aa="" class="cd-f-value"><input data-v-c4f038aa="" type="text" name="username" data-vali="notnull,username"></span></div> <div data-v-c4f038aa="" class="cd-f-eve"><span data-v-c4f038aa="" class="cd-f-name"><label data-v-c4f038aa="">密码:</label></span> <span data-v-c4f038aa="" class="cd-f-value"><input data-v-c4f038aa="" type="text" name="password" data-vali="notnull,password"></span></div> <div data-v-c4f038aa="" class="cd-f-eve"><input data-v-c4f038aa="" type="checkbox" name="auto" class="ml30">自动登录
-      </div> <div data-v-c4f038aa="" class="cd-f-eve"><button data-v-c4f038aa="" class="lay-btn gray-btn">登录</button></div></div></form> </nav>
+<%@ include file="../../_commons/navbar.jsp"%>
   <!-- 点播课程详情 start-->
   <div class="wamp">
     <div class="smp-main">
@@ -74,8 +72,11 @@
         </div>   
         <div class="cd-f-eve">
           <span class="cd-f-name vat"><label class="cd-f-notnull">*</label><label>课程视频:</label></span>
-          <span class="cd-f-value">
-             <input type="button" value="上传课程视频" class="upbtn">
+          <span class="cd-f-value w800">
+          	<button class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
+          		上传视频文件
+          		<input type="file" value="" class="input-fileup" >
+          	</button>
              <div class="up-list mt20">
 	             <div class="up-item">
 	               <div class="inb vat">
@@ -88,7 +89,7 @@
 						<button class="upbtn mr20">使用系统截图</button>
 						<button class="upbtn">上传本地图片</button>
 	               </div>
-	               <i class="iconfont icon-delete"></i>
+	               <a href="#a" class="vam inb c9"><i class="iconfont icon-delete"></i></a>
 	             </div>
              </div>
           </span>

@@ -79,34 +79,4 @@ export default{
 </script>
 
 <!--<style scoped>
-.router-link-active{border-bottom:2px solid #fff;}
-.navbar{
-  border-radius: 0;
-  margin-bottom: 0;
-  background-color:#1bc840;
-  height:90px;}
-  .navbar span{
-    margin-right: 40px;
-    display: inline-block;
-  }
-  .navHead{
-    margin-top: 30px;}
-  .navHead a {font-size:20px;color:#fff;}
-
- .head{margin-left:120px;}
- .g-line{color: #14a733;font-size: 15px;margin-left:35px;margin-right:30px;}
- .head-out{margin-top: 30px;color: #333;}
- .head-out i{vertical-align:middle;font-size: 20px;}
-
-#login{display: none;}
-.cd-f-eve{margin-bottom: 20px;width:100%;margin-top:0;}
-.cd-f-value{margin-right: 0;}
-.cd-f-value,.cd-f-value input{width:230px;}
-.cd-f-name{margin-right:0;}
-input[type=checkbox]{    width: 15px;
-    height: 15px;
-    vertical-align: top;}
-  button{width:100%;}
-.ml30{margin-left:30px;}
- #login .cd-f-value,#login .cd-f-name{margin-right:0;}
 </style>-->
