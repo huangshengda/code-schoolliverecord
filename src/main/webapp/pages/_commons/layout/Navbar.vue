@@ -20,20 +20,20 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="username" data-vali="notnull,username">
+            <input type="text" id="username" name="username" data-vali="notnull,username">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull,password">
+            <input type="text" id="password" name="password" data-vali="notnull,password">
           </span>
         </div>
         <div class="cd-f-eve">
-           <input type="checkbox" name="auto" class="ml30">自动登录
+           <input type="checkbox" id="auto" name="auto" class="ml30">自动登录
         </div>
         <div class="cd-f-eve">
-          <button class="lay-btn gray-btn" @click="loginIn">登录</button>
+          <button type="button" class="lay-btn gray-btn" @click="loginIn">登录</button>
         </div>
     </div>
   </form>
@@ -61,22 +61,21 @@ export default{
     },
     loginIn:function(){
        var result = Validation.validation({
-          containerId: "login",
+          containerId: "login"
         });
         if(result==true){
-          var data = { 
-            userName: $('[name="username"]').val(), 
-            userPwd: $('[name="password"]').val(), 
-            CheckCode: $('[name="auto"]').val() 
-          }; 
-          //提交数据给Login.ashx页面处理 
-          $.post("",data,function(result){ })
+          var params = { 
+            userName: $("#username").val(), 
+            userPwd: $("#password").val(), 
+            CheckCode: $("#auto").val() 
+          };
+          //提交数据给Login.ashx页面处理
+          CDUtil.ajaxPost("",params,function(ret){
+            
+          },isCrossDomain);
         }
       
     },
    }
 }
 </script>
-
-<!--<style scoped>
-</style>-->
