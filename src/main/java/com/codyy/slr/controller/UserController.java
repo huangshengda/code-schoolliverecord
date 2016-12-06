@@ -86,6 +86,13 @@ public class UserController {
 		return new ReturnVoOne<User>(code, msg, user);
 	}
 
+	/**
+	 * 
+	 * @Description: 登出  
+	 * @param req
+	 * @return
+	 *
+	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("loginout")
@@ -150,10 +157,7 @@ public class UserController {
 		page.setMap(map);
 		page.setPaging(false);
 		int count = 0;
-		String password = "666666";
-		user.setPassword(user.getPassword() == null ? password : user.getPassword());
-		if ((user.getUsername().matches(PasswordRegex)) && (user.getPassword().matches(PasswordRegex)) && (user.getRealname().length() > 0)
-				&& (user.getRealname().length() < 11)) {
+		if ((user.getUsername().matches(PasswordRegex)) && (user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {
 			if (userService.getUserList(page).getTotalDatas() == 0) {
 				try {
 					count = userService.addUser(user);
@@ -170,7 +174,7 @@ public class UserController {
 				return new ReturnVoOne<User>(Constants.FAILED, "添加失败");
 			}
 		} else {
-			return new ReturnVoOne<User>(Constants.FAILED, "用户名、姓名或密码格式不正确");
+			return new ReturnVoOne<User>(Constants.FAILED, "用户名或姓名格式不正确");
 		}
 	}
 
@@ -182,7 +186,7 @@ public class UserController {
 	 *
 	 */
 	@ResponseBody
-	@RequestMapping("base/user/del")
+	@RequestMapping("base/user/delete")
 	public ReturnVoOne<User> delUser(String userId) {
 		int count = 0;
 		try {
