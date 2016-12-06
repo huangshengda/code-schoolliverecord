@@ -19,8 +19,8 @@ import com.codyy.slr.vo.ReturnVoOne;
 
 /**
  * 
- * @Description: 年级Controller  
- * @author huangshengda  
+ * @Description: 年级
+ * @author bingshaowen 
  * @date 2016年12月6日   
  *
  */
@@ -31,8 +31,11 @@ public class ClasslevelController {
 	ClasslevelService classlevelService;
 
 	/**
-	 * 获取年级
+	 * 
+	 * @Description: 获取年级列表
+	 * @param classlevelName
 	 * @return
+	 *
 	 */
 	@RequestMapping("list")
 	@ResponseBody
@@ -51,8 +54,11 @@ public class ClasslevelController {
 	}
 
 	/**
-	 * 增加年级
+	 * 
+	 * @Description: 新增年级
+	 * @param classlevel
 	 * @return
+	 *
 	 */
 	@RequestMapping("add")
 	@ResponseBody
@@ -73,8 +79,11 @@ public class ClasslevelController {
 	}
 
 	/**
-	 * 删除年级
+	 * 
+	 * @Description: 删除年级
+	 * @param classlevel
 	 * @return
+	 *
 	 */
 	@RequestMapping("del")
 	@ResponseBody
@@ -92,8 +101,11 @@ public class ClasslevelController {
 	}
 
 	/**
-	 * 修改年级名称
+	 * 
+	 * @Description: 修改年级名称
+	 * @param classlevel
 	 * @return
+	 *
 	 */
 	@RequestMapping("update")
 	@ResponseBody
@@ -121,8 +133,11 @@ public class ClasslevelController {
 	}
 
 	/**
-	 * 修改年级排序
+	 * 
+	 * @Description: 修改年级排序
+	 * @param classlevelIds
 	 * @return
+	 *
 	 */
 	@RequestMapping("sort")
 	@ResponseBody
