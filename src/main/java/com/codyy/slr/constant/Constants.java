@@ -7,6 +7,13 @@ import org.apache.commons.lang.StringUtils;
 
 import com.codyy.slr.util.ConfigUtils;
 
+/**
+ * 
+ * @Description: 常量类  
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
 public class Constants {
 
 	public static final int SUCCESS = 1;
