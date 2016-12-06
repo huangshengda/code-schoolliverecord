@@ -86,6 +86,13 @@ public class UserController {
 		return new ReturnVoOne<User>(code, msg, user);
 	}
 
+	/**
+	 * 
+	 * @Description: 登出  
+	 * @param req
+	 * @return
+	 *
+	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("loginout")
@@ -179,7 +186,7 @@ public class UserController {
 	 *
 	 */
 	@ResponseBody
-	@RequestMapping("base/user/del")
+	@RequestMapping("base/user/delete")
 	public ReturnVoOne<User> delUser(String userId) {
 		int count = 0;
 		try {

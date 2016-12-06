@@ -86,7 +86,7 @@ public class SubjectController {
 	 * @return
 	 *
 	 */
-	@RequestMapping("del")
+	@RequestMapping("delete")
 	@ResponseBody
 	public ReturnVoOne<Subject> delSubject(Subject subject) {
 		int code = Constants.SUCCESS;
