@@ -86,6 +86,13 @@ public class UserController {
 		return new ReturnVoOne<User>(code, msg, user);
 	}
 
+	/**
+	 * 
+	 * @Description: 登出  
+	 * @param req
+	 * @return
+	 *
+	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("loginout")
