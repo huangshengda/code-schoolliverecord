@@ -100,7 +100,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>baseServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Druid DB pool stat view -->

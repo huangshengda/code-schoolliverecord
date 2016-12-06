@@ -97,7 +97,7 @@
           //表格中的行操作方法
           optFuns: {
          	edit_fun:function(params,dom){
-         	alert($("input[name=serverName]").val());
+         
          	$("input[name=serverName]").val(params.serverName);
          	 $("input[name=serverValue]").val(params.serverValue);
                layer.open({
@@ -107,9 +107,9 @@
               		area: ['450px', '375px'], //宽高
               		content: $("#editserver")
            		});
+           		
             },
             del_fun:function(params,dom){
-         
                 layer.alert('确定删除该行数据?',function(index){
                 var serverId = params.serverId;
                	CDUtil.ajaxPost("/base/dmsserver/delete",serverId,function(retVO){
@@ -129,8 +129,10 @@
               title: '添加服务器',
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '375px'], //宽高
-              content: $("#addserver")
-              
+              content: $("#addserver"),
+                 yes: function(index, layero){
+   					alert(2222);
+  				}
            });
       },
     addServerFun: function(){
