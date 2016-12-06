@@ -8,7 +8,7 @@ ROOT_UI_PAGES = ROOT_UI+"/pages";
 /**
  * 服务端的根目录（可以有多个服务端
  */
-ROOT_SERVER = "http://localhost:8080";
+ROOT_SERVER = "http://localhost:8080/SchoolLiveRecord";
 /**
  * 文件上传服务端的根目录（可以有多个服务端
  */

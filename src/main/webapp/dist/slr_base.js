@@ -2102,6 +2102,7 @@ webpackJsonp([2,3,4],[
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
+			_config.crossDomain = true;
 			$.ajax(_config);
 		};
 		/**
