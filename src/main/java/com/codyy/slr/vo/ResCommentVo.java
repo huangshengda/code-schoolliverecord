@@ -4,43 +4,48 @@ import java.util.List;
 
 import com.codyy.slr.entity.ResComment;
 
-public class ResCommentVo extends ResComment{
+/**
+ * 
+ * @Description: 资源评论VO  
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
+public class ResCommentVo extends ResComment {
 	/**
 	 * 发布人名称
 	 */
 	private String userName;
-	
-    /**
-     * 回复谁
-     */
-    private String replyToUserName;
-    
-    /**
-     * 用于时间显示
-     */
-    private String createTimeStr;
-    
-    /**
-     * 存放二级评论
-     */
-    private List<ResCommentVo> childrenCommentList;
 
-    /**
-     * 二级评论数量
-     */
-    private int childrenCommentSize;
-    
-    /**
-     * 操作权限
-     */
-    private List<String> opt;
+	/**
+	 * 回复谁
+	 */
+	private String replyToUserName;
 
-    private String realName;
-    
-    private String resourceName;
-    
-    
-    
+	/**
+	 * 用于时间显示
+	 */
+	private String createTimeStr;
+
+	/**
+	 * 存放二级评论
+	 */
+	private List<ResCommentVo> childrenCommentList;
+
+	/**
+	 * 二级评论数量
+	 */
+	private int childrenCommentSize;
+
+	/**
+	 * 操作权限
+	 */
+	private List<String> opt;
+
+	private String realName;
+
+	private String resourceName;
+
 	public String getResourceName() {
 		return resourceName;
 	}
@@ -104,6 +109,5 @@ public class ResCommentVo extends ResComment{
 	public void setChildrenCommentSize(int childrenCommentSize) {
 		this.childrenCommentSize = childrenCommentSize;
 	}
-    
-    
+
 }

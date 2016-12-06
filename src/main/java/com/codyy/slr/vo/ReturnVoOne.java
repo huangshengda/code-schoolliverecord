@@ -4,6 +4,13 @@ import java.io.Serializable;
 
 import com.codyy.slr.constant.Constants;
 
+/**
+ * 
+ * @Description: 返回体(单个数据) 
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
 public class ReturnVoOne<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,14 +29,14 @@ public class ReturnVoOne<T> implements Serializable {
 		this.msg = "操作成功";
 		this.code = Constants.SUCCESS;
 	}
-	
-	public ReturnVoOne(int code,String msg) {
-		this.msg=msg;
+
+	public ReturnVoOne(int code, String msg) {
+		this.msg = msg;
 		this.code = code;
 	}
-	
-	public ReturnVoOne(int code,String msg,T data) {
-		this.msg=msg;
+
+	public ReturnVoOne(int code, String msg, T data) {
+		this.msg = msg;
 		this.code = code;
 		this.data = data;
 	}
@@ -57,5 +64,5 @@ public class ReturnVoOne<T> implements Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
-	
+
 }
