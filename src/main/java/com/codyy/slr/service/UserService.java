@@ -59,11 +59,11 @@ public class UserService {
 	 *
 	 */
 	public int addUser(User user) {
+		user.setDeleteFlag("N");
 		user.setPassword(SecurityUtils.MD5String(user.getPassword()));
 		user.setUserId(UUIDUtils.getUUID());
 		user.setCreateTime(new Date());
 		return userMapper.insertSelective(user);
-
 	}
 
 	/**
