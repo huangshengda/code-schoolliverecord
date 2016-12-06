@@ -1,6 +1,9 @@
 /target/
 /bin/
-/.settings/
 /.externalToolBuilders/
+/.settings/
 
-/.gitignore
+.classpath
+.project
+.gitignore
+
