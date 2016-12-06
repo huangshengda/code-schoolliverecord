@@ -37,6 +37,16 @@ public class User implements Serializable {
 
 	private List<String> opt;
 
+	private List<String> column;
+
+	public List<String> getColumn() {
+		return column;
+	}
+
+	public void setColumn(List<String> column) {
+		this.column = column;
+	}
+
 	public String getToken() {
 		return token;
 	}

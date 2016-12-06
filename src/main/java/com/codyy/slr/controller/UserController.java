@@ -68,6 +68,13 @@ public class UserController {
 				TokenUtils.putUserIdToCache(user.getToken() + agent, user);// token+agent
 																			// 作为key
 																			// 增加破解难度
+				if ("TEACHER".equals(user.getUserType())) {
+					user.setColumn(Constants.COLUMN_MY_COURSE);
+				} else if ("STUDENT".endsWith(user.getUserType())) {
+					user.setColumn(Constants.COLUMN);
+				} else {
+					user.setColumn(Constants.COLUMN_BASE);
+				}
 			} else {
 				code = Constants.FAILED;
 				msg = "用户名或密码错误";
