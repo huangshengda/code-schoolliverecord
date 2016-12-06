@@ -89,7 +89,9 @@
   <div class="live">
     <p class="l-title">汉语言文学（第一节）<small class="ft12">一年级/语文/谢春华</small></p>
       <div class="l-left">
-        <div class="vedio"></div>
+        <div class="vedio">
+			        
+        </div>
       </div>
       <div class="l-right fr">
         <div class="chat-bland" id="console">
@@ -118,11 +120,19 @@
 <!-- 直播课程详情  end-->
 </div>
 <!-- 点播课程详情  end-->
+	<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/_tools/tool.js"></script>
+	<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/player_flash/player_flash.js"></script>
   <script type="text/javascript">
     $(function(){
-      $('.c-del').click(function(){
-          $(this).parent().remove();
-      });
+    	var pms = "",    //dms服务器地址，需要后台传过来
+    		streamName = "",	//课程id，需要后台传过来
+    		dmc = "",
+    		tool = vm.module["tool"],
+    		flashBuilder = vm.module["playerBuilder"];
+    	
+      	$('.c-del').click(function(){
+          	$(this).parent().remove();
+      	});
       
         "use strict";
         var Chat = {};
@@ -184,6 +194,41 @@
         $('#aa').click(function(){
            Chat.sendMessage();
         })
+        
+        function buildPlayer(wrap, _streamName, receiveType) {
+			function _buildPlayer(pms) {
+				var player = flashBuilder.init({
+					id: "player_" + tool.random(),
+					wrap: wrap,
+					nameSpace: "play_" + tool.random(),
+					swf: publicPath+"/player_flash/streamPlayer.swf",
+					fullpos: 4,
+					type: "receive",
+					receiveType: receiveType,
+					file: _streamName,
+					url: pms,
+				}, false);
+				
+				player.streamEvent.addCustEvent("onLoad", function() {
+					player.play();
+				});
+			}
+			
+			if(dmc) {
+				$jsonp(dmc, {
+					"method": "play",
+					"stream": _streamName,
+					"confid": _streamName
+				},function(dms){
+					if(!dms) alert("dmc服务器错误！");
+					_buildPlayer(dms);
+				});
+			} else {
+				_buildPlayer(pms);
+			}
+		}
+        
+        buildPlayer(document.getElementsByClassName("vedio")[0], streamName, "mix");
     })
   </script>
 </body>
