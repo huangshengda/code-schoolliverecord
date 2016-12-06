@@ -6,6 +6,13 @@ import java.util.List;
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 
+/**
+ * 
+ * @Description: 返回体(集合)  
+ * @author huangshengda  
+ * @date 2016年12月6日   
+ *
+ */
 public class ReturnVoList<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,18 +26,18 @@ public class ReturnVoList<T> implements Serializable {
 	private int curPage;
 
 	public ReturnVoList() {
-		this.msg="操作成功";
+		this.msg = "操作成功";
 		this.code = Constants.SUCCESS;
 	}
-	
-	public ReturnVoList(int code,String msg,List<T> list) {
-		this.msg=msg;
+
+	public ReturnVoList(int code, String msg, List<T> list) {
+		this.msg = msg;
 		this.code = code;
 		this.data = list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public ReturnVoList(Page page,int code,String msg) {
+	public ReturnVoList(Page page, int code, String msg) {
 		this.code = code;
 		this.msg = msg;
 		this.data = (List<T>) page.getData();
@@ -38,7 +45,7 @@ public class ReturnVoList<T> implements Serializable {
 		this.totalPages = page.getTotalPages();
 		this.curPage = page.getCurPage();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public ReturnVoList(Page page) {
 		this.code = Constants.SUCCESS;

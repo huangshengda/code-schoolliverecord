@@ -3,9 +3,10 @@ package com.codyy.slr.vo;
 import java.util.List;
 
 /**
- * 点播资源视图类
  * 
- * @author GuangY
+ * @Description: 点播资源视图类  
+ * @author huangshengda  
+ * @date 2016年12月6日   
  *
  */
 public class ResourceVo {
