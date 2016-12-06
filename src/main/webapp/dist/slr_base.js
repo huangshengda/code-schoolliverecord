@@ -2063,7 +2063,7 @@ webpackJsonp([2,3,4],[
 /* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
 
 	/**
 	 * 功能描述：扩展部分用于全局的公共方法。
@@ -2090,9 +2090,10 @@ webpackJsonp([2,3,4],[
 				type: 'POST',
 				dataType: "json",
 				data: params,
-				success: function success(ret) {
+				success: function success(retVO) {
+					sessionStorage.setItem('token', retVO.token);
 					if (typeof callback == "function") {
-						callback(ret);
+						callback(retVO);
 					}
 				}
 			};
@@ -2102,7 +2103,10 @@ webpackJsonp([2,3,4],[
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
-			_config.crossDomain = true;
+			//_config.crossDomain = true;
+			_config.beforeSend = function (xhr) {
+				xhr.setRequestHeader('token', sessionStorage.getItem('token'));
+			}; //<span style="font-family: Arial, Helvetica, sans-serif;">$.cookie('token') 这是从cookie中获取token</span>
 			$.ajax(_config);
 		};
 		/**
@@ -2118,9 +2122,9 @@ webpackJsonp([2,3,4],[
 				type: 'GET',
 				dataType: "json",
 				data: params,
-				success: function success(ret) {
+				success: function success(retVO) {
 					if (typeof callback == "function") {
-						callback(ret);
+						callback(retVO);
 					}
 				}
 			};
