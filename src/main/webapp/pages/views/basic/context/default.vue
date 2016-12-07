@@ -20,7 +20,9 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>角色:</label></span>
           <span class="cd-f-value">
-            <select name="userType" id="s-userType"><option>请选择</option><option value="ADMIN">管理员</option>
+            <select name="userType" id="s-userType">
+            <option value="-1">请选择</option>
+            <option value="ADMIN">管理员</option>
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
           </span>
@@ -57,7 +59,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
-             <select name="userType" id="userType"><option>请选择</option><option value="ADMIN">管理员</option>
+             <select name="userType" id="userType"><option value="-1">请选择</option><option value="ADMIN">管理员</option>
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
           </span>
@@ -90,7 +92,7 @@
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
             <select name="userType" data-vali="notnull">
-            <option value="">请选择</option>
+            <option value="-1">请选择</option>
             <option value="ADMIN">管理员</option>
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
@@ -109,7 +111,7 @@ var userEdit = function(params, dom) {
 	$('#userType').val(params.userType);
 	$('#e-username').text(params.username);
 	$('#realname').val(params.realname);
-	md5($('#e-password').val(params.password));
+	//md5($('#e-password').val(params.password));
 	layer.open({
 		type: 1,
 		title: '编辑用户',
