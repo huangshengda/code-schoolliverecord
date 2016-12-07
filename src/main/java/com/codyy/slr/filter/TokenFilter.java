@@ -49,7 +49,7 @@ public class TokenFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
 
-		// 登录首页路劲
+		// 登录首页路径
 		String contenxtPath = req.getContextPath() + "/";
 
 		if (uri.endsWith(contenxtPath)) {
