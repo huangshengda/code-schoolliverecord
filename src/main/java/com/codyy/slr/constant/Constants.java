@@ -24,10 +24,17 @@ public class Constants {
 	public static final List<String> EDIT = Arrays.asList("edit_fun");
 	public static final List<String> EDIT_DELETE = Arrays.asList("edit_fun", "del_fun");
 	public static final List<String> VIEW_EDIT_DELETE = Arrays.asList("view_fun", "edit_fun", "del_fun");
-
+	// 登陆者栅
 	public static final List<String> COLUMN_BASE = Arrays.asList("首页", "点播", "基础设置");// 管理员
 	public static final List<String> COLUMN_MY_COURSE = Arrays.asList("首页", "点播", "我的课程");// 老师
 	public static final List<String> COLUMN = Arrays.asList("首页", "点播");
+
+	// 用户类型
+	public static final String SUPER_ADMIN = "SUPER_ADMIN";
+	public static final String ADMIN = "ADMIN";
+	public static final String TEACHER = "TEACHER";
+	public static final String STUDENT = "STUDENT";
+
 	/**
 	 * 排序字段
 	 */
