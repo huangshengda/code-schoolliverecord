@@ -4,6 +4,7 @@
 	String ROOT_UI_PUBLIC = ROOT_UI+"/public";
 	String ROOT_UI_DIST = ROOT_UI+"/dist";
 	String ROOT_SERVER = "http://localhost:8080/SchoolLiveRecord";
+	String ROOT_SERVER_CHAT = "http://localhost:8080/SchoolLiveRecord/chat";
 %>
 <script type="text/javascript">
 /**
@@ -26,6 +27,10 @@ ROOT_SERVER_FILEUP = "";
  * TEST服务端的根目录（注意别复制代码不看备注
  */
 ROOT_SERVER_TEST = "";
+/**  
+ * 在线聊天地址
+ */
+ROOT_SERVER_CHAT = "<%=ROOT_SERVER_CHAT%>";
 </script>
 <link rel="stylesheet" type="text/css" href="<%=ROOT_UI_PUBLIC%>/myLayer/layer/skin/layer.css">
 <script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/jquery/jquery-2.2.4.js" ></script>

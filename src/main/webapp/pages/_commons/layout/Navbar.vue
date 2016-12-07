@@ -63,6 +63,7 @@ export default{
       if(sessionStorage.getItem("loginFlag") == "1"){
         $("#user_info").show();
         $("#login_button").hide();
+        $("#user_realname").html(sessionStorage.getItem("realname"));
       }
     },
     login:function(){
@@ -94,6 +95,7 @@ export default{
               $("#login_button").hide();
               sessionStorage.loginFlag = "1";
               sessionStorage.token = retVO.data.token;
+              sessionStorage.realname = retVO.data.realname;
               $("#user_realname").html(retVO.data.realname);
             }
           });
