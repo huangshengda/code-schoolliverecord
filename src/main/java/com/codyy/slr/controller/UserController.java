@@ -245,6 +245,17 @@ public class UserController {
 			}
 			return new ReturnVoOne<User>(code, msg);
 		} else if ((user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {// 编辑
+			// 用户类型判断
+			if ("ADMIN".equals(user.getUserType())) {
+				user.setUserType(Constants.ADMIN);
+			} else if ("TEACHER".equals(user.getUserType())) {
+				user.setUserType(Constants.TEACHER);
+			} else if ("STUDENT".endsWith(user.getUserType())) {
+				user.setUserType(Constants.STUDENT);
+			} else {
+				return new ReturnVoOne<User>(Constants.FAILED, "用户类型错误");
+			}
+
 			try {
 				userService.editUser(user);
 			} catch (Exception e) {
