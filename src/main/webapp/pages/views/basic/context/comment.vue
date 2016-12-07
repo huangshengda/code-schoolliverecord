@@ -68,15 +68,17 @@
           //表格中的行操作名称
           optName: {del_fun:"删除"},
           //表格中的行操作方法
-          optFuns: {edit_fun:function(params,dom){
-              
-            },del_fun:function(params,dom){
-                layer.alert('确定删除该行数据?',function(index){
-                layer.close(index);
-                layer.msg('删除成功!')
-               });
-              /* ajaxCallPost("/resource/comment/delete",{"num1":params.num1},callback);*/
-            }
+          optFuns: {
+          	del_fun:function(params,dom){
+                  layer.alert('确定删除该行数据?',function(index){
+                	var resourceId = params.resourceCommentId;
+                	alert(resourceId);
+               		CDUtil.ajaxPost("/resource/comment/delete",{resourceCommentId: resourceId},function(retVO){
+          			});
+                	layer.close(index);
+               		layer.msg('删除成功!')
+              	 });  
+                }
           }
       };
       Grid.initGrid(config,function(){});
