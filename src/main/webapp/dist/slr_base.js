@@ -2103,9 +2103,7 @@ webpackJsonp([2,3,4],[
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
-			
-			_config.crossDomain = true;
-			
+			//_config.crossDomain = true;
 			_config.beforeSend = function (xhr) {
 				xhr.setRequestHeader('token', sessionStorage.getItem('token'));
 			}; //<span style="font-family: Arial, Helvetica, sans-serif;">$.cookie('token') 这是从cookie中获取token</span>

@@ -111,7 +111,7 @@ var userEdit = function(params, dom) {
 	$('#userType').val(params.userType);
 	$('#e-username').text(params.username);
 	$('#realname').val(params.realname);
-	md5($('#e-password').val(params.password));
+	//md5($('#e-password').val(params.password));
 	layer.open({
 		type: 1,
 		title: '编辑用户',
