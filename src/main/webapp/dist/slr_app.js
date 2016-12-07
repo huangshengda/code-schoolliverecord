@@ -6226,12 +6226,10 @@ webpackJsonp([0,3,4],{
 	    },
 	    logout: function logout() {
 	      CDUtil.ajaxPost("/loginout", {}, function (retVO) {
-	        if (retVO.code == 1) {
-	          $("#user_info").hide();
-	          $("#login_button").show();
-	          sessionStorage.removeItem("loginFlag");
-	          sessionStorage.removeItem("token");
-	        }
+	        $("#user_info").hide();
+	        $("#login_button").show();
+	        sessionStorage.removeItem("loginFlag");
+	        sessionStorage.removeItem("token");
 	      });
 	    }
 	  }

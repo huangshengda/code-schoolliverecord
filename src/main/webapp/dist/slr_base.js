@@ -2103,7 +2103,11 @@ webpackJsonp([2,3,4],[
 			if (isCrossDomain) {
 				_config.crossDomain = isCrossDomain;
 			}
+<<<<<<< HEAD
 			_config.crossDomain = true;
+=======
+			//_config.crossDomain = true;
+>>>>>>> branch 'master' of git@10.5.60.10:SchoolLiveRecord/SchoolLiveRecord.git
 			_config.beforeSend = function (xhr) {
 				xhr.setRequestHeader('token', sessionStorage.getItem('token'));
 			}; //<span style="font-family: Arial, Helvetica, sans-serif;">$.cookie('token') 这是从cookie中获取token</span>

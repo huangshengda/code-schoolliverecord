@@ -12,6 +12,7 @@
   <script type="text/javascript" src="../../../../dist/slr_common.js" ></script>
   <script type="text/javascript" src="../../../../dist/slr_base.js" ></script> -->
   <%@ include file="../../_commons/meta.jsp"%>
+  <script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/evideo/swfobject.js" ></script>
   <style type="text/css">
     /* 点播详情页  start*/
  .c4{color:#444;}
@@ -139,7 +140,7 @@
      <small class="ft12">一年级/语文/谢春华</small>
      </p>
     <div class="l-left">
-        <div class="vedio"></div>
+        <div class="vedio" id="video_player_content" ></div>
       </div>
       <div class="l-right fr">
         <div class="right-head ft16">课程推荐</div>
@@ -259,30 +260,62 @@
       </div>
   </div>
   </div>
-  <%@ include file="../../_commons/footer.jsp"%>
+<%@ include file="../../_commons/footer.jsp"%>
 <!-- 点播课程详情  end-->
-  <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
-  <script src="../../../public/qqFace/js/jquery.qqFace.js"></script>
-   <script src="../../../public/_module/js/comment.js"></script>
-  <script type="text/javascript">
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<script src="../../../public/qqFace/js/jquery.qqFace.js"></script>
+<script src="../../../public/_module/js/comment.js"></script>
+<script type="text/javascript">
+
 $(function(){
-  $('.e-xpression').qqFace({
-    id : 'facebox', 
-    assign:'saytext', 
-    path:'src/public/qqFace/arclist/' //表情存放的路径
-  });
-  $(".com-button").click(function(){
-    var str = $(this).parent().prev('textarea').val();
-    var myDate = new Date();
-    var now = myDate.toLocaleString();
-    var html = '<div class="clearfix com-comments-level1">'
-    +'<div class="com-comments-img-r">'
-    +'<p>'+replace_em(str)+'</p>'
-      + '<p class="clearfix"><span class="com-comments-time">'+ now +'</span><span class="commtent-text-btn fr level1-btn" data-show="0">回复</span></p>'
-          +'</div>'
-          +'</div>'
-      $(this).parent().parent().append(html);
-  });
+	var SWF_ID = "evideo_"+new Date().getTime();
+	var SWF_NAME = ROOT_UI_PUBLIC+"/evideo/KwVideo.swf";
+	function EmbedSWF_SWF(divId, mp4Url) {
+		var flashvars = {
+			url: mp4Url
+		};
+		var params = {
+			allowFullscreen: "true",
+			allowScriptAccess: "always",
+			wmode: "transparent" // can cause issues with FP settings & webcam
+		};
+		var attributes = {
+			id: SWF_ID,
+			name: SWF_ID
+		};
+		swfobject.embedSWF(
+		SWF_NAME,
+		//这里可以设置播放设置播放视频宽高
+		divId, "910", "570", "10.0.0", 
+		"expressInstall.swf",
+		flashvars, params, attributes);
+	}
+	//playflashmv("http://media.cdn.kuwo.cn/resource/m1/webkge/2015/7/10/201507101126_4.mp4");
+	//var vedioUrl = "http://10.5.52.11:8080/ResourceServer/res/view/viewClassVideo/b44df33e8f7c4b6c83dce776b98e5504/a2bdba448412457fadb64e7636734e4f.do" ;
+	var vedioUrl = "http://media.cdn.kuwo.cn/resource/m1/webkge/2015/7/10/201507101126_4.mp4" ;
+	//playflashmv(vedioUrl);
+	EmbedSWF_SWF("video_player_content", vedioUrl);
+	
+$('.e-xpression').qqFace({
+  id : 'facebox', 
+  assign:'saytext', 
+  path:'src/public/qqFace/arclist/' //表情存放的路径
+});
+$(".com-button").click(function(){
+  var str = $(this).parent().prev('textarea').val();
+  var myDate = new Date();
+  var now = myDate.toLocaleString();
+  var html = '<div class="clearfix com-comments-level1">'
+  +'<div class="com-comments-img-r">'
+  +'<p>'+replace_em(str)+'</p>'
+    + '<p class="clearfix"><span class="com-comments-time">'+ now +'</span><span class="commtent-text-btn fr level1-btn" data-show="0">回复</span></p>'
+        +'</div>'
+        +'</div>'
+    $(this).parent().parent().append(html);
+	
+   	
+});
+
 
 //查看结果
 

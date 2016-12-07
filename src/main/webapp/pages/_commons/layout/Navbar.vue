@@ -99,12 +99,10 @@ export default{
       },
       logout: function(){
          CDUtil.ajaxPost("/loginout",{},function(retVO){
-            if(retVO.code == 1){
               $("#user_info").hide();
               $("#login_button").show();
               sessionStorage.removeItem("loginFlag");
               sessionStorage.removeItem("token");
-            }
           });
       }
    }

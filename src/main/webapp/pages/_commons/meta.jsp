@@ -1,22 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String ROOT_UI = "http://localhost:8080/SchoolLiveRecord";
+	String ROOT_UI = "/SchoolLiveRecord";
 	String ROOT_UI_PUBLIC = ROOT_UI+"/public";
 	String ROOT_UI_DIST = ROOT_UI+"/dist";
-	String ROOT_SERVER = "http://localhost:8080/SchoolLiveRecord";
+	String ROOT_SERVER = "/SchoolLiveRecord";
 %>
 <script type="text/javascript">
 /**
  * 前端资源文件的根目录
  */
-ROOT_UI = "<%=ROOT_UI%>";
+ROOT_UI = location.origin + "<%=ROOT_UI%>";
 ROOT_UI_PUBLIC = ROOT_UI+"/public";
 ROOT_UI_MODULE = ROOT_UI_PUBLIC+"/_module";
 ROOT_UI_PAGES = ROOT_UI+"/pages";
+publicPath = ROOT_UI_PUBLIC;
 /**
  * 服务端的根目录（可以有多个服务端
  */
-ROOT_SERVER = "<%=ROOT_SERVER%>";
+ROOT_SERVER = location.origin + "<%=ROOT_SERVER%>";
 /**
  * 文件上传服务端的根目录（可以有多个服务端
  */
