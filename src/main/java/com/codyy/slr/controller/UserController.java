@@ -36,7 +36,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	final String PasswordRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|-|=|\\|/|<|>]{6,18}$";
+	private final String usernameRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|-|=|\\|/|<|>]{6,18}$";
 
 	/**
 	 * 
@@ -157,7 +157,7 @@ public class UserController {
 		page.setMap(map);
 		page.setPaging(false);
 		int count = 0;
-		if ((user.getUsername().matches(PasswordRegex)) && (user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {
+		if ((user.getUsername().matches(usernameRegex)) && (user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {
 			// 用户类型判断
 			if ("ADMIN".equals(user.getUserType())) {
 				user.setUserType(Constants.ADMIN);
