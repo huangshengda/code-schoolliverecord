@@ -6190,6 +6190,7 @@ webpackJsonp([0,3,4],{
 	      if (sessionStorage.getItem("loginFlag") == "1") {
 	        $("#user_info").show();
 	        $("#login_button").hide();
+	        $("#user_realname").html(sessionStorage.getItem("realname"));
 	      }
 	    },
 	    login: function login() {
@@ -6221,6 +6222,7 @@ webpackJsonp([0,3,4],{
 	            $("#login_button").hide();
 	            sessionStorage.loginFlag = "1";
 	            sessionStorage.token = retVO.data.token;
+	            sessionStorage.realname = retVO.data.realname;
 	            $("#user_realname").html(retVO.data.realname);
 	          }
 	        });
@@ -6230,8 +6232,7 @@ webpackJsonp([0,3,4],{
 	      CDUtil.ajaxPost("/loginout", {}, function (retVO) {
 	        $("#user_info").hide();
 	        $("#login_button").show();
-	        sessionStorage.removeItem("loginFlag");
-	        sessionStorage.removeItem("token");
+	        sessionStorage.clear();
 	      });
 	    }
 	  }

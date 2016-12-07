@@ -105,8 +105,7 @@ export default{
          CDUtil.ajaxPost("/loginout",{},function(retVO){
               $("#user_info").hide();
               $("#login_button").show();
-              sessionStorage.removeItem("loginFlag");
-              sessionStorage.removeItem("token");
+              sessionStorage.clear();
           });
       }
    }
