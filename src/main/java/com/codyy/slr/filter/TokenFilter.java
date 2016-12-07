@@ -49,8 +49,16 @@ public class TokenFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
 
+		// 登录首页路劲
+		String contenxtPath = req.getContextPath() + "/";
+
+		if (uri.endsWith(contenxtPath)) {
+			chain.doFilter(req, resp);
+			return;
+		}
+
 		for (String string : excludePath) {
-			if (uri.indexOf(string) != -1) {
+			if (uri.endsWith(string)) {
 				chain.doFilter(req, resp);
 				return;
 			}

@@ -13,7 +13,8 @@
           <!-- <div class="line"></div> -->
         </div>
         <div class="head-out fr" style="display: none;" id="user_info" >
-          某某某<span class="g-line">|</span>
+          <span id="user_realname" ></span>
+          <span class="g-line">|</span>
           <i class="iconfont icon-sign-out" @click="logout" ></i>
         </div>
         <button class="btn fr" id="login_button" @click="login">登录</button>
@@ -24,13 +25,13 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" id="username" name="username" data-vali="notnull,username">
+            <input type="text" id="username" name="username" data-vali="notnull,username" value="admin" >
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" id="password" name="password" data-vali="notnull,password">
+            <input type="password" id="password" name="password" data-vali="notnull,password" value="123456">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -62,6 +63,7 @@ export default{
       if(sessionStorage.getItem("loginFlag") == "1"){
         $("#user_info").show();
         $("#login_button").hide();
+        $("#user_realname").html(sessionStorage.getItem("realname"));
       }
     },
     login:function(){
@@ -93,6 +95,8 @@ export default{
               $("#login_button").hide();
               sessionStorage.loginFlag = "1";
               sessionStorage.token = retVO.data.token;
+              sessionStorage.realname = retVO.data.realname;
+              $("#user_realname").html(retVO.data.realname);
             }
           });
         }

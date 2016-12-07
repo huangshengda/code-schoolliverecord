@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String token = request.getParameter("token");
+	String resourceId = request.getParameter("resourceId");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,21 +93,19 @@
   <div class="live">
     <p class="l-title">汉语言文学（第一节）<small class="ft12">一年级/语文/谢春华</small></p>
       <div class="l-left">
-        <div class="vedio">
-			        
-        </div>
+        <div class="vedio"></div>
       </div>
       <div class="l-right fr">
         <div class="chat-bland" id="console">
           <div class="right-head ft16">交流区（26人）</div>
           <ul>
-            <li>
-            <div class="c-content"><span class="fb">李明珠</span><span class="c-time ft12">5分钟前</span><p class="s-flow">李老师讲的好好啊。。。</p></div>
-            <a class="c-del fr"><i class="iconfont icon-delete"></i></a>
-            </li>
-            <li>
-            <div class="c-content"><span class="fb">李明珠</span><span class="c-time ft12">5分钟前</span><p class="s-flow">李老师讲的好好啊。。。</p></div>
-            <a class="c-del fr"><i class="iconfont icon-delete"></i></a>
+            <li id="fdafdafdafda" >
+	            <div class="c-content">
+	            	<span class="fb">李明珠</span>
+	            	<span class="c-time ft12">5分钟前</span>
+	            	<p class="s-flow">李老师讲的好好啊。。。</p>
+	            	<i class="iconfont icon-delete" data-uuid="fdafdafdafda" ></i>
+	            </div>
             </li>
           </ul>
           <div class="clear"></div>
@@ -124,6 +126,8 @@
 	<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/player_flash/player_flash.js"></script>
   <script type="text/javascript">
     $(function(){
+    	var resourceId = "";
+    	var token = sessionStorage.getItem("token");
     	var pms = "",    //dms服务器地址，需要后台传过来
     		streamName = "",	//课程id，需要后台传过来
     		dmc = "",
@@ -138,7 +142,7 @@
         var Chat = {};
 
         Chat.socket = null;
-
+		
         Chat.connect = (function(host) {
             if ('WebSocket' in window) {
                 Chat.socket = new WebSocket(host);
@@ -163,20 +167,20 @@
 
         Chat.initialize = function() {
             if (window.location.protocol == 'http:') {
-                Chat.connect('ws://' + window.location.host + '/chart');
+                Chat.connect('ws://'+ROOT_SERVER_CHAT+"?resoureceId="+resourceId+"&token="+token);
             } else {
-                Chat.connect('wss://' + window.location.host + '/chart');
+                Chat.connect('wss://'+ROOT_SERVER_CHAT+"?resoureceId="+resourceId+"&token="+token);
             }
         };
 
-        Chat.sendMessage = (function() {
+        Chat.sendMessage = (function(params) {
             var message = document.getElementById('chat').value;
             if (message != '') {
                 Chat.socket.send(message);
                 document.getElementById('chat').value = '';
             }
         });
-
+		
         var Console = {};
         Console.log = (function(message) {
             var console = document.getElementById('console');
@@ -191,6 +195,15 @@
         });
 
         Chat.initialize();
+        
+        $("#console").on("click",".icon-delete",function(){
+        	var uuid = $(this).attr("data-uuid");
+        	var params = {uuid: uuid}
+        	Chat.sendMessage(params);
+        	$("#fdafdafdafda").remove();
+        });
+        
+        
         $('#aa').click(function(){
            Chat.sendMessage();
         })

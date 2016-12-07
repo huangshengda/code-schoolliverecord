@@ -57,10 +57,10 @@ methods:{
         })
       },
       openLiveDetail: function(){
-        window.open(ROOT_UI+'/pages/views/live/live_detail.jsp');
+        window.open(ROOT_UI+'/pages/views/live/live_detail.jsp?token='+sessionStorage.getItem("token"));
       },
       openDemondDetail: function(){
-        window.open(ROOT_UI+'/pages/views/demond/demond_detail.jsp');
+        window.open(ROOT_UI+'/pages/views/demond/demond_detail.jsp?token='+sessionStorage.getItem("token"));
       },
        openMore: function(){
         window.open(ROOT_UI+'#/onDemand');
