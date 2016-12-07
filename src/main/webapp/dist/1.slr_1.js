@@ -1252,10 +1252,10 @@ webpackJsonp([1,3,4],[
 /* 37 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	//
 	//
@@ -1287,55 +1287,73 @@ webpackJsonp([1,3,4],[
 	//
 	//
 
-	exports.default = {
-	  data: function data() {
-	    return {};
-	  },
-	  mounted: function mounted() {
-	    this.search_one();
-	  },
+	/**
+	 * 表格中的操作---删除评论
+	**/
+	var comDel = function comDel(params, dom) {
+		layer.alert('确定删除该行数据?', function (index) {
+			var comId = params.resourceCommentId;
+			var comidParams = {
+				resourceCommentId: comId
+			};
+			CDUtil.ajaxPost("/resource/comment/delete", comidParams, function (retVO) {
+				if (retVO.code == 1) {
+					comSearch();
+				}
+			});
+			layer.close(index);
+			layer.msg('删除成功!');
+		});
+	};
+	//进行表格分页的配置
+	var config = {
+		//用来展示表格控件的div的id
+		containerId: "use_to_load_grid",
+		//用来展示表格的表头数据
+		thead: [{ name: "评论", valuekey: "commentContent" }, { name: "来源", valuekey: "resourceName" }, { name: "评论人", valuekey: "realName" }, { name: "操作", valuekey: "opt", type: "opt" }],
+		//用来展示表格的数据
+		//这个应该是后台返回的部分
+		gData: {},
+		//是否需要分页，true：需要，不写默认需要
+		pagingFlag: true,
+		//执行页面查询的方法
+		searchFun: comSearch,
+		//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
+		optParams: ["resourceId", "commentUserId", "parentCommentId"],
+		//表格中的行操作名称
+		optName: {
+			del_fun: "删除"
+		},
+		//表格中的行操作方法
+		optFuns: {
+			del_fun: comDel
+		}
+	};
 
-	  methods: {
-	    search_one: function search_one() {
-	      var result = Validation.validation({
-	        containerId: "condition"
-	      });
-	      if (result == true) {}
-	      var params = {};
-	      CDUtil.ajaxPost("/base/resource/comment/list", params, function (retVO) {
-	        var config = {
-	          //用来展示表格控件的div的id
-	          containerId: "use_to_load_grid",
-	          //用来展示表格的表头数据
-	          thead: [{ name: "评论", valuekey: "commentContent", width: "100px" }, { name: "来源", valuekey: "resourceName" }, { name: "评论人", valuekey: "realName" }, { name: "操作", valuekey: "opt", type: "opt" }],
-	          //用来展示表格的数据
-	          //这个应该是后台返回的部分
-	          gData: retVO,
-	          //是否需要分页，true：需要，不写默认需要
-	          pagingFlag: true,
-	          //执行页面查询的方法
-	          searchFun: function searchFun() {},
-	          //需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	          optParams: ["resourceId", "commentUserId", "parentCommentId"],
-	          //表格中的行操作名称
-	          optName: { del_fun: "删除" },
-	          //表格中的行操作方法
-	          optFuns: {
-	            del_fun: function del_fun(params, dom) {
-	              layer.alert('确定删除该行数据?', function (index) {
-	                var resourceId = params.resourceCommentId;
-	                alert(resourceId);
-	                CDUtil.ajaxPost("/resource/comment/delete", { resourceCommentId: resourceId }, function (retVO) {});
-	                layer.close(index);
-	                layer.msg('删除成功!');
-	              });
-	            }
-	          }
-	        };
-	        Grid.initGrid(config, function () {});
-	      });
-	    }
-	  }
+	/**
+	 * 进行查询评论信息的方法
+	**/
+	var comSearch = function comSearch() {
+		var cParams = {
+			keywords: $("#c-keywords").val(),
+			realname: $("#c-realname").val()
+		};
+		CDUtil.ajaxPost("/base/resource/comment/list", cParams, function (retVO) {
+			config.gData = retVO;
+			Grid.initGrid(config, function () {});
+		});
+	};
+	/**
+	 * Vue组件对象
+	**/
+	exports.default = {
+		mounted: function mounted() {
+			this.search_one();
+		},
+
+		methods: {
+			search_one: comSearch
+		}
 	};
 
 /***/ },
@@ -1379,6 +1397,7 @@ webpackJsonp([1,3,4],[
 	    attrs: {
 	      "type": "text",
 	      "name": "keywords",
+	      "id": "c-keywords",
 	      "data-vali": "notnull"
 	    }
 	  })])])
@@ -1395,6 +1414,7 @@ webpackJsonp([1,3,4],[
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
+	      "id": "c-realname",
 	      "data-vali": "notnull"
 	    }
 	  })])])
@@ -1854,6 +1874,8 @@ webpackJsonp([1,3,4],[
 	//
 	//
 	//
+	//
+	//
 
 	/**
 	 * 表格中的操作---编辑用户
@@ -1862,7 +1884,7 @@ webpackJsonp([1,3,4],[
 		$('#userType').val(params.userType);
 		$('#e-username').text(params.username);
 		$('#realname').val(params.realname);
-		md5($('#e-password').val(params.password));
+		//md5($('#e-password').val(params.password));
 		layer.open({
 			type: 1,
 			title: '编辑用户',
@@ -2077,7 +2099,11 @@ webpackJsonp([1,3,4],[
 	      "name": "userType",
 	      "id": "s-userType"
 	    }
-	  }, [_h('option', ["请选择"]), _h('option', {
+	  }, [_h('option', {
+	    attrs: {
+	      "value": "-1"
+	    }
+	  }, ["请选择"]), " ", _h('option', {
 	    attrs: {
 	      "value": "ADMIN"
 	    }
@@ -2152,7 +2178,11 @@ webpackJsonp([1,3,4],[
 	      "name": "userType",
 	      "id": "userType"
 	    }
-	  }, [_h('option', ["请选择"]), _h('option', {
+	  }, [_h('option', {
+	    attrs: {
+	      "value": "-1"
+	    }
+	  }, ["请选择"]), _h('option', {
 	    attrs: {
 	      "value": "ADMIN"
 	    }
@@ -2223,7 +2253,7 @@ webpackJsonp([1,3,4],[
 	    }
 	  }, [_h('option', {
 	    attrs: {
-	      "value": ""
+	      "value": "-1"
 	    }
 	  }, ["请选择"]), " ", _h('option', {
 	    attrs: {
