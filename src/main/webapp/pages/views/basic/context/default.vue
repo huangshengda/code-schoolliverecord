@@ -39,8 +39,7 @@
    <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value" name="username" id="e-username">
-            
+          <span class="cd-f-value" name="username" id="e-username"> 
           </span>
         </div>
         <div class="cd-f-eve">
@@ -62,12 +61,6 @@
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
           </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label></label></span>
-          <!--<span>
-            <button class="lay-btn green-btn">确定</button><button class="lay-btn gray-btn">取消</button>
-          </span>-->
         </div>
     </div>
   </form>
@@ -102,12 +95,6 @@
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
           </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label></label></span>
-          <!--<span>
-            <button class="lay-btn green-btn" @click="addsb">确定</button><button class="lay-btn gray-btn">取消</button>
-          </span>-->
         </div>
     </div>
   </form>
