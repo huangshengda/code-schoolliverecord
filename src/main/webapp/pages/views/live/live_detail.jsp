@@ -10,11 +10,6 @@
   <meta charset="UTF-8">
   <meta name="renderer" content="webkit">  
   <meta name="viewport" content="width=device-width">
-  <!-- <script type="text/javascript" src="../../../../public/_config/sys_front_config.js" ></script>
-  <script type="text/javascript" src="../../../../public/jquery/jquery-2.2.4.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_manifest.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_common.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_base.js" ></script> -->
   <%@ include file="../../_commons/meta.jsp"%>
   <style type="text/css">
     /* 直播课程详情 start*/
@@ -126,13 +121,20 @@
 	<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/player_flash/player_flash.js"></script>
   <script type="text/javascript">
     $(function(){
-    	var resourceId = "";
+    	
+    	
+    	var resourceId = sessionStorage.getItem("resoureceId");
     	var token = sessionStorage.getItem("token");
-    	var pms = "",    //dms服务器地址，需要后台传过来
+    	var liveUrl = "";
+    	CDUtil.ajaxPost("/resource/get",{resourceId: resourceId},function(retVO){
+    		liveUrl = retVO.data.storePath;
+    		var pms = "",    //dms服务器地址，需要后台传过来
     		streamName = "",	//课程id，需要后台传过来
     		dmc = "",
     		tool = vm.module["tool"],
     		flashBuilder = vm.module["playerBuilder"];
+    	});
+    	
     	
       	$('.c-del').click(function(){
           	$(this).parent().remove();
