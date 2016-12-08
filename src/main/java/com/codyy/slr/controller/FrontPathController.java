@@ -13,7 +13,8 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.vo.ReturnVoOne;
 
-@Controller("/font/path")
+@Controller
+@RequestMapping("/front/path")
 public class FrontPathController {
 
 	@RequestMapping("demond")
@@ -41,7 +42,7 @@ public class FrontPathController {
 		try {
 			User user = (User) req.getAttribute("user");
 			map.put("token", user.getToken());
-			map.put("url", Constants.LIVE_PATH);
+			map.put("url", Constants.FRONT_LIVE_PATH);
 			one.setData(map);
 		} catch (Exception e) {
 			one.setCode(Constants.FAILED);
@@ -58,7 +59,7 @@ public class FrontPathController {
 		try {
 			User user = (User) req.getAttribute("user");
 			map.put("token", user.getToken());
-			map.put("url", Constants.UPLOAD_PATH);
+			map.put("url", Constants.FRONT_UPLOAD_PATH);
 			one.setData(map);
 		} catch (Exception e) {
 			one.setCode(Constants.FAILED);
