@@ -286,9 +286,14 @@ $(function(){
 	}
 	//playflashmv("http://media.cdn.kuwo.cn/resource/m1/webkge/2015/7/10/201507101126_4.mp4");
 	//var vedioUrl = "http://10.5.52.11:8080/ResourceServer/res/view/viewClassVideo/b44df33e8f7c4b6c83dce776b98e5504/a2bdba448412457fadb64e7636734e4f.do" ;
-	var vedioUrl = "http://media.cdn.kuwo.cn/resource/m1/webkge/2015/7/10/201507101126_4.mp4" ;
+	//var videoUrl = "http://media.cdn.kuwo.cn/resource/m1/webkge/2015/7/10/201507101126_4.mp4" ;
 	//playflashmv(vedioUrl);
-	EmbedSWF_SWF("video_player_content", vedioUrl);
+	var resourceId = sessionStorage.getItem("resourceId");
+	CDUtil.ajaxPost("/resource/get",{resourceId: resourceId},function(retVO){
+		var videoUrl = retVO.data.storePath;
+		EmbedSWF_SWF("video_player_content", videoUrl+"?token="+sessionStorage.getItem("token"));
+	});
+	
 	
 $('.e-xpression').qqFace({
   id : 'facebox', 
