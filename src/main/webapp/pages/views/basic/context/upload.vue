@@ -126,7 +126,7 @@ export default {
       openFileup: function(){
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
-        		window.open(ROOT_UI+"/front/path/upload");
+        		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
       		}else{
       			alert("用户信息失效");
       			sessionStorage.clear();
