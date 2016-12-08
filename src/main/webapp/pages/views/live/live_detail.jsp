@@ -11,6 +11,8 @@
   <meta name="renderer" content="webkit">  
   <meta name="viewport" content="width=device-width">
   <%@ include file="../../_commons/meta.jsp"%>
+<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/_tools/tool.js"></script>
+<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/player_flash/player_flash.js"></script>
   <style type="text/css">
     /* 直播课程详情 start*/
 .live{
@@ -49,8 +51,7 @@
 }
 .l-right{
   width: 281px;
-  border-right:1px solid #ececec;
-  border-bottom:1px solid #ececec;
+  border:1px solid #ececec;
   border-top:1px solid #34a150;
   }
   .right-head{
@@ -58,6 +59,7 @@
     line-height: 45px;
     color:#34a150;
     padding: 0 15px;
+    border-bottom:1px solid #ececec;
   }
   .bar{
     margin-top:20px;
@@ -82,43 +84,44 @@
 </head>
 <body>
 <%@ include file="../../_commons/navbar.jsp"%>
-<!-- 点播课程详情  start-->
-<div class="wamp">
-  <!-- 直播课程详情  start-->
-  <div class="live">
-    <p class="l-title">汉语言文学（第一节）<small class="ft12">一年级/语文/谢春华</small></p>
-      <div class="l-left">
-        <div class="vedio"></div>
-      </div>
-      <div class="l-right fr">
-        <div class="chat-bland" id="console">
-          <div class="right-head ft16">交流区（26人）</div>
-          <ul>
-            <li id="fdafdafdafda" >
-	            <div class="c-content">
-	            	<span class="fb">李明珠</span>
-	            	<span class="c-time ft12">5分钟前</span>
-	            	<p class="s-flow">李老师讲的好好啊。。。</p>
-	            	<i class="iconfont icon-delete" data-uuid="fdafdafdafda" ></i>
-	            </div>
-            </li>
-          </ul>
-          <div class="clear"></div>
-          <div class="bar"></div>
-          <div class="c-text">
-            <textarea id="chat"></textarea>
-            <button class="commit fr" id="aa">发表</button>
-            <div class="clear"></div>
-          </div>
-          <div class="clear"></div>
-        </div>
-    </div>
-  </div>
-<!-- 直播课程详情  end-->
+<!-- 直播课程详情 start-->
+<div class="container" >
+	<p class="l-title">汉语言文学（第一节）
+		<span class="ft12">
+			<i class="iconfont icon-play-times"></i>123</span>
+		<small class="ft12">一年级/语文/谢春华</small>
+	</p>
+	<div class="row" >
+		<div class="col-md-9" >
+			<div class="vedio"></div>
+		</div>
+		<div class="col-md-3" >
+			<div class="l-right fr">
+				<div class="chat-bland" id="console">
+		          <div class="right-head ft16">交流区（26人）</div>
+		          <div class="v-recommend" >
+		          <ul>
+			            <li id="fdafdafdafda" >
+				            <div class="c-content">
+				            	<span class="fb">李明珠</span>
+				            	<span class="c-time ft12">5分钟前</span>
+				            	<p class="s-flow">李老师讲的好好啊。。。</p>
+				            	<i class="iconfont icon-delete" data-uuid="fdafdafdafda" ></i>
+				            </div>
+			            </li>
+			          </ul>
+		          </div>
+		          <div class="bar"></div>
+		          <div class="c-text">
+		            <textarea id="chat"></textarea>
+		            <button class="commit fr" id="aa">发表</button>
+		          </div>
+		        </div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- 点播课程详情  end-->
-	<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/_tools/tool.js"></script>
-	<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/player_flash/player_flash.js"></script>
   <script type="text/javascript">
     $(function(){
     	
@@ -127,12 +130,14 @@
     	var token = sessionStorage.getItem("token");
     	var liveUrl = "";
     	CDUtil.ajaxPost("/resource/get",{resourceId: resourceId},function(retVO){
-    		liveUrl = retVO.data.storePath;
-    		var pms = "",    //dms服务器地址，需要后台传过来
-    		streamName = "",	//课程id，需要后台传过来
-    		dmc = "",
-    		tool = vm.module["tool"],
-    		flashBuilder = vm.module["playerBuilder"];
+    		if(retVO.code == 1){
+    			liveUrl = retVO.data.storePath;
+        		var pms = "",    //dms服务器地址，需要后台传过来
+        		streamName = "",	//课程id，需要后台传过来
+        		dmc = "",
+        		tool = vm.module["tool"],
+        		flashBuilder = vm.module["playerBuilder"];
+    		}
     	});
     	
     	
@@ -189,7 +194,6 @@
             var p = document.createElement('p');
             p.style.wordWrap = 'break-word';
             p.innerHTML = message;
-            console.appendChild(p);
             while (console.childNodes.length > 25) {
                 console.removeChild(console.firstChild);
             }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	System.out.println("重新加载了meta.jsp");
 	String ROOT_UI = "http://localhost:8080/SchoolLiveRecord";
 	String ROOT_UI_PUBLIC = ROOT_UI+"/public";
 	String ROOT_UI_DIST = ROOT_UI+"/dist";

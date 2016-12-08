@@ -60,11 +60,17 @@ export default{
     },
    methods:{
     init: function(){
-      if(sessionStorage.getItem("loginFlag") == "1"){
-        $("#user_info").show();
-        $("#login_button").hide();
-        $("#user_realname").html(sessionStorage.getItem("realname"));
-      }
+    	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
+      		if(retVO.code == 2){
+      			$("#user_info").hide();
+        		$("#login_button").show();
+        		sessionStorage.clear();
+      		}else{
+      			$("#user_info").show();
+				$("#login_button").hide();
+				$("#user_realname").html(sessionStorage.getItem("realname"));
+      		}
+      	});
     },
     login:function(){
       laryIndex = layer.open({
