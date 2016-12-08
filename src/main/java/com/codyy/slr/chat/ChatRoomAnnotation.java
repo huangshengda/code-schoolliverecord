@@ -31,7 +31,7 @@ public class ChatRoomAnnotation {
 	}
 
 	@OnOpen
-	public void start(Session session, @PathParam(value = "roomId") String roomId) {
+	public void start(Session session, @PathParam(value = "resourceId") String roomId) {
 		this.session = session;
 		connections.add(this);
 		map.put(roomId + "_" + nickname, session);
