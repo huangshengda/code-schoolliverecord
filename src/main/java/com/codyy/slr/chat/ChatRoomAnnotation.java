@@ -15,7 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/chat1")
+@ServerEndpoint(value = "/chat")
 public class ChatRoomAnnotation {
 
 	private static final String GUEST_PREFIX = "Guest";
