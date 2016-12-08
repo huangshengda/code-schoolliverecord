@@ -139,7 +139,7 @@
 	AND
 	t.REALNAME like CONCAT('%',#{map.realname},'%') ESCAPE '/'
 	</if>
-	 <if test="map.userType != null and map.userType != -1" >
+	 <if test="map.userType != null and map.userType != '-1'" >
 	AND
 	t.USER_TYPE like CONCAT('%',#{map.userType},'%') ESCAPE '/'
 	</if>
