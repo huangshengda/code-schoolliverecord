@@ -6,11 +6,6 @@
   <meta name="renderer" content="webkit">  
   <title>点播详情</title>
   <meta name="viewport" content="width=device-width">
-  <!-- <script type="text/javascript" src="../../../../public/_config/sys_front_config.js" ></script>
-  <script type="text/javascript" src="../../../../public/jquery/jquery-2.2.4.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_manifest.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_common.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_base.js" ></script> -->
   <%@ include file="../../_commons/meta.jsp"%>
   <script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/evideo/swfobject.js" ></script>
   <style type="text/css">
@@ -266,7 +261,6 @@
 <script src="../../../public/qqFace/js/jquery.qqFace.js"></script>
 <script src="../../../public/_module/js/comment.js"></script>
 <script type="text/javascript">
-
 $(function(){
 	var SWF_ID = "evideo_"+new Date().getTime();
 	var SWF_NAME = ROOT_UI_PUBLIC+"/evideo/KwVideo.swf";
@@ -390,6 +384,6 @@ function replace_em(str){
       $(this).parent().parent().parent().remove();
   });
 })
-  </script>
+</script>
 </body>
 </html>

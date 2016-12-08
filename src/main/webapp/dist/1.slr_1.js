@@ -3536,6 +3536,17 @@ webpackJsonp([1,3,4],[
 	          _self.subjectList = JSON.parse(data);
 	        }
 	      });
+	    },
+	    openFileup: function openFileup() {
+	      CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
+	        if (retVO.code == 1) {
+	          window.open(ROOT_UI + "/front/path/upload");
+	        } else {
+	          alert("用户信息失效");
+	          sessionStorage.clear();
+	          window.href.location = "/#/index";
+	        }
+	      });
 	    }
 	  }
 	};
@@ -3547,7 +3558,16 @@ webpackJsonp([1,3,4],[
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('div', {
 	    staticClass: "content"
-	  }, [_vm._m(0), " ", _h('div', {
+	  }, [_h('div', {
+	    staticClass: "subBtn"
+	  }, [_h('button', {
+	    staticClass: "btn fr",
+	    on: {
+	      "click": function($event) {
+	        _vm.openFileup()
+	      }
+	    }
+	  }, ["上传课程视频"])]), " ", _h('div', {
 	    staticClass: "dashboard"
 	  }, [_h('form', {
 	    attrs: {
@@ -3556,9 +3576,9 @@ webpackJsonp([1,3,4],[
 	    }
 	  }, [_h('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(1), " ", _vm._m(2), " ", _h('div', {
+	  }, [_vm._m(0), " ", _vm._m(1), " ", _h('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(3), " ", _h('span', {
+	  }, [_vm._m(2), " ", _h('span', {
 	    staticClass: "cd-f-value "
 	  }, [_h('select', {
 	    attrs: {
@@ -3568,7 +3588,7 @@ webpackJsonp([1,3,4],[
 	    return _h('option', [_vm._s(grade.classlevelName)])
 	  })])])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(4), " ", _h('span', {
+	  }, [_vm._m(3), " ", _h('span', {
 	    staticClass: "cd-f-value "
 	  }, [_h('select', {
 	    attrs: {
@@ -3590,12 +3610,6 @@ webpackJsonp([1,3,4],[
 	    }
 	  }), " "])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
-	    staticClass: "subBtn"
-	  }, [_h('button', {
-	    staticClass: "btn fr"
-	  }, ["上传课程视频"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -3988,7 +4002,6 @@ webpackJsonp([1,3,4],[
 	//
 	//
 	//
-	//
 
 	exports.default = {
 	  data: function data() {
@@ -4009,7 +4022,6 @@ webpackJsonp([1,3,4],[
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/home/live/list", params, function (retVO) {
-	        console.log(retVO);
 	        _self.posts = retVO; //JSON.parse(retVO);
 	      });
 	    },
@@ -4020,11 +4032,29 @@ webpackJsonp([1,3,4],[
 	        _self.courseList = retVO; //JSON.parse(retVO);
 	      });
 	    },
-	    openLiveDetail: function openLiveDetail() {
-	      window.open(ROOT_UI + '/pages/views/live/live_detail.jsp?token=' + sessionStorage.getItem("token"));
+	    openLiveDetail: function openLiveDetail(resourceId) {
+	      CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
+	        if (retVO.code == 1) {
+	          sessionStorage.setItem("resourceId", resourceId);
+	          window.open(ROOT_UI + "/front/path/live");
+	        } else {
+	          alert("用户信息失效");
+	          sessionStorage.clear();
+	          window.href.location = "/#/index";
+	        }
+	      });
 	    },
-	    openDemondDetail: function openDemondDetail() {
-	      window.open(ROOT_UI + '/pages/views/demond/demond_detail.jsp?token=' + sessionStorage.getItem("token"));
+	    openDemondDetail: function openDemondDetail(resourceId) {
+	      CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
+	        if (retVO.code == 1) {
+	          sessionStorage.setItem("resourceId", resourceId);
+	          window.open(ROOT_UI + "/front/path/demond");
+	        } else {
+	          alert("用户信息失效");
+	          sessionStorage.clear();
+	          window.href.location = "/#/index";
+	        }
+	      });
 	    },
 	    openMore: function openMore() {
 	      window.open(ROOT_UI + '#/onDemand');
@@ -4057,12 +4087,12 @@ webpackJsonp([1,3,4],[
 	      staticClass: "col-md-4",
 	      on: {
 	        "click": function($event) {
-	          _vm.openLiveDetail()
+	          _vm.openLiveDetail(post.resourceId)
 	        }
 	      }
 	    }, [_h('i', {
 	      staticClass: "iconfont icon-avpic"
-	    }), "\n      进入直播"])])
+	    }), "进入直播"])])
 	  })]) : _h('div', {
 	    staticClass: "tac"
 	  }, [_h('img', {
@@ -4089,7 +4119,7 @@ webpackJsonp([1,3,4],[
 	      staticClass: "col-4",
 	      on: {
 	        "click": function($event) {
-	          _vm.openDemondDetail()
+	          _vm.openDemondDetail(course.resourceId)
 	        }
 	      }
 	    }, [_h('div', {

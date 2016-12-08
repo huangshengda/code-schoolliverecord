@@ -269,4 +269,12 @@ public class UserController {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
+	@ResponseBody
+	@RequestMapping("/token/hasexpire")
+	public ReturnVoOne tokenHasExpire() {
+		// 过滤器以及校验了token
+		return new ReturnVoOne();
+	}
+
 }

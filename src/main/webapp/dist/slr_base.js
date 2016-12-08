@@ -2063,7 +2063,7 @@ webpackJsonp([2,3,4],[
 /* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
 
 	/**
 	 * 功能描述：扩展部分用于全局的公共方法。
@@ -2091,7 +2091,11 @@ webpackJsonp([2,3,4],[
 				dataType: "json",
 				data: params,
 				success: function success(retVO) {
-					sessionStorage.setItem('token', retVO.token);
+					/*console.log(retVO);
+	    if(!ValueCheck.isUndefined(retVO.data.token) && !ValueCheck.isNull(retVO.data.token)){
+	    	sessionStorage.setItem("token",retVO.data.token);
+	    }*/
+					//sessionStorage.setItem('token',retVO.data.token)
 					if (typeof callback == "function") {
 						callback(retVO);
 					}

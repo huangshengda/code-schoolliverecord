@@ -35,6 +35,11 @@ public class Constants {
 	public static final String TEACHER = "TEACHER";
 	public static final String STUDENT = "STUDENT";
 
+	// 返回前段的路径
+	public static final String FRONT_DEMOND_PATH = "webapp/pages/views/demond/demond_detail.jsp";
+	public static final String FRONT_LIVE_PATH = "webapp/pages/views/live/live_detail.jsp";
+	public static final String FRONT_UPLOAD_PATH = "webapp/pages/views/basic/up_subject.jsp";
+
 	/**
 	 * 排序字段
 	 */
