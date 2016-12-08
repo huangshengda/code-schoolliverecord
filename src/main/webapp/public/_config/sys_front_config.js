@@ -1,14 +1,14 @@
 /**
  * 前端资源文件的根目录
  */
-ROOT_UI = location.origin+"/SchoolLiveRecord";
+ROOT_UI = "http://localhost:8080/SchoolLiveRecord";
 ROOT_UI_PUBLIC = ROOT_UI+"/public";
 ROOT_UI_MODULE = ROOT_UI_PUBLIC+"/_module";
 ROOT_UI_PAGES = ROOT_UI+"/pages";
 /**
  * 服务端的根目录（可以有多个服务端
  */
-ROOT_SERVER = location.origin+"/SchoolLiveRecord";
+ROOT_SERVER = "http://localhost:8080/SchoolLiveRecord";
 /**
  * 文件上传服务端的根目录（可以有多个服务端
  */

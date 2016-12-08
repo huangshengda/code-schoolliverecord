@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-  <div class="subBtn"><button class="btn fr">上传课程视频</button></div>
+  <div class="subBtn"><button class="btn fr" @click="openFileup()" >上传课程视频</button></div>
   <div class="dashboard">
   <!-- 条件 start -->
     <form action="" id="condition">
@@ -122,7 +122,18 @@ export default {
             _self.subjectList = JSON.parse(data);
           }
         });
+      },
+      openFileup: function(){
+      	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
+      		if(retVO.code == 1){
+        		window.open(ROOT_UI+"/front/path/upload");
+      		}else{
+      			alert("用户信息失效");
+      			sessionStorage.clear();
+      			window.href.location = "/#/index";
+      		}
+      	});
       }
-}
+	}
 }
 </script>

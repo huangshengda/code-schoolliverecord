@@ -24,7 +24,11 @@
 			dataType: "json",
 			data: params,
 			success: function(retVO){
-				sessionStorage.setItem('token',retVO.token)
+				/*console.log(retVO);
+				if(!ValueCheck.isUndefined(retVO.data.token) && !ValueCheck.isNull(retVO.data.token)){
+					sessionStorage.setItem("token",retVO.data.token);
+				}*/
+				//sessionStorage.setItem('token',retVO.data.token)
 				if(typeof(callback) == "function" ){
 					callback(retVO);
 				}
