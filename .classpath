@@ -17,7 +17,5 @@
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Servers/apache-tomcat-7.0.73-slr/lib/websocket-api.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
