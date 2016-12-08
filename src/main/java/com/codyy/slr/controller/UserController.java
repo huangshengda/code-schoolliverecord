@@ -127,6 +127,10 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
+		/*if (user.getUserType() == "-1") {
+			String aaa = "123";
+		}
+		String aa = (user.getUserType() == "-1" ? null : user.getUserType());*/
 		map.put("userType", user.getUserType());
 		map.put("user", req.getAttribute("user"));
 		page.setMap(map);
