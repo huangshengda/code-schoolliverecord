@@ -105,10 +105,10 @@
 	LEFT JOIN USER u ON u.USER_ID = rc.COMMENT_USER_ID
 	left join resource res on res.RESOURCE_ID = rc.RESOURCE_ID
 	WHERE 1=1 
-	 <if test="map.realname != null" >
-	and  u.REALNAME like like CONCAT('%',#{map.realname},'%') ESCAPE '/'
+	 <if test="map.realname != null and map.realname != ''" >
+	and  u.REALNAME like CONCAT('%',#{map.realname},'%') ESCAPE '/'
 	</if>
-	 <if test="map.keywords != null" >
+	 <if test="map.keywords != null and map.keywords != ''">
 	and (res.RESOURCE_NAME like CONCAT('%',#{map.keywords},'%') ESCAPE '/' or rc.COMMENT_CONTENT like CONCAT('%',#{map.keywords},'%') ESCAPE '/')
 	</if>
 	</select>

@@ -37,7 +37,7 @@
   </div>
     <!-- 编辑用户弹窗表单 start -->
   <form action="" id="edituser" class="layBox">
-  <input type="hidden" name="userId" id="userId">
+  <input type="hidden" name="userId" id="e-userId">
    <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
@@ -112,6 +112,7 @@ var userEdit = function(params, dom) {
 	$('#e-username').text(params.username);
 	$('#realname').val(params.realname);
 	//md5($('#e-password').val(params.password));
+	$('#e-userId').val(params.userId);
 	layer.open({
 		type: 1,
 		title: '编辑用户',
@@ -133,13 +134,12 @@ var userEdit = function(params, dom) {
 			layer.msg('编辑成功!');
 		}
 	});
-}
+};
 /**
  * 表格中的操作---删除用户
 **/
 var userDel = function(params, dom) {
-	layer.alert('确定删除该行数据?',
-	function(index) {
+	layer.alert('确定删除该行数据?',function(index) {
 		var userId = params.userId;
 		var useridParams = {
 			userId: userId
@@ -153,7 +153,7 @@ var userDel = function(params, dom) {
 		layer.close(index);
 		layer.msg('删除成功!');
 	});
-}
+};
 
 //进行表格分页的配置
 var config = {
@@ -197,7 +197,7 @@ var config = {
 		edit_fun: userEdit,
 		del_fun: userDel,
 	}
-}
+};
 
 /**
  * 进行查询用户信息的方法

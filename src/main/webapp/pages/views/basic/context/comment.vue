@@ -17,7 +17,7 @@
             <input type="text" name="realname" id="c-realname" data-vali="notnull">
           </span>
         </div>  
-        <button class="sBtn" @click="search_one">查询</button>
+        <button class="sBtn" type="button" @click="search_one">查询</button>
       </div>
     </form>
   <!-- 条件 end -->
@@ -47,7 +47,7 @@ var comDel = function(params, dom) {
 		layer.close(index);
 		layer.msg('删除成功!');
 	});
-}
+};
 //进行表格分页的配置
 var config = {
 	//用来展示表格控件的div的id
@@ -66,14 +66,15 @@ var config = {
 	//执行页面查询的方法
 	searchFun: comSearch,
 	//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	optParams: ["resourceId","commentUserId","parentCommentId"],
+	optParams: ["resourceCommentId","commentUserId","parentCommentId","commentContent","resourceName","realName"],
 	//表格中的行操作名称
 	optName: {
-		del_fun: "删除"
+		del_fun: "删除",
 	},
 	//表格中的行操作方法
 	optFuns: {
 		del_fun: comDel,
+		
 	}
 }
 
@@ -98,7 +99,7 @@ export default {
    	 	this.search_one()
  	},
  	methods: {
-   		search_one:comSearch,
+   		search_one: comSearch,
 	}
 }
 </script>

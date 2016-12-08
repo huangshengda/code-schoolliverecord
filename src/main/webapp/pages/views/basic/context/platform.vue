@@ -15,7 +15,7 @@
           <span class="cd-f-value ">
             <img src="" width="360" height="70" id="thispage_fileup_img" file-name="" file-path="" class="show">
             <div class="btn btn-default smp-fileupshow mt10" >上传logo
-              <input type="file" id="thispage_fileup" class="smp-fileupinput" @click="upimg" name="logoPath" data-vali="notnull"/>
+              <input type="file" id="thispage_fileup" @change="impup();"  class="smp-fileupinput" name="logoPath" data-vali="notnull"/>
             </div>
           </span>
         </div>
@@ -24,11 +24,11 @@
           <span class="cd-f-value ">
              <input type="text" class="w730" name="buttomMsg" data-vali="notnull"> 
           </span>
-        </div>   
+        </div>
         <div class="cd-f-eve mt40">
           <span class="cd-f-name"><label></label></span>
           <span>
-            <button class="lay-btn green-btn mr20">保存</button><button class="lay-btn green-btn">恢复默认</button>
+            <button class="lay-btn green-btn mr20" @click="subPlat">保存</button><button class="lay-btn green-btn" @click="rePlat">恢复默认</button>
           </span>
         </div>   
       </div>
@@ -40,23 +40,29 @@
    export default {
     data() {
       return {
-        name: 'codyy'
       }
     },
     methods:{
-      upimg:function(){
-        //Validation
-        var result = Validation.validation({
-          containerId: "platform",
-        });
-        if(result==true){
-          var data = { 
-            title: $('[name="title"]').val(), 
-            logoPath: $('[name="logoPath"]').val(), 
-            buttomMsg: $('[name="buttomMsg"]').val() 
-          }; 
-          $.post("",data,function(result){ })
-        }
+       subPlat: function(){
+        	var platParams = $('#platform').serialize();
+      		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
+      		if (retVO.code == 1) {
+				layer.msg('保存成功!');
+			}
+      	});
+        },
+        rePlat:function(){
+        	$('#platform')[0].reset();
+        },
+        impup: function(){
+        	console.log($("#thispage_fileup"));
+        	var fileDom = $("#thispage_fileup")[0];
+        	var file = fileDom.files[0];
+        	var fileupUrl = ROOT_SERVER+"/resource/list?";
+        	var sequence = H5fileup.getSequence();
+        	H5fileup.startFileup(file,fileupUrl,sequence,function(){
+        		H5fileup.showImgAuto(file,"thispage_fileup_img");
+        	});
         }
     }
    }
