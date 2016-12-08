@@ -92,6 +92,12 @@ public class Constants {
 	public static final long EXPIRE_TIME;
 
 	/**
+	 *项目路径
+	 */
+	public final static String ROOT_UI;
+	public final static String ROOT_SERVER;
+
+	/**
 	 * 存储路径
 	 */
 	public final static String IMG_PATH;
@@ -101,7 +107,7 @@ public class Constants {
 	public final static String DMS_VIDEO_PATH;
 
 	/**
-	 * 系统截图张数
+	 * 系统截图张数v
 	 */
 	public static final int SHOT_NUM;
 
@@ -143,6 +149,9 @@ public class Constants {
 		SHOT_IMG_TIMES = StringToInt("shot.img.times", 5);
 		CONCAT_VIDEO_TIME = StringToInt("concat.video.time", 3600);
 		CONCAT_VIDEO_TIMES = StringToInt("concat.video.times", 5);
+
+		ROOT_UI = ConfigUtils.getValue("root.ui");
+		ROOT_SERVER = ConfigUtils.getValue("root.server");
 	}
 
 	private static int StringToInt(String key, int defaultVal) {
