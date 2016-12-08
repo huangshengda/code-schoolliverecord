@@ -52,6 +52,7 @@
 </div>
 </template>
 <script>
+/*vue组件*/
    export default {
     data() {
       return {
@@ -70,7 +71,7 @@
         	_self.grades = retVO;  
         });
       },
-      /*编辑学科*/
+      /*编辑年级*/
       classEdit: function(){
       	
       	layer.open({
@@ -94,11 +95,11 @@
 		}
 		});
       },
-      /*删除学科*/
+      /*删除年级*/
       classDel: function(){
       	
       },
-      /*添加学科*/
+      /*添加年级*/
        add: function(){
           layer.open({
              type: 1,
