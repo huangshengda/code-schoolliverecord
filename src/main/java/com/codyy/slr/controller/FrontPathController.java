@@ -20,7 +20,7 @@ public class FrontPathController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Constants.DMS_VIDEO_PATH;
+		return Constants.FRONT_DEMOND_PATH;
 	}
 
 	@RequestMapping("live")
