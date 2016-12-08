@@ -58,7 +58,7 @@ methods:{
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
       			sessionStorage.setItem("resourceId",resourceId);
-        		window.open(ROOT_UI+"/front/path/live");
+        		window.open(ROOT_UI+"/front/path/live?token="+sessionStorage.getItem("token"));
       		}else{
       			alert("用户信息失效");
       			sessionStorage.clear();
@@ -70,7 +70,7 @@ methods:{
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
       			sessionStorage.setItem("resourceId",resourceId);
-        		window.open(ROOT_UI+"/front/path/demond");
+        		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			alert("用户信息失效");
       			sessionStorage.clear();
