@@ -1,6 +1,3 @@
-console.log("这是基础组件打包的js入口");
-console.log(ROOT_UI);
-
 /*require(['jquery'],function($){
 	window.$ = $;
 	window.jquery = $;
@@ -22,11 +19,11 @@ require('../public/bootstrap/css/bootstrap.css');
 require('../public/jquery-ui/jquery-ui.css');
 require('../public/jquery-ui/jquery-ui.theme.css');
 /*require('../public/myLayer/layer/skin/layer.css');*/
-
-/**  加载本系统的基础样式   **/
-require('../public/_module/css/slr_base.css');
 /**  加载本系统的图标库  **/
 require('../public/_module/icon/iconfont.css');
+/**  加载本系统的基础样式   **/
+require('../public/_module/css/slr_base.css');
+
 
 /**  加载编码加密工具  **/
 window.md5 = require('../public/md5/md5');

@@ -8,14 +8,15 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
 	entry: {
-		  base: './entry/base.js',
-	    app: './pages/app.js'
-	  },
-	  output: {
-	    	path: path.resolve(__dirname, './dist'),
-	        publicPath: './dist/',
-	        filename: 'slr_[name].js'
-	  },
+		base: './entry/base.js',
+		app: './pages/app.js',
+		demond: './entry/demond.js'
+	},
+	output: {
+		path: path.resolve(__dirname, './dist'),
+		publicPath: './dist/',
+		filename: 'slr_[name].js'
+	},
     plugins: [
       /*new HtmlWebpackPlugin({
         title: 'my title',
