@@ -2,7 +2,7 @@
 <div class="content">
   <div class="subBtn"><button class="btn fr">上传课程视频</button></div>
   <div class="dashboard">
-  <!-- 条件 start -->
+  <!-- 条件 start-->
     <form action="" id="condition">
        <div class="cd-f-row">
         <div class="cd-f-eve">
