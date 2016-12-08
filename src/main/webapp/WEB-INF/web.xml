@@ -81,8 +81,8 @@
 		<filter-class>com.codyy.slr.filter.TokenFilter</filter-class>
 		<init-param>
 			<param-name>excludePath</param-name>
-			<param-value>.js;.css;.html;.png;.jpg;/pages/;/public/;/login;/home/live/list;/demand/list;/base/classlevel/list;
-							/base/subject/list;/resource/live/add;/resource/live/hasfinish;</param-value>
+			<param-value>.js;.css;.html;.swf;.png;.jpg;/pages/;/public/;/login;/home/live/list;/demand/list;/base/classlevel/list;
+							/base/subject/list;/resource/live/add;/resource/live/hasfinish;chat</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
