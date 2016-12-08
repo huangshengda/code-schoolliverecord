@@ -36,9 +36,9 @@ public class Constants {
 	public static final String STUDENT = "STUDENT";
 
 	// 返回前段的路径
-	public static final String FRONT_DEMOND_PATH = "pages/views/demond/demond_detail.jsp";
-	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail.jsp";
-	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject.jsp";
+	public static final String FRONT_DEMOND_PATH = "pages/views/demond/demond_detail";
+	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
+	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
 
 	/**
 	 * 排序字段
