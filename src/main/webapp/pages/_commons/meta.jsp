@@ -4,7 +4,7 @@
 	String ROOT_UI_PUBLIC = ROOT_UI+"/public";
 	String ROOT_UI_DIST = ROOT_UI+"/dist";
 	String ROOT_SERVER = "http://localhost:8080/SchoolLiveRecord";
-	String ROOT_SERVER_CHAT = "http://localhost:8080/SchoolLiveRecord/chat";
+	String ROOT_SERVER_CHAT = "localhost:8080/SchoolLiveRecord/chat";
 %>
 <script type="text/javascript">
 /**

@@ -34,7 +34,7 @@ public class ResCommentController {
 	private ResCommentService resCommentService;
 
 	/**
-	 * 
+	 *  
 	 * @Description: 添加评论  
 	 * @param resComment
 	 * @return
