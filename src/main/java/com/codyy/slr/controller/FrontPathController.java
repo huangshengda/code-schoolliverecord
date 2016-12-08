@@ -1,70 +1,49 @@
 package com.codyy.slr.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
-import com.codyy.slr.vo.ReturnVoOne;
 
 @Controller
 @RequestMapping("/front/path")
 public class FrontPathController {
 
 	@RequestMapping("demond")
-	@ResponseBody
-	public ReturnVoOne<Map<String, String>> getDemondPath(HttpServletRequest req) {
-		Map<String, String> map = new HashMap<>();
-		ReturnVoOne<Map<String, String>> one = new ReturnVoOne<Map<String, String>>();
+	public String getDemondPath(HttpServletRequest req) {
 		try {
 			User user = (User) req.getAttribute("user");
-			map.put("token", user.getToken());
-			map.put("url", Constants.FRONT_DEMOND_PATH);
-			one.setData(map);
+			req.setAttribute("token", user.getToken());
 		} catch (Exception e) {
-			one.setCode(Constants.FAILED);
 			e.printStackTrace();
 		}
-		return one;
+		return Constants.DMS_VIDEO_PATH;
 	}
 
 	@RequestMapping("live")
-	@ResponseBody
-	public ReturnVoOne<Map<String, String>> getLivePath(HttpServletRequest req) {
-		Map<String, String> map = new HashMap<>();
-		ReturnVoOne<Map<String, String>> one = new ReturnVoOne<Map<String, String>>();
+	public String getLivePath(HttpServletRequest req, String resourceId) {
 		try {
 			User user = (User) req.getAttribute("user");
-			map.put("token", user.getToken());
-			map.put("url", Constants.FRONT_LIVE_PATH);
-			one.setData(map);
+			req.setAttribute("token", user.getToken());
+			req.setAttribute("resourceId", resourceId);
 		} catch (Exception e) {
-			one.setCode(Constants.FAILED);
 			e.printStackTrace();
 		}
-		return one;
+		return Constants.FRONT_LIVE_PATH;
 	}
 
 	@RequestMapping("upload")
-	@ResponseBody
-	public ReturnVoOne<Map<String, String>> getUploadPath(HttpServletRequest req) {
-		Map<String, String> map = new HashMap<>();
-		ReturnVoOne<Map<String, String>> one = new ReturnVoOne<Map<String, String>>();
+	public String getUploadPath(HttpServletRequest req) {
 		try {
 			User user = (User) req.getAttribute("user");
-			map.put("token", user.getToken());
-			map.put("url", Constants.FRONT_UPLOAD_PATH);
-			one.setData(map);
+			req.setAttribute("token", user.getToken());
 		} catch (Exception e) {
-			one.setCode(Constants.FAILED);
 			e.printStackTrace();
 		}
-		return one;
+		return Constants.FRONT_UPLOAD_PATH;
 	}
+
 }
