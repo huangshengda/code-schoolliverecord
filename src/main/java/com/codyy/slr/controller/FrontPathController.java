@@ -24,11 +24,10 @@ public class FrontPathController {
 	}
 
 	@RequestMapping("live")
-	public String getLivePath(HttpServletRequest req, String resourceId) {
+	public String getLivePath(HttpServletRequest req) {
 		try {
 			User user = (User) req.getAttribute("user");
 			req.setAttribute("token", user.getToken());
-			req.setAttribute("resourceId", resourceId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
