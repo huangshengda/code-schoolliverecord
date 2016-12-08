@@ -133,18 +133,18 @@ public class UploadController {
 			HttpServletRequest request) {
 		Long per1 = 0l;
 		Path dir = Paths.get(Constants.TEMP);
-
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, filename + "*")) {
 			for (Path e : stream) {
 				per1 = e.toFile().length();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			return new ReturnVoOne<Double>(0, "操作失败");
 		}
 
 		Double per = per1 * 1.0 / filesize * 1.0 * 100;
 
-		return new ReturnVoOne<Double>(1, null, per);
+		return new ReturnVoOne<Double>(1, "操作成功", per);
 
 	}
 
