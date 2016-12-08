@@ -24,7 +24,7 @@
 		t.RESOURCE_COMMENT_ID resourceCommentId, t.RESOURCE_ID resourceId, t.COMMENT_USER_ID commentUserId, t.COMMENT_CONTENT commentContent, t.CREATE_TIME createTime,
 		t.PARENT_COMMENT_ID parentCommentId, t.REPLY_TO_USER_ID replyToUserId
 	</sql>
-	
+	 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
