@@ -29,6 +29,9 @@ public class Constants {
 	public static final List<String> COLUMN_MY_COURSE = Arrays.asList("首页", "点播", "我的课程");// 老师
 	public static final List<String> COLUMN = Arrays.asList("首页", "点播");
 
+	// 静态资源前缀
+	public static final List<String> STATIC_RES_PATH_PREFIX = Arrays.asList("dist", "public", "pages");
+
 	// 用户类型
 	public static final String SUPER_ADMIN = "SUPER_ADMIN";
 	public static final String ADMIN = "ADMIN";
