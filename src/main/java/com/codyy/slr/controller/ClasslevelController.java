@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Classlevel;
 import com.codyy.slr.service.ClasslevelService;
+import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -144,6 +145,9 @@ public class ClasslevelController {
 	public ReturnVoOne<Classlevel> modifyClasslevelSort(String classlevelIds) {
 		int code = 1;
 		String msg = "排序成功";
+		if(!StringUtils.isNotBlank(classlevelIds)){
+			return new ReturnVoOne<Classlevel>(0, "年级Id为空");
+		}
 		String id[] = classlevelIds.split(",");
 		List<Classlevel> list = new ArrayList<Classlevel>();
 		for (int i = 0; i < id.length; i++) {
