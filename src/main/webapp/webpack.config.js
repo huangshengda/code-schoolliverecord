@@ -10,7 +10,8 @@ module.exports = {
 	entry: {
 		base: './entry/base.js',
 		app: './pages/app.js',
-		demond: './entry/demond.js'
+		demond: './entry/demond.js',
+		live: './entry/live.js'
 	},
 	output: {
 		path: path.resolve(__dirname, './dist'),

@@ -93,11 +93,10 @@ public class UserController {
 	 * @return
 	 *
 	 */
-	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("loginout")
-	public ReturnVoOne loginout(HttpServletRequest req) {
-		ReturnVoOne one = new ReturnVoOne();
+	public ReturnVoOne<List<String>> loginout(HttpServletRequest req) {
+		ReturnVoOne<List<String>> one = new ReturnVoOne<List<String>>();
 		try {
 			User user = (User) req.getAttribute("user");
 			TokenUtils.removeUserFormCache(user.getToken());
@@ -105,6 +104,7 @@ public class UserController {
 			one.setMsg("退出失败");
 			one.setCode(Constants.FAILED);
 		}
+		one.setData(Constants.COLUMN);
 		return one;
 	}
 
