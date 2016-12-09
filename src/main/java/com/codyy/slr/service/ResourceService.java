@@ -149,7 +149,7 @@ public class ResourceService {
 		if (resVo != null) {
 			resVo.setThumbPath(contextpath + "/download/img" + resVo.getThumbPath());
 			if (resVo.getLivingFlag().equals("N")) {
-				resVo.setStorePath(contextpath + "/download/" + resVo.getSourceType() + resVo.getStorePath());
+				resVo.setStorePath(contextpath + "/download/video/" + resVo.getSourceType() + resVo.getStorePath());
 			}
 		}
 

@@ -93,11 +93,10 @@ public class UserController {
 	 * @return
 	 *
 	 */
-	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("loginout")
-	public ReturnVoOne loginout(HttpServletRequest req) {
-		ReturnVoOne one = new ReturnVoOne();
+	public ReturnVoOne<List<String>> loginout(HttpServletRequest req) {
+		ReturnVoOne<List<String>> one = new ReturnVoOne<List<String>>();
 		try {
 			User user = (User) req.getAttribute("user");
 			TokenUtils.removeUserFormCache(user.getToken());
@@ -105,6 +104,7 @@ public class UserController {
 			one.setMsg("退出失败");
 			one.setCode(Constants.FAILED);
 		}
+		one.setData(Constants.COLUMN);
 		return one;
 	}
 
@@ -127,6 +127,10 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
+		/*if (user.getUserType() == "-1") {
+			String aaa = "123";
+		}
+		String aa = (user.getUserType() == "-1" ? null : user.getUserType());*/
 		map.put("userType", user.getUserType());
 		map.put("user", req.getAttribute("user"));
 		page.setMap(map);
@@ -273,7 +277,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/token/hasexpire")
 	public ReturnVoOne tokenHasExpire() {
-		// 过滤器以及校验了token
+		// 过滤器已经校验了token
 		return new ReturnVoOne();
 	}
 

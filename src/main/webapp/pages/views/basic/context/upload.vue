@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-  <div class="subBtn"><button class="btn fr">上传课程视频</button></div>
+  <div class="subBtn"><button class="btn fr" @click="openUploadup()" >上传课程视频</button></div>
   <div class="dashboard">
   <!-- 条件 start-->
     <form action="" id="condition">
@@ -157,6 +157,9 @@ export default {
         	CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
          		_self.subjectList = retVO;
        		 });
+    	},
+    	openUploadup: function(){
+    		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
     	}
 	}
 }

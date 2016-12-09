@@ -32,9 +32,13 @@ public class TokenFilter implements Filter {
 	// 不需要过滤的路径
 	private List<String> excludePath;
 
+	// 不需要过滤的后缀
+	// private List<String> excludeSuffix;
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		excludePath = initNotFilterUrl(filterConfig, "excludePath");
+		// excludeSuffix = initNotFilterUrl(filterConfig, "excludeSuffix");
 	}
 
 	@Override
@@ -47,14 +51,27 @@ public class TokenFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
+
+		// 添加项目路径
+		req.setAttribute("ROOT_UI", Constants.ROOT_UI);
+		req.setAttribute("ROOT_SERVER", Constants.ROOT_SERVER);
+
 		String uri = req.getRequestURI();
 
 		// 登录首页路径
 		String contenxtPath = req.getContextPath() + "/";
-
 		if (uri.endsWith(contenxtPath)) {
 			chain.doFilter(req, resp);
 			return;
+		}
+
+		if (uri.indexOf(".") != -1) { // 不等于-1 的路径都是取静态资源 或者图片
+			for (String path : Constants.STATIC_RES_PATH_PREFIX) {
+				if (uri.indexOf(path) != -1) {
+					chain.doFilter(req, resp);
+					return;
+				}
+			}
 		}
 
 		for (String string : excludePath) {

@@ -15,7 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/chat1")
+@ServerEndpoint(value = "/chat")
 public class ChatRoomAnnotation {
 
 	private static final String GUEST_PREFIX = "Guest";
@@ -31,7 +31,7 @@ public class ChatRoomAnnotation {
 	}
 
 	@OnOpen
-	public void start(Session session, @PathParam(value = "roomId") String roomId) {
+	public void start(Session session, @PathParam(value = "resourceId") String roomId) {
 		this.session = session;
 		connections.add(this);
 		map.put(roomId + "_" + nickname, session);

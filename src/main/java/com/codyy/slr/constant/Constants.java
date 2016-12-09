@@ -29,6 +29,9 @@ public class Constants {
 	public static final List<String> COLUMN_MY_COURSE = Arrays.asList("首页", "点播", "我的课程");// 老师
 	public static final List<String> COLUMN = Arrays.asList("首页", "点播");
 
+	// 静态资源前缀
+	public static final List<String> STATIC_RES_PATH_PREFIX = Arrays.asList("dist", "public", "pages");
+
 	// 用户类型
 	public static final String SUPER_ADMIN = "SUPER_ADMIN";
 	public static final String ADMIN = "ADMIN";
@@ -36,9 +39,10 @@ public class Constants {
 	public static final String STUDENT = "STUDENT";
 
 	// 返回前段的路径
-	public static final String FRONT_DEMOND_PATH = "pages/views/demond/demond_detail.jsp";
-	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail.jsp";
-	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject.jsp";
+	public static final String FRONT_DEMOND_PATH = "pages/views/demond/demond_detail";
+	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
+	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
+	public static final String FRONT_INDEX_PATH = "index";
 
 	/**
 	 * 排序字段
@@ -92,6 +96,12 @@ public class Constants {
 	public static final long EXPIRE_TIME;
 
 	/**
+	 *项目路径
+	 */
+	public final static String ROOT_UI;
+	public final static String ROOT_SERVER;
+
+	/**
 	 * 存储路径
 	 */
 	public final static String IMG_PATH;
@@ -101,7 +111,7 @@ public class Constants {
 	public final static String DMS_VIDEO_PATH;
 
 	/**
-	 * 系统截图张数
+	 * 系统截图张数v
 	 */
 	public static final int SHOT_NUM;
 
@@ -143,6 +153,9 @@ public class Constants {
 		SHOT_IMG_TIMES = StringToInt("shot.img.times", 5);
 		CONCAT_VIDEO_TIME = StringToInt("concat.video.time", 3600);
 		CONCAT_VIDEO_TIMES = StringToInt("concat.video.times", 5);
+
+		ROOT_UI = ConfigUtils.getValue("root.ui");
+		ROOT_SERVER = ConfigUtils.getValue("root.server");
 	}
 
 	private static int StringToInt(String key, int defaultVal) {

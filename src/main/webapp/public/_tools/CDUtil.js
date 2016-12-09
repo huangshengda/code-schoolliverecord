@@ -29,6 +29,11 @@
 					sessionStorage.setItem("token",retVO.data.token);
 				}*/
 				//sessionStorage.setItem('token',retVO.data.token)
+				if(retVO.code == "2"){//用户登录信息失效
+					$("#user_info").hide();
+			        $("#login_button").show();
+			        sessionStorage.clear();
+				}
 				if(typeof(callback) == "function" ){
 					callback(retVO);
 				}

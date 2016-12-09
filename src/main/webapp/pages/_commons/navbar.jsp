@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <nav role="navigation" class="navbar navbar-default"> 
   <div class="wamp"> 
-   <img src="<%=ROOT_UI_PUBLIC%>/_module/images/logo.png" class="inb" /> 
+   <img src="${ROOT_UI}/public/_module/images/logo.png" class="inb" /> 
    <div class="head inb">
     <div class="navHead"> 
-     <span><a href="<%=ROOT_SERVER%>/#/index" class="router-link-active"> 首页 </a></span>
-     <span><a href="<%=ROOT_SERVER%>/#/onDemand" class=""> 点播 </a></span>
-     <span><a href="<%=ROOT_SERVER%>/#/basic" class=""> 基础管理 </a></span>
+     <span><a href="${ROOT_SERVER}/#/index" class="router-link-active"> 首页 </a></span>
+     <span><a href="${ROOT_SERVER}/#/onDemand" class=""> 点播 </a></span>
+     <span><a href="${ROOT_SERVER}/#/basic" class=""> 基础管理 </a></span>
     </div> 
    </div> 
    <div class="head-out fr" id="user_info" style="display: none;" >

@@ -58,11 +58,12 @@ methods:{
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
       			sessionStorage.setItem("resourceId",resourceId);
-        		window.open(ROOT_UI+"/front/path/live?token="+sessionStorage.getItem("token"));
+        		//window.open(ROOT_SERVER+"/pages/views/live/live_detail.jsp?token="+sessionStorage.getItem("token"));
+        		window.open(ROOT_SERVER+"/front/path/live?token="+sessionStorage.getItem("token"));
       		}else{
       			alert("用户信息失效");
       			sessionStorage.clear();
-      			window.href.location = "/#/index";
+      			window.location.href = ROOT_SERVER+"/#/index";
       		}
       	});
       },
@@ -70,11 +71,12 @@ methods:{
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
       			sessionStorage.setItem("resourceId",resourceId);
+        		//window.open(ROOT_UI+"/pages/views/demond/demond_detail.jsp?token="+sessionStorage.getItem("token"));
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			alert("用户信息失效");
       			sessionStorage.clear();
-      			window.href.location = "/#/index";
+      			window.location.href = ROOT_SERVER+"/#/index";
       		}
       	});
       },
