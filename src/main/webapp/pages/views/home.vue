@@ -5,7 +5,7 @@
   <div v-if="posts.data != null">
      <div class="row" v-for="post in posts.data" >
       <div class="col-md-4 tel">{{post.resourceName}}</div>
-      <div class="col-md-4 tel">{{post.classlevelName}}/{{post.subjectName}}/{{post.author}}</div>
+      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName}}</span>/{{post.subjectName}}/{{post.author}}</div>
       <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
     </div>
   </div>
@@ -18,8 +18,8 @@
       <img :src="course.thumbPath" width="285" height="160" >
       <div class="home-times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div>        
       </div>
-      <p class="c4 tel">{{course.resourceName}}</p>
-      <p class="ft12 c9 tel">{{course.classlevelName}}&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
+      <p class="c4 tel" :title="course.resourceName">{{course.resourceName}}</p>
+      <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
     </div>
   </div>
 </div>
@@ -79,7 +79,7 @@ methods:{
       	});
       },
        openMore: function(){
-        window.open(ROOT_UI+'#/onDemand');
+       window.open(ROOT_UI+'#/onDemand');
       }
     }
     }   

@@ -200,8 +200,9 @@ overflow: hidden;
     .itemList span{
         margin-right:40px;
         display: inline-block;
+        cursor: pointer;
       }
-    .itemList>span:hover{
+    .itemList>span:hover,.itemList>span.active,.s-left>span.active,.itemList>span.active{
             cursor: pointer;
             color: #2BB95E;
         }
@@ -242,10 +243,12 @@ overflow: hidden;
     color: #333;
     margin-bottom: calc(5px*4);
     margin-top:27px;
-    
+    position: relative;
   }
 .list .col-4 p{margin-top:12px;}
 .list .col-4:nth-child(4n){margin-right: 0;}
+.sub-del{position:absolute;top:10px;right:10px;opacity: 0;}
+.list .col-4:hover .sub-del{opacity:1;}
 .demandImg{position:relative;}
 .times{padding:0 10px;position:absolute;height:26px;line-height:26px;color:#FFF;background-color:#7f7f7f;bottom:0;width:280px;}
 
@@ -278,7 +281,7 @@ overflow: hidden;
   margin-bottom: 0;
   background-color:#1bc840;
   height:90px;}
-  .navbar span{
+  .navHead span{
     margin-right: 40px;
     display: inline-block;
   }
@@ -288,7 +291,7 @@ overflow: hidden;
 .navHead a.active{border-bottom: 2px solid #fff;}
  .head{margin-left:120px;}
  .g-line{color: #14a733;font-size: 15px;margin-left:35px;margin-right:30px;}
- .head-out{margin-top: 30px;color: #333;}
+ .head-out{margin-top: 30px;color: #fff;}
  .head-out i{vertical-align:middle;font-size: 20px;}
 
 /* #login{display: none;} */

@@ -10,7 +10,6 @@
                </router-link>
             </span>
           </div>
-          <!-- <div class="line"></div> -->
         </div>
         <div class="head-out fr" style="display: none;" id="user_info" >
           <span id="user_realname" ></span>

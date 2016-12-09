@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Subject;
 import com.codyy.slr.service.SubjectService;
+import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -145,6 +146,9 @@ public class SubjectController {
 	public ReturnVoOne<Subject> modifySubjectSort(String subjectIds) {
 		int code = Constants.SUCCESS;
 		String msg = "排序成功";
+		if(!StringUtils.isNotBlank(subjectIds)){
+			return new ReturnVoOne<Subject>(0, "学科Id为空");
+		}
 		String id[] = subjectIds.split(",");
 		List<Subject> list = new ArrayList<Subject>();
 		for (int i = 0; i < id.length; i++) {

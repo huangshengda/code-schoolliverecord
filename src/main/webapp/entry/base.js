@@ -12,8 +12,8 @@ window.jQuery = $;
 //console.log($);
 
 /**  加载接口开发的前端Mock  **/
-window.Mock = require('../public/mock/dist/mock-min');
-require('../public/_module/js/slr_mockjs');
+/*window.Mock = require('../public/mock/dist/mock-min');*/
+/*require('../public/_module/js/slr_mockjs');*/
 
 /**  加载基础CSS文件  **/
 require('../public/_compnents/v1/css/base.css');

@@ -8,7 +8,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>资源名称:</label></span>
           <span class="cd-f-value ">
-            <input type="text" data-vali="notnull" name="resourceName" id="u-resourceName">
+            <input type="text" data-vali="notnull" name="resourceName" id="u-resourceName" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -52,7 +52,7 @@ var uploadDel = function(params, dom) {
 		CDUtil.ajaxPost("/resource/delete", reidParams,
 		function(retVO) {
 			if (retVO.code == 1) {
-				userSearch();
+				uploadSearch();
 			}
 		});
 		layer.close(index);
@@ -63,13 +63,15 @@ var uploadDel = function(params, dom) {
  * 表格中的操作---查看上传资源
 **/
 var uploadView = function(params, dom) {
-
+	sessionStorage.setItem("resourceId",params.resourceId);
+    window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
 };
 /**
  * 表格中的操作---编辑上传资源
 **/
 var uploadEdit = function(params, dom) {
-
+	sessionStorage.setItem("resourceId",params.resourceId);
+    window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
 };
 //进行表格分页的配置
 var config = {
@@ -111,12 +113,13 @@ var config = {
 **/
 var uploadSearch = function() {
 	var params = {
-		resourceName: $("#u-resourceName").val(),
-		author: $("#u-author").val(),
+		resourceNameKey: $("#u-resourceName").val(),
+		authorKey: $("#u-author").val(),
 		classlevelName: $("#u-classlevelName").val(),
 		subjectName: $("#u-subjectName").val(),
+		sourceType:"UPLOAD",
 	};
-	CDUtil.ajaxPost("/resource/list", params,function(retVO) {
+	CDUtil.ajaxPost("/resource/list",params,function(retVO) {
 		config.gData = retVO;
 		Grid.initGrid(config,function(){});
 	});
