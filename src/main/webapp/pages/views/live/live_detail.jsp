@@ -11,8 +11,8 @@
   <meta name="renderer" content="webkit">  
   <meta name="viewport" content="width=device-width">
   <%@ include file="../../_commons/meta.jsp"%>
-<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/_tools/tool.js"></script>
-<script type="text/javascript" src="<%=ROOT_UI_PUBLIC%>/player_flash/player_flash.js"></script>
+<script type="text/javascript" src="${ROOT_UI}/public/_tools/tool.js"></script>
+<script type="text/javascript" src="${ROOT_UI}/public/player_flash/player_flash.js"></script>
   <style type="text/css">
     /* 直播课程详情 start*/
 .live{
