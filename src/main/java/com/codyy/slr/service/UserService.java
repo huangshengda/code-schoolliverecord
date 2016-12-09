@@ -32,18 +32,28 @@ public class UserService {
 		if ((User) page.getMap().get("user") != null) {
 			userLogin = (User) page.getMap().get("user");
 			for (User user : userList) {
-				if ("SUPER_ADMIN".equals(userLogin.getUserType())) {
-					if ("SUPER_ADMIN".equals(user.getUserType())) {
+				if (Constants.SUPER_ADMIN.equals(userLogin.getUserType())) {
+					if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
 						user.setOpt(Constants.EDIT);
 					}
 				} else {
-					if (user.getUserType().contains("ADMIN")) {
+					if (user.getUserType().contains(Constants.ADMIN)) {
 						if (userLogin.getUserId().equals(user.getUserId())) {
 							user.setOpt(Constants.EDIT);
 						} else {
 							user.setOpt(null);
 						}
 					}
+				}
+
+				if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
+					user.setUserType(Constants.SUPER_ADMIN_Chinese);
+				} else if (Constants.ADMIN.equals(user.getUserType())) {
+					user.setUserType(Constants.ADMIN_Chinese);
+				} else if (Constants.TEACHER.equals(user.getUserType())) {
+					user.setUserType(Constants.TEACHER_Chinese);
+				} else {
+					user.setUserType(Constants.STUDENT_Chinese);
 				}
 			}
 		}
