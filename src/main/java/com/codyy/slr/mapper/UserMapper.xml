@@ -148,5 +148,14 @@
 	</if>
   </select>
   
+  <select id = "getUserByNameAndPw" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select * from 
+  user t 
+  where t.USERNAME = #{username} 
+  and   t.PASSWORD =  #{password}
+  
+  
+  </select>
+  
   
 </mapper>

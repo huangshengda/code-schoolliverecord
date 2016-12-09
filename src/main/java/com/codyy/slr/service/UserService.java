@@ -2,6 +2,7 @@ package com.codyy.slr.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,6 +99,10 @@ public class UserService {
 
 	public User selectByPrimaryKey(String userId) {
 		return userMapper.selectByPrimaryKey(userId);
+	}
+
+	public User getUserByUserNameAndPw(Map<String, Object> map) {
+		return userMapper.getUserByNameAndPw(map);
 	}
 
 }
