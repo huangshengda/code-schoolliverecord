@@ -9,7 +9,7 @@
   <%@ include file="../../_commons/meta.jsp"%>
 <script type="text/javascript" src="${ROOT_UI}/public/_tools/tool.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/public/player_flash/player_flash.js"></script>
-<script type="text/javascript" src="${ROOT_UI}/public/_module/live/live_detail.css"></script>
+<script type="text/javascript" src="${ROOT_UI}/dist/slr_live.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/_module/live/live_detail.js"></script>
   <style type="text/css">
 /* 直播课程详情 end*/
@@ -55,8 +55,8 @@
 	</div>
 </div>
 <!-- 点播课程详情  end-->
-  <script type="text/javascript">
+<script type="text/javascript">
 
-  </script>
+</script>
 </body>
 </html>

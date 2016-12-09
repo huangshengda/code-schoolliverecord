@@ -11,6 +11,6 @@
 <body>
 <div id="app"> hello</div>
 <%@ include file="./_commons/footer.jsp"%>
-<script type="text/javascript" src="../dist/slr_app.js" ></script>
+<script type="text/javascript" src="${ROOT_UI}/dist/slr_app.js" ></script>
 </body>
 </html>
