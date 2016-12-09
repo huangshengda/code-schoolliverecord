@@ -277,7 +277,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/token/hasexpire")
 	public ReturnVoOne tokenHasExpire() {
-		// 过滤器以及校验了token
+		// 过滤器已经校验了token
 		return new ReturnVoOne();
 	}
 

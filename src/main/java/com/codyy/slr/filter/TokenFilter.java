@@ -47,6 +47,11 @@ public class TokenFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
+
+		// 添加项目路径
+		req.setAttribute("ROOT_UI", Constants.ROOT_UI);
+		req.setAttribute("ROOT_SERVER", Constants.ROOT_SERVER);
+
 		String uri = req.getRequestURI();
 
 		// 登录首页路径
