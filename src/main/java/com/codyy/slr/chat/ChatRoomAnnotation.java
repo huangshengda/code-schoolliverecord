@@ -53,7 +53,16 @@ public class ChatRoomAnnotation {
 
 		this.user = user;
 		this.session = session;
-		connections.add(this);
+
+		if (resIdUserIdToClientMap.get(concatKey(resourceId, user.getUserId())) == null) {
+			connections.add(this);
+
+			if (resourceIdCountMap.get(resourceId) == null) {
+				resourceIdCountMap.put(resourceId, new AtomicInteger(0));
+			}
+			// 自增一
+			resourceIdCountMap.get(resourceId).incrementAndGet();
+		}
 		System.out.println("connections" + connections);
 		resIdUserIdToClientMap.put(concatKey(resourceId, user.getUserId()), session);
 		resIdtokenToAgentMap.put(concatKey(resourceId, token), agent);
@@ -62,11 +71,6 @@ public class ChatRoomAnnotation {
 
 		String message = String.format("* %s %s", user.getRealname(), ":加入聊天。");
 
-		if (resourceIdCountMap.get(resourceId) == null) {
-			resourceIdCountMap.put(resourceId, new AtomicInteger(0));
-		}
-		// 自增一
-		resourceIdCountMap.get(resourceId).incrementAndGet();
 		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, resourceIdCountMap.get(resourceId), false, false);
 
 		broadcast(vo, resourceId);
