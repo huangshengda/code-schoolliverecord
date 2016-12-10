@@ -20,7 +20,7 @@ public class ChatVo {
 	private AtomicInteger onlineCount;
 
 	/**
-	 * 删除权限 true false
+	 * 是否删除信息 true false
 	 */
 	private boolean delFlag;
 

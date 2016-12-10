@@ -105,6 +105,7 @@ public class Constants {
 	 */
 	public final static String ROOT_UI;
 	public final static String ROOT_SERVER;
+	public final static String ROOT_CHAT;
 
 	/**
 	 * 存储路径
@@ -161,6 +162,7 @@ public class Constants {
 
 		ROOT_UI = ConfigUtils.getValue("root.ui");
 		ROOT_SERVER = ConfigUtils.getValue("root.server");
+		ROOT_CHAT = ConfigUtils.getValue("root.chat");
 	}
 
 	private static int StringToInt(String key, int defaultVal) {

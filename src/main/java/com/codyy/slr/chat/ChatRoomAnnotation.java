@@ -110,6 +110,11 @@ public class ChatRoomAnnotation {
 			throw new Exception();
 		}*/
 		// 过滤输入的内容
+
+		/*	if(!StringUtils.isEmpty(message) || ){
+				
+			}*/
+
 		String showMsg = user.getRealname() + "：" + message;
 		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), showMsg, resourceIdCountMap.get(resourceId), false, false);
 		broadcast(vo, resourceId);
