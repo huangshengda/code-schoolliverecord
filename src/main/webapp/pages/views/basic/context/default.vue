@@ -35,10 +35,10 @@
     <div id="use_to_load_grid" ></div>
     <!-- 表单 end -->
   </div>
-    <!-- 编辑用户弹窗表单 start -->
+<!-- 编辑用户弹窗表单 start -->
   <form action="" id="edituser" class="layBox">
-  <input type="hidden" name="userId" id="e-userId">
-   <div class="cd-f-row">
+  	<input type="hidden" name="userId" id="e-userId">
+   	<div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value" name="username" id="e-username"> 
@@ -66,8 +66,8 @@
         </div>
     </div>
   </form>
-    <!-- 编辑用户弹窗表单 end -->
-    <!-- 添加用户弹窗表单 start -->
+<!-- 编辑用户弹窗表单 end -->
+<!-- 添加用户弹窗表单 start -->
   <form action="" id="adduser" class="layBox">
    <div class="cd-f-row">
         <div class="cd-f-eve">
@@ -100,7 +100,7 @@
         </div>
     </div>
   </form>
-    <!-- 添加用户弹窗表单 end -->
+<!-- 添加用户弹窗表单 end -->
 </div>
 </template>
 <script>
@@ -154,8 +154,9 @@ var userDel = function(params, dom) {
 		layer.msg('删除成功!');
 	});
 };
-
-//进行表格分页的配置
+/**
+ * 表格中的操作--进行表格分页的配置
+**/
 var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",

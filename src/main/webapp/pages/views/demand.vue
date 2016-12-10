@@ -1,43 +1,49 @@
 <template>
-		<div class="demand">
-			<div class="d-search">
-				<div><label>年级 :</label><div class="itemList"><span v-for="grade in classList.data" @click="gradesearch(grade.classlevelName)">{{grade.classlevelName}}</span></div>
-				</div>
-				<div><label>学科 :</label><div class="itemList"><span v-for="subject in subjectList.data" @click="subjectsearch(subject.subjectName)">{{subject.subjectName}}</span></div>
-				</div>
-			</div>
-			<!-- 中间内容 start-->
-			<div class="d-main">
-				<div class="search">
-					<div class="s-left">
-						"语文" 相关课程&nbsp;&nbsp;共26条
-						<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
-						<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
-					</div>
-					<div class="s-right fr">
-						<input type="text" placeholder="输入课程或老师" name="resourceNameKey" id="s-resource">
-						<i class="iconfont icon-search" @click="searchKey"></i>
-					</div>
-				</div>
-				<div class="clear"></div>
-				<!-- 中间内容-列表 start-->
-				  <div class="list">
-				      <div class="col-4"  v-for="course in courseList.data">
-				        <div class="demandImg">
-					        <a href="#a"><img :src="course.thumbPath" width="280" height="157"></a>
-					        <div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div> 
-					    </div>
-				        <p class="c4 tel">{{course.resourceName}}</p>
-				        <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
-				      </div>
-				   </div>
-				   <div class="clear"></div>
-				   <!-- 中间内容-列表 end-->
-			</div>
-			<!-- 中间内容 end-->
+<div class="demand">
+<!-- 查询条件 start-->
+	<div class="d-search">
+		<div><label>年级 :</label><div class="itemList"><span v-for="grade in classList.data" @click="gradesearch(grade.classlevelName)">{{grade.classlevelName}}</span></div>
 		</div>
+		<div><label>学科 :</label><div class="itemList"><span v-for="subject in subjectList.data" @click="subjectsearch(subject.subjectName)">{{subject.subjectName}}</span></div>
+		</div>
+	</div>
+<!-- 查询条件 end-->
+<!-- 中间内容 start-->
+	<div class="d-main">
+		<div class="search">
+			<!-- 中间内容 --左侧-->
+			<div class="s-left">"语文" 相关课程&nbsp;&nbsp;共26条
+				<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
+				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
+			</div>
+			<!-- 中间内容 --右侧-->
+			<div class="s-right fr">
+				<input type="text" placeholder="输入课程或老师" name="resourceNameKey" id="s-resource">
+				<i class="iconfont icon-search" @click="searchKey"></i>
+			</div>
+		</div>
+		<div class="clear"></div>
+<!-- 中间内容-列表 start-->
+		<div class="list">
+			<div class="col-4"  v-for="course in courseList.data">
+				<div class="demandImg">
+				<a href="#a"><img :src="course.thumbPath" width="280" height="157"></a>
+				<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div> 
+				</div>
+				<p class="c4 tel">{{course.resourceName}}</p>
+				<p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+<!-- 中间内容-列表 end-->
+		</div>
+<!-- 中间内容 end-->
+</div>
 </template>
 <script>
+/**
+ * Vue组件对象
+**/
 	export default {  
 		data() {
 		    return {
@@ -55,14 +61,18 @@
 		      this.showsubject()
 		    },
     methods:{
+/** 获取年级列表**/
     	gradesearch: function(classlevelName){
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
 			this.showdemand();
      	},
+/** 获取年级列表**/
      	subjectsearch: function(subjectName){
+     		$(e.target).addClass("active");
      		this.params= Object.assign({},this.params,{subjectName:subjectName});
      	 	this.showdemand();
      	},
+/** 根据时间排序**/
      	sortByTime: function(e){
      		$(e.target).addClass("active").siblings().removeClass("active");
      		e.stopPropagation();
@@ -77,6 +87,7 @@
      		this.params= Object.assign({}, this.params,{orderBy:"createTime"});
      		this.showdemand();
      	},
+/** 根据热度排序**/
      	sortByHot: function(e){
      		e.stopPropagation();
      		$(e.target).addClass("active").siblings().removeClass("active");
@@ -91,11 +102,13 @@
      		this.params= Object.assign({}, this.params,{orderBy:"viewCnt"});
      		this.showdemand();
      	},
+/** 根据关键字排序**/
      	searchKey:function(){
      		var sourceName = $('#s-resource').val();
      		this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
      		this.showdemand();
      	},
+/** 查询点播列表 **/
        showdemand:function(){
         var _self = this;
         var params = this.params;
@@ -112,6 +125,7 @@
          	Grid.initGrid(config,function(){});
         });
       },
+/** 获取年级列表 **/
       showclass:function(){
       	var _self = this;
       	var params = {};
@@ -119,6 +133,7 @@
          	_self.classList = retVO;
         });
       },
+/** 获取学科列表 **/
        showsubject:function(){
       	var _self = this;
       	var params = {};

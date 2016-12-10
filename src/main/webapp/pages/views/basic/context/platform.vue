@@ -37,23 +37,29 @@
 </div>
 </template>
 <script>
+/**
+ * Vue组件对象
+**/
    export default {
     data() {
       return {
       }
     },
     methods:{
-       subPlat: function(){
+    /** 表单操作--保存**/
+      subPlat: function(){
         	var platParams = $('#platform').serialize();
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
       		if (retVO.code == 1) {
 				layer.msg('保存成功!');
 			}
       	});
-        },
-        rePlat:function(){
+       },
+      /** 表单操作--重置**/
+       rePlat:function(){
         	$('#platform')[0].reset();
         },
+        /** 表单操作--上传图片**/
         impup: function(){
         	console.log($("#thispage_fileup"));
         	var fileDom = $("#thispage_fileup")[0];

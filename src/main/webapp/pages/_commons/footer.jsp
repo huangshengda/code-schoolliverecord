@@ -1,2 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="clear"></div></div><div style="line-height: 60px;" >底部</div>
+<div class="clear"></div>
+<div class="wamp">
+	<div style="line-height: 60px;text-align:center;">校园直录播</div>
+</div>

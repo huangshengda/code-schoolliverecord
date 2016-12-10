@@ -1,8 +1,9 @@
 <template>
  <div class="wamp" id="home">
   <div class="s-title"><span></span><h3>直播课程</h3></div>
+<!-- 展示直播列表  start -->
   <div id="courseList">
-  <div v-if="posts.data != null">
+  	<div v-if="posts.data != null">
      <div class="row" v-for="post in posts.data" >
       <div class="col-md-4 tel">{{post.resourceName}}</div>
       <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName}}</span>/{{post.subjectName}}/{{post.author}}</div>
@@ -11,7 +12,9 @@
   </div>
    <div v-else class="tac"><img src="../../public/_compnents/v1/images/empty.png"></div>
   </div>
+<!-- 展示直播列表  end -->
   <div class="s-title"><span></span><h3 class="demanCour fl">点播课程</h3><a href="javascript:;" target="_blank" class="fr" @click="openMore">更多</a></div>
+<!-- 展示点播列表  start -->
   <div class="demand">
     <div class="col-4" v-for="course in courseList.data" @click="openDemondDetail(course.resourceId)" >
       <div class="home-img">
@@ -22,9 +25,13 @@
       <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
     </div>
   </div>
+<!-- 展示点播列表  end -->
 </div>
 </template>
 <script>
+/**
+ * Vue组件对象
+**/
 export default {  
 data() {
     return {
@@ -40,6 +47,7 @@ methods:{
      isShow: function(){
        return this.data.length 
      },
+/** 获取列表的方法 **/
       show:function(){
         var _self = this;
         var params = {};
@@ -47,6 +55,7 @@ methods:{
           _self.posts = retVO;//JSON.parse(retVO);
         })
       },
+/** 获取点播列表的方法 **/
        showdemand:function(){
         var _self = this;
         var params = {};
@@ -54,6 +63,7 @@ methods:{
             _self.courseList = retVO;//JSON.parse(retVO);
         })
       },
+/** 跳转到直播详情页 **/
       openLiveDetail: function(resourceId){
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
@@ -67,6 +77,7 @@ methods:{
       		}
       	});
       },
+/** 跳转到点播详情页 **/
       openDemondDetail: function(resourceId){
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){

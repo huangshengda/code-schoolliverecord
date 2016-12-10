@@ -19,10 +19,10 @@
     <div id="use_to_load_grid" class="grade"></div>
     <!-- 表单 end --> 
   </div>
-      <!-- 编辑年级弹窗表单 start -->
+<!-- 编辑年级弹窗表单 start -->
   <form action="" id="editgrade" class="layBox">
-  <input type="hidden" name="classlevelId" id="c-classlevelId">
-   <div class="cd-f-row mt20">
+ 	 <input type="hidden" name="classlevelId" id="c-classlevelId">
+  	 <div class="cd-f-row mt20">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>年级:</label></span>
           <span class="cd-f-value">
@@ -31,8 +31,8 @@
         </div>
     </div>
   </form>
-    <!-- 编辑年级弹窗表单 end -->
-    <!-- 添加年级弹窗表单 start -->
+<!-- 编辑年级弹窗表单 end -->
+<!-- 添加年级弹窗表单 start -->
   <form action="" id="addgrade" class="layBox">
     <div class="cd-f-row mt20">
         <div class="cd-f-eve">
@@ -43,7 +43,7 @@
         </div>
     </div>
   </form>
-    <!-- 添加年级弹窗表单 end -->
+<!-- 添加年级弹窗表单 end -->
 </div>
 </template>
 <script>

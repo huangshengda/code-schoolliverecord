@@ -341,3 +341,13 @@ overflow: hidden;
 	border: 0px;
 	padding: 0px;
 }
+#app .layui-layer-btn a{
+	height: 38px;
+    width: 116px;
+    font-size: 16px;
+    border:none;
+    color:#fff;
+    margin-right: 30px; 
+}
+#app .layui-layer-btn0{background-color: #1BC840;}
+#app .layui-layer-btn1{background-color: #f1f1f1;}

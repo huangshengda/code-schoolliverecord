@@ -20,7 +20,7 @@
         <button class="sBtn" type="button" @click="search_one">查询</button>
       </div>
     </form>
-  <!-- 条件 end -->
+ <!-- 条件 end -->
     <!-- 表单 start -->
     <div id="use_to_load_grid" ></div>
     <!-- 表单 end -->
@@ -48,7 +48,9 @@ var comDel = function(params, dom) {
 		layer.msg('删除成功!');
 	});
 };
-//进行表格分页的配置
+/**
+ * 表格中的操作---进行表格分页的配置
+**/
 var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
@@ -77,7 +79,6 @@ var config = {
 		
 	}
 }
-
 /**
  * 进行查询评论信息的方法
 **/

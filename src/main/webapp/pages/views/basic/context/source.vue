@@ -73,7 +73,9 @@ var uploadEdit = function(params, dom) {
 	sessionStorage.setItem("resourceId",params.resourceId);
     window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
 };
-//进行表格分页的配置
+/**
+ * 进行表格分页的配置
+**/
 var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
@@ -141,6 +143,7 @@ export default {
     	this.showsubject()
     },
 	methods: {
+		/*查询列表数据*/
 		search_one: uploadSearch,
 		 /*获取年级列表*/
   		showclass:function(){

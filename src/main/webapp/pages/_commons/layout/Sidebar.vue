@@ -16,7 +16,6 @@
     </ul>
   </aside>
 </template>
-
 <script>
 import menu from 'menu'
 import Expanding from '../Expanding.vue'
@@ -165,5 +164,4 @@ export default {
   background-color: #f0f0f0;
   a{color:#34a150;}
 }
-
 </style>

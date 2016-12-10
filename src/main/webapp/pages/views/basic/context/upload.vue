@@ -141,6 +141,7 @@ export default {
     	this.showsubject()
     },
 	methods: {
+		/*查询列表数据*/
 		search_one: uploadSearch,
 		 /*获取年级列表*/
   		showclass:function(){
@@ -158,6 +159,7 @@ export default {
          		_self.subjectList = retVO;
        		 });
     	},
+    	/*跳转到上传资源页面*/
     	openUploadup: function(){
     		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
     	}

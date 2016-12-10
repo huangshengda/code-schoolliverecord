@@ -19,7 +19,7 @@
     <div id="use_to_load_grid" class="grade"></div>
     <!-- 表单 end --> 
   </div>
-      <!-- 编辑学科弹窗表单 start -->
+<!-- 编辑学科弹窗表单 start -->
   <form action="" id="editsubject" class="layBox">
   <input type="hidden" name="subjectId" id="m-subjectId">
    <div class="cd-f-row mt20">
@@ -31,8 +31,8 @@
         </div>
     </div>
   </form>
-    <!-- 编辑学科弹窗表单 end -->
-    <!-- 添加学科弹窗表单 start -->
+<!-- 编辑学科弹窗表单 end -->
+<!-- 添加学科弹窗表单 start -->
   <form action="" id="addsubject" class="layBox">
     <div class="cd-f-row mt20">
         <div class="cd-f-eve">
@@ -43,7 +43,7 @@
         </div>
     </div>
   </form>
-    <!-- 添加学科弹窗表单 end -->
+<!-- 添加学科弹窗表单 end -->
 </div>
 </template>
 <script>
@@ -68,7 +68,7 @@
       },
       /*编辑学科*/
       manEdit: function(subjectName,subjectId){
-      var _self = this;
+      	var _self = this;
       	$('#m-subjectName').val(subjectName);
       	$('#m-subjectId').val(subjectId);
       	layer.open({

@@ -24,8 +24,8 @@
         </div>
     </div>
   </form>
-    <!-- 编辑服务器弹窗表单 end -->
-    <!-- 添加服务器弹窗表单 start -->
+<!-- 编辑服务器弹窗表单 end -->
+<!-- 添加服务器弹窗表单 start -->
   <form action="" id="addserver" class="layBox" >
    <div class="cd-f-row">
         <div class="cd-f-eve">
@@ -49,7 +49,7 @@
         </div>
     </div>
   </form>
-    <!-- 添加服务器弹窗表单 end -->
+<!-- 添加服务器弹窗表单 end -->
 </div>
 </template>
 <script>
@@ -102,18 +102,19 @@ var servDel = function(params, dom) {
 		layer.msg('删除成功!');
 	});
 };
-
-//进行表格分页的配置
+/**
+ * 表格中的操作--进行表格分页的配置
+**/
 var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
 	thead: [
           		{name:"序号",valuekey:"sort"},
-                {name:"服务器名称",valuekey:"serverName"},
+               	{name:"服务器名称",valuekey:"serverName"},
                 {name:"DMS 地址",valuekey:"serverValue"},
                 {name:"操作",valuekey:"opt",type:"opt"}
-              ],
+           ],
 	//用来展示表格的数据
 	//这个应该是后台返回的部分
 	gData: {},
@@ -145,12 +146,10 @@ var servSearch = function() {
 		Grid.initGrid(config,function(){});
 	});
 };
+/**
+ * Vue组件对象
+**/
   export default {
-    data() {
-      return {
-       
-      }
-    },
     mounted () {    
       this.server()
     },
@@ -176,8 +175,5 @@ var servSearch = function() {
            });
       },     
     }
-
-   }
-   
-   
+ } 
 </script>
