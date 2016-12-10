@@ -24,10 +24,10 @@
 		GROUP BY res.RESOURCE_ID
 		<choose>
 			<when test="map != null and map.orderBy != null and map.orderBy=='createTime'">
-				order by res.CREATE_TIME #{map.orderType}
+				order by res.CREATE_TIME ${map.orderType}
 			</when>
 			<when test="map != null and map.orderBy != null and map.orderBy=='viewCnt'">
-				order by res.VIEW_CNT #{map.orderType}
+				order by res.VIEW_CNT ${map.orderType}
 			</when>
 			<otherwise>
 				order by res.CREATE_TIME desc
