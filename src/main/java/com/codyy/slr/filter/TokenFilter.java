@@ -18,6 +18,7 @@ import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
+import com.codyy.slr.thread.ConfigThreadLocal;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -58,6 +59,13 @@ public class TokenFilter implements Filter {
 
 		String uri = req.getRequestURI();
 
+		if (uri.indexOf("/chat/") != -1) {
+			ConfigThreadLocal.setVal(req.getHeader("User-Agent"));
+			System.out.println(ConfigThreadLocal.getVal());
+			chain.doFilter(req, resp);
+			return;
+		}
+
 		// 登录首页路径
 		String contenxtPath = req.getContextPath() + "/";
 		if (uri.endsWith(contenxtPath)) {
@@ -96,7 +104,7 @@ public class TokenFilter implements Filter {
 		try {
 			// token+agent 作为key 增加破解难度
 			String agent = req.getHeader("User-Agent");
-			User user = TokenUtils.getUserToCache(token + agent);
+			User user = TokenUtils.getUserFromCache(token + agent);
 			if (user == null || "0".equals(user.getUserId())) {
 				resp.setContentType("text/html;charset=UTF-8");
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
