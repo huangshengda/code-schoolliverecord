@@ -72,7 +72,7 @@ public class FrontPathController {
 		}
 
 		String agent = req.getHeader("User-Agent");
-		User user = TokenUtils.getUserToCache(token + agent);
+		User user = TokenUtils.getUserFromCache(token + agent);
 		return user;
 	}
 }
