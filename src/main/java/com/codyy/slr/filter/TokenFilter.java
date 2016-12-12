@@ -33,13 +33,9 @@ public class TokenFilter implements Filter {
 	// 不需要过滤的路径
 	private List<String> excludePath;
 
-	// 不需要过滤的后缀
-	// private List<String> excludeSuffix;
-
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		excludePath = initNotFilterUrl(filterConfig, "excludePath");
-		// excludeSuffix = initNotFilterUrl(filterConfig, "excludeSuffix");
 	}
 
 	@Override

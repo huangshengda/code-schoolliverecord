@@ -109,8 +109,9 @@
  * 表格中的操作---编辑用户
 **/
 var userEdit = function(params, dom) {
-	//$('#edit_userType').find("option[value=params.userType]").attr("selected","selected");
-	$("#edit_userType").value = params.userType;
+console.log(params.userType);
+	//$('#edit_userType').find("option[value=params.userType]").prop("selected","selected");
+	//$("#edit_userType").value = params.userType;
 	$('#edit_username').text(params.username);
 	$('#edit_realname').val(params.realname);
 	//md5($('#e_password').val(params.password));
@@ -232,7 +233,7 @@ var config = {
  * Vue组件对象
 **/
 export default {
-	mounted() {
+	created() {
 		this.search_one()
 	},
 	methods: {

@@ -39,7 +39,7 @@ data() {
         courseList:""
     }
   },
- mounted () {    
+ created () {    
       this.show(),
       this.showdemand()
     },

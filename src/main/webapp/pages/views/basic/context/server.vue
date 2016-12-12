@@ -76,15 +76,15 @@ var servEdit = function(params, dom) {
         	});
        		if(result==true){
 				var editparams = $('#editServer').serialize();
-				CDUtil.ajaxPost("/base/dmsserver/add", editparams,
-				function(retVO) {
+				CDUtil.ajaxPost("/base/dmsserver/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 						servSearch();
-					}
-				});
-				layer.close(index);
+						layer.close(index);
 				layer.msg('编辑成功!');
 				$('#editServer')[0].reset();
+					}
+				});
+				
 			}
 		}
 	});
@@ -162,7 +162,7 @@ var config = {
  * Vue组件对象
 **/
   export default {
-    mounted () {    
+    created () {    
       this.server()
     },
      methods: {

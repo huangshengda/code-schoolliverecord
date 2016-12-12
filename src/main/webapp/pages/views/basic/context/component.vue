@@ -54,7 +54,7 @@
        grades:"",
       }
     },
-     mounted () {    
+     created () {    
       this.show()
     },
     methods: {

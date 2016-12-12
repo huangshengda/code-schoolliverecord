@@ -28,7 +28,7 @@
         <div class="cd-f-eve mt40">
           <span class="cd-f-name"><label></label></span>
           <span>
-            <button class="lay-btn green-btn mr20" @click="subPlat">保存</button><button class="lay-btn green-btn" @click="rePlat">恢复默认</button>
+            <button class="lay-btn green-btn mr20" @click="subPlat" type="button">保存</button><button class="lay-btn green-btn" @click="rePlat">恢复默认</button>
           </span>
         </div>   
       </div>
@@ -48,12 +48,18 @@
     methods:{
     /** 表单操作--保存**/
       subPlat: function(){
+      	//添加表单验证--Validation
+       	var result = Validation.validation({
+          	containerId: "platform",
+        });
+       	if(result==true){
         	var platParams = $('#platform').serialize();
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
-      		if (retVO.code == 1) {
-				layer.msg('保存成功!');
-			}
-      	});
+      			if (retVO.code == 1) {
+					layer.msg('保存成功!');
+				}
+      		});
+      	}
        },
       /** 表单操作--重置**/
        rePlat:function(){

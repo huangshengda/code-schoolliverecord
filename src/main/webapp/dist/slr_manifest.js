@@ -88,7 +88,11 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD
 /******/ 	var hotCurrentHash = "7b7717efb84de97bb2b4"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "e8c584dc8b18a9174fc6"; // eslint-disable-line no-unused-vars
+>>>>>>> branch 'master' of git@10.5.60.10:SchoolLiveRecord/SchoolLiveRecord.git
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
