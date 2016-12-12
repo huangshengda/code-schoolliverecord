@@ -72,7 +72,7 @@ $(function() {
 	};
 	
 	Chat.sendMessage = (function(params) {
-		Chat.socket.send(json2str(params));
+		Chat.socket.send(ValueCheck.jsonTostr(params));
 	});
 	
 	$("#chat").keypress(function(data) {
@@ -95,19 +95,6 @@ $(function() {
 		}
 	});
 	
-	/** 
-	* json对象转字符串形式 
-	*/ 
-	function json2str(o) { 
-	var arr = []; 
-	var fmt = function(s) { 
-	if (typeof s == 'object' && s != null) return json2str(s); 
-	return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s; 
-	} 
-	for (var i in o) arr.push("'" + i + "':" + fmt(o[i])); 
-	return '{' + arr.join(',') + '}'; 
-	} 
-
 	var Console = {};
 	Console.log = (function(message) {
 		var console = document.getElementById('console');
