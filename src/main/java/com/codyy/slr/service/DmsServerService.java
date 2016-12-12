@@ -55,7 +55,7 @@ public class DmsServerService {
 			}
 			;
 		} else {
-			msg = "学科名称重复";
+			msg = "服务器名称重复";
 			code = Constants.FAILED;
 		}
 		map.put("code", code);
