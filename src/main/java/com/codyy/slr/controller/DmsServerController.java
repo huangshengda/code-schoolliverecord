@@ -125,12 +125,11 @@ public class DmsServerController {
 		page.setMap(map);
 		try {
 			List<DmsServerVo> list = dmsServerService.getDmsServerList(page);
-			if (list.size() == 0) {
+			if ((list.size() == 0)||((list.size() == 1) && (dmsServer.getServerId().equals(list.get(0).getServerId())))) {
 				if (dmsServerService.modifyDmsServer(dmsServer) != 1) {
 					msg = "编辑失败";
 					code = Constants.FAILED;
-				}
-				;
+				};
 			} else {
 				msg = "服务器名称重复";
 				code = Constants.FAILED;

@@ -28,7 +28,7 @@
         <div class="cd-f-eve mt40">
           <span class="cd-f-name"><label></label></span>
           <span>
-            <button class="lay-btn green-btn mr20" @click="subPlat">保存</button><button class="lay-btn green-btn" @click="rePlat">恢复默认</button>
+            <button class="lay-btn green-btn mr20" @click="subPlat" type="button">保存</button><button class="lay-btn green-btn" @click="rePlat">恢复默认</button>
           </span>
         </div>   
       </div>
