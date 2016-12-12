@@ -1,4 +1,4 @@
-/*package com.codyy.slr.chat;
+package com.codyy.slr.chat;
 
 import java.io.IOException;
 import java.util.Date;
@@ -19,6 +19,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
@@ -44,8 +45,6 @@ public class ChatRoomAnnotation {
 
 	@OnOpen
 	public void start(Session session, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
-		System.out.println("start---");
-
 		String agent = ConfigThreadLocal.getVal();
 		User user = getUser(token + agent);
 		if (!userHasExist(user)) {
@@ -67,12 +66,9 @@ public class ChatRoomAnnotation {
 		System.out.println("connections" + connections);
 		resIdUserIdToClientMap.put(concatKey(resourceId, user.getUserId()), session);
 		resIdtokenToAgentMap.put(concatKey(resourceId, token), agent);
-		System.out.println("resourceIdClientMap" + resIdUserIdToClientMap);
-		System.out.println("tokenAgentMap" + resIdtokenToAgentMap);
 
-		String message = String.format("* %s %s", user.getRealname(), ":加入聊天。");
-
-		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, resourceIdCountMap.get(resourceId), false, false, String.valueOf(new Date().getTime()));
+		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "加入聊天", resourceIdCountMap.get(resourceId), false, false,
+				String.valueOf(new Date().getTime()));
 
 		broadcast(vo, resourceId);
 
@@ -80,14 +76,9 @@ public class ChatRoomAnnotation {
 
 	@OnClose
 	public void end(@PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) {
-		System.out.println("end---");
 		connections.remove(this);
-		System.out.println("connections" + connections);
 		resIdUserIdToClientMap.remove(concatKey(resourceId, user.getUserId()));
 		resIdtokenToAgentMap.remove(concatKey(resourceId, token));
-		System.out.println("resourceIdClientMap" + resIdUserIdToClientMap);
-		System.out.println("tokenAgentMap" + resIdtokenToAgentMap);
-		String message = String.format("* %s %s", user.getRealname(), "断开连接。");
 
 		int nowNum = 0;
 		if (resourceIdCountMap.get(resourceId) != null) {
@@ -96,28 +87,35 @@ public class ChatRoomAnnotation {
 				resourceIdCountMap.remove(resourceId);
 			}
 		}
-		System.out.println("resourceIdCountMap" + resourceIdCountMap);
-		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, new AtomicInteger(nowNum), false, false, String.valueOf(new Date().getTime()));
+		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "离开聊天", resourceIdCountMap.get(resourceId), false, false,
+				String.valueOf(new Date().getTime()));
 		broadcast(vo, resourceId);
 	}
 
 	@OnMessage
-	public void incoming(String message, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
-		System.out.println(ConfigThreadLocal.getVal());
-		System.out.println("incoming---");
-		String showMsg = user.getRealname() + "：" + message;
-		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), showMsg, resourceIdCountMap.get(resourceId), false, false);
+	public void incoming(String messageJsonObj, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
+
+		ChatVo vo = JSONObject.parseObject(messageJsonObj, ChatVo.class);
+
+		if (StringUtils.isEmpty(vo.getId())) {
+			vo.setDelFlag(true);
+		} else {
+			vo.setId(UUIDUtils.getUUID());
+			vo.setAuthor(user.getRealname());
+			vo.setDelFlag(false);
+			vo.setDelAuth(false);
+			vo.setOnlineCount(resourceIdCountMap.get(resourceId));
+		}
+
 		broadcast(vo, resourceId);
 	}
 
 	@OnError
 	public void onError(Throwable t) throws Throwable {
-		System.out.println("error---");
-		System.out.println("Chat Error: " + t.toString());
+		log.error(("Chat Error: " + t.toString()));
 	}
 
 	private void broadcast(ChatVo vo, String resourceId) {
-		System.out.println("broadcast---");
 		for (ChatRoomAnnotation client : connections) {
 			try {
 				synchronized (client) {
@@ -133,16 +131,12 @@ public class ChatRoomAnnotation {
 
 				}
 			} catch (IOException e) {
-				System.out.println("Chat Error: Failed to send message to client");
-				System.out.println("connections" + connections);
+				e.printStackTrace();
 				try {
 					client.session.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				String message = String.format("* %s %s", client.user.getRealname(), "断开连接。");
-				ChatVo chatVo = new ChatVo(UUIDUtils.getUUID(), message, resourceIdCountMap.get(resourceId), false, false);
-				broadcast(chatVo, resourceId);
 			}
 		}
 
@@ -169,4 +163,3 @@ public class ChatRoomAnnotation {
 	}
 
 }
-*/
