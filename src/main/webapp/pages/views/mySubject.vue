@@ -53,7 +53,7 @@
          	 //是否需要分页，true：需要，不写默认需要
          	 pagingFlag: true,	
          	 //执行页面查询的方法
-			searchFun: _self.showdemand(), 
+			searchFun: _self.showdemand, 
          	};
          	Grid.initGrid(config,function(){});
         });

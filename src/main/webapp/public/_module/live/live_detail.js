@@ -38,14 +38,12 @@ $(function() {
 		};
 
 		Chat.socket.onmessage = function(retVO) {
-			console.log(retVO.data);
 			var dataVO = eval('(' + retVO.data + ')'); ;
 			var delFlag = dataVO.delFlag;
 			var id = dataVO.id;
 			if(delFlag){
 				$("#"+id).remove();
 			}else{
-				console.log(typeof(dataVO))
 				var msg = dataVO.msg,
 				author = dataVO.author,
 				delAuth = dataVO.delAuth,
@@ -60,6 +58,7 @@ $(function() {
 				}
 				$(htmlStr).appendTo("#chat_context");
 			}
+			$("#chat").val("");
 		};
 	});
 	
@@ -70,41 +69,11 @@ $(function() {
 			Chat.connect('wss://' + ROOT_SERVER_CHAT + "/" + resourceId + "/" + token);
 		}
 	};
-	
+	/**
+	 * 与后台发起消息通信
+	 */
 	Chat.sendMessage = (function(params) {
 		Chat.socket.send(ValueCheck.jsonTostr(params));
-	});
-	
-	$("#chat").keypress(function(data) {
-		if (data.keyCode == 13) {
-			debugger;
-			var msg = $("#chat").val();
-			msg = $.trim(msg);
-			var len = ValueCheck.lengthStr(msg);
-			if(len == 0){
-				
-			}else if(len < 141){
-				var params = {
-					msg: msg,
-					timestamp: new Date().getTime()
-				};
-				Chat.sendMessage(params);
-			}else{//弹框提示
-				alert("聊天内容太长");
-			}
-		}
-	});
-	
-	var Console = {};
-	Console.log = (function(message) {
-		var console = document.getElementById('console');
-		var p = document.createElement('p');
-		p.style.wordWrap = 'break-word';
-		p.innerHTML = message;
-		while (console.childNodes.length > 25) {
-			console.removeChild(console.firstChild);
-		}
-		console.scrollTop = console.scrollHeight;
 	});
 	
 	Chat.initialize();
@@ -116,8 +85,10 @@ $(function() {
 		}
 		Chat.sendMessage(params);
 	});
-	
-	$('#chat_send').click(function() {
+	/**
+	 * 处理发送信息的方法。
+	 */
+	var readyMsg = function(){
 		var msg = $("#chat").val();
 		msg = $.trim(msg);
 		var len = ValueCheck.lengthStr(msg);
@@ -132,7 +103,35 @@ $(function() {
 		}else{//弹框提示
 			alert("聊天内容太长");
 		}
+	};
+	/**
+	 * 在输入框使用Enter事件发送信息
+	 */
+	$("#chat").keypress(function(keyObj) {
+		if (keyObj.keyCode == 13) {
+			readyMsg();
+		}
 	});
+	
+	/**
+	 * 点击发表按钮事件
+	 */
+	$('#chat_send').click(function() {
+		readyMsg();
+	});
+	
+	var Console = {};
+	Console.log = (function(message) {
+		var console = document.getElementById('console');
+		var p = document.createElement('p');
+		p.style.wordWrap = 'break-word';
+		p.innerHTML = message;
+		while (console.childNodes.length > 25) {
+			console.removeChild(console.firstChild);
+		}
+		console.scrollTop = console.scrollHeight;
+	});
+	
 
 	function buildPlayer(wrap, _streamName, receiveType) {
 		function _buildPlayer(pms) {

@@ -30,6 +30,10 @@
 </template>
 <script>
 /**
+ * 弹出框的层信息
+**/
+var laryIndex = null;
+/**
  * Vue组件对象
 **/
 export default {  
@@ -71,28 +75,37 @@ methods:{
         		//window.open(ROOT_SERVER+"/pages/views/live/live_detail.jsp?token="+sessionStorage.getItem("token"));
         		window.open(ROOT_SERVER+"/front/path/live?token="+sessionStorage.getItem("token"));
       		}else{
-      			alert("用户信息失效");
-      			sessionStorage.clear();
-      			window.location.href = ROOT_SERVER+"/#/index";
+      			//alert("用户信息失效");
+      			laryIndex = layer.confirm('是否确定退出用户登录？', {
+					btn: ['确定']
+				},function() {
+					layer.close(laryIndex);
+					sessionStorage.clear();
+      				window.location.href = ROOT_SERVER+"/#/index";
+				});
       		}
       	});
       },
-/** 跳转到点播详情页 **/
+	/** 跳转到点播详情页 **/
       openDemondDetail: function(resourceId){
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
       			sessionStorage.setItem("resourceId",resourceId);
-        		//window.open(ROOT_UI+"/pages/views/demond/demond_detail.jsp?token="+sessionStorage.getItem("token"));
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
-      			alert("用户信息失效");
-      			sessionStorage.clear();
-      			window.location.href = ROOT_SERVER+"/#/index";
+      			//alert("用户信息失效");
+      			laryIndex = layer.confirm('是否确定退出用户登录？', {
+					btn: ['确定']
+				},function() {
+					layer.close(laryIndex);
+					sessionStorage.clear();
+      				window.location.href = ROOT_SERVER+"/#/index";
+				});
       		}
       	});
       },
        openMore: function(){
-       window.open(ROOT_UI+'#/onDemand');
+       	window.location.href = ROOT_SERVER+"/#/onDemand";
       }
     }
     }   

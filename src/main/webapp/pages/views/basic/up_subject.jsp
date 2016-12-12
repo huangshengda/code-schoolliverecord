@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="renderer" content="webkit">  
   <title>上传课程资源</title>
-  <meta name="viewport" content="width=device-width">
   <%@ include file="../../_commons/meta.jsp"%>
+  <script  type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
   <style type="text/css">
 	body{background-color: #f5f8fa;}
 	.cd-f-eve{width:100%;margin-bottom:30px;}
@@ -32,7 +32,6 @@
 		top: 0px;
 		left: 0px;
 		z-index: 9;
-		width: 150px !important;
 		height: 28px;
 		opacity: 0;
 		cursor: pointer !important;
@@ -43,12 +42,15 @@
 	}
 	.del-fileup:hover{
 		cursor: pointer;
-		font-size: 18px;
 	}
 	.showfile-name{
+		display: inline-block;
+		vertical-align: top;
 		margin: 0px !important;
+		max-width: 200px !important;
+		cursor: pointer;
 	}
-	.showfile-name-edit{
+	.showfile-name-input{
 		display: none;
 	}
   </style>
@@ -87,7 +89,7 @@
         </div>   
         <div class="cd-f-eve">
           <span class="cd-f-name vat"><label class="cd-f-notnull">*</label><label>课程视频:</label></span>
-          <span class="cd-f-value w800">
+          <span class="cd-f-value">
           	<button class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
           		上传视频文件
           		<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4" >
@@ -128,73 +130,6 @@
   </div>
   <!-- 点播课程详情  end-->
 <script type="text/javascript">
-$(function(){
-	
-	$("#fileup_video").change(function(){
-		console.log(this.files[0]);
-		var file = this.files[0];
-		var sequence = H5fileup.getSequence();
-		var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
-		var filename = file.name;
-		var ldot = filename.lastIndexOf(".");
-		var name = filename.substring(0,ldot);
-		var type = filename.substring(ldot+1).toLowerCase();
-		var htmlStr = spellShowFileup(sequence,size,name,type);
-		$("#show_fileup_detail").html(htmlStr);
-	});
-	var spellShowFileup = function(sequence,size,name,type){
-		var htmlStr = "";
-		htmlStr += '<div class="up-item" id="'+sequence+'" >'
-            +'<div class="inb vat">'
-            +'<p>'
-            	+'<span class="showfile-name" >'+name+'</span>.'+type
-            	+'<input type="text" class="showfile-name-edit" />'
-            	+'<span class="ml10">'+size+'M</span></p>'
-            +'<div class="progress w300">'
-            +'<div class="progress-bar progress-bar-striped active" id="'+sequence+'_process_bar" '
-            	+'role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">'
-            +'<span class="sr-only" id="'+sequence+'_process" >45%</span>'
-            +'</div>'
-            +'</div>'
-            +'<p>上传中</p>'
-            +'</div>'
-            +'<div class="inb">'
-            +'<img src="" width="140" height="80" class="mr20 vab">'
-            +'<button type="button" class="upbtn local-img mr20" >选择系统截图</button>'
-            +'<button type="button" class="btn fileup-button" style="position: relative;width: 125px;height: 30px;" >'
-            +'上传本地图片'
-            +'<input type="file" value="" class="input-fileup" accept="image/png,image/jpeg" >'
-            +'</button>'
-            +'</div>'
-            +'<i class="iconfont icon-delete del-fileup"></i>'
-            +'</div>';
-            return htmlStr;
-	}
-	/**
-	 * 点击可以修改上传文件的名称
-	**/
-	$("#show_fileup_detail").on("click",".showfile-name",function(){
-		
-	});
-	/**
-	 * 使用系统截图作为封面事件
-	**/
-	$("#show_fileup_detail").on("click",".sysprint-img",function(){
-		
-	});
-	/**
-	 * 使用本地图片作为封面事件
-	**/
-	$("#show_fileup_detail").on("click",".local-img",function(){
-		
-	});
-	/**
-	 * 删除当前上传的文件
-	**/
-	$("#show_fileup_detail").on("click",".del-fileup",function(){
-		
-	});
-});
 </script>
 </body>
 </html>
