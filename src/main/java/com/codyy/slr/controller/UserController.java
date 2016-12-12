@@ -46,7 +46,6 @@ public class UserController {
 	 * @return
 	 *
 	 */
-	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("login")
 	public ReturnVoOne<User> login(User user, HttpServletRequest req) {
