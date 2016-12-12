@@ -1722,8 +1722,7 @@ webpackJsonp([1,6],[
 	**/
 	var userEdit = function userEdit(params, dom) {
 		console.log(params.userType);
-		//$('#edit_userType').find("option[value=params.userType]").prop("selected","selected");
-		//$("#edit_userType").value = params.userType;
+		$("#edit_userType").value = params.userType;
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
 		//md5($('#e_password').val(params.password));
@@ -1778,7 +1777,6 @@ webpackJsonp([1,6],[
 	 * 进行查询用户信息的方法
 	**/
 	var userSearch = function userSearch(newPage) {
-		console.log(newPage);
 		if (newPage == undefined) {
 			newPage = 1;
 		}
@@ -1790,7 +1788,6 @@ webpackJsonp([1,6],[
 			userType: $("#search_userType").val()
 		};
 		CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
-			console.log(retVO);
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
 		});
