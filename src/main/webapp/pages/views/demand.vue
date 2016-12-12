@@ -2,9 +2,9 @@
 <div class="demand">
 <!-- 查询条件 start-->
 	<div class="d-search">
-		<div><label>年级 :</label><div class="itemList"><span v-for="grade in classList.data" @click="gradesearch(grade.classlevelName)">{{grade.classlevelName}}</span></div>
+		<div><label>年级 :</label><div class="itemList"><span v-for="grade in classList.data" @click="gradesearch(grade.classlevelName,$event)">{{grade.classlevelName}}</span></div>
 		</div>
-		<div><label>学科 :</label><div class="itemList"><span v-for="subject in subjectList.data" @click="subjectsearch(subject.subjectName)">{{subject.subjectName}}</span></div>
+		<div><label>学科 :</label><div class="itemList"><span v-for="subject in subjectList.data" @click="subjectsearch(subject.subjectName,$event)">{{subject.subjectName}}</span></div>
 		</div>
 	</div>
 <!-- 查询条件 end-->
@@ -12,7 +12,7 @@
 	<div class="d-main">
 		<div class="search">
 			<!-- 中间内容 --左侧-->
-			<div class="s-left">"语文" 相关课程&nbsp;&nbsp;共26条
+			<div class="s-left">"<span class="sub-tit">全部</span>"相关课程&nbsp;&nbsp;共{{courseList.totalDatas}}条
 				<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
 				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
 			</div>
@@ -24,7 +24,7 @@
 		</div>
 		<div class="clear"></div>
 <!-- 中间内容-列表 start-->
-		<div class="list">
+		<div class="list mt30">
 			<div class="col-4"  v-for="course in courseList.data">
 				<div class="demandImg">
 				<a href="#a"><img :src="course.thumbPath" width="280" height="157"></a>
@@ -51,7 +51,9 @@
 		        classList:"",
 		        subjectList:"",
 		        params:{
-		        	orderType:"desc"
+		        	orderType:"desc",
+					pageSize:3,
+					curPage: 1,
 		        }
 		    }
 		  },
@@ -61,19 +63,45 @@
 		      this.showsubject()
 		    },
     methods:{
-/** 获取年级列表**/
-    	gradesearch: function(classlevelName){
+/** 查询点播列表 **/
+       showdemand:function(newPage){
+       if(newPage == undefined){
+			newPage = 1;
+		}
+        var _self = this;
+        var params = this.params;
+        CDUtil.ajaxPost("/demand/list",params,function(retVO){
+          _self.courseList = retVO;
+          var config = {      	
+         	 //这个应该是后台返回的部分
+        	 gData: retVO,
+         	 //是否需要分页，true：需要，不写默认需要
+         	 pagingFlag: true,
+         	};
+         	Grid.initGrid(config,function(){});
+        });
+      },
+/** 获取选择的年级参数**/
+    	gradesearch: function(classlevelName,event){
+    		$(event.target).addClass("active").siblings().removeClass("active");
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
 			this.showdemand();
      	},
-/** 获取年级列表**/
-     	subjectsearch: function(subjectName){
-     		$(e.target).addClass("active");
+/** 获取选择的学科参数**/
+     	subjectsearch: function(subjectName,event){
+     		$(event.target).addClass("active").siblings().removeClass("active");
      		this.params= Object.assign({},this.params,{subjectName:subjectName});
      	 	this.showdemand();
+     	 	$('.sub-tit').text(subjectName);
      	},
 /** 根据时间排序**/
      	sortByTime: function(e){
+     		$(e.target).toggleClass("arrow");
+     		if($(e.target).hasClass("arrow")){
+     			$(e.target).find("i").removeClass("icon-low").addClass("icon-up");
+     		}else{
+     			$(e.target).find("i").removeClass("icon-up").addClass("icon-low");
+     		}
      		$(e.target).addClass("active").siblings().removeClass("active");
      		e.stopPropagation();
      		var $sortType=$(e.target).attr("data-sort");
@@ -90,6 +118,12 @@
 /** 根据热度排序**/
      	sortByHot: function(e){
      		e.stopPropagation();
+     		$(e.target).toggleClass("arrow");
+     		if($(e.target).hasClass("arrow")){
+     			$(e.target).find("i").removeClass("icon-low").addClass("icon-up");
+     		}else{
+     			$(e.target).find("i").removeClass("icon-up").addClass("icon-low");
+     		}
      		$(e.target).addClass("active").siblings().removeClass("active");
      		var $sortType=$(e.target).attr("data-sort");
      		if($sortType==="desc"){
@@ -108,23 +142,6 @@
      		this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
      		this.showdemand();
      	},
-/** 查询点播列表 **/
-       showdemand:function(){
-        var _self = this;
-        var params = this.params;
-        console.log(params);
-        CDUtil.ajaxPost("/demand/list",params,function(retVO){
-          _self.courseList = retVO;
-          var config = {      	
-         	 //这个应该是后台返回的部分
-        	  gData: retVO,
-         	 //是否需要分页，true：需要，不写默认需要
-         	 pagingFlag: true,
-         	 
-         	};
-         	Grid.initGrid(config,function(){});
-        });
-      },
 /** 获取年级列表 **/
       showclass:function(){
       	var _self = this;

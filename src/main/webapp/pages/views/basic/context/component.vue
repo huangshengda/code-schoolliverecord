@@ -21,12 +21,12 @@
   </div>
 <!-- 编辑年级弹窗表单 start -->
   <form action="" id="editgrade" class="layBox">
- 	 <input type="hidden" name="classlevelId" id="c-classlevelId">
+ 	 <input type="hidden" name="classlevelId" id="edit-classlevelId">
   	 <div class="cd-f-row mt20">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>年级:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="classlevelName" id="c-classlevelName" maxlength="10">
+            <input type="text" name="classlevelName" id="edit-classlevelName" data-vali="notnull" maxlength="10">
           </span>
         </div>
     </div>
@@ -38,7 +38,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>年级:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="classlevelName" maxlength="10">
+            <input type="text" name="classlevelName" maxlength="10" data-vali="notnull">
           </span>
         </div>
     </div>
@@ -69,30 +69,36 @@
       /*编辑年级*/
       manEdit: function(classlevelName,classlevelId){
       	var _self = this;
-      	$('#c-classlevelName').val(classlevelName);
-      	$('#c-classlevelId').val(classlevelId);
+      	$('#edit-classlevelName').val(classlevelName);
+      	$('#edit-classlevelId').val(classlevelId);
       	layer.open({
 		type: 1,
 		title: '编辑年级',
 		skin: 'layui-layer-rim',
 		//加上边框
-		area: ['450px', '375px'],
+		area: ['450px', '240px'],
 		//宽高
 		content: $("#editgrade"),
 		btn: ['yes', 'no'],
 		yes: function(index, layero) {
-			var editparams = $('#editgrade').serialize();
-			CDUtil.ajaxPost("/base/classlevel/update", editparams,
-			function(retVO) {
-				if (retVO.code == 1) {
-					_self.show();
-				}
-			});
-			layer.close(index);
-			layer.msg('编辑成功!');
+		//添加表单验证--Validation
+       		var result = Validation.validation({
+          		containerId: "editgrade",
+        	});
+       		if(result==true){
+				var editparams = $('#editgrade').serialize();
+				CDUtil.ajaxPost("/base/classlevel/update", editparams,
+				function(retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+				});
+				layer.close(index);
+				layer.msg('编辑成功!');
+			}
 		}
-		});
-      },
+	});
+   },
       /*删除年级*/
       manDel: function(classlevelId){
       var _self = this;
@@ -121,13 +127,19 @@
               content: $("#addgrade"),
               btn: ['yes', 'no'],
               yes:function(index,layero){
-              	var addparams = $('#addgrade').serialize();
-      			CDUtil.ajaxPost("/base/classlevel/add",addparams,function(retVO){
-      				if (retVO.code == 1) {
-						_self.show();
-					}
-      			});
-      			layer.close(index);
+              //添加表单验证--Validation
+       			var result = Validation.validation({
+          			containerId: "addgrade",
+        		});
+       			if(result==true){
+              		var addparams = $('#addgrade').serialize();
+      				CDUtil.ajaxPost("/base/classlevel/add",addparams,function(retVO){
+      					if (retVO.code == 1) {
+							_self.show();
+						}
+      				});
+      				layer.close(index);
+      			}
               }
            });
       },     

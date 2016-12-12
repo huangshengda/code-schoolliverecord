@@ -8,13 +8,13 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>关键词:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="keywords" id="c-keywords" data-vali="notnull">
+            <input type="text" name="keywords" id="search_keywords" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>评论人:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="realname" id="c-realname" data-vali="notnull">
+            <input type="text" name="realname" id="search_realname" data-vali="notnull">
           </span>
         </div>  
         <button class="sBtn" type="button" @click="search_one">查询</button>
@@ -49,6 +49,24 @@ var comDel = function(params, dom) {
 	});
 };
 /**
+ * 进行查询评论信息的方法
+**/
+var comSearch = function(newPage) {
+	if(newPage == undefined){
+			newPage = 1;
+		}
+	var cParams = {
+		curPage: newPage,
+		pageSize: 20,
+		keywords: $("#search_keywords").val(),
+		realname: $("#search_realname").val(),
+	};
+	CDUtil.ajaxPost("/base/resource/comment/list", cParams,function(retVO) {
+		config.gData = retVO;
+		Grid.initGrid(config,function(){});
+	});
+};
+/**
  * 表格中的操作---进行表格分页的配置
 **/
 var config = {
@@ -79,19 +97,6 @@ var config = {
 		
 	}
 }
-/**
- * 进行查询评论信息的方法
-**/
-var comSearch = function() {
-	var cParams = {
-		keywords: $("#c-keywords").val(),
-		realname: $("#c-realname").val(),
-	};
-	CDUtil.ajaxPost("/base/resource/comment/list", cParams,function(retVO) {
-		config.gData = retVO;
-		Grid.initGrid(config,function(){});
-	});
-};
 /**
  * Vue组件对象
 **/

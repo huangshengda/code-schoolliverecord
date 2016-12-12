@@ -1,11 +1,11 @@
 <template>
  <div class="wamp" id="home">
-  <div class="s-title"><span></span><h3>直播课程</h3></div>
+  <div class="s-title"><span></span><h3 class="fb">直播课程</h3></div>
 <!-- 展示直播列表  start -->
   <div id="courseList">
   	<div v-if="posts.data != null">
      <div class="row" v-for="post in posts.data" >
-      <div class="col-md-4 tel">{{post.resourceName}}</div>
+      <div class="col-md-4 tel c4">{{post.resourceName}}</div>
       <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName}}</span>/{{post.subjectName}}/{{post.author}}</div>
       <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
     </div>
@@ -13,7 +13,7 @@
    <div v-else class="tac"><img src="../../public/_compnents/v1/images/empty.png"></div>
   </div>
 <!-- 展示直播列表  end -->
-  <div class="s-title"><span></span><h3 class="demanCour fl">点播课程</h3><a href="javascript:;" target="_blank" class="fr" @click="openMore">更多</a></div>
+  <div class="s-title demanBtm"><span></span><h3 class="demanCour fb fl">点播课程</h3><a href="javascript:;" target="_blank" class="fr" @click="openMore">更多</a></div>
 <!-- 展示点播列表  start -->
   <div class="demand">
     <div class="col-4" v-for="course in courseList.data" @click="openDemondDetail(course.resourceId)" >
@@ -47,7 +47,7 @@ methods:{
      isShow: function(){
        return this.data.length 
      },
-/** 获取列表的方法 **/
+/** 获取列表的方法 alert($('.sub-code').text());**/
       show:function(){
         var _self = this;
         var params = {};

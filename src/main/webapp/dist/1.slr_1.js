@@ -243,7 +243,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.menu[data-v-3444557c]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-3444557c]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-3444557c]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-3444557c]{\n  background-color:#f0f0f0;\n  color:#34a150;\n}\n.menu-level1[data-v-3444557c]:hover,.menu-level1[data-v-3444557c]:visited,.menu-level1[data-v-3444557c]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n", ""]);
+	exports.push([module.id, "\n.menu[data-v-3444557c]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-3444557c]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-3444557c]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-3444557c]{\n  color:#34a150;\n}\n.menu-level1[data-v-3444557c]:hover,.menu-level1[data-v-3444557c]:visited,.menu-level1[data-v-3444557c]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n.menu-list li.active div[data-v-3444557c]{background-color: #f0f0f0;\n}\n", ""]);
 
 	// exports
 
@@ -324,8 +324,10 @@ webpackJsonp([1,6],[
 	        parent.meta.expanded = true;
 	      }
 	    },
-	    toggle: function toggle(item) {
+	    toggle: function toggle(item, event) {
 	      item.meta.expanded = !item.meta.expanded;
+	      $(event.target).parent().parent().addClass("active");
+	      $(event.target).parent().parent().siblings().removeClass("active");
 	    },
 	    findParentFromMenu: function findParentFromMenu(route) {
 	      var menu = filterRoute(menu, this.$route.matched[1]);
@@ -556,7 +558,7 @@ webpackJsonp([1,6],[
 	    }, [_h('div', {
 	      on: {
 	        "click": function($event) {
-	          _vm.toggle(item)
+	          _vm.toggle(item, $event)
 	        }
 	      }
 	    }, [_h('router-link', {
@@ -1027,6 +1029,24 @@ webpackJsonp([1,6],[
 		});
 	};
 	/**
+	 * 进行查询评论信息的方法
+	**/
+	var comSearch = function comSearch(newPage) {
+		if (newPage == undefined) {
+			newPage = 1;
+		}
+		var cParams = {
+			curPage: newPage,
+			pageSize: 20,
+			keywords: $("#search_keywords").val(),
+			realname: $("#search_realname").val()
+		};
+		CDUtil.ajaxPost("/base/resource/comment/list", cParams, function (retVO) {
+			config.gData = retVO;
+			Grid.initGrid(config, function () {});
+		});
+	};
+	/**
 	 * 表格中的操作---进行表格分页的配置
 	**/
 	var config = {
@@ -1052,19 +1072,6 @@ webpackJsonp([1,6],[
 			del_fun: comDel
 
 		}
-	};
-	/**
-	 * 进行查询评论信息的方法
-	**/
-	var comSearch = function comSearch() {
-		var cParams = {
-			keywords: $("#c-keywords").val(),
-			realname: $("#c-realname").val()
-		};
-		CDUtil.ajaxPost("/base/resource/comment/list", cParams, function (retVO) {
-			config.gData = retVO;
-			Grid.initGrid(config, function () {});
-		});
 	};
 	/**
 	 * Vue组件对象
@@ -1123,7 +1130,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "keywords",
-	      "id": "c-keywords",
+	      "id": "search_keywords",
 	      "data-vali": "notnull"
 	    }
 	  })])])
@@ -1140,7 +1147,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
-	      "id": "c-realname",
+	      "id": "search_realname",
 	      "data-vali": "notnull"
 	    }
 	  })])])
@@ -1320,26 +1327,32 @@ webpackJsonp([1,6],[
 	    /*编辑年级*/
 	    manEdit: function manEdit(classlevelName, classlevelId) {
 	      var _self = this;
-	      $('#c-classlevelName').val(classlevelName);
-	      $('#c-classlevelId').val(classlevelId);
+	      $('#edit-classlevelName').val(classlevelName);
+	      $('#edit-classlevelId').val(classlevelId);
 	      layer.open({
 	        type: 1,
 	        title: '编辑年级',
 	        skin: 'layui-layer-rim',
 	        //加上边框
-	        area: ['450px', '375px'],
+	        area: ['450px', '240px'],
 	        //宽高
 	        content: $("#editgrade"),
 	        btn: ['yes', 'no'],
 	        yes: function yes(index, layero) {
-	          var editparams = $('#editgrade').serialize();
-	          CDUtil.ajaxPost("/base/classlevel/update", editparams, function (retVO) {
-	            if (retVO.code == 1) {
-	              _self.show();
-	            }
+	          //添加表单验证--Validation
+	          var result = Validation.validation({
+	            containerId: "editgrade"
 	          });
-	          layer.close(index);
-	          layer.msg('编辑成功!');
+	          if (result == true) {
+	            var editparams = $('#editgrade').serialize();
+	            CDUtil.ajaxPost("/base/classlevel/update", editparams, function (retVO) {
+	              if (retVO.code == 1) {
+	                _self.show();
+	              }
+	            });
+	            layer.close(index);
+	            layer.msg('编辑成功!');
+	          }
 	        }
 	      });
 	    },
@@ -1370,13 +1383,19 @@ webpackJsonp([1,6],[
 	        content: $("#addgrade"),
 	        btn: ['yes', 'no'],
 	        yes: function yes(index, layero) {
-	          var addparams = $('#addgrade').serialize();
-	          CDUtil.ajaxPost("/base/classlevel/add", addparams, function (retVO) {
-	            if (retVO.code == 1) {
-	              _self.show();
-	            }
+	          //添加表单验证--Validation
+	          var result = Validation.validation({
+	            containerId: "addgrade"
 	          });
-	          layer.close(index);
+	          if (result == true) {
+	            var addparams = $('#addgrade').serialize();
+	            CDUtil.ajaxPost("/base/classlevel/add", addparams, function (retVO) {
+	              if (retVO.code == 1) {
+	                _self.show();
+	              }
+	            });
+	            layer.close(index);
+	          }
 	        }
 	      });
 	    },
@@ -1488,7 +1507,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "hidden",
 	      "name": "classlevelId",
-	      "id": "c-classlevelId"
+	      "id": "edit-classlevelId"
 	    }
 	  }), " ", _h('div', {
 	    staticClass: "cd-f-row mt20"
@@ -1502,7 +1521,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "classlevelName",
-	      "id": "c-classlevelName",
+	      "id": "edit-classlevelName",
+	      "data-vali": "notnull",
 	      "maxlength": "10"
 	    }
 	  })])])])])
@@ -1525,7 +1545,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "classlevelName",
-	      "maxlength": "10"
+	      "maxlength": "10",
+	      "data-vali": "notnull"
 	    }
 	  })])])])])
 	}]}
@@ -1694,16 +1715,18 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
+	//
 
 	/**
 	 * 表格中的操作---编辑用户
 	**/
 	var userEdit = function userEdit(params, dom) {
-		$('#userType').val(params.userType);
-		$('#e-username').text(params.username);
-		$('#realname').val(params.realname);
-		//md5($('#e-password').val(params.password));
-		$('#e-userId').val(params.userId);
+		//$('#edit_userType').find("option[value=params.userType]").attr("selected","selected");
+		$("#edit_userType").value = params.userType;
+		$('#edit_username').text(params.username);
+		$('#edit_realname').val(params.realname);
+		//md5($('#e_password').val(params.password));
+		$('#edit_userId').val(params.userId);
 		layer.open({
 			type: 1,
 			title: '编辑用户',
@@ -1714,14 +1737,20 @@ webpackJsonp([1,6],[
 			content: $("#edituser"),
 			btn: ['yes', 'no'],
 			yes: function yes(index, layero) {
-				var editparams = $('#edituser').serialize();
-				CDUtil.ajaxPost("/base/user/update", editparams, function (retVO) {
-					if (retVO.code == 1) {
-						userSearch();
-					}
+				//添加表单验证--Validation
+				var result = Validation.validation({
+					containerId: "edituser"
 				});
-				layer.close(index);
-				layer.msg('编辑成功!');
+				if (result == true) {
+					var editparams = $('#edituser').serialize();
+					CDUtil.ajaxPost("/base/user/update", editparams, function (retVO) {
+						if (retVO.code == 1) {
+							userSearch();
+						}
+					});
+					layer.close(index);
+					layer.msg('编辑成功!');
+				}
 			}
 		});
 	};
@@ -1743,6 +1772,27 @@ webpackJsonp([1,6],[
 			layer.msg('删除成功!');
 		});
 	};
+
+	/**
+	 * 进行查询用户信息的方法
+	**/
+	var userSearch = function userSearch(newPage) {
+		if (newPage == undefined) {
+			newPage = 1;
+		}
+		var params = {
+			curPage: newPage,
+			pageSize: 20,
+			username: $("#search_username").val(),
+			realname: $("#search_realname").val(),
+			userType: $("#search_userType").val()
+		};
+		CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
+			config.gData = retVO;
+			Grid.initGrid(config, function () {});
+		});
+	};
+
 	/**
 	 * 表格中的操作--进行表格分页的配置
 	**/
@@ -1785,22 +1835,6 @@ webpackJsonp([1,6],[
 			del_fun: userDel
 		}
 	};
-
-	/**
-	 * 进行查询用户信息的方法
-	**/
-	var userSearch = function userSearch() {
-		var params = {
-			username: $("#s-username").val(),
-			realname: $("#s-realname").val(),
-			userType: $("#s-userType").val()
-		};
-		CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
-			config.gData = retVO;
-			Grid.initGrid(config, function () {});
-		});
-	};
-
 	/**
 	 * Vue组件对象
 	**/
@@ -1822,13 +1856,20 @@ webpackJsonp([1,6],[
 					btn: ['yes', 'no'],
 					content: $("#adduser"),
 					yes: function yes(index, layero) {
-						var addparams = $('#adduser').serialize();
-						CDUtil.ajaxPost("/base/user/add", addparams, function (retVO) {
-							if (retVO.code == 1) {
-								userSearch();
-							}
+						//添加表单验证--Validation
+						var result = Validation.validation({
+							containerId: "adduser"
 						});
-						layer.close(index);
+						if (result == true) {
+							var addparams = $('#adduser').serialize();
+							CDUtil.ajaxPost("/base/user/add", addparams, function (retVO) {
+								if (retVO.code == 1) {
+									userSearch();
+								}
+							});
+							layer.close(index);
+							$('#adduser')[0].reset();
+						}
 					}
 				});
 			}
@@ -1884,7 +1925,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "username",
-	      "id": "s-username",
+	      "id": "search_username",
 	      "data-vali": "notnull,username"
 	    }
 	  })])])
@@ -1901,7 +1942,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
-	      "id": "s-realname",
+	      "id": "search_realname",
 	      "data-vali": "notnull"
 	    }
 	  })])])
@@ -1917,7 +1958,7 @@ webpackJsonp([1,6],[
 	  }, [_h('select', {
 	    attrs: {
 	      "name": "userType",
-	      "id": "s-userType"
+	      "id": "search_userType"
 	    }
 	  }, [_h('option', {
 	    attrs: {
@@ -1947,7 +1988,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "hidden",
 	      "name": "userId",
-	      "id": "e-userId"
+	      "id": "edit_userId"
 	    }
 	  }), " ", _h('div', {
 	    staticClass: "cd-f-row"
@@ -1959,7 +2000,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-value",
 	    attrs: {
 	      "name": "username",
-	      "id": "e-username"
+	      "id": "edit_username"
 	    }
 	  })]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
@@ -1972,7 +2013,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "name": "realname",
 	      "data-vali": "notnull",
-	      "id": "realname"
+	      "id": "edit_realname"
 	    }
 	  })])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
@@ -1984,8 +2025,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "password",
-	      "id": "e-password",
-	      "data-vali": "notnull,password"
+	      "id": "edit_password",
+	      "value": "666666"
 	    }
 	  })])]), " ", _h('div', {
 	    staticClass: "cd-f-eve"
@@ -1996,7 +2037,7 @@ webpackJsonp([1,6],[
 	  }, [_h('select', {
 	    attrs: {
 	      "name": "userType",
-	      "id": "userType"
+	      "id": "edit_userType"
 	    }
 	  }, [_h('option', {
 	    attrs: {
@@ -2264,8 +2305,8 @@ webpackJsonp([1,6],[
 	    /*编辑学科*/
 	    manEdit: function manEdit(subjectName, subjectId) {
 	      var _self = this;
-	      $('#m-subjectName').val(subjectName);
-	      $('#m-subjectId').val(subjectId);
+	      $('#edit-subjectName').val(subjectName);
+	      $('#edit-subjectId').val(subjectId);
 	      layer.open({
 	        type: 1,
 	        title: '编辑学科',
@@ -2276,14 +2317,20 @@ webpackJsonp([1,6],[
 	        content: $("#editsubject"),
 	        btn: ['yes', 'no'],
 	        yes: function yes(index, layero) {
-	          var editparams = $('#editsubject').serialize();
-	          CDUtil.ajaxPost("/base/subject/update", editparams, function (retVO) {
-	            if (retVO.code == 1) {
-	              _self.show();
-	            }
+	          //添加表单验证--Validation
+	          var result = Validation.validation({
+	            containerId: "editsubject"
 	          });
-	          layer.close(index);
-	          layer.msg('编辑成功!');
+	          if (result == true) {
+	            var editparams = $('#editsubject').serialize();
+	            CDUtil.ajaxPost("/base/subject/update", editparams, function (retVO) {
+	              if (retVO.code == 1) {
+	                _self.show();
+	              }
+	            });
+	            layer.close(index);
+	            layer.msg('编辑成功!');
+	          }
 	        }
 	      });
 	    },
@@ -2314,13 +2361,19 @@ webpackJsonp([1,6],[
 	        content: $("#addsubject"),
 	        btn: ['yes', 'no'],
 	        yes: function yes(index, layero) {
-	          var addparams = $('#addsubject').serialize();
-	          CDUtil.ajaxPost("/base/subject/add", addparams, function (retVO) {
-	            if (retVO.code == 1) {
-	              _self.show();
-	            }
+	          //添加表单验证--Validation
+	          var result = Validation.validation({
+	            containerId: "addsubject"
 	          });
-	          layer.close(index);
+	          if (result == true) {
+	            var addparams = $('#addsubject').serialize();
+	            CDUtil.ajaxPost("/base/subject/add", addparams, function (retVO) {
+	              if (retVO.code == 1) {
+	                _self.show();
+	              }
+	            });
+	            layer.close(index);
+	          }
 	        }
 	      });
 	    },
@@ -2432,7 +2485,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "hidden",
 	      "name": "subjectId",
-	      "id": "m-subjectId"
+	      "id": "edit-subjectId"
 	    }
 	  }), " ", _h('div', {
 	    staticClass: "cd-f-row mt20"
@@ -2446,8 +2499,9 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "subjectName",
-	      "id": "m-subjectName",
-	      "maxlength": "10"
+	      "id": "edit-subjectName",
+	      "maxlength": "10",
+	      "data-vali": "notnull"
 	    }
 	  })])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
@@ -2469,7 +2523,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "subjectName",
-	      "maxlength": "10"
+	      "maxlength": "10",
+	      "data-vali": "notnull"
 	    }
 	  })])])])])
 	}]}
@@ -2832,9 +2887,9 @@ webpackJsonp([1,6],[
 	 * 表格中的操作---编辑服务器
 	**/
 	var servEdit = function servEdit(params, dom) {
-		$('#s-serverName').val(params.serverName);
-		$('#s-serverValue').val(params.serverValue);
-		$('#s-serverId').val(params.serverId);
+		$('#search_serverName').val(params.serverName);
+		$('#search_serverValue').val(params.serverValue);
+		$('#search_serverId').val(params.serverId);
 		layer.open({
 			type: 1,
 			title: '编辑服务器',
@@ -2842,18 +2897,24 @@ webpackJsonp([1,6],[
 			//加上边框
 			area: ['450px', '375px'],
 			//宽高
-			content: $("#editserver"),
+			content: $("#editServer"),
 			btn: ['yes', 'no'],
 			yes: function yes(index, layero) {
-				var editparams = $('#editserver').serialize();
-				CDUtil.ajaxPost("/base/dmsserver/add", editparams, function (retVO) {
-					if (retVO.code == 1) {
-						servSearch();
-					}
+				//添加表单验证--Validation
+				var result = Validation.validation({
+					containerId: "editServer"
 				});
-				layer.close(index);
-				layer.msg('编辑成功!');
-				$('#editserver')[0].reset();
+				if (result == true) {
+					var editparams = $('#editServer').serialize();
+					CDUtil.ajaxPost("/base/dmsserver/add", editparams, function (retVO) {
+						if (retVO.code == 1) {
+							servSearch();
+						}
+					});
+					layer.close(index);
+					layer.msg('编辑成功!');
+					$('#editServer')[0].reset();
+				}
 			}
 		});
 	};
@@ -2873,6 +2934,23 @@ webpackJsonp([1,6],[
 			});
 			layer.close(index);
 			layer.msg('删除成功!');
+		});
+	};
+	/**
+	 * 进行查询服务器信息的方法
+	**/
+	var servSearch = function servSearch(newPage) {
+		if (newPage == undefined) {
+			newPage = 1;
+		}
+		var params = {
+			curPage: newPage,
+			pageSize: 20
+		};
+		CDUtil.ajaxPost("/base/dmsserver/list", params, function (retVO) {
+			config.gData = retVO;
+			console.log(retVO);
+			Grid.initGrid(config, function () {});
 		});
 	};
 	/**
@@ -2903,17 +2981,6 @@ webpackJsonp([1,6],[
 			del_fun: servDel
 		}
 	};
-
-	/**
-	 * 进行查询服务器信息的方法
-	**/
-	var servSearch = function servSearch() {
-		var params = {};
-		CDUtil.ajaxPost("/base/dmsserver/list", params, function (retVO) {
-			config.gData = retVO;
-			Grid.initGrid(config, function () {});
-		});
-	};
 	/**
 	 * Vue组件对象
 	**/
@@ -2931,15 +2998,21 @@ webpackJsonp([1,6],[
 					skin: 'layui-layer-rim', //加上边框
 					area: ['450px', '375px'], //宽高
 					btn: ['yes', 'no'],
-					content: $("#addserver"),
+					content: $("#addServer"),
 					yes: function yes(index, layero) {
-						var addparams = $('#addserver').serialize();
-						CDUtil.ajaxPost("/base/dmsserver/add", addparams, function (retVO) {
-							if (retVO.code == 1) {
-								servSearch();
-							}
+						//添加表单验证--Validation
+						var result = Validation.validation({
+							containerId: "addServer"
 						});
-						layer.close(index);
+						if (result == true) {
+							var addparams = $('#addServer').serialize();
+							CDUtil.ajaxPost("/base/dmsserver/add", addparams, function (retVO) {
+								if (retVO.code == 1) {
+									servSearch();
+								}
+							});
+							layer.close(index);
+						}
 					}
 				});
 			}
@@ -2974,13 +3047,13 @@ webpackJsonp([1,6],[
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
-	      "id": "editserver"
+	      "id": "editServer"
 	    }
 	  }, [_h('input', {
 	    attrs: {
 	      "type": "hidden",
 	      "name": "serverId",
-	      "id": "s-serverId"
+	      "id": "search_serverId"
 	    }
 	  }), " ", _h('div', {
 	    staticClass: "cd-f-row"
@@ -2999,7 +3072,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "serverName",
-	      "id": "s-serverName",
+	      "id": "search_serverName",
 	      "data-vali": "notnull"
 	    }
 	  })])]), " ", _h('div', {
@@ -3014,7 +3087,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "serverValue",
-	      "id": "s-serverValue",
+	      "id": "search_serverValue",
 	      "data-vali": "notnull"
 	    }
 	  })])])])])
@@ -3023,7 +3096,7 @@ webpackJsonp([1,6],[
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
-	      "id": "addserver"
+	      "id": "addServer"
 	    }
 	  }, [_h('div', {
 	    staticClass: "cd-f-row"
@@ -3198,6 +3271,28 @@ webpackJsonp([1,6],[
 		window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
 	};
 	/**
+	 * 进行查询上传信息的方法
+	**/
+	var uploadSearch = function uploadSearch(newPage) {
+		if (newPage == undefined) {
+			newPage = 1;
+		}
+		var params = {
+			curPage: newPage,
+			pageSize: 20,
+			resourceNameKey: $("#search_resourceName").val(),
+			authorKey: $("#search_author").val(),
+			classlevelName: $("#search_classlevelName").val(),
+			subjectName: $("#search_subjectName").val(),
+			sourceType: "RECORD"
+		};
+		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
+			config.gData = retVO;
+			Grid.initGrid(config, function () {});
+		});
+	};
+
+	/**
 	 * 进行表格分页的配置
 	**/
 	var config = {
@@ -3226,23 +3321,6 @@ webpackJsonp([1,6],[
 			edit_fun: uploadEdit,
 			del_fun: uploadDel
 		}
-	};
-
-	/**
-	 * 进行查询上传信息的方法
-	**/
-	var uploadSearch = function uploadSearch() {
-		var params = {
-			resourceNameKey: $("#u-resourceName").val(),
-			authorKey: $("#u-author").val(),
-			classlevelName: $("#u-classlevelName").val(),
-			subjectName: $("#u-subjectName").val(),
-			sourceType: "RECORD"
-		};
-		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
-			config.gData = retVO;
-			Grid.initGrid(config, function () {});
-		});
 	};
 
 	/**
@@ -3307,7 +3385,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "classlevelName",
-	      "id": "u-classlevelName"
+	      "id": "search_classlevelName"
 	    }
 	  }, [_h('option', {
 	    attrs: {
@@ -3323,7 +3401,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "subjectName",
-	      "id": "u-subjectName"
+	      "id": "search_subjectName"
 	    }
 	  }, [_h('option', {
 	    attrs: {
@@ -3358,7 +3436,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "data-vali": "notnull",
 	      "name": "resourceName",
-	      "id": "u-resourceName",
+	      "id": "search_resourceName",
 	      "maxlength": "30"
 	    }
 	  })])])
@@ -3376,7 +3454,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "data-vali": "notnull",
 	      "name": "author",
-	      "id": "u-author"
+	      "id": "search_author"
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
@@ -3525,6 +3603,27 @@ webpackJsonp([1,6],[
 		sessionStorage.setItem("resourceId", params.resourceId);
 		window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
 	};
+	/**
+	 * 进行查询上传信息的方法
+	**/
+	var uploadSearch = function uploadSearch(newPage) {
+		if (newPage == undefined) {
+			newPage = 1;
+		}
+		var params = {
+			curPage: newPage,
+			pageSize: 20,
+			resourceNameKey: $("#search_resourceName").val(),
+			authorKey: $("#search_author").val(),
+			classlevelName: $("#search_classlevelName").val(),
+			subjectName: $("#search_subjectName").val(),
+			sourceType: "UPLOAD"
+		};
+		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
+			config.gData = retVO;
+			Grid.initGrid(config, function () {});
+		});
+	};
 	//进行表格分页的配置
 	var config = {
 		//用来展示表格控件的div的id
@@ -3552,23 +3651,6 @@ webpackJsonp([1,6],[
 			edit_fun: uploadEdit,
 			del_fun: uploadDel
 		}
-	};
-
-	/**
-	 * 进行查询上传信息的方法
-	**/
-	var uploadSearch = function uploadSearch() {
-		var params = {
-			resourceNameKey: $("#u-resourceName").val(),
-			authorKey: $("#u-author").val(),
-			classlevelName: $("#u-classlevelName").val(),
-			subjectName: $("#u-subjectName").val(),
-			sourceType: "UPLOAD"
-		};
-		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
-			config.gData = retVO;
-			Grid.initGrid(config, function () {});
-		});
 	};
 
 	/**
@@ -3644,7 +3726,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "classlevelName",
-	      "id": "u-classlevelName"
+	      "id": "search_classlevelName"
 	    }
 	  }, [_h('option', {
 	    attrs: {
@@ -3660,7 +3742,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "subjectName",
-	      "id": "u-subjectName"
+	      "id": "search_subjectName"
 	    }
 	  }, [_h('option', {
 	    attrs: {
@@ -3695,7 +3777,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "data-vali": "notnull",
 	      "name": "resourceName",
-	      "id": "u-resourceName",
+	      "id": "search_resourceName",
 	      "maxlength": "30"
 	    }
 	  })])])
@@ -3713,7 +3795,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "data-vali": "notnull",
 	      "name": "author",
-	      "id": "u-author"
+	      "id": "search_author"
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;
@@ -3842,7 +3924,9 @@ webpackJsonp([1,6],[
 	      classList: "",
 	      subjectList: "",
 	      params: {
-	        orderType: "desc"
+	        orderType: "desc",
+	        pageSize: 3,
+	        curPage: 1
 	      }
 	    };
 	  },
@@ -3851,19 +3935,45 @@ webpackJsonp([1,6],[
 	  },
 
 	  methods: {
-	    /** 获取年级列表**/
-	    gradesearch: function gradesearch(classlevelName) {
+	    /** 查询点播列表 **/
+	    showdemand: function showdemand(newPage) {
+	      if (newPage == undefined) {
+	        newPage = 1;
+	      }
+	      var _self = this;
+	      var params = this.params;
+	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
+	        _self.courseList = retVO;
+	        var config = {
+	          //这个应该是后台返回的部分
+	          gData: retVO,
+	          //是否需要分页，true：需要，不写默认需要
+	          pagingFlag: true
+	        };
+	        Grid.initGrid(config, function () {});
+	      });
+	    },
+	    /** 获取选择的年级参数**/
+	    gradesearch: function gradesearch(classlevelName, event) {
+	      $(event.target).addClass("active").siblings().removeClass("active");
 	      this.params = Object.assign({}, this.params, { classlevelName: classlevelName });
 	      this.showdemand();
 	    },
-	    /** 获取年级列表**/
-	    subjectsearch: function subjectsearch(subjectName) {
-	      $(e.target).addClass("active");
+	    /** 获取选择的学科参数**/
+	    subjectsearch: function subjectsearch(subjectName, event) {
+	      $(event.target).addClass("active").siblings().removeClass("active");
 	      this.params = Object.assign({}, this.params, { subjectName: subjectName });
 	      this.showdemand();
+	      $('.sub-tit').text(subjectName);
 	    },
 	    /** 根据时间排序**/
 	    sortByTime: function sortByTime(e) {
+	      $(e.target).toggleClass("arrow");
+	      if ($(e.target).hasClass("arrow")) {
+	        $(e.target).find("i").removeClass("icon-low").addClass("icon-up");
+	      } else {
+	        $(e.target).find("i").removeClass("icon-up").addClass("icon-low");
+	      }
 	      $(e.target).addClass("active").siblings().removeClass("active");
 	      e.stopPropagation();
 	      var $sortType = $(e.target).attr("data-sort");
@@ -3880,6 +3990,12 @@ webpackJsonp([1,6],[
 	    /** 根据热度排序**/
 	    sortByHot: function sortByHot(e) {
 	      e.stopPropagation();
+	      $(e.target).toggleClass("arrow");
+	      if ($(e.target).hasClass("arrow")) {
+	        $(e.target).find("i").removeClass("icon-low").addClass("icon-up");
+	      } else {
+	        $(e.target).find("i").removeClass("icon-up").addClass("icon-low");
+	      }
 	      $(e.target).addClass("active").siblings().removeClass("active");
 	      var $sortType = $(e.target).attr("data-sort");
 	      if ($sortType === "desc") {
@@ -3897,23 +4013,6 @@ webpackJsonp([1,6],[
 	      var sourceName = $('#s-resource').val();
 	      this.params = Object.assign({}, this.params, { resourceNameKey: sourceName });
 	      this.showdemand();
-	    },
-	    /** 查询点播列表 **/
-	    showdemand: function showdemand() {
-	      var _self = this;
-	      var params = this.params;
-	      console.log(params);
-	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
-	        _self.courseList = retVO;
-	        var config = {
-	          //这个应该是后台返回的部分
-	          gData: retVO,
-	          //是否需要分页，true：需要，不写默认需要
-	          pagingFlag: true
-
-	        };
-	        Grid.initGrid(config, function () {});
-	      });
 	    },
 	    /** 获取年级列表 **/
 	    showclass: function showclass() {
@@ -3949,7 +4048,7 @@ webpackJsonp([1,6],[
 	    return _h('span', {
 	      on: {
 	        "click": function($event) {
-	          _vm.gradesearch(grade.classlevelName)
+	          _vm.gradesearch(grade.classlevelName, $event)
 	        }
 	      }
 	    }, [_vm._s(grade.classlevelName)])
@@ -3959,7 +4058,7 @@ webpackJsonp([1,6],[
 	    return _h('span', {
 	      on: {
 	        "click": function($event) {
-	          _vm.subjectsearch(subject.subjectName)
+	          _vm.subjectsearch(subject.subjectName, $event)
 	        }
 	      }
 	    }, [_vm._s(subject.subjectName)])
@@ -3969,7 +4068,9 @@ webpackJsonp([1,6],[
 	    staticClass: "search"
 	  }, [_h('div', {
 	    staticClass: "s-left"
-	  }, ["\"语文\" 相关课程  共26条\r\n\t\t\t\t", _h('span', {
+	  }, ["\"", _h('span', {
+	    staticClass: "sub-tit"
+	  }, ["全部"]), "\"相关课程  共" + _vm._s(_vm.courseList.totalDatas) + "条\r\n\t\t\t\t", _h('span', {
 	    attrs: {
 	      "data-sort": "desc"
 	    },
@@ -4004,7 +4105,7 @@ webpackJsonp([1,6],[
 	  })])]), " ", _h('div', {
 	    staticClass: "clear"
 	  }), " ", " ", _h('div', {
-	    staticClass: "list"
+	    staticClass: "list mt30"
 	  }, [_vm._l((_vm.courseList.data), function(course) {
 	    return _h('div', {
 	      staticClass: "col-4"
@@ -4192,7 +4293,7 @@ webpackJsonp([1,6],[
 	    isShow: function isShow() {
 	      return this.data.length;
 	    },
-	    /** 获取列表的方法 **/
+	    /** 获取列表的方法 alert($('.sub-code').text());**/
 	    show: function show() {
 	      var _self = this;
 	      var params = {};
@@ -4260,7 +4361,7 @@ webpackJsonp([1,6],[
 	    return _h('div', {
 	      staticClass: "row"
 	    }, [_h('div', {
-	      staticClass: "col-md-4 tel"
+	      staticClass: "col-md-4 tel c4"
 	    }, [_vm._s(post.resourceName)]), " ", _h('div', {
 	      staticClass: "col-md-4 tel"
 	    }, [_h('span', {
@@ -4285,9 +4386,9 @@ webpackJsonp([1,6],[
 	      "src": __webpack_require__(74)
 	    }
 	  })]), " "]), " ", " ", _h('div', {
-	    staticClass: "s-title"
+	    staticClass: "s-title demanBtm"
 	  }, [_h('span'), _h('h3', {
-	    staticClass: "demanCour fl"
+	    staticClass: "demanCour fb fl"
 	  }, ["点播课程"]), _h('a', {
 	    staticClass: "fr",
 	    attrs: {
@@ -4338,7 +4439,9 @@ webpackJsonp([1,6],[
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
 	  return _h('div', {
 	    staticClass: "s-title"
-	  }, [_h('span'), _h('h3', ["直播课程"])])
+	  }, [_h('span'), _h('h3', {
+	    staticClass: "fb"
+	  }, ["直播课程"])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -4490,28 +4593,35 @@ webpackJsonp([1,6],[
 		},
 
 		methods: {
-			showdemand: function showdemand() {
+			showdemand: function showdemand(newPage) {
+				if (newPage == undefined) {
+					newPage = 1;
+				}
 				var _self = this;
-				var params = {};
+				var params = { curPage: newPage,
+					pageSize: 2 };
 				CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
 					_self.mycourceList = retVO;
 					var config = {
 						//这个应该是后台返回的部分
 						gData: retVO,
 						//是否需要分页，true：需要，不写默认需要
-						pagingFlag: true
+						pagingFlag: true,
+						//执行页面查询的方法
+						searchFun: _self.showdemand()
 					};
 					Grid.initGrid(config, function () {});
 				});
 			},
 			mysubjectDel: function mysubjectDel(resourceId) {
+				var _self = this;
 				layer.alert('删除后则该资源在点播列表同步删除?', function (index) {
 					var reidParams = {
 						resourceId: resourceId
 					};
 					CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
 						if (retVO.code == 1) {
-							this.showdemand();
+							_self.showdemand();
 						}
 					});
 					layer.close(index);
@@ -4534,10 +4644,10 @@ webpackJsonp([1,6],[
 	    staticClass: "d-main"
 	  }, [_h('div', {
 	    staticClass: "search"
-	  }, ["\r\n\t\t\t\t\t共99个资源\r\n\t\t\t\t"]), " ", _h('div', {
+	  }, ["\r\n\t\t\t\t\t共" + _vm._s(_vm.mycourceList.totalDatas) + "个资源\r\n\t\t\t\t"]), " ", _h('div', {
 	    staticClass: "clear"
 	  }), " ", " ", _h('div', {
-	    staticClass: "list"
+	    staticClass: "list mt40"
 	  }, [_vm._l((_vm.mycourceList.data), function(course) {
 	    return _h('div', {
 	      staticClass: "col-4"

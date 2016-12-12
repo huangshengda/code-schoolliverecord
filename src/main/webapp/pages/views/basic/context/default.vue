@@ -8,19 +8,19 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>用户名:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="username" id="s-username" data-vali="notnull,username">
+            <input type="text" name="username" id="search_username" data-vali="notnull,username">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>姓名:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="realname" id="s-realname" data-vali="notnull">
+            <input type="text" name="realname" id="search_realname" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>角色:</label></span>
           <span class="cd-f-value">
-            <select name="userType" id="s-userType">
+            <select name="userType" id="search_userType">
             <option value="-1">请选择</option>
             <option value="ADMIN">管理员</option>
             <option value="TEACHER">老师</option>
@@ -37,29 +37,29 @@
   </div>
 <!-- 编辑用户弹窗表单 start -->
   <form action="" id="edituser" class="layBox">
-  	<input type="hidden" name="userId" id="e-userId">
+  	<input type="hidden" name="userId" id="edit_userId">
    	<div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value" name="username" id="e-username"> 
+          <span class="cd-f-value" name="username" id="edit_username"> 
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname" data-vali="notnull" id="realname">
+            <input type="text" name="realname" data-vali="notnull" id="edit_realname">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" id="e-password" data-vali="notnull,password">
+            <input type="text" name="password" id="edit_password" value="666666">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
-             <select name="userType" id="userType"><option value="-1">请选择</option><option value="ADMIN">管理员</option>
+             <select name="userType" id="edit_userType"><option value="-1">请选择</option><option value="ADMIN">管理员</option>
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
           </span>
@@ -92,10 +92,11 @@
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
             <select name="userType" data-vali="notnull">
-            <option value="-1">请选择</option>
-            <option value="ADMIN">管理员</option>
-            <option value="TEACHER">老师</option>
-            <option value="STUDENT">学生</option></select>
+           	 	<option value="-1">请选择</option>
+            	<option value="ADMIN">管理员</option>
+            	<option value="TEACHER">老师</option>
+            	<option value="STUDENT">学生</option>
+            </select>
           </span>
         </div>
     </div>
@@ -108,11 +109,12 @@
  * 表格中的操作---编辑用户
 **/
 var userEdit = function(params, dom) {
-	$('#userType').val(params.userType);
-	$('#e-username').text(params.username);
-	$('#realname').val(params.realname);
-	//md5($('#e-password').val(params.password));
-	$('#e-userId').val(params.userId);
+	//$('#edit_userType').find("option[value=params.userType]").attr("selected","selected");
+	$("#edit_userType").value = params.userType;
+	$('#edit_username').text(params.username);
+	$('#edit_realname').val(params.realname);
+	//md5($('#e_password').val(params.password));
+	$('#edit_userId').val(params.userId);
 	layer.open({
 		type: 1,
 		title: '编辑用户',
@@ -123,15 +125,21 @@ var userEdit = function(params, dom) {
 		content: $("#edituser"),
 		btn: ['yes', 'no'],
 		yes: function(index, layero) {
-			var editparams = $('#edituser').serialize();
-			CDUtil.ajaxPost("/base/user/update", editparams,
-			function(retVO) {
-				if (retVO.code == 1) {
-					userSearch();
-				}
-			});
-			layer.close(index);
-			layer.msg('编辑成功!');
+		//添加表单验证--Validation
+       		var result = Validation.validation({
+          		containerId: "edituser",
+        	});
+       		if(result==true){
+				var editparams = $('#edituser').serialize();
+				CDUtil.ajaxPost("/base/user/update", editparams,
+				function(retVO) {
+					if (retVO.code == 1) {
+						userSearch();
+					}
+				});
+				layer.close(index);
+				layer.msg('编辑成功!');
+			}
 		}
 	});
 };
@@ -154,6 +162,27 @@ var userDel = function(params, dom) {
 		layer.msg('删除成功!');
 	});
 };
+
+/**
+ * 进行查询用户信息的方法
+**/
+var userSearch = function(newPage) {
+	if(newPage == undefined){
+		newPage = 1;
+	}
+	var params = {
+		curPage: newPage,
+		pageSize: 20,
+		username: $("#search_username").val(),
+		realname: $("#search_realname").val(),
+		userType: $("#search_userType").val()
+	};
+	CDUtil.ajaxPost("/base/user/list", params,function(retVO) {
+		config.gData = retVO;
+		Grid.initGrid(config,function(){});
+	});
+};
+
 /**
  * 表格中的操作--进行表格分页的配置
 **/
@@ -199,22 +228,6 @@ var config = {
 		del_fun: userDel,
 	}
 };
-
-/**
- * 进行查询用户信息的方法
-**/
-var userSearch = function() {
-	var params = {
-		username: $("#s-username").val(),
-		realname: $("#s-realname").val(),
-		userType: $("#s-userType").val(),
-	};
-	CDUtil.ajaxPost("/base/user/list", params,function(retVO) {
-		config.gData = retVO;
-		Grid.initGrid(config,function(){});
-	});
-};
-
 /**
  * Vue组件对象
 **/
@@ -235,13 +248,20 @@ export default {
 				btn: ['yes', 'no'],
 				content: $("#adduser"),
 				yes: function(index, layero) {
-					var addparams = $('#adduser').serialize();
-					CDUtil.ajaxPost("/base/user/add", addparams,function(retVO) {
-						if (retVO.code == 1) {
-							userSearch();
-						}
-					});
-					layer.close(index);
+					//添加表单验证--Validation
+       				var result = Validation.validation({
+          				containerId: "adduser",
+        			});
+       				if(result==true){
+						var addparams = $('#adduser').serialize();
+						CDUtil.ajaxPost("/base/user/add", addparams,function(retVO) {
+							if (retVO.code == 1) {
+								userSearch();
+							}
+						});
+						layer.close(index);
+						$('#adduser')[0].reset();
+					}
 				}
 			});
 		}

@@ -2,7 +2,7 @@
   <aside>
     <ul class="menu-list">
       <li class="menu-level1" v-for="(item,index) in menu" :class="{'has-chlidren': item.children && item.children.length, 'unfold': item.meta.expanded ,'active':!index}">
-        <div @click="toggle(item)">
+        <div @click="toggle(item,$event)">
           <router-link :to="$route.matched[0].path + '/' + item.path" :class="{'is-active': isActive(item.path)}">{{item.meta.showName}}</router-link>
         </div>
         <expanding  v-if="item.children && item.children.length">
@@ -51,8 +51,10 @@ export default {
         parent.meta.expanded = true
       }
     },
-    toggle (item) {
-      item.meta.expanded = !item.meta.expanded
+    toggle (item,event) {
+      item.meta.expanded = !item.meta.expanded;
+      $(event.target).parent().parent().addClass("active");
+      $(event.target).parent().parent().siblings().removeClass("active");
     },
     findParentFromMenu (route) {
       const menu= filterRoute(menu,this.$route.matched[1])
@@ -157,11 +159,11 @@ export default {
 
   }
 .menu-level1 a.router-link-active{
-  background-color:#f0f0f0;
   color:#34a150;
 }
 .menu-level1:hover,.menu-level1:visited,.menu-level1:active{
   background-color: #f0f0f0;
   a{color:#34a150;}
 }
+.menu-list li.active div{background-color: #f0f0f0;}
 </style>

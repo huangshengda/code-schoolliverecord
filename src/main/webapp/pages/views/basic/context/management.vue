@@ -21,12 +21,12 @@
   </div>
 <!-- 编辑学科弹窗表单 start -->
   <form action="" id="editsubject" class="layBox">
-  <input type="hidden" name="subjectId" id="m-subjectId">
+  <input type="hidden" name="subjectId" id="edit-subjectId">
    <div class="cd-f-row mt20">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>学科:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="subjectName" id="m-subjectName" maxlength="10">
+            <input type="text" name="subjectName" id="edit-subjectName" maxlength="10" data-vali="notnull">
           </span>
         </div>
     </div>
@@ -38,7 +38,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>学科:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="subjectName" maxlength="10">
+            <input type="text" name="subjectName" maxlength="10" data-vali="notnull">
           </span>
         </div>
     </div>
@@ -69,8 +69,8 @@
       /*编辑学科*/
       manEdit: function(subjectName,subjectId){
       	var _self = this;
-      	$('#m-subjectName').val(subjectName);
-      	$('#m-subjectId').val(subjectId);
+      	$('#edit-subjectName').val(subjectName);
+      	$('#edit-subjectId').val(subjectId);
       	layer.open({
 		type: 1,
 		title: '编辑学科',
@@ -81,17 +81,23 @@
 		content: $("#editsubject"),
 		btn: ['yes', 'no'],
 		yes: function(index, layero) {
-			var editparams = $('#editsubject').serialize();
-			CDUtil.ajaxPost("/base/subject/update", editparams,
-			function(retVO) {
-				if (retVO.code == 1) {
-					_self.show();
-				}
-			});
-			layer.close(index);
-			layer.msg('编辑成功!');
+			//添加表单验证--Validation
+       		var result = Validation.validation({
+          		containerId: "editsubject",
+        	});
+       		if(result==true){
+				var editparams = $('#editsubject').serialize();
+				CDUtil.ajaxPost("/base/subject/update", editparams,
+				function(retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+				});
+				layer.close(index);
+				layer.msg('编辑成功!');
+			}
 		}
-		});
+	});
       },
       /*删除学科*/
       manDel: function(subjectId){
@@ -121,13 +127,19 @@
               content: $("#addsubject"),
               btn: ['yes', 'no'],
               yes:function(index,layero){
-              	var addparams = $('#addsubject').serialize();
-      			CDUtil.ajaxPost("/base/subject/add",addparams,function(retVO){
-      				if (retVO.code == 1) {
-						_self.show();
-					}
-      			});
-      			layer.close(index);
+              //添加表单验证--Validation
+       			var result = Validation.validation({
+          			containerId: "addsubject",
+        		});
+       			if(result==true){
+              		var addparams = $('#addsubject').serialize();
+      				CDUtil.ajaxPost("/base/subject/add",addparams,function(retVO){
+      					if (retVO.code == 1) {
+							_self.show();
+						}
+      				});
+      				layer.close(index);
+      			}
               }
            });
       },     

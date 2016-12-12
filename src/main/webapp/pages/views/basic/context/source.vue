@@ -8,25 +8,25 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>资源名称:</label></span>
           <span class="cd-f-value ">
-            <input type="text" data-vali="notnull" name="resourceName" id="u-resourceName" maxlength="30">
+            <input type="text" data-vali="notnull" name="resourceName" id="search_resourceName" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>主讲教师:</label></span>
           <span class="cd-f-value ">
-            <input type="text" data-vali="notnull" name="author" id="u-author">
+            <input type="text" data-vali="notnull" name="author" id="search_author">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>年级:</label></span>
           <span class="cd-f-value ">
-            <select data-vali="notnull" name="classlevelName" id="u-classlevelName"><option value="">请选择年级</option><option v-for="grade in classList.data">{{grade.classlevelName}}</option></select>
+            <select data-vali="notnull" name="classlevelName" id="search_classlevelName"><option value="">请选择年级</option><option v-for="grade in classList.data">{{grade.classlevelName}}</option></select>
           </span>
         </div>   
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>学科:</label></span>
           <span class="cd-f-value ">
-            <select data-vali="notnull" name="subjectName" id="u-subjectName"><option value="">全部</option><option v-for="subject in subjectList.data">{{subject.subjectName}}</option></select>
+            <select data-vali="notnull" name="subjectName" id="search_subjectName"><option value="">全部</option><option v-for="subject in subjectList.data">{{subject.subjectName}}</option></select>
           </span>
         </div>   
         <button class="sBtn" type="button" @click="search_one">查询</button>
@@ -74,6 +74,28 @@ var uploadEdit = function(params, dom) {
     window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
 };
 /**
+ * 进行查询上传信息的方法
+**/
+var uploadSearch = function(newPage) {
+	if(newPage == undefined){
+		newPage = 1;
+	}
+	var params = {
+		curPage: newPage,
+		pageSize: 20,
+		resourceNameKey: $("#search_resourceName").val(),
+		authorKey: $("#search_author").val(),
+		classlevelName: $("#search_classlevelName").val(),
+		subjectName: $("#search_subjectName").val(),
+		sourceType:"RECORD",
+	};
+	CDUtil.ajaxPost("/resource/list",params,function(retVO) {
+		config.gData = retVO;
+		Grid.initGrid(config,function(){});
+	});
+};
+
+/**
  * 进行表格分页的配置
 **/
 var config = {
@@ -108,23 +130,6 @@ var config = {
 		edit_fun: uploadEdit,
 		del_fun: uploadDel,
 	}
-};
-
-/**
- * 进行查询上传信息的方法
-**/
-var uploadSearch = function() {
-	var params = {
-		resourceNameKey: $("#u-resourceName").val(),
-		authorKey: $("#u-author").val(),
-		classlevelName: $("#u-classlevelName").val(),
-		subjectName: $("#u-subjectName").val(),
-		sourceType:"RECORD",
-	};
-	CDUtil.ajaxPost("/resource/list",params,function(retVO) {
-		config.gData = retVO;
-		Grid.initGrid(config,function(){});
-	});
 };
 
 /**

@@ -7,26 +7,26 @@
     <!-- 表单 end -->
   </div>
     <!-- 编辑服务器弹窗表单 start -->
-  <form action="" id="editserver" class="layBox">
-   <input type="hidden" name="serverId" id="s-serverId">
+  <form action="" id="editServer" class="layBox">
+   <input type="hidden" name="serverId" id="search_serverId">
    <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器名称:</label></span>
           <span class="cd-f-value" name="serverName">
-            <input type="text" name="serverName" id="s-serverName" data-vali="notnull">
+            <input type="text" name="serverName" id="search_serverName" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="serverValue" id="s-serverValue" data-vali="notnull">
+            <input type="text" name="serverValue" id="search_serverValue" data-vali="notnull">
           </span>
         </div>
     </div>
   </form>
 <!-- 编辑服务器弹窗表单 end -->
 <!-- 添加服务器弹窗表单 start -->
-  <form action="" id="addserver" class="layBox" >
+  <form action="" id="addServer" class="layBox" >
    <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器名称:</label></span>
@@ -57,9 +57,9 @@
  * 表格中的操作---编辑服务器
 **/
 var servEdit = function(params, dom) {
-	$('#s-serverName').val(params.serverName);
-	$('#s-serverValue').val(params.serverValue);
-	$('#s-serverId').val(params.serverId);
+	$('#search_serverName').val(params.serverName);
+	$('#search_serverValue').val(params.serverValue);
+	$('#search_serverId').val(params.serverId);
 	layer.open({
 		type: 1,
 		title: '编辑服务器',
@@ -67,19 +67,25 @@ var servEdit = function(params, dom) {
 		//加上边框
 		area: ['450px', '375px'],
 		//宽高
-		content: $("#editserver"),
+		content: $("#editServer"),
 		btn: ['yes', 'no'],
 		yes: function(index, layero) {
-			var editparams = $('#editserver').serialize();
-			CDUtil.ajaxPost("/base/dmsserver/add", editparams,
-			function(retVO) {
-				if (retVO.code == 1) {
-					servSearch();
-				}
-			});
-			layer.close(index);
-			layer.msg('编辑成功!');
-			$('#editserver')[0].reset();
+			//添加表单验证--Validation
+       		var result = Validation.validation({
+          		containerId: "editServer",
+        	});
+       		if(result==true){
+				var editparams = $('#editServer').serialize();
+				CDUtil.ajaxPost("/base/dmsserver/add", editparams,
+				function(retVO) {
+					if (retVO.code == 1) {
+						servSearch();
+					}
+				});
+				layer.close(index);
+				layer.msg('编辑成功!');
+				$('#editServer')[0].reset();
+			}
 		}
 	});
 };
@@ -100,6 +106,23 @@ var servDel = function(params, dom) {
 		});
 		layer.close(index);
 		layer.msg('删除成功!');
+	});
+};
+/**
+ * 进行查询服务器信息的方法
+**/
+var servSearch = function(newPage) {
+	if(newPage == undefined){
+		newPage = 1;
+	}
+	var params = {
+		curPage: newPage,
+		pageSize: 20,
+	};
+	CDUtil.ajaxPost("/base/dmsserver/list", params,function(retVO) {
+		config.gData = retVO;
+		console.log(retVO);
+		Grid.initGrid(config,function(){});
 	});
 };
 /**
@@ -135,17 +158,6 @@ var config = {
 		del_fun: servDel,
 	}
 };
-
-/**
- * 进行查询服务器信息的方法
-**/
-var servSearch = function() {
-	var params = {};
-	CDUtil.ajaxPost("/base/dmsserver/list", params,function(retVO) {
-		config.gData = retVO;
-		Grid.initGrid(config,function(){});
-	});
-};
 /**
  * Vue组件对象
 **/
@@ -162,15 +174,21 @@ var servSearch = function() {
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '375px'], //宽高
               btn: ['yes', 'no'],
-              content: $("#addserver"),
+              content: $("#addServer"),
               yes:function(index,layero){
-              	var addparams = $('#addserver').serialize();
-      			CDUtil.ajaxPost("/base/dmsserver/add",addparams,function(retVO){
-      				if (retVO.code == 1) {
+              //添加表单验证--Validation
+       			var result = Validation.validation({
+          			containerId: "addServer",
+        		});
+       			if(result==true){
+              		var addparams = $('#addServer').serialize();
+      				CDUtil.ajaxPost("/base/dmsserver/add",addparams,function(retVO){
+      					if (retVO.code == 1) {
 							servSearch();
 						}
-      			});
-      			layer.close(index);
+      				});
+      				layer.close(index);
+      			}
               }
            });
       },     
