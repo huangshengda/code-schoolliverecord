@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.DmsServerMapper;
 import com.codyy.slr.entity.DmsServer;
@@ -25,8 +26,8 @@ public class DmsServerService {
 	@Autowired
 	DmsServerMapper dmsServerMapper;
 
-	public List<DmsServerVo> getDmsServerList(String dmsServerName) {
-		return dmsServerMapper.getDmsServerList(dmsServerName);
+	public List<DmsServerVo> getDmsServerList(Page page) {
+		return dmsServerMapper.getDmsServerListPageList(page);
 	}
 
 	/**
@@ -41,7 +42,7 @@ public class DmsServerService {
 		int count = 0;
 		int code = Constants.SUCCESS;
 		String msg = "添加成功";
-		List<DmsServerVo> list = dmsServerMapper.getDmsServerList(null);
+		List<DmsServerVo> list = dmsServerMapper.getDmsServerListPageList(null);
 		for (DmsServerVo dms : list) {
 			if (dmsServer.getServerName().equals(dms.getServerName())) {
 				count++;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.DmsServer;
 import com.codyy.slr.service.DmsServerService;
@@ -40,22 +41,26 @@ public class DmsServerController {
 	 */
 	@RequestMapping("list")
 	@ResponseBody
-	public ReturnVoList<DmsServerVo> getDmsServerList(String dmsServerName) {
+	public ReturnVoList<DmsServerVo> getDmsServerList(Page page, String dmsServerName) {
 		int code = Constants.SUCCESS;
 		int i = 0;
 		String msg = "查询成功";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dmsServerName", dmsServerName);
+		page.setMap(map);
 		List<DmsServerVo> dmsServerList = new ArrayList<DmsServerVo>();
 		try {
-			dmsServerList = dmsServerService.getDmsServerList(dmsServerName);
+			dmsServerList = dmsServerService.getDmsServerList(page);
 			for (DmsServerVo dmsServerVo : dmsServerList) {
 				dmsServerVo.setSort(++i);
 			}
+			page.setData(dmsServerList);
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "查询失败";
 			e.printStackTrace();
 		}
-		return new ReturnVoList<DmsServerVo>(code, msg, dmsServerList);
+		return new ReturnVoList<DmsServerVo>(page, code, msg);
 	}
 
 	/**
@@ -114,8 +119,12 @@ public class DmsServerController {
 	public ReturnVoOne<DmsServer> modifyDmsServer(DmsServer dmsServer) {
 		int code = Constants.SUCCESS;
 		String msg = "编辑成功";
+		Page page = new Page();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dmsServerName", dmsServer.getServerName());
+		page.setMap(map);
 		try {
-			List<DmsServerVo> list = dmsServerService.getDmsServerList(dmsServer.getServerName());
+			List<DmsServerVo> list = dmsServerService.getDmsServerList(page);
 			if (list.size() == 0) {
 				if (dmsServerService.modifyDmsServer(dmsServer) != 1) {
 					msg = "编辑失败";
