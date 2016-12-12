@@ -93,7 +93,7 @@
 		<init-param>
 			<param-name>excludePath</param-name>
 			<param-value>/login;/home/live/list;/demand/list;/base/classlevel/list;/base/subject/list;/resource/live/add;
-						 /resource/live/hasfinish;/front/path/live;/front/path/demond;/front/path/upload</param-value>
+						 /resource/live/hasfinish;/front/path/live;/front/path/demond;/front/path/upload;base/dmsserver/list</param-value>
 		</init-param>
 		<init-param>
 			<param-name>excludeSuffix</param-name>
