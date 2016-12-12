@@ -2915,7 +2915,12 @@ webpackJsonp([1,6],[
 				});
 				if (result == true) {
 					var editparams = $('#editServer').serialize();
+<<<<<<< HEAD
+					CDUtil.ajaxPost("/base/dmsserver/add", editparams, function (retVO) {
+						console.log(retVO);
+=======
 					CDUtil.ajaxPost("/base/dmsserver/update", editparams, function (retVO) {
+>>>>>>> branch 'master' of git@10.5.60.10:SchoolLiveRecord/SchoolLiveRecord.git
 						if (retVO.code == 1) {
 							servSearch();
 							layer.close(index);
