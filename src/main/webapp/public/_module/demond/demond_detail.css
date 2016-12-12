@@ -1,0 +1,142 @@
+@charset "utf-8";
+body{
+	
+}
+.c4 {
+	color:#444;
+}
+.c6 {
+	color:#666;
+}
+.c9 {
+	color:#999;
+}
+.l-left {
+	display:inline-block;
+	width:918px;
+	height:562px;
+}
+.l-right {
+	width:281px;
+	border:1px solid #ececec;
+	border-top:1px solid #34a150;
+}
+.right-head {
+	height:45px;
+	line-height:45px;
+	color:#34a150;
+	padding:0 15px;
+}
+.l-title {
+	font-size:20px;
+	color:#222;
+	line-height:35px;
+}
+.l-title span {
+	margin:0 25px;
+	color:#666;
+}
+.l-title small {
+	color:#666;
+}
+.l-title i {
+	font-style:normal;
+}
+/* å¬å± end*/
+ .vod {
+	margin-top:50px;
+}
+.l-right {
+	background-color:#fff;
+}
+.right-head {
+	border-bottom:1px solid #ececec;
+}
+.v-recommend {
+}
+.v-recommend li {
+	margin-top:20px;
+	cursor:pointer;
+	padding:10px;
+	cursor: pointer;
+}
+.media-left,.media-right {
+	display:table-cell;
+	vertical-align:top;
+	padding-right:1px;
+}
+.v-recommend li:hover {
+	background-color:#f5f8fa;
+}
+/* start */
+  .comment {
+	width:100%;
+	display:inline-block;
+	border:1px solid #ececec;
+	margin-top:30px;
+}
+.c-title {
+	height:40px;
+	line-height:40px;
+	border-bottom:1px solid #ececec;
+	padding-left:20px;
+	background-color:#f7f7f7;
+}
+.c-main {
+	padding:20px;
+	background-color:#fff;
+}
+.edit-wb-frame {
+	width:877px;
+	height:120px;
+	border:1px solid #ececec;
+}
+.c-item {
+	border-bottom:1px solid #ececec;
+}
+.com-button.orange-btn {
+	background-color:#FF9C00;
+	color:#fff;
+	padding:2px 17px;
+}
+.textarea-ft-cont-pos {
+	font-size:12px;
+	color:#999;
+	float:right;
+	margin-top:3px;
+}
+.orange {
+	color:#FE9B00;
+}
+.icon-face {
+	color:#f1b93c;
+	font-size:20px;
+}
+.all-list {
+	line-height:30px;
+	border-bottom:1px solid #ececec;
+}
+.replay {
+	background-color:#f7f7f7;
+	padding:20px;
+	margin-left:10px;
+}
+.replay textarea {
+	width:823px;
+	height:40px;
+}
+.item-Head {
+	clear:both;
+	margin:20px 0;
+}
+.item-Head a {
+	color:#999;
+}
+/*  用户评论主体部分  end*/
+.more {
+	border-top:1px solid #ececec;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+}
+/* 点播课程详情  end*/

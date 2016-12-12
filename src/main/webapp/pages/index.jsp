@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width">
-<%@ include file="./pages/_commons/meta.jsp"%>
+<%@ include file="./_commons/meta.jsp"%>
 </head>
 <body>
 <div id="app"> hello</div>
-<%@ include file="./pages/_commons/footer.jsp"%>
-<script type="text/javascript" src="./dist/slr_app.js" ></script>
+<%@ include file="./_commons/footer.jsp"%>
+<script type="text/javascript" src="${ROOT_UI}/dist/slr_app.js" ></script>
 </body>
 </html>

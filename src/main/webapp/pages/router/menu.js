@@ -134,7 +134,15 @@ var routes = [
               }
            },
       ]
-    }
+    },
+    {
+        path:'/mySubject',
+        name:'mySubject',
+        component: resolve => {
+          lazyLoading(resolve,'mySubject')
+        },
+        meta:{showName:'我的课程'}
+      },
 ];
 
 module.exports = routes;

@@ -29,16 +29,25 @@ public class Constants {
 	public static final List<String> COLUMN_MY_COURSE = Arrays.asList("首页", "点播", "我的课程");// 老师
 	public static final List<String> COLUMN = Arrays.asList("首页", "点播");
 
+	// 静态资源前缀
+	public static final List<String> STATIC_RES_PATH_PREFIX = Arrays.asList("dist", "public", "pages");
+
 	// 用户类型
 	public static final String SUPER_ADMIN = "SUPER_ADMIN";
 	public static final String ADMIN = "ADMIN";
 	public static final String TEACHER = "TEACHER";
 	public static final String STUDENT = "STUDENT";
 
+	public static final String SUPER_ADMIN_Chinese = "超级管理员";
+	public static final String ADMIN_Chinese = "管理员";
+	public static final String TEACHER_Chinese = "教师";
+	public static final String STUDENT_Chinese = "学生";
+
 	// 返回前段的路径
 	public static final String FRONT_DEMOND_PATH = "pages/views/demond/demond_detail";
 	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
 	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
+	public static final String FRONT_INDEX_PATH = "pages/index";
 
 	/**
 	 * 排序字段
@@ -96,6 +105,7 @@ public class Constants {
 	 */
 	public final static String ROOT_UI;
 	public final static String ROOT_SERVER;
+	public final static String ROOT_CHAT;
 
 	/**
 	 * 存储路径
@@ -152,6 +162,7 @@ public class Constants {
 
 		ROOT_UI = ConfigUtils.getValue("root.ui");
 		ROOT_SERVER = ConfigUtils.getValue("root.server");
+		ROOT_CHAT = ConfigUtils.getValue("root.chat");
 	}
 
 	private static int StringToInt(String key, int defaultVal) {

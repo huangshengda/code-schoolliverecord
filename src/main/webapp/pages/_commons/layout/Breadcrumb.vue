@@ -10,9 +10,7 @@
     </li>
   </ol>
 </template>
-
 <script>
-
 export default {
    props: {
     list: {
@@ -22,7 +20,5 @@ export default {
 }
 </script>
 <style>
-  .breadcrumb{
-    margin-bottom: 0;
-  }
+ .breadcrumb{margin-bottom: 0;}
 </style>

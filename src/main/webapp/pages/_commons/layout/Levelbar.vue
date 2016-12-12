@@ -6,7 +6,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import Breadcrumb from './Breadcrumb.vue'
 import menu from  'menu'
@@ -19,11 +18,9 @@ export default {
       list: null
     }
   },
-
   created () {
     this.getList()
   },
-
   computed: {
     name () {
       return this.$route.meta && this.$route.meta.showName || this.$route.name
@@ -38,7 +35,6 @@ export default {
       this.list = matched
     }
   },
-
   watch: {
     $route () {
       this.getList()
@@ -46,8 +42,6 @@ export default {
   }
 }
 </script>
-
-
 <style scoped>
   .levelbar .title{
     height: 32px;

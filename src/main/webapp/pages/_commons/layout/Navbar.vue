@@ -4,22 +4,20 @@
     <img src="../../../public/_module/images/logo.png" class="inb">
       <div class="head inb">
           <div class="navHead">
-            <span v-for="item in menu">
-               <router-link :to="item.path">
-                {{item.meta.showName}}
-               </router-link>
-            </span>
+            <span><router-link to="/index">首页</router-link></span>
+ 			<span><router-link to="/onDemand">点播</router-link></span>
+ 			<span><router-link to="/basic">基础管理</router-link></span>
+ 			<span><router-link to="/mySubject">我的课程</router-link></span>
           </div>
-          <!-- <div class="line"></div> -->
         </div>
         <div class="head-out fr" style="display: none;" id="user_info" >
-          <span id="user_realname" ></span>
+          <span id="user_realname" @click="editPwd"></span>
           <span class="g-line">|</span>
           <i class="iconfont icon-sign-out" @click="logout" ></i>
         </div>
         <button class="btn fr" id="login_button" @click="login">登录</button>
       </div>
-        <!-- 编辑用户弹窗表单 start -->
+<!-- 编辑用户弹窗表单 start -->
   <form action="" id="login" class="layBox mt40">
    <div class="cd-f-row">
         <div class="cd-f-eve">
@@ -42,8 +40,8 @@
         </div>
     </div>
   </form>
-    <!-- 编辑用户弹窗表单 end -->
-    </nav>
+<!-- 编辑用户弹窗表单 end -->
+</nav>
 </template>
 <script>
 var laryIndex  ;
@@ -60,11 +58,17 @@ export default{
     },
    methods:{
     init: function(){
-      if(sessionStorage.getItem("loginFlag") == "1"){
-        $("#user_info").show();
-        $("#login_button").hide();
-        $("#user_realname").html(sessionStorage.getItem("realname"));
-      }
+    	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
+      		if(retVO.code == 2){
+      			$("#user_info").hide();
+        		$("#login_button").show();
+        		sessionStorage.clear();
+      		}else{
+      			$("#user_info").show();
+				$("#login_button").hide();
+				$("#user_realname").html(sessionStorage.getItem("realname"));
+      		}
+      	});
     },
     login:function(){
       laryIndex = layer.open({
@@ -107,7 +111,11 @@ export default{
               $("#login_button").show();
               sessionStorage.clear();
           });
+      },
+      editPwd: function(){
+      	window.open(ROOT_SERVER+"/pages/views/edit-pwd.jsp?token="+sessionStorage.getItem("token"));
       }
    }
 }
 </script>
+<style>.login_button{margin-top:30px;}</style>

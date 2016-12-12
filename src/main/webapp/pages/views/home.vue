@@ -1,30 +1,37 @@
 <template>
  <div class="wamp" id="home">
-  <div class="s-title"><span></span><h3>直播课程</h3></div>
+  <div class="s-title"><span></span><h3 class="fb">直播课程</h3></div>
+<!-- 展示直播列表  start -->
   <div id="courseList">
-  <div v-if="posts.data != null">
+  	<div v-if="posts.data != null">
      <div class="row" v-for="post in posts.data" >
-      <div class="col-md-4 tel">{{post.resourceName}}</div>
-      <div class="col-md-4 tel">{{post.classlevelName}}/{{post.subjectName}}/{{post.author}}</div>
+      <div class="col-md-4 tel c4">{{post.resourceName}}</div>
+      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName}}</span>/{{post.subjectName}}/{{post.author}}</div>
       <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
     </div>
   </div>
    <div v-else class="tac"><img src="../../public/_compnents/v1/images/empty.png"></div>
   </div>
-  <div class="s-title"><span></span><h3 class="demanCour fl">点播课程</h3><a href="javascript:;" target="_blank" class="fr" @click="openMore">更多</a></div>
+<!-- 展示直播列表  end -->
+  <div class="s-title demanBtm"><span></span><h3 class="demanCour fb fl">点播课程</h3><a href="javascript:;" target="_blank" class="fr" @click="openMore">更多</a></div>
+<!-- 展示点播列表  start -->
   <div class="demand">
     <div class="col-4" v-for="course in courseList.data" @click="openDemondDetail(course.resourceId)" >
       <div class="home-img">
       <img :src="course.thumbPath" width="285" height="160" >
       <div class="home-times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div>        
       </div>
-      <p class="c4 tel">{{course.resourceName}}</p>
-      <p class="ft12 c9 tel">{{course.classlevelName}}&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
+      <p class="c4 tel" :title="course.resourceName">{{course.resourceName}}</p>
+      <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
     </div>
   </div>
+<!-- 展示点播列表  end -->
 </div>
 </template>
 <script>
+/**
+ * Vue组件对象
+**/
 export default {  
 data() {
     return {
@@ -40,6 +47,7 @@ methods:{
      isShow: function(){
        return this.data.length 
      },
+/** 获取列表的方法 alert($('.sub-code').text());**/
       show:function(){
         var _self = this;
         var params = {};
@@ -47,6 +55,7 @@ methods:{
           _self.posts = retVO;//JSON.parse(retVO);
         })
       },
+/** 获取点播列表的方法 **/
        showdemand:function(){
         var _self = this;
         var params = {};
@@ -54,6 +63,7 @@ methods:{
             _self.courseList = retVO;//JSON.parse(retVO);
         })
       },
+/** 跳转到直播详情页 **/
       openLiveDetail: function(resourceId){
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
@@ -67,6 +77,7 @@ methods:{
       		}
       	});
       },
+/** 跳转到点播详情页 **/
       openDemondDetail: function(resourceId){
       	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
@@ -81,7 +92,7 @@ methods:{
       	});
       },
        openMore: function(){
-        window.open(ROOT_UI+'#/onDemand');
+       window.open(ROOT_UI+'#/onDemand');
       }
     }
     }   

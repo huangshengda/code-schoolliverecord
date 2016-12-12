@@ -1,6 +1,5 @@
 package com.codyy.slr.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,20 +49,19 @@ public class UserController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("login")
-	public ReturnVoOne<User> login(Page page, User user, HttpServletRequest req) {
+	public ReturnVoOne<User> login(User user, HttpServletRequest req) {
 		String agent = req.getHeader("User-Agent");
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code = Constants.SUCCESS;
 		String msg = "登陆成功";
+		if ((StringUtils.isEmpty(user.getUsername())) || (StringUtils.isEmpty(user.getPassword()))) {
+			return new ReturnVoOne<User>(0, "用户名或密码为空");
+		}
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("password", user.getPassword());
-		List<User> userList = new ArrayList<User>();
-		page.setPaging(false);
-		page.setMap(map);
 		try {
-			userList = (List<User>) userService.getUserList(page).getData();
-			if (userList.size() == 1) {
-				user = userList.get(0);
+			user = userService.getUserByUserNameAndPw(map);
+			if (user != null) {
 				user.setToken(UUIDUtils.getUUID());
 				// token+agent作为key 增加破解难度
 				TokenUtils.putUserIdToCache(user.getToken() + agent, user);
@@ -74,6 +72,7 @@ public class UserController {
 				} else {
 					user.setColumn(Constants.COLUMN_BASE);
 				}
+				user.setPassword(null);
 			} else {
 				code = Constants.FAILED;
 				msg = "用户名或密码错误";
@@ -93,11 +92,10 @@ public class UserController {
 	 * @return
 	 *
 	 */
-	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("loginout")
-	public ReturnVoOne loginout(HttpServletRequest req) {
-		ReturnVoOne one = new ReturnVoOne();
+	public ReturnVoOne<List<String>> loginout(HttpServletRequest req) {
+		ReturnVoOne<List<String>> one = new ReturnVoOne<List<String>>();
 		try {
 			User user = (User) req.getAttribute("user");
 			TokenUtils.removeUserFormCache(user.getToken());
@@ -105,6 +103,7 @@ public class UserController {
 			one.setMsg("退出失败");
 			one.setCode(Constants.FAILED);
 		}
+		one.setData(Constants.COLUMN);
 		return one;
 	}
 
@@ -277,7 +276,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/token/hasexpire")
 	public ReturnVoOne tokenHasExpire() {
-		// 过滤器以及校验了token
+		// 过滤器已经校验了token
 		return new ReturnVoOne();
 	}
 
