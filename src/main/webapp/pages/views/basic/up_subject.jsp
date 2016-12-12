@@ -25,6 +25,7 @@
 	}
 	.cd-f-value span{margin-right:30px;}
 	.up-item{background-color:#f5f8fa;padding:15px;margin-bottom:10px;}
+	.w300{width: 300px;}
 	.w800{width: 800px;}
 	.input-fileup{
 		position: absolute;
@@ -35,6 +36,10 @@
 		height: 28px;
 		opacity: 0;
 		cursor: pointer !important;
+	}
+	.del-fileup:hover{
+		cursor: pointer;
+		font-size: 18px;
 	}
   </style>
 </head>
@@ -75,22 +80,29 @@
           <span class="cd-f-value w800">
           	<button class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
           		上传视频文件
-          		<input type="file" value="" class="input-fileup" >
+          		<input type="file" value="" class="input-fileup" id="fileup_video" >
           	</button>
-             <div class="up-list mt20">
-	             <div class="up-item">
+             <div class="up-list mt20" id="show_fileup_detail" >
+	             <!-- <div class="up-item">
 	               <div class="inb vat">
 	                  <p>上传资源1<span class="ml10">4.8M</span></p>
-	                  <p><span class="mr10"></span>63%</p>
+	                  <div class="progress w300">
+						  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+						    <span class="sr-only">45% Complete</span>
+						  </div>
+						</div>
 	                  <p>上传中</p>
 	               </div>
 	               <div class="inb">
 	               		<img src="" width="140" height="80" class="mr20 vab">
-						<button class="upbtn mr20">使用系统截图</button>
-						<button class="upbtn">上传本地图片</button>
+	               		<button type="button" class="upbtn local-img" >选择系统截图</button>
+						<button type="button" class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
+			          		上传本地图片
+			          		<input type="file" value="" class="input-fileup" >
+			          	</button>
 	               </div>
-	               <a href="#a" class="vam inb c9"><i class="iconfont icon-delete"></i></a>
-	             </div>
+	               <i class="iconfont icon-delete del-fileup"></i>
+	             </div> -->
              </div>
           </span>
         </div>   
@@ -99,15 +111,27 @@
           <span class="cd-f-value ">
               <button class="green-btn lay-btn" type="button">保存</button>
           </span>
-        </div>   
-       
+        </div>
       </div>
     </form>
     </div>
   </div>
   <!-- 点播课程详情  end-->
-  <script type="text/javascript">
-
-  </script>
+<script type="text/javascript">
+$(function(){
+	/**
+	 * 使用系统截图作为封面事件
+	**/
+	$("#show_fileup_detail").on("click",".sysprint-img",function(){
+		
+	});
+	/**
+	 * 使用本地图片作为封面事件
+	**/
+	$("#show_fileup_detail").on("click",".local-img",function(){
+		
+	});
+});
+</script>
 </body>
 </html>

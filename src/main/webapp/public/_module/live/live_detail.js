@@ -1,7 +1,9 @@
     $(function(){
+    	//在线聊天地址
+    	var ROOT_SERVER_CHAT = "localhost:8080/SchoolLiveRecord/char";
     	
-    	
-    	var resourceId = sessionStorage.getItem("resoureceId");
+    	//var resourceId = sessionStorage.getItem("resoureceId");
+    	var resourceId = "yyyyy";
     	var token = sessionStorage.getItem("token");
     	var liveUrl = "";
     	CDUtil.ajaxPost("/resource/get",{resourceId: resourceId},function(retVO){
@@ -49,9 +51,9 @@
 
         Chat.initialize = function() {
             if (window.location.protocol == 'http:') {
-                Chat.connect('ws://'+ROOT_SERVER_CHAT+"?resoureceId="+resourceId+"&token="+token);
+                Chat.connect('ws://'+ROOT_SERVER_CHAT+"/"+resourceId+"/"+token);
             } else {
-                Chat.connect('wss://'+ROOT_SERVER_CHAT+"?resoureceId="+resourceId+"&token="+token);
+                Chat.connect('wss://'+ROOT_SERVER_CHAT+"/"+resourceId+"/"+token);
             }
         };
 

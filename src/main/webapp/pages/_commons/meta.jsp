@@ -20,10 +20,6 @@ ROOT_SERVER_FILEUP = "";
  * TEST服务端的根目录（注意别复制代码不看备注
  */
 ROOT_SERVER_TEST = "";
-/**  
- * 在线聊天地址
- */
-ROOT_SERVER_CHAT = "${ROOT_SERVER_CHAT}";
 </script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/myLayer/layer/skin/layer.css">
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery-2.2.4.js" ></script>

@@ -47,7 +47,7 @@ public class Constants {
 	public static final String FRONT_DEMOND_PATH = "pages/views/demond/demond_detail";
 	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
 	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
-	public static final String FRONT_INDEX_PATH = "index";
+	public static final String FRONT_INDEX_PATH = "pages/index";
 
 	/**
 	 * 排序字段
@@ -105,6 +105,7 @@ public class Constants {
 	 */
 	public final static String ROOT_UI;
 	public final static String ROOT_SERVER;
+	public final static String ROOT_CHAT;
 
 	/**
 	 * 存储路径
@@ -161,6 +162,7 @@ public class Constants {
 
 		ROOT_UI = ConfigUtils.getValue("root.ui");
 		ROOT_SERVER = ConfigUtils.getValue("root.server");
+		ROOT_CHAT = ConfigUtils.getValue("root.chat");
 	}
 
 	private static int StringToInt(String key, int defaultVal) {
