@@ -101,7 +101,7 @@ var config = {
  * Vue组件对象
 **/
 export default {
- 	mounted () {    
+ 	created () {    
    	 	this.search_one()
  	},
  	methods: {

@@ -139,7 +139,7 @@ export default {
        		subjectList:""
     	}
   	},
-  	mounted () {    
+  	created () {    
     	this.search_one(),
    		this.showclass(),
     	this.showsubject()
