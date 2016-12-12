@@ -18,11 +18,10 @@ $(function() {
 	$('.c-del').click(function() {
 		$(this).parent().remove();
 	});
-
-	"use strict";
+	
 	var Chat = {};
 	Chat.socket = null;
-
+	
 	Chat.connect = (function(host) {
 		if ('WebSocket' in window) {
 			Chat.socket = new WebSocket(host);
@@ -38,16 +37,32 @@ $(function() {
 			document.getElementById('chat').onkeydown = null;
 		};
 
-		Chat.socket.onmessage = function(message) {
-			console.log(message.data);
-			if(message.data.delFlag){
-				var msg = message.data.msg;
+		Chat.socket.onmessage = function(retVO) {
+			console.log(retVO.data);
+			var dataVO = eval('(' + retVO.data + ')'); ;
+			var delFlag = dataVO.delFlag;
+			var id = dataVO.id;
+			if(delFlag){
+				$("#"+id).remove();
 			}else{
-				//addinfo
+				console.log(typeof(dataVO))
+				var msg = dataVO.msg,
+				author = dataVO.author,
+				delAuth = dataVO.delAuth,
+				timestamp = dataVO.timestamp,
+				times = new Date().getTime();
+				var htmlStr = '<li class="chat-li" id="'+id+'" data-timestamp="'+timestamp+'"  >'
+ 					+'<span class="fb mr20">'+author+'</span>'
+ 					//+'<span>5分钟之前</span>'
+ 					+'<p class="s-flow">'+msg+'</p>';
+				if(delAuth){
+					htmlStr += '<i class="iconfont icon-delete chat-delete fr" data-id="'+id+'"></i>'
+				}
+				$(htmlStr).appendTo("#chat_context");
 			}
 		};
 	});
-
+	
 	Chat.initialize = function() {
 		if (window.location.protocol == 'http:') {
 			Chat.connect('ws://' + ROOT_SERVER_CHAT + "/" + resourceId + "/" + token);
@@ -55,24 +70,43 @@ $(function() {
 			Chat.connect('wss://' + ROOT_SERVER_CHAT + "/" + resourceId + "/" + token);
 		}
 	};
-
+	
 	Chat.sendMessage = (function(params) {
-		var message = document.getElementById('chat').value;
-		if (message != '') {
-			Chat.socket.send(message);
-			document.getElementById('chat').value = '';
-		}
+		Chat.socket.send(json2str(params));
 	});
-
+	
 	$("#chat").keypress(function(data) {
 		if (data.keyCode == 13) {
-			var message = document.getElementById('chat').value;
-			if (message != '') {
-				Chat.socket.send(message);
-				document.getElementById('chat').value = '';
+			debugger;
+			var msg = $("#chat").val();
+			msg = $.trim(msg);
+			var len = ValueCheck.lengthStr(msg);
+			if(len == 0){
+				
+			}else if(len < 141){
+				var params = {
+					msg: msg,
+					timestamp: new Date().getTime()
+				};
+				Chat.sendMessage(params);
+			}else{//弹框提示
+				alert("聊天内容太长");
 			}
 		}
 	});
+	
+	/** 
+	* json对象转字符串形式 
+	*/ 
+	function json2str(o) { 
+	var arr = []; 
+	var fmt = function(s) { 
+	if (typeof s == 'object' && s != null) return json2str(s); 
+	return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s; 
+	} 
+	for (var i in o) arr.push("'" + i + "':" + fmt(o[i])); 
+	return '{' + arr.join(',') + '}'; 
+	} 
 
 	var Console = {};
 	Console.log = (function(message) {
@@ -85,21 +119,33 @@ $(function() {
 		}
 		console.scrollTop = console.scrollHeight;
 	});
-
+	
 	Chat.initialize();
 
 	$("#console").on("click", ".icon-delete",function() {
-		var uuid = $(this).attr("data-uuid");
+		var id = $(this).attr("data-id");
 		var params = {
-			uuid: uuid
+			id: id
 		}
 		Chat.sendMessage(params);
-		//$("#fdafdafdafda").remove();
 	});
-
-	$('#aa').click(function() {
-		Chat.sendMessage();
-	})
+	
+	$('#chat_send').click(function() {
+		var msg = $("#chat").val();
+		msg = $.trim(msg);
+		var len = ValueCheck.lengthStr(msg);
+		if(len == 0){
+			
+		}else if(len < 141){
+			var params = {
+				msg: msg,
+				timestamp: new Date().getTime()
+			};
+			Chat.sendMessage(params);
+		}else{//弹框提示
+			alert("聊天内容太长");
+		}
+	});
 
 	function buildPlayer(wrap, _streamName, receiveType) {
 		function _buildPlayer(pms) {
