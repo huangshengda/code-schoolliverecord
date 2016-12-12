@@ -12,14 +12,10 @@ publicPath = ROOT_UI_PUBLIC;
  * 服务端的根目录（可以有多个服务端
  */
 ROOT_SERVER = "${ROOT_SERVER}";
-/**
- * 文件上传服务端的根目录（可以有多个服务端
- */
-ROOT_SERVER_FILEUP = "";
 /**  
- * TEST服务端的根目录（注意别复制代码不看备注
+ * 在线聊天后台地址根目录
  */
-ROOT_SERVER_TEST = "";
+ROOT_SERVER_CHAT = "${ROOT_CHAT}/chat";
 </script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/myLayer/layer/skin/layer.css">
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery-2.2.4.js" ></script>
