@@ -46,15 +46,14 @@ public class UserService {
 						}
 					}
 				}
-
 				if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
-					user.setUserType(Constants.SUPER_ADMIN_Chinese);
+					user.setUserType_chinese(Constants.SUPER_ADMIN_Chinese);
 				} else if (Constants.ADMIN.equals(user.getUserType())) {
-					user.setUserType(Constants.ADMIN_Chinese);
+					user.setUserType_chinese(Constants.ADMIN_Chinese);
 				} else if (Constants.TEACHER.equals(user.getUserType())) {
-					user.setUserType(Constants.TEACHER_Chinese);
+					user.setUserType_chinese(Constants.TEACHER_Chinese);
 				} else {
-					user.setUserType(Constants.STUDENT_Chinese);
+					user.setUserType_chinese(Constants.STUDENT_Chinese);
 				}
 			}
 		}
