@@ -98,13 +98,13 @@ public class ChatRoomAnnotation {
 		ChatVo vo = JSONObject.parseObject(messageJsonObj, ChatVo.class);
 
 		if (StringUtils.isEmpty(vo.getId())) {
-			vo.setDelFlag(true);
-		} else {
 			vo.setId(UUIDUtils.getUUID());
 			vo.setAuthor(user.getRealname());
 			vo.setDelFlag(false);
 			vo.setDelAuth(false);
 			vo.setOnlineCount(resourceIdCountMap.get(resourceId));
+		} else {
+			vo.setDelFlag(true);
 		}
 
 		broadcast(vo, resourceId);
