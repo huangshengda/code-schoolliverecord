@@ -1721,11 +1721,10 @@ webpackJsonp([1,6],[
 	 * 表格中的操作---编辑用户
 	**/
 	var userEdit = function userEdit(params, dom) {
-		//$('#edit_userType').find("option[value=params.userType]").attr("selected","selected");
+		console.log(params);
 		$("#edit_userType").value = params.userType;
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
-		//md5($('#e_password').val(params.password));
 		$('#edit_userId').val(params.userId);
 		layer.open({
 			type: 1,
@@ -2720,6 +2719,9 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve mt40"
 	  }, [_vm._m(3), " ", _h('span', [_h('button', {
 	    staticClass: "lay-btn green-btn mr20",
+	    attrs: {
+	      "type": "button"
+	    },
 	    on: {
 	      "click": _vm.subPlat
 	    }
@@ -2912,15 +2914,14 @@ webpackJsonp([1,6],[
 				});
 				if (result == true) {
 					var editparams = $('#editServer').serialize();
-					CDUtil.ajaxPost("/base/dmsserver/add", editparams, function (retVO) {
-						console.log(retVO);
+					CDUtil.ajaxPost("/base/dmsserver/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
 							servSearch();
+							layer.close(index);
+							layer.msg('编辑成功!');
+							$('#editServer')[0].reset();
 						}
 					});
-					layer.close(index);
-					layer.msg('编辑成功!');
-					$('#editServer')[0].reset();
 				}
 			}
 		});

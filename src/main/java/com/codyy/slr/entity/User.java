@@ -27,6 +27,8 @@ public class User implements Serializable {
 
 	private String userType;
 
+	private String userType_chinese;
+
 	private String deleteFlag;
 
 	private Date deleteTime;
@@ -38,6 +40,14 @@ public class User implements Serializable {
 	private List<String> opt;
 
 	private List<String> column;
+
+	public String getUserType_chinese() {
+		return userType_chinese;
+	}
+
+	public void setUserType_chinese(String userType_chinese) {
+		this.userType_chinese = userType_chinese;
+	}
 
 	public List<String> getColumn() {
 		return column;
