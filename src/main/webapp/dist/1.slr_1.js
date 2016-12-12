@@ -1077,7 +1077,7 @@ webpackJsonp([1,6],[
 	 * Vue组件对象
 	**/
 	exports.default = {
-		mounted: function mounted() {
+		created: function created() {
 			this.search_one();
 		},
 
@@ -1311,7 +1311,7 @@ webpackJsonp([1,6],[
 	      grades: ""
 	    };
 	  },
-	  mounted: function mounted() {
+	  created: function created() {
 	    this.show();
 	  },
 
@@ -1839,7 +1839,7 @@ webpackJsonp([1,6],[
 	 * Vue组件对象
 	**/
 	exports.default = {
-		mounted: function mounted() {
+		created: function created() {
 			this.search_one();
 		},
 
@@ -2289,7 +2289,7 @@ webpackJsonp([1,6],[
 	      grades: ""
 	    };
 	  },
-	  mounted: function mounted() {
+	  created: function created() {
 	    this.show();
 	  },
 
@@ -2583,7 +2583,7 @@ webpackJsonp([1,6],[
 /* 55 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -2638,12 +2638,18 @@ webpackJsonp([1,6],[
 	  methods: {
 	    /** 表单操作--保存**/
 	    subPlat: function subPlat() {
-	      var platParams = $('#platform').serialize();
-	      CDUtil.ajaxPost("/base/basicinfo/update", platParams, function (retVO) {
-	        if (retVO.code == 1) {
-	          layer.msg('保存成功!');
-	        }
+	      //添加表单验证--Validation
+	      var result = Validation.validation({
+	        containerId: "platform"
 	      });
+	      if (result == true) {
+	        var platParams = $('#platform').serialize();
+	        CDUtil.ajaxPost("/base/basicinfo/update", platParams, function (retVO) {
+	          if (retVO.code == 1) {
+	            layer.msg('保存成功!');
+	          }
+	        });
+	      }
 	    },
 	    /** 表单操作--重置**/
 	    rePlat: function rePlat() {
@@ -2907,6 +2913,7 @@ webpackJsonp([1,6],[
 				if (result == true) {
 					var editparams = $('#editServer').serialize();
 					CDUtil.ajaxPost("/base/dmsserver/add", editparams, function (retVO) {
+						console.log(retVO);
 						if (retVO.code == 1) {
 							servSearch();
 						}
@@ -2985,7 +2992,7 @@ webpackJsonp([1,6],[
 	 * Vue组件对象
 	**/
 	exports.default = {
-		mounted: function mounted() {
+		created: function created() {
 			this.server();
 		},
 
@@ -3333,7 +3340,7 @@ webpackJsonp([1,6],[
 				subjectList: ""
 			};
 		},
-		mounted: function mounted() {
+		created: function created() {
 			this.search_one(), this.showclass(), this.showsubject();
 		},
 
@@ -3663,7 +3670,7 @@ webpackJsonp([1,6],[
 				subjectList: ""
 			};
 		},
-		mounted: function mounted() {
+		created: function created() {
 			this.search_one(), this.showclass(), this.showsubject();
 		},
 
@@ -3930,7 +3937,7 @@ webpackJsonp([1,6],[
 	      }
 	    };
 	  },
-	  mounted: function mounted() {
+	  created: function created() {
 	    this.showdemand(), this.showclass(), this.showsubject();
 	  },
 
@@ -4285,7 +4292,7 @@ webpackJsonp([1,6],[
 	      courseList: ""
 	    };
 	  },
-	  mounted: function mounted() {
+	  created: function created() {
 	    this.show(), this.showdemand();
 	  },
 
@@ -4588,7 +4595,7 @@ webpackJsonp([1,6],[
 				mycourceList: ""
 			};
 		},
-		mounted: function mounted() {
+		created: function created() {
 			this.showdemand();
 		},
 

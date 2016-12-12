@@ -76,8 +76,8 @@ var servEdit = function(params, dom) {
         	});
        		if(result==true){
 				var editparams = $('#editServer').serialize();
-				CDUtil.ajaxPost("/base/dmsserver/add", editparams,
-				function(retVO) {
+				CDUtil.ajaxPost("/base/dmsserver/add", editparams,function(retVO) {
+				console.log(retVO);
 					if (retVO.code == 1) {
 						servSearch();
 					}
@@ -162,7 +162,7 @@ var config = {
  * Vue组件对象
 **/
   export default {
-    mounted () {    
+    created () {    
       this.server()
     },
      methods: {

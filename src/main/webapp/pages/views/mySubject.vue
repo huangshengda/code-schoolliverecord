@@ -34,7 +34,7 @@
 		        mycourceList:"",
 		    }
 		  },
-		 mounted () {    
+		 created () {    
 		      this.showdemand()
 		    },
     methods:{
