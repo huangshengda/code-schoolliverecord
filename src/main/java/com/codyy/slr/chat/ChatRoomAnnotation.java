@@ -1,6 +1,7 @@
-package com.codyy.slr.chat;
+/*package com.codyy.slr.chat;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -71,7 +72,7 @@ public class ChatRoomAnnotation {
 
 		String message = String.format("* %s %s", user.getRealname(), ":加入聊天。");
 
-		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, resourceIdCountMap.get(resourceId), false, false);
+		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, resourceIdCountMap.get(resourceId), false, false, String.valueOf(new Date().getTime()));
 
 		broadcast(vo, resourceId);
 
@@ -96,7 +97,7 @@ public class ChatRoomAnnotation {
 			}
 		}
 		System.out.println("resourceIdCountMap" + resourceIdCountMap);
-		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, new AtomicInteger(nowNum), false, false);
+		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), message, new AtomicInteger(nowNum), false, false, String.valueOf(new Date().getTime()));
 		broadcast(vo, resourceId);
 	}
 
@@ -104,21 +105,6 @@ public class ChatRoomAnnotation {
 	public void incoming(String message, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
 		System.out.println(ConfigThreadLocal.getVal());
 		System.out.println("incoming---");
-		// 判断是否过期
-		// boolean userHasExist = userHasExist(getUser(token + tokenAgentMap.get(token)));
-		/*if (!userHasExist) {
-			connections.remove(this);
-			System.out.println("connections" + connections);
-			resourceIdClientMap.remove(concatKey(resourceId, user.getUserId()));
-			tokenAgentMap.remove(token);
-			throw new Exception();
-		}*/
-		// 过滤输入的内容
-
-		/*	if(!StringUtils.isEmpty(message) || ){
-				
-			}*/
-
 		String showMsg = user.getRealname() + "：" + message;
 		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), showMsg, resourceIdCountMap.get(resourceId), false, false);
 		broadcast(vo, resourceId);
@@ -183,3 +169,4 @@ public class ChatRoomAnnotation {
 	}
 
 }
+*/
