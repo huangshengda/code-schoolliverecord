@@ -30,7 +30,7 @@ public class Constants {
 	public static final List<String> COLUMN = Arrays.asList("首页", "点播");
 
 	// 静态资源前缀
-	public static final List<String> STATIC_RES_PATH_PREFIX = Arrays.asList("dist", "public", "pages");
+	public static final List<String> STATIC_RES_PATH_PREFIX = Arrays.asList("dist", "public", "pages", "download/img");
 
 	// 用户类型
 	public static final String SUPER_ADMIN = "SUPER_ADMIN";
