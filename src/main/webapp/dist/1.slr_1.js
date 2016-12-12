@@ -1721,11 +1721,10 @@ webpackJsonp([1,6],[
 	 * 表格中的操作---编辑用户
 	**/
 	var userEdit = function userEdit(params, dom) {
-		console.log(params.userType);
+		console.log(params);
 		$("#edit_userType").value = params.userType;
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
-		//md5($('#e_password').val(params.password));
 		$('#edit_userId').val(params.userId);
 		layer.open({
 			type: 1,
@@ -2915,12 +2914,7 @@ webpackJsonp([1,6],[
 				});
 				if (result == true) {
 					var editparams = $('#editServer').serialize();
-<<<<<<< HEAD
-					CDUtil.ajaxPost("/base/dmsserver/add", editparams, function (retVO) {
-						console.log(retVO);
-=======
 					CDUtil.ajaxPost("/base/dmsserver/update", editparams, function (retVO) {
->>>>>>> branch 'master' of git@10.5.60.10:SchoolLiveRecord/SchoolLiveRecord.git
 						if (retVO.code == 1) {
 							servSearch();
 							layer.close(index);

@@ -109,6 +109,7 @@
  * 表格中的操作---编辑用户
 **/
 var userEdit = function(params, dom) {
+console.log(params);
 	$("#edit_userType").value = params.userType;
 	$('#edit_username').text(params.username);
 	$('#edit_realname').val(params.realname);
