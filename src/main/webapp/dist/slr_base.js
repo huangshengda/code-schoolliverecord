@@ -172,7 +172,7 @@ webpackJsonp([2,6],[
 
 
 	// module
-	exports.push([module.id, "/**\r\n * 功能描述：设置系统基础样式\r\n * 创建人：wangqiaozhen\r\n * \r\n */\r\n\r\n\r\n/*reset*/\r\nbody,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form{margin: 0;padding: 0;}\r\nbody{font-size:14px;font-family:\"Microsoft Yahei\";}\r\na{text-decoration: none;}\r\nimg{border:none;}\r\n\r\n/*base*/\r\n.fz12{font-size: 12px;}\r\n.fz16{font-size: 16px;}\r\n.fb{font-weight: bold;}\r\n.fl{float: left;}\r\n.fr{float: right;}\r\n.inb{display: inline-block;}\r\n.tel{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}\r\n.wb{word-break: break-all;}\r\n.ww{word-wrap: break-word;}\r\n.hide{display: none;}\r\n.show{display: block;}\r\n.clearfix{zoom: 1;}\r\n.clearfix:after{clear: both;content: \"\";display: block;}\r\n.clear{clear:both;}\r\n\r\n.mt5{margin-top: 5px;}\r\n.mt10{margin-top: 10px;}\r\n.mt15{margin-top: 15px;}\r\n.mt20{margin-top: 20px;}\r\n.mb5{margin-bottom: 5px;}\r\n.mb10{margin-bottom: 10px;}\r\n.mb15{margin-bottom: 15px;}\r\n.mb20{margin-bottom: 20px;}\r\n.ml5{margin-left: 5px;}\r\n.ml10{margin-left: 10px;}\r\n.ml15{margin-left: 15px;}\r\n.ml20{margin-left: 20px;}\r\n.mr5{margin-right: 5px;}\r\n.mr10{margin-right: 10px;}\r\n.mr15{margin-right: 15px;}\r\n.mr20{margin-right: 20px;}\r\n.pa5{padding: 5px;}\r\n.pa10{padding: 10px;}\r\n.pa15{padding: 15px;}\r\n.pa20{padding: 20px;}\r\n\r\n.ma{margin: auto;}\r\n.tac{text-align: center;}\r\n.tal{text-align: left;}\r\n.tar{text-align: right;}\r\n.vam{vertical-align: middle;}\r\n.vab{vertical-align: bottom;}\r\n\r\n\r\n\r\n\r\n\r\n", ""]);
+	exports.push([module.id, "/**\r\n * 功能描述：设置系统基础样式\r\n * 创建人：wangqiaozhen\r\n * \r\n */\r\n\r\n\r\n/*reset*/\r\nbody,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form{margin: 0;padding: 0;}\r\nbody{font-size:14px;font-family:\"Microsoft Yahei\";}\r\na{text-decoration: none;}\r\nimg{border:none;}\r\n\r\n/*base*/\r\n.fz12{font-size: 12px;}\r\n.fz16{font-size: 16px;}\r\n.fb{font-weight: bold;}\r\n.fl{float: left;}\r\n.fr{float: right;}\r\n.inb{display: inline-block;}\r\n.tel{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}\r\n.wb{word-break: break-all;}\r\n.ww{word-wrap: break-word;}\r\n.hide{display: none;}\r\n.show{display: block;}\r\n.clearfix{zoom: 1;}\r\n.clearfix:after{clear: both;content: \"\";display: block;}\r\n.clear{clear:both;}\r\n\r\n.mt5{margin-top: 5px;}\r\n.mt10{margin-top: 10px;}\r\n.mt15{margin-top: 15px;}\r\n.mt20{margin-top: 20px;}\r\n.mb5{margin-bottom: 5px;}\r\n.mb10{margin-bottom: 10px;}\r\n.mb15{margin-bottom: 15px;}\r\n.mb20{margin-bottom: 20px;}\r\n.ml5{margin-left: 5px;}\r\n.ml10{margin-left: 10px;}\r\n.ml15{margin-left: 15px;}\r\n.ml20{margin-left: 20px;}\r\n.mr5{margin-right: 5px;}\r\n.mr10{margin-right: 10px;}\r\n.mr15{margin-right: 15px;}\r\n.mr20{margin-right: 20px;}\r\n.pa5{padding: 5px;}\r\n.pa10{padding: 10px;}\r\n.pa15{padding: 15px;}\r\n.pa20{padding: 20px;}\r\n\r\n.ma{margin: auto;}\r\n.tac{text-align: center;}\r\n.tal{text-align: left;}\r\n.tar{text-align: right;}\r\n.vam{vertical-align: middle;}\r\n.vab{vertical-align: bottom;}\r\n/*截取最大长度...的字符串*/\r\n.substr{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}\r\n\r\n\r\n\r\n\r\n", ""]);
 
 	// exports
 
@@ -998,6 +998,8 @@ webpackJsonp([2,6],[
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/**
 	* 定义简单的字符串帮助方法
 	* Create By: Liang.Vm
@@ -1235,6 +1237,21 @@ webpackJsonp([2,6],[
 			var d = new Date(parseInt(times));
 			var dateStr = d.Format("yyyy-MM-dd hh:mm");
 			return dateStr;
+		};
+
+		/** 
+	 * json对象转字符串形式 
+	 */
+		ValueCheck.jsonTostr = function (o) {
+			var arr = [];
+			var fmt = function fmt(s) {
+				if ((typeof s === "undefined" ? "undefined" : _typeof(s)) == 'object' && s != null) return json2str(s);
+				return (/^(string|number)$/.test(typeof s === "undefined" ? "undefined" : _typeof(s)) ? "'" + s + "'" : s
+				);
+			};
+			for (var i in o) {
+				arr.push("'" + i + "':" + fmt(o[i]));
+			}return '{' + arr.join(',') + '}';
 		};
 
 		/**
@@ -2027,10 +2044,11 @@ webpackJsonp([2,6],[
 
 		/**
 	  * 轮训得到唯一标识的方法
+	  * callback：上传完成后回调方法。
 	  * 
 	  * @param sequence
 	  */
-		H5fileup.progressFileup = function (sequence, fileupProUrl) {
+		H5fileup.progressFileup = function (sequence, fileupProUrl, callback) {
 			//var interval = setInterval(function(){
 			var reValue = H5fileup.getProgress(sequence, fileupProUrl);
 			//console.log(reValue);
@@ -2048,9 +2066,10 @@ webpackJsonp([2,6],[
 					}, 1000);
 				}
 			}
-			if (value == 100) {}
-			//clearInterval(interval);
-
+			if (value == 100) {
+				//clearInterval(interval);
+				callback();
+			}
 			//}, 1000);
 		};
 
@@ -2447,9 +2466,8 @@ webpackJsonp([2,6],[
 					msg = Validation.errorMsg["username"];
 				}
 			} else if (vali.indexOf("password") > -1) {
-				msg = Validation.errorMsg["password"];
+				//msg = Validation.errorMsg["password"];
 			} else if (vali.indexOf("number") > -1) {
-
 				msg = Validation.errorMsg["number"];
 			} else if (vali.indexOf("float") > -1) {
 
