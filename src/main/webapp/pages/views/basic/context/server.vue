@@ -68,7 +68,7 @@ var servEdit = function(params, dom) {
 		area: ['450px', '375px'],
 		//宽高
 		content: $("#editServer"),
-		btn: ['yes', 'no'],
+		btn: ['确定', '取消'],
 		yes: function(index, layero) {
 			//添加表单验证--Validation
        		var result = Validation.validation({
@@ -172,7 +172,7 @@ var config = {
               title: '添加服务器',
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '375px'], //宽高
-              btn: ['yes', 'no'],
+              btn: ['确定', '取消'],
               content: $("#addServer"),
               yes:function(index,layero){
               //添加表单验证--Validation

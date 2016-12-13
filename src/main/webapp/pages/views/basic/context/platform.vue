@@ -20,9 +20,9 @@
           </span>
         </div>
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>网站底部:</label></span>
+          <span class="cd-f-name"><label>网站底部:</label></span>
           <span class="cd-f-value ">
-             <input type="text" class="w730" name="buttomMsg" data-vali="notnull"> 
+             <input type="text" class="w730" name="buttomMsg"> 
           </span>
         </div>
         <div class="cd-f-eve mt40">
