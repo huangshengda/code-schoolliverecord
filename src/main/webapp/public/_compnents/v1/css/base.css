@@ -54,7 +54,8 @@ img{border:none;}
 .tar{text-align: right;}
 .vam{vertical-align: middle;}
 .vab{vertical-align: bottom;}
-
+/*截取最大长度...的字符串*/
+.substr{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 
 
 

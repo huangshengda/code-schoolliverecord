@@ -241,6 +241,19 @@
 		return dateStr;
 	}
 	
+	/** 
+	* json对象转字符串形式 
+	*/ 
+	ValueCheck.jsonTostr = function(o){ 
+		var arr = [];
+		var fmt = function(s) {
+		if (typeof s == 'object' && s != null) return json2str(s);
+			return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s; 
+		}
+		for (var i in o) arr.push("'" + i + "':" + fmt(o[i]));
+		return '{' + arr.join(',') + '}';
+	} 
+	
 	/**
 	 * 手机号格式验证，返回ture表示为手机号
 	 * @param str

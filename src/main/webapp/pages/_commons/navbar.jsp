@@ -4,10 +4,10 @@
    <img src="${ROOT_UI}/public/_module/images/logo.png" class="inb" /> 
    <div class="head inb">
     <div class="navHead"> 
-     <span><a href="${ROOT_SERVER}/#/index" class="router-link-active"> 首页 </a></span>
-     <span><a href="${ROOT_SERVER}/#/onDemand" class=""> 点播 </a></span>
+     <span><a href="${ROOT_SERVER}/#/index" class="router-link-active">首页 </a></span>
+     <span><a href="${ROOT_SERVER}/#/onDemand" class="">点播 </a></span>
      <span><a href="${ROOT_SERVER}/#/basic" class=""> 基础管理 </a></span>
-    </div> 
+    </div>
    </div> 
    <div class="head-out fr" id="user_info" style="display: none;" >
     	<span id="user_realname" ></span>
@@ -20,11 +20,11 @@
    <div class="cd-f-row"> 
     <div class="cd-f-eve"> 
      <span class="cd-f-name"> <label>用户名:</label> </span> 
-     <span class="cd-f-value"> <input type="text" id="username" name="username" data-vali="notnull,username" /> </span> 
+     <span class="cd-f-value"> <input type="text" id="username" name="username" data-vali="notnull,username" value="admin" /> </span> 
     </div>
     <div class="cd-f-eve"> 
      <span class="cd-f-name"><label>密码:</label></span> 
-     <span class="cd-f-value"><input type="text" id="password" name="password" data-vali="notnull,password" /></span>
+     <span class="cd-f-value"><input type="password" id="password" name="password" data-vali="notnull,password" value="123456" /></span>
     </div>
     <div class="cd-f-eve">
      <input type="checkbox" id="auto" name="auto" class="ml30" />自动登录 
@@ -45,7 +45,8 @@ $(function(){
     	  $("#login_button").show();
       }
 	var laryIndex = null;
-	$("#openLogin").click(function(){
+	$("#login_button").click(function(){
+		console.log(this);
 		laryIndex = layer.open({
 	          type: 1,
 	          title: '登录',
@@ -61,7 +62,7 @@ $(function(){
 	     if(result==true){
 	       	var data = { 
 				userName: $("#username").val(), 
-				userPwd: $("#password").val(), 
+				userPwd: md5($("#password").val()), 
 				CheckCode: $("#auto").val()
 	      	};
 	       	//提交数据给Login.ashx页面处理 
@@ -80,11 +81,16 @@ $(function(){
 		}
 	});
 	$("#logout").click(function(){
-		CDUtil.ajaxPost("/loginout",{},function(retVO){
-	        $("#user_info").hide();
-	        $("#login_button").show();
-	        sessionStorage.clear();
-	    });
+		laryIndex = layer.confirm('是否确定退出用户登录？',{btn: ['确定', '取消']},function(){
+			CDUtil.ajaxPost("/loginout",{},function(retVO){
+		        $("#user_info").hide();
+		        $("#login_button").show();
+		        sessionStorage.clear();
+		        layer.close(laryIndex);
+		        //window.close();
+		        window.location.href = ROOT_SERVER+"/#/index";
+		    });
+		});
 	});
 });
 </script>

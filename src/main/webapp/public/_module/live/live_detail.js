@@ -18,11 +18,10 @@ $(function() {
 	$('.c-del').click(function() {
 		$(this).parent().remove();
 	});
-
-	"use strict";
+	
 	var Chat = {};
 	Chat.socket = null;
-
+	
 	Chat.connect = (function(host) {
 		if ('WebSocket' in window) {
 			Chat.socket = new WebSocket(host);
@@ -38,16 +37,31 @@ $(function() {
 			document.getElementById('chat').onkeydown = null;
 		};
 
-		Chat.socket.onmessage = function(message) {
-			console.log(message.data);
-			if(message.data.delFlag){
-				var msg = message.data.msg;
+		Chat.socket.onmessage = function(retVO) {
+			var dataVO = eval('(' + retVO.data + ')'); ;
+			var delFlag = dataVO.delFlag;
+			var id = dataVO.id;
+			if(delFlag){
+				$("#"+id).remove();
 			}else{
-				//addinfo
+				var msg = dataVO.msg,
+				author = dataVO.author,
+				delAuth = dataVO.delAuth,
+				timestamp = dataVO.timestamp,
+				times = new Date().getTime();
+				var htmlStr = '<li class="chat-li" id="'+id+'" data-timestamp="'+timestamp+'"  >'
+ 					+'<span class="fb mr20">'+author+'</span>'
+ 					//+'<span>5分钟之前</span>'
+ 					+'<p class="s-flow">'+msg+'</p>';
+				if(delAuth){
+					htmlStr += '<i class="iconfont icon-delete chat-delete fr" data-id="'+id+'"></i>'
+				}
+				$(htmlStr).appendTo("#chat_context");
 			}
+			$("#chat").val("");
 		};
 	});
-
+	
 	Chat.initialize = function() {
 		if (window.location.protocol == 'http:') {
 			Chat.connect('ws://' + ROOT_SERVER_CHAT + "/" + resourceId + "/" + token);
@@ -55,25 +69,57 @@ $(function() {
 			Chat.connect('wss://' + ROOT_SERVER_CHAT + "/" + resourceId + "/" + token);
 		}
 	};
-
+	/**
+	 * 与后台发起消息通信
+	 */
 	Chat.sendMessage = (function(params) {
-		var message = document.getElementById('chat').value;
-		if (message != '') {
-			Chat.socket.send(message);
-			document.getElementById('chat').value = '';
+		Chat.socket.send(ValueCheck.jsonTostr(params));
+	});
+	
+	Chat.initialize();
+
+	$("#console").on("click", ".icon-delete",function() {
+		var id = $(this).attr("data-id");
+		var params = {
+			id: id
+		}
+		Chat.sendMessage(params);
+	});
+	/**
+	 * 处理发送信息的方法。
+	 */
+	var readyMsg = function(){
+		var msg = $("#chat").val();
+		msg = $.trim(msg);
+		var len = ValueCheck.lengthStr(msg);
+		if(len == 0){
+			
+		}else if(len < 141){
+			var params = {
+				msg: msg,
+				timestamp: new Date().getTime()
+			};
+			Chat.sendMessage(params);
+		}else{//弹框提示
+			alert("聊天内容太长");
+		}
+	};
+	/**
+	 * 在输入框使用Enter事件发送信息
+	 */
+	$("#chat").keypress(function(keyObj) {
+		if (keyObj.keyCode == 13) {
+			readyMsg();
 		}
 	});
-
-	$("#chat").keypress(function(data) {
-		if (data.keyCode == 13) {
-			var message = document.getElementById('chat').value;
-			if (message != '') {
-				Chat.socket.send(message);
-				document.getElementById('chat').value = '';
-			}
-		}
+	
+	/**
+	 * 点击发表按钮事件
+	 */
+	$('#chat_send').click(function() {
+		readyMsg();
 	});
-
+	
 	var Console = {};
 	Console.log = (function(message) {
 		var console = document.getElementById('console');
@@ -85,21 +131,7 @@ $(function() {
 		}
 		console.scrollTop = console.scrollHeight;
 	});
-
-	Chat.initialize();
-
-	$("#console").on("click", ".icon-delete",function() {
-		var uuid = $(this).attr("data-uuid");
-		var params = {
-			uuid: uuid
-		}
-		Chat.sendMessage(params);
-		//$("#fdafdafdafda").remove();
-	});
-
-	$('#aa').click(function() {
-		Chat.sendMessage();
-	})
+	
 
 	function buildPlayer(wrap, _streamName, receiveType) {
 		function _buildPlayer(pms) {
