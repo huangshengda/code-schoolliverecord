@@ -173,14 +173,14 @@ var userSearch = function(newPage) {
 		newPage = 1;
 	}
 	var params = {
-		curPage: data.newPage,
+		curPage: newPage,
 		pageSize: 2,
 		username: $("#search_username").val(),
 		realname: $("#search_realname").val(),
 		userType: $("#search_userType").val()
 	};
 	CDUtil.ajaxPost("/base/user/list",params,function(retVO) {
-		params.curPage=retVO.curPage;
+		
 		config.gData = retVO;
 		Grid.initGrid(config, function(){});
 	});
