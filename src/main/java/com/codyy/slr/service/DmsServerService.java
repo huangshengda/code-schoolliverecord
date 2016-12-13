@@ -42,7 +42,11 @@ public class DmsServerService {
 		int count = 0;
 		int code = Constants.SUCCESS;
 		String msg = "添加成功";
-		List<DmsServerVo> list = dmsServerMapper.getDmsServerListPageList(null);
+		Page page = new Page();
+		page.setPaging(false);
+		map.put("dmsServerName", null);
+		page.setMap(map);
+		List<DmsServerVo> list = dmsServerMapper.getDmsServerListPageList(page);
 		for (DmsServerVo dms : list) {
 			if (dmsServer.getServerName().equals(dms.getServerName())) {
 				count++;

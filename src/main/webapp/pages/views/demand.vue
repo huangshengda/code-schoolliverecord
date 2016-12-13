@@ -33,13 +33,37 @@
 </div>
 </template>
 <script>
-
-
-function search_ten(newPage){
+/**
+ * Vue组件对象
+**/
+	export default {  
+		data() {
+		    return {
+		        courseList:"",
+		        classList:"",
+		        subjectList:"",
+		        params:{
+		        	orderType:"desc",
+					pageSize: 2,
+					
+		        }
+		    }
+		  },
+		 created () {  
+		      this.showdemand(),
+		      this.showclass(),
+		      this.showsubject()
+		    },
+    methods:{
+/** 查询点播列表 **/
+     showdemand:function(newPage){
+     	if(newPage == "undefined"){
+     		newPage=1;
+     	}
        var _self= this;
+       _self.params.curPage=newPage;
 		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
-       	  _self.params.curPage=retVO.curPage;
           _self.courseList = retVO;
           var config = {   
            //用来展示表格控件的div的id
@@ -69,35 +93,7 @@ function search_ten(newPage){
          	};
          	Paging.initPaging(config,function(){});
         });
-}
-
-
-var data={newPage:1}
-/**
- * Vue组件对象
-**/
-	export default {  
-		data() {
-		    return {
-		        courseList:"",
-		        classList:"",
-		        subjectList:"",
-		        params:{
-		        	orderType:"desc",
-					pageSize: 2,
-					curPage: data.newPage,
-		        }
-		    }
-		  },
-		 created () {  
-		      this.showdemand(),
-		      this.showclass(),
-		      this.showsubject()
-		    },
-    methods:{
-/** 查询点播列表 **/
-     showdemand: search_ten,
-     //function(newPage){},
+      },
 /** 获取选择的年级参数**/
     	gradesearch: function(classlevelName,event){
     		$(event.target).addClass("active").siblings().removeClass("active");

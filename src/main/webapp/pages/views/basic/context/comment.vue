@@ -17,7 +17,7 @@
             <input type="text" name="realname" id="search_realname" data-vali="notnull">
           </span>
         </div>  
-        <button class="sBtn" type="button" @click="search_one">查询</button>
+        <button class="sBtn" type="button" @click="commentSearch(1)">查询</button>
       </div>
     </form>
  <!-- 条件 end -->
@@ -28,7 +28,6 @@
 </div>
 </template>
 <script>
-var data={newPage:1}
 /**
  * 表格中的操作---删除评论
 **/    			
@@ -52,9 +51,12 @@ var comDel = function(params, dom) {
 /**
  * 进行查询评论信息的方法
 **/
-var comSearch = function() {
+var comSearch = function(newPage) {
+	if(newPage == "undefined"){
+     	newPage=1;
+     }
 	var cParams = {
-		curPage: data.newPage,
+		curPage:  newPage,
 		pageSize: 20,
 		keywords: $("#search_keywords").val(),
 		realname: $("#search_realname").val(),
@@ -101,10 +103,10 @@ var config = {
 **/
 export default {
  	created () {    
-   	 	this.search_one()
+   	 	this.commentSearch()
  	},
  	methods: {
-   		search_one: comSearch,
+   		commentSearch: comSearch,
 	}
 }
 </script>
