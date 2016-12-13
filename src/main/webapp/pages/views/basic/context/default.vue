@@ -108,6 +108,7 @@
 </div>
 </template>
 <script>
+var data={newPage:1}
 /**
  * 表格中的操作---编辑用户
 **/
@@ -167,20 +168,18 @@ var userDel = function(params, dom) {
 /**
  * 进行查询用户信息的方法
 **/
-var userSearch = function(newPage) {
-	if(newPage == undefined){
-		newPage = 1;
-	}
+var userSearch = function() {
 	var params = {
-		curPage: newPage,
+		curPage: data.newPage,
 		pageSize: 2,
 		username: $("#search_username").val(),
 		realname: $("#search_realname").val(),
 		userType: $("#search_userType").val()
 	};
-	CDUtil.ajaxPost("/base/user/list", params,function(retVO) {
+	CDUtil.ajaxPost("/base/user/list",params,function(retVO) {
+		params.curPage=retVO.curPage;
 		config.gData = retVO;
-		Grid.initGrid(config,function(){});
+		Grid.initGrid(config, function(){});
 	});
 };
 
@@ -232,7 +231,11 @@ var config = {
 /**
  * Vue组件对象
 **/
+
 export default {
+	data(){
+		return data 
+	},
 	created() {
 		this.userSear()
 	},

@@ -39,6 +39,7 @@
 </div>
 </template>
 <script>
+var data={newPage:1}
 /**
  * 表格中的操作---删除上传资源
 **/
@@ -76,12 +77,9 @@ var uploadEdit = function(params, dom) {
 /**
  * 进行查询上传信息的方法
 **/
-var uploadSearch = function(newPage) {
-	if(newPage == undefined){
-		newPage = 1;
-	}
+var uploadSearch = function() {
 	var params = {
-		curPage: newPage,
+		curPage: data.newPage,
 		pageSize: 20,
 		resourceNameKey: $("#search_resourceName").val(),
 		authorKey: $("#search_author").val(),
@@ -90,6 +88,7 @@ var uploadSearch = function(newPage) {
 		sourceType:"UPLOAD",
 	};
 	CDUtil.ajaxPost("/resource/list",params,function(retVO) {
+		params.curPage=retVO.curPage;
 		config.gData = retVO;
 		Grid.initGrid(config,function(){});
 	});
@@ -136,7 +135,8 @@ export default {
 	data() {
     	return {
        		classList:"",
-       		subjectList:""
+       		subjectList:"",
+       		data
     	}
   	},
   	created () {    

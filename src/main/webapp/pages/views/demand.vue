@@ -33,6 +33,7 @@
 </div>
 </template>
 <script>
+var data={newPage:1}
 /**
  * Vue组件对象
 **/
@@ -45,6 +46,7 @@
 		        params:{
 		        	orderType:"desc",
 					pageSize: 2,
+					curPage: data.newPage,
 		        }
 		    }
 		  },
@@ -55,14 +57,12 @@
 		    },
     methods:{
 /** 查询点播列表 **/
-     showdemand:function(newPage){
+     showdemand:function(){
        var _self= this;
-        if(newPage == undefined){
-			newPage = 1;
-		}
-		this.params.curPage=newPage;
 		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
+        console.log(retVO);
+       	  _self.params.curPage=retVO.curPage;
           _self.courseList = retVO;
           var config = {   
            //用来展示表格控件的div的id

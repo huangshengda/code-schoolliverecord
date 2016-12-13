@@ -20,13 +20,12 @@
 		</div>
 </template>
 <script>
-var mySub = function(newPage){
-     	if(newPage == undefined){
-			newPage = 1;
-		}
+var data={newPage:1}
+var mySub = function(){
         var _self = this;
-        var params = {curPage: newPage,pageSize: 2,};
+		var params = {curPage: data.newPage,pageSize: 2,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
+       	 params.curPage=retVO.curPage;
           _self.mycourceList = retVO;
           var htmlStr = "";
           var config = { 
@@ -63,6 +62,7 @@ var mySub = function(newPage){
 		data() {
 		    return {
 		        mycourceList:"",
+		        data
 		    }
 		  },
 		 created () {    

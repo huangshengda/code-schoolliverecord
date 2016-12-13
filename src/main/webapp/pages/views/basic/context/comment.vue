@@ -28,6 +28,7 @@
 </div>
 </template>
 <script>
+var data={newPage:1}
 /**
  * 表格中的操作---删除评论
 **/    			
@@ -51,17 +52,15 @@ var comDel = function(params, dom) {
 /**
  * 进行查询评论信息的方法
 **/
-var comSearch = function(newPage) {
-	if(newPage == undefined){
-			newPage = 1;
-		}
+var comSearch = function() {
 	var cParams = {
-		curPage: newPage,
+		curPage: data.newPage,
 		pageSize: 20,
 		keywords: $("#search_keywords").val(),
 		realname: $("#search_realname").val(),
 	};
 	CDUtil.ajaxPost("/base/resource/comment/list", cParams,function(retVO) {
+		cParams.curPage=retVO.curPage;
 		config.gData = retVO;
 		Grid.initGrid(config,function(){});
 	});

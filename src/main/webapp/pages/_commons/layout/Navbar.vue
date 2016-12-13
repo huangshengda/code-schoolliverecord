@@ -7,7 +7,7 @@
             <span><router-link to="/index">首页</router-link></span>
  			<span><router-link to="/onDemand">点播</router-link></span>
  			<span><router-link to="/basic">基础管理</router-link></span>
- 			<span><router-link to="/mySubject">我的课程</router-link></span>
+ 			<span v-if="userType=='TEACHER' || userType=='STUDENT'"><router-link to="/mySubject">我的课程</router-link></span>
           </div>
         </div>
         <div class="head-out fr" style="display: none;" id="user_info" >
@@ -50,6 +50,7 @@ export default{
   data () { 
       return{
         menu: menu,
+        userType:'',
         item: [],
       }
   },
@@ -91,8 +92,10 @@ export default{
             CheckCode: $("#auto").val() 
           };
           console.log(params);
+          var self= this;
           //提交数据给到后台处理
           CDUtil.ajaxPost("/login",params,function(retVO){
+          	self.userType= retVO.data.userType;
             if(retVO.code == 1){
               layer.close(laryIndex);
               $("#user_info").show();
