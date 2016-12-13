@@ -34,6 +34,7 @@ public class ReturnVoList<T> implements Serializable {
 		this.msg = msg;
 		this.code = code;
 		this.data = list;
+		this.totalDatas = list.size();
 	}
 
 	@SuppressWarnings("unchecked")
