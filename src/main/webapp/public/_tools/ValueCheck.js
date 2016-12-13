@@ -73,14 +73,14 @@
 	
 	//验证浮点型
 	ValueCheck.isFloat = function(value){
-		if(ValueCheck.isNull(value)){
-			return false;
-		}
-		if(typeof(value) == "number"){
-			return true;
-		}else if(typeof(value) == "string"){
-			return !isNaN(value);
-		} else {
+		var arr = value.split(".");
+		if(arr.length == 1){
+			return this.isNumber(value);
+		}else if(arr.length == 2){
+			if(this.isNumber(arr[0])&&this.isNumber(arr[1])){
+				return true;
+			}
+		}else{
 			return false;
 		}
 	}
@@ -266,6 +266,17 @@
 	    }
 	}
 	/**
+	 * 固定电话格式验证，返回ture表示为固定电话
+	 * @param str
+	 */
+	ValueCheck.isTelphone = function(str){
+		if(!(/^((\d{3,4}\-)|)\d{7,8}(|([-\u8f6c]{1}\d{1,5}))$/.test(str))){
+			result = false;
+	    }else{
+	    	return true;
+	    }
+	}
+	/**
 	 * 身份证格式验证，返回ture表示为手机号
 	 * @param str
 	 */
@@ -282,6 +293,18 @@
 	 */
 	ValueCheck.isEmail = function(str){
 		var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+		if(!myreg.test(str)){
+			result = false;
+		}else{
+			return true;
+		}
+	}
+	/**
+	 * 区号格式验证，返回ture表示为区号
+	 * @param str
+	 */
+	ValueCheck.isAreacode = function(str){
+		var myreg = /^0[1-9]{2,3}$/;
 		if(!myreg.test(str)){
 			result = false;
 		}else{

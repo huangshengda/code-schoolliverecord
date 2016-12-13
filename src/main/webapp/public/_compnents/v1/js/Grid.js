@@ -79,9 +79,9 @@
 		optParams = _config.optParams==undefined?false:_config.optParams,
 		optName = _config.optName==undefined?false:_config.optName,
 		optFuns = _config.optFuns==undefined?false:_config.optFuns;
-		var totalDatas = gData.totalDatas,
-		totalPages = gData.totalPages,
-		curPage = gData.curPage,
+		var totalDatas = ValueCheck.getNumber(gData.totalDatas,0),
+		totalPages = ValueCheck.getNumber(gData.totalPages,0),
+		curPage = ValueCheck.getNumber(gData.curPage,1),
 		data = gData.data;
 		var htmlStr = '<div class="cd-g-header">共<span class="totalnums" >'+totalDatas+'</span>条数据。</div>';
 		htmlStr += '<div class="cd-g-context" ></div>';
@@ -104,8 +104,8 @@
 		htmlStr += '<table class="cd-g-table" ><thead></thead><tbody></tbody></table>';
 		$(context).html(htmlStr);
 		Grid.initGridTableHeader(containerId,thead);
-		if(data.length == 0){
-			var htmlStr = '<div style="width: 100%;text-align: center;line-height: 300px;" >'+'<img src="'+ROOT+'/public/smpui/v1/images/grid_have_nodata.png" /></div>';
+		if(data == null || data.length == 0){
+			var htmlStr = '<div style="width: 100%;text-align: center;line-height: 300px;" >'+'<img src="'+ROOT_UI_PUBLIC+'/_compnents/v1/images/grid_have_nodata.png" /></div>';
 			$(htmlStr).appendTo(context);
 		}else{
 			Grid.initGridTableBody(containerId,thead,data,optName,optFuns,optParams);
