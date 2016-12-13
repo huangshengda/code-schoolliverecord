@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.thread.ConfigThreadLocal;
+import com.codyy.slr.thread.WebcontentThreadLocal;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -48,6 +49,7 @@ public class TokenFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
+		resp.setContentType("text/html;charset=UTF-8");
 
 		// 添加项目路径
 		req.setAttribute("ROOT_UI", Constants.ROOT_UI);
@@ -56,9 +58,10 @@ public class TokenFilter implements Filter {
 
 		String uri = req.getRequestURI();
 
+		WebcontentThreadLocal.setVal(req);
+
 		if (uri.indexOf("/chat/") != -1) {
 			ConfigThreadLocal.setVal(req.getHeader("User-Agent"));
-			System.out.println(ConfigThreadLocal.getVal());
 			chain.doFilter(req, resp);
 			return;
 		}
@@ -93,7 +96,7 @@ public class TokenFilter implements Filter {
 		}
 
 		if (StringUtils.isEmpty(token)) {
-			resp.setContentType("text/html;charset=UTF-8");
+			// resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请传token参数")));
 			return;
 		}
@@ -103,14 +106,14 @@ public class TokenFilter implements Filter {
 			String agent = req.getHeader("User-Agent");
 			User user = TokenUtils.getUserFromCache(token + agent);
 			if (user == null || "0".equals(user.getUserId())) {
-				resp.setContentType("text/html;charset=UTF-8");
+				// resp.setContentType("text/html;charset=UTF-8");
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
 				return;
 			}
 			req.setAttribute("user", user);
 			chain.doFilter(req, resp);
 		} catch (ExecutionException e) {
-			resp.setContentType("text/html;charset=UTF-8");
+			// resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请求失败")));
 			e.printStackTrace();
 		}

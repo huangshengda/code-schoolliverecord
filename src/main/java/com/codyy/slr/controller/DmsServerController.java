@@ -63,6 +63,27 @@ public class DmsServerController {
 		return new ReturnVoList<DmsServerVo>(page, code, msg);
 	}
 
+	@RequestMapping("list/unpaged")
+	@ResponseBody
+	public ReturnVoList<DmsServerVo> getDmsServerListunpaged() {
+		Page page = new Page();
+		int code = Constants.SUCCESS;
+		String msg = "查询成功";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dmsServerName", null);
+		page.setMap(map);
+		page.setPaging(false);
+		List<DmsServerVo> dmsServerList = new ArrayList<DmsServerVo>();
+		try {
+			dmsServerList = dmsServerService.getDmsServerList(page);
+		} catch (Exception e) {
+			code = Constants.FAILED;
+			msg = "查询失败";
+			e.printStackTrace();
+		}
+		return new ReturnVoList<DmsServerVo>(code, msg, dmsServerList);
+	}
+
 	/**
 	 * 
 	 * @Description: 增加服务器
@@ -125,11 +146,12 @@ public class DmsServerController {
 		page.setMap(map);
 		try {
 			List<DmsServerVo> list = dmsServerService.getDmsServerList(page);
-			if ((list.size() == 0)||((list.size() == 1) && (dmsServer.getServerId().equals(list.get(0).getServerId())))) {
+			if ((list.size() == 0) || ((list.size() == 1) && (dmsServer.getServerId().equals(list.get(0).getServerId())))) {
 				if (dmsServerService.modifyDmsServer(dmsServer) != 1) {
 					msg = "编辑失败";
 					code = Constants.FAILED;
-				};
+				}
+				;
 			} else {
 				msg = "服务器名称重复";
 				code = Constants.FAILED;
