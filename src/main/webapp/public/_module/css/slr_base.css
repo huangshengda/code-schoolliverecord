@@ -44,7 +44,7 @@ label {
 .head-out .btn {
 	border-radius: 3px;
 }
-
+.head-out span,.head-out i{cursor: pointer;}
 .lay-btn {
 	height: 38px;
 	width: 116px;

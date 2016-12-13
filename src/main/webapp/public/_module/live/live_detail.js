@@ -1,17 +1,16 @@
 $(function() {
 	var resourceId = sessionStorage.getItem("resourceId");
 	var token = sessionStorage.getItem("token");
-	var liveUrl = "";
+	var liveUrl = "",
+		dmc = "",
+		pms = "",
+		tool = vm.module["tool"],
+		flashBuilder = vm.module["playerBuilder"];
 	CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
 		if (retVO.code == 1) {
-			liveUrl = retVO.data.storePath;
-			var pms = "",
-			//dms服务器地址，需要后台传过来
-			streamName = retVO.data.resourceName,
-			//课程id，需要后台传过来
-			dmc = "",
-			tool = vm.module["tool"],
-			flashBuilder = vm.module["playerBuilder"];
+			pms = retVO.data.storePath;
+			var streamName = retVO.data.resourceId;
+			buildPlayer(document.getElementsByClassName("vedio")[0], streamName, "mix");
 		}
 	});
 
@@ -168,6 +167,4 @@ $(function() {
 			_buildPlayer(pms);
 		}
 	}
-
-	//buildPlayer(document.getElementsByClassName("vedio")[0], streamName, "mix");
 });

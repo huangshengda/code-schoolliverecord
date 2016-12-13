@@ -1,6 +1,6 @@
 <template>
-<div class="mysubject">
-<div class="subBtn"><button class="btn fr">上传资源</button></div>
+	<div class="mysubject">
+		<div class="subBtn"><button class="btn fr" @click="openUploadup">上传资源</button></div>
 		<div class="demand">
 			<!-- 中间内容 start-->
 			<div class="d-main">
@@ -17,9 +17,21 @@
 			</div>
 			<!-- 中间内容 end-->
 		</div>
-		</div>
+	</div>
 </template>
 <script>
+window.mysubjectDel=function(resourceId){
+   layer.alert('删除后则该资源在点播列表同步删除?',function(index) {
+		var reidParams = {resourceId: resourceId};
+		CDUtil.ajaxPost("/resource/delete", reidParams,function(retVO) {
+			if (retVO.code == 1) {
+				mySub();
+			}
+		});
+		layer.close(index);
+		layer.msg('删除成功!');
+	});
+};
 var mySub = function(newPage){
 		if(newPage == "undefined"){
      		newPage=1;
@@ -45,7 +57,7 @@ var mySub = function(newPage){
 				htmlStr += '</div>' ;
 				htmlStr += '<p class="c4 tel">'+data.resourceName+'</p>' ;
 				htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title='+data.classlevelName+'>'+data.classlevelName+'</span>&nbsp;'+data.subjectName+'&nbsp;'+data.author+'</p>' ;
-				htmlStr += '<div class="sub-del" @click="mysubjectDel('+data.resourceId+')"><i class="iconfont icon-delete"></i></div>' ;       
+				htmlStr += '<div class="sub-del" onClick="mysubjectDel(\''+data.resourceId+'\')"><i class="iconfont icon-delete"></i></div>' ;       
 				htmlStr += ' </div>';	
 				/*  无消息显示 */
 				if(data.resourceId == ""){
@@ -59,11 +71,10 @@ var mySub = function(newPage){
          	Paging.initPaging(config,function(){});
         });
       };
-	export default {  
+export default {  
 		data() {
 		    return {
 		        mycourceList:"",
-		        data
 		    }
 		  },
 		 created () {    
@@ -71,23 +82,10 @@ var mySub = function(newPage){
 		    },
     methods:{
      showdemand: mySub,
-      mysubjectDel:function(resourceId) {
-      	 var _self = this;
-		layer.alert('删除后则该资源在点播列表同步删除?',
-		function(index) {
-			var reidParams = {
-			resourceId: resourceId
-		};
-		CDUtil.ajaxPost("/resource/delete", reidParams,
-		function(retVO) {
-			if (retVO.code == 1) {
-				mySub();
-			}
-		});
-		layer.close(index);
-		layer.msg('删除成功!');
-	});
-	}
+	/*跳转到上传资源页面*/
+    	openUploadup: function(){
+    		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
+    	}
      }
    }  
 </script>

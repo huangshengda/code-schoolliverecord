@@ -20,7 +20,6 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
-import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 import com.codyy.slr.vo.UploadVo;
 
@@ -34,6 +33,7 @@ public class UploadImageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ReturnVoOne<UploadVo> one = new ReturnVoOne<UploadVo>();
 
+		String resourceId = req.getParameter("resourceId");
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(2048 * 1024);
 		MyProgressListener getBarListener = new MyProgressListener(req);
@@ -65,7 +65,6 @@ public class UploadImageServlet extends HttpServlet {
 						log.error("file not surpported");
 						return;
 					}
-					String resourceId = UUIDUtils.getUUID();
 					UploadVo uploadVo = new UploadVo();
 					uploadVo.setResourceId(resourceId);
 					File file = new File(Constants.TEMP + File.separatorChar + resourceId + suffix);
