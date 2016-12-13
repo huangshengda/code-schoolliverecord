@@ -11,14 +11,20 @@ $(function(){
 		var name = filename.substring(0,ldot);
 		var type = filename.substring(ldot+1).toLowerCase();
 		var htmlStr = spellShowFileup(sequence,size,name,type);
+		$("#video_name").val(filename);
 		$("#show_fileup_detail").html(htmlStr);
 		var fileupUrl = ROOT_SERVER+"/video/upload?token="+sessionStorage.getItem("token");
 		H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
-			
+			retVO = eval('(' + retVO + ')');
+			var dataVO = retVO.data;
+			var resourceId = dataVO.resourceId;
+			$("#"+sequence).attr("data-resourceId",resourceId);
+			$("#video_resourceId").val(resourceId);
+			$("#video_size").val(size+"M");
 		});
 		var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
 		H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
-			console.log(retVO);
+			
 		});
 	});
 	/**
@@ -31,7 +37,7 @@ $(function(){
             +'<p>'
             	+'<span class="showfile-name substr" id="'+sequence+'_name" >'+name+'</span>'
             	+'<input class="showfile-name-input" type="text" id="'+sequence+'_name_input" value="'+name+'" />'
-            	+'.'+type
+            	+'<span id="'+sequence+'_type" >.'+type+'</span>'
             	+'<span class="ml10">'+size+'M</span></p>'
             +'<div class="progress w300 mr20">'
             +'<div class="progress-bar progress-bar-striped active" id="'+sequence+'_process" '
@@ -74,6 +80,7 @@ $(function(){
 		$("#"+seq+"_name").html(newName);
 		$("#"+seq+"_name_input").hide();
 		$("#"+seq+"_name").show();
+		$("#video_name").val(newName+$("#"+seq+"_type").html());
 	});
 	/**
 	 * 使用系统截图作为封面事件
@@ -89,10 +96,14 @@ $(function(){
 		var sequence = H5fileup.getSequence();
 		var topDom = $(this).parents(".up-item").get(0);
 		var seq = topDom.id;
-		/*H5fileup.startFileup(file,ROOT_SERVER+"/image/upload",sequence,function(retVO){
-		
-		});*/
-		H5fileup.showImgAuto(file,seq+"_show_img");
+		var fileupUrl = ROOT_SERVER+"/image/upload?token="+sessionStorage.getItem("token");
+		H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
+			retVO = eval('(' + retVO + ')');
+			var dataVO = retVO.data;
+			var resourceId = dataVO.resourceId;
+			H5fileup.showImgAuto(file,seq+"_show_img");
+			$("#video_img_resourceId").val(resourceId);
+		});
 	});
 	/**
 	 * 删除当前上传的文件
