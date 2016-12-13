@@ -8,9 +8,6 @@
 <meta name="viewport" content="width=device-width">
 <%@ include file="../../_commons/meta.jsp"%>
 <script type="text/javascript" src="${ROOT_UI}/public/evideo/swfobject.js" ></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
-<script src="../../public/qqFace/js/jquery.qqFace.js"></script>
-<script src="../../public/_module/js/comment.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_demond.js" ></script>
 <script  type="text/javascript" src="${ROOT_UI}/public/_module/demond/demond_detail.js"></script>
 <style type="text/css">
