@@ -52,24 +52,25 @@
 		        subjectList:"",
 		        params:{
 		        	orderType:"desc",
-					pageSize:3,
-					curPage: 1,
+					pageSize: 2,
 		        }
 		    }
 		  },
-		 created () {    
+		 created () {  
 		      this.showdemand(),
 		      this.showclass(),
 		      this.showsubject()
 		    },
     methods:{
 /** 查询点播列表 **/
-       showdemand:function(newPage){
-       if(newPage == undefined){
+     showdemand:function(newPage){
+       var _self= this;
+        if(newPage == undefined){
 			newPage = 1;
 		}
-        var _self = this;
-        var params = this.params;
+		this.params.curPage=newPage;
+		console.log(this.params.curPage);
+		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
           _self.courseList = retVO;
           var config = {      	
@@ -77,6 +78,8 @@
         	 gData: retVO,
          	 //是否需要分页，true：需要，不写默认需要
          	 pagingFlag: true,
+         	 //执行页面查询的方法
+			searchFun: _self.showdemand,
          	};
          	Grid.initGrid(config,function(){});
         });
