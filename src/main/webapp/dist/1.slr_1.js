@@ -524,7 +524,7 @@ webpackJsonp([1,6],[
 /* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('transition', {
 	    on: {
 	      "beforeEnter": _vm.beforeEnter,
@@ -546,7 +546,7 @@ webpackJsonp([1,6],[
 /* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('aside', [_h('ul', {
 	    staticClass: "menu-list"
 	  }, [_vm._l((_vm.menu), function(item, index) {
@@ -864,7 +864,7 @@ webpackJsonp([1,6],[
 /* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('ol', {
 	    staticClass: "breadcrumb"
 	  }, [_vm._l((_vm.list), function(item, index) {
@@ -887,7 +887,7 @@ webpackJsonp([1,6],[
 /* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "levelbar clearfix"
 	  }, [_h('h2', {
@@ -911,7 +911,7 @@ webpackJsonp([1,6],[
 /* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "main"
 	  }, [_h('div', {
@@ -1090,7 +1090,7 @@ webpackJsonp([1,6],[
 /* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -1117,7 +1117,7 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "])])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -1134,7 +1134,7 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -1437,7 +1437,7 @@ webpackJsonp([1,6],[
 /* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -1494,9 +1494,9 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "]), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('thead', [_h('th', ["年级"]), _h('th', ["排序"]), _h('th', ["操作"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -1526,7 +1526,7 @@ webpackJsonp([1,6],[
 	      "maxlength": "10"
 	    }
 	  })])])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -1881,7 +1881,7 @@ webpackJsonp([1,6],[
 /* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -1913,7 +1913,7 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "]), " ", " ", _vm._m(3), " ", " ", " ", _vm._m(4), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -1930,7 +1930,7 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull,username"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -1947,7 +1947,7 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -1978,7 +1978,7 @@ webpackJsonp([1,6],[
 	      "value": "STUDENT"
 	    }
 	  }, ["学生"])])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -2057,7 +2057,7 @@ webpackJsonp([1,6],[
 	      "value": "STUDENT"
 	    }
 	  }, ["学生"])])])])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -2416,7 +2416,7 @@ webpackJsonp([1,6],[
 /* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -2473,9 +2473,9 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "]), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('thead', [_h('th', ["学科"]), _h('th', ["排序"]), _h('th', ["操作"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -2505,7 +2505,7 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull"
 	    }
 	  })])])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -2674,7 +2674,7 @@ webpackJsonp([1,6],[
 /* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -2733,7 +2733,7 @@ webpackJsonp([1,6],[
 	      "click": _vm.rePlat
 	    }
 	  }, ["恢复默认"])])])])])])])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -2750,13 +2750,13 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('span', {
 	    staticClass: "cd-f-name vat"
 	  }, [_h('label', {
 	    staticClass: "cd-f-notnull"
 	  }, ["*"]), _h('label', ["网站logo:"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -2773,7 +2773,7 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('span', {
 	    staticClass: "cd-f-name"
 	  }, [_h('label')])
@@ -3033,7 +3033,7 @@ webpackJsonp([1,6],[
 /* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -3044,7 +3044,7 @@ webpackJsonp([1,6],[
 	      "click": _vm.add
 	    }
 	  }, ["新增服务器"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "dashboard"
 	  }, [_h('div', {
@@ -3052,7 +3052,7 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -3101,7 +3101,7 @@ webpackJsonp([1,6],[
 	      "data-vali": "notnull"
 	    }
 	  })])])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('form', {
 	    staticClass: "layBox",
 	    attrs: {
@@ -3373,7 +3373,7 @@ webpackJsonp([1,6],[
 /* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -3432,7 +3432,7 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "])])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -3450,7 +3450,7 @@ webpackJsonp([1,6],[
 	      "maxlength": "30"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -3467,13 +3467,13 @@ webpackJsonp([1,6],[
 	      "id": "search_author"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('span', {
 	    staticClass: "cd-f-name"
 	  }, [_h('label', {
 	    staticClass: "cd-f-notnull"
 	  }, ["*"]), _h('label', ["年级:"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('span', {
 	    staticClass: "cd-f-name"
 	  }, [_h('label', {
@@ -3707,7 +3707,7 @@ webpackJsonp([1,6],[
 /* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "content"
 	  }, [_h('div', {
@@ -3773,7 +3773,7 @@ webpackJsonp([1,6],[
 	      "id": "use_to_load_grid"
 	    }
 	  }), " "])])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -3791,7 +3791,7 @@ webpackJsonp([1,6],[
 	      "maxlength": "30"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_h('span', {
@@ -3808,13 +3808,13 @@ webpackJsonp([1,6],[
 	      "id": "search_author"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('span', {
 	    staticClass: "cd-f-name"
 	  }, [_h('label', {
 	    staticClass: "cd-f-notnull"
 	  }, ["*"]), _h('label', ["年级:"])])
-	},function (){var _vm=this;var _h=_vm.$createElement;
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('span', {
 	    staticClass: "cd-f-name"
 	  }, [_h('label', {
@@ -3915,14 +3915,6 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	/**
 	 * Vue组件对象
@@ -3951,19 +3943,36 @@ webpackJsonp([1,6],[
 	        newPage = 1;
 	      }
 	      this.params.curPage = newPage;
-	      console.log(this.params.curPage);
 	      var params = this.params;
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
 	        _self.courseList = retVO;
 	        var config = {
+	          //用来展示表格控件的div的id
+	          containerId: "de_list",
 	          //这个应该是后台返回的部分
 	          gData: retVO,
 	          //是否需要分页，true：需要，不写默认需要
 	          pagingFlag: true,
+	          //用来拼接单个循环体的回调方法。
+	          spellHtmlFun: function spellHtmlFun(data) {
+	            var htmlStr = '<div class="col-4">';
+	            htmlStr += '<div class="demandImg">';
+	            htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
+	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+	            htmlStr += '</div>';
+	            htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
+	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + data.classlevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+	            htmlStr += ' </div>';
+	            /*  无消息显示 */
+	            if (data.resourceId == "") {
+	              htmlStr += '<div id="de_list"><p>暂无相关数据</p></div>';
+	            }
+	            return htmlStr;
+	          },
 	          //执行页面查询的方法
 	          searchFun: _self.showdemand
 	        };
-	        Grid.initGrid(config, function () {});
+	        Paging.initPaging(config, function () {});
 	      });
 	    },
 	    /** 获取选择的年级参数**/
@@ -4050,7 +4059,7 @@ webpackJsonp([1,6],[
 /* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "demand"
 	  }, [_h('div', {
@@ -4083,7 +4092,9 @@ webpackJsonp([1,6],[
 	    staticClass: "s-left"
 	  }, ["\"", _h('span', {
 	    staticClass: "sub-tit"
-	  }, ["全部"]), "\"相关课程  共" + _vm._s(_vm.courseList.totalDatas) + "条\r\n\t\t\t\t", _h('span', {
+	  }, ["全部"]), "\"相关课程  共", _h('span', {
+	    staticClass: "totalnums"
+	  }), "条\r\n\t\t\t\t", _h('span', {
 	    attrs: {
 	      "data-sort": "desc"
 	    },
@@ -4117,43 +4128,17 @@ webpackJsonp([1,6],[
 	    }
 	  })])]), " ", _h('div', {
 	    staticClass: "clear"
-	  }), " ", " ", _h('div', {
-	    staticClass: "list mt30"
-	  }, [_vm._l((_vm.courseList.data), function(course) {
-	    return _h('div', {
-	      staticClass: "col-4"
-	    }, [_h('div', {
-	      staticClass: "demandImg"
-	    }, [_h('a', {
-	      attrs: {
-	        "href": "#a"
-	      }
-	    }, [_h('img', {
-	      attrs: {
-	        "src": course.thumbPath,
-	        "width": "280",
-	        "height": "157"
-	      }
-	    })]), " ", _h('div', {
-	      staticClass: "times"
-	    }, [_h('span', {
-	      staticClass: "fr"
-	    }, [_h('i', {
-	      staticClass: "iconfont icon-play-times"
-	    }), _vm._s(course.viewCnt)])])]), " ", _h('p', {
-	      staticClass: "c4 tel"
-	    }, [_vm._s(course.resourceName)]), " ", _h('p', {
-	      staticClass: "ft12 c9 tel"
-	    }, [_h('span', {
-	      staticClass: "sub-code",
-	      attrs: {
-	        "title": course.classlevelName
-	      }
-	    }, [_vm._s(course.classlevelName)]), " " + _vm._s(course.subjectName) + " " + _vm._s(course.author)])])
-	  })]), " ", _h('div', {
+	  }), " ", " ", _vm._m(0), " "])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
+	  return _h('div', {
+	    staticClass: "list mt30",
+	    attrs: {
+	      "id": "de_list"
+	    }
+	  }, [_h('div', {
 	    staticClass: "clear"
-	  }), " "]), " "])
-	},staticRenderFns: []}
+	  }), " "])
+	}]}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
@@ -4373,7 +4358,7 @@ webpackJsonp([1,6],[
 /* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "wamp",
 	    attrs: {
@@ -4462,7 +4447,7 @@ webpackJsonp([1,6],[
 	      }
 	    }, [_vm._s(course.classlevelName)]), " " + _vm._s(course.subjectName) + " " + _vm._s(course.author)])])
 	  })]), " "])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "s-title"
 	  }, [_h('span'), _h('h3', {
@@ -4600,6 +4585,45 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var mySub = function mySub(newPage) {
+		if (newPage == undefined) {
+			newPage = 1;
+		}
+		var _self = this;
+		var params = { curPage: newPage, pageSize: 2 };
+		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
+			_self.mycourceList = retVO;
+			var htmlStr = "";
+			var config = {
+				//用来展示表格控件的div的id
+				containerId: "sub_list",
+				//这个应该是后台返回的部分
+				gData: retVO,
+				//是否需要分页，true：需要，不写默认需要
+				pagingFlag: true,
+				//用来拼接单个循环体的回调方法。
+				spellHtmlFun: function spellHtmlFun(data) {
+					var htmlStr = '<div class="col-4">';
+					htmlStr += '<div class="demandImg">';
+					htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
+					htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+					htmlStr += '</div>';
+					htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
+					htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + data.classlevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+					htmlStr += '<div class="sub-del" @click="mysubjectDel(' + data.resourceId + ')"><i class="iconfont icon-delete"></i></div>';
+					htmlStr += ' </div>';
+					/*  无消息显示 */
+					if (data.resourceId == "") {
+						htmlStr += '<div id="sub_list"><p>暂无相关数据</p></div>';
+					}
+					return htmlStr;
+				},
+				//执行页面查询的方法
+				searchFun: _self.showdemand
+			};
+			Paging.initPaging(config, function () {});
+		});
+	};
 	exports.default = {
 		data: function data() {
 			return {
@@ -4611,41 +4635,7 @@ webpackJsonp([1,6],[
 		},
 
 		methods: {
-			showdemand: function showdemand(newPage) {
-				if (newPage == undefined) {
-					newPage = 1;
-				}
-				var _self = this;
-				var params = { curPage: newPage, pageSize: 2 };
-				CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
-					_self.mycourceList = retVO;
-					var config = {
-						//用来展示表格控件的div的id
-						containerId: "sub_list",
-						//这个应该是后台返回的部分
-						gData: retVO,
-						//是否需要分页，true：需要，不写默认需要
-						pagingFlag: true,
-						//用来拼接单个循环体的回调方法。
-						spellHtmlFun: function spellHtmlFun(data) {
-							console.log(gData.data);
-							var htmlStr = '';
-							htmlStr += '<div class="col-4">';
-							htmlStr += '<div class="demandImg">';
-							htmlStr += '<a href="#a"><img src="+data.thumbPath+" width="280" height="157"></a>';
-							htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>"+data.viewCnt+"</span></div> ';
-							htmlStr += '</div>';
-							htmlStr += '<p class="c4 tel">data.resourceName</p>';
-							htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title="+data.classlevelName+">"+data.classlevelName+"</span>&nbsp;"+data.subjectName+"&nbsp;"+data.author+"</p>';
-							htmlStr += '<div class="sub-del" @click="mysubjectDel(data.resourceId)"><i class="iconfont icon-delete"></i></div>';
-							htmlStr += ' </div>';
-						},
-						//执行页面查询的方法
-						searchFun: _self.showdemand
-					};
-					Paging.initPaging(config, function () {});
-				});
-			},
+			showdemand: mySub,
 			mysubjectDel: function mysubjectDel(resourceId) {
 				var _self = this;
 				layer.alert('删除后则该资源在点播列表同步删除?', function (index) {
@@ -4654,7 +4644,7 @@ webpackJsonp([1,6],[
 					};
 					CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
 						if (retVO.code == 1) {
-							_self.showdemand();
+							mySub();
 						}
 					});
 					layer.close(index);
@@ -4668,16 +4658,24 @@ webpackJsonp([1,6],[
 /* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
+	  return _vm._m(0)
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _h('div', {
 	    staticClass: "mysubject"
-	  }, [_vm._m(0), " ", _h('div', {
+	  }, [_h('div', {
+	    staticClass: "subBtn"
+	  }, [_h('button', {
+	    staticClass: "btn fr"
+	  }, ["上传资源"])]), " ", _h('div', {
 	    staticClass: "demand"
 	  }, [_h('div', {
 	    staticClass: "d-main"
 	  }, [_h('div', {
 	    staticClass: "search"
-	  }, ["\r\n\t\t\t\t\t共" + _vm._s(_vm.mycourceList.totalDatas) + "个资源\r\n\t\t\t\t"]), " ", _h('div', {
+	  }, ["\r\n\t\t\t\t\t共", _h('span', {
+	    staticClass: "totalnums"
+	  }), "个资源\r\n\t\t\t\t"]), " ", _h('div', {
 	    staticClass: "clear"
 	  }), " ", " ", _h('div', {
 	    staticClass: "list mt40",
@@ -4687,12 +4685,6 @@ webpackJsonp([1,6],[
 	  }), " ", _h('div', {
 	    staticClass: "clear"
 	  }), " "]), " "])])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', {
-	    staticClass: "subBtn"
-	  }, [_h('button', {
-	    staticClass: "btn fr"
-	  }, ["上传资源"])])
 	}]}
 	if (true) {
 	  module.hot.accept()

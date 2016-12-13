@@ -213,7 +213,7 @@ webpackJsonp([2,6],[
 
 
 	// module
-	exports.push([module.id, "@charset \"utf-8\";\r\n/**\r\n * 功能描述：自定义组件相关的样式\r\n * \r\n * 包含样式：自定义表格、分页、表单模板样式。\r\n * 依赖：base.css\r\n * 创建人：liangjifei\r\n */\r\n\r\n/**  查询新增修改的表单，开始  **/\r\n/**  Top元素样式留空，在具体项目中，对全局表单做统一样式控制  **/\r\n.cd-f{margin: auto;font-size: 0px;background-color: #ffffff;}\r\n.cd-f-row{/* padding: 8px 0px; */}\r\n.cd-f-eve{display: inline-block;position: relative;}\r\n.cd-f-notnull{color: #ff0000;font-size: 14px;}\r\n.cd-f-name{text-align: right;display: inline-block;height: 34px;width: 85px;}\r\n.cd-f-name.up{display: block;}\r\n.cd-f-value{text-align: left;/* width: 152px; */display: inline-block;position: relative;margin-left:5px;}\r\n.cd-f-value.down{display: block;width: 100%;}\r\n.cd-f-value.banner{position: absolute;z-index: 5;width: auto;left: 0px;padding-left: 100px;}\r\n.cd-f-vali{position: absolute;z-index: 10;color: #ff0000;line-height: 20px;width: 100%;font-size: 14px;}\r\n/**  查询条件的表单，结束   **/\r\n\r\n\r\n/**  表格样式，开始   **/\r\n.cd-g{\r\n\tbackground-color: #ffffff;\r\n\tborder: 0px solid #999999;\r\n\tpadding: 20px;\r\n\tcolor: #666666;\r\n\tfont-size: 14px;\r\n}\r\n.cd-g-header{\r\n\t/* background-color: #f5f5f5; */\r\n\tline-height: 35px;\r\n\tpadding-left: 20px;\r\n}\r\n.cd-g-header .totalnums{\r\n\tcolor: #ff9c00;\r\n}\r\n.cd-g-context{\r\n\tmin-height: 452px;\r\n}\r\n.cd-g-table{\r\n\twidth: 100%;\r\n}\r\n.cd-g-table tr{\r\n\tline-height: 40px;\r\n}\r\n.cd-g-table thead{\r\n\tbackground-color: #2878b2;\r\n\t/* color: #ffffff; */\r\n\tfont-weight: normal;\r\n}\r\n.cd-g-table th{\r\n\ttext-align: center;\r\n}\r\n.cd-g-table tbody>tr{\r\n\tborder-top: 1px solid #f4f4f4;\r\n}\r\n.cd-g-table td{\r\n\ttext-align: center;\r\n\twhite-space:nowrap;\r\n\toverflow:  hidden;\r\n\twhite-space: nowrap;\r\n\t-o-text-overflow: ellipsis;\r\n\ttext-overflow:  ellipsis;\r\n}\r\n.cd-g-table td i{\r\n\tcursor: pointer;\r\n}\r\n.cd-g-table td i:hover{\r\n\tcolor: #03a9f4;\r\n\tborder-bottom: 1px solid #03a9f4; \r\n}\r\n.cd-g-table td span{\r\n\tcursor: pointer;\r\n\tcolor: #03a9f4;\r\n\tmargin: 0px 5px;\r\n}\r\n.cd-g-table td span:hover{\r\n\tborder-bottom: 1px solid #03a9f4;\r\n}\r\n.cd-g-paging{\r\n\tpadding-top: 20px;\r\n\ttext-align: center;\r\n\tdisplay: none;\r\n}\r\n.cd-g-paging>ul{\r\n\tdisplay: inline-block;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n\tvertical-align: top;\r\n}\r\n.cd-g-paging li{\r\n\tdisplay: inline-block;\r\n\theight: 25px;\r\n\tline-height: 25px;\r\n\twidth: 35px;\r\n\tcursor: pointer;\r\n\ttext-align: center;\r\n}\r\n.cd-g-paging li:hover{\r\n\tbackground-color: #dddddd;\r\n\tcolor: #03a9f4;\r\n}\r\n.cd-g-paging li.active{\r\n\tbackground-color: #f3f3f3;\r\n\tcolor: #03a9f4;\r\n}\r\n/**  表格样式，结束   **/\r\n\r\n\r\n/**  上传按钮样式，开始   **/\r\n.cd-fileupshow{\r\n\tposition: relative;\r\n}\r\n.cd-fileupinput{\r\n\tposition: absolute;\r\n\tz-index: 5;\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tfilter: alpha(opacity=0);\r\n\t-moz-opacity: 0;\r\n\topacity: 0;\r\n\tcursor: pointer;\r\n}\r\n.h5filepu-load-wap{\r\n\tposition: fixed;\r\n\tz-index: 1000;\r\n\tbackground: rgba(0,0,0,0.2);\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\ttext-align: center;\r\n\tpadding-top: 300px;\r\n}\r\n.h5filepu-load-wap>img{\r\n}\r\n.h5filepu-load-wap>lable{\r\n\tposition: absolute;\r\n\tcolor: #696969;\r\n\tfont-size: 25px;\r\n\tfont-weight: 900;\r\n\tfloat: right;\r\n\ttop: 10px;\r\n\tright: 10px;\r\n\tcursor: pointer;\r\n}\r\n.h5filepu-load-wap>lable:HOVER{\r\n\tfont-size: 30px;\r\n}\r\n/**  上传样式，结束   **/\r\n.cd-g-paging input{\r\n\theight: 24px;\r\n    width: 50px;\r\n    background-color: #f3f3f3;\r\n    border: 1px solid #ddd;\r\n    margin: 0 5px;\r\n    text-align: center;\r\n}\r\n", ""]);
+	exports.push([module.id, "@charset \"utf-8\";\r\n/**\r\n * 功能描述：自定义组件相关的样式\r\n * \r\n * 包含样式：自定义表格、分页、表单模板样式。\r\n * 依赖：base.css\r\n * 创建人：liangjifei\r\n */\r\n\r\n/**  查询新增修改的表单，开始  **/\r\n/**  Top元素样式留空，在具体项目中，对全局表单做统一样式控制  **/\r\n.cd-f{margin: auto;font-size: 0px;background-color: #ffffff;}\r\n.cd-f-row{/* padding: 8px 0px; */}\r\n.cd-f-eve{display: inline-block;position: relative;}\r\n.cd-f-notnull{color: #ff0000;font-size: 14px;}\r\n.cd-f-name{text-align: right;display: inline-block;height: 34px;width: 85px;}\r\n.cd-f-name.up{display: block;}\r\n.cd-f-value{text-align: left;/* width: 152px; */display: inline-block;position: relative;margin-left:5px;}\r\n.cd-f-value.down{display: block;width: 100%;}\r\n.cd-f-value.banner{position: absolute;z-index: 5;width: auto;left: 0px;padding-left: 100px;}\r\n.cd-f-vali{position: absolute;z-index: 10;color: #ff0000;line-height: 20px;width: 100%;font-size: 14px;}\r\n/**  查询条件的表单，结束   **/\r\n\r\n\r\n/**  表格样式，开始   **/\r\n.cd-g{\r\n\tbackground-color: #ffffff;\r\n\tborder: 0px solid #999999;\r\n\tpadding: 20px;\r\n\tcolor: #666666;\r\n\tfont-size: 14px;\r\n}\r\n.cd-g-header{\r\n\t/* background-color: #f5f5f5; */\r\n\tline-height: 35px;\r\n\tpadding-left: 20px;\r\n}\r\n.cd-g-header .totalnums{\r\n\tcolor: #ff9c00;\r\n}\r\n.cd-g-context{\r\n\tmin-height: 452px;\r\n}\r\n.cd-g-table{\r\n\twidth: 100%;\r\n}\r\n.cd-g-table tr{\r\n\tline-height: 40px;\r\n}\r\n.cd-g-table thead{\r\n\tbackground-color: #2878b2;\r\n\t/* color: #ffffff; */\r\n\tfont-weight: normal;\r\n}\r\n.cd-g-table th{\r\n\ttext-align: center;\r\n}\r\n.cd-g-table tbody>tr{\r\n\tborder-top: 1px solid #f4f4f4;\r\n}\r\n.cd-g-table td{\r\n\ttext-align: center;\r\n\twhite-space:nowrap;\r\n\toverflow:  hidden;\r\n\twhite-space: nowrap;\r\n\t-o-text-overflow: ellipsis;\r\n\ttext-overflow:  ellipsis;\r\n}\r\n.cd-g-table td i{\r\n\tcursor: pointer;\r\n}\r\n.cd-g-table td i:hover{\r\n\tcolor: #03a9f4;\r\n\tborder-bottom: 1px solid #03a9f4; \r\n}\r\n.cd-g-table td span{\r\n\tcursor: pointer;\r\n\tcolor: #03a9f4;\r\n\tmargin: 0px 5px;\r\n}\r\n.cd-g-table td span:hover{\r\n\tborder-bottom: 1px solid #03a9f4;\r\n}\r\n.cd-g-paging{\r\n\tpadding-top: 20px;\r\n\ttext-align: center;\r\n\tdisplay: none;\r\n\tpadding-bottom:40px;\r\n}\r\n.cd-g-paging>ul{\r\n\tdisplay: inline-block;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n\tvertical-align: top;\r\n}\r\n.cd-g-paging li{\r\n\tdisplay: inline-block;\r\n\theight: 25px;\r\n\tline-height: 25px;\r\n\twidth: 35px;\r\n\tcursor: pointer;\r\n\ttext-align: center;\r\n}\r\n.cd-g-paging li:hover{\r\n\tbackground-color: #dddddd;\r\n\tcolor: #03a9f4;\r\n}\r\n.cd-g-paging li.active{\r\n\tbackground-color: #f3f3f3;\r\n\tcolor: #03a9f4;\r\n}\r\n/**  表格样式，结束   **/\r\n\r\n\r\n/**  上传按钮样式，开始   **/\r\n.cd-fileupshow{\r\n\tposition: relative;\r\n}\r\n.cd-fileupinput{\r\n\tposition: absolute;\r\n\tz-index: 5;\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tfilter: alpha(opacity=0);\r\n\t-moz-opacity: 0;\r\n\topacity: 0;\r\n\tcursor: pointer;\r\n}\r\n.h5filepu-load-wap{\r\n\tposition: fixed;\r\n\tz-index: 1000;\r\n\tbackground: rgba(0,0,0,0.2);\r\n\ttop: 0px;\r\n\tleft: 0px;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\ttext-align: center;\r\n\tpadding-top: 300px;\r\n}\r\n.h5filepu-load-wap>img{\r\n}\r\n.h5filepu-load-wap>lable{\r\n\tposition: absolute;\r\n\tcolor: #696969;\r\n\tfont-size: 25px;\r\n\tfont-weight: 900;\r\n\tfloat: right;\r\n\ttop: 10px;\r\n\tright: 10px;\r\n\tcursor: pointer;\r\n}\r\n.h5filepu-load-wap>lable:HOVER{\r\n\tfont-size: 30px;\r\n}\r\n/**  上传样式，结束   **/\r\n.cd-g-paging input{\r\n\theight: 24px;\r\n    width: 50px;\r\n    background-color: #f3f3f3;\r\n    border: 1px solid #ddd;\r\n    margin: 0 5px;\r\n    text-align: center;\r\n}\r\n", ""]);
 
 	// exports
 
@@ -1075,13 +1075,13 @@ webpackJsonp([2,6],[
 
 		//验证浮点型
 		ValueCheck.isFloat = function (value) {
-			if (ValueCheck.isNull(value)) {
-				return false;
-			}
-			if (typeof value == "number") {
-				return true;
-			} else if (typeof value == "string") {
-				return !isNaN(value);
+			var arr = value.split(".");
+			if (arr.length == 1) {
+				return this.isNumber(value);
+			} else if (arr.length == 2) {
+				if (this.isNumber(arr[0]) && this.isNumber(arr[1])) {
+					return true;
+				}
 			} else {
 				return false;
 			}
@@ -1266,6 +1266,17 @@ webpackJsonp([2,6],[
 			}
 		};
 		/**
+	  * 固定电话格式验证，返回ture表示为固定电话
+	  * @param str
+	  */
+		ValueCheck.isTelphone = function (str) {
+			if (!/^((\d{3,4}\-)|)\d{7,8}(|([-\u8f6c]{1}\d{1,5}))$/.test(str)) {
+				result = false;
+			} else {
+				return true;
+			}
+		};
+		/**
 	  * 身份证格式验证，返回ture表示为手机号
 	  * @param str
 	  */
@@ -1282,6 +1293,18 @@ webpackJsonp([2,6],[
 	  */
 		ValueCheck.isEmail = function (str) {
 			var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+			if (!myreg.test(str)) {
+				result = false;
+			} else {
+				return true;
+			}
+		};
+		/**
+	  * 区号格式验证，返回ture表示为区号
+	  * @param str
+	  */
+		ValueCheck.isAreacode = function (str) {
+			var myreg = /^0[1-9]{2,3}$/;
 			if (!myreg.test(str)) {
 				result = false;
 			} else {
@@ -1552,9 +1575,9 @@ webpackJsonp([2,6],[
 			    optParams = _config.optParams == undefined ? false : _config.optParams,
 			    optName = _config.optName == undefined ? false : _config.optName,
 			    optFuns = _config.optFuns == undefined ? false : _config.optFuns;
-			var totalDatas = gData.totalDatas,
-			    totalPages = gData.totalPages,
-			    curPage = gData.curPage,
+			var totalDatas = ValueCheck.getNumber(gData.totalDatas, 0),
+			    totalPages = ValueCheck.getNumber(gData.totalPages, 0),
+			    curPage = ValueCheck.getNumber(gData.curPage, 1),
 			    data = gData.data;
 			var htmlStr = '<div class="cd-g-header">共<span class="totalnums" >' + totalDatas + '</span>条数据。</div>';
 			htmlStr += '<div class="cd-g-context" ></div>';
@@ -1575,8 +1598,8 @@ webpackJsonp([2,6],[
 			htmlStr += '<table class="cd-g-table" ><thead></thead><tbody></tbody></table>';
 			$(context).html(htmlStr);
 			Grid.initGridTableHeader(containerId, thead);
-			if (data.length == 0) {
-				var htmlStr = '<div style="width: 100%;text-align: center;line-height: 300px;" >' + '<img src="' + ROOT + '/public/smpui/v1/images/grid_have_nodata.png" /></div>';
+			if (data == null || data.length == 0) {
+				var htmlStr = '<div style="width: 100%;text-align: center;line-height: 300px;" >' + '<img src="' + ROOT_UI_PUBLIC + '/_compnents/v1/images/grid_have_nodata.png" /></div>';
 				$(htmlStr).appendTo(context);
 			} else {
 				Grid.initGridTableBody(containerId, thead, data, optName, optFuns, optParams);
@@ -2177,9 +2200,9 @@ webpackJsonp([2,6],[
 			    spellHtmlFun = _config.spellHtmlFun,
 			    searchFun = _config.searchFun,
 			    optParams = _config.optParams;
-			var totalDatas = gData.totalDatas,
-			    totalPages = gData.totalPages,
-			    curPage = gData.curPage,
+			var totalDatas = ValueCheck.getNumber(gData.totalDatas, 0),
+			    totalPages = ValueCheck.getNumber(gData.totalPages, 0),
+			    curPage = ValueCheck.getNumber(gData.curPage, 1),
 			    data = gData.data;
 			var htmlStr = '<div class="cd-g-context" ></div>';
 			htmlStr += '<div class="cd-g-paging" ></div>';
@@ -2466,27 +2489,39 @@ webpackJsonp([2,6],[
 					msg = Validation.errorMsg["username"];
 				}
 			} else if (vali.indexOf("password") > -1) {
-				//msg = Validation.errorMsg["password"];
+				console.log(value);
+				rgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]{6,18}$/g;
+				if (!rgxStr.test(value)) {
+					msg = Validation.errorMsg["password"];
+				}
 			} else if (vali.indexOf("number") > -1) {
-				msg = Validation.errorMsg["number"];
+				if (!ValueCheck.isNumber(value)) {
+					msg = Validation.errorMsg["number"];
+				}
 			} else if (vali.indexOf("float") > -1) {
-
-				msg = Validation.errorMsg["float"];
+				if (!ValueCheck.isFloat(value)) {
+					msg = Validation.errorMsg["float"];
+				}
 			} else if (vali.indexOf("phone") > -1) {
-
-				msg = Validation.errorMsg["phone"];
+				if (!ValueCheck.isPhoneNumber(value)) {
+					msg = Validation.errorMsg["phone"];
+				}
 			} else if (vali.indexOf("telphone") > -1) {
-
-				msg = Validation.errorMsg["telphone"];
+				if (!ValueCheck.isTelphone(value)) {
+					msg = Validation.errorMsg["telphone"];
+				}
 			} else if (vali.indexOf("email") > -1) {
-
-				msg = Validation.errorMsg["email"];
+				if (!ValueCheck.isEmail(value)) {
+					msg = Validation.errorMsg["email"];
+				}
 			} else if (vali.indexOf("idcard") > -1) {
-
-				msg = Validation.errorMsg["idcard"];
+				if (!ValueCheck.isIden(value)) {
+					msg = Validation.errorMsg["idcard"];
+				}
 			} else if (vali.indexOf("areacode") > -1) {
-
-				msg = Validation.errorMsg["areacode"];
+				if (!ValueCheck.isAreacode(value)) {
+					msg = Validation.errorMsg["areacode"];
+				}
 			}
 			return msg;
 		};
