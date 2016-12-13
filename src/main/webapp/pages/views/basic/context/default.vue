@@ -168,7 +168,10 @@ var userDel = function(params, dom) {
 /**
  * 进行查询用户信息的方法
 **/
-var userSearch = function() {
+var userSearch = function(newPage) {
+	if(newPage == undefined){
+		newPage = 1;
+	}
 	var params = {
 		curPage: data.newPage,
 		pageSize: 2,
@@ -225,7 +228,7 @@ var config = {
 	//表格中的行操作方法
 	optFuns: {
 		edit_fun: userEdit,
-		del_fun: userDel,
+		del_fun: userDel
 	}
 };
 /**

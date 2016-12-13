@@ -33,35 +33,12 @@
 </div>
 </template>
 <script>
-var data={newPage:1}
-/**
- * Vue组件对象
-**/
-	export default {  
-		data() {
-		    return {
-		        courseList:"",
-		        classList:"",
-		        subjectList:"",
-		        params:{
-		        	orderType:"desc",
-					pageSize: 2,
-					curPage: data.newPage,
-		        }
-		    }
-		  },
-		 created () {  
-		      this.showdemand(),
-		      this.showclass(),
-		      this.showsubject()
-		    },
-    methods:{
-/** 查询点播列表 **/
-     showdemand:function(){
+
+
+function search_ten(newPage){
        var _self= this;
 		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
-        console.log(retVO);
        	  _self.params.curPage=retVO.curPage;
           _self.courseList = retVO;
           var config = {   
@@ -92,7 +69,35 @@ var data={newPage:1}
          	};
          	Paging.initPaging(config,function(){});
         });
-      },
+}
+
+
+var data={newPage:1}
+/**
+ * Vue组件对象
+**/
+	export default {  
+		data() {
+		    return {
+		        courseList:"",
+		        classList:"",
+		        subjectList:"",
+		        params:{
+		        	orderType:"desc",
+					pageSize: 2,
+					curPage: data.newPage,
+		        }
+		    }
+		  },
+		 created () {  
+		      this.showdemand(),
+		      this.showclass(),
+		      this.showsubject()
+		    },
+    methods:{
+/** 查询点播列表 **/
+     showdemand: search_ten,
+     //function(newPage){},
 /** 获取选择的年级参数**/
     	gradesearch: function(classlevelName,event){
     		$(event.target).addClass("active").siblings().removeClass("active");
