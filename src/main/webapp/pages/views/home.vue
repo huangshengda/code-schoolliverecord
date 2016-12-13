@@ -76,7 +76,7 @@ methods:{
         		window.open(ROOT_SERVER+"/front/path/live?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			laryIndex = layer.confirm('是否确定退出用户登录？', {
+      			laryIndex = layer.confirm('未登录暂无权限访问', {
 					btn: ['确定']
 				},function() {
 					layer.close(laryIndex);
@@ -94,7 +94,7 @@ methods:{
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			laryIndex = layer.confirm('是否确定退出用户登录？', {
+      			laryIndex = layer.confirm('未登录暂无权限访问', {
 					btn: ['确定']
 				},function() {
 					layer.close(laryIndex);

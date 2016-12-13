@@ -12,12 +12,12 @@ $(function(){
 		var type = filename.substring(ldot+1).toLowerCase();
 		var htmlStr = spellShowFileup(sequence,size,name,type);
 		$("#show_fileup_detail").html(htmlStr);
-		/*H5fileup.startFileup(file,ROOT_SERVER+"/video/upload",sequence,function(retVO){
+		H5fileup.startFileup(file,ROOT_SERVER+"/video/upload",sequence,function(retVO){
 			
 		});
 		H5fileup.progressFileup(sequence,ROOT_SERVER+"/getUploadProgress",function(){
 			
-		});*/
+		});
 	});
 	/**
 	 * 拼接上传内容的过程UI

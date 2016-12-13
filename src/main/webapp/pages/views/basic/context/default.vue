@@ -21,13 +21,14 @@
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>角色:</label></span>
           <span class="cd-f-value">
             <select name="userType" id="search_userType">
-            <option value="-1">请选择</option>
-            <option value="ADMIN">管理员</option>
-            <option value="TEACHER">老师</option>
-            <option value="STUDENT">学生</option></select>
+            	<option value="-1">请选择</option>
+            	<option value="ADMIN">管理员</option>
+            	<option value="TEACHER">老师</option>
+            	<option value="STUDENT">学生</option>
+            </select>
           </span>
         </div>   
-        <button class="sBtn" type="button" @click="search_one">查询</button>
+        <button class="sBtn" type="button" @click="userSear">查询</button>
       </div>
     </form>
   <!-- 条件 end -->
@@ -59,7 +60,9 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
-             <select name="userType" id="edit_userType"><option value="-1">请选择</option><option value="ADMIN">管理员</option>
+             <select name="userType" id="edit_userType">
+             <option value="-1">请选择</option>
+             <option value="ADMIN">管理员</option>
             <option value="TEACHER">老师</option>
             <option value="STUDENT">学生</option></select>
           </span>
@@ -109,8 +112,7 @@
  * 表格中的操作---编辑用户
 **/
 var userEdit = function(params, dom) {
-console.log(params);
-	$("#edit_userType").value = params.userType;
+	$("#edit_userType option[value='"+params.userType+"']").prop("selected",true);
 	$('#edit_username').text(params.username);
 	$('#edit_realname').val(params.realname);
 	$('#edit_userId').val(params.userId);
@@ -171,7 +173,7 @@ var userSearch = function(newPage) {
 	}
 	var params = {
 		curPage: newPage,
-		pageSize: 20,
+		pageSize: 2,
 		username: $("#search_username").val(),
 		realname: $("#search_realname").val(),
 		userType: $("#search_userType").val()
@@ -200,7 +202,7 @@ var config = {
 	},
 	{
 		name: "角色",
-		valuekey: "userType"
+		valuekey: "userType_chinese"
 	},
 	{
 		name: "操作",
@@ -215,7 +217,7 @@ var config = {
 	//执行页面查询的方法
 	searchFun: userSearch,
 	//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	optParams: ["userId", "username", "realname", "userType", "password"],
+	optParams: ["userId", "username", "realname", "userType","userType_chinese","password"],
 	//表格中的行操作名称
 	optName: {
 		edit_fun: "编辑",
@@ -232,10 +234,10 @@ var config = {
 **/
 export default {
 	created() {
-		this.search_one()
+		this.userSear()
 	},
 	methods: {
-		search_one: userSearch,
+		userSear: userSearch,
 		addUser: function() {
 			layer.open({
 				type: 1,
