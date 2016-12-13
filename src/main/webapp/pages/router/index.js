@@ -4,6 +4,7 @@ import menu from 'menu'
 Vue.use(Router) // 路由
 
 var router = new Router({
+	mode: 'history',
   routes: [
     ...generateRoutes(menu),
     {
