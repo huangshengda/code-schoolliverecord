@@ -25,7 +25,7 @@ var mySub = function(){
         var _self = this;
 		var params = {curPage: data.newPage,pageSize: 2,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
-       	 params.curPage=retVO.curPage;
+       	 _self.params.curPage=retVO.curPage;
           _self.mycourceList = retVO;
           var htmlStr = "";
           var config = { 
