@@ -266,7 +266,9 @@
 			}
 			if(value == 100){
 				//clearInterval(interval);
-				callback();
+				if(typeof(callback) == "function"){
+					callback();
+				}
 			}
 		//}, 1000);
 	};
@@ -285,17 +287,14 @@
 			cache: false,
 			dataType: "json",
 			jsonp: "jsonpCallback",
-			success: function(json) {
-				//console.log(json);
-				value = json["message"];
+			success: function(retVO) {
+				value = retVO.data;
 			},
 			error: function(e) {
-				//console.log("get file size url error");
 				value = "error" ;
 			}
 			//complete: function(){}
 		});
-		//console.log(value);
 		return value;
 	};
 	
