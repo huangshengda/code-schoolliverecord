@@ -92,7 +92,7 @@
           <span class="cd-f-value">
           	<button class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
           		上传视频文件
-          		<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4" >
+          		<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4," >
           	</button>
              <div class="up-list mt20" id="show_fileup_detail" >
 	             <!-- <div class="up-item">

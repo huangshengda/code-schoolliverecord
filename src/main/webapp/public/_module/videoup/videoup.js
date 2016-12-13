@@ -12,11 +12,13 @@ $(function(){
 		var type = filename.substring(ldot+1).toLowerCase();
 		var htmlStr = spellShowFileup(sequence,size,name,type);
 		$("#show_fileup_detail").html(htmlStr);
-		H5fileup.startFileup(file,ROOT_SERVER+"/video/upload",sequence,function(retVO){
+		var fileupUrl = ROOT_SERVER+"/video/upload?token="+sessionStorage.getItem("token");
+		H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
 			
 		});
-		H5fileup.progressFileup(sequence,ROOT_SERVER+"/getUploadProgress",function(){
-			
+		var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
+		H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
+			console.log(retVO);
 		});
 	});
 	/**
