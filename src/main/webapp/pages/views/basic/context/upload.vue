@@ -29,7 +29,7 @@
             <select data-vali="notnull" name="subjectName" id="search_subjectName"><option value="">全部</option><option v-for="subject in subjectList.data">{{subject.subjectName}}</option></select>
           </span>
         </div>   
-        <button class="sBtn" type="button" @click="search_one">查询</button>
+        <button class="sBtn" type="button" @click="search_one(1)">查询</button>
       </div>
     </form>
     <!-- 表单 start -->
@@ -39,7 +39,6 @@
 </div>
 </template>
 <script>
-var data={newPage:1}
 /**
  * 表格中的操作---删除上传资源
 **/
@@ -77,9 +76,12 @@ var uploadEdit = function(params, dom) {
 /**
  * 进行查询上传信息的方法
 **/
-var uploadSearch = function() {
+var uploadSearch = function(newPage) {
+	if(newPage == "undefined"){
+     		newPage=1;
+     }
 	var params = {
-		curPage: data.newPage,
+		curPage: newPage,
 		pageSize: 20,
 		resourceNameKey: $("#search_resourceName").val(),
 		authorKey: $("#search_author").val(),
@@ -136,7 +138,6 @@ export default {
     	return {
        		classList:"",
        		subjectList:"",
-       		data
     	}
   	},
   	created () {    

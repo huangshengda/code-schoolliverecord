@@ -53,7 +53,6 @@
 </div>
 </template>
 <script>
-var data={newPage:1}
 /**
  * 表格中的操作---编辑服务器
 **/
@@ -112,15 +111,16 @@ var servDel = function(params, dom) {
 /**
  * 进行查询服务器信息的方法
 **/
-var servSearch = function() {
+var servSearch = function(newPage) {
+	if(newPage == "undefined"){
+     	newPage=1;
+     }
 	var params = {
-		curPage: data.newPage,
+		curPage: newPage,
 		pageSize: 20,
 	};
 	CDUtil.ajaxPost("/base/dmsserver/list", params,function(retVO) {
-		params.curPage=retVO.curPage;
 		config.gData = retVO;
-		console.log(retVO);
 		Grid.initGrid(config,function(){});
 	});
 };
@@ -161,9 +161,6 @@ var config = {
  * Vue组件对象
 **/
   export default {
-  	data(){
-		return data 
-	},
     created () {    
       this.server()
     },

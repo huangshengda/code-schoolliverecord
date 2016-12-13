@@ -9,8 +9,9 @@
 				</div>
 				<div class="clear"></div>
 				<!-- 中间内容-列表 start-->
-				  <div class="list mt40"  id="sub_list"> 
-				  </div>
+				  <div class="list mt40"  id="sub_list">
+				     
+				   </div>
 				   <div class="clear"></div>
 				   <!-- 中间内容-列表 end-->
 			</div>
@@ -20,13 +21,13 @@
 </template>
 <script>
 var mySub = function(newPage){
-	if(newPage == undefined){
-		newPage = 1;
-	}
-		var params = {curPage:newPage,pageSize: 2,};
+		if(newPage == "undefined"){
+     		newPage=1;
+     	}
+        var _self = this;
+		var params = {curPage: newPage ,pageSize: 2,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
-       	 //_self.params.curPage=retVO.curPage;
-          //_self.mycourceList = retVO;
+          _self.mycourceList = retVO;
           var htmlStr = "";
           var config = { 
           //用来展示表格控件的div的id
@@ -53,7 +54,7 @@ var mySub = function(newPage){
 				return htmlStr;
 			},
          	 //执行页面查询的方法
-			searchFun: mySub, 
+			searchFun: _self.showdemand, 
          	};
          	Paging.initPaging(config,function(){});
         });
@@ -62,13 +63,14 @@ var mySub = function(newPage){
 		data() {
 		    return {
 		        mycourceList:"",
+		        data
 		    }
 		  },
 		 created () {    
 		      this.showdemand()
 		    },
     methods:{
-     showdemand:mySub,
+     showdemand: mySub,
       mysubjectDel:function(resourceId) {
       	 var _self = this;
 		layer.alert('删除后则该资源在点播列表同步删除?',
