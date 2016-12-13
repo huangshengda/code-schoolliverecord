@@ -96,7 +96,7 @@
 	 </servlet>
 	 <servlet>
 	  <servlet-name>imageUpload</servlet-name>
-	  <servlet-class>com.codyy.slr.servet.UploadVideoServlet</servlet-class>
+	  <servlet-class>com.codyy.slr.servet.UploadImageServlet</servlet-class>
 	 </servlet>
  	<servlet>
  	 <servlet-name>progressServlet</servlet-name>
@@ -107,7 +107,7 @@
  		 <url-pattern>/video/upload</url-pattern>
 	 </servlet-mapping>
 	  <servlet-mapping>
- 		 <servlet-name>image</servlet-name>
+ 		 <servlet-name>imageUpload</servlet-name>
  		 <url-pattern>/image/upload</url-pattern>
 	 </servlet-mapping>
 	 <servlet-mapping>
