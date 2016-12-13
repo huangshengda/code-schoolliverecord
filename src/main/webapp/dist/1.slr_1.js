@@ -525,14 +525,14 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('transition', {
+	  return _c('transition', {
 	    on: {
 	      "beforeEnter": _vm.beforeEnter,
 	      "afterEnter": _vm.afterEnter,
 	      "beforeLeave": _vm.beforeLeave,
 	      "afterLeave": _vm.afterLeave
 	    }
-	  }, [_vm._t("default")])
+	  }, [_vm._t("default")], true)
 	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
@@ -547,28 +547,28 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('aside', [_h('ul', {
+	  return _c('aside', [_c('ul', {
 	    staticClass: "menu-list"
-	  }, [_vm._l((_vm.menu), function(item, index) {
-	    return _h('li', {
+	  }, _vm._l((_vm.menu), function(item, index) {
+	    return _c('li', {
 	      staticClass: "menu-level1",
 	      class: {
 	        'has-chlidren': item.children && item.children.length, 'unfold': item.meta.expanded, 'active': !index
 	      }
-	    }, [_h('div', {
+	    }, [_c('div', {
 	      on: {
 	        "click": function($event) {
 	          _vm.toggle(item, $event)
 	        }
 	      }
-	    }, [_h('router-link', {
+	    }, [_c('router-link', {
 	      class: {
 	        'is-active': _vm.isActive(item.path)
 	      },
 	      attrs: {
 	        "to": _vm.$route.matched[0].path + '/' + item.path
 	      }
-	    }, [_vm._s(item.meta.showName)])]), " ", (item.children && item.children.length) ? _h('expanding', [_h('ul', {
+	    }, [_vm._v(_vm._s(item.meta.showName))])]), _vm._v(" "), (item.children && item.children.length) ? _c('expanding', [_c('ul', {
 	      directives: [{
 	        name: "show",
 	        rawName: "v-show",
@@ -576,14 +576,14 @@ webpackJsonp([1,6],[
 	        expression: "item.children"
 	      }],
 	      staticClass: "menu-level2"
-	    }, [_vm._l((item.children), function(subItem) {
-	      return _h('li', [_h('router-link', {
+	    }, _vm._l((item.children), function(subItem) {
+	      return _c('li', [_c('router-link', {
 	        attrs: {
 	          "to": _vm.$route.matched[0].path + '/' + item.path + '/' + subItem.path
 	        }
-	      }, [_vm._s(subItem.meta && subItem.meta.showName || subItem.name)])])
-	    })])]) : _vm._e()])
-	  })])])
+	      }, [_vm._v(_vm._s(subItem.meta && subItem.meta.showName || subItem.name))])])
+	    }))]) : _vm._e()])
+	  }))])
 	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
@@ -865,16 +865,16 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('ol', {
+	  return _c('ol', {
 	    staticClass: "breadcrumb"
-	  }, [_vm._l((_vm.list), function(item, index) {
-	    return _h('li', [(index !== _vm.list.length - 1) ? [_h('router-link', {
+	  }, _vm._l((_vm.list), function(item, index) {
+	    return _c('li', [(index !== _vm.list.length - 1) ? [_c('router-link', {
 	      staticClass: "red",
 	      attrs: {
 	        "to": item.path
 	      }
-	    }, [_vm._s(item.meta && item.meta.showName || item.name)])] : ["\n        " + _vm._s(item.meta && item.meta.showName || item.name) + "\n      "], " "])
-	  })])
+	    }, [_vm._v(_vm._s(item.meta && item.meta.showName || item.name))])] : [_vm._v("\n        " + _vm._s(item.meta && item.meta.showName || item.name) + "\n      ")], _vm._v(" ")], true)
+	  }))
 	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
@@ -888,17 +888,17 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "levelbar clearfix"
-	  }, [_h('h2', {
+	  }, [_c('h2', {
 	    staticClass: "pull-left title"
-	  }, ["hello  " + _vm._s(_vm.name) + " "]), " ", _h('div', {
+	  }, [_vm._v("hello  " + _vm._s(_vm.name) + " ")]), _vm._v(" "), _c('div', {
 	    staticClass: "pull-right"
-	  }, [_h('breadcrumb', {
+	  }, [_c('breadcrumb', {
 	    attrs: {
 	      "list": _vm.list
 	    }
-	  }, [_h('breadcrumb')])])])
+	  }, [_c('breadcrumb')])])])
 	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
@@ -912,13 +912,13 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "main"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "left fl"
-	  }, [_h('sidebar')]), " ", _h('div', {
+	  }, [_c('sidebar')]), _vm._v(" "), _c('div', {
 	    staticClass: "right fl"
-	  }, [_h('router-view')])])
+	  }, [_c('router-view')])])
 	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
@@ -1010,6 +1010,7 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var data = { newPage: 1 };
 	/**
 	 * 表格中的操作---删除评论
 	**/
@@ -1031,17 +1032,15 @@ webpackJsonp([1,6],[
 	/**
 	 * 进行查询评论信息的方法
 	**/
-	var comSearch = function comSearch(newPage) {
-		if (newPage == undefined) {
-			newPage = 1;
-		}
+	var comSearch = function comSearch() {
 		var cParams = {
-			curPage: newPage,
+			curPage: data.newPage,
 			pageSize: 20,
 			keywords: $("#search_keywords").val(),
 			realname: $("#search_realname").val()
 		};
 		CDUtil.ajaxPost("/base/resource/comment/list", cParams, function (retVO) {
+			cParams.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
 		});
@@ -1091,20 +1090,20 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "condition"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(0), " ", _vm._m(1), " ", _h('button', {
+	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('button', {
 	    staticClass: "sBtn",
 	    attrs: {
 	      "type": "button"
@@ -1112,21 +1111,21 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.search_one
 	    }
-	  }, ["查询"])])]), " ", " ", " ", _h('div', {
+	  }, [_vm._v("查询")])])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "])])
+	  }), _vm._v(" ")])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["关键词:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("关键词:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "keywords",
@@ -1135,15 +1134,15 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["评论人:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("评论人:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
@@ -1438,86 +1437,86 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }, [_h('button', {
+	  }, [_c('button', {
 	    staticClass: "btn fr",
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["添加年级"])]), " ", _h('div', {
+	  }, [_vm._v("添加年级")])]), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "grade"
 	    }
-	  }, [_h('table', [_vm._m(0), " ", _h('tbody', {
+	  }, [_c('table', [_vm._m(0), _vm._v(" "), _c('tbody', {
 	    attrs: {
 	      "id": "sort"
 	    }
-	  }, [_vm._l((_vm.grades.data), function(grade, index) {
-	    return _h('tr', [_h('td', {
+	  }, _vm._l((_vm.grades.data), function(grade, index) {
+	    return _c('tr', [_c('td', {
 	      attrs: {
 	        "data-id": grade.classlevelId
 	      }
-	    }, [_vm._s(grade.classlevelName)]), " ", _h('td', [_h('i', {
+	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
 	        "click": _vm.upbtn
 	      }
-	    }), _h('i', {
+	    }), _c('i', {
 	      staticClass: "iconfont icon-movedown downbtn",
 	      on: {
 	        "click": _vm.downbtn
 	      }
-	    })]), " ", _h('td', {
+	    })]), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
-	    }, [_h('span', {
+	    }, [_c('span', {
 	      on: {
 	        "click": function($event) {
 	          _vm.manEdit(grade.classlevelName, grade.classlevelId)
 	        }
 	      }
-	    }, ["编辑"]), "   ", _h('span', {
+	    }, [_vm._v("编辑")]), _vm._v("   "), _c('span', {
 	      on: {
 	        "click": function($event) {
 	          _vm.manDel(grade.classlevelId)
 	        }
 	      }
-	    }, ["删除"])])])
-	  })])])]), " ", " ", " ", _h('div', {
+	    }, [_vm._v("删除")])])])
+	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "grade",
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "]), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
+	  }), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._v(" "), _vm._v(" "), _vm._m(2), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('thead', [_h('th', ["年级"]), _h('th', ["排序"]), _h('th', ["操作"])])
+	  return _c('thead', [_c('th', [_vm._v("年级")]), _c('th', [_vm._v("排序")]), _c('th', [_vm._v("操作")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "editgrade"
 	    }
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "hidden",
 	      "name": "classlevelId",
 	      "id": "edit-classlevelId"
 	    }
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-row mt20"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["年级:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("年级:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "classlevelName",
@@ -1527,21 +1526,21 @@ webpackJsonp([1,6],[
 	    }
 	  })])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "addgrade"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row mt20"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["年级:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("年级:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "classlevelName",
@@ -1720,6 +1719,7 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var _data = { newPage: 1 };
 	/**
 	 * 表格中的操作---编辑用户
 	**/
@@ -1789,6 +1789,7 @@ webpackJsonp([1,6],[
 			userType: $("#search_userType").val()
 		};
 		CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
+
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
 		});
@@ -1839,7 +1840,11 @@ webpackJsonp([1,6],[
 	/**
 	 * Vue组件对象
 	**/
+
 	exports.default = {
+		data: function data() {
+			return _data;
+		},
 		created: function created() {
 			this.userSear();
 		},
@@ -1882,25 +1887,25 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }, [_h('button', {
+	  }, [_c('button', {
 	    staticClass: "btn fr",
 	    on: {
 	      "click": _vm.addUser
 	    }
-	  }, ["添加用户"])]), " ", _h('div', {
+	  }, [_vm._v("添加用户")])]), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "condition"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(0), " ", _vm._m(1), " ", _vm._m(2), " ", _h('button', {
+	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('button', {
 	    staticClass: "sBtn",
 	    attrs: {
 	      "type": "button"
@@ -1908,21 +1913,21 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.userSear
 	    }
-	  }, ["查询"])])]), " ", " ", " ", _h('div', {
+	  }, [_vm._v("查询")])])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "]), " ", " ", _vm._m(3), " ", " ", " ", _vm._m(4), " "])
+	  }), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._v(" "), _vm._v(" "), _vm._m(4), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["用户名:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "username",
@@ -1931,15 +1936,15 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["姓名:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
@@ -1948,188 +1953,188 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["角色:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "name": "userType",
 	      "id": "search_userType"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": "-1"
 	    }
-	  }, ["请选择"]), " ", _h('option', {
+	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "ADMIN"
 	    }
-	  }, ["管理员"]), " ", _h('option', {
+	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "TEACHER"
 	    }
-	  }, ["老师"]), " ", _h('option', {
+	  }, [_vm._v("老师")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "STUDENT"
 	    }
-	  }, ["学生"])])])])
+	  }, [_vm._v("学生")])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "edituser"
 	    }
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "hidden",
 	      "name": "userId",
 	      "id": "edit_userId"
 	    }
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["用户名:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value",
 	    attrs: {
 	      "name": "username",
 	      "id": "edit_username"
 	    }
-	  })]), " ", _h('div', {
+	  })]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["姓名:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
 	      "data-vali": "notnull",
 	      "id": "edit_realname"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["密码:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("密码:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "666666"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["角色:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "name": "userType",
 	      "id": "edit_userType"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": "-1"
 	    }
-	  }, ["请选择"]), " ", _h('option', {
+	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "ADMIN"
 	    }
-	  }, ["管理员"]), " ", _h('option', {
+	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "TEACHER"
 	    }
-	  }, ["老师"]), " ", _h('option', {
+	  }, [_vm._v("老师")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "STUDENT"
 	    }
-	  }, ["学生"])])])])])])
+	  }, [_vm._v("学生")])])])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "adduser"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["用户名:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "username",
 	      "data-vali": "notnull,username"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["姓名:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "realname",
 	      "data-vali": "notnull"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["密码:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("密码:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "password",
 	      "data-vali": "notnull,password"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["角色:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "name": "userType",
 	      "data-vali": "notnull"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": "-1"
 	    }
-	  }, ["请选择"]), " ", _h('option', {
+	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "ADMIN"
 	    }
-	  }, ["管理员"]), " ", _h('option', {
+	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "TEACHER"
 	    }
-	  }, ["老师"]), " ", _h('option', {
+	  }, [_vm._v("老师")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "STUDENT"
 	    }
-	  }, ["学生"])])])])])])
+	  }, [_vm._v("学生")])])])])])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -2417,86 +2422,86 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }, [_h('button', {
+	  }, [_c('button', {
 	    staticClass: "btn fr",
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["添加学科"])]), " ", _h('div', {
+	  }, [_vm._v("添加学科")])]), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "grade"
 	    }
-	  }, [_h('table', [_vm._m(0), " ", _h('tbody', {
+	  }, [_c('table', [_vm._m(0), _vm._v(" "), _c('tbody', {
 	    attrs: {
 	      "id": "sort"
 	    }
-	  }, [_vm._l((_vm.grades.data), function(grade, index) {
-	    return _h('tr', [_h('td', {
+	  }, _vm._l((_vm.grades.data), function(grade, index) {
+	    return _c('tr', [_c('td', {
 	      attrs: {
 	        "data-id": grade.subjectId
 	      }
-	    }, [_vm._s(grade.subjectName)]), " ", _h('td', [_h('i', {
+	    }, [_vm._v(_vm._s(grade.subjectName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
 	        "click": _vm.upbtn
 	      }
-	    }), _h('i', {
+	    }), _c('i', {
 	      staticClass: "iconfont icon-movedown downbtn",
 	      on: {
 	        "click": _vm.downbtn
 	      }
-	    })]), " ", _h('td', {
+	    })]), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
-	    }, [_h('span', {
+	    }, [_c('span', {
 	      on: {
 	        "click": function($event) {
 	          _vm.manEdit(grade.subjectName, grade.subjectId)
 	        }
 	      }
-	    }, ["编辑"]), "   ", _h('span', {
+	    }, [_vm._v("编辑")]), _vm._v("   "), _c('span', {
 	      on: {
 	        "click": function($event) {
 	          _vm.manDel(grade.subjectId)
 	        }
 	      }
-	    }, ["删除"])])])
-	  })])])]), " ", " ", " ", _h('div', {
+	    }, [_vm._v("删除")])])])
+	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "grade",
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "]), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
+	  }), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._v(" "), _vm._v(" "), _vm._m(2), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('thead', [_h('th', ["学科"]), _h('th', ["排序"]), _h('th', ["操作"])])
+	  return _c('thead', [_c('th', [_vm._v("学科")]), _c('th', [_vm._v("排序")]), _c('th', [_vm._v("操作")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "editsubject"
 	    }
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "hidden",
 	      "name": "subjectId",
 	      "id": "edit-subjectId"
 	    }
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-row mt20"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["学科:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("学科:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "subjectName",
@@ -2506,21 +2511,21 @@ webpackJsonp([1,6],[
 	    }
 	  })])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "addsubject"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row mt20"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', ["学科:"])]), " ", _h('span', {
+	  }, [_c('label', [_vm._v("学科:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "subjectName",
@@ -2675,24 +2680,24 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "platform"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(0), " ", _h('div', {
+	  }, [_vm._m(0), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(1), " ", _h('span', {
+	  }, [_vm._m(1), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('img', {
+	  }, [_c('img', {
 	    staticClass: "show",
 	    attrs: {
 	      "src": "",
@@ -2702,9 +2707,9 @@ webpackJsonp([1,6],[
 	      "file-name": "",
 	      "file-path": ""
 	    }
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "btn btn-default smp-fileupshow mt10"
-	  }, ["上传logo\r\n              ", _h('input', {
+	  }, [_vm._v("上传logo\r\n              "), _c('input', {
 	    staticClass: "smp-fileupinput",
 	    attrs: {
 	      "type": "file",
@@ -2717,9 +2722,9 @@ webpackJsonp([1,6],[
 	        _vm.impup();
 	      }
 	    }
-	  })])])]), " ", _vm._m(2), " ", _h('div', {
+	  })])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve mt40"
-	  }, [_vm._m(3), " ", _h('span', [_h('button', {
+	  }, [_vm._m(3), _vm._v(" "), _c('span', [_c('button', {
 	    staticClass: "lay-btn green-btn mr20",
 	    attrs: {
 	      "type": "button"
@@ -2727,22 +2732,22 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.subPlat
 	    }
-	  }, ["保存"]), _h('button', {
+	  }, [_vm._v("保存")]), _c('button', {
 	    staticClass: "lay-btn green-btn",
 	    on: {
 	      "click": _vm.rePlat
 	    }
-	  }, ["恢复默认"])])])])])])])
+	  }, [_vm._v("恢复默认")])])])])])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["网站title:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("网站title:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    staticClass: "w730",
 	    attrs: {
 	      "type": "text",
@@ -2751,21 +2756,21 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('span', {
+	  return _c('span', {
 	    staticClass: "cd-f-name vat"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["网站logo:"])])
+	  }, [_vm._v("*")]), _c('label', [_vm._v("网站logo:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["网站底部:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("网站底部:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    staticClass: "w730",
 	    attrs: {
 	      "type": "text",
@@ -2774,9 +2779,9 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('span', {
+	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label')])
+	  }, [_c('label')])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -2893,6 +2898,7 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var _data = { newPage: 1 };
 	/**
 	 * 表格中的操作---编辑服务器
 	**/
@@ -2949,15 +2955,13 @@ webpackJsonp([1,6],[
 	/**
 	 * 进行查询服务器信息的方法
 	**/
-	var servSearch = function servSearch(newPage) {
-		if (newPage == undefined) {
-			newPage = 1;
-		}
+	var servSearch = function servSearch() {
 		var params = {
-			curPage: newPage,
+			curPage: _data.newPage,
 			pageSize: 20
 		};
 		CDUtil.ajaxPost("/base/dmsserver/list", params, function (retVO) {
+			params.curPage = retVO.curPage;
 			config.gData = retVO;
 			console.log(retVO);
 			Grid.initGrid(config, function () {});
@@ -2995,6 +2999,9 @@ webpackJsonp([1,6],[
 	 * Vue组件对象
 	**/
 	exports.default = {
+		data: function data() {
+			return _data;
+		},
 		created: function created() {
 			this.server();
 		},
@@ -3034,66 +3041,66 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }, [_h('button', {
+	  }, [_c('button', {
 	    staticClass: "btn fr",
 	    on: {
 	      "click": _vm.add
 	    }
-	  }, ["新增服务器"])]), " ", _vm._m(0), " ", " ", _vm._m(1), " ", " ", " ", _vm._m(2), " "])
+	  }, [_vm._v("新增服务器")])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._v(" "), _vm._v(" "), _vm._m(2), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "])
+	  }), _vm._v(" ")])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "editServer"
 	    }
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "hidden",
 	      "name": "serverId",
 	      "id": "search_serverId"
 	    }
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["服务器名称:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("服务器名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value",
 	    attrs: {
 	      "name": "serverName"
 	    }
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "serverName",
 	      "id": "search_serverName",
 	      "data-vali": "notnull"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["服务器地址:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("服务器地址:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "serverValue",
@@ -3102,50 +3109,50 @@ webpackJsonp([1,6],[
 	    }
 	  })])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('form', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
 	      "id": "addServer"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["服务器名称:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("服务器名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value",
 	    attrs: {
 	      "name": "serverName"
 	    }
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "serverName",
 	      "data-vali": "notnull"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["服务器地址:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("服务器地址:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "name": "serverValue",
 	      "data-vali": "notnull"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label')]), " "])])])
+	  }, [_c('label')]), _vm._v(" ")])])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3248,6 +3255,7 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var _data = { newPage: 1 };
 	/**
 	 * 表格中的操作---删除上传资源
 	**/
@@ -3283,12 +3291,9 @@ webpackJsonp([1,6],[
 	/**
 	 * 进行查询上传信息的方法
 	**/
-	var uploadSearch = function uploadSearch(newPage) {
-		if (newPage == undefined) {
-			newPage = 1;
-		}
+	var uploadSearch = function uploadSearch() {
 		var params = {
-			curPage: newPage,
+			curPage: _data.newPage,
 			pageSize: 20,
 			resourceNameKey: $("#search_resourceName").val(),
 			authorKey: $("#search_author").val(),
@@ -3297,6 +3302,7 @@ webpackJsonp([1,6],[
 			sourceType: "RECORD"
 		};
 		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
+			params.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
 		});
@@ -3340,7 +3346,8 @@ webpackJsonp([1,6],[
 		data: function data() {
 			return {
 				classList: "",
-				subjectList: ""
+				subjectList: "",
+				data: _data
 			};
 		},
 		created: function created() {
@@ -3374,52 +3381,52 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "condition"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(0), " ", _vm._m(1), " ", _h('div', {
+	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(2), " ", _h('span', {
+	  }, [_vm._m(2), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "classlevelName",
 	      "id": "search_classlevelName"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": ""
 	    }
-	  }, ["请选择年级"]), _vm._l((_vm.classList.data), function(grade) {
-	    return _h('option', [_vm._s(grade.classlevelName)])
-	  })])])]), " ", _h('div', {
+	  }, [_vm._v("请选择年级")]), _vm._l((_vm.classList.data), function(grade) {
+	    return _c('option', [_vm._v(_vm._s(grade.classlevelName))])
+	  })], true)])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(3), " ", _h('span', {
+	  }, [_vm._m(3), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "subjectName",
 	      "id": "search_subjectName"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": ""
 	    }
-	  }, ["全部"]), _vm._l((_vm.subjectList.data), function(subject) {
-	    return _h('option', [_vm._s(subject.subjectName)])
-	  })])])]), " ", _h('button', {
+	  }, [_vm._v("全部")]), _vm._l((_vm.subjectList.data), function(subject) {
+	    return _c('option', [_vm._v(_vm._s(subject.subjectName))])
+	  })], true)])]), _vm._v(" "), _c('button', {
 	    staticClass: "sBtn",
 	    attrs: {
 	      "type": "button"
@@ -3427,21 +3434,21 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.search_one
 	    }
-	  }, ["查询"])])]), " ", " ", _h('div', {
+	  }, [_vm._v("查询")])])]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "])])
+	  }), _vm._v(" ")])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["资源名称:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "data-vali": "notnull",
@@ -3451,15 +3458,15 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["主讲教师:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "data-vali": "notnull",
@@ -3468,17 +3475,17 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('span', {
+	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["年级:"])])
+	  }, [_vm._v("*")]), _c('label', [_vm._v("年级:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('span', {
+	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["学科:"])])
+	  }, [_vm._v("*")]), _c('label', [_vm._v("学科:")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3581,6 +3588,7 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var _data = { newPage: 1 };
 	/**
 	 * 表格中的操作---删除上传资源
 	**/
@@ -3616,12 +3624,9 @@ webpackJsonp([1,6],[
 	/**
 	 * 进行查询上传信息的方法
 	**/
-	var uploadSearch = function uploadSearch(newPage) {
-		if (newPage == undefined) {
-			newPage = 1;
-		}
+	var uploadSearch = function uploadSearch() {
 		var params = {
-			curPage: newPage,
+			curPage: _data.newPage,
 			pageSize: 20,
 			resourceNameKey: $("#search_resourceName").val(),
 			authorKey: $("#search_author").val(),
@@ -3630,6 +3635,7 @@ webpackJsonp([1,6],[
 			sourceType: "UPLOAD"
 		};
 		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
+			params.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
 		});
@@ -3670,7 +3676,8 @@ webpackJsonp([1,6],[
 		data: function data() {
 			return {
 				classList: "",
-				subjectList: ""
+				subjectList: "",
+				data: _data
 			};
 		},
 		created: function created() {
@@ -3708,59 +3715,59 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "content"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }, [_h('button', {
+	  }, [_c('button', {
 	    staticClass: "btn fr",
 	    on: {
 	      "click": function($event) {
 	        _vm.openUploadup()
 	      }
 	    }
-	  }, ["上传课程视频"])]), " ", _h('div', {
+	  }, [_vm._v("上传课程视频")])]), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
-	  }, [_h('form', {
+	  }, [_c('form', {
 	    attrs: {
 	      "action": "",
 	      "id": "condition"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(0), " ", _vm._m(1), " ", _h('div', {
+	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(2), " ", _h('span', {
+	  }, [_vm._m(2), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "classlevelName",
 	      "id": "search_classlevelName"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": ""
 	    }
-	  }, ["请选择年级"]), _vm._l((_vm.classList.data), function(grade) {
-	    return _h('option', [_vm._s(grade.classlevelName)])
-	  })])])]), " ", _h('div', {
+	  }, [_vm._v("请选择年级")]), _vm._l((_vm.classList.data), function(grade) {
+	    return _c('option', [_vm._v(_vm._s(grade.classlevelName))])
+	  })], true)])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_vm._m(3), " ", _h('span', {
+	  }, [_vm._m(3), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('select', {
+	  }, [_c('select', {
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "subjectName",
 	      "id": "search_subjectName"
 	    }
-	  }, [_h('option', {
+	  }, [_c('option', {
 	    attrs: {
 	      "value": ""
 	    }
-	  }, ["全部"]), _vm._l((_vm.subjectList.data), function(subject) {
-	    return _h('option', [_vm._s(subject.subjectName)])
-	  })])])]), " ", _h('button', {
+	  }, [_vm._v("全部")]), _vm._l((_vm.subjectList.data), function(subject) {
+	    return _c('option', [_vm._v(_vm._s(subject.subjectName))])
+	  })], true)])]), _vm._v(" "), _c('button', {
 	    staticClass: "sBtn",
 	    attrs: {
 	      "type": "button"
@@ -3768,21 +3775,21 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.search_one
 	    }
-	  }, ["查询"])])]), " ", " ", _h('div', {
+	  }, [_vm._v("查询")])])]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  }), " "])])
+	  }), _vm._v(" ")])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["资源名称:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "data-vali": "notnull",
@@ -3792,15 +3799,15 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "cd-f-eve"
-	  }, [_h('span', {
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["主讲教师:"])]), " ", _h('span', {
+	  }, [_vm._v("*")]), _c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "data-vali": "notnull",
@@ -3809,17 +3816,17 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('span', {
+	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["年级:"])])
+	  }, [_vm._v("*")]), _c('label', [_vm._v("年级:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('span', {
+	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_h('label', {
+	  }, [_c('label', {
 	    staticClass: "cd-f-notnull"
-	  }, ["*"]), _h('label', ["学科:"])])
+	  }, [_vm._v("*")]), _c('label', [_vm._v("学科:")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3916,6 +3923,44 @@ webpackJsonp([1,6],[
 	//
 	//
 
+
+	function search_ten(newPage) {
+	  var _self = this;
+	  var params = this.params;
+	  CDUtil.ajaxPost("/demand/list", params, function (retVO) {
+	    _self.params.curPage = retVO.curPage;
+	    _self.courseList = retVO;
+	    var config = {
+	      //用来展示表格控件的div的id
+	      containerId: "de_list",
+	      //这个应该是后台返回的部分
+	      gData: retVO,
+	      //是否需要分页，true：需要，不写默认需要
+	      pagingFlag: true,
+	      //用来拼接单个循环体的回调方法。
+	      spellHtmlFun: function spellHtmlFun(data) {
+	        var htmlStr = '<div class="col-4">';
+	        htmlStr += '<div class="demandImg">';
+	        htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
+	        htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+	        htmlStr += '</div>';
+	        htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
+	        htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + data.classlevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+	        htmlStr += ' </div>';
+	        /*  无消息显示 */
+	        if (data.resourceId == "") {
+	          htmlStr += '<div id="de_list"><p>暂无相关数据</p></div>';
+	        }
+	        return htmlStr;
+	      },
+	      //执行页面查询的方法
+	      searchFun: _self.showdemand
+	    };
+	    Paging.initPaging(config, function () {});
+	  });
+	}
+
+	var _data = { newPage: 1 };
 	/**
 	 * Vue组件对象
 	**/
@@ -3927,7 +3972,8 @@ webpackJsonp([1,6],[
 	      subjectList: "",
 	      params: {
 	        orderType: "desc",
-	        pageSize: 2
+	        pageSize: 2,
+	        curPage: _data.newPage
 	      }
 	    };
 	  },
@@ -3937,44 +3983,8 @@ webpackJsonp([1,6],[
 
 	  methods: {
 	    /** 查询点播列表 **/
-	    showdemand: function showdemand(newPage) {
-	      var _self = this;
-	      if (newPage == undefined) {
-	        newPage = 1;
-	      }
-	      this.params.curPage = newPage;
-	      var params = this.params;
-	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
-	        _self.courseList = retVO;
-	        var config = {
-	          //用来展示表格控件的div的id
-	          containerId: "de_list",
-	          //这个应该是后台返回的部分
-	          gData: retVO,
-	          //是否需要分页，true：需要，不写默认需要
-	          pagingFlag: true,
-	          //用来拼接单个循环体的回调方法。
-	          spellHtmlFun: function spellHtmlFun(data) {
-	            var htmlStr = '<div class="col-4">';
-	            htmlStr += '<div class="demandImg">';
-	            htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
-	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
-	            htmlStr += '</div>';
-	            htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + data.classlevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
-	            htmlStr += ' </div>';
-	            /*  无消息显示 */
-	            if (data.resourceId == "") {
-	              htmlStr += '<div id="de_list"><p>暂无相关数据</p></div>';
-	            }
-	            return htmlStr;
-	          },
-	          //执行页面查询的方法
-	          searchFun: _self.showdemand
-	        };
-	        Paging.initPaging(config, function () {});
-	      });
-	    },
+	    showdemand: search_ten,
+	    //function(newPage){},
 	    /** 获取选择的年级参数**/
 	    gradesearch: function gradesearch(classlevelName, event) {
 	      $(event.target).addClass("active").siblings().removeClass("active");
@@ -4060,84 +4070,84 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "demand"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "d-search"
-	  }, [_h('div', [_h('label', ["年级 :"]), _h('div', {
+	  }, [_c('div', [_c('label', [_vm._v("年级 :")]), _c('div', {
 	    staticClass: "itemList"
-	  }, [_vm._l((_vm.classList.data), function(grade) {
-	    return _h('span', {
+	  }, _vm._l((_vm.classList.data), function(grade) {
+	    return _c('span', {
 	      on: {
 	        "click": function($event) {
 	          _vm.gradesearch(grade.classlevelName, $event)
 	        }
 	      }
-	    }, [_vm._s(grade.classlevelName)])
-	  })])]), " ", _h('div', [_h('label', ["学科 :"]), _h('div', {
+	    }, [_vm._v(_vm._s(grade.classlevelName))])
+	  }))]), _vm._v(" "), _c('div', [_c('label', [_vm._v("学科 :")]), _c('div', {
 	    staticClass: "itemList"
-	  }, [_vm._l((_vm.subjectList.data), function(subject) {
-	    return _h('span', {
+	  }, _vm._l((_vm.subjectList.data), function(subject) {
+	    return _c('span', {
 	      on: {
 	        "click": function($event) {
 	          _vm.subjectsearch(subject.subjectName, $event)
 	        }
 	      }
-	    }, [_vm._s(subject.subjectName)])
-	  })])])]), " ", " ", " ", _h('div', {
+	    }, [_vm._v(_vm._s(subject.subjectName))])
+	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "d-main"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "search"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "s-left"
-	  }, ["\"", _h('span', {
+	  }, [_vm._v("\""), _c('span', {
 	    staticClass: "sub-tit"
-	  }, ["全部"]), "\"相关课程  共", _h('span', {
+	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共"), _c('span', {
 	    staticClass: "totalnums"
-	  }), "条\r\n\t\t\t\t", _h('span', {
+	  }), _vm._v("条\r\n\t\t\t\t"), _c('span', {
 	    attrs: {
 	      "data-sort": "desc"
 	    },
 	    on: {
 	      "click": _vm.sortByTime
 	    }
-	  }, ["按时间", _h('i', {
+	  }, [_vm._v("按时间"), _c('i', {
 	    staticClass: "iconfont icon-low"
-	  })]), " ", _h('span', {
+	  })]), _vm._v(" "), _c('span', {
 	    attrs: {
 	      "data-sort": "desc"
 	    },
 	    on: {
 	      "click": _vm.sortByHot
 	    }
-	  }, ["按热门", _h('i', {
+	  }, [_vm._v("按热门"), _c('i', {
 	    staticClass: "iconfont icon-low"
-	  })])]), " ", " ", _h('div', {
+	  })])]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "s-right fr"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
 	      "placeholder": "输入课程或老师",
 	      "name": "resourceNameKey",
 	      "id": "s-resource"
 	    }
-	  }), " ", _h('i', {
+	  }), _vm._v(" "), _c('i', {
 	    staticClass: "iconfont icon-search",
 	    on: {
 	      "click": _vm.searchKey
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  }), " ", " ", _vm._m(0), " "])])
+	  }), _vm._v(" "), _vm._v(" "), _vm._m(0), _vm._v(" ")])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "list mt30",
 	    attrs: {
 	      "id": "de_list"
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "clear"
-	  }), " "])
+	  }), _vm._v(" ")])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -4359,48 +4369,48 @@ webpackJsonp([1,6],[
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "wamp",
 	    attrs: {
 	      "id": "home"
 	    }
-	  }, [_vm._m(0), " ", " ", _h('div', {
+	  }, [_vm._m(0), _vm._v(" "), _vm._v(" "), _c('div', {
 	    attrs: {
 	      "id": "courseList"
 	    }
-	  }, [(_vm.posts.data != null) ? _h('div', [_vm._l((_vm.posts.data), function(post) {
-	    return _h('div', {
+	  }, [(_vm.posts.data != null) ? _c('div', _vm._l((_vm.posts.data), function(post) {
+	    return _c('div', {
 	      staticClass: "row"
-	    }, [_h('div', {
+	    }, [_c('div', {
 	      staticClass: "col-md-4 tel c4"
-	    }, [_vm._s(post.resourceName)]), " ", _h('div', {
+	    }, [_vm._v(_vm._s(post.resourceName))]), _vm._v(" "), _c('div', {
 	      staticClass: "col-md-4 tel"
-	    }, [_h('span', {
+	    }, [_c('span', {
 	      staticClass: "sub-code",
 	      attrs: {
 	        "title": post.classlevelName
 	      }
-	    }, [_vm._s(post.classlevelName)]), "/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author)]), " ", _h('div', {
+	    }, [_vm._v(_vm._s(post.classlevelName))]), _vm._v("/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author))]), _vm._v(" "), _c('div', {
 	      staticClass: "col-md-4",
 	      on: {
 	        "click": function($event) {
 	          _vm.openLiveDetail(post.resourceId)
 	        }
 	      }
-	    }, [_h('i', {
+	    }, [_c('i', {
 	      staticClass: "iconfont icon-avpic"
-	    }), "进入直播"])])
-	  })]) : _h('div', {
+	    }), _vm._v("进入直播")])])
+	  })) : _c('div', {
 	    staticClass: "tac"
-	  }, [_h('img', {
+	  }, [_c('img', {
 	    attrs: {
 	      "src": __webpack_require__(74)
 	    }
-	  })]), " "]), " ", " ", _h('div', {
+	  })]), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "s-title demanBtm"
-	  }, [_h('span'), _h('h3', {
+	  }, [_c('span'), _c('h3', {
 	    staticClass: "demanCour fb fl"
-	  }, ["点播课程"]), _h('a', {
+	  }, [_vm._v("点播课程")]), _c('a', {
 	    staticClass: "fr",
 	    attrs: {
 	      "href": "javascript:;",
@@ -4409,50 +4419,50 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.openMore
 	    }
-	  }, ["更多"])]), " ", " ", _h('div', {
+	  }, [_vm._v("更多")])]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "demand"
-	  }, [_vm._l((_vm.courseList.data), function(course) {
-	    return _h('div', {
+	  }, _vm._l((_vm.courseList.data), function(course) {
+	    return _c('div', {
 	      staticClass: "col-4",
 	      on: {
 	        "click": function($event) {
 	          _vm.openDemondDetail(course.resourceId)
 	        }
 	      }
-	    }, [_h('div', {
+	    }, [_c('div', {
 	      staticClass: "home-img"
-	    }, [_h('img', {
+	    }, [_c('img', {
 	      attrs: {
 	        "src": course.thumbPath,
 	        "width": "285",
 	        "height": "160"
 	      }
-	    }), " ", _h('div', {
+	    }), _vm._v(" "), _c('div', {
 	      staticClass: "home-times"
-	    }, [_h('span', {
+	    }, [_c('span', {
 	      staticClass: "fr"
-	    }, [_h('i', {
+	    }, [_c('i', {
 	      staticClass: "iconfont icon-play-times"
-	    }), _vm._s(course.viewCnt)])])]), " ", _h('p', {
+	    }), _vm._v(_vm._s(course.viewCnt))])])]), _vm._v(" "), _c('p', {
 	      staticClass: "c4 tel",
 	      attrs: {
 	        "title": course.resourceName
 	      }
-	    }, [_vm._s(course.resourceName)]), " ", _h('p', {
+	    }, [_vm._v(_vm._s(course.resourceName))]), _vm._v(" "), _c('p', {
 	      staticClass: "ft12 c9 tel"
-	    }, [_h('span', {
+	    }, [_c('span', {
 	      staticClass: "sub-code",
 	      attrs: {
 	        "title": course.classlevelName
 	      }
-	    }, [_vm._s(course.classlevelName)]), " " + _vm._s(course.subjectName) + " " + _vm._s(course.author)])])
-	  })]), " "])
+	    }, [_vm._v(_vm._s(course.classlevelName))]), _vm._v(" " + _vm._s(course.subjectName) + " " + _vm._s(course.author))])])
+	  })), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "s-title"
-	  }, [_h('span'), _h('h3', {
+	  }, [_c('span'), _c('h3', {
 	    staticClass: "fb"
-	  }, ["直播课程"])])
+	  }, [_vm._v("直播课程")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -4583,16 +4593,15 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
-	//
 
 	var mySub = function mySub(newPage) {
 		if (newPage == undefined) {
 			newPage = 1;
 		}
-		var _self = this;
 		var params = { curPage: newPage, pageSize: 2 };
 		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
-			_self.mycourceList = retVO;
+			//_self.params.curPage=retVO.curPage;
+			//_self.mycourceList = retVO;
 			var htmlStr = "";
 			var config = {
 				//用来展示表格控件的div的id
@@ -4619,7 +4628,7 @@ webpackJsonp([1,6],[
 					return htmlStr;
 				},
 				//执行页面查询的方法
-				searchFun: _self.showdemand
+				searchFun: mySub
 			};
 			Paging.initPaging(config, function () {});
 		});
@@ -4661,30 +4670,30 @@ webpackJsonp([1,6],[
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _vm._m(0)
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "mysubject"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "subBtn"
-	  }, [_h('button', {
+	  }, [_c('button', {
 	    staticClass: "btn fr"
-	  }, ["上传资源"])]), " ", _h('div', {
+	  }, [_vm._v("上传资源")])]), _vm._v(" "), _c('div', {
 	    staticClass: "demand"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "d-main"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "search"
-	  }, ["\r\n\t\t\t\t\t共", _h('span', {
+	  }, [_vm._v("\r\n\t\t\t\t\t共"), _c('span', {
 	    staticClass: "totalnums"
-	  }), "个资源\r\n\t\t\t\t"]), " ", _h('div', {
+	  }), _vm._v("个资源\r\n\t\t\t\t")]), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  }), " ", " ", _h('div', {
+	  }), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "list mt40",
 	    attrs: {
 	      "id": "sub_list"
 	    }
-	  }), " ", _h('div', {
+	  }), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  }), " "]), " "])])
+	  }), _vm._v(" ")]), _vm._v(" ")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
