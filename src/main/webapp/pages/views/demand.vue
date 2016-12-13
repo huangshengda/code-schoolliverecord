@@ -12,7 +12,7 @@
 	<div class="d-main">
 		<div class="search">
 			<!-- 中间内容 --左侧-->
-			<div class="s-left">"<span class="sub-tit">全部</span>"相关课程&nbsp;&nbsp;共<span class="totalnums"></span>条
+			<div class="s-left">"<span class="sub-tit">全部</span>"相关课程&nbsp;&nbsp;共{{pages}}条
 				<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
 				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
 			</div>
@@ -42,6 +42,7 @@
 		        courseList:"",
 		        classList:"",
 		        subjectList:"",
+		        pages:"",
 		        params:{
 		        	orderType:"desc",
 					pageSize: 2,
@@ -65,6 +66,7 @@
 		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
           _self.courseList = retVO;
+          _self.pages = retVO.totalDatas;
           var config = {   
            //用来展示表格控件的div的id
 			containerId: "de_list",     	

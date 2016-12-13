@@ -5,7 +5,7 @@
 			<!-- 中间内容 start-->
 			<div class="d-main">
 				<div class="search">
-					共<span class="totalnums"></span>个资源
+					共{{pages}}个资源
 				</div>
 				<div class="clear"></div>
 				<!-- 中间内容-列表 start-->
@@ -40,6 +40,7 @@ var mySub = function(newPage){
 		var params = {curPage: newPage ,pageSize: 2,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
           _self.mycourceList = retVO;
+          _self.pages = retVO.totalDatas;
           var htmlStr = "";
           var config = { 
           //用来展示表格控件的div的id
@@ -75,6 +76,7 @@ export default {
 		data() {
 		    return {
 		        mycourceList:"",
+		        pages:""
 		    }
 		  },
 		 created () {    

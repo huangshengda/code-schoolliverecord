@@ -125,6 +125,10 @@
           </span>
         </div>
       </div>
+      <input type="hidden" id="video_resourceId" />
+      <input type="hidden" id="video_name" />
+      <input type="hidden" id="video_size" />
+      <input type="hidden" id="video_img_resourceId" />
     </form>
     </div>
   </div>

@@ -23,7 +23,7 @@
      <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value" name="username">
+          <span class="cd-f-value" name="username" id="user_name">
           </span>
         </div>
         <div class="cd-f-eve">

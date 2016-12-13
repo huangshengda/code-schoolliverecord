@@ -6,7 +6,7 @@ $(function() {
 		pms = "",
 		tool = vm.module["tool"],
 		flashBuilder = vm.module["playerBuilder"];
-	CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
+		CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
 		if (retVO.code == 1) {
 			pms = retVO.data.storePath;
 			var streamName = retVO.data.resourceId;
@@ -37,7 +37,7 @@ $(function() {
 		};
 
 		Chat.socket.onmessage = function(retVO) {
-			var dataVO = eval('(' + retVO.data + ')'); ;
+			var dataVO = eval('(' + retVO.data + ')');
 			var delFlag = dataVO.delFlag;
 			var id = dataVO.id;
 			if(delFlag){
