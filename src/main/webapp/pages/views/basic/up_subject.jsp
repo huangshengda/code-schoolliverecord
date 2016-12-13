@@ -90,10 +90,10 @@
         <div class="cd-f-eve">
           <span class="cd-f-name vat"><label class="cd-f-notnull">*</label><label>课程视频:</label></span>
           <span class="cd-f-value">
-          	<button class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
+          	<div class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
           		上传视频文件
-          		<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4," >
-          	</button>
+          		<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4" >
+          	</div>
              <div class="up-list mt20" id="show_fileup_detail" >
 	             <!-- <div class="up-item">
 	               <div class="inb vat">

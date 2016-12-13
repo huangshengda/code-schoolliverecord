@@ -132,28 +132,39 @@ data-vali的值域集合有：
 				msg = Validation.errorMsg["username"];
 			}
 		}else if(vali.indexOf("password")>-1){
-			msg = Validation.errorMsg["password"];
+			console.log(value);
+			rgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]{6,18}$/g;
+			if(!rgxStr.test(value)){
+				msg = Validation.errorMsg["password"];
+			}
 		}else if(vali.indexOf("number")>-1){
-			
-			msg = Validation.errorMsg["number"];
+			if(!ValueCheck.isNumber(value)){
+				msg = Validation.errorMsg["number"];
+			}
 		}else if(vali.indexOf("float")>-1){
-			
-			msg = Validation.errorMsg["float"];
+			if(!ValueCheck.isFloat(value)){
+				msg = Validation.errorMsg["float"];
+			}
 		}else if(vali.indexOf("phone")>-1){
-			
-			msg = Validation.errorMsg["phone"];
+			if(!ValueCheck.isPhoneNumber(value)){
+				msg = Validation.errorMsg["phone"];
+			}
 		}else if(vali.indexOf("telphone")>-1){
-			
-			msg = Validation.errorMsg["telphone"];
+			if(!ValueCheck.isTelphone(value)){
+				msg = Validation.errorMsg["telphone"];
+			}
 		}else if(vali.indexOf("email")>-1){
-			
-			msg = Validation.errorMsg["email"];
+			if(!ValueCheck.isEmail(value)){
+				msg = Validation.errorMsg["email"];
+			}
 		}else if(vali.indexOf("idcard")>-1){
-			
-			msg = Validation.errorMsg["idcard"];
+			if(!ValueCheck.isIden(value)){
+				msg = Validation.errorMsg["idcard"];
+			}
 		}else if(vali.indexOf("areacode")>-1){
-			
-			msg = Validation.errorMsg["areacode"];
+			if(!ValueCheck.isAreacode(value)){
+				msg = Validation.errorMsg["areacode"];
+			}
 		}
 		return msg;
 	};

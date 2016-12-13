@@ -44,10 +44,10 @@ $(function(){
             +'<div class="inb">'
             +'<img src="" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'
             +'<button type="button" class="upbtn sys-img mr20" >选择系统截图</button>'
-            +'<button type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;" >'
+            +'<div type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;" >'
             +'上传本地图片'
             +'<input type="file" value="" class="input-fileup local-img" style="width: 125px;" accept="image/png,image/jpeg" >'
-            +'</button>'
+            +'</div>'
             +'</div>'
             +'<i class="iconfont icon-delete del-fileup"></i>'
             +'</div>';

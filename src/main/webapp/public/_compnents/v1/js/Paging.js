@@ -60,9 +60,9 @@
 		spellHtmlFun = _config.spellHtmlFun,
 		searchFun = _config.searchFun,
 		optParams = _config.optParams;
-		var totalDatas = gData.totalDatas,
-		totalPages = gData.totalPages,
-		curPage = gData.curPage,
+		var totalDatas = ValueCheck.getNumber(gData.totalDatas,0),
+		totalPages = ValueCheck.getNumber(gData.totalPages,0),
+		curPage = ValueCheck.getNumber(gData.curPage,1),
 		data = gData.data;
 		var htmlStr = '<div class="cd-g-context" ></div>';
 		htmlStr += '<div class="cd-g-paging" ></div>';
