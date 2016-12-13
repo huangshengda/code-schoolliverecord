@@ -12,7 +12,7 @@
 	<div class="d-main">
 		<div class="search">
 			<!-- 中间内容 --左侧-->
-			<div class="s-left">"<span class="sub-tit">全部</span>"相关课程&nbsp;&nbsp;共{{courseList.totalDatas}}条
+			<div class="s-left">"<span class="sub-tit">全部</span>"相关课程&nbsp;&nbsp;共<span class="totalnums"></span>条
 				<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
 				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
 			</div>
@@ -24,16 +24,8 @@
 		</div>
 		<div class="clear"></div>
 <!-- 中间内容-列表 start-->
-		<div class="list mt30">
-			<div class="col-4"  v-for="course in courseList.data">
-				<div class="demandImg">
-				<a href="#a"><img :src="course.thumbPath" width="280" height="157"></a>
-				<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div> 
-				</div>
-				<p class="c4 tel">{{course.resourceName}}</p>
-				<p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
-				</div>
-			</div>
+		<div class="list mt30" id="de_list">
+			
 			<div class="clear"></div>
 <!-- 中间内容-列表 end-->
 		</div>
@@ -69,19 +61,36 @@
 			newPage = 1;
 		}
 		this.params.curPage=newPage;
-		console.log(this.params.curPage);
 		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
           _self.courseList = retVO;
-          var config = {      	
+          var config = {   
+           //用来展示表格控件的div的id
+			containerId: "de_list",     	
          	 //这个应该是后台返回的部分
         	 gData: retVO,
          	 //是否需要分页，true：需要，不写默认需要
          	 pagingFlag: true,
+         	  //用来拼接单个循环体的回调方法。
+			spellHtmlFun: function(data){
+				var htmlStr = '<div class="col-4">';
+				htmlStr += '<div class="demandImg">';
+				htmlStr += '<a href="#a"><img src='+data.thumbPath+' width="280" height="157"></a>';       
+				htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>'+data.viewCnt+'</span></div> ';  
+				htmlStr += '</div>' ;
+				htmlStr += '<p class="c4 tel">'+data.resourceName+'</p>' ;
+				htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title='+data.classlevelName+'>'+data.classlevelName+'</span>&nbsp;'+data.subjectName+'&nbsp;'+data.author+'</p>' ;    
+				htmlStr += ' </div>';	
+				/*  无消息显示 */
+				if(data.resourceId == ""){
+					htmlStr +='<div id="de_list"><p>暂无相关数据</p></div>';
+				}
+				return htmlStr;
+			},
          	 //执行页面查询的方法
 			searchFun: _self.showdemand,
          	};
-         	Grid.initGrid(config,function(){});
+         	Paging.initPaging(config,function(){});
         });
       },
 /** 获取选择的年级参数**/
