@@ -64,6 +64,22 @@ public class FrontPathController {
 		return Constants.FRONT_DEITPWD_PATH;
 	}
 
+	@RequestMapping("upload")
+	public String getUploadPath(HttpServletRequest req) {
+		try {
+			User user = getUser(req);
+			if (user == null || "0".equals(user.getUserId())) {
+				return Constants.FRONT_INDEX_PATH;
+			} else {
+				req.setAttribute("token", user.getToken());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Constants.FRONT_INDEX_PATH;
+		}
+		return Constants.FRONT_UPLOAD_PATH;
+	}
+	
 	private User getUser(HttpServletRequest req) throws ExecutionException {
 		// 先从header中取token,如果没有再从参数中取
 		String token = req.getHeader("token");

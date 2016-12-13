@@ -3,19 +3,19 @@
   <div class="wamp"> 
    <img src="${ROOT_UI}/public/_module/images/logo.png" class="inb" /> 
    <div class="head inb">
-    <div class="navHead"> 
-     <span><a href="${ROOT_SERVER}/#/index" class="router-link-active">首页 </a></span>
+    <div class="navHead" id="sys_slr_nav" > 
+    <%--  <span><a href="${ROOT_SERVER}/#/index" class="router-link-active">首页 </a></span>
      <span><a href="${ROOT_SERVER}/#/onDemand" class="">点播 </a></span>
-     <span><a href="${ROOT_SERVER}/#/basic" class=""> 基础管理 </a></span>
+     <span><a href="${ROOT_SERVER}/#/basic" class=""> 基础管理 </a></span> --%>
     </div>
-   </div> 
+   </div>
    <div class="head-out fr" id="user_info" style="display: none;" >
     	<span id="user_realname" ></span>
         <span class="g-line">|</span>
         <i class="iconfont icon-sign-out" id="logout" ></i>
    </div>
    <button class="btn fr" id="login_button" style="display: none;" >登录</button>
-  </div> 
+  </div>
   <form action="" id="login" class="layBox mt40 layui-layer-wrap" style="display: none;"> 
    <div class="cd-f-row"> 
     <div class="cd-f-eve"> 
@@ -37,6 +37,19 @@
  </nav>
 <script type="text/javascript">
 $(function(){
+	
+	var params = {};
+	CDUtil.ajaxPost("/menu",params,function(retVO){
+		var menus = retVO.data;
+		$(menus).each(function(i,menu){
+			var id = menu.id,
+			name = menu.name,
+			url = menu.url;
+			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'" /></span>';
+			$(htmlStr).appendTo(htmlStr);
+		});
+	});
+	
 	if(sessionStorage.getItem("loginFlag") == "1"){
         $("#user_info").show();
         $("#login_button").hide();
