@@ -246,28 +246,31 @@ public class UserController {
 				msg = "原密码错误";
 			}
 			return new ReturnVoOne<User>(code, msg);
-		} else if ((user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {// 编辑
-			// 用户类型判断
-			if ("ADMIN".equals(user.getUserType())) {
-				user.setUserType(Constants.ADMIN);
-			} else if ("TEACHER".equals(user.getUserType())) {
-				user.setUserType(Constants.TEACHER);
-			} else if ("STUDENT".endsWith(user.getUserType())) {
-				user.setUserType(Constants.STUDENT);
+		} else if (StringUtils.isNotEmpty(user.getRealname())) {// 编辑
+			if (user.getRealname().length() < 11) {
+				// 用户类型判断
+				if ("ADMIN".equals(user.getUserType())) {
+					user.setUserType(Constants.ADMIN);
+				} else if ("TEACHER".equals(user.getUserType())) {
+					user.setUserType(Constants.TEACHER);
+				} else if ("STUDENT".endsWith(user.getUserType())) {
+					user.setUserType(Constants.STUDENT);
+				} else {
+					return new ReturnVoOne<User>(Constants.FAILED, "用户类型错误");
+				}
+				try {
+					userService.editUser(user);
+				} catch (Exception e) {
+					e.printStackTrace();
+					code = Constants.FAILED;
+					msg = "操作失败";
+				}
+				return new ReturnVoOne<User>(code, msg);
 			} else {
-				return new ReturnVoOne<User>(Constants.FAILED, "用户类型错误");
+				return new ReturnVoOne<User>(Constants.FAILED, "姓名格式不正确");
 			}
-
-			try {
-				userService.editUser(user);
-			} catch (Exception e) {
-				e.printStackTrace();
-				code = Constants.FAILED;
-				msg = "操作失败";
-			}
-			return new ReturnVoOne<User>(code, msg);
 		} else {
-			return new ReturnVoOne<User>(Constants.FAILED, "姓名格式不正确");
+			return new ReturnVoOne<User>(Constants.FAILED, "姓名不能为空");
 		}
 	}
 
