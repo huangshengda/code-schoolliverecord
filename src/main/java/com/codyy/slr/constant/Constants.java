@@ -48,6 +48,7 @@ public class Constants {
 	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
 	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
 	public static final String FRONT_INDEX_PATH = "pages/index";
+	public static final String FRONT_DEITPWD_PATH = "pages/views/edit-pwd";
 
 	/**
 	 * 排序字段
@@ -141,6 +142,20 @@ public class Constants {
 	 */
 	public final static int CONCAT_VIDEO_TIMES;
 
+	/**
+	 * 上传视频最大值
+	 */
+	public final static int MAX_UPLOAD_SIZE_VIDEO;
+
+	/**
+	 * 上传图片最大值
+	 */
+	public final static int MAX_UPLOAD_SIZE_IMAGE;
+
+	public final static List<String> UPLOAD_VIDEO_TYPE;
+
+	public final static List<String> UPLOAD_IMAGE_TYPE;
+
 	static {
 		if (StringUtils.isNumeric(ConfigUtils.getValue("expireTime"))) {
 			EXPIRE_TIME = Long.parseLong(ConfigUtils.getValue("expireTime"));
@@ -154,11 +169,28 @@ public class Constants {
 		TEMP = ConfigUtils.getValue("temp.path");
 		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
 
+		String uploadVideoTypeStr = ConfigUtils.getValue("upload.video.type");
+		if (StringUtils.isEmpty(uploadVideoTypeStr)) {
+			uploadVideoTypeStr = ".flv;.map4";
+		}
+
+		UPLOAD_VIDEO_TYPE = Arrays.asList(uploadVideoTypeStr.split(";"));
+
+		String uploadImageTypeStr = ConfigUtils.getValue("upload.image.type");
+		if (StringUtils.isEmpty(uploadImageTypeStr)) {
+			uploadImageTypeStr = ".jpg;.png";
+		}
+
+		UPLOAD_IMAGE_TYPE = Arrays.asList(uploadImageTypeStr.split(";"));
+
 		SHOT_NUM = StringToInt("sys.screen.shot", 9);
 		SHOT_IMG_TIME = StringToInt("shot.img.time", 60);
 		SHOT_IMG_TIMES = StringToInt("shot.img.times", 5);
 		CONCAT_VIDEO_TIME = StringToInt("concat.video.time", 3600);
 		CONCAT_VIDEO_TIMES = StringToInt("concat.video.times", 5);
+
+		MAX_UPLOAD_SIZE_VIDEO = StringToInt("max.upload.size.video", 2048);
+		MAX_UPLOAD_SIZE_IMAGE = StringToInt("max.upload.size.image", 5);
 
 		ROOT_UI = ConfigUtils.getValue("root.ui");
 		ROOT_SERVER = ConfigUtils.getValue("root.server");

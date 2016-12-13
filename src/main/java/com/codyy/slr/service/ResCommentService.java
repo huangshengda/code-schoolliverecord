@@ -34,35 +34,35 @@ public class ResCommentService {
 	 * @param page
 	 * @return
 	 */
-	public Page getResCommentPageList(Page page){
+	public Page getResCommentPageList(Page page) {
 		/**
 		 * 获取一级评论
 		 */
-		List<ResCommentVo> list  = commentDao.getResCommentPageList(page);
+		List<ResCommentVo> list = commentDao.getResCommentPageList(page);
 		String userId = page.getMap().get("userId").toString();
-		formatDateAndSetDelFun(list,userId);
+		formatDateAndSetDelFun(list, userId);
 		List<String> commentIdList = new ArrayList<String>();
-		for(ResCommentVo comment : list){
+		for (ResCommentVo comment : list) {
 			commentIdList.add(comment.getResourceCommentId());
 		}
-		
+
 		/**
 		 * 将二级评论根据一级评论的id分组
 		 */
-		List<ResCommentVo> subList = getSubResCommentList(commentIdList,userId);
-		Map<String,List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
-		for(ResCommentVo comment : subList){
+		List<ResCommentVo> subList = getSubResCommentList(commentIdList, userId);
+		Map<String, List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
+		for (ResCommentVo comment : subList) {
 			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
 		}
-	
+
 		/**
 		 * 一级评论中注入二级评论
 		 */
-		for(ResCommentVo comment : list){
-			if(groupListMap.containsKey(comment.getResourceCommentId())){
+		for (ResCommentVo comment : list) {
+			if (groupListMap.containsKey(comment.getResourceCommentId())) {
 				List<ResCommentVo> childrenCommentList = groupListMap.get(comment.getResourceCommentId());
 				comment.setChildrenCommentSize(childrenCommentList.size());
-				if(childrenCommentList.size() > 5){
+				if (childrenCommentList.size() > 5) {
 					childrenCommentList = childrenCommentList.subList(0, 5);
 				}
 				comment.setChildrenCommentList(childrenCommentList);
@@ -70,7 +70,7 @@ public class ResCommentService {
 				comment.setChildrenCommentList(new ArrayList<ResCommentVo>());
 			}
 		}
-		
+
 		page.setData(list);
 		return page;
 	}
@@ -78,22 +78,21 @@ public class ResCommentService {
 	/**
 	 * 根据一级评论获取二级评论
 	 */
-	public List<ResCommentVo> getSubResCommentList(List<String> commentIdList,String userId) {
-		if(commentIdList == null || commentIdList.size() == 0){
+	public List<ResCommentVo> getSubResCommentList(List<String> commentIdList, String userId) {
+		if (commentIdList == null || commentIdList.size() == 0) {
 			return new ArrayList<ResCommentVo>();
 		}
 		List<ResCommentVo> subList = commentDao.getSubResCommentList(commentIdList);
-		formatDateAndSetDelFun(subList,userId);
+		formatDateAndSetDelFun(subList, userId);
 		return subList;
 	}
-	
-	public Page getSubResCommentPageList(Page page){
+
+	public Page getSubResCommentPageList(Page page) {
 		List<ResCommentVo> list = commentDao.getSubResCommentPageList(page);
 		page.setData(list);
 		return page;
 	}
 
-	
 	/**
 	 * 添加评论
 	 */
@@ -102,37 +101,37 @@ public class ResCommentService {
 		comment.setCreateTime(new Date());
 		return commentDao.insert(comment) == 1;
 	}
-	
+
 	/**
 	 * 删除评论
 	 */
 	public void deleteResComment(ResComment comment) {
-		if(comment.getParentCommentId() == null){
+		if (comment.getParentCommentId() == null) {
 			List<ResCommentVo> subList = commentDao.getSubResCommentList(Arrays.asList(comment.getResourceCommentId()));
-			for(ResCommentVo view : subList){
+			for (ResCommentVo view : subList) {
 				commentDao.deleteByPrimaryKey(view.getResourceCommentId());
 			}
 		}
 		commentDao.deleteByPrimaryKey(comment.getResourceCommentId());
 	}
 
-	public  ResCommentVo getCommentByKeyId(String commentId){
+	public ResCommentVo getCommentByKeyId(String commentId) {
 		return commentDao.getCommentByKeyId(commentId);
 	}
-	
+
 	/**
 	 * 时间格式化,生成头像路径
 	 */
-	private void formatDateAndSetDelFun(List<ResCommentVo> list,String userId){
-		for(ResCommentVo view : list){
-			if(userId.equalsIgnoreCase(view.getCommentUserId())){
+	private void formatDateAndSetDelFun(List<ResCommentVo> list, String userId) {
+		for (ResCommentVo view : list) {
+			if (userId.equalsIgnoreCase(view.getCommentUserId())) {
 				view.setOpt(Constants.DELETE);
 			}
 			view.setCreateTimeStr(DateUtils.format(view.getCreateTime(), "yyyy-MM-dd HH:mm"));
 		}
 	}
-	
-	public int getResCommentCount(String resDetailId){
+
+	public int getResCommentCount(String resDetailId) {
 		return commentDao.getResCommentCount(resDetailId);
 	}
 
@@ -141,5 +140,5 @@ public class ResCommentService {
 		page.setData(list);
 		return page;
 	}
-	
+
 }

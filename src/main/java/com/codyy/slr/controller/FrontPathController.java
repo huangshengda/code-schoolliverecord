@@ -48,8 +48,8 @@ public class FrontPathController {
 		return Constants.FRONT_LIVE_PATH;
 	}
 
-	@RequestMapping("upload")
-	public String getUploadPath(HttpServletRequest req) {
+	@RequestMapping("editpwd")
+	public String editPwd(HttpServletRequest req) {
 		try {
 			User user = getUser(req);
 			if (user == null || "0".equals(user.getUserId())) {
@@ -61,7 +61,7 @@ public class FrontPathController {
 			e.printStackTrace();
 			return Constants.FRONT_INDEX_PATH;
 		}
-		return Constants.FRONT_UPLOAD_PATH;
+		return Constants.FRONT_DEITPWD_PATH;
 	}
 
 	private User getUser(HttpServletRequest req) throws ExecutionException {
