@@ -44,7 +44,7 @@
 
 	<!-- 对静态资源文件的访问 -->
 	<mvc:default-servlet-handler />
-
+	
 	<!-- 异常的完整信息放在错误页面的一个隐藏的区域 -->
 	<bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

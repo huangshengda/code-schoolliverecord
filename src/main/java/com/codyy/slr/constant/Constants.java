@@ -48,7 +48,7 @@ public class Constants {
 	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
 	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
 	public static final String FRONT_INDEX_PATH = "pages/index";
-	public static final String FRONT_DEITPWD_PATH = "pages/views/edit-pwd";
+	public static final String FRONT_DEITPWD_PATH = "pages/views/live/edit-pwd";
 
 	/**
 	 * 排序字段

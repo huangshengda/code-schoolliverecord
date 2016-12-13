@@ -117,7 +117,7 @@ export default{
           });
       },
       editPwd: function(){
-      	window.open(ROOT_SERVER+"/pages/views/edit-pwd.jsp?token="+sessionStorage.getItem("token"));
+      	window.open(ROOT_SERVER+"/front/path/editpwd?token="+sessionStorage.getItem("token"));
       }
    }
 }
