@@ -7,7 +7,7 @@
             <span><router-link to="/index">首页</router-link></span>
  			<span><router-link to="/onDemand">点播</router-link></span>
  			<span v-if="userType=='SUPER_ADMIN' || userType=='ADMIN'"><router-link to="/basic">基础管理</router-link></span>
- 			<span v-if="userType=='TEACHER' || userType=='STUDENT'"><router-link to="/mySubject">我的课程</router-link></span>
+ 			<span ><router-link to="/mySubject">我的课程</router-link></span>
           </div>
         </div>
         <div class="head-out fr" style="display: none;" id="user_info" >
@@ -103,6 +103,7 @@ export default{
               sessionStorage.loginFlag = "1";
               sessionStorage.token = retVO.data.token;
               sessionStorage.realname = retVO.data.realname;
+              sessionStorage.userType = retVO.data.userType;
               $("#user_realname").html(retVO.data.realname);
             }
           });

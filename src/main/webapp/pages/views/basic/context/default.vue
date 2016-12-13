@@ -168,16 +168,19 @@ var userDel = function(params, dom) {
 /**
  * 进行查询用户信息的方法
 **/
-var userSearch = function() {
+var userSearch = function(newPage) {
+	if(newPage == undefined){
+		newPage = 1;
+	}
 	var params = {
-		curPage: data.newPage,
+		curPage: newPage,
 		pageSize: 2,
 		username: $("#search_username").val(),
 		realname: $("#search_realname").val(),
 		userType: $("#search_userType").val()
 	};
 	CDUtil.ajaxPost("/base/user/list",params,function(retVO) {
-		params.curPage=retVO.curPage;
+		
 		config.gData = retVO;
 		Grid.initGrid(config, function(){});
 	});
@@ -225,7 +228,7 @@ var config = {
 	//表格中的行操作方法
 	optFuns: {
 		edit_fun: userEdit,
-		del_fun: userDel,
+		del_fun: userDel
 	}
 };
 /**

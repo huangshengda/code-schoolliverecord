@@ -9,9 +9,8 @@
 				</div>
 				<div class="clear"></div>
 				<!-- 中间内容-列表 start-->
-				  <div class="list mt40"  id="sub_list">
-				     
-				   </div>
+				  <div class="list mt40"  id="sub_list"> 
+				  </div>
 				   <div class="clear"></div>
 				   <!-- 中间内容-列表 end-->
 			</div>
@@ -20,13 +19,14 @@
 		</div>
 </template>
 <script>
-var data={newPage:1}
-var mySub = function(){
-        var _self = this;
-		var params = {curPage: data.newPage,pageSize: 2,};
+var mySub = function(newPage){
+	if(newPage == undefined){
+		newPage = 1;
+	}
+		var params = {curPage:newPage,pageSize: 2,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
-       	 _self.params.curPage=retVO.curPage;
-          _self.mycourceList = retVO;
+       	 //_self.params.curPage=retVO.curPage;
+          //_self.mycourceList = retVO;
           var htmlStr = "";
           var config = { 
           //用来展示表格控件的div的id
@@ -53,7 +53,7 @@ var mySub = function(){
 				return htmlStr;
 			},
          	 //执行页面查询的方法
-			searchFun: _self.showdemand, 
+			searchFun: mySub, 
          	};
          	Paging.initPaging(config,function(){});
         });
@@ -62,7 +62,6 @@ var mySub = function(){
 		data() {
 		    return {
 		        mycourceList:"",
-		        data
 		    }
 		  },
 		 created () {    
