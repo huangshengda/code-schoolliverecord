@@ -76,7 +76,7 @@
 	</filter-mapping>
 	
 	<!-- token 验证-->
-	<filter>
+<filter>
 		<filter-name>tokenFilter</filter-name>
 		<filter-class>com.codyy.slr.filter.TokenFilter</filter-class>
 		<init-param>
