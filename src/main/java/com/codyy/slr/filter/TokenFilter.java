@@ -19,7 +19,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.thread.ConfigThreadLocal;
-import com.codyy.slr.thread.WebcontentThreadLocal;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -58,8 +57,6 @@ public class TokenFilter implements Filter {
 
 		String uri = req.getRequestURI();
 
-		WebcontentThreadLocal.setVal(req);
-
 		if (uri.indexOf("/chat/") != -1) {
 			ConfigThreadLocal.setVal(req.getHeader("User-Agent"));
 			chain.doFilter(req, resp);
@@ -96,7 +93,6 @@ public class TokenFilter implements Filter {
 		}
 
 		if (StringUtils.isEmpty(token)) {
-			// resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请传token参数")));
 			return;
 		}
@@ -106,14 +102,12 @@ public class TokenFilter implements Filter {
 			String agent = req.getHeader("User-Agent");
 			User user = TokenUtils.getUserFromCache(token + agent);
 			if (user == null || "0".equals(user.getUserId())) {
-				// resp.setContentType("text/html;charset=UTF-8");
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
 				return;
 			}
 			req.setAttribute("user", user);
 			chain.doFilter(req, resp);
 		} catch (ExecutionException e) {
-			// resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请求失败")));
 			e.printStackTrace();
 		}
@@ -125,7 +119,7 @@ public class TokenFilter implements Filter {
 
 		List<String> list = new ArrayList<String>();
 		for (String path : paths) {
-			list.add(path);
+			list.add(path.trim());
 		}
 		return list;
 	}
