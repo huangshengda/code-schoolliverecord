@@ -45,8 +45,8 @@ $(function(){
 			var id = menu.id,
 			name = menu.name,
 			url = menu.url;
-			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'" /></span>';
-			$(htmlStr).appendTo(htmlStr);
+			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'" >'+name+'</a></span>';
+			$(htmlStr).appendTo("#sys_slr_nav");
 		});
 	});
 	
