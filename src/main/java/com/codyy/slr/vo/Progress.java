@@ -9,90 +9,45 @@ package com.codyy.slr.vo;
  */
 public class Progress {
 
-	private long bytesRead = 0L; // 已读字节
-	private long contentLength = 0L; // 总长度
-	private int items; // 读取第N个文件
-	private String physicalFilename; // 本地文件地址
-	private String fullFilename;
-	private String originalFilename; // 原始文件名
-	private Long fileSize; // 文件大小
-	private int status = 0; // 文件状态
-	// 0=上传中
-	// 1=文件存储中，文件上传结束后转存到文件服务器
-	// 2=上传结束
+	private long pBytesRead;
+	private long pContentLength;
+	private long pItems;
 
-	private long startTime = System.currentTimeMillis(); // 开始读取的时间
-
-	public long getBytesRead() {
-		return bytesRead;
+	public long getpBytesRead() {
+		return pBytesRead;
 	}
 
-	public void setBytesRead(long bytesRead) {
-		this.bytesRead = bytesRead;
+	public void setpBytesRead(long pBytesRead) {
+		this.pBytesRead = pBytesRead;
 	}
 
-	public long getContentLength() {
-		return contentLength;
+	public long getpContentLength() {
+		return pContentLength;
 	}
 
-	public void setContentLength(long contentLength) {
-		this.contentLength = contentLength;
+	public void setpContentLength(long pContentLength) {
+		this.pContentLength = pContentLength;
 	}
 
-	public int getItems() {
-		return items;
+	public long getpItems() {
+		return pItems;
 	}
 
-	public void setItems(int items) {
-		this.items = items;
+	public void setpItems(long pItems) {
+		this.pItems = pItems;
 	}
 
-	public long getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(long startReatTime) {
-		this.startTime = startReatTime;
-	}
-
-	public String getPhysicalFilename() {
-		return physicalFilename;
-	}
-
-	public void setPhysicalFilename(String physicalFilename) {
-		this.physicalFilename = physicalFilename;
-	}
-
-	public String getOriginalFilename() {
-		return originalFilename;
-	}
-
-	public void setOriginalFilename(String originalFilename) {
-		this.originalFilename = originalFilename;
-	}
-
-	public Long getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(Long fileSize) {
-		this.fileSize = fileSize;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public String getFullFilename() {
-		return fullFilename;
-	}
-
-	public void setFullFilename(String fullFilename) {
-		this.fullFilename = fullFilename;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Progress [pBytesRead=");
+		builder.append(pBytesRead);
+		builder.append(", pContentLength=");
+		builder.append(pContentLength);
+		builder.append(", pItems=");
+		builder.append(pItems);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

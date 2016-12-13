@@ -31,13 +31,13 @@ import com.codyy.slr.vo.ChatVo;
 @ServerEndpoint(value = "/chat/{resourceId}/{token}")
 public class ChatRoomAnnotation {
 
+	private static final Logger log = Logger.getLogger("ChatRoomAnnotation");
+
 	private static final Set<ChatRoomAnnotation> connections = new CopyOnWriteArraySet<>();
 	private static final Map<String, Session> resIdUserIdToClientMap = new ConcurrentHashMap<String, Session>();
 	private static final Map<String, String> resIdtokenToAgentMap = new ConcurrentHashMap<String, String>();
 	// 统计每个资源在线聊天人数
 	private static final Map<String, AtomicInteger> resourceIdCountMap = new ConcurrentHashMap<String, AtomicInteger>();
-
-	Logger log = Logger.getLogger("ChatRoomAnnotation");
 
 	private Session session;
 
