@@ -91,7 +91,11 @@
 	</filter-mapping>
 	
 	<servlet>
-	  <servlet-name>upload</servlet-name>
+	  <servlet-name>videoUpload</servlet-name>
+	  <servlet-class>com.codyy.slr.servet.UploadVideoServlet</servlet-class>
+	 </servlet>
+	 <servlet>
+	  <servlet-name>imageUpload</servlet-name>
 	  <servlet-class>com.codyy.slr.servet.UploadVideoServlet</servlet-class>
 	 </servlet>
  	<servlet>
@@ -99,8 +103,12 @@
   		<servlet-class>com.codyy.slr.servet.ProgressServlet</servlet-class>
  	</servlet>
 	 <servlet-mapping>
- 		 <servlet-name>upload</servlet-name>
+ 		 <servlet-name>videoUpload</servlet-name>
  		 <url-pattern>/video/upload</url-pattern>
+	 </servlet-mapping>
+	  <servlet-mapping>
+ 		 <servlet-name>image</servlet-name>
+ 		 <url-pattern>/image/upload</url-pattern>
 	 </servlet-mapping>
 	 <servlet-mapping>
 	  	<servlet-name>progressServlet</servlet-name>
