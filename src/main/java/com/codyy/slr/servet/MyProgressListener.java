@@ -21,7 +21,6 @@ public class MyProgressListener implements ProgressListener {
 	 * pItems 目前正在读取第几个文件
 	 */
 	public void update(long pBytesRead, long pContentLength, int pItems) {
-		// TODO Auto-generated method stub
 		FileUploadStatus status = (FileUploadStatus) session.getAttribute("status");
 		status.setPBytesRead(pBytesRead);
 		status.setPContentLength(pContentLength);
