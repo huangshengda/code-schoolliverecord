@@ -14,12 +14,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import com.codyy.slr.constant.Constants;
+import com.codyy.slr.parambean.DirInfo;
 
 /**
  * 文件工具类
@@ -110,8 +108,8 @@ public class FileUtils {
 			});
 		}
 	}
-	
-	public static List<String> fileListToFileStrList(List<File> fileList){
+
+	public static List<String> fileListToFileStrList(List<File> fileList) {
 		List<String> list = new ArrayList<>();
 		for (File file : fileList) {
 			list.add(file.getPath());
@@ -119,35 +117,35 @@ public class FileUtils {
 		return list;
 	}
 
-	public static long getFileSize(String fileStr){
+	public static long getFileSize(String fileStr) {
 		File file = new File(fileStr);
-		if(file.exists() && file.isFile()){
+		if (file.exists() && file.isFile()) {
 			return file.length();
-		}else{
+		} else {
 			return 0;
 		}
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param path
 	 * @return absPath 绝对路径  relPath 相对路径  strDate日期字符串
 	 * @throws IOException
 	 */
-	public static Map<String,String> creatDir(Date date,String path) throws IOException {
+	public static DirInfo creatDir(Date date, String path) throws IOException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String strDate = sdf.format(date);
-		String pathStr = path + Constants.PATH_SEPARATOR  + strDate;
+		String pathStr = path + File.separator + strDate;
 		Path dir = Paths.get(pathStr);
 		if (!Files.exists(dir)) {
 			Files.createDirectory(dir);
 		}
-		Map<String, String> map = new HashMap<String,String>();
-		map.put("absPath", pathStr);
-		map.put("relPath", Constants.PATH_SEPARATOR  + strDate);
-		map.put("strDate", strDate);
-		return map;
+		DirInfo info = new DirInfo();
+		info.setRelPath(File.separator + strDate);
+		info.setAbsPath(pathStr);
+		info.setStrDate(strDate);
+		return info;
 	}
 
 	/**

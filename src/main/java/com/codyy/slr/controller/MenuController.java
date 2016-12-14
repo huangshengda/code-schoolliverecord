@@ -1,5 +1,6 @@
 package com.codyy.slr.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
+import com.codyy.slr.vo.MenuVo;
 import com.codyy.slr.vo.ReturnVoOne;
 
 /**  
@@ -21,20 +23,21 @@ import com.codyy.slr.vo.ReturnVoOne;
 @Controller
 public class MenuController {
 
+	private static List<MenuVo> list = Arrays.asList(Constants.INDEX_MENU, Constants.DEMAND_MENU);
+
 	@RequestMapping("menu")
 	@ResponseBody
-	public ReturnVoOne<List<String>> getMenu(HttpServletRequest req) {
-		ReturnVoOne<List<String>> one = new ReturnVoOne<List<String>>();
+	public ReturnVoOne<List<MenuVo>> getMenu(HttpServletRequest req) {
+		ReturnVoOne<List<MenuVo>> one = new ReturnVoOne<List<MenuVo>>();
 		try {
 
 			User user = (User) req.getAttribute("user");
 			if (Constants.ADMIN.equalsIgnoreCase(user.getUserType())) {
-				one.setData(Constants.COLUMN_BASE);
+				list.add(Constants.BASIC_MENU);
 			} else if (Constants.TEACHER.equalsIgnoreCase(user.getUserType())) {
-				one.setData(Constants.COLUMN_MY_COURSE);
-			} else {
-				one.setData(Constants.COLUMN);
+				list.add(Constants.MYCOURSE_MENU);
 			}
+			one.setData(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			one.setCode(Constants.FAILED);

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
-import com.codyy.slr.vo.FileUploadStatus;
 import com.codyy.slr.vo.ReturnVoOne;
 
 public class ProgressServlet extends HttpServlet {
@@ -24,6 +23,10 @@ public class ProgressServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		FileUploadStatus status = (FileUploadStatus) session.getAttribute("status");
 		try {
+			if (status == null) {
+				one.setData(0);
+				response.getWriter().write(JSONObject.toJSONString(one));
+			}
 			response.reset();
 			if (status.getPContentLength() == 0) {
 				one.setData(0);

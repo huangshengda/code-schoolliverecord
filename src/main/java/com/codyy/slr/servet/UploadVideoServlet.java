@@ -36,8 +36,8 @@ public class UploadVideoServlet extends HttpServlet {
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(2048 * 1024);
-		MyProgressListener getBarListener = new MyProgressListener(req);
 		ServletFileUpload upload = new ServletFileUpload(factory);
+		MyProgressListener getBarListener = new MyProgressListener(req);
 		upload.setProgressListener(getBarListener);
 		try {
 			List<FileItem> formList = upload.parseRequest(req);

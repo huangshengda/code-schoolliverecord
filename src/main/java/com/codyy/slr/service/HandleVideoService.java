@@ -1,6 +1,7 @@
 package com.codyy.slr.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -63,13 +64,13 @@ public class HandleVideoService {
 		String contextpath = HostConfigUtils.getHost(req) + "/download/img/" + Constants.IMG_TEMP;
 		String resId = StringUtils.split(videoPath, ".")[0];
 		videoPath = Constants.TEMP + "/" + videoPath;
-		
+
 		List<String> imgs = null;
-		
-		//截图失败尝试次数
-		for(int i = 0; i<Constants.SHOT_IMG_TIMES; i++){
+
+		// 截图失败尝试次数
+		for (int i = 0; i < Constants.SHOT_IMG_TIMES; i++) {
 			imgs = getShotImgs(videoPath, resId, Constants.SHOT_NUM, Constants.TEMP);
-			if (imgs !=null && !imgs.isEmpty()) {
+			if (imgs != null && !imgs.isEmpty()) {
 				break;
 			}
 		}
@@ -139,11 +140,11 @@ public class HandleVideoService {
 			executor.setWatchdog(watchdog);
 			executor.execute(cmdLine, resultHandler);
 			resultHandler.waitFor();
-			
+
 			if (executor.isFailure(resultHandler.getExitValue())) {
 				log.error(videoPath + ":截图失败");
 			}
-			
+
 			if (watchdog.killedProcess()) {
 				log.error(videoPath + ":截图超时");
 			}
@@ -255,12 +256,12 @@ public class HandleVideoService {
 	public boolean concatVideos(List<String> paths, String outPath) throws IOException, InterruptedException {
 		boolean result = false;
 
-		String fileList = Constants.TEMP + Constants.PATH_SEPARATOR + UUIDUtils.getUUID() + ".txt";
+		String fileList = Constants.TEMP + File.separator + UUIDUtils.getUUID() + ".txt";
 
 		if (FileUtils.createFile(fileList)) {
 			FileUtils.writeToFileByLine(paths, fileList);
-			
-			if(concatVideo(fileList, outPath)){
+
+			if (concatVideo(fileList, outPath)) {
 				result = true;
 			}
 		}
@@ -281,7 +282,7 @@ public class HandleVideoService {
 	 */
 	private boolean concatVideo(String fileList, String outPath) throws ExecuteException, IOException, InterruptedException {
 		boolean result = true;
-		
+
 		if (!isLinux()) {
 			fileList = fileList.replace("/", "\\");
 		}
@@ -306,17 +307,17 @@ public class HandleVideoService {
 		executor.setWatchdog(watchdog);
 		executor.execute(cmdLine, resultHandler);
 		resultHandler.waitFor();
-		
+
 		if (executor.isFailure(resultHandler.getExitValue())) {
 			log.error(outPath + ":合并失败");
 			result = false;
 		}
-		
+
 		if (watchdog.killedProcess()) {
 			log.error(outPath + ":合并超时");
 			result = false;
 		}
-		
+
 		return result;
 	}
 }

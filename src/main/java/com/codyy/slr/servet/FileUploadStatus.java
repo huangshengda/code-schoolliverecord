@@ -1,4 +1,4 @@
-package com.codyy.slr.vo;
+package com.codyy.slr.servet;
 
 public class FileUploadStatus {
 	private long pBytesRead = 0L;
