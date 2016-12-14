@@ -5,8 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.ProgressListener;
 
-import com.codyy.slr.vo.FileUploadStatus;
-
 public class MyProgressListener implements ProgressListener {
 	private HttpSession session;
 
@@ -21,7 +19,6 @@ public class MyProgressListener implements ProgressListener {
 	 * pItems 目前正在读取第几个文件
 	 */
 	public void update(long pBytesRead, long pContentLength, int pItems) {
-		// TODO Auto-generated method stub
 		FileUploadStatus status = (FileUploadStatus) session.getAttribute("status");
 		status.setPBytesRead(pBytesRead);
 		status.setPContentLength(pContentLength);

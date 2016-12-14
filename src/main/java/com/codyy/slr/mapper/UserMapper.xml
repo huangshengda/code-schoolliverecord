@@ -151,9 +151,13 @@
   <select id = "getUserByNameAndPw" parameterType="java.util.Map" resultMap="BaseResultMap">
   select * from 
   user t 
-  where t.USERNAME = #{username} 
+  where t.DELETE_FLAG = 'N'
+  <if test="username != null" >
+  and t.USERNAME = #{username} 
+  </if>
+  <if test="password != null" >
   and   t.PASSWORD =  #{password}
-  
+  </if>
   
   </select>
   

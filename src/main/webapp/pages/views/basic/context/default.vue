@@ -132,8 +132,7 @@ var userEdit = function(params, dom) {
         	});
        		if(result==true){
 				var editparams = $('#edituser').serialize();
-				CDUtil.ajaxPost("/base/user/update", editparams,
-				function(retVO) {
+				CDUtil.ajaxPost("/base/user/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 						userSearch();
 					}

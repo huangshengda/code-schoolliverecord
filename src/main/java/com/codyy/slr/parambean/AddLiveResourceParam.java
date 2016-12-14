@@ -10,7 +10,7 @@ import com.codyy.slr.entity.Resource;
  * @date 2016年12月6日   
  *
  */
-public class AddResourceParam {
+public class AddLiveResourceParam {
 
 	private String resourceName;
 	private String subjectId;

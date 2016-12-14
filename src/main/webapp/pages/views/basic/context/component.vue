@@ -150,13 +150,13 @@
      	var tr = $this.parents('tr');
      	var _index=tr.index() ;
      	var _str;
-     	if (_index != 0) {
+     	/*if (_index != 0) {*/
 			tr.prev().before(tr);
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 });
 			 CDUtil.ajaxPost("/base/classlevel/sort",_str,function(retVO){});
-		}
+		/*}*/
      },
      /**下移**/
      downbtn:function(event){
@@ -166,13 +166,13 @@
     	 var trLength = $this.length; 
     	 var _index=tr.index() ;
     	 var _str;
-     	if (_index != trLength - 1){ 
+     	/*if (_index != trLength - 1){ */
 			tr.next().after(tr);
 			$("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 });
 			CDUtil.ajaxPost("/base/classlevel/sort",_str,function(retVO){});
-		}
+		/*}*/
      },
     }
    }

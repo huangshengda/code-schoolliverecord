@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Resource;
+import com.codyy.slr.parambean.DirInfo;
 import com.codyy.slr.thread.DelFileThread;
 import com.codyy.slr.util.FileUtils;
 
@@ -56,13 +56,13 @@ public class HandleLiveFinishService {
 				List<String> fileStrList = FileUtils.fileListToFileStrList(similarFileList);
 
 				// 4.生成视频文件夹
-				Map<String, String> livePathMap = FileUtils.creatDir(date, Constants.LIVE_PATH);
+				DirInfo livePathInfo = FileUtils.creatDir(date, Constants.LIVE_PATH);
 
-				String absDirPathStr = livePathMap.get("absPath");// 绝对路径
-				String relDirPathStr = livePathMap.get("relPath");// 相对路径
+				String absDirPathStr = livePathInfo.getAbsPath();// 绝对路径
+				String relDirPathStr = livePathInfo.getRelPath();// 相对路径
 
-				String absFilePathStr = absDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;// 绝对路径文件
-				String relFilePathStr = relDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;// 相对路径文件
+				String absFilePathStr = absDirPathStr + File.separator + liveResourceId + Constants.VIDEO_FLV;// 绝对路径文件
+				String relFilePathStr = relDirPathStr + File.separator + liveResourceId + Constants.VIDEO_FLV;// 相对路径文件
 
 				log.info(logPrefix + "absFilePathStr=" + absFilePathStr);
 
@@ -89,7 +89,7 @@ public class HandleLiveFinishService {
 					thumbPath = relFilePathStr;// 赋值存储路径
 
 					// 8.生成图片文件夹
-					Map<String, String> thumbPathMap = FileUtils.creatDir(date, Constants.IMG_PATH);
+					DirInfo thumbPathInfo = FileUtils.creatDir(date, Constants.IMG_PATH);
 					log.info(logPrefix + "开始截图");
 
 					// 9.截图
@@ -97,11 +97,11 @@ public class HandleLiveFinishService {
 					boolean shotImgFlag = false;
 					List<String> imgPathlist = null;
 					while (shotImgTimes < Constants.SHOT_IMG_TIMES && !shotImgFlag) {
-						imgPathlist = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathMap.get("absPath"));
+						imgPathlist = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathInfo.getAbsPath());
 						shotImgFlag = !CollectionUtils.isEmpty(imgPathlist);
 					}
 					if (shotImgFlag) {
-						thumbPath = thumbPathMap.get("relPath") + Constants.PATH_SEPARATOR + imgPathlist.get(0);
+						thumbPath = thumbPathInfo.getRelPath() + File.separator + imgPathlist.get(0);
 						finishSuccessFlag = true;
 					}
 					log.info(logPrefix + "截图第" + (shotImgTimes + 1) + ",图片 " + thumbPath);
