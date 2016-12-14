@@ -1125,9 +1125,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("关键词:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("关键词:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1142,9 +1140,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("评论人:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("评论人:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1340,7 +1336,7 @@ webpackJsonp([1,6],[
 	        area: ['450px', '240px'],
 	        //宽高
 	        content: $("#editgrade"),
-	        btn: ['yes', 'no'],
+	        btn: ['确定', '取消'],
 	        yes: function yes(index, layero) {
 	          //添加表单验证--Validation
 	          var result = Validation.validation({
@@ -1384,7 +1380,7 @@ webpackJsonp([1,6],[
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '240px'], //宽高
 	        content: $("#addgrade"),
-	        btn: ['yes', 'no'],
+	        btn: ['确定', '取消'],
 	        yes: function yes(index, layero) {
 	          //添加表单验证--Validation
 	          var result = Validation.validation({
@@ -1739,7 +1735,7 @@ webpackJsonp([1,6],[
 			area: ['450px', '375px'],
 			//宽高
 			content: $("#edituser"),
-			btn: ['yes', 'no'],
+			btn: ['确定', '取消'],
 			yes: function yes(index, layero) {
 				//添加表单验证--Validation
 				var result = Validation.validation({
@@ -1858,7 +1854,7 @@ webpackJsonp([1,6],[
 					//加上边框
 					area: ['450px', '375px'],
 					//宽高
-					btn: ['yes', 'no'],
+					btn: ['确定', '取消'],
 					content: $("#adduser"),
 					yes: function yes(index, layero) {
 						//添加表单验证--Validation
@@ -1924,9 +1920,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1941,9 +1935,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1958,9 +1950,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
 	  }, [_c('select', {
 	    attrs: {
@@ -2366,7 +2356,7 @@ webpackJsonp([1,6],[
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '240px'], //宽高
 	        content: $("#addsubject"),
-	        btn: ['yes', 'no'],
+	        btn: ['确定', '取消'],
 	        yes: function yes(index, layero) {
 	          //添加表单验证--Validation
 	          var result = Validation.validation({
@@ -2767,16 +2757,13 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("网站底部:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("网站底部:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    staticClass: "w730",
 	    attrs: {
 	      "type": "text",
-	      "name": "buttomMsg",
-	      "data-vali": "notnull"
+	      "name": "buttomMsg"
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -2914,7 +2901,7 @@ webpackJsonp([1,6],[
 			area: ['450px', '375px'],
 			//宽高
 			content: $("#editServer"),
-			btn: ['yes', 'no'],
+			btn: ['确定', '取消'],
 			yes: function yes(index, layero) {
 				//添加表单验证--Validation
 				var result = Validation.validation({
@@ -3012,7 +2999,7 @@ webpackJsonp([1,6],[
 					title: '添加服务器',
 					skin: 'layui-layer-rim', //加上边框
 					area: ['450px', '375px'], //宽高
-					btn: ['yes', 'no'],
+					btn: ['确定', '取消'],
 					content: $("#addServer"),
 					yes: function yes(index, layero) {
 						//添加表单验证--Validation
@@ -3446,9 +3433,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3464,9 +3449,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3479,15 +3462,11 @@ webpackJsonp([1,6],[
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("年级:")])])
+	  }, [_c('label', [_vm._v("年级:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("学科:")])])
+	  }, [_c('label', [_vm._v("学科:")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3790,9 +3769,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3808,9 +3785,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3823,15 +3798,11 @@ webpackJsonp([1,6],[
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("年级:")])])
+	  }, [_c('label', [_vm._v("年级:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("学科:")])])
+	  }, [_c('label', [_vm._v("学科:")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3937,6 +3908,7 @@ webpackJsonp([1,6],[
 	      courseList: "",
 	      classList: "",
 	      subjectList: "",
+	      pages: "",
 	      params: {
 	        orderType: "desc",
 	        pageSize: 2
@@ -3959,6 +3931,7 @@ webpackJsonp([1,6],[
 	      var params = this.params;
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
 	        _self.courseList = retVO;
+	        _self.pages = retVO.totalDatas;
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "de_list",
@@ -4105,9 +4078,7 @@ webpackJsonp([1,6],[
 	    staticClass: "s-left"
 	  }, [_vm._v("\""), _c('span', {
 	    staticClass: "sub-tit"
-	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共"), _c('span', {
-	    staticClass: "totalnums"
-	  }), _vm._v("条\r\n\t\t\t\t"), _c('span', {
+	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
 	    attrs: {
 	      "data-sort": "desc"
 	    },
@@ -4618,6 +4589,7 @@ webpackJsonp([1,6],[
 		var params = { curPage: newPage, pageSize: 2 };
 		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
 			_self.mycourceList = retVO;
+			_self.pages = retVO.totalDatas;
 			var htmlStr = "";
 			var config = {
 				//用来展示表格控件的div的id
@@ -4652,7 +4624,8 @@ webpackJsonp([1,6],[
 	exports.default = {
 		data: function data() {
 			return {
-				mycourceList: ""
+				mycourceList: "",
+				pages: ""
 			};
 		},
 		created: function created() {
@@ -4682,17 +4655,13 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.openUploadup
 	    }
-	  }, [_vm._v("上传资源")])]), _vm._v(" "), _vm._m(0)])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _c('div', {
+	  }, [_vm._v("上传资源")])]), _vm._v(" "), _c('div', {
 	    staticClass: "demand"
 	  }, [_c('div', {
 	    staticClass: "d-main"
 	  }, [_c('div', {
 	    staticClass: "search"
-	  }, [_vm._v("\n\t\t\t\t共"), _c('span', {
-	    staticClass: "totalnums"
-	  }), _vm._v("个资源\n\t\t\t")]), _vm._v(" "), _c('div', {
+	  }, [_vm._v("\n\t\t\t\t共" + _vm._s(_vm.pages) + "个资源\n\t\t\t")]), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
 	  }), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "list mt40",
@@ -4701,8 +4670,8 @@ webpackJsonp([1,6],[
 	    }
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  }), _vm._v(" ")]), _vm._v(" ")])
-	}]}
+	  }), _vm._v(" ")]), _vm._v(" ")])])
+	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {

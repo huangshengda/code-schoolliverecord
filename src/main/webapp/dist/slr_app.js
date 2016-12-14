@@ -6560,7 +6560,6 @@ webpackJsonp([0,6],{
 	            sessionStorage.loginFlag = "1";
 	            sessionStorage.token = retVO.data.token;
 	            sessionStorage.realname = retVO.data.realname;
-	            sessionStorage.userType = retVO.data.userType;
 	            $("#user_realname").html(retVO.data.realname);
 	          }
 	        });
