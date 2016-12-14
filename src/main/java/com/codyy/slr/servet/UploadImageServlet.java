@@ -2,8 +2,6 @@ package com.codyy.slr.servet;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
+import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 import com.codyy.slr.vo.UploadVo;
 
@@ -32,22 +31,42 @@ public class UploadImageServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ReturnVoOne<UploadVo> one = new ReturnVoOne<UploadVo>();
+		// 1.判断req是否有效
+		if (!ServletFileUpload.isMultipartContent(req)) {
+			one.setCode(Constants.FAILED);
+			one.setMsg("请求req无效");
+			resp.getWriter().write(JSONObject.toJSONString(one));
+			log.error("file not surpported");
+			return;
+		}
 
-		String resourceId = req.getParameter("resourceId");
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setSizeThreshold(2048 * 1024);
-		MyProgressListener getBarListener = new MyProgressListener(req);
+		// 2.设置存储路径
+		factory.setRepository(new File(Constants.TEMP));
+		// 3.设置缓存区容量
+		factory.setSizeThreshold(1024 * 1024);
+		// 4.通过工厂建立ServletFileUpload对象
 		ServletFileUpload upload = new ServletFileUpload(factory);
+		// 5.设置精度监听
+		MyProgressListener getBarListener = new MyProgressListener(req);
 		upload.setProgressListener(getBarListener);
+
+		// 6.设置文件最大值
+		upload.setFileSizeMax(Constants.MAX_UPLOAD_SIZE_IMAGE * 1024 * 1024L);
+		// 7.设置文件编码
+		upload.setHeaderEncoding("UTF-8");
+
 		try {
+			// 8.得到所有Form提交的表单记录
 			List<FileItem> formList = upload.parseRequest(req);
 			Iterator<FileItem> formItem = formList.iterator();
-			// 将进度监听器加载进去
 			while (formItem.hasNext()) {
 				FileItem item = (FileItem) formItem.next();
 				if (item.isFormField()) {
+					// 表示一个普通Form元素
 					log.info("Field Name:" + item.getFieldName());
 				} else {
+					// 表示文件域
 					String original = item.getName();
 					original = (original == null) ? "" : original;
 					String suffix = "";
@@ -66,13 +85,10 @@ public class UploadImageServlet extends HttpServlet {
 						return;
 					}
 					UploadVo uploadVo = new UploadVo();
-					uploadVo.setResourceId(resourceId);
+					String resourceId = UUIDUtils.getUUID();
+					uploadVo.setResourceId(resourceId + suffix);
 					File file = new File(Constants.TEMP + File.separatorChar + resourceId + suffix);
 
-					OutputStream out = item.getOutputStream();
-					InputStream in = item.getInputStream();
-					req.getSession().setAttribute("outPutStream", out);
-					req.getSession().setAttribute("inPutStream", in);
 					item.write(file);
 					one.setData(uploadVo);
 					resp.getWriter().write(JSONObject.toJSONString(one));
