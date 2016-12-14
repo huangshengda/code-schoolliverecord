@@ -4,7 +4,7 @@
     <img src="../../../public/_module/images/logo.png" class="inb">
       <div class="head inb">
           <div class="navHead">
-            <span><router-link to="/index">首页</router-link></span>
+          <span ><router-link to="/index">首页</router-link></span>
  			<span><router-link to="/onDemand">点播</router-link></span>
  			<span><router-link to="/basic">基础管理</router-link></span>
  			<span ><router-link to="/mySubject">我的课程</router-link></span>
@@ -23,7 +23,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" id="username" name="username" data-vali="notnull,username" value="admin" >
+            <input type="text" id="username" name="username" data-vali="notnull,username" value="admin">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -52,6 +52,7 @@ export default{
         menu: menu,
         userType:'',
         item: [],
+        menus:''
       }
   },
   mounted () {    
@@ -59,6 +60,7 @@ export default{
     },
    methods:{
     init: function(){
+   	 var _self= this;
     	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 2){
       			$("#user_info").hide();
@@ -69,6 +71,9 @@ export default{
 				$("#login_button").hide();
 				$("#user_realname").html(sessionStorage.getItem("realname"));
       		}
+      	});
+      	CDUtil.ajaxPost("/menu",{},function(retVO){
+      		_self.menus = retVO;
       	});
     },
     login:function(){

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import com.codyy.slr.util.ConfigUtils;
+import com.codyy.slr.vo.MenuVo;
 
 /**
  * 
@@ -87,11 +88,6 @@ public class Constants {
 	public static final String NOT_FINISH = "notFinish";
 
 	/**
-	 * 文件夹分割付
-	 */
-	public static final String PATH_SEPARATOR = "/";
-
-	/**
 	 * 视频类型
 	 */
 	public static final String VIDEO_FLV = ".flv";
@@ -156,7 +152,17 @@ public class Constants {
 
 	public final static List<String> UPLOAD_IMAGE_TYPE;
 
+	public final static MenuVo INDEX_MENU;
+	public final static MenuVo DEMAND_MENU;
+	public final static MenuVo BASIC_MENU;
+	public final static MenuVo MYCOURSE_MENU;
+
 	static {
+		INDEX_MENU = new MenuVo(1, "首页", "/index");
+		DEMAND_MENU = new MenuVo(2, "点播", "/onDemnad");
+		BASIC_MENU = new MenuVo(3, "基础管理", "/basic");
+		MYCOURSE_MENU = new MenuVo(4, "我的课程", "/mySubject");
+
 		if (StringUtils.isNumeric(ConfigUtils.getValue("expireTime"))) {
 			EXPIRE_TIME = Long.parseLong(ConfigUtils.getValue("expireTime"));
 		} else {

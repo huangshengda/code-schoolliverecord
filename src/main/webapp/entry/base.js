@@ -36,7 +36,7 @@ window.H5fileup = require('../public/_compnents/v1/js/H5fileup');
 window.Paging = require('../public/_compnents/v1/js/Paging');
 window.Validation = require('../public/_compnents/v1/js/Validation');
 /**  加载依赖于jQuery的JS组件  **/
-/*require('imports?$=jquery!../public/jquery/jquery.dotdotdot');
+/*require('imports?$=jquery!../public/jquery/jquery.serializejson');
 require('imports?$=jquery!../public/jquery-ui/jquery-ui');*/
 /*require('imports?$=jquery!../public/myLayer/layer/layer');*/
 
