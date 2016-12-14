@@ -88,4 +88,8 @@ public class ClasslevelService {
 		classlevelMapper.modifyClasslevelSort(list);
 	}
 
+	public Classlevel getClasslevelByName(String classlevelName) {
+		return classlevelMapper.getClasslevelByName(classlevelName);
+	}
+
 }

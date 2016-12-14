@@ -5,21 +5,22 @@ import java.util.List;
 import com.codyy.slr.entity.Classlevel;
 
 public interface ClasslevelMapper {
-    int deleteByPrimaryKey(String classlevelId);
+	int deleteByPrimaryKey(String classlevelId);
 
-    int insert(Classlevel record);
+	int insert(Classlevel record);
 
-    int insertSelective(Classlevel record);
+	int insertSelective(Classlevel record);
 
-    Classlevel selectByPrimaryKey(String classlevelId);
+	Classlevel selectByPrimaryKey(String classlevelId);
 
-    int updateByPrimaryKeySelective(Classlevel record);
+	int updateByPrimaryKeySelective(Classlevel record);
 
-    int updateByPrimaryKey(Classlevel record);
-    
-    Classlevel selectByName(String classleveName);
+	int updateByPrimaryKey(Classlevel record);
+
+	Classlevel getClasslevelByName(String classleveName);
 
 	List<Classlevel> getClasslevelList(String classlevelName);
 
 	void modifyClasslevelSort(List<Classlevel> list);
+
 }

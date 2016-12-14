@@ -76,6 +76,11 @@ public class Constants {
 	public static final String IMG_REAL = "real";
 
 	/**
+	 * 分割符号
+	 */
+	public static final String PATH_SEPARATOR = "/";
+
+	/**
 	 * 是否
 	 */
 	public static final String N = "N";
@@ -159,7 +164,7 @@ public class Constants {
 
 	static {
 		INDEX_MENU = new MenuVo(1, "首页", "/index");
-		DEMAND_MENU = new MenuVo(2, "点播", "/onDemnad");
+		DEMAND_MENU = new MenuVo(2, "点播", "/onDemand");
 		BASIC_MENU = new MenuVo(3, "基础管理", "/basic");
 		MYCOURSE_MENU = new MenuVo(4, "我的课程", "/mySubject");
 
@@ -169,11 +174,11 @@ public class Constants {
 			EXPIRE_TIME = 30L;
 		}
 
-		IMG_PATH = ConfigUtils.getValue("img.path");
-		LIVE_PATH = ConfigUtils.getValue("video.live.path");
-		UPLOAD_PATH = ConfigUtils.getValue("video.upload.path");
-		TEMP = ConfigUtils.getValue("temp.path");
-		DMS_VIDEO_PATH = ConfigUtils.getValue("dms.video.path");
+		IMG_PATH = dealEndSprit("img.path");
+		LIVE_PATH = dealEndSprit("video.live.path");
+		UPLOAD_PATH = dealEndSprit("video.upload.path");
+		TEMP = dealEndSprit("temp.path");
+		DMS_VIDEO_PATH = dealEndSprit("dms.video.path");
 
 		String uploadVideoTypeStr = ConfigUtils.getValue("upload.video.type");
 		if (StringUtils.isEmpty(uploadVideoTypeStr)) {
