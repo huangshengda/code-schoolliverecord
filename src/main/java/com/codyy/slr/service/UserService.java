@@ -36,14 +36,16 @@ public class UserService {
 				if (Constants.SUPER_ADMIN.equals(userLogin.getUserType())) {
 					if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
 						user.setOpt(Constants.EDIT);
+					} else {
+						user.setOpt(Constants.EDIT_DELETE);
 					}
 				} else {
-					if (user.getUserType().contains(Constants.ADMIN)) {
-						if (userLogin.getUserId().equals(user.getUserId())) {
-							user.setOpt(Constants.EDIT);
-						} else {
-							user.setOpt(null);
-						}
+					if (user.getUserId().equals(userLogin.getUserId())) {
+						user.setOpt(Constants.EDIT);
+					} else if (user.getUserType().contains(Constants.ADMIN)) {
+						user.setOpt(null);
+					} else {
+						user.setOpt(Constants.EDIT_DELETE);
 					}
 				}
 				if (Constants.SUPER_ADMIN.equals(user.getUserType())) {

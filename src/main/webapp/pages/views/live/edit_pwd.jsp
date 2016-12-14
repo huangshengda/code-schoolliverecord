@@ -20,6 +20,7 @@
   <div class="wamp dashboard">
     <div class="smp-main mt40">
       <form action="" id="edit_pwd">
+      <input type="hidden" id="user_id" value="">
      <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
@@ -29,19 +30,19 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>原密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="prePassword" data-vali="notnull"> 
+            <input type="text" name="prePassword" data-vali="notnull" id="pre_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>新密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull,password"> 
+            <input type="text" name="password" data-vali="notnull,password" id="new_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>确认密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull"> 
+            <input type="text" name="password" data-vali="notnull" id="rel_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve mt40">
@@ -55,25 +56,38 @@
     </div>
   </div>
   <!-- 修改密码  end-->
-  <script type="text/javascript">
-	$(function(){
-		$('#sub_pwd').click(function(){
-			CDUtil.ajaxPost("",{},function(retVO){
-			});
-			//添加表单验证--Validation
-       		var result = Validation.validation({
-          		containerId: "edit_pwd",
-        	});
-       		if(result==true){
-				var pwdParams = $('#edit_pwd').serialize();
-      			CDUtil.ajaxPost("/base/user/update",pwdParams,function(retVO){
-      				if (retVO.code == 1) {
-						layer.msg('保存成功!');
+<script type="text/javascript">
+$(function(){
+	CDUtil.ajaxPost("/token/getUser",{token:sessionStorage.getItem("token")},function(retVO){
+		if (retVO.code == 1) {
+			$('#user_name').text(retVO.data.username);
+			$("#user_id").val(retVO.data.userId);
+		}
+	});
+	$('#sub_pwd').click(function(){
+		//添加表单验证--Validation
+      		var result = Validation.validation({
+         		containerId: "edit_pwd",
+       	});
+      		if(result==true){
+      			if($('#new_pwd').val()==$('#rel_pwd').val()){
+				var pwdParams = {
+					password : $('#new_pwd').val(),
+					prePassword:$('#pre_pwd').val(),
+					token:sessionStorage.getItem("token"),
+					userId:$('#user_id').val(),
+				};
+     			CDUtil.ajaxPost("/base/user/update",pwdParams,function(retVO){
+     				if (retVO.code == 1) {
+						layer.msg('修改成功!');
 					}
-      			});
-       		}
-		});
-	})
-  </script>
+     			});
+      			}else{
+      				layer.msg('密码不一致!');
+      			}
+      		}
+	});
+})
+ </script>
 </body>
 </html>
