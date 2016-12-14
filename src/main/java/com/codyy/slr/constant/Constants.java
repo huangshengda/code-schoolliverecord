@@ -49,7 +49,7 @@ public class Constants {
 	public static final String FRONT_LIVE_PATH = "pages/views/live/live_detail";
 	public static final String FRONT_UPLOAD_PATH = "pages/views/basic/up_subject";
 	public static final String FRONT_INDEX_PATH = "pages/index";
-	public static final String FRONT_DEITPWD_PATH = "pages/views/live/edit-pwd";
+	public static final String FRONT_DEITPWD_PATH = "pages/views/live/edit_pwd";
 
 	/**
 	 * 排序字段
@@ -164,7 +164,7 @@ public class Constants {
 
 	static {
 		INDEX_MENU = new MenuVo(1, "首页", "/index");
-		DEMAND_MENU = new MenuVo(2, "点播", "/onDemnad");
+		DEMAND_MENU = new MenuVo(2, "点播", "/onDemand");
 		BASIC_MENU = new MenuVo(3, "基础管理", "/basic");
 		MYCOURSE_MENU = new MenuVo(4, "我的课程", "/mySubject");
 

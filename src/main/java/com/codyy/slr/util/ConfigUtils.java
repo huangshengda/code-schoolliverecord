@@ -31,17 +31,12 @@ public class ConfigUtils {
 	static {
 		InputStream deployIn = ConfigUtils.class.getClassLoader().getResourceAsStream(ConfigUtils.DEPLOY_CONFIG_PROPERTIES);
 		InputStream operationIn = ConfigUtils.class.getClassLoader().getResourceAsStream(ConfigUtils.OPERATION_CONFIG_PROPERTIES);
-		Properties deployProperties = new Properties();
-		Properties operationProperties = new Properties();
+		Properties properties = new Properties();
 		try {
-			deployProperties.load(deployIn);
-			operationProperties.load(operationIn);
-			Set<Entry<Object, Object>> deployEntrys = deployProperties.entrySet();
-			Set<Entry<Object, Object>> operationEntrys = operationProperties.entrySet();
-			for (Entry<Object, Object> entry : deployEntrys) {
-				map.put(entry.getKey().toString(), entry.getValue().toString());
-			}
-			for (Entry<Object, Object> entry : operationEntrys) {
+			properties.load(deployIn);
+			properties.load(operationIn);
+			Set<Entry<Object, Object>> entrys = properties.entrySet();
+			for (Entry<Object, Object> entry : entrys) {
 				map.put(entry.getKey().toString(), entry.getValue().toString());
 			}
 		} catch (IOException e) {
