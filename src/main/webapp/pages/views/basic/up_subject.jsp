@@ -14,11 +14,16 @@
 	.upbtn{ width: 125px; height: 30px; background-color: #f5f8fa; border: 1px solid #dcdcdc; } 
 	.cd-f-value span{margin-right:30px;} .up-item{background-color:#f5f8fa;padding:15px;margin-bottom:10px;} 
 	.w300{width: 300px;} .w800{width: 800px;} 
+	.sysprint-img-button{display: none;}
 	.input-fileup{ position: absolute; top: 0px; left: 0px; z-index: 9; height: 28px; opacity: 0; cursor: pointer !important; } 
 	.del-fileup{ margin-top: 45px; float: right; } .del-fileup:hover{ cursor: pointer; } 
 	.showfile-name{ display: inline-block; vertical-align: top; margin: 0px !important; max-width: 200px !important; cursor: pointer; } 
 	.showfile-name-input{ display: none; }
 	.gray-btn{background-color: #C6CAC7;}
+	.sysprint-img{cursor: pointer;}
+	.sysprint-img.active{border: 1px solid #337ab7;}
+	.m10{margin: 10px;}
+	.p10{padding: 10px;}
 </style>
 </head>
 <body>
@@ -41,7 +46,7 @@
 						<label>学科:</label></span>
 					<span class="cd-f-value ">
 						<select name="subjectId" data-vali="notnull">
-							<option>请选择</option>
+							<option value="">请选择</option>
 							<option value="88888">语文</option>
 						</select>
 					</span>
@@ -50,11 +55,10 @@
 					<span class="cd-f-name">
 						<label class="cd-f-notnull">*</label>
 						<label>年级:</label></span>
-					<div class="cd-f-value ">
-						<span>
-							<input type="checkbox" name="classlevelIds">全部</span>
-						<span>
-							<input type="checkbox" name="classlevelIds">一年级</span>
+					<div class="cd-f-value" id="show_chose_grade" >
+						<input type="hidden" value="" id="classlevelIds" name="classlevelIds" data-vali="notnull" />
+						<!-- <span><input type="checkbox" class="chose-grade" value="quanbu" data-type="all" >全部</span>
+						<span><input type="checkbox" class="chose-grade others" value="yinianji" >一年级</span> -->
 					</div>
 				</div>
 				<div class="cd-f-eve">
@@ -70,8 +74,13 @@
 						<label>课程视频:</label></span>
 					<span class="cd-f-value">
 						<div class="btn fileup-button" style="position: relative;width: 150px;height: 28px;">上传视频文件
-							<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4"></div>
+							<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4">
+						</div>
 						<div class="up-list mt20" id="show_fileup_detail"></div>
+						<input type="hidden" id="video_resourceId" name="resName" data-vali="notnull" />
+						<input type="hidden" id="video_name" data-vali="notnull" />
+						<input type="hidden" id="video_size" name="size" data-vali="notnull" />
+						<input type="hidden" id="video_img_resourceId" name="thumbName" data-vali="notnull" />
 					</span>
 				</div>
 				<div class="cd-f-eve">
@@ -80,20 +89,20 @@
 						<button class="green-btn lay-btn" type="button" id="save_video_info" >保存</button></span>
 				</div>
 			</div>
-			<input type="hidden" id="video_resourceId" name="resName" />
-			<input type="hidden" id="video_name" />
-			<input type="hidden" id="video_size" name="size" />
-			<input type="hidden" id="video_img_resourceId" name="thumbName" />
 		</form>
 	</div>
 </div>
 <!-- 弹出选择封面 -->
 <div id="chose_sysimg" class="layBox mt40 layui-layer-wrap" style="display: none;">
-	<div class="row" style="min-height: 230px;" >
-		
+	<div class="row" id="show_sysprint_img" style="min-height: 230px;" >
+		<!-- <div class="col-md-4 m10">
+			<img alt="..." class="img-thumbnail sysprint-img" src="http://localhost:8080/SchoolLiveRecord/download/img/temp/6b72694694424ae895f62378e4c74d92_001.png"  >
+		</div> -->
 	</div>
-	<button type="button" class="gray-btn lay-btn fr" id="chose_sysimg_cancel" >取消</button>
-	<button type="button" class="green-btn lay-btn fr" id="chose_sysimg_sure" >确定</button>
+	<div style="height: 60px;">
+		<button type="button" class="gray-btn lay-btn fr" id="chose_sysimg_cancel" >取消</button>
+		<button type="button" class="green-btn lay-btn fr" id="chose_sysimg_sure" >确定</button>
+	</div>
 </div>
 <script type="text/javascript"></script>
 </body>

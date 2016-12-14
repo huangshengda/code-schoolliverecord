@@ -82,7 +82,7 @@ data-vali的值域集合有：
 			}
 			msg = Validation.matchRule(vali,value);
 			if(msg == ""){
-				console.log(msg+"：本次验证通过");
+				//console.log(msg+"：本次验证通过");
 			}else{
 				result = false;
 				var idTemp = new Date().getTime();
