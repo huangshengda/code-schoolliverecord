@@ -76,7 +76,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="username" data-vali="notnull,username">
+            <input type="text" name="username" id="username" data-vali="notnull,username">
           </span>
         </div>
         <div class="cd-f-eve">

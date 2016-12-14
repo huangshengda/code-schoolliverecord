@@ -2,8 +2,6 @@ package com.codyy.slr.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,26 +43,45 @@ public class DemandResController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/list",method = RequestMethod.POST )
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoList<ResourceVo> getDemandResPageList(HttpServletRequest req, Page page,
-			SearchResourceParam param) {
-		
+	public ReturnVoList<ResourceVo> getDemandResPageList(Page page, SearchResourceParam param) {
+
 		ReturnVoList<ResourceVo> result = null;
-		
+		String orderBy = param.getOrderBy();
+		String orderType = param.getOrderType();
+		if (StringUtils.isNotBlank(orderBy) && StringUtils.isNotBlank(orderType)) {
+			boolean isLegal = true; // 判断参数是否合法
+			if (StringUtils.equalsIgnoreCase(orderBy, "createTime") || StringUtils.equalsIgnoreCase(orderBy, "viewCnt")) {
+				if (StringUtils.equalsIgnoreCase(orderType, Constants.DESC) || StringUtils.equalsIgnoreCase(orderType, Constants.ASC)) {
+
+				} else {
+					isLegal = false;
+					result = new ReturnVoList<ResourceVo>(Constants.FAILED, "参数不合法", null);
+				}
+			} else {
+				isLegal = false;
+				result = new ReturnVoList<ResourceVo>(Constants.FAILED, "参数不合法", null);
+			}
+
+			if (!isLegal) {
+				return result;
+			}
+		}
+
 		if (StringUtils.isNotBlank(param.getResourceNameKey())) {
 			param.setResourceNameKey(MySqlKeyWordUtils.MySqlKeyWordReplace(param.getResourceNameKey()));
 		}
-		
-		try{
+
+		try {
 			Map<String, Object> paramMap = ParamUtils.bean2Map(param);
 			page.setMap(paramMap);
 
-			page = demandResService.getDemandResPageList(req, page);
+			page = demandResService.getDemandResPageList(page);
 
 			result = new ReturnVoList<ResourceVo>(page);
-		}catch(Exception e){
-			result = new ReturnVoList<ResourceVo>(Constants.FAILED,"查询失败",null);
+		} catch (Exception e) {
+			result = new ReturnVoList<ResourceVo>(Constants.FAILED, "查询失败", null);
 			e.printStackTrace();
 		}
 

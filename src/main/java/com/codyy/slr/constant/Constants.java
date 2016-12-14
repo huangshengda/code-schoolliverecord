@@ -198,9 +198,9 @@ public class Constants {
 		MAX_UPLOAD_SIZE_VIDEO = StringToInt("max.upload.size.video", 2048);
 		MAX_UPLOAD_SIZE_IMAGE = StringToInt("max.upload.size.image", 5);
 
-		ROOT_UI = ConfigUtils.getValue("root.ui");
-		ROOT_SERVER = ConfigUtils.getValue("root.server");
-		ROOT_CHAT = ConfigUtils.getValue("root.chat");
+		ROOT_UI = dealEndSprit("root.ui");
+		ROOT_SERVER = dealEndSprit("root.server");
+		ROOT_CHAT = dealEndSprit("root.chat");
 	}
 
 	private static int StringToInt(String key, int defaultVal) {
@@ -208,6 +208,20 @@ public class Constants {
 			return Integer.parseInt(ConfigUtils.getValue(key));
 		} else {
 			return defaultVal;
+		}
+	}
+
+	/**
+	 * 
+	 * @Description: 根据key获取路径,如果以斜杠结束将去除
+	 * @param key
+	 * @return
+	 */
+	private static String dealEndSprit(String key) {
+		if (StringUtils.isNotBlank(ConfigUtils.getValue(key))) {
+			return ConfigUtils.getValue(key).endsWith("/") ? StringUtils.substringBeforeLast(ConfigUtils.getValue(key), "/") : ConfigUtils.getValue(key);
+		} else {
+			return null;
 		}
 	}
 }
