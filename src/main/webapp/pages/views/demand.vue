@@ -33,6 +33,8 @@
 </div>
 </template>
 <script>
+var ss=$(".sub-code").text().substr(0,7) + "..."; 
+$(".sub-code").text(ss);
 /**
  * Vue组件对象
 **/

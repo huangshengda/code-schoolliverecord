@@ -9,8 +9,8 @@
   <%@ include file="../../_commons/meta.jsp"%>
   <style>
   	body{background-color: #f5f8fa;}
-  	#edit-pwd input{width:295px;}
-  	#edit-pwd{width:400px;margin:0 auto;}
+  	#edit_pwd input{width:295px;}
+  	#edit_pwd{width:400px;margin:0 auto;}
   	.cd-f-eve{margin-top:20px;}
   </style>
 </head>
@@ -19,7 +19,7 @@
   <!-- 修改密码 start-->
   <div class="wamp dashboard">
     <div class="smp-main mt40">
-      <form action="" id="edit-pwd">
+      <form action="" id="edit_pwd">
      <div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
@@ -58,6 +58,7 @@
   <script type="text/javascript">
 	$(function(){
 		$('#sub_pwd').click(function(){
+			
 			//添加表单验证--Validation
        		var result = Validation.validation({
           		containerId: "edit_pwd",
