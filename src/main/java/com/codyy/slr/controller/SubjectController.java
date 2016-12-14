@@ -115,16 +115,15 @@ public class SubjectController {
 		int code = Constants.SUCCESS;
 		String msg = "编辑成功";
 		try {
-			List<Subject> list = subjectService.getSubjectList(subject.getSubjectName());
-			if (list.size() == 0) {
+			Subject sub = subjectService.getSubjectByName(subject.getSubjectName());
+			if ((sub != null) && (!sub.getSubjectId().equals(subject.getSubjectId()))) {
+				msg = "学科名称重复";
+				code = Constants.FAILED;
+			} else {
 				if (subjectService.modifySubject(subject) != 1) {
 					msg = "编辑失败";
 					code = Constants.FAILED;
 				}
-				;
-			} else {
-				msg = "学科名称重复";
-				code = Constants.FAILED;
 			}
 		} catch (Exception e) {
 			code = Constants.FAILED;
@@ -146,7 +145,7 @@ public class SubjectController {
 	public ReturnVoOne<Subject> modifySubjectSort(String subjectIds) {
 		int code = Constants.SUCCESS;
 		String msg = "排序成功";
-		if(!StringUtils.isNotBlank(subjectIds)){
+		if (!StringUtils.isNotBlank(subjectIds)) {
 			return new ReturnVoOne<Subject>(0, "学科Id为空");
 		}
 		String id[] = subjectIds.split(",");

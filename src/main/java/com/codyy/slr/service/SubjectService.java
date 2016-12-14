@@ -50,7 +50,6 @@ public class SubjectService {
 				msg = "添加失败";
 				code = Constants.FAILED;
 			}
-			;
 		} else {
 			msg = "学科名称重复";
 			code = Constants.FAILED;
@@ -66,6 +65,10 @@ public class SubjectService {
 
 	public void modifySubjectSort(List<Subject> list) {
 		subjectMapper.modifySubjectSort(list);
+	}
+
+	public Subject getSubjectByName(String subjectName) {
+		return subjectMapper.getSubjectByName(subjectName);
 	}
 
 }

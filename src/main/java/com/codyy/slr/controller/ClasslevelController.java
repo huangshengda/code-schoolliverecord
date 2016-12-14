@@ -114,16 +114,15 @@ public class ClasslevelController {
 		int code = Constants.SUCCESS;
 		String msg = "编辑成功";
 		try {
-			List<Classlevel> list = classlevelService.getClasslevelList(classlevel.getClasslevelName());
-			if (list.size() == 0) {
+			Classlevel clel = classlevelService.getClasslevelByName(classlevel.getClasslevelName());
+			if ((clel != null) && (!clel.getClasslevelId().equals(classlevel.getClasslevelId()))) {
+				msg = "学科名称重复";
+				code = Constants.FAILED;
+			} else {
 				if (classlevelService.modifyClasslevel(classlevel) != 1) {
 					msg = "编辑失败";
 					code = Constants.FAILED;
 				}
-				;
-			} else {
-				msg = "学科名称重复";
-				code = Constants.FAILED;
 			}
 		} catch (Exception e) {
 			code = Constants.FAILED;
@@ -145,7 +144,7 @@ public class ClasslevelController {
 	public ReturnVoOne<Classlevel> modifyClasslevelSort(String classlevelIds) {
 		int code = 1;
 		String msg = "排序成功";
-		if(!StringUtils.isNotBlank(classlevelIds)){
+		if (!StringUtils.isNotBlank(classlevelIds)) {
 			return new ReturnVoOne<Classlevel>(0, "年级Id为空");
 		}
 		String id[] = classlevelIds.split(",");
