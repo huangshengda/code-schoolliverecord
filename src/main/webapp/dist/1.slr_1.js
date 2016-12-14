@@ -10,22 +10,28 @@ webpackJsonp([1,6],[
 /* 8 */,
 /* 9 */,
 /* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./basic.vue": 12,
-		"./basic/context/comment.vue": 38,
-		"./basic/context/component.vue": 41,
-		"./basic/context/default.vue": 46,
-		"./basic/context/management.vue": 49,
-		"./basic/context/platform.vue": 54,
-		"./basic/context/server.vue": 57,
-		"./basic/context/source.vue": 60,
-		"./basic/context/upload.vue": 63,
-		"./demand.vue": 66,
-		"./home.vue": 69,
-		"./mySubject.vue": 75
+		"./basic.vue": 18,
+		"./basic/context/comment.vue": 43,
+		"./basic/context/component.vue": 46,
+		"./basic/context/default.vue": 51,
+		"./basic/context/management.vue": 54,
+		"./basic/context/platform.vue": 59,
+		"./basic/context/server.vue": 62,
+		"./basic/context/source.vue": 65,
+		"./basic/context/upload.vue": 68,
+		"./demand.vue": 71,
+		"./home.vue": 74,
+		"./mySubject.vue": 80
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -38,24 +44,24 @@ webpackJsonp([1,6],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 11;
+	webpackContext.id = 17;
 
 
 /***/ },
-/* 12 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(13)
+	__webpack_require__(19)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(15)
+	__vue_exports__ = __webpack_require__(21)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(37)
+	var __vue_template__ = __webpack_require__(42)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -73,7 +79,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -89,13 +95,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 13 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(14);
+	var content = __webpack_require__(20);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -104,8 +110,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(14, function() {
-				var newContent = __webpack_require__(14);
+			module.hot.accept(20, function() {
+				var newContent = __webpack_require__(20);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -115,7 +121,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 14 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -129,7 +135,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 15 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -150,8 +156,8 @@ webpackJsonp([1,6],[
 	//
 	//
 
-	var Sidebar = __webpack_require__(16);
-	var Levelbar = __webpack_require__(27);
+	var Sidebar = __webpack_require__(22);
+	var Levelbar = __webpack_require__(32);
 	exports.default = {
 	  name: 'app',
 	  components: {
@@ -161,20 +167,20 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 16 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(17)
+	__webpack_require__(23)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(19)
+	__vue_exports__ = __webpack_require__(25)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(26)
+	var __vue_template__ = __webpack_require__(31)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -193,7 +199,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -209,13 +215,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 17 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -224,8 +230,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(18, function() {
-				var newContent = __webpack_require__(18);
+			module.hot.accept(24, function() {
+				var newContent = __webpack_require__(24);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -235,7 +241,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 18 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -249,7 +255,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 19 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -258,11 +264,11 @@ webpackJsonp([1,6],[
 	  value: true
 	});
 
-	var _menu = __webpack_require__(10);
+	var _menu = __webpack_require__(16);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _Expanding = __webpack_require__(20);
+	var _Expanding = __webpack_require__(26);
 
 	var _Expanding2 = _interopRequireDefault(_Expanding);
 
@@ -365,20 +371,20 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 20 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(21)
+	__webpack_require__(27)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(23)
+	__vue_exports__ = __webpack_require__(29)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(24)
+	var __vue_template__ = __webpack_require__(30)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -397,7 +403,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -413,13 +419,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 21 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(22);
+	var content = __webpack_require__(28);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -428,8 +434,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(22, function() {
-				var newContent = __webpack_require__(22);
+			module.hot.accept(28, function() {
+				var newContent = __webpack_require__(28);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -439,7 +445,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 22 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -453,7 +459,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 23 */
+/* 29 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -521,7 +527,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 24 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -537,13 +543,12 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-44f2e5e6", module.exports)
+	     __webpack_require__(12).rerender("data-v-44f2e5e6", module.exports)
 	  }
 	}
 
 /***/ },
-/* 25 */,
-/* 26 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -588,25 +593,25 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-3444557c", module.exports)
+	     __webpack_require__(12).rerender("data-v-3444557c", module.exports)
 	  }
 	}
 
 /***/ },
-/* 27 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(28)
+	__webpack_require__(33)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(30)
+	__vue_exports__ = __webpack_require__(35)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(36)
+	var __vue_template__ = __webpack_require__(41)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -625,7 +630,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -641,13 +646,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 28 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(29);
+	var content = __webpack_require__(34);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -656,8 +661,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(29, function() {
-				var newContent = __webpack_require__(29);
+			module.hot.accept(34, function() {
+				var newContent = __webpack_require__(34);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -667,7 +672,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 29 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -681,7 +686,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 30 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -690,11 +695,11 @@ webpackJsonp([1,6],[
 	  value: true
 	});
 
-	var _Breadcrumb = __webpack_require__(31);
+	var _Breadcrumb = __webpack_require__(36);
 
 	var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
 
-	var _menu = __webpack_require__(10);
+	var _menu = __webpack_require__(16);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
@@ -744,20 +749,20 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 31 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(32)
+	__webpack_require__(37)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(34)
+	__vue_exports__ = __webpack_require__(39)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(35)
+	var __vue_template__ = __webpack_require__(40)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -775,7 +780,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -791,13 +796,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 32 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(33);
+	var content = __webpack_require__(38);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -806,8 +811,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(33, function() {
-				var newContent = __webpack_require__(33);
+			module.hot.accept(38, function() {
+				var newContent = __webpack_require__(38);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -817,7 +822,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 33 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -831,7 +836,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 34 */
+/* 39 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -861,7 +866,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 35 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -879,12 +884,12 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-1f8f3693", module.exports)
+	     __webpack_require__(12).rerender("data-v-1f8f3693", module.exports)
 	  }
 	}
 
 /***/ },
-/* 36 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -903,12 +908,12 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-224f209f", module.exports)
+	     __webpack_require__(12).rerender("data-v-224f209f", module.exports)
 	  }
 	}
 
 /***/ },
-/* 37 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -923,22 +928,22 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-4de6ccc2", module.exports)
+	     __webpack_require__(12).rerender("data-v-4de6ccc2", module.exports)
 	  }
 	}
 
 /***/ },
-/* 38 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(39)
+	__vue_exports__ = __webpack_require__(44)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(40)
+	var __vue_template__ = __webpack_require__(45)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -956,7 +961,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -972,7 +977,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 39 */
+/* 44 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1088,7 +1093,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 40 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -1125,9 +1130,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("关键词:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("关键词:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1142,9 +1145,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("评论人:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("评论人:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1158,25 +1159,25 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-545ef1f5", module.exports)
+	     __webpack_require__(12).rerender("data-v-545ef1f5", module.exports)
 	  }
 	}
 
 /***/ },
-/* 41 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(42)
+	__webpack_require__(47)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(44)
+	__vue_exports__ = __webpack_require__(49)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(45)
+	var __vue_template__ = __webpack_require__(50)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -1194,7 +1195,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -1210,13 +1211,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 42 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(43);
+	var content = __webpack_require__(48);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -1225,8 +1226,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(43, function() {
-				var newContent = __webpack_require__(43);
+			module.hot.accept(48, function() {
+				var newContent = __webpack_require__(48);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1236,7 +1237,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 43 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -1250,7 +1251,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 44 */
+/* 49 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1340,7 +1341,7 @@ webpackJsonp([1,6],[
 	        area: ['450px', '240px'],
 	        //宽高
 	        content: $("#editgrade"),
-	        btn: ['yes', 'no'],
+	        btn: ['确定', '取消'],
 	        yes: function yes(index, layero) {
 	          //添加表单验证--Validation
 	          var result = Validation.validation({
@@ -1384,7 +1385,7 @@ webpackJsonp([1,6],[
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '240px'], //宽高
 	        content: $("#addgrade"),
-	        btn: ['yes', 'no'],
+	        btn: ['确定', '取消'],
 	        yes: function yes(index, layero) {
 	          //添加表单验证--Validation
 	          var result = Validation.validation({
@@ -1409,13 +1410,13 @@ webpackJsonp([1,6],[
 	      var tr = $this.parents('tr');
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != 0) {
-	        tr.prev().before(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
-	      }
+	      /*if (_index != 0) {*/
+	      tr.prev().before(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
+	      /*}*/
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
@@ -1425,19 +1426,19 @@ webpackJsonp([1,6],[
 	      var trLength = $this.length;
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != trLength - 1) {
-	        tr.next().after(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
-	      }
+	      /*if (_index != trLength - 1){ */
+	      tr.next().after(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
+	      /*}*/
 	    }
 	  }
 	};
 
 /***/ },
-/* 45 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -1556,22 +1557,22 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-99210bda", module.exports)
+	     __webpack_require__(12).rerender("data-v-99210bda", module.exports)
 	  }
 	}
 
 /***/ },
-/* 46 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(47)
+	__vue_exports__ = __webpack_require__(52)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(48)
+	var __vue_template__ = __webpack_require__(53)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -1589,7 +1590,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -1605,7 +1606,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 47 */
+/* 52 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1739,7 +1740,7 @@ webpackJsonp([1,6],[
 			area: ['450px', '375px'],
 			//宽高
 			content: $("#edituser"),
-			btn: ['yes', 'no'],
+			btn: ['确定', '取消'],
 			yes: function yes(index, layero) {
 				//添加表单验证--Validation
 				var result = Validation.validation({
@@ -1858,7 +1859,7 @@ webpackJsonp([1,6],[
 					//加上边框
 					area: ['450px', '375px'],
 					//宽高
-					btn: ['yes', 'no'],
+					btn: ['确定', '取消'],
 					content: $("#adduser"),
 					yes: function yes(index, layero) {
 						//添加表单验证--Validation
@@ -1882,7 +1883,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 48 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -1924,9 +1925,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1941,9 +1940,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -1958,9 +1955,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
 	  }, [_c('select', {
 	    attrs: {
@@ -2140,25 +2135,25 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-861bce52", module.exports)
+	     __webpack_require__(12).rerender("data-v-861bce52", module.exports)
 	  }
 	}
 
 /***/ },
-/* 49 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(50)
+	__webpack_require__(55)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(52)
+	__vue_exports__ = __webpack_require__(57)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(53)
+	var __vue_template__ = __webpack_require__(58)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2176,7 +2171,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -2192,13 +2187,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 50 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(51);
+	var content = __webpack_require__(56);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -2207,8 +2202,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(51, function() {
-				var newContent = __webpack_require__(51);
+			module.hot.accept(56, function() {
+				var newContent = __webpack_require__(56);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2218,7 +2213,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 51 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -2232,7 +2227,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 52 */
+/* 57 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2366,7 +2361,7 @@ webpackJsonp([1,6],[
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '240px'], //宽高
 	        content: $("#addsubject"),
-	        btn: ['yes', 'no'],
+	        btn: ['确定', '取消'],
 	        yes: function yes(index, layero) {
 	          //添加表单验证--Validation
 	          var result = Validation.validation({
@@ -2391,13 +2386,13 @@ webpackJsonp([1,6],[
 	      var tr = $this.parents('tr');
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != 0) {
-	        tr.prev().before(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
-	      }
+	      /*if (_index != 0) {*/
+	      tr.prev().before(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
+	      /*}*/
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
@@ -2407,19 +2402,19 @@ webpackJsonp([1,6],[
 	      var trLength = $this.length;
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != trLength - 1) {
-	        tr.next().after(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
-	      }
+	      /*	if (_index != trLength - 1){ */
+	      tr.next().after(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
+	      /*}*/
 	    }
 	  }
 	};
 
 /***/ },
-/* 53 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -2538,22 +2533,22 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-5405001d", module.exports)
+	     __webpack_require__(12).rerender("data-v-5405001d", module.exports)
 	  }
 	}
 
 /***/ },
-/* 54 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(55)
+	__vue_exports__ = __webpack_require__(60)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(56)
+	var __vue_template__ = __webpack_require__(61)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2571,7 +2566,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -2587,7 +2582,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 55 */
+/* 60 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2677,7 +2672,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 56 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -2767,16 +2762,13 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("网站底部:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("网站底部:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    staticClass: "w730",
 	    attrs: {
 	      "type": "text",
-	      "name": "buttomMsg",
-	      "data-vali": "notnull"
+	      "name": "buttomMsg"
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -2787,22 +2779,22 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-13f920cd", module.exports)
+	     __webpack_require__(12).rerender("data-v-13f920cd", module.exports)
 	  }
 	}
 
 /***/ },
-/* 57 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(58)
+	__vue_exports__ = __webpack_require__(63)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(59)
+	var __vue_template__ = __webpack_require__(64)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2820,7 +2812,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -2836,7 +2828,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 58 */
+/* 63 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2914,7 +2906,7 @@ webpackJsonp([1,6],[
 			area: ['450px', '375px'],
 			//宽高
 			content: $("#editServer"),
-			btn: ['yes', 'no'],
+			btn: ['确定', '取消'],
 			yes: function yes(index, layero) {
 				//添加表单验证--Validation
 				var result = Validation.validation({
@@ -3012,7 +3004,7 @@ webpackJsonp([1,6],[
 					title: '添加服务器',
 					skin: 'layui-layer-rim', //加上边框
 					area: ['450px', '375px'], //宽高
-					btn: ['yes', 'no'],
+					btn: ['确定', '取消'],
 					content: $("#addServer"),
 					yes: function yes(index, layero) {
 						//添加表单验证--Validation
@@ -3035,7 +3027,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 59 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3155,22 +3147,22 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-4fb6e81d", module.exports)
+	     __webpack_require__(12).rerender("data-v-4fb6e81d", module.exports)
 	  }
 	}
 
 /***/ },
-/* 60 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(61)
+	__vue_exports__ = __webpack_require__(66)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(62)
+	var __vue_template__ = __webpack_require__(67)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3188,7 +3180,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -3204,7 +3196,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 61 */
+/* 66 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3377,7 +3369,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 62 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3446,9 +3438,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3464,9 +3454,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3479,35 +3467,31 @@ webpackJsonp([1,6],[
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("年级:")])])
+	  }, [_c('label', [_vm._v("年级:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("学科:")])])
+	  }, [_c('label', [_vm._v("学科:")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-7a4cf4f5", module.exports)
+	     __webpack_require__(12).rerender("data-v-7a4cf4f5", module.exports)
 	  }
 	}
 
 /***/ },
-/* 63 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(64)
+	__vue_exports__ = __webpack_require__(69)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(65)
+	var __vue_template__ = __webpack_require__(70)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3525,7 +3509,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -3541,7 +3525,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 64 */
+/* 69 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3714,7 +3698,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 65 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3790,9 +3774,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("资源名称:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3808,9 +3790,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
+	  }, [_c('label', [_vm._v("主讲教师:")])]), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value "
 	  }, [_c('input', {
 	    attrs: {
@@ -3823,35 +3803,31 @@ webpackJsonp([1,6],[
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("年级:")])])
+	  }, [_c('label', [_vm._v("年级:")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', {
-	    staticClass: "cd-f-notnull"
-	  }, [_vm._v("*")]), _c('label', [_vm._v("学科:")])])
+	  }, [_c('label', [_vm._v("学科:")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-a3e1904a", module.exports)
+	     __webpack_require__(12).rerender("data-v-a3e1904a", module.exports)
 	  }
 	}
 
 /***/ },
-/* 66 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(67)
+	__vue_exports__ = __webpack_require__(72)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(68)
+	var __vue_template__ = __webpack_require__(73)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3869,7 +3845,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -3885,7 +3861,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 67 */
+/* 72 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3928,6 +3904,8 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var ss = $(".sub-code").text().substr(0, 7) + "...";
+	$(".sub-code").text(ss);
 	/**
 	 * Vue组件对象
 	**/
@@ -3937,6 +3915,7 @@ webpackJsonp([1,6],[
 	      courseList: "",
 	      classList: "",
 	      subjectList: "",
+	      pages: "",
 	      params: {
 	        orderType: "desc",
 	        pageSize: 2
@@ -3959,6 +3938,7 @@ webpackJsonp([1,6],[
 	      var params = this.params;
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
 	        _self.courseList = retVO;
+	        _self.pages = retVO.totalDatas;
 	        var config = {
 	          //用来展示表格控件的div的id
 	          containerId: "de_list",
@@ -4069,7 +4049,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 68 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4105,9 +4085,7 @@ webpackJsonp([1,6],[
 	    staticClass: "s-left"
 	  }, [_vm._v("\""), _c('span', {
 	    staticClass: "sub-tit"
-	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共"), _c('span', {
-	    staticClass: "totalnums"
-	  }), _vm._v("条\r\n\t\t\t\t"), _c('span', {
+	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
 	    attrs: {
 	      "data-sort": "desc"
 	    },
@@ -4155,25 +4133,25 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-fd603eac", module.exports)
+	     __webpack_require__(12).rerender("data-v-fd603eac", module.exports)
 	  }
 	}
 
 /***/ },
-/* 69 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(70)
+	__webpack_require__(75)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(72)
+	__vue_exports__ = __webpack_require__(77)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(73)
+	var __vue_template__ = __webpack_require__(78)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4191,7 +4169,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -4207,13 +4185,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 70 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(71);
+	var content = __webpack_require__(76);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -4222,8 +4200,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(71, function() {
-				var newContent = __webpack_require__(71);
+			module.hot.accept(76, function() {
+				var newContent = __webpack_require__(76);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4233,7 +4211,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 71 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -4247,7 +4225,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 72 */
+/* 77 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4364,11 +4342,17 @@ webpackJsonp([1,6],[
 	    openMore: function openMore() {
 	      window.location.href = ROOT_SERVER + "/#/onDemand";
 	    }
+	  },
+	  //自定义在实例
+	  filters: {
+	    cutStr: function cutStr(value) {
+	      return value.substr(0, 7) + "...";
+	    }
 	  }
 	};
 
 /***/ },
-/* 73 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4393,7 +4377,7 @@ webpackJsonp([1,6],[
 	      attrs: {
 	        "title": post.classlevelName
 	      }
-	    }, [_vm._v(_vm._s(post.classlevelName))]), _vm._v("/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author))]), _vm._v(" "), _c('div', {
+	    }, [_vm._v(_vm._s(_vm._f("cutStr")(post.classlevelName)))]), _vm._v("/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author))]), _vm._v(" "), _c('div', {
 	      staticClass: "col-md-4",
 	      on: {
 	        "click": function($event) {
@@ -4407,7 +4391,7 @@ webpackJsonp([1,6],[
 	    staticClass: "tac"
 	  }, [_c('img', {
 	    attrs: {
-	      "src": __webpack_require__(74)
+	      "src": __webpack_require__(79)
 	    }
 	  })]), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "s-title demanBtm"
@@ -4470,31 +4454,31 @@ webpackJsonp([1,6],[
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-481026fe", module.exports)
+	     __webpack_require__(12).rerender("data-v-481026fe", module.exports)
 	  }
 	}
 
 /***/ },
-/* 74 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "8bed79dd627549783788bf671a45567f.png";
 
 /***/ },
-/* 75 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(76)
+	__webpack_require__(81)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(78)
+	__vue_exports__ = __webpack_require__(83)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(79)
+	var __vue_template__ = __webpack_require__(84)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4512,7 +4496,7 @@ webpackJsonp([1,6],[
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(12)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
@@ -4528,13 +4512,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 76 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(77);
+	var content = __webpack_require__(82);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -4543,8 +4527,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(77, function() {
-				var newContent = __webpack_require__(77);
+			module.hot.accept(82, function() {
+				var newContent = __webpack_require__(82);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4554,7 +4538,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 77 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -4568,7 +4552,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 78 */
+/* 83 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4618,6 +4602,7 @@ webpackJsonp([1,6],[
 		var params = { curPage: newPage, pageSize: 2 };
 		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
 			_self.mycourceList = retVO;
+			_self.pages = retVO.totalDatas;
 			var htmlStr = "";
 			var config = {
 				//用来展示表格控件的div的id
@@ -4652,7 +4637,8 @@ webpackJsonp([1,6],[
 	exports.default = {
 		data: function data() {
 			return {
-				mycourceList: ""
+				mycourceList: "",
+				pages: ""
 			};
 		},
 		created: function created() {
@@ -4669,7 +4655,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 79 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4682,17 +4668,13 @@ webpackJsonp([1,6],[
 	    on: {
 	      "click": _vm.openUploadup
 	    }
-	  }, [_vm._v("上传资源")])]), _vm._v(" "), _vm._m(0)])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _c('div', {
+	  }, [_vm._v("上传资源")])]), _vm._v(" "), _c('div', {
 	    staticClass: "demand"
 	  }, [_c('div', {
 	    staticClass: "d-main"
 	  }, [_c('div', {
 	    staticClass: "search"
-	  }, [_vm._v("\n\t\t\t\t共"), _c('span', {
-	    staticClass: "totalnums"
-	  }), _vm._v("个资源\n\t\t\t")]), _vm._v(" "), _c('div', {
+	  }, [_vm._v("\n\t\t\t\t共" + _vm._s(_vm.pages) + "个资源\n\t\t\t")]), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
 	  }), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "list mt40",
@@ -4701,12 +4683,12 @@ webpackJsonp([1,6],[
 	    }
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  }), _vm._v(" ")]), _vm._v(" ")])
-	}]}
+	  }), _vm._v(" ")]), _vm._v(" ")])])
+	},staticRenderFns: []}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-4b31245e", module.exports)
+	     __webpack_require__(12).rerender("data-v-4b31245e", module.exports)
 	  }
 	}
 
