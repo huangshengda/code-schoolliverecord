@@ -19,7 +19,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.thread.ConfigThreadLocal;
-import com.codyy.slr.thread.WebcontentThreadLocal;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -57,8 +56,6 @@ public class TokenFilter implements Filter {
 		req.setAttribute("ROOT_CHAT", Constants.ROOT_CHAT);
 
 		String uri = req.getRequestURI();
-
-		WebcontentThreadLocal.setVal(req);
 
 		if (uri.indexOf("/chat/") != -1) {
 			ConfigThreadLocal.setVal(req.getHeader("User-Agent"));

@@ -6,19 +6,19 @@
     <form action="" id="condition">
       <div class="cd-f-row">
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>用户名:</label></span>
+          <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value ">
             <input type="text" name="username" id="search_username" data-vali="notnull,username">
           </span>
         </div>
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>姓名:</label></span>
+          <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value ">
             <input type="text" name="realname" id="search_realname" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>角色:</label></span>
+          <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
             <select name="userType" id="search_userType">
             	<option value="-1">请选择</option>
@@ -124,7 +124,7 @@ var userEdit = function(params, dom) {
 		area: ['450px', '375px'],
 		//宽高
 		content: $("#edituser"),
-		btn: ['yes', 'no'],
+		btn: ['确定', '取消'],
 		yes: function(index, layero) {
 		//添加表单验证--Validation
        		var result = Validation.validation({
@@ -247,7 +247,7 @@ export default {
 				//加上边框
 				area: ['450px', '375px'],
 				//宽高
-				btn: ['yes', 'no'],
+				btn: ['确定', '取消'],
 				content: $("#adduser"),
 				yes: function(index, layero) {
 					//添加表单验证--Validation

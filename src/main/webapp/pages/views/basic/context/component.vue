@@ -79,7 +79,7 @@
 		area: ['450px', '240px'],
 		//宽高
 		content: $("#editgrade"),
-		btn: ['yes', 'no'],
+		btn: ['确定', '取消'],
 		yes: function(index, layero) {
 		//添加表单验证--Validation
        		var result = Validation.validation({
@@ -125,7 +125,7 @@
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '240px'], //宽高
               content: $("#addgrade"),
-              btn: ['yes', 'no'],
+              btn: ['确定', '取消'],
               yes:function(index,layero){
               //添加表单验证--Validation
        			var result = Validation.validation({

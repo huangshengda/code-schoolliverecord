@@ -6,13 +6,13 @@
     <form action="" id="condition">
         <div class="cd-f-row">
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>关键词:</label></span>
+          <span class="cd-f-name"><label>关键词:</label></span>
           <span class="cd-f-value ">
             <input type="text" name="keywords" id="search_keywords" data-vali="notnull">
           </span>
         </div>
         <div class="cd-f-eve">
-          <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>评论人:</label></span>
+          <span class="cd-f-name"><label>评论人:</label></span>
           <span class="cd-f-value ">
             <input type="text" name="realname" id="search_realname" data-vali="notnull">
           </span>
