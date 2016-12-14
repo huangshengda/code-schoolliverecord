@@ -114,7 +114,7 @@ public class ResourceController {
 	// 推荐资源
 	@RequestMapping("recommendresource/list")
 	@ResponseBody
-	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(HttpServletRequest req, String resourceId) {
+	public ReturnVoOne<List<ResourceVo>> getRecommendResourceList(String resourceId) {
 		ReturnVoOne<List<ResourceVo>> ret = new ReturnVoOne<List<ResourceVo>>();
 		try {
 			List<ResourceVo> list = new ArrayList<>();
@@ -205,7 +205,7 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/get")
-	public ReturnVoOne<ResourceVo> getResource(HttpServletRequest req, String resourceId) {
+	public ReturnVoOne<ResourceVo> getResource(String resourceId) {
 		ReturnVoOne<ResourceVo> result = null;
 		try {
 			ResourceVo resVo = resourceService.getResource(resourceId);
@@ -224,17 +224,17 @@ public class ResourceController {
 	 */
 	@RequestMapping(value = "/sysscreenshot/get")
 	@ResponseBody
-	public ReturnVoOne<Map<String, String>> sysScreenShot(HttpServletRequest req, String resourcePath) {
-		ReturnVoOne<Map<String, String>> result = null;
+	public ReturnVoOne<List<Map<String, String>>> sysScreenShot(String resourcePath) {
+		ReturnVoOne<List<Map<String, String>>> result = null;
 		try {
-			Map<String, String> map = handleVideoService.getUpoadScreenShot(req, resourcePath);
-			if (map != null && !map.isEmpty()) {
-				result = new ReturnVoOne<Map<String, String>>(map);
+			List<Map<String, String>> list = handleVideoService.getUpoadScreenShot(resourcePath);
+			if (list != null && !list.isEmpty()) {
+				result = new ReturnVoOne<List<Map<String, String>>>(list);
 			} else {
-				result = new ReturnVoOne<Map<String, String>>(Constants.FAILED, "截图失败");
+				result = new ReturnVoOne<List<Map<String, String>>>(Constants.FAILED, "截图失败");
 			}
 		} catch (Exception e) {
-			result = new ReturnVoOne<Map<String, String>>(Constants.FAILED, "截图失败");
+			result = new ReturnVoOne<List<Map<String, String>>>(Constants.FAILED, "截图失败");
 			e.printStackTrace();
 		}
 		return result;
@@ -279,7 +279,7 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("live/hasfinish")
-	public ReturnVoOne<String> hasFinish(HttpServletRequest req, String liveResourceId) {
+	public ReturnVoOne<String> hasFinish(String liveResourceId) {
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
 			ResourceVo res = resourceService.getResource(liveResourceId);

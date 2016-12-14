@@ -14,8 +14,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
@@ -29,7 +27,6 @@ import org.springframework.stereotype.Service;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.util.FileUtils;
-import com.codyy.slr.util.HostConfigUtils;
 import com.codyy.slr.util.UUIDUtils;
 
 @Service
@@ -59,9 +56,9 @@ public class HandleVideoService {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public Map<String, String> getUpoadScreenShot(HttpServletRequest req, String videoPath) throws IOException, InterruptedException {
-		Map<String, String> map = new HashMap<String, String>();
-		String contextpath = HostConfigUtils.getHost(req) + "/download/img/" + Constants.IMG_TEMP;
+	public List<Map<String, String>> getUpoadScreenShot(String videoPath) throws IOException, InterruptedException {
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		String contextpath = Constants.ROOT_SERVER + "/download/img/" + Constants.IMG_TEMP;
 		String resId = StringUtils.split(videoPath, ".")[0];
 		videoPath = Constants.TEMP + "/" + videoPath;
 
@@ -76,10 +73,13 @@ public class HandleVideoService {
 		}
 
 		for (String img : imgs) {
-			map.put(img, contextpath + "/" + img);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("imgId", img);
+			map.put("imgPath", contextpath + "/" + img);
+			list.add(map);
 		}
 
-		return map;
+		return list;
 	}
 
 	/**
@@ -236,9 +236,9 @@ public class HandleVideoService {
 	 * 
 	 * @return
 	 */
-	private static Boolean isLinux() {
+	private static boolean isLinux() {
 		String os = System.getProperty("os.name").toLowerCase();
-		Boolean isLinux = os.indexOf("linux") >= 0 ? true : false;
+		boolean isLinux = os.indexOf("linux") >= 0 ? true : false;
 		return isLinux;
 	}
 
