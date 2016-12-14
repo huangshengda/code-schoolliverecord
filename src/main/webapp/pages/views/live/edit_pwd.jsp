@@ -55,25 +55,24 @@
     </div>
   </div>
   <!-- 修改密码  end-->
-  <script type="text/javascript">
-	$(function(){
-		$('#sub_pwd').click(function(){
-			CDUtil.ajaxPost("",{},function(retVO){
-			});
-			//添加表单验证--Validation
-       		var result = Validation.validation({
-          		containerId: "edit_pwd",
-        	});
-       		if(result==true){
-				var pwdParams = $('#edit_pwd').serialize();
-      			CDUtil.ajaxPost("/base/user/update",pwdParams,function(retVO){
-      				if (retVO.code == 1) {
-						layer.msg('保存成功!');
-					}
-      			});
-       		}
-		});
-	})
-  </script>
+<script type="text/javascript">
+$(function(){
+	console.log(sessionStorage.getItem("token"));
+	$('#sub_pwd').click(function(){
+		//添加表单验证--Validation
+      		var result = Validation.validation({
+         		containerId: "edit_pwd",
+       	});
+      		if(result==true){
+			var pwdParams = $('#edit_pwd').serialize();
+     			CDUtil.ajaxPost("/base/user/update",pwdParams,function(retVO){
+     				if (retVO.code == 1) {
+					layer.msg('保存成功!');
+				}
+     			});
+      		}
+	});
+})
+ </script>
 </body>
 </html>
