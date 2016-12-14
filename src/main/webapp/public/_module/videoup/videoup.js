@@ -212,6 +212,10 @@ $(function(){
 		//console.log(result);
 		if(!result){return;}
 		CDUtil.ajaxPost("/resource/addresource",params,function(retVO){
+			layer.alert('上传视频成功！', {
+			  icon: 1,
+			  skin: 'layer-ext-moon'
+			});
 		});
 	});
 });
