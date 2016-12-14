@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.parambean.DirInfo;
 
 /**
@@ -136,13 +137,13 @@ public class FileUtils {
 	public static DirInfo creatDir(Date date, String path) throws IOException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String strDate = sdf.format(date);
-		String pathStr = path + File.separator + strDate;
+		String pathStr = path + Constants.PATH_SEPARATOR + strDate;
 		Path dir = Paths.get(pathStr);
 		if (!Files.exists(dir)) {
 			Files.createDirectory(dir);
 		}
 		DirInfo info = new DirInfo();
-		info.setRelPath(File.separator + strDate);
+		info.setRelPath(Constants.PATH_SEPARATOR + strDate);
 		info.setAbsPath(pathStr);
 		info.setStrDate(strDate);
 		return info;

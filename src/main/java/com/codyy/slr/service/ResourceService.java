@@ -1,6 +1,5 @@
 package com.codyy.slr.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,12 +43,12 @@ public class ResourceService {
 			// 1.创建视频文件夹
 			DirInfo videoDirInfo = FileUtils.creatDir(date, Constants.UPLOAD_PATH);
 			// 2.移动视频文件
-			FileUtils.moveFile(Constants.TEMP + File.separatorChar + resName, videoDirInfo.getAbsPath() + File.separatorChar + resName);
+			FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + resName, videoDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + resName);
 
 			// 3.创建图片文件夹
 			DirInfo imageDirInfo = FileUtils.creatDir(date, Constants.IMG_PATH);
 			// 4.移动图片
-			FileUtils.moveFile(Constants.TEMP + File.separatorChar + thumbName, imageDirInfo.getAbsPath() + File.separatorChar + thumbName);
+			FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + thumbName, imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + thumbName);
 
 			// 5.赋值
 			Resource resource = param.toResource();
@@ -60,8 +59,8 @@ public class ResourceService {
 			resource.setResourceId(resourceId);
 			resource.setSourceType(Constants.UPLOAD);
 			resource.setViewCnt(0L);
-			resource.setStorePath(videoDirInfo.getRelPath() + File.separatorChar + resName);
-			resource.setThumbPath(imageDirInfo.getRelPath() + File.separatorChar + thumbName);
+			resource.setStorePath(videoDirInfo.getRelPath() + Constants.PATH_SEPARATOR + resName);
+			resource.setThumbPath(imageDirInfo.getRelPath() + Constants.PATH_SEPARATOR + thumbName);
 
 			// 6.插入数据库
 			int num = resourceMapper.addResource(resource);

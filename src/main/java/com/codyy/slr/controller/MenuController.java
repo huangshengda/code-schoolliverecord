@@ -1,5 +1,6 @@
 package com.codyy.slr.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class MenuController {
 	@ResponseBody
 	public ReturnVoOne<List<MenuVo>> getMenu(HttpServletRequest req) {
 
-		List<MenuVo> list = Arrays.asList(Constants.INDEX_MENU, Constants.DEMAND_MENU);
+		List<MenuVo> list = new ArrayList<>(Arrays.asList(Constants.INDEX_MENU, Constants.DEMAND_MENU));
 		ReturnVoOne<List<MenuVo>> one = new ReturnVoOne<List<MenuVo>>();
 		one.setData(list);
 		try {
@@ -48,7 +49,7 @@ public class MenuController {
 				return one;
 			}
 
-			if (Constants.ADMIN.equalsIgnoreCase(user.getUserType())) {
+			if (Constants.ADMIN.equalsIgnoreCase(user.getUserType()) || Constants.SUPER_ADMIN.equalsIgnoreCase(user.getUserType())) {
 				list.add(Constants.BASIC_MENU);
 			} else if (Constants.TEACHER.equalsIgnoreCase(user.getUserType())) {
 				list.add(Constants.MYCOURSE_MENU);
@@ -60,4 +61,5 @@ public class MenuController {
 		}
 		return one;
 	}
+
 }

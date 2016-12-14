@@ -61,8 +61,8 @@ public class HandleLiveFinishService {
 				String absDirPathStr = livePathInfo.getAbsPath();// 绝对路径
 				String relDirPathStr = livePathInfo.getRelPath();// 相对路径
 
-				String absFilePathStr = absDirPathStr + File.separator + liveResourceId + Constants.VIDEO_FLV;// 绝对路径文件
-				String relFilePathStr = relDirPathStr + File.separator + liveResourceId + Constants.VIDEO_FLV;// 相对路径文件
+				String absFilePathStr = absDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;// 绝对路径文件
+				String relFilePathStr = relDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;// 相对路径文件
 
 				log.info(logPrefix + "absFilePathStr=" + absFilePathStr);
 
@@ -101,7 +101,7 @@ public class HandleLiveFinishService {
 						shotImgFlag = !CollectionUtils.isEmpty(imgPathlist);
 					}
 					if (shotImgFlag) {
-						thumbPath = thumbPathInfo.getRelPath() + File.separator + imgPathlist.get(0);
+						thumbPath = thumbPathInfo.getRelPath() + Constants.PATH_SEPARATOR + imgPathlist.get(0);
 						finishSuccessFlag = true;
 					}
 					log.info(logPrefix + "截图第" + (shotImgTimes + 1) + ",图片 " + thumbPath);

@@ -87,7 +87,7 @@ public class UploadImageServlet extends HttpServlet {
 					UploadVo uploadVo = new UploadVo();
 					String resourceId = UUIDUtils.getUUID();
 					uploadVo.setResourceId(resourceId + suffix);
-					File file = new File(Constants.TEMP + File.separatorChar + resourceId + suffix);
+					File file = new File(Constants.TEMP + Constants.PATH_SEPARATOR + resourceId + suffix);
 
 					item.write(file);
 					one.setData(uploadVo);
