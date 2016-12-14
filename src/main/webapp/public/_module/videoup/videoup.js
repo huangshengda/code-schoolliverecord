@@ -1,4 +1,5 @@
 $(function(){
+	var laryIndex = null ;
 	/**
 	 * 当点击上传按钮，选中文件后
 	 */
@@ -49,7 +50,7 @@ $(function(){
             +'</div>'
             +'<div class="inb">'
             +'<img src="" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'
-            +'<button type="button" class="upbtn sys-img mr20" >选择系统截图</button>'
+            +'<button type="button" class="upbtn sysprint-img mr20" >选择系统截图</button>'
             +'<div type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;" >'
             +'上传本地图片'
             +'<input type="file" value="" class="input-fileup local-img" style="width: 125px;" accept="image/png,image/jpeg" >'
@@ -86,7 +87,26 @@ $(function(){
 	 * 使用系统截图作为封面事件
 	**/
 	$("#show_fileup_detail").on("click",".sysprint-img",function(){
-		
+		var topDom = $(this).parents(".up-item").get(0);
+		var seq = topDom.id;
+		$("#chose_sysimg").attr("data-squence",seq);
+		laryIndex = layer.open({
+	          type: 1,
+	          title: '选择系统截图做为视频封面',
+	          skin: 'layui-layer-rim', //加上边框
+	          area: ['450px', '375px'], //宽高
+	          content: $("#chose_sysimg")
+	      });
+	});
+	$("#chose_sysimg_sure").click(function(){
+		var seq = $("#chose_sysimg").attr("data-squence");
+		var imgDom = $("#chose_sysimg").find("active").get(0);
+		$("#video_img_resourceId").val($(imgDom).attr("data-resourceId"));
+		$("#"+seq+"_show_img").attr("src",imgDom.src);
+		layer.close(laryIndex);
+	});
+	$("#chose_sysimg_cancel").click(function(){
+		layer.close(laryIndex);
 	});
 	/**
 	 * 使用本地图片作为封面事件
@@ -111,5 +131,11 @@ $(function(){
 	$("#show_fileup_detail").on("click",".del-fileup",function(){
 		var topDom = $(this).parents(".up-item").get(0);
 		$(topDom).remove();
+	});
+	/**
+	 * 点击保存按钮，保存信息到后台
+	 */
+	$("#save_video_info").click(function(){
+		
 	});
 });
