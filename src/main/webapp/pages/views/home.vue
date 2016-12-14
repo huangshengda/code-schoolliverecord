@@ -6,7 +6,7 @@
   	<div v-if="posts.data != null">
      <div class="row" v-for="post in posts.data" >
       <div class="col-md-4 tel c4">{{post.resourceName}}</div>
-      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName | cutStr }}</span>/{{post.subjectName}}/{{post.author}}</div>
+      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName | cutStr}}</span>/{{post.subjectName}}/{{post.author}}</div>
       <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
     </div>
   </div>
@@ -22,7 +22,7 @@
       <div class="home-times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div>        
       </div>
       <p class="c4 tel" :title="course.resourceName">{{course.resourceName}}</p>
-      <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
+      <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName | cutStr}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
     </div>
   </div>
 <!-- 展示点播列表  end -->
@@ -40,12 +40,17 @@ export default {
 data() {
     return {
         posts:"",
-        courseList:""
+        courseList:"",
     }
   },
  created () {    
       this.show(),
       this.showdemand()
+    },
+    filters:{
+    	cutStr: function(value){
+    		return value.substr(0,7) + "...";
+    	}
     },
 methods:{
      isShow: function(){
@@ -56,8 +61,8 @@ methods:{
         var _self = this;
         var params = {};
         CDUtil.ajaxPost("/home/live/list",params,function(retVO){
-          _self.posts = retVO;//JSON.parse(retVO);
-        })
+          _self.posts = retVO;
+        });
       },
 /** 获取点播列表的方法 **/
        showdemand:function(){
@@ -108,12 +113,6 @@ methods:{
        	window.location.href = ROOT_SERVER+"/#/onDemand";
       }
     },
-    //自定义在实例
-    filters: {
-        cutStr (value) {
-            return value.substr(0,7) + "..."; 
-        }
-    }
    }   
 </script>
 <style>
