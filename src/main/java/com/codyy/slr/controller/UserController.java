@@ -278,4 +278,17 @@ public class UserController {
 		return new ReturnVoOne();
 	}
 
+	@ResponseBody
+	@RequestMapping("/token/getUser")
+	public ReturnVoOne<User> getUserByToken(String token, HttpServletRequest req) {
+		User user = null;
+		String agent = req.getHeader("User-Agent");
+		try {
+			user = TokenUtils.getUserFromCache(token + agent);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ReturnVoOne<User>(1, "获取成功", user);
+	}
 }
