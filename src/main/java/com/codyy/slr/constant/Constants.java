@@ -164,7 +164,7 @@ public class Constants {
 
 	static {
 		INDEX_MENU = new MenuVo(1, "首页", "/index");
-		DEMAND_MENU = new MenuVo(2, "点播", "/onDemnad");
+		DEMAND_MENU = new MenuVo(2, "点播", "/onDemand");
 		BASIC_MENU = new MenuVo(3, "基础管理", "/basic");
 		MYCOURSE_MENU = new MenuVo(4, "我的课程", "/mySubject");
 
