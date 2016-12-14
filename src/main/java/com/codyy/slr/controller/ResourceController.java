@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
-import com.codyy.slr.parambean.AddResourceParam;
+import com.codyy.slr.parambean.AddLiveResourceParam;
+import com.codyy.slr.parambean.AddUploadResourceParam;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.HandleLiveFinishService;
 import com.codyy.slr.service.HandleVideoService;
@@ -159,7 +160,7 @@ public class ResourceController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("addresource")
-	public ReturnVoOne addResource(AddResourceParam param, HttpServletRequest req) {
+	public ReturnVoOne addResource(AddUploadResourceParam param, HttpServletRequest req) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		User user = (User) req.getAttribute("user");
 		// 校验参数
@@ -244,7 +245,7 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("live/add")
-	public ReturnVoOne<String> addLiveResource(AddResourceParam param, String livePath) {
+	public ReturnVoOne<String> addLiveResource(AddLiveResourceParam param, String livePath) {
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
 			// 校验参数

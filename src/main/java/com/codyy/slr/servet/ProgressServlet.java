@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
-import com.codyy.slr.vo.FileUploadStatus;
 import com.codyy.slr.vo.ReturnVoOne;
 
 public class ProgressServlet extends HttpServlet {

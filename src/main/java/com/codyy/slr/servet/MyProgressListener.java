@@ -5,8 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.ProgressListener;
 
-import com.codyy.slr.vo.FileUploadStatus;
-
 public class MyProgressListener implements ProgressListener {
 	private HttpSession session;
 

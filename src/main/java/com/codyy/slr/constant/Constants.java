@@ -88,11 +88,6 @@ public class Constants {
 	public static final String NOT_FINISH = "notFinish";
 
 	/**
-	 * 文件夹分割付
-	 */
-	public static final String PATH_SEPARATOR = "/";
-
-	/**
 	 * 视频类型
 	 */
 	public static final String VIDEO_FLV = ".flv";
