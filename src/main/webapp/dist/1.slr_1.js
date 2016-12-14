@@ -1405,13 +1405,13 @@ webpackJsonp([1,6],[
 	      var tr = $this.parents('tr');
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != 0) {
-	        tr.prev().before(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
-	      }
+	      /*if (_index != 0) {*/
+	      tr.prev().before(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
+	      /*}*/
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
@@ -1421,13 +1421,13 @@ webpackJsonp([1,6],[
 	      var trLength = $this.length;
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != trLength - 1) {
-	        tr.next().after(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
-	      }
+	      /*if (_index != trLength - 1){ */
+	      tr.next().after(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/classlevel/sort", _str, function (retVO) {});
+	      /*}*/
 	    }
 	  }
 	};
@@ -2381,13 +2381,13 @@ webpackJsonp([1,6],[
 	      var tr = $this.parents('tr');
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != 0) {
-	        tr.prev().before(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
-	      }
+	      /*if (_index != 0) {*/
+	      tr.prev().before(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
+	      /*}*/
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
@@ -2397,13 +2397,13 @@ webpackJsonp([1,6],[
 	      var trLength = $this.length;
 	      var _index = tr.index();
 	      var _str;
-	      if (_index != trLength - 1) {
-	        tr.next().after(tr);
-	        $("#sort tr").each(function () {
-	          _str += $(this).find('td').attr("data-id") + ",";
-	        });
-	        CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
-	      }
+	      /*	if (_index != trLength - 1){ */
+	      tr.next().after(tr);
+	      $("#sort tr").each(function () {
+	        _str += $(this).find('td').attr("data-id") + ",";
+	      });
+	      CDUtil.ajaxPost("/base/subject/sort", _str, function (retVO) {});
+	      /*}*/
 	    }
 	  }
 	};
@@ -3941,13 +3941,14 @@ webpackJsonp([1,6],[
 	          pagingFlag: true,
 	          //用来拼接单个循环体的回调方法。
 	          spellHtmlFun: function spellHtmlFun(data) {
+	            var classLevelName = data.classlevelName.substr(0, 7) + "...";
 	            var htmlStr = '<div class="col-4">';
 	            htmlStr += '<div class="demandImg">';
 	            htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
 	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
 	            htmlStr += '</div>';
 	            htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + data.classlevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + classLevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
 	            htmlStr += ' </div>';
 	            /*  无消息显示 */
 	            if (data.resourceId == "") {
@@ -4275,6 +4276,11 @@ webpackJsonp([1,6],[
 	    this.show(), this.showdemand();
 	  },
 
+	  filters: {
+	    cutStr: function cutStr(value) {
+	      return value.substr(0, 7) + "...";
+	    }
+	  },
 	  methods: {
 	    isShow: function isShow() {
 	      return this.data.length;
@@ -4284,7 +4290,7 @@ webpackJsonp([1,6],[
 	      var _self = this;
 	      var params = {};
 	      CDUtil.ajaxPost("/home/live/list", params, function (retVO) {
-	        _self.posts = retVO; //JSON.parse(retVO);
+	        _self.posts = retVO;
 	      });
 	    },
 	    /** 获取点播列表的方法 **/
@@ -4364,7 +4370,7 @@ webpackJsonp([1,6],[
 	      attrs: {
 	        "title": post.classlevelName
 	      }
-	    }, [_vm._v(_vm._s(post.classlevelName))]), _vm._v("/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author))]), _vm._v(" "), _c('div', {
+	    }, [_vm._v(_vm._s(_vm._f("cutStr")(post.classlevelName)))]), _vm._v("/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author))]), _vm._v(" "), _c('div', {
 	      staticClass: "col-md-4",
 	      on: {
 	        "click": function($event) {
@@ -4429,7 +4435,7 @@ webpackJsonp([1,6],[
 	      attrs: {
 	        "title": course.classlevelName
 	      }
-	    }, [_vm._v(_vm._s(course.classlevelName))]), _vm._v(" " + _vm._s(course.subjectName) + " " + _vm._s(course.author))])])
+	    }, [_vm._v(_vm._s(_vm._f("cutStr")(course.classlevelName)))]), _vm._v(" " + _vm._s(course.subjectName) + " " + _vm._s(course.author))])])
 	  })), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('div', {
@@ -4542,7 +4548,7 @@ webpackJsonp([1,6],[
 /* 78 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -4569,6 +4575,48 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	var _data = { mycourceList: "", pages: "" };
+	window.mySub = function (newPage) {
+		if (newPage == "undefined") {
+			newPage = 1;
+		}
+		var _self = this;
+		var params = { curPage: newPage, pageSize: 2 };
+		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
+			_data.mycourceList = retVO;
+			_data.pages = retVO.totalDatas;
+			var htmlStr = "";
+			var config = {
+				//用来展示表格控件的div的id
+				containerId: "sub_list",
+				//这个应该是后台返回的部分
+				gData: retVO,
+				//是否需要分页，true：需要，不写默认需要
+				pagingFlag: true,
+				//用来拼接单个循环体的回调方法。
+				spellHtmlFun: function spellHtmlFun(data) {
+					var classLevelName = data.classlevelName.substr(0, 7) + "...";
+					var htmlStr = '<div class="col-4">';
+					htmlStr += '<div class="demandImg">';
+					htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
+					htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+					htmlStr += '</div>';
+					htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
+					htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + classLevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+					htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
+					htmlStr += ' </div>';
+					/*  无消息显示 */
+					if (data.resourceId == "") {
+						htmlStr += '<div id="sub_list"><p>暂无相关数据</p></div>';
+					}
+					return htmlStr;
+				},
+				//执行页面查询的方法
+				searchFun: mySub
+			};
+			Paging.initPaging(config, function () {});
+		});
+	};
 	window.mysubjectDel = function (resourceId) {
 		layer.alert('删除后则该资源在点播列表同步删除?', function (index) {
 			var reidParams = { resourceId: resourceId };
@@ -4581,52 +4629,10 @@ webpackJsonp([1,6],[
 			layer.msg('删除成功!');
 		});
 	};
-	var mySub = function mySub(newPage) {
-		if (newPage == "undefined") {
-			newPage = 1;
-		}
-		var _self = this;
-		var params = { curPage: newPage, pageSize: 2 };
-		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
-			_self.mycourceList = retVO;
-			_self.pages = retVO.totalDatas;
-			var htmlStr = "";
-			var config = {
-				//用来展示表格控件的div的id
-				containerId: "sub_list",
-				//这个应该是后台返回的部分
-				gData: retVO,
-				//是否需要分页，true：需要，不写默认需要
-				pagingFlag: true,
-				//用来拼接单个循环体的回调方法。
-				spellHtmlFun: function spellHtmlFun(data) {
-					var htmlStr = '<div class="col-4">';
-					htmlStr += '<div class="demandImg">';
-					htmlStr += '<a href="#a"><img src=' + data.thumbPath + ' width="280" height="157"></a>';
-					htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
-					htmlStr += '</div>';
-					htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-					htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + data.classlevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
-					htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
-					htmlStr += ' </div>';
-					/*  无消息显示 */
-					if (data.resourceId == "") {
-						htmlStr += '<div id="sub_list"><p>暂无相关数据</p></div>';
-					}
-					return htmlStr;
-				},
-				//执行页面查询的方法
-				searchFun: _self.showdemand
-			};
-			Paging.initPaging(config, function () {});
-		});
-	};
+
 	exports.default = {
 		data: function data() {
-			return {
-				mycourceList: "",
-				pages: ""
-			};
+			return _data;
 		},
 		created: function created() {
 			this.showdemand();
