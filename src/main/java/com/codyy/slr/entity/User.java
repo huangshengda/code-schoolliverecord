@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.codyy.slr.constant.Constants;
-
 /**
  * 
  * @Description: 用户bean  
@@ -66,7 +64,7 @@ public class User implements Serializable {
 	}
 
 	public List<String> getOpt() {
-		return (opt == null ? Constants.EDIT_DELETE : opt);
+		return opt;
 	}
 
 	public void setOpt(List<String> opt) {
