@@ -26,22 +26,24 @@
 <!-- 点播课程详情 start-->
 <div class="wamp">
 	<div class="smp-main">
-		<form action="" class="up-subject">
+		<form action="" class="up-subject" id="form_save_videoup" >
 			<div class="cd-f-row">
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
 						<label class="cd-f-notnull">*</label>
 						<label>课程资源名称:</label></span>
 					<span class="cd-f-value ">
-						<input type="text" data-vali="notnull"></span>
+						<input type="text" name="resNickName" data-vali="notnull"></span>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
 						<label class="cd-f-notnull">*</label>
 						<label>学科:</label></span>
 					<span class="cd-f-value ">
-						<select data-vali="notnull">
-							<option>请选择</option></select>
+						<select name="subjectId" data-vali="notnull">
+							<option>请选择</option>
+							<option value="88888">语文</option>
+						</select>
 					</span>
 				</div>
 				<div class="cd-f-eve">
@@ -50,16 +52,17 @@
 						<label>年级:</label></span>
 					<div class="cd-f-value ">
 						<span>
-							<input type="checkbox" name="">全部</span>
+							<input type="checkbox" name="classlevelIds">全部</span>
 						<span>
-							<input type="checkbox" name="">一年级</span></div>
+							<input type="checkbox" name="classlevelIds">一年级</span>
+					</div>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
 						<label class="cd-f-notnull">*</label>
 						<label>主讲教师:</label></span>
 					<span class="cd-f-value ">
-						<input type="text" data-vali="notnull"></span>
+						<input type="text" name="author" data-vali="notnull"></span>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name vat">
@@ -68,25 +71,7 @@
 					<span class="cd-f-value">
 						<div class="btn fileup-button" style="position: relative;width: 150px;height: 28px;">上传视频文件
 							<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4"></div>
-						<div class="up-list mt20" id="show_fileup_detail">
-							<!-- <div class="up-item">
-							<div class="inb vat">
-							<p>上传资源1<span class="ml10">4.8M</span></p>
-							<div class="progress w300">
-							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-							<span class="sr-only">45% Complete</span></div>
-							</div>
-							<p>上传中</p>
-							</div>
-							<div class="inb">
-							<img src="" width="140" height="80" class="mr20 vab">
-							<button type="button" class="upbtn local-img" >选择系统截图</button>
-							<button type="button" class="btn fileup-button" style="position: relative;width: 150px;height: 28px;" >
-							上传本地图片
-							<input type="file" value="" class="input-fileup" accept="image/png,image/gif" ></button>
-							</div>
-							<i class="iconfont icon-delete del-fileup"></i></div> -->
-						</div>
+						<div class="up-list mt20" id="show_fileup_detail"></div>
 					</span>
 				</div>
 				<div class="cd-f-eve">
@@ -95,10 +80,10 @@
 						<button class="green-btn lay-btn" type="button" id="save_video_info" >保存</button></span>
 				</div>
 			</div>
-			<input type="hidden" id="video_resourceId" />
+			<input type="hidden" id="video_resourceId" name="resName" />
 			<input type="hidden" id="video_name" />
-			<input type="hidden" id="video_size" />
-			<input type="hidden" id="video_img_resourceId" />
+			<input type="hidden" id="video_size" name="size" />
+			<input type="hidden" id="video_img_resourceId" name="thumbName" />
 		</form>
 	</div>
 </div>
