@@ -19,6 +19,7 @@ ROOT_SERVER_CHAT = "${ROOT_CHAT}/chat";
 </script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/myLayer/layer/skin/layer.css">
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery-2.2.4.js" ></script>
+<script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery.serializejson.min.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/myLayer/layer/layer.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_manifest.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_common.js" ></script>

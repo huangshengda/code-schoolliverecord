@@ -47,7 +47,7 @@ webpackJsonp([0,6],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*!
-	 * Vue.js v2.1.5
+	 * Vue.js v2.1.6
 	 * (c) 2014-2016 Evan You
 	 * Released under the MIT License.
 	 */
@@ -2812,7 +2812,7 @@ webpackJsonp([0,6],{
 	  var i, c, last;
 	  for (i = 0; i < children.length; i++) {
 	    c = children[i];
-	    if (c == null) { continue }
+	    if (c == null || typeof c === 'boolean') { continue }
 	    last = res[res.length - 1];
 	    //  nested
 	    if (Array.isArray(c)) {
@@ -3635,7 +3635,7 @@ webpackJsonp([0,6],{
 	  get: isServerRendering
 	});
 
-	Vue$2.version = '2.1.5';
+	Vue$2.version = '2.1.6';
 
 	/*  */
 
@@ -3772,7 +3772,7 @@ webpackJsonp([0,6],{
 	// this map is intentionally selective, only covering SVG elements that may
 	// contain child elements.
 	var isSVG = makeMap(
-	  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font,' +
+	  'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,' +
 	  'font-face,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
 	  'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view',
 	  true
@@ -6443,7 +6443,7 @@ webpackJsonp([0,6],{
 /***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -6507,7 +6507,8 @@ webpackJsonp([0,6],{
 	    return {
 	      menu: _menu2.default,
 	      userType: '',
-	      item: []
+	      item: [],
+	      menus: ''
 	    };
 	  },
 	  mounted: function mounted() {
@@ -6516,6 +6517,7 @@ webpackJsonp([0,6],{
 
 	  methods: {
 	    init: function init() {
+	      var _self = this;
 	      CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
 	        if (retVO.code == 2) {
 	          $("#user_info").hide();
@@ -6526,6 +6528,9 @@ webpackJsonp([0,6],{
 	          $("#login_button").hide();
 	          $("#user_realname").html(sessionStorage.getItem("realname"));
 	        }
+	      });
+	      CDUtil.ajaxPost("/menu", {}, function (retVO) {
+	        _self.menus = retVO;
 	      });
 	    },
 	    login: function login() {

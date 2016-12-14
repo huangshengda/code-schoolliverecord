@@ -58,7 +58,8 @@
   <script type="text/javascript">
 	$(function(){
 		$('#sub_pwd').click(function(){
-			
+			CDUtil.ajaxPost("",{},function(retVO){
+			});
 			//添加表单验证--Validation
        		var result = Validation.validation({
           		containerId: "edit_pwd",

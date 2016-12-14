@@ -21,7 +21,7 @@ $(function(){
 			var resourceId = dataVO.resourceId;
 			$("#"+sequence).attr("data-resourceId",resourceId);
 			$("#video_resourceId").val(resourceId);
-			$("#video_size").val(size+"M");
+			$("#video_size").val(file.size);
 		});
 		var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
 		H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
@@ -90,13 +90,18 @@ $(function(){
 		var topDom = $(this).parents(".up-item").get(0);
 		var seq = topDom.id;
 		$("#chose_sysimg").attr("data-squence",seq);
-		laryIndex = layer.open({
-	          type: 1,
-	          title: '选择系统截图做为视频封面',
-	          skin: 'layui-layer-rim', //加上边框
-	          area: ['450px', '375px'], //宽高
-	          content: $("#chose_sysimg")
-	      });
+		var resourceId = $(topDom).attr("data-resourceid");
+		var params = {resourcePath: resourceId};
+		CDUtil.ajaxPost("/resource/sysscreenshot/get",params,function(retVO){
+			laryIndex = layer.open({
+		          type: 1,
+		          title: '选择系统截图做为视频封面',
+		          skin: 'layui-layer-rim', //加上边框
+		          area: ['450px', '375px'], //宽高
+		          content: $("#chose_sysimg")
+		      });
+		});
+		
 	});
 	$("#chose_sysimg_sure").click(function(){
 		var seq = $("#chose_sysimg").attr("data-squence");
@@ -136,6 +141,9 @@ $(function(){
 	 * 点击保存按钮，保存信息到后台
 	 */
 	$("#save_video_info").click(function(){
-		
+		var params = $('#form_save_videoup').serializeJSON();
+		console.log(typeof(params));
+		CDUtil.ajaxPost("/resource/addresource",params,function(retVO){
+		});
 	});
 });

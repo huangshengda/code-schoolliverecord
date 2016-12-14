@@ -23,7 +23,6 @@ import com.codyy.slr.parambean.AddLiveResourceParam;
 import com.codyy.slr.parambean.AddUploadResourceParam;
 import com.codyy.slr.parambean.DirInfo;
 import com.codyy.slr.util.FileUtils;
-import com.codyy.slr.util.HostConfigUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.HomeLiveVo;
 import com.codyy.slr.vo.ResourceVo;
@@ -159,7 +158,7 @@ public class ResourceService {
 		page.setMap(map);
 
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
-		String contextpath = HostConfigUtils.getHost(req) + "/download/img";
+		String contextpath = Constants.ROOT_SERVER + "/download/img";
 		if (list.size() >= 1) {
 			for (ResourceVo resourceVo : list) {
 				resourceVo.setOpt(Constants.DELETE);
@@ -171,8 +170,8 @@ public class ResourceService {
 	}
 
 	// 根据资源ID获取资源
-	public ResourceVo getResource(HttpServletRequest req, String resourceId) {
-		String contextpath = HostConfigUtils.getHost(req);
+	public ResourceVo getResource(String resourceId) {
+		String contextpath = Constants.ROOT_SERVER;
 
 		ResourceVo resVo = resourceMapper.getResource(resourceId);
 
