@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
+import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.MenuVo;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -23,21 +25,34 @@ import com.codyy.slr.vo.ReturnVoOne;
 @Controller
 public class MenuController {
 
-	private static List<MenuVo> list = Arrays.asList(Constants.INDEX_MENU, Constants.DEMAND_MENU);
-
 	@RequestMapping("menu")
 	@ResponseBody
 	public ReturnVoOne<List<MenuVo>> getMenu(HttpServletRequest req) {
-		ReturnVoOne<List<MenuVo>> one = new ReturnVoOne<List<MenuVo>>();
-		try {
 
-			User user = (User) req.getAttribute("user");
+		List<MenuVo> list = Arrays.asList(Constants.INDEX_MENU, Constants.DEMAND_MENU);
+		ReturnVoOne<List<MenuVo>> one = new ReturnVoOne<List<MenuVo>>();
+		one.setData(list);
+		try {
+			String token = req.getHeader("token");
+			if (StringUtils.isEmpty(token)) {
+				token = req.getParameter("token");
+			}
+
+			if (StringUtils.isEmpty(token)) {
+				return one;
+			}
+
+			String agent = req.getHeader("User-Agent");
+			User user = TokenUtils.getUserFromCache(token + agent);
+			if (user == null || "0".equals(user.getUserId())) {
+				return one;
+			}
+
 			if (Constants.ADMIN.equalsIgnoreCase(user.getUserType())) {
 				list.add(Constants.BASIC_MENU);
 			} else if (Constants.TEACHER.equalsIgnoreCase(user.getUserType())) {
 				list.add(Constants.MYCOURSE_MENU);
 			}
-			one.setData(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			one.setCode(Constants.FAILED);

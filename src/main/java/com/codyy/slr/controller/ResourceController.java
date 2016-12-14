@@ -119,7 +119,7 @@ public class ResourceController {
 		try {
 			List<ResourceVo> list = new ArrayList<>();
 
-			ResourceVo resource = resourceService.getResource(req, resourceId);
+			ResourceVo resource = resourceService.getResource(resourceId);
 			if (resource != null) {
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("subjectId", resource.getSubjectId());
@@ -208,7 +208,7 @@ public class ResourceController {
 	public ReturnVoOne<ResourceVo> getResource(HttpServletRequest req, String resourceId) {
 		ReturnVoOne<ResourceVo> result = null;
 		try {
-			ResourceVo resVo = resourceService.getResource(req, resourceId);
+			ResourceVo resVo = resourceService.getResource(resourceId);
 			result = new ReturnVoOne<ResourceVo>(resVo);
 		} catch (Exception e) {
 			result = new ReturnVoOne<ResourceVo>(Constants.FAILED, "查询失败");
@@ -282,7 +282,7 @@ public class ResourceController {
 	public ReturnVoOne<String> hasFinish(HttpServletRequest req, String liveResourceId) {
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
-			ResourceVo res = resourceService.getResource(req, liveResourceId);
+			ResourceVo res = resourceService.getResource(liveResourceId);
 			String msg = Constants.NOT_FINISH;
 			if ("N".equals(res.getLivingFlag())) {
 				msg = Constants.FINISH;

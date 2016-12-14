@@ -23,7 +23,6 @@ import com.codyy.slr.parambean.AddLiveResourceParam;
 import com.codyy.slr.parambean.AddUploadResourceParam;
 import com.codyy.slr.parambean.DirInfo;
 import com.codyy.slr.util.FileUtils;
-import com.codyy.slr.util.HostConfigUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.HomeLiveVo;
 import com.codyy.slr.vo.ResourceVo;
@@ -45,12 +44,12 @@ public class ResourceService {
 			// 1.创建视频文件夹
 			DirInfo videoDirInfo = FileUtils.creatDir(date, Constants.UPLOAD_PATH);
 			// 2.移动视频文件
-			FileUtils.moveFile(Constants.TEMP + File.separatorChar + resName, videoDirInfo.getAbsPath());
+			FileUtils.moveFile(Constants.TEMP + File.separatorChar + resName, videoDirInfo.getAbsPath() + File.separatorChar + resName);
 
 			// 3.创建图片文件夹
 			DirInfo imageDirInfo = FileUtils.creatDir(date, Constants.IMG_PATH);
 			// 4.移动图片
-			FileUtils.moveFile(Constants.TEMP + File.separatorChar + thumbName, imageDirInfo.getAbsPath());
+			FileUtils.moveFile(Constants.TEMP + File.separatorChar + thumbName, imageDirInfo.getAbsPath() + File.separatorChar + thumbName);
 
 			// 5.赋值
 			Resource resource = param.toResource();
@@ -61,8 +60,8 @@ public class ResourceService {
 			resource.setResourceId(resourceId);
 			resource.setSourceType(Constants.UPLOAD);
 			resource.setViewCnt(0L);
-			resource.setStorePath(videoDirInfo.getRelPath());
-			resource.setThumbPath(imageDirInfo.getRelPath());
+			resource.setStorePath(videoDirInfo.getRelPath() + File.separatorChar + resName);
+			resource.setThumbPath(imageDirInfo.getRelPath() + File.separatorChar + thumbName);
 
 			// 6.插入数据库
 			int num = resourceMapper.addResource(resource);
@@ -159,7 +158,7 @@ public class ResourceService {
 		page.setMap(map);
 
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
-		String contextpath = HostConfigUtils.getHost(req) + "/download/img";
+		String contextpath = Constants.ROOT_SERVER + "/download/img";
 		if (list.size() >= 1) {
 			for (ResourceVo resourceVo : list) {
 				resourceVo.setOpt(Constants.DELETE);
@@ -171,8 +170,8 @@ public class ResourceService {
 	}
 
 	// 根据资源ID获取资源
-	public ResourceVo getResource(HttpServletRequest req, String resourceId) {
-		String contextpath = HostConfigUtils.getHost(req);
+	public ResourceVo getResource(String resourceId) {
+		String contextpath = Constants.ROOT_SERVER;
 
 		ResourceVo resVo = resourceMapper.getResource(resourceId);
 
