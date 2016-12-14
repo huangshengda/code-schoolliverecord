@@ -1,7 +1,6 @@
 package com.codyy.slr.service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -256,7 +255,7 @@ public class HandleVideoService {
 	public boolean concatVideos(List<String> paths, String outPath) throws IOException, InterruptedException {
 		boolean result = false;
 
-		String fileList = Constants.TEMP + File.separator + UUIDUtils.getUUID() + ".txt";
+		String fileList = Constants.TEMP + Constants.PATH_SEPARATOR + UUIDUtils.getUUID() + ".txt";
 
 		if (FileUtils.createFile(fileList)) {
 			FileUtils.writeToFileByLine(paths, fileList);
