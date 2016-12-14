@@ -54,7 +54,6 @@
 		searchFun: function(){}
 	};
 	Paging.initPaging = function(_config,callback){
-
 		var containerId = _config.containerId,
 		gData = _config.gData,
 		pagingFlag = (_config.pagingFlag==null || _config.pagingFlag == undefined )?true:_config.pagingFlag,

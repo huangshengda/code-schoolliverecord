@@ -521,6 +521,7 @@ tr:nth-child(2n) {
 
 #login .cd-f-value,#login .cd-f-value input {
 	width: 230px;
+	text-indent: 10px;
 }
 
 #login input[type=checkbox] {

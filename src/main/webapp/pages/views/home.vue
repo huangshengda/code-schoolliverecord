@@ -6,7 +6,7 @@
   	<div v-if="posts.data != null">
      <div class="row" v-for="post in posts.data" >
       <div class="col-md-4 tel c4">{{post.resourceName}}</div>
-      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName}}</span>/{{post.subjectName}}/{{post.author}}</div>
+      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName | cutStr }}</span>/{{post.subjectName}}/{{post.author}}</div>
       <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
     </div>
   </div>
@@ -107,8 +107,14 @@ methods:{
        openMore: function(){
        	window.location.href = ROOT_SERVER+"/#/onDemand";
       }
+    },
+    //自定义在实例
+    filters: {
+        cutStr (value) {
+            return value.substr(0,7) + "..."; 
+        }
     }
-    }   
+   }   
 </script>
 <style>
  body{background-color:#fff;}
