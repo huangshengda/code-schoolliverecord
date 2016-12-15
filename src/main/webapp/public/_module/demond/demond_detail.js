@@ -61,42 +61,41 @@ $(function() {
 	/**
 	 * 舒适化评论+对评论增删查
 	 */
-	//初始化表情
-	smile.init($("#blogFace")[0],$("#blogCommentId")[0]);
-	//评论区域的收起，回复交互
-	$("#blogComment").on("click", "com-comments-level1", function(){
-		alert();
-		var $this = $(this).find(".level1-btn");
-		var $_this = $(this).find(".com-comments-level2");
-		$this.click(function(){
-			var showFlag = $(this).attr("data-show");
-			if(showFlag == 0){
-				$_this.removeClass("hide");
-				/* $this.html("收起").parents(".com-comments-img-r").addClass("showbtn"); */
-				$this.html("收起");
-				var showFlag = $this.attr("data-show",1);
-			}else{
-				$_this.addClass("hide");
-				$this.html("回复").parents(".com-comments-img-r").removeClass("showbtn");
-				var showFlag = $this.attr("data-show",0);
-			}
-		});
+	$('#commonts_first_face').qqFace({
+		id : 'facebox', 
+		assign:'commonts_first', //输入框id
+		path: ROOT_UI+'/public/qqFace/arclist/'	//表情存放的路径
 	});
-	//显示表情
-	function showFace(e, blogCommentId){
-		initShowFace(e,$("#face"+blogCommentId+"")[0],$("#"+blogCommentId+"")[0]);
-	};
-	function initShowFace(e,o,t){
-		if (!o) {
-			o = $("#blogFace")[0];
-			t = $("#blogCommentId")[0];
-		}
-		smile.reInit(o,t);
-		if (smile.isShow()) {
-			smile.hide();
-		} else {
-			smile.show(e);
-		}
-	};
-
+			//微博评论区域//
+			$(".com-comments-level1").each(function(){
+				var $this = $(this).find(".level1-btn");
+				var $_this = $(this).find(".com-comments-level2");
+				$this.click(function(){
+					var showFlag = $(this).attr("data-show");
+					if(showFlag == 0){
+						$_this.removeClass("hide");
+						$this.html("收起").parents(".com-comments-img-r").addClass("showbtn");
+						var showFlag = $this.attr("data-show",1);
+					}else{
+						$_this.addClass("hide");
+						$this.html("回复").parents(".com-comments-img-r").removeClass("showbtn");
+						var showFlag = $this.attr("data-show",0);
+					}
+				});
+			});
+			$(".comments-level2-each").each(function(){
+				var $this = $(this).find(".level2-btn");
+				var $_this = $(this).find(".level2-comments");
+				
+				$this.click(function(){
+					var showFlag = $(this).attr("data-show");
+					if(showFlag == 0){
+						$_this.removeClass("hide");
+						var showFlag = $this.attr("data-show",1);
+					}else{
+						$_this.addClass("hide");
+						var showFlag = $this.attr("data-show",0);
+					}
+				})
+			});
 });

@@ -13,9 +13,9 @@ window.jQuery = $;
 /*require('../public/_module/js/slr_mockjs');*/
 
 /**  加载基础CSS文件  **/
+require('../public/bootstrap/css/bootstrap.css');
 require('../public/_compnents/v1/css/base.css');
 require('../public/_compnents/v1/css/compnents.css');
-require('../public/bootstrap/css/bootstrap.css');
 require('../public/jquery-ui/jquery-ui.css');
 require('../public/jquery-ui/jquery-ui.theme.css');
 /*require('../public/myLayer/layer/skin/layer.css');*/

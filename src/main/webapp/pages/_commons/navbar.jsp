@@ -37,9 +37,9 @@
  </nav>
 <script type="text/javascript">
 $(function(){
-	
 	var params = {};
-	CDUtil.ajaxPost("/menu",params,function(retVO){
+	CDUtil.ajaxPost("/menu",{},function(retVO){
+		console.log(retVO);
 		var menus = retVO.data;
 		$(menus).each(function(i,menu){
 			var id = menu.id,

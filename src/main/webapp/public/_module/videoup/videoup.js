@@ -3,15 +3,31 @@ $(function(){
 	
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
-		var allChose = '<span><input type="checkbox" class="chose-grade all" value="';
-		var htmlStr = '';
+		var allChose = '<option value="';
+		var htmlStr = '<option value="">全选</option>';
 		$(dataVO).each(function(i,data){
 			if(i>0){
 				allChose += ","+data.subjectId;
 			}else{
 				allChose += data.subjectId;
 			}
-			htmlStr += '<span><input type="checkbox" class="chose-grade others" value="'+data.subjectId+'">'+data.subjectName+'</span>';
+			htmlStr += '<option value="'+data.subjectId+'">'+data.subjectName+'</option>';
+		});
+		allChose += ' >全部</option>';
+		$(allChose+htmlStr).appendTo("#subjectId");
+	});
+	
+	CDUtil.ajaxPost("/base/classlevel/list",{},function(retVO){
+		var dataVO = retVO.data;
+		var allChose = '<span><input type="checkbox" class="chose-grade all" value="';
+		var htmlStr = '';
+		$(dataVO).each(function(i,data){
+			if(i>0){
+				allChose += ","+data.classlevelId;
+			}else{
+				allChose += data.classlevelId;
+			}
+			htmlStr += '<span><input type="checkbox" class="chose-grade others" value="'+data.classlevelId+'">'+data.classlevelName+'</span>';
 		});
 		allChose += '" data-type="all">全部</span>';
 		$(allChose+htmlStr).appendTo("#show_chose_grade");
@@ -138,8 +154,13 @@ $(function(){
 		var params = {resourcePath: resourceId};
 		CDUtil.ajaxPost("/resource/sysscreenshot/get",params,function(retVO){
 			var dataVO = retVO.data;
+			if(ValueCheck.isNull(dataVO)){
+				layer.msg('暂无系统截图!');
+			}
 			var len = dataVO.length;
 			var rows = Math.ceil(len/3);
+			var larH = 150+150*rows;
+			debugger;
 			$(dataVO).each(function(i,data){
 				var resourceId = data.imgId,
 				imgSrc = data.imgPath,
@@ -153,7 +174,7 @@ $(function(){
 		          type: 1,
 		          title: '选择系统截图做为视频封面',
 		          skin: 'layui-layer-rim', //加上边框
-		          area: ['700px',70+150*rows+"px"], //宽高
+		          area: ['700px',larH+'px'], //宽高
 		          content: $("#chose_sysimg")
 		      });
 		});
