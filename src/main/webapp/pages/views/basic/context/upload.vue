@@ -166,6 +166,7 @@ export default {
     	},
     	/*跳转到上传资源页面*/
     	openUploadup: function(){
+    		sessionStorage.removeItem("resourceId");
     		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
     	}
 	}

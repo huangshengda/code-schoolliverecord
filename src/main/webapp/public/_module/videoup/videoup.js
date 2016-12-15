@@ -1,6 +1,23 @@
 $(function(){
-	var laryIndex = null ;
-	
+	if(sessionStorage.getItem("resourceId") != ""){
+		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
+			if (retVO.code == 1) {
+				$('#res_name').val(retVO.data.resourceName);
+				$("#subjectId").val(retVO.data.subjectId);
+				$("#auth").val(retVO.data.author);
+				var classId = retVO.data.classlevelId.split('/');
+				var chkbox = $(".chose-grade");
+				var classVal = chkbox.val().split(',');
+				for(var i =0;i<classId.length;i++){
+					/*if(classVal[i]==classId[i]){*/
+						
+					/*	chkbox.attr("checked",true);
+					}*/		
+				}
+			}
+		});
+	}	
+	var laryIndex = null ;	
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
 		var allChose = '<option value="';
@@ -81,6 +98,7 @@ $(function(){
 			$("#video_resourceId").val(resourceId);
 			$("#video_size").val(file.size);
 			$("#"+sequence).find(".sysprint-img-button").show();
+			$("#"+sequence+"_status").html("上传成功！");
 		});
 		var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
 		H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
@@ -105,7 +123,7 @@ $(function(){
             +'0%'
             +'</div>'
             +'</div>'
-            +'<p>上传中</p>'
+            +'<p id="'+sequence+'_status" >上传中</p>'
             +'</div>'
             +'<div class="inb">'
             +'<img src="" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'

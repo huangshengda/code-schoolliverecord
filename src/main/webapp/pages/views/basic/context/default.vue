@@ -8,13 +8,13 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="username" id="search_username" data-vali="notnull,username">
+            <input type="text" name="username" id="search_username" data-vali="notnull,username" maxlength="18">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="realname" id="search_realname" data-vali="notnull">
+            <input type="text" name="realname" id="search_realname" data-vali="notnull" maxlength="10">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -42,13 +42,13 @@
    	<div class="cd-f-row">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
-          <span class="cd-f-value" name="username" id="edit_username"> 
+          <span class="cd-f-value" name="username" id="edit_username" maxlength="18"> 
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname" data-vali="notnull" id="edit_realname">
+            <input type="text" name="realname" data-vali="notnull" id="edit_realname" maxlength="10">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -131,7 +131,12 @@ var userEdit = function(params, dom) {
           		containerId: "edituser",
         	});
        		if(result==true){
-				var editparams = $('#edituser').serialize();
+				/*var editparams = $('#edituser').serialize();*/
+				var editparams = { 
+          			userType: $("#edit_userType").val(), 
+          			password: md5($("#edit_password").val()), 
+           			realname: $("#edit_realname").val(),
+         		};
 				CDUtil.ajaxPost("/base/user/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 						userSearch();
@@ -147,7 +152,7 @@ var userEdit = function(params, dom) {
  * 表格中的操作---删除用户
 **/
 var userDel = function(params, dom) {
-	layer.alert('确定删除该行数据?',function(index) {
+	layer.alert('确定删除该用户?',function(index) {
 		var userId = params.userId;
 		var useridParams = {
 			userId: userId
@@ -172,7 +177,7 @@ var userSearch = function(newPage) {
      }
 	var params = {
 		curPage: newPage,
-		pageSize: 2,
+		pageSize: 20,
 		username: $("#search_username").val(),
 		realname: $("#search_realname").val(),
 		userType: $("#search_userType").val()
@@ -254,7 +259,6 @@ export default {
           				containerId: "adduser",
         			});
        				if(result==true){
-						var addparams = $('#adduser').serialize();
 						 var addparams = { 
           				 	 userType: $("#add_userType").val(), 
           					 password: md5($("#add_password").val()), 

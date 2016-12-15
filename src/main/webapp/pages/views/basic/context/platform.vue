@@ -7,7 +7,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>网站title:</label></span>
           <span class="cd-f-value ">
-            <input type="text" class="w730" name="title" data-vali="notnull" id="basic_tit">
+            <input type="text" class="w730" name="title" data-vali="notnull" id="basic_tit" maxlength="50">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -23,7 +23,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>网站底部:</label></span>
           <span class="cd-f-value ">
-             <input type="text" class="w730" name="buttomMsg" id="basic_btm"> 
+             <input type="text" class="w730" name="buttomMsg" id="basic_btm"  maxlength="100"> 
           </span>
         </div>
         <div class="cd-f-eve mt40">

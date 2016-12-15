@@ -38,7 +38,7 @@
 						<label class="cd-f-notnull">*</label>
 						<label>课程资源名称:</label></span>
 					<span class="cd-f-value ">
-						<input type="text" name="resNickName" data-vali="notnull"></span>
+						<input type="text" name="resNickName" data-vali="notnull" id="res_name"></span>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
@@ -64,7 +64,7 @@
 						<label class="cd-f-notnull">*</label>
 						<label>主讲教师:</label></span>
 					<span class="cd-f-value ">
-						<input type="text" name="author" data-vali="notnull"></span>
+						<input type="text" name="author" data-vali="notnull" id="auth"></span>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name vat">
