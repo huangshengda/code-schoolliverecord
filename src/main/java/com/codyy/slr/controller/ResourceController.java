@@ -313,6 +313,12 @@ public class ResourceController {
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
+						try {
+							Thread.sleep(Constants.CONTACT_VIODE_THREAD_WAIT_TIME * 1000);
+						} catch (InterruptedException e) {
+							log.error("liveResourceId =" + liveResourceId + " :合并视频,线程等待时间出错.");
+							e.printStackTrace();
+						}
 						handleLiveFinishService.finishLive(liveResourceId);
 					}
 				}).start();
@@ -328,5 +334,4 @@ public class ResourceController {
 		}
 		return returnVoOne;
 	}
-
 }
