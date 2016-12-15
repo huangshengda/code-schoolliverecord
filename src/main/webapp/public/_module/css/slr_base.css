@@ -619,3 +619,8 @@ tr:nth-child(2n) {
 .left a,.right span{color:#444;}
 #sort a{color:#444;}
 #sort i{cursor: pointer;}
+.layui-layer-btn{text-align:center;}
+
+table{table-layout:fixed;}
+
+table tr td{ overflow:hidden;text-overflow:ellipsis;}

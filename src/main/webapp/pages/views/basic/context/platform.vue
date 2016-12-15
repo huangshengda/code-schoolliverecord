@@ -7,7 +7,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>网站title:</label></span>
           <span class="cd-f-value ">
-            <input type="text" class="w730" name="title" data-vali="notnull">
+            <input type="text" class="w730" name="title" data-vali="notnull" id="basic_tit">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -22,13 +22,13 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>网站底部:</label></span>
           <span class="cd-f-value ">
-             <input type="text" class="w730" name="buttomMsg"> 
+             <input type="text" class="w730" name="buttomMsg" id="basic_btm"> 
           </span>
         </div>
         <div class="cd-f-eve mt40">
           <span class="cd-f-name"><label></label></span>
           <span>
-            <button class="lay-btn green-btn mr20" @click="subPlat" type="button">保存</button><button class="lay-btn green-btn" @click="rePlat">恢复默认</button>
+            <button class="lay-btn green-btn mr20" @click="subPlat" type="button">保存</button>
           </span>
         </div>   
       </div>
@@ -40,12 +40,21 @@
 /**
  * Vue组件对象
 **/
-   export default {
-    data() {
-      return {
-      }
-    },
+export default {
+    created() {
+		this.basic()
+	},
     methods:{
+    	/** 表单--内容获取**/
+    	basic: function(){
+    		CDUtil.ajaxPost("/base/basicinfo/get",{},function(retVO){
+      			if (retVO.code == 1) {
+					$('#basic_tit').val(retVO.data.title);
+					$('#thispage_fileup_img').attr('src',retVO.data.logoPath);
+					$('#basic_btm').val(retVO.data.buttomMsg);
+				}
+      		});
+    	},
     /** 表单操作--保存**/
       subPlat: function(){
       	//添加表单验证--Validation
@@ -61,16 +70,12 @@
       		});
       	}
        },
-      /** 表单操作--重置**/
-       rePlat:function(){
-        	$('#platform')[0].reset();
-        },
         /** 表单操作--上传图片**/
         impup: function(){
         	console.log($("#thispage_fileup"));
         	var fileDom = $("#thispage_fileup")[0];
         	var file = fileDom.files[0];
-        	var fileupUrl = ROOT_SERVER+"/resource/list?";
+        	var fileupUrl = ROOT_SERVER+"/video/upload?token="+sessionStorage.getItem("token");
         	var sequence = H5fileup.getSequence();
         	H5fileup.startFileup(file,fileupUrl,sequence,function(){
         		H5fileup.showImgAuto(file,"thispage_fileup_img");

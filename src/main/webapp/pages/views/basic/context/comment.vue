@@ -74,8 +74,8 @@ var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
-	 thead: [{name:"评论",valuekey:"commentContent"},
-             {name:"来源",valuekey:"resourceName"},
+	 thead: [{name:"评论",valuekey:"commentContent",css:"width:300px"},
+             {name:"来源",valuekey:"resourceName",css:"width:200px"},
              {name:"评论人",valuekey:"realName"},
              {name:"操作",valuekey:"opt",type:"opt"}
           ],

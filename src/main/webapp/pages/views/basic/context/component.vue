@@ -134,8 +134,12 @@
        			if(result==true){
               		var addparams = $('#addgrade').serialize();
       				CDUtil.ajaxPost("/base/classlevel/add",addparams,function(retVO){
+      				console.log(retVO);
       					if (retVO.code == 1) {
 							_self.show();
+						}
+						if (retVO.code == 0) {
+								layer.msg(retVO.msg);
 						}
       				});
       				layer.close(index);
@@ -149,30 +153,29 @@
     	var $this = $(el);
      	var tr = $this.parents('tr');
      	var _index=tr.index() ;
-     	var _str;
-     	/*if (_index != 0) {*/
+     	var _str="";
 			tr.prev().before(tr);
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
+			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
+			 	 console.log(retVO);
+			 	 });
 			 });
-			 CDUtil.ajaxPost("/base/classlevel/sort",_str,function(retVO){});
-		/*}*/
      },
      /**下移**/
      downbtn:function(event){
 		var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
-    	 var trLength = $this.length; 
     	 var _index=tr.index() ;
-    	 var _str;
-     	/*if (_index != trLength - 1){ */
+    	 var _str="";
 			tr.next().after(tr);
 			$("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
+			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){});
 			 });
-			CDUtil.ajaxPost("/base/classlevel/sort",_str,function(retVO){});
-		/*}*/
+			
+			
      },
     }
    }
