@@ -2072,6 +2072,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "username",
+	      "id": "username",
 	      "data-vali": "notnull,username"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
