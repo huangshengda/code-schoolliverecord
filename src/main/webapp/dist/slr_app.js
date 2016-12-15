@@ -6499,7 +6499,6 @@ webpackJsonp([0,6],{
 	//
 	//
 	//
-	//
 
 	var laryIndex;
 	exports.default = {
@@ -6874,23 +6873,13 @@ webpackJsonp([0,6],{
 	    staticClass: "head inb"
 	  }, [_c('div', {
 	    staticClass: "navHead"
-	  }, [_c('span', [_c('router-link', {
-	    attrs: {
-	      "to": "/index"
-	    }
-	  }, [_vm._v("首页")])]), _vm._v(" "), _c('span', [_c('router-link', {
-	    attrs: {
-	      "to": "/onDemand"
-	    }
-	  }, [_vm._v("点播")])]), _vm._v(" "), _c('span', [_c('router-link', {
-	    attrs: {
-	      "to": "/basic"
-	    }
-	  }, [_vm._v("基础管理")])]), _vm._v(" "), _c('span', [_c('router-link', {
-	    attrs: {
-	      "to": "/mySubject"
-	    }
-	  }, [_vm._v("我的课程")])])])]), _vm._v(" "), _c('div', {
+	  }, _vm._l((_vm.menus.data), function(menuList) {
+	    return _c('span', [_c('router-link', {
+	      attrs: {
+	        "to": menuList.url
+	      }
+	    }, [_vm._v(_vm._s(menuList.name))])])
+	  }))]), _vm._v(" "), _c('div', {
 	    staticClass: "head-out fr",
 	    staticStyle: {
 	      "display": "none"
