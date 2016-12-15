@@ -246,4 +246,8 @@ public class ResourceService {
 		return resourceMapper.updateFinishLiveRes(res) == 1;
 	}
 
+	public boolean addResViewCnt(String resourceId) {
+		return resourceMapper.addResViewCnt(resourceId) == 1;
+	}
+
 }

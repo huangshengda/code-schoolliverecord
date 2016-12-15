@@ -334,4 +334,26 @@ public class ResourceController {
 		}
 		return returnVoOne;
 	}
+
+	/**
+	 * 结束直播课程
+	 */
+	@ResponseBody
+	@RequestMapping("viewcnt/addone")
+	public ReturnVoOne<Integer> addResViewCnt(String resourceId) {
+		ReturnVoOne<Integer> one = new ReturnVoOne<Integer>();
+		try {
+			boolean flag = resourceService.addResViewCnt(resourceId);
+			if (!flag) {
+				one.setMsg("资源阅览量加一更新失败");
+				one.setCode(Constants.FAILED);
+			}
+			int viewCnt = resourceService.getResource(resourceId).getViewCnt();
+			one.setData(viewCnt);
+		} catch (Exception e) {
+			one.setCode(Constants.FAILED);
+			one.setMsg("资源阅览量加一更新异常");
+		}
+		return one;
+	}
 }
