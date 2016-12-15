@@ -301,12 +301,18 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("live/finish")
-	public ReturnVoOne<String> finishLive(String liveResourceId) {
+	public ReturnVoOne<String> finishLive(final String liveResourceId) {
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
-			boolean flag = handleLiveFinishService.finishLive(liveResourceId);
-			String msg = flag == true ? "结束课程成功" : "结束课程失败";
-			returnVoOne.setMsg(msg);
+
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					handleLiveFinishService.finishLive(liveResourceId);
+				}
+			}).start();
+
+			returnVoOne.setMsg("结束课程成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnVoOne.setCode(Constants.FAILED);
