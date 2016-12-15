@@ -83,7 +83,12 @@ public class BasicInfoController {
 				if ("title".equalsIgnoreCase(info.getInfoName())) {
 					param.setTitle(info.getInfoValue());
 				} else if ("logoPath".equalsIgnoreCase(info.getInfoName())) {
-					param.setLogoPath(info.getInfoValue());
+					String logoPath = info.getInfoValue();
+					if (logoPath.startsWith("/public")) {
+						param.setLogoPath(logoPath);
+					} else {
+						param.setLogoPath(Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + logoPath);
+					}
 				} else {
 					param.setButtomMsg(info.getInfoValue());
 				}

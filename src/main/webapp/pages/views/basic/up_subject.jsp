@@ -45,21 +45,19 @@
 						<label class="cd-f-notnull">*</label>
 						<label>学科:</label></span>
 					<span class="cd-f-value ">
-						<select name="subjectId" data-vali="notnull">
-							<option value="">请选择</option>
-							<option value="88888">语文</option>
-						</select>
+						<select id="subjectId" name="subjectId" data-vali="notnull"></select>
 					</span>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
 						<label class="cd-f-notnull">*</label>
-						<label>年级:</label></span>
-					<div class="cd-f-value" id="show_chose_grade" >
+						<label>年级:</label>
+					</span>
+					<span class="cd-f-value" id="show_chose_grade" style="width: 800px;" >
 						<input type="hidden" value="" id="classlevelIds" name="classlevelIds" data-vali="notnull" />
 						<!-- <span><input type="checkbox" class="chose-grade" value="quanbu" data-type="all" >全部</span>
 						<span><input type="checkbox" class="chose-grade others" value="yinianji" >一年级</span> -->
-					</div>
+					</span>
 				</div>
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
@@ -94,7 +92,7 @@
 </div>
 <!-- 弹出选择封面 -->
 <div id="chose_sysimg" class="layBox mt40 layui-layer-wrap" style="display: none;">
-	<div class="row" id="show_sysprint_img" style="min-height: 230px;" >
+	<div class="row" id="show_sysprint_img" style="" >
 		<!-- <div class="col-md-4 m10">
 			<img alt="..." class="img-thumbnail sysprint-img" src="http://localhost:8080/SchoolLiveRecord/download/img/temp/6b72694694424ae895f62378e4c74d92_001.png"  >
 		</div> -->

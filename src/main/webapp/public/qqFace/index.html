@@ -7,15 +7,14 @@
 <meta name="author" content="jQuery插件库(www.jq22.com)">
 <meta name="weburl" content="http://www.jq22.com/">
 	<title>基于jQuery开发的全能表单验证插件</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="css/reset.css">	
+<link rel="stylesheet" href="css/reset.css"><script type="text/javascript" src="../jquery/jquery-2.2.4.js" ></script>
 <style>
 .comment{width:680px; margin:20px auto; position:relative; background:#fff; padding:20px 50px 50px; border:1px solid #DDD; border-radius:5px;}
 .comment h3{height:28px; line-height:28px}
 .com_form{width:100%; position:relative}
 .input{width:99%; height:60px; border:1px solid #ccc}
 .com_form p{height:28px; line-height:28px; position:relative; margin-top:10px;}
-span.emotion{width:42px; height:20px; background:url(http://www.16code.com/cache/demos/user-say/img/icon.gif) no-repeat 2px 2px; padding-left:20px; cursor:pointer}
+span.emotion{width:42px; height:20px; padding-left:20px; cursor:pointer}
 span.emotion:hover{background-position:2px -28px}
 .qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;}
 .qqFace table td{padding:0px;}
@@ -67,17 +66,9 @@ span.emotion:hover{background-position:2px -28px}
      </div>    
 
 
-</body>
-
-<script  src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.qqFace.js"></script>
-<script type="text/javascript">
+</body><script type="text/javascript" src="js/jquery.qqFace.js"></script><script type="text/javascript">
 $(function(){
-	$('.emotion').qqFace({
-		id : 'facebox', 
-		assign:'saytext', 
-		path:'arclist/'	//表情存放的路径
-	});
+	$('.emotion').qqFace({		id : 'facebox', 		assign:'saytext', //输入框id		path:'arclist/'	//表情存放的路径	});
 	$(".sub_btn").click(function(){
 		var str = $("#saytext").val();
 		$("#show").html(replace_em(str));
@@ -91,10 +82,7 @@ function replace_em(str){
 	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="arclist/$1.gif" border="0" />');
 	return str;
 }
-</script>
-<script src="http://www.jq22.com/js/jq.js"></script>
-
-</html>
+</script></html>
 
 
 

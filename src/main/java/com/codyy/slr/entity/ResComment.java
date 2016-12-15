@@ -3,9 +3,6 @@ package com.codyy.slr.entity;
 import java.util.Date;
 import java.util.List;
 
-import com.alibaba.druid.util.StringUtils;
-import com.codyy.slr.constant.Constants;
-
 /**
  * 
  * @Description: 资源评论Bean 
@@ -30,21 +27,21 @@ public class ResComment {
 
 	private List<String> opt;
 
+	public boolean validate() {
+		/*String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
+		
+		if (StringUtils.isEmpty(resCommentRegEx) || !commentContent.matches(resCommentRegEx)) {
+			return false;
+		}*/
+		return true;
+	}
+
 	public List<String> getOpt() {
 		return opt;
 	}
 
 	public void setOpt(List<String> opt) {
-		this.opt = Constants.DELETE;
-	}
-
-	public boolean validate() {
-		String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
-
-		if (StringUtils.isEmpty(resCommentRegEx) || !commentContent.matches(resCommentRegEx)) {
-			return false;
-		}
-		return true;
+		this.opt = opt;
 	}
 
 	public String getResourceCommentId() {

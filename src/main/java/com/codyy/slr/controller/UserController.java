@@ -278,6 +278,14 @@ public class UserController {
 		return new ReturnVoOne();
 	}
 
+	/**
+	 * 
+	 * @Description: 根据token获取登陆者信息
+	 * @param token
+	 * @param req
+	 * @return
+	 *
+	 */
 	@ResponseBody
 	@RequestMapping("/token/getUser")
 	public ReturnVoOne<User> getUserByToken(String token, HttpServletRequest req) {

@@ -36,11 +36,8 @@ public class HandleLiveFinishService {
 		Date date = new Date();
 		log.info(logPrefix + "finish start.");
 		try {
-			// 1.更新数据库将直播路径设置为空
-			boolean flag = resourceService.updateLiveResourceLivingPath(liveResourceId);
-			log.info(logPrefix + "更新数据库直播路径为null,更新结果:" + boolean2Str(flag));
 
-			// 2.查找文件
+			// 1.查找文件
 			List<File> similarFileList = FileUtils.findSimilarFile(new ArrayList<File>(), Constants.DMS_VIDEO_PATH, liveResourceId + ".*");
 			log.info(logPrefix + "similarFileList=" + similarFileList.toString());
 
@@ -51,11 +48,11 @@ public class HandleLiveFinishService {
 			if (CollectionUtils.isEmpty(similarFileList)) {
 				log.error(logPrefix + "查找相似文件数为０");
 			} else {
-				// 3.文件排序
+				// 2.文件排序
 				FileUtils.sortFileByCreateTime(similarFileList);
 				List<String> fileStrList = FileUtils.fileListToFileStrList(similarFileList);
 
-				// 4.生成视频文件夹
+				// 3.生成视频文件夹
 				DirInfo livePathInfo = FileUtils.creatDir(date, Constants.LIVE_PATH);
 
 				String absDirPathStr = livePathInfo.getAbsPath();// 绝对路径
@@ -66,7 +63,7 @@ public class HandleLiveFinishService {
 
 				log.info(logPrefix + "absFilePathStr=" + absFilePathStr);
 
-				// 5.合并文件
+				// 4.合并文件
 				log.info(logPrefix + "合并文件开始.");
 				boolean concatFlag = false;
 				int concatTimes = 0;
@@ -76,23 +73,23 @@ public class HandleLiveFinishService {
 				log.info(logPrefix + ": 合并文件结束. 合并第" + (concatTimes + 1) + "次,result: " + boolean2Str(concatFlag));
 
 				if (concatFlag) {
-					// 6.删除文件
+					// 5.删除文件
 					log.info(logPrefix + "删除视频开始.");
 					DelFileThread delFileThread = new DelFileThread(fileStrList);
 					new Thread(delFileThread).start();
 					log.info(logPrefix + "删除视频结束.");
 
 					storePath = relFilePathStr;
-					// 7.获取文件大小
+					// 6.获取文件大小
 					size = FileUtils.getFileSize(absFilePathStr);
 
 					thumbPath = relFilePathStr;// 赋值存储路径
 
-					// 8.生成图片文件夹
+					// 7.生成图片文件夹
 					DirInfo thumbPathInfo = FileUtils.creatDir(date, Constants.IMG_PATH);
 					log.info(logPrefix + "开始截图");
 
-					// 9.截图
+					// 8.截图
 					int shotImgTimes = 0;
 					boolean shotImgFlag = false;
 					List<String> imgPathlist = null;
@@ -109,7 +106,7 @@ public class HandleLiveFinishService {
 
 			}
 
-			// 10将存储路径 (视频 图片)直播状态 更新到数据库
+			// 9.将存储路径 (视频 图片)直播状态 更新到数据库
 			Resource res = new Resource();
 			res.setResourceId(liveResourceId);
 			res.setStorePath(storePath);

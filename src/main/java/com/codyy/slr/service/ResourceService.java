@@ -228,7 +228,7 @@ public class ResourceService {
 			if (result.size() > 5) {
 				break;
 			}
-			resourceVo.setThumbPath(Constants.ROOT_SERVER + "/download/img" + resourceVo.getThumbPath());
+			resourceVo.setThumbPath(Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + resourceVo.getThumbPath());
 			result.add(resourceVo);
 		}
 		return result;
@@ -245,4 +245,5 @@ public class ResourceService {
 	public boolean updateFinishLiveRes(Resource res) {
 		return resourceMapper.updateFinishLiveRes(res) == 1;
 	}
+
 }
