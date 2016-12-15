@@ -49,7 +49,11 @@ data() {
     },
     filters:{
     	cutStr: function(value){
-    		return value.substr(0,7) + "...";
+    		if(value.length>7){
+    			return value.substr(0,7) + "...";
+    		}else{
+    			return value;
+    		}
     	}
     },
 methods:{

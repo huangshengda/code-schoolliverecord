@@ -76,10 +76,10 @@
 		title: '编辑学科',
 		skin: 'layui-layer-rim',
 		//加上边框
-		area: ['450px', '375px'],
+		area: ['450px', '240px'],
 		//宽高
 		content: $("#editsubject"),
-		btn: ['yes', 'no'],
+		btn: ['确定', '取消'],
 		yes: function(index, layero) {
 			//添加表单验证--Validation
        		var result = Validation.validation({
@@ -137,6 +137,9 @@
       					if (retVO.code == 1) {
 							_self.show();
 						}
+						if (retVO.code == 0) {
+								layer.msg(retVO.msg);
+							}
       				});
       				layer.close(index);
       			}
@@ -149,13 +152,13 @@
     	var $this = $(el);
      	var tr = $this.parents('tr');
      	var _index=tr.index() ;
-     	var _str;
+     	var _str="";
      	/*if (_index != 0) {*/
 			tr.prev().before(tr);
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 });
-			 CDUtil.ajaxPost("/base/subject/sort",_str,function(retVO){});
+			 CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){});
 		/*}*/
      },
      /**下移**/
@@ -165,13 +168,13 @@
      	var tr = $this.parents('tr');
     	 var trLength = $this.length; 
     	 var _index=tr.index() ;
-    	 var _str;
+    	 var _str="";
      /*	if (_index != trLength - 1){ */
 			tr.next().after(tr);
 			$("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 });
-			CDUtil.ajaxPost("/base/subject/sort",_str,function(retVO){});
+			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){});
 		/*}*/
      },
     }

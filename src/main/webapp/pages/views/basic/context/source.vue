@@ -72,7 +72,7 @@ var uploadView = function(params, dom) {
 **/
 var uploadEdit = function(params, dom) {
 	sessionStorage.setItem("resourceId",params.resourceId);
-    window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
+    window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
 };
 /**
  * 进行查询上传信息的方法

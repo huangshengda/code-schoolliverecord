@@ -259,6 +259,9 @@ export default {
 							if (retVO.code == 1) {
 								userSearch();
 							}
+							if (retVO.code == 0) {
+								layer.msg(retVO.msg);
+							}
 						});
 						layer.close(index);
 						$('#adduser')[0].reset();
