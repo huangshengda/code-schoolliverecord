@@ -32,7 +32,8 @@ public class ReflectHelper {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	public static Object getValueByFieldName(Object obj, String fieldName) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+	public static Object getValueByFieldName(Object obj, String fieldName)
+			throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 		Field field = getFieldByFieldName(obj, fieldName);
 		Object value = null;
 		if (field != null) {
@@ -58,7 +59,8 @@ public class ReflectHelper {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	public static void setValueByFieldName(Object obj, String fieldName, Object value) throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+	public static void setValueByFieldName(Object obj, String fieldName, Object value)
+			throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 		Field field = obj.getClass().getDeclaredField(fieldName);
 		if (field.isAccessible()) {
 			field.set(obj, value);

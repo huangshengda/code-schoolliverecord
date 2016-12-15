@@ -228,6 +228,7 @@ public class ResourceService {
 			if (result.size() > 5) {
 				break;
 			}
+			resourceVo.setThumbPath(Constants.ROOT_SERVER + "/download/img" + resourceVo.getThumbPath());
 			result.add(resourceVo);
 		}
 		return result;
