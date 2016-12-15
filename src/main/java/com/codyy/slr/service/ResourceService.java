@@ -245,4 +245,5 @@ public class ResourceService {
 	public boolean updateFinishLiveRes(Resource res) {
 		return resourceMapper.updateFinishLiveRes(res) == 1;
 	}
+
 }
