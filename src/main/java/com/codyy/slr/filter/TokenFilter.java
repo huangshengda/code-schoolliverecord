@@ -18,6 +18,7 @@ import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
+import com.codyy.slr.thread.ConfigThreadLocal;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.ReturnVoOne;
 
@@ -47,10 +48,39 @@ public class TokenFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
+		resp.setContentType("text/html;charset=UTF-8");
+
+		// 添加项目路径
+		req.setAttribute("ROOT_UI", Constants.ROOT_UI);
+		req.setAttribute("ROOT_SERVER", Constants.ROOT_SERVER);
+		req.setAttribute("ROOT_CHAT", Constants.ROOT_CHAT);
+
 		String uri = req.getRequestURI();
 
+		if (uri.indexOf("/chat/") != -1) {
+			ConfigThreadLocal.setVal(req.getHeader("User-Agent"));
+			chain.doFilter(req, resp);
+			return;
+		}
+
+		// 登录首页路径
+		String contenxtPath = req.getContextPath() + "/";
+		if (uri.endsWith(contenxtPath)) {
+			chain.doFilter(req, resp);
+			return;
+		}
+
+		if (uri.indexOf(".") != -1) { // 不等于-1 的路径都是取静态资源 或者图片
+			for (String path : Constants.STATIC_RES_PATH_PREFIX) {
+				if (uri.indexOf(path) != -1) {
+					chain.doFilter(req, resp);
+					return;
+				}
+			}
+		}
+
 		for (String string : excludePath) {
-			if (uri.indexOf(string) != -1) {
+			if (uri.endsWith(string)) {
 				chain.doFilter(req, resp);
 				return;
 			}
@@ -63,7 +93,6 @@ public class TokenFilter implements Filter {
 		}
 
 		if (StringUtils.isEmpty(token)) {
-			resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请传token参数")));
 			return;
 		}
@@ -71,16 +100,14 @@ public class TokenFilter implements Filter {
 		try {
 			// token+agent 作为key 增加破解难度
 			String agent = req.getHeader("User-Agent");
-			User user = TokenUtils.getUserToCache(token + agent);
+			User user = TokenUtils.getUserFromCache(token + agent);
 			if (user == null || "0".equals(user.getUserId())) {
-				resp.setContentType("text/html;charset=UTF-8");
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
 				return;
 			}
 			req.setAttribute("user", user);
 			chain.doFilter(req, resp);
 		} catch (ExecutionException e) {
-			resp.setContentType("text/html;charset=UTF-8");
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请求失败")));
 			e.printStackTrace();
 		}
@@ -92,7 +119,7 @@ public class TokenFilter implements Filter {
 
 		List<String> list = new ArrayList<String>();
 		for (String path : paths) {
-			list.add(path);
+			list.add(path.trim());
 		}
 		return list;
 	}

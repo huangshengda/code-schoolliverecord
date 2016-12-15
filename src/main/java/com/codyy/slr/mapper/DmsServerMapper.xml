@@ -70,12 +70,12 @@
   </update>
   
   
-  <select id = "getDmsServerList" parameterType="string" resultMap="BaseResultMap">
+  <select id = "getDmsServerListPageList" parameterType="com.codyy.slr.common.page.Page" resultMap="BaseResultMap">
   
   	select * from dmsserver t 
 where 1=1 
-<if test  = "_parameter != null">
- and  t.SERVER_NAME = #{_parameter}
+<if test  = "map.dmsServerName != null">
+ and  t.SERVER_NAME = #{map.dmsServerName}
 </if>
 </select>
   

@@ -32,7 +32,7 @@ public class ClasslevelService {
 
 	/**
 	 * 
-	 * @Description:添加年级  
+	 * @Description: 添加前要判断是否重名
 	 * @param Classlevel
 	 * @return
 	 *
@@ -86,6 +86,10 @@ public class ClasslevelService {
 	 */
 	public void modifyClasslevelSort(List<Classlevel> list) {
 		classlevelMapper.modifyClasslevelSort(list);
+	}
+
+	public Classlevel getClasslevelByName(String classlevelName) {
+		return classlevelMapper.getClasslevelByName(classlevelName);
 	}
 
 }

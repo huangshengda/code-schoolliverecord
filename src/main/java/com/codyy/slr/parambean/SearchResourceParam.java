@@ -10,7 +10,9 @@ package com.codyy.slr.parambean;
 public class SearchResourceParam {
 
 	private String classlevelId;
+	private String classlevelName;
 	private String subjectId;
+	private String subjectName;
 	private String sourceType;
 	private String resourceNameKey;
 	private String authorKey;
@@ -80,6 +82,22 @@ public class SearchResourceParam {
 
 	public void setOrderType(String orderType) {
 		this.orderType = orderType;
+	}
+
+	public String getClasslevelName() {
+		return classlevelName;
+	}
+
+	public void setClasslevelName(String classlevelName) {
+		this.classlevelName = classlevelName;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 
 }

@@ -114,15 +114,25 @@
 	  ORDER BY t.SORT
   </select>
   
-      <update id="modifyClasslevelSort"  parameterType="java.util.List">  
-            <foreach collection="list" item="item" index="index" open="" close="" separator=";">     
-		update classlevel 
-                   <set>  
-                     SORT=${item.sort} 
-                   </set>  
-                   where CLASSLEVEL_ID = ${item.classlevelId}  
-            </foreach>  
-        </update>  
+    <update id="modifyClasslevelSort"  parameterType="java.util.List">  
+          <foreach collection="list" item="item" index="index" open="" close="" separator=";">     
+update classlevel 
+                 <set>  
+                   SORT=#{item.sort} 
+                 </set>  
+                 where CLASSLEVEL_ID = #{item.classlevelId}  
+          </foreach>  
+      </update>
+      
+      
+  <select id = "getClasslevelByName" parameterType="string" resultMap="BaseResultMap">
+  	select * from classlevel t 
+	  where t.DELETE_FLAG = 'N' 
+	  <if test="_parameter != null" >
+	  and t.CLASSLEVEL_NAME = #{_parameter} 
+	  </if>
+	  ORDER BY t.SORT
+  </select>  
         
   
 </mapper>

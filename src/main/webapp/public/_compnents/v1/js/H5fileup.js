@@ -240,10 +240,11 @@
 
 	/**
 	 * 轮训得到唯一标识的方法
+	 * callback：上传完成后回调方法。
 	 * 
 	 * @param sequence
 	 */
-	H5fileup.progressFileup = function(sequence,fileupProUrl){
+	H5fileup.progressFileup = function(sequence,fileupProUrl,callback){
 		//var interval = setInterval(function(){
 			var reValue = H5fileup.getProgress(sequence,fileupProUrl);
 			//console.log(reValue);
@@ -265,6 +266,9 @@
 			}
 			if(value == 100){
 				//clearInterval(interval);
+				if(typeof(callback) == "function"){
+					callback();
+				}
 			}
 		//}, 1000);
 	};
@@ -283,17 +287,14 @@
 			cache: false,
 			dataType: "json",
 			jsonp: "jsonpCallback",
-			success: function(json) {
-				//console.log(json);
-				value = json["message"];
+			success: function(retVO) {
+				value = retVO.data;
 			},
 			error: function(e) {
-				//console.log("get file size url error");
 				value = "error" ;
 			}
 			//complete: function(){}
 		});
-		//console.log(value);
 		return value;
 	};
 	

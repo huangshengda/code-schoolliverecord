@@ -6,185 +6,69 @@
   <meta charset="UTF-8">
   <meta name="renderer" content="webkit">  
   <meta name="viewport" content="width=device-width">
-  <!-- <script type="text/javascript" src="../../../../public/_config/sys_front_config.js" ></script>
-  <script type="text/javascript" src="../../../../public/jquery/jquery-2.2.4.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_manifest.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_common.js" ></script>
-  <script type="text/javascript" src="../../../../dist/slr_base.js" ></script> -->
   <%@ include file="../../_commons/meta.jsp"%>
-  <style type="text/css">
-    /* 直播课程详情 start*/
-.live{
-  margin-top:50px;
+<script type="text/javascript" src="${ROOT_UI}/public/_tools/tool.js"></script>
+<script type="text/javascript" src="${ROOT_UI}/public/player_flash/player_flash.js"></script>
+<script type="text/javascript" src="${ROOT_UI}/dist/slr_live.js" ></script>
+<script type="text/javascript" src="${ROOT_UI}/public/_module/live/live_detail.js"></script>
+<style type="text/css">
+.chat-li{
+	position: relative;
 }
-.l-left{
-  display: inline-block;
-  width: 918px; }
-  .chat-bland{
-    background-color: #fff;}
-    ul{
-      color:#444;
-      padding:0 10px;
-      height: 326px;
-      overflow-y: auto;}
-      .c-content{
-        display: inline-block;
-        width:195px;}
-        .c-time {color:#999;margin-left:10px;}
-
-      .c-del{color:#999;margin-top:10px;cursor: pointer;}
-
- .l-title{
-      font-size:20px;
-      color:#222;
-      line-height: 35px;
-    }
-.l-title small{
-        color:#666;
-      }
-.vedio{
-      width: 100%;
-    height: 562px;
-    position: relative;
-
+.chat-delete{
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 0px;
 }
-.l-right{
-  width: 281px;
-  border-right:1px solid #ececec;
-  border-bottom:1px solid #ececec;
-  border-top:1px solid #34a150;
-  }
-  .right-head{
-    height:45px;
-    line-height: 45px;
-    color:#34a150;
-    padding: 0 15px;
-  }
-  .bar{
-    margin-top:20px;
-    border-radius: 1px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    background-color: #f5f5f5;
-    height:23px;
-    border: 1px solid #DDDDDD;
-  }
-
-.c-text{
-  padding: 10px;
-  background-color: #f5f5f5;}
-  .c-text textarea{
-    width:258px;
-    height:80px;
-  }
-.c-text button{ margin-right: 9px;padding:2px 14px;margin-top:8px;margin-bottom:4px;}
-
-/* 直播课程详情 end*/
-  </style>
+.chat-delete:hover{
+	font-size: 18px;
+}
+</style>
 </head>
 <body>
 <%@ include file="../../_commons/navbar.jsp"%>
-<!-- 点播课程详情  start-->
-<div class="wamp">
-  <!-- 直播课程详情  start-->
-  <div class="live">
-    <p class="l-title">汉语言文学（第一节）<small class="ft12">一年级/语文/谢春华</small></p>
-      <div class="l-left">
-        <div class="vedio"></div>
-      </div>
-      <div class="l-right fr">
-        <div class="chat-bland" id="console">
-          <div class="right-head ft16">交流区（26人）</div>
-          <ul>
-            <li>
-            <div class="c-content"><span class="fb">李明珠</span><span class="c-time ft12">5分钟前</span><p class="s-flow">李老师讲的好好啊。。。</p></div>
-            <a class="c-del fr"><i class="iconfont icon-delete"></i></a>
-            </li>
-            <li>
-            <div class="c-content"><span class="fb">李明珠</span><span class="c-time ft12">5分钟前</span><p class="s-flow">李老师讲的好好啊。。。</p></div>
-            <a class="c-del fr"><i class="iconfont icon-delete"></i></a>
-            </li>
-          </ul>
-          <div class="clear"></div>
-          <div class="bar"></div>
-          <div class="c-text">
-            <textarea id="chat"></textarea>
-            <button class="commit fr" id="aa">发表</button>
-            <div class="clear"></div>
-          </div>
-          <div class="clear"></div>
-        </div>
-    </div>
-  </div>
-<!-- 直播课程详情  end-->
+<!-- 直播课程详情 start-->
+<div class="container mt40">
+	<p class="l-title">汉语言文学（第一节）
+		<span class="ft12">
+			<!--<i class="iconfont icon-play-times"></i>123</span>  -->
+		<small class="ft12">一年级/语文/谢春华</small>
+	</p>
+	<div class="row" >
+		<div class="col-md-9" >
+			<div class="vedio"></div>
+		</div>
+		<div class="col-md-3" >
+			<div class="l-right fr">
+				<div class="chat-bland" id="console">
+		          <div class="right-head ft16">交流区（26人）</div>
+		          <div class="v-recommend" >
+		         	<ul id="chat_context" >
+		         		<!-- <li class="chat-li" id="7635aef91820487590c58f907724c72f" data-timestamp="true"  >
+	         				<span class="fb mr20">管理员</span>
+	         				<span>5分钟之前</span>
+	         				<p class="s-flow">加入聊天</p>
+	         				<i class="iconfont icon-delete chat-delete fr" data-uuid="7635aef91820487590c58f907724c72f"></i>
+		         		</li> -->
+		         	</ul>
+		          </div>
+		          <div class="chat-btm mt20">
+		          	<div class="bar"></div>
+		          	<div class="c-text">
+		            	<textarea id="chat"></textarea>
+		            	<button class="commit fr" id="chat_send">发表</button>
+		            	<div class="clear"></div>
+		          	</div>
+		          </div>
+		        </div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- 点播课程详情  end-->
-  <script type="text/javascript">
-    $(function(){
-      $('.c-del').click(function(){
-          $(this).parent().remove();
-      });
-      
-        "use strict";
-        var Chat = {};
+<script type="text/javascript">
 
-        Chat.socket = null;
-
-        Chat.connect = (function(host) {
-            if ('WebSocket' in window) {
-                Chat.socket = new WebSocket(host);
-            } else if ('MozWebSocket' in window) {
-                Chat.socket = new MozWebSocket(host);
-            } else {
-                Console.log('Error: WebSocket is not supported by this browser.');
-                return;
-            }
-            Chat.socket.onopen = function () {
-            };
-
-            Chat.socket.onclose = function () {
-                document.getElementById('chat').onkeydown = null;
-                Console.log('Info: WebSocket closed.');
-            };
-
-            Chat.socket.onmessage = function (message) {
-                Console.log(message.data);
-            };
-        });
-
-        Chat.initialize = function() {
-            if (window.location.protocol == 'http:') {
-                Chat.connect('ws://' + window.location.host + '/chart');
-            } else {
-                Chat.connect('wss://' + window.location.host + '/chart');
-            }
-        };
-
-        Chat.sendMessage = (function() {
-            var message = document.getElementById('chat').value;
-            if (message != '') {
-                Chat.socket.send(message);
-                document.getElementById('chat').value = '';
-            }
-        });
-
-        var Console = {};
-        Console.log = (function(message) {
-            var console = document.getElementById('console');
-            var p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.innerHTML = message;
-            console.appendChild(p);
-            while (console.childNodes.length > 25) {
-                console.removeChild(console.firstChild);
-            }
-            console.scrollTop = console.scrollHeight;
-        });
-
-        Chat.initialize();
-        $('#aa').click(function(){
-           Chat.sendMessage();
-        })
-    })
-  </script>
+</script>
 </body>
 </html>

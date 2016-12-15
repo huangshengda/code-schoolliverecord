@@ -36,7 +36,11 @@ public class TokenUtils {
 		tokenCache.put(token, user);
 	}
 
-	public static User getUserToCache(String token) throws ExecutionException {
+	public static User getUserFromCache(String token) throws ExecutionException {
 		return tokenCache.get(token);
+	}
+
+	public static void removeUserFormCache(String token) throws ExecutionException {
+		tokenCache.invalidate(token);
 	}
 }

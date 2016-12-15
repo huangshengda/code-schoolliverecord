@@ -128,7 +128,13 @@
   
   <select id = "getUserListPageList" parameterType="com.codyy.slr.common.page.Page" resultMap="BaseResultMap">
   SELECT *
-	FROM user t
+	FROM (
+	select t1.*, 
+	case t1.USER_TYPE
+	  when 'SUPER_ADMIN' then '0'
+	  else '1' end  
+	sort from user t1
+	)  t
 	WHERE
 	t.DELETE_FLAG = 'N' 
 	 <if test="map.username != null" >
@@ -139,13 +145,27 @@
 	AND
 	t.REALNAME like CONCAT('%',#{map.realname},'%') ESCAPE '/'
 	</if>
-	 <if test="map.userType != null" >
+	 <if test="map.userType != null and map.userType != '-1'" >
 	AND
 	t.USER_TYPE like CONCAT('%',#{map.userType},'%') ESCAPE '/'
 	</if>
 	<if test="map.password != null" >
 	and t.PASSWORD = #{map.password}
 	</if>
+	ORDER BY t.sort, t.CREATE_TIME DESC
+  </select>
+  
+  <select id = "getUserByNameAndPw" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select * from 
+  user t 
+  where t.DELETE_FLAG = 'N'
+  <if test="username != null" >
+  and t.USERNAME = #{username} 
+  </if>
+  <if test="password != null" >
+  and t.PASSWORD =  #{password}
+  </if>
+  
   </select>
   
   

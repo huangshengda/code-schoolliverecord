@@ -73,14 +73,14 @@
 	
 	//验证浮点型
 	ValueCheck.isFloat = function(value){
-		if(ValueCheck.isNull(value)){
-			return false;
-		}
-		if(typeof(value) == "number"){
-			return true;
-		}else if(typeof(value) == "string"){
-			return !isNaN(value);
-		} else {
+		var arr = value.split(".");
+		if(arr.length == 1){
+			return this.isNumber(value);
+		}else if(arr.length == 2){
+			if(this.isNumber(arr[0])&&this.isNumber(arr[1])){
+				return true;
+			}
+		}else{
 			return false;
 		}
 	}
@@ -241,12 +241,36 @@
 		return dateStr;
 	}
 	
+	/** 
+	* json对象转字符串形式 
+	*/ 
+	ValueCheck.jsonTostr = function(o){ 
+		var arr = [];
+		var fmt = function(s) {
+		if (typeof s == 'object' && s != null) return json2str(s);
+			return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s; 
+		}
+		for (var i in o) arr.push("'" + i + "':" + fmt(o[i]));
+		return '{' + arr.join(',') + '}';
+	} 
+	
 	/**
 	 * 手机号格式验证，返回ture表示为手机号
 	 * @param str
 	 */
 	ValueCheck.isPhoneNumber = function(str){
 		if(!(/^1[34578]\d{9}$/.test(str))){
+			result = false;
+	    }else{
+	    	return true;
+	    }
+	}
+	/**
+	 * 固定电话格式验证，返回ture表示为固定电话
+	 * @param str
+	 */
+	ValueCheck.isTelphone = function(str){
+		if(!(/^((\d{3,4}\-)|)\d{7,8}(|([-\u8f6c]{1}\d{1,5}))$/.test(str))){
 			result = false;
 	    }else{
 	    	return true;
@@ -269,6 +293,18 @@
 	 */
 	ValueCheck.isEmail = function(str){
 		var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+		if(!myreg.test(str)){
+			result = false;
+		}else{
+			return true;
+		}
+	}
+	/**
+	 * 区号格式验证，返回ture表示为区号
+	 * @param str
+	 */
+	ValueCheck.isAreacode = function(str){
+		var myreg = /^0[1-9]{2,3}$/;
 		if(!myreg.test(str)){
 			result = false;
 		}else{

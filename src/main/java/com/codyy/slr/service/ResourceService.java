@@ -1,5 +1,6 @@
 package com.codyy.slr.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,8 +18,10 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.ResourceMapper;
 import com.codyy.slr.entity.Resource;
 import com.codyy.slr.entity.User;
-import com.codyy.slr.parambean.AddResourceParam;
-import com.codyy.slr.util.HostConfigUtils;
+import com.codyy.slr.parambean.AddLiveResourceParam;
+import com.codyy.slr.parambean.AddUploadResourceParam;
+import com.codyy.slr.parambean.DirInfo;
+import com.codyy.slr.util.FileUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.HomeLiveVo;
 import com.codyy.slr.vo.ResourceVo;
@@ -29,39 +32,64 @@ public class ResourceService {
 	@Autowired
 	private ResourceMapper resourceMapper;
 
-	public boolean addResource(AddResourceParam param, String createUserId) {
-		boolean flag = true;
-		Resource resource = param.toResource();
-		String resourceId = UUIDUtils.getUUID();
-		resource.setResourceId(resourceId);
-		resource.setCreateUserId(createUserId);
-		resource.setCreateTime(new Date());
-		resource.setSourceType(Constants.UPLOAD);
-		resource.setViewCnt(0L);
-		resource.setLivingFlag(Constants.N);
-		resource.setSize(param.getSize());
+	public boolean addResource(AddUploadResourceParam param, String createUserId) {
 
-		int num = resourceMapper.addResource(resource);
-		if (num == 1) {
-			String[] classlevelIdList = param.getClasslevelIds().split(",");
-			List<Map<String, String>> paramList = new ArrayList<Map<String, String>>();
-			for (String string : classlevelIdList) {
-				Map<String, String> map = new HashMap<String, String>();
-				map.put("resourceId", resourceId);
-				map.put("classlevelId", string);
-				paramList.add(map);
-			}
-			int num1 = resourceMapper.addResIdClslevelIdList(paramList);
-			if (num1 != paramList.size()) {
+		boolean flag = true;
+		String resName = param.getResName();
+		String thumbName = param.getThumbName();
+		String resourceId = UUIDUtils.getUUID();
+		Date date = new Date();
+		try {
+			// 1.创建视频文件夹
+			DirInfo videoDirInfo = FileUtils.creatDir(date, Constants.UPLOAD_PATH);
+			// 2.移动视频文件
+			FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + resName, videoDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + resName);
+
+			// 3.创建图片文件夹
+			DirInfo imageDirInfo = FileUtils.creatDir(date, Constants.IMG_PATH);
+			// 4.移动图片
+			FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + thumbName, imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + thumbName);
+
+			// 5.赋值
+			Resource resource = param.toResource();
+			resource.setCreateTime(date);
+			resource.setCreateUserId(createUserId);
+			resource.setDeleteFlag(Constants.N);
+			resource.setLivingFlag(Constants.N);
+			resource.setResourceId(resourceId);
+			resource.setSourceType(Constants.UPLOAD);
+			resource.setViewCnt(0L);
+			resource.setStorePath(videoDirInfo.getRelPath() + Constants.PATH_SEPARATOR + resName);
+			resource.setThumbPath(imageDirInfo.getRelPath() + Constants.PATH_SEPARATOR + thumbName);
+
+			// 6.插入数据库
+			int num = resourceMapper.addResource(resource);
+
+			if (num == 1) {
+				String[] classlevelIdList = param.getClasslevelIds().split(",");
+				List<Map<String, String>> paramList = new ArrayList<Map<String, String>>();
+				for (String string : classlevelIdList) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("resourceId", resourceId);
+					map.put("classlevelId", string);
+					paramList.add(map);
+				}
+				int num1 = resourceMapper.addResIdClslevelIdList(paramList);
+				if (num1 != paramList.size()) {
+					flag = false;
+				}
+			} else {
 				flag = false;
 			}
-		} else {
+		} catch (IOException e) {
 			flag = false;
+			e.printStackTrace();
 		}
 		return flag;
+
 	}
 
-	public boolean addLiveResource(AddResourceParam param, String liveResourceId, String livePath) {
+	public boolean addLiveResource(AddLiveResourceParam param, String liveResourceId, String livePath) {
 		boolean flag = true;
 		Resource resource = param.toResource();
 		resource.setResourceId(liveResourceId);
@@ -129,7 +157,7 @@ public class ResourceService {
 		page.setMap(map);
 
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
-		String contextpath = HostConfigUtils.getHost(req) + "/download/img";
+		String contextpath = Constants.ROOT_SERVER + "/download/img";
 		if (list.size() >= 1) {
 			for (ResourceVo resourceVo : list) {
 				resourceVo.setOpt(Constants.DELETE);
@@ -141,15 +169,15 @@ public class ResourceService {
 	}
 
 	// 根据资源ID获取资源
-	public ResourceVo getResource(HttpServletRequest req, String resourceId) {
-		String contextpath = HostConfigUtils.getHost(req);
+	public ResourceVo getResource(String resourceId) {
+		String contextpath = Constants.ROOT_SERVER;
 
 		ResourceVo resVo = resourceMapper.getResource(resourceId);
 
 		if (resVo != null) {
 			resVo.setThumbPath(contextpath + "/download/img" + resVo.getThumbPath());
 			if (resVo.getLivingFlag().equals("N")) {
-				resVo.setStorePath(contextpath + "/download/" + resVo.getSourceType() + resVo.getStorePath());
+				resVo.setStorePath(contextpath + "/download/video/" + resVo.getSourceType() + resVo.getStorePath());
 			}
 		}
 
@@ -200,6 +228,7 @@ public class ResourceService {
 			if (result.size() > 5) {
 				break;
 			}
+			resourceVo.setThumbPath(Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + resourceVo.getThumbPath());
 			result.add(resourceVo);
 		}
 		return result;
@@ -216,4 +245,5 @@ public class ResourceService {
 	public boolean updateFinishLiveRes(Resource res) {
 		return resourceMapper.updateFinishLiveRes(res) == 1;
 	}
+
 }

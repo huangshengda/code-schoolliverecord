@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.Resource;
+import com.codyy.slr.parambean.DirInfo;
 import com.codyy.slr.thread.DelFileThread;
 import com.codyy.slr.util.FileUtils;
 
@@ -36,11 +36,8 @@ public class HandleLiveFinishService {
 		Date date = new Date();
 		log.info(logPrefix + "finish start.");
 		try {
-			// 1.更新数据库将直播路径设置为空
-			boolean flag = resourceService.updateLiveResourceLivingPath(liveResourceId);
-			log.info(logPrefix + "更新数据库直播路径为null,更新结果:" + boolean2Str(flag));
 
-			// 2.查找文件
+			// 1.查找文件
 			List<File> similarFileList = FileUtils.findSimilarFile(new ArrayList<File>(), Constants.DMS_VIDEO_PATH, liveResourceId + ".*");
 			log.info(logPrefix + "similarFileList=" + similarFileList.toString());
 
@@ -51,22 +48,22 @@ public class HandleLiveFinishService {
 			if (CollectionUtils.isEmpty(similarFileList)) {
 				log.error(logPrefix + "查找相似文件数为０");
 			} else {
-				// 3.文件排序
+				// 2.文件排序
 				FileUtils.sortFileByCreateTime(similarFileList);
 				List<String> fileStrList = FileUtils.fileListToFileStrList(similarFileList);
 
-				// 4.生成视频文件夹
-				Map<String, String> livePathMap = FileUtils.creatDir(date, Constants.LIVE_PATH);
+				// 3.生成视频文件夹
+				DirInfo livePathInfo = FileUtils.creatDir(date, Constants.LIVE_PATH);
 
-				String absDirPathStr = livePathMap.get("absPath");// 绝对路径
-				String relDirPathStr = livePathMap.get("relPath");// 相对路径
+				String absDirPathStr = livePathInfo.getAbsPath();// 绝对路径
+				String relDirPathStr = livePathInfo.getRelPath();// 相对路径
 
 				String absFilePathStr = absDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;// 绝对路径文件
 				String relFilePathStr = relDirPathStr + Constants.PATH_SEPARATOR + liveResourceId + Constants.VIDEO_FLV;// 相对路径文件
 
 				log.info(logPrefix + "absFilePathStr=" + absFilePathStr);
 
-				// 5.合并文件
+				// 4.合并文件
 				log.info(logPrefix + "合并文件开始.");
 				boolean concatFlag = false;
 				int concatTimes = 0;
@@ -76,32 +73,32 @@ public class HandleLiveFinishService {
 				log.info(logPrefix + ": 合并文件结束. 合并第" + (concatTimes + 1) + "次,result: " + boolean2Str(concatFlag));
 
 				if (concatFlag) {
-					// 6.删除文件
+					// 5.删除文件
 					log.info(logPrefix + "删除视频开始.");
 					DelFileThread delFileThread = new DelFileThread(fileStrList);
 					new Thread(delFileThread).start();
 					log.info(logPrefix + "删除视频结束.");
 
 					storePath = relFilePathStr;
-					// 7.获取文件大小
+					// 6.获取文件大小
 					size = FileUtils.getFileSize(absFilePathStr);
 
 					thumbPath = relFilePathStr;// 赋值存储路径
 
-					// 8.生成图片文件夹
-					Map<String, String> thumbPathMap = FileUtils.creatDir(date, Constants.IMG_PATH);
+					// 7.生成图片文件夹
+					DirInfo thumbPathInfo = FileUtils.creatDir(date, Constants.IMG_PATH);
 					log.info(logPrefix + "开始截图");
 
-					// 9.截图
+					// 8.截图
 					int shotImgTimes = 0;
 					boolean shotImgFlag = false;
 					List<String> imgPathlist = null;
 					while (shotImgTimes < Constants.SHOT_IMG_TIMES && !shotImgFlag) {
-						imgPathlist = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathMap.get("absPath"));
+						imgPathlist = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathInfo.getAbsPath());
 						shotImgFlag = !CollectionUtils.isEmpty(imgPathlist);
 					}
 					if (shotImgFlag) {
-						thumbPath = thumbPathMap.get("relPath") + Constants.PATH_SEPARATOR + imgPathlist.get(0);
+						thumbPath = thumbPathInfo.getRelPath() + Constants.PATH_SEPARATOR + imgPathlist.get(0);
 						finishSuccessFlag = true;
 					}
 					log.info(logPrefix + "截图第" + (shotImgTimes + 1) + ",图片 " + thumbPath);
@@ -109,7 +106,7 @@ public class HandleLiveFinishService {
 
 			}
 
-			// 10将存储路径 (视频 图片)直播状态 更新到数据库
+			// 9.将存储路径 (视频 图片)直播状态 更新到数据库
 			Resource res = new Resource();
 			res.setResourceId(liveResourceId);
 			res.setStorePath(storePath);

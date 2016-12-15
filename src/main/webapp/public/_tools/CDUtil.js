@@ -23,9 +23,19 @@
 			type: 'POST',
 			dataType: "json",
 			data: params,
-			success: function(ret){
+			success: function(retVO){
+				/*console.log(retVO);
+				if(!ValueCheck.isUndefined(retVO.data.token) && !ValueCheck.isNull(retVO.data.token)){
+					sessionStorage.setItem("token",retVO.data.token);
+				}*/
+				//sessionStorage.setItem('token',retVO.data.token)
+				if(retVO.code == "2"){//用户登录信息失效
+					$("#user_info").hide();
+			        $("#login_button").show();
+			        sessionStorage.clear();
+				}
 				if(typeof(callback) == "function" ){
-					callback(ret);
+					callback(retVO);
 				}
 			}
 		};
@@ -35,6 +45,10 @@
 		if(isCrossDomain){
 			_config.crossDomain = isCrossDomain;
 		}
+		//_config.crossDomain = true;
+		_config.beforeSend=function(xhr){
+			xhr.setRequestHeader('token', sessionStorage.getItem('token'))
+		}; //<span style="font-family: Arial, Helvetica, sans-serif;">$.cookie('token') 这是从cookie中获取token</span>
 		$.ajax(_config);
 	};
 	/**
@@ -50,9 +64,9 @@
 			type: 'GET',
 			dataType: "json",
 			data: params,
-			success: function(ret){
+			success: function(retVO){
 				if(typeof(callback) == "function" ){
-					callback(ret);
+					callback(retVO);
 				}
 			}
 		};

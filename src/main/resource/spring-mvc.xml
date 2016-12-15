@@ -37,14 +37,14 @@
 
 	<!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
 	<bean	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
 
 	<!-- 对静态资源文件的访问 -->
 	<mvc:default-servlet-handler />
-
+	
 	<!-- 异常的完整信息放在错误页面的一个隐藏的区域 -->
 	<bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

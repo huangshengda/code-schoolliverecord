@@ -34,7 +34,7 @@ public class ResCommentController {
 	private ResCommentService resCommentService;
 
 	/**
-	 * 
+	 *  
 	 * @Description: 添加评论  
 	 * @param resComment
 	 * @return
@@ -43,7 +43,7 @@ public class ResCommentController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("/resource/comment/add")
-	public ReturnVoOne addResComment(ResComment resComment) {
+	public ReturnVoOne addResComment(ResComment resComment, HttpServletRequest req) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		try {
 			// 校验参数
@@ -52,6 +52,9 @@ public class ResCommentController {
 				returnVoOne.equals("参数不合法");
 				return returnVoOne;
 			}
+
+			User user = (User) req.getAttribute("user");
+			resComment.setCommentUserId(user.getUserId());
 			boolean flag = resCommentService.addResComment(resComment);
 			if (!flag) {
 				returnVoOne.setCode(Constants.FAILED);

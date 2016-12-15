@@ -11,11 +11,12 @@
 		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
 		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
 		where res.LIVING_FLAG = 'N' and res.DELETE_FLAG='N'
-		<if test="map != null and map.classlevelId != null and map.classlevelId != ''">
-			and res.RESOURCE_ID in (select rrcl.RESOURCE_ID from resource_r_classlevel rrcl where rrcl.CLASSLEVEL_ID=#{map.classlevelId})
+		<if test="map != null and map.classlevelName != null and map.classlevelName != ''">
+			and res.RESOURCE_ID in (select rrcl.RESOURCE_ID from resource_r_classlevel rrcl,classlevel cll where rrcl.CLASSLEVEL_ID=cll.CLASSLEVEL_ID
+			and cll.CLASSLEVEL_NAME = #{map.classlevelName})
 		</if>
-		<if test="map != null and map.subjectId != null and map.subjectId != ''">
-			and res.SUBJECT_ID=#{map.subjectId}
+		<if test="map != null and map.subjectName != null and map.subjectName != ''">
+			and res.SUBJECT_ID in (SELECT sj.SUBJECT_ID FROM subject sj WHERE sj.SUBJECT_NAME = #{map.subjectName})
 		</if>
 		<if test="map != null and map.resourceNameKey != null and map.resourceNameKey != ''">
 			and (res.RESOURCE_NAME like CONCAT('%',#{map.resourceNameKey},'%') ESCAPE '/'
@@ -24,10 +25,10 @@
 		GROUP BY res.RESOURCE_ID
 		<choose>
 			<when test="map != null and map.orderBy != null and map.orderBy=='createTime'">
-				order by res.CREATE_TIME #{map.orderType}
+				order by res.CREATE_TIME ${map.orderType}
 			</when>
 			<when test="map != null and map.orderBy != null and map.orderBy=='viewCnt'">
-				order by res.VIEW_CNT #{map.orderType}
+				order by res.VIEW_CNT ${map.orderType}
 			</when>
 			<otherwise>
 				order by res.CREATE_TIME desc

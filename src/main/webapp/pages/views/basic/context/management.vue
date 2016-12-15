@@ -6,15 +6,11 @@
     <form action="" id="grade">
     <table>
       <thead><th>学科</th><th>排序</th><th>操作</th></thead>
-      <tbody>
-        <tr v-for="(grade,index) in grades">
-        <td>{{grade.subjectName}}</td>
-        <td v-if="index===0"><i class="iconfont icon-movedown"></i></td>
-        <template v-else> 
-         <td v-if="index===(grades.length-1)"><i class="iconfont icon-moveup"></i></td>
-         <td v-else><i class="iconfont icon-moveup"></i><i class="iconfont icon-movedown"></i></td>
-        </template>
-        <td>{{grade.editfun}}&nbsp;{{grade.delfun}}</td></tr>
+      <tbody id="sort">
+        <tr v-for="(grade,index) in grades.data">
+        <td :data-id="grade.subjectId">{{grade.subjectName}}</td>
+         <td><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        <td class="colorTd"><span @click="manEdit(grade.subjectName,grade.subjectId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.subjectId)">删除</span></td></tr>
       </tbody>
     </table>
   </form> 
@@ -23,71 +19,168 @@
     <div id="use_to_load_grid" class="grade"></div>
     <!-- 表单 end --> 
   </div>
-      <!-- 编辑用户弹窗表单 start -->
+<!-- 编辑学科弹窗表单 start -->
   <form action="" id="editsubject" class="layBox">
+  <input type="hidden" name="subjectId" id="edit-subjectId">
    <div class="cd-f-row mt20">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>学科:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="subjectName">
-          </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label></label></span>
-          <span>
-            <button class="lay-btn green-btn mr20">确定</button><button class="lay-btn gray-btn">取消</button>
+            <input type="text" name="subjectName" id="edit-subjectName" maxlength="10" data-vali="notnull">
           </span>
         </div>
     </div>
   </form>
-    <!-- 编辑用户弹窗表单 end -->
-    <!-- 添加用户弹窗表单 start -->
+<!-- 编辑学科弹窗表单 end -->
+<!-- 添加学科弹窗表单 start -->
   <form action="" id="addsubject" class="layBox">
     <div class="cd-f-row mt20">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>学科:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="subjectName">
-          </span>
-        </div>
-        <div class="cd-f-eve">
-          <span class="cd-f-name"><label></label></span>
-          <span>
-            <button class="lay-btn green-btn mr20">确定</button><button class="lay-btn gray-btn">取消</button>
+            <input type="text" name="subjectName" maxlength="10" data-vali="notnull">
           </span>
         </div>
     </div>
   </form>
-    <!-- 添加用户弹窗表单 end -->
+<!-- 添加学科弹窗表单 end -->
 </div>
 </template>
 <script>
+/*vue组件*/
    export default {
     data() {
       return {
        grades:"",
       }
     },
-     mounted () {    
+     created () {    
       this.show()
     },
-         methods: {
-       show: function(){
-       var _self = this;
-        var params = {};
-        CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
+    methods: {
+    /*显示表单数据*/
+      show: function(){
+      	 var _self = this;
+       	 var params = {};
+       	 CDUtil.ajaxPost("/base/subject/list",params,function(retVO){
         	_self.grades = retVO;  
         });
       },
-      add: function(){
+      /*编辑学科*/
+      manEdit: function(subjectName,subjectId){
+      	var _self = this;
+      	$('#edit-subjectName').val(subjectName);
+      	$('#edit-subjectId').val(subjectId);
+      	layer.open({
+		type: 1,
+		title: '编辑学科',
+		skin: 'layui-layer-rim',
+		//加上边框
+		area: ['450px', '240px'],
+		//宽高
+		content: $("#editsubject"),
+		btn: ['确定', '取消'],
+		yes: function(index, layero) {
+			//添加表单验证--Validation
+       		var result = Validation.validation({
+          		containerId: "editsubject",
+        	});
+       		if(result==true){
+				var editparams = $('#editsubject').serialize();
+				CDUtil.ajaxPost("/base/subject/update", editparams,
+				function(retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+				});
+				layer.close(index);
+				layer.msg('编辑成功!');
+			}
+		}
+	});
+      },
+      /*删除学科*/
+      manDel: function(subjectId){
+      var _self = this;
+      	layer.alert('确定删除该行数据?',
+		function(index) {
+			var nanidParams = {
+			subjectId: subjectId
+		};
+		CDUtil.ajaxPost("/base/subject/delete", nanidParams,function(retVO) {
+		if (retVO.code == 1) {
+				_self.show();
+			}
+		});
+		layer.close(index);
+		layer.msg('删除成功!');
+	});
+      },
+      /*添加学科*/
+       add: function(){
+       var _self = this;
           layer.open({
-              type: 1,
+             type: 1,
               title: '添加学科',
               skin: 'layui-layer-rim', //加上边框
               area: ['450px', '240px'], //宽高
-              content: $("#addsubject")
+              content: $("#addsubject"),
+              btn: ['确定', '取消'],
+              yes:function(index,layero){
+              //添加表单验证--Validation
+       			var result = Validation.validation({
+          			containerId: "addsubject",
+        		});
+       			if(result==true){
+              		var addparams = $('#addsubject').serialize();
+      				CDUtil.ajaxPost("/base/subject/add",addparams,function(retVO){
+      					if (retVO.code == 1) {
+							_self.show();
+						}
+						if (retVO.code == 0) {
+								layer.msg(retVO.msg);
+							}
+      				});
+      				layer.close(index);
+      			}
+              }
            });
-      }
+      },     
+     /**上移**/
+     upbtn: function(event){ 
+    	var el = event.target;
+    	var $this = $(el);
+     	var tr = $this.parents('tr');
+     	var _index=tr.index() ;
+     	var _str="";
+     	/*if (_index != 0) {*/
+			tr.prev().before(tr);
+			 $("#sort tr").each(function() {
+			 	_str += $(this).find('td').attr("data-id") + ",";
+			 });
+			 CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){});
+		/*}*/
+     },
+     /**下移**/
+     downbtn:function(event){
+		var el = event.target;
+    	var $this = $(el);
+     	var tr = $this.parents('tr');
+    	 var trLength = $this.length; 
+    	 var _index=tr.index() ;
+    	 var _str="";
+     /*	if (_index != trLength - 1){ */
+			tr.next().after(tr);
+			$("#sort tr").each(function() {
+			 	_str += $(this).find('td').attr("data-id") + ",";
+			 });
+			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){});
+		/*}*/
+     },
     }
    }
 </script>
+<style>
+.colorTd{color:#03a9f4}
+.colorTd span{cursor: pointer;}
+</style>

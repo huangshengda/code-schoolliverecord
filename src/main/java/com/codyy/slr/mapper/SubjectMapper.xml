@@ -113,13 +113,24 @@
 	  ORDER BY t.SORT
   </select>
   
+  <select id = "getSubjectByName" parameterType="string" resultMap="BaseResultMap">
+  
+  	select * from subject t 
+	  where t.DELETE_FLAG = 'N' 
+	  <if test="_parameter != null" >
+	  and t.SUBJECT_NAME = #{_parameter} 
+	  </if>
+	  ORDER BY t.SORT
+  </select>
+  
+  
       <update id="modifySubjectSort"  parameterType="java.util.List">  
             <foreach collection="list" item="item" index="index" open="" close="" separator=";">     
 		update subject 
                    <set>  
-                     SORT=${item.sort} 
+                     SORT=#{item.sort} 
                    </set>  
-                   where SUBJECT_ID = ${item.subjectId}  
+                   where SUBJECT_ID = #{item.subjectId}  
             </foreach>  
         </update>  
 </mapper>

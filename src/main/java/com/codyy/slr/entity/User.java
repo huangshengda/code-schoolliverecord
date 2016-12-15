@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.codyy.slr.constant.Constants;
-
 /**
  * 
  * @Description: 用户bean  
@@ -27,6 +25,8 @@ public class User implements Serializable {
 
 	private String userType;
 
+	private String userType_chinese;
+
 	private String deleteFlag;
 
 	private Date deleteTime;
@@ -37,6 +37,24 @@ public class User implements Serializable {
 
 	private List<String> opt;
 
+	private List<String> column;
+
+	public String getUserType_chinese() {
+		return userType_chinese;
+	}
+
+	public void setUserType_chinese(String userType_chinese) {
+		this.userType_chinese = userType_chinese;
+	}
+
+	public List<String> getColumn() {
+		return column;
+	}
+
+	public void setColumn(List<String> column) {
+		this.column = column;
+	}
+
 	public String getToken() {
 		return token;
 	}
@@ -46,7 +64,7 @@ public class User implements Serializable {
 	}
 
 	public List<String> getOpt() {
-		return (opt == null ? Constants.EDIT_DELETE : opt);
+		return opt;
 	}
 
 	public void setOpt(List<String> opt) {
