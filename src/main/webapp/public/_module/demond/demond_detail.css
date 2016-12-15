@@ -55,7 +55,7 @@ body{
 .v-recommend {
 }
 .v-recommend li {
-	margin-top:20px;
+	margin-top:15px;
 	cursor:pointer;
 	padding:10px;
 	cursor: pointer;
@@ -65,6 +65,13 @@ body{
 	vertical-align:top;
 	padding-right:1px;
 }
+.media-right p{
+	width: 105px;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.v-recommend{margin-top:20px;}
 .v-recommend li:hover {
 	background-color:#f5f8fa;
 }

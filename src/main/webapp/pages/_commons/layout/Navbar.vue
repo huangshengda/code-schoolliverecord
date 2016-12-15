@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-default" role="navigation">
     <div class="wamp">
-    <img src="../../../public/_module/images/logo.png" class="inb">
+    <img src="" class="inb" id="logo_img">
       <div class="head inb">
           <div class="navHead">
           	<span v-for="menuList in menus.data">
@@ -71,9 +71,16 @@ export default{
 				$("#user_realname").html(sessionStorage.getItem("realname"));
       		}
       	});
+      	/**获取导航**/
       	CDUtil.ajaxPost("/menu",{},function(retVO){
       		_self.menus = retVO;
       	});
+      	/**获取logo图片**/
+      	CDUtil.ajaxPost("/base/basicinfo/get",{},function(retVO){
+			if (retVO.code == 1) {
+				$('#logo_img').attr('src',retVO.data.logoPath);
+			}
+		});
     },
     login:function(){
       laryIndex = layer.open({
@@ -95,7 +102,6 @@ export default{
             password: md5($("#password").val()), 
             CheckCode: $("#auto").val() 
           };
-          console.log(params);
           var self= this;
           //提交数据给到后台处理
           CDUtil.ajaxPost("/login",params,function(retVO){
@@ -108,6 +114,7 @@ export default{
               sessionStorage.token = retVO.data.token;
               sessionStorage.realname = retVO.data.realname;
               $("#user_realname").html(retVO.data.realname);
+               window.location.reload();
             }
           });
         }
@@ -118,6 +125,7 @@ export default{
               $("#login_button").show();
               sessionStorage.clear();
           });
+          window.location.reload();
       },
       editPwd: function(){
       	window.open(ROOT_SERVER+"/front/path/editpwd?token="+sessionStorage.getItem("token"));

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <nav role="navigation" class="navbar navbar-default"> 
   <div class="wamp"> 
-   <img src="${ROOT_UI}/public/_module/images/logo.png" class="inb" /> 
+   <img src="" class="inb" id="logo_img"/> 
    <div class="head inb">
     <div class="navHead" id="sys_slr_nav" > 
     <%--  <span><a href="${ROOT_SERVER}/#/index" class="router-link-active">首页 </a></span>
@@ -37,7 +37,6 @@
  </nav>
 <script type="text/javascript">
 $(function(){
-	
 	var params = {};
 	CDUtil.ajaxPost("/menu",params,function(retVO){
 		var menus = retVO.data;
@@ -89,6 +88,7 @@ $(function(){
 				sessionStorage.token = retVO.data.token;
 				sessionStorage.realname = retVO.data.realname;
 				$("#user_realname").html(retVO.data.realname);
+				 window.location.reload();
 			  }
 			});
 		}
@@ -104,6 +104,13 @@ $(function(){
 		        window.location.href = ROOT_SERVER+"/#/index";
 		    });
 		});
+		 window.location.reload();
+	});
+	/**获取logo图片**/
+  	CDUtil.ajaxPost("/base/basicinfo/get",{},function(retVO){
+		if (retVO.code == 1) {
+			$('#logo_img').attr('src',retVO.data.logoPath);
+		}
 	});
 });
 </script>

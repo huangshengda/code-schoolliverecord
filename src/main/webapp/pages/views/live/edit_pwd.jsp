@@ -72,8 +72,8 @@ $(function(){
       		if(result==true){
       			if($('#new_pwd').val()==$('#rel_pwd').val()){
 				var pwdParams = {
-					password : $('#new_pwd').val(),
-					prePassword:$('#pre_pwd').val(),
+					password : md5($('#new_pwd').val()),
+					prePassword:md5($('#pre_pwd').val()),
 					token:sessionStorage.getItem("token"),
 					userId:$('#user_id').val(),
 				};

@@ -76,25 +76,25 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="username" id="username" data-vali="notnull,username">
+            <input type="text" name="username" id="add_username" data-vali="notnull,username">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname" data-vali="notnull">
+            <input type="text" name="realname" data-vali="notnull" id="add_realname">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull,password">
+            <input type="text" name="password" data-vali="notnull,password" id="add_password">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
-            <select name="userType" data-vali="notnull">
+            <select name="userType" data-vali="notnull" id="add_userType">
            	 	<option value="-1">请选择</option>
             	<option value="ADMIN">管理员</option>
             	<option value="TEACHER">老师</option>
@@ -231,13 +231,13 @@ var config = {
 /**
  * Vue组件对象
 **/
-
 export default {
 	created() {
 		this.userSear()
 	},
 	methods: {
 		userSear: userSearch,
+		/*** 添加用户**/
 		addUser: function() {
 			layer.open({
 				type: 1,
@@ -255,6 +255,12 @@ export default {
         			});
        				if(result==true){
 						var addparams = $('#adduser').serialize();
+						 var addparams = { 
+          				 	 userType: $("#add_userType").val(), 
+          					 password: md5($("#add_password").val()), 
+           					 username: $("#add_username").val(),
+           					 realname: $("#add_realname").val(),
+         				 };
 						CDUtil.ajaxPost("/base/user/add", addparams,function(retVO) {
 							if (retVO.code == 1) {
 								userSearch();

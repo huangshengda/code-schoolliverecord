@@ -2,9 +2,9 @@
 <div class="demand">
 <!-- 查询条件 start-->
 	<div class="d-search">
-		<div><label>年级 :</label><div class="itemList"><span v-for="grade in classList.data" @click="gradesearch(grade.classlevelName,$event)">{{grade.classlevelName}}</span></div>
+		<div><label>年级 :</label><div class="itemList"><span @click="gradesearch('',$event)" class="active">全部</span><span v-for="grade in classList.data" @click="gradesearch(grade.classlevelName,$event)">{{grade.classlevelName}}</span></div>
 		</div>
-		<div><label>学科 :</label><div class="itemList"><span v-for="subject in subjectList.data" @click="subjectsearch(subject.subjectName,$event)">{{subject.subjectName}}</span></div>
+		<div><label>学科 :</label><div class="itemList"><span @click="subjectsearch('',$event)" class="active">全部</span><span v-for="subject in subjectList.data" @click="subjectsearch(subject.subjectName,$event)">{{subject.subjectName}}</span></div>
 		</div>
 	</div>
 <!-- 查询条件 end-->
@@ -33,6 +33,24 @@
 </div>
 </template>
 <script>
+/****点击进入点播详情页****/
+window.openDemondDetail=function(resourceId){
+	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
+      		if(retVO.code == 1){
+      			sessionStorage.setItem("resourceId",resourceId);
+        		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
+      		}else{
+      			//alert("用户信息失效");
+      			laryIndex = layer.confirm('未登录暂无权限访问', {
+					btn: ['确定']
+				},function() {
+					layer.close(laryIndex);
+					sessionStorage.clear();
+      				window.location.href = ROOT_SERVER+"/#/index";
+				});
+      		}
+    });
+};
 /**
  * Vue组件对象
 **/
@@ -45,7 +63,7 @@
 		        pages:"",
 		        params:{
 		        	orderType:"desc",
-					pageSize: 2,
+					pageSize: 16,
 					
 		        }
 		    }
@@ -81,10 +99,9 @@
     			}else{
     				var classLevelName= data.classlevelName;
     			}
-				
-				var htmlStr = '<div class="col-4">';
+				var htmlStr = '<div class="col-4" onClick="openDemondDetail(\''+data.resourceId+'\')">';
 				htmlStr += '<div class="demandImg">';
-				htmlStr += '<a href="#a"><img src='+data.thumbPath+' width="280" height="157"></a>';       
+				htmlStr += '<img src='+data.thumbPath+' width="280" height="157">';       
 				htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>'+data.viewCnt+'</span></div> ';  
 				htmlStr += '</div>' ;
 				htmlStr += '<p class="c4 tel">'+data.resourceName+'</p>' ;
@@ -105,15 +122,17 @@
 /** 获取选择的年级参数**/
     	gradesearch: function(classlevelName,event){
     		$(event.target).addClass("active").siblings().removeClass("active");
+    		console.log(classlevelName);
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
 			this.showdemand();
      	},
 /** 获取选择的学科参数**/
      	subjectsearch: function(subjectName,event){
      		$(event.target).addClass("active").siblings().removeClass("active");
+     		console.log(subjectName);
      		this.params= Object.assign({},this.params,{subjectName:subjectName});
-     	 	this.showdemand();
      	 	$('.sub-tit').text(subjectName);
+     	 	this.showdemand();
      	},
 /** 根据时间排序**/
      	sortByTime: function(e){
