@@ -43,6 +43,10 @@ public class ResCommentService {
 		formatDateAndSetDelFun(list, userId);
 		List<String> commentIdList = new ArrayList<String>();
 		for (ResCommentVo comment : list) {
+			// 是否有删除权限
+			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
+				comment.setOpt(Constants.DELETE);
+			}
 			commentIdList.add(comment.getResourceCommentId());
 		}
 
@@ -52,6 +56,10 @@ public class ResCommentService {
 		List<ResCommentVo> subList = getSubResCommentList(commentIdList, userId);
 		Map<String, List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
 		for (ResCommentVo comment : subList) {
+			// 是否有删除权限
+			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
+				comment.setOpt(Constants.DELETE);
+			}
 			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
 		}
 

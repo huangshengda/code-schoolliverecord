@@ -3,8 +3,6 @@ package com.codyy.slr.entity;
 import java.util.Date;
 import java.util.List;
 
-import com.codyy.slr.constant.Constants;
-
 /**
  * 
  * @Description: 资源评论Bean 
@@ -29,14 +27,6 @@ public class ResComment {
 
 	private List<String> opt;
 
-	public List<String> getOpt() {
-		return opt;
-	}
-
-	public void setOpt(List<String> opt) {
-		this.opt = Constants.DELETE;
-	}
-
 	public boolean validate() {
 		/*String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
 		
@@ -44,6 +34,14 @@ public class ResComment {
 			return false;
 		}*/
 		return true;
+	}
+
+	public List<String> getOpt() {
+		return opt;
+	}
+
+	public void setOpt(List<String> opt) {
+		this.opt = opt;
 	}
 
 	public String getResourceCommentId() {
