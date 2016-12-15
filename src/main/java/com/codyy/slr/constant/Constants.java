@@ -153,6 +153,11 @@ public class Constants {
 	 */
 	public final static int MAX_UPLOAD_SIZE_IMAGE;
 
+	/**
+	 * #实时合并等待时间(等待dms服务器将.temp后缀文件改为.flv文件) 单位(秒)
+	 */
+	public final static int CONTACT_VIODE_THREAD_WAIT_TIME;
+
 	public final static List<String> UPLOAD_VIDEO_TYPE;
 
 	public final static List<String> UPLOAD_IMAGE_TYPE;
@@ -202,6 +207,8 @@ public class Constants {
 
 		MAX_UPLOAD_SIZE_VIDEO = StringToInt("max.upload.size.video", 2048);
 		MAX_UPLOAD_SIZE_IMAGE = StringToInt("max.upload.size.image", 5);
+
+		CONTACT_VIODE_THREAD_WAIT_TIME = StringToInt("contact.video.thread.wait.time", 60);
 
 		ROOT_UI = dealEndSprit("root.ui");
 		ROOT_SERVER = dealEndSprit("root.server");

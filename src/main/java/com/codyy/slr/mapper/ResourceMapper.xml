@@ -155,9 +155,13 @@
   <select id = "getNotFinishLiveResIds" resultType = "java.lang.String">
   	select resource_id from resource res where res.LIVING_FLAG = 'Y' 
   </select>
-  
+  <!-- 将直播路径设为空 -->
   <update id = "updateFinishLiveRes" parameterType = "com.codyy.slr.entity.Resource" >
   	update resource set THUMB_PATH = #{thumbPath}, STORE_PATH = #{storePath} ,LIVING_FLAG = #{livingFlag}, size = #{size}  where resource_id = #{resourceId}
+  </update>
+  
+  <update id="addResViewCnt" parameterType = "java.lang.String">
+  	update resource set VIEW_CNT = VIEW_CNT + 1 where RESOURCE_ID = #{resourceId};
   </update>
   
 </mapper>

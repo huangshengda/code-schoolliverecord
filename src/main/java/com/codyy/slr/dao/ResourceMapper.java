@@ -3,6 +3,8 @@ package com.codyy.slr.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.entity.Resource;
 import com.codyy.slr.vo.HomeLiveVo;
@@ -54,35 +56,43 @@ public interface ResourceMapper {
 	 * @return
 	 */
 	List<ResourceVo> getRecommendResourceList(Map<String, String> map);
-	
+
 	/**
 	 * 更新资源信息
 	 * @param res
 	 * @return
 	 */
 	int modifyResource(ResourceVo res);
-	
+
 	/**
 	 * 删除资源与年级的关系
 	 * @param resourceId
 	 * @return
 	 */
 	int delResIDRClslevelID(String resourceId);
-	
+
 	/**
 	 * 将直播路径更新为空
 	 */
 	int updateLiveResourceLivingPath(String resourceId);
-	
+
 	/**
 	 * 查询未结束的直播id
 	 * @return
 	 */
 	List<String> getNotFinishLiveResIds();
-	
+
 	/**
 	 * 更新结束直播课程信息
 	 * @param res
 	 */
 	int updateFinishLiveRes(Resource res);
+
+	/**
+	 * 
+	 * @Description:资源阅览加一
+	 * @return
+	 *
+	 */
+	int addResViewCnt(@Param("resourceId") String resourceId);
 }
