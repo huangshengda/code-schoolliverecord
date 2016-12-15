@@ -47,7 +47,7 @@ public class BasicInfoController {
 					if ("title".equalsIgnoreCase(info.getInfoName())) {
 						res.setTitle(info.getInfoValue());
 					} else if ("logoPath".equalsIgnoreCase(info.getInfoName())) {
-						res.setLogoPath(info.getInfoValue());
+						res.setLogoPath(Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + info.getInfoValue());
 					} else {
 						res.setButtomMsg(info.getInfoValue());
 					}
