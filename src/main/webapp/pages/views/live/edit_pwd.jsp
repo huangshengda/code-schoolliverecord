@@ -81,9 +81,12 @@ $(function(){
      				if (retVO.code == 1) {
 						layer.msg('修改成功!');
 					}
+     				if (retVO.code == 0) {
+						layer.msg(retVO.msg);
+					}
      			});
       			}else{
-      				layer.msg('密码不一致!');
+      				layer.msg('两次密码不一致!');
       			}
       		}
 	});

@@ -40,7 +40,11 @@ window.mySub = function(newPage){
          	 pagingFlag: true,	
          	 //用来拼接单个循环体的回调方法。
 			spellHtmlFun: function(data){
-				var classLevelName= data.classlevelName.substr(0,7) + "...";
+				if(data.classlevelName.length>7){
+    				var classLevelName= data.classlevelName.substr(0,7) + "...";
+    			}else{
+    				var classLevelName= data.classlevelName;
+    			}
 				var htmlStr = '<div class="col-4">';
 				htmlStr += '<div class="demandImg">';
 				htmlStr += '<a href="#a"><img src='+data.thumbPath+' width="280" height="157"></a>';       

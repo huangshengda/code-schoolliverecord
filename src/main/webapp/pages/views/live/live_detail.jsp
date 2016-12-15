@@ -29,10 +29,10 @@
 <body>
 <%@ include file="../../_commons/navbar.jsp"%>
 <!-- 直播课程详情 start-->
-<div class="container" >
+<div class="container mt40">
 	<p class="l-title">汉语言文学（第一节）
 		<span class="ft12">
-			<i class="iconfont icon-play-times"></i>123</span>
+			<!--<i class="iconfont icon-play-times"></i>123</span>  -->
 		<small class="ft12">一年级/语文/谢春华</small>
 	</p>
 	<div class="row" >
@@ -53,10 +53,13 @@
 		         		</li> -->
 		         	</ul>
 		          </div>
-		          <div class="bar"></div>
-		          <div class="c-text">
-		            <textarea id="chat"></textarea>
-		            <button class="commit fr" id="chat_send">发表</button>
+		          <div class="chat-btm mt20">
+		          	<div class="bar"></div>
+		          	<div class="c-text">
+		            	<textarea id="chat"></textarea>
+		            	<button class="commit fr" id="chat_send">发表</button>
+		            	<div class="clear"></div>
+		          	</div>
 		          </div>
 		        </div>
 			</div>

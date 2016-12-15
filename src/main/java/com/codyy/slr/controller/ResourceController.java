@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,8 @@ import com.codyy.slr.vo.ReturnVoOne;
 @Controller
 @RequestMapping("/resource")
 public class ResourceController {
+
+	private static final Logger log = Logger.getLogger(ResourceController.class);
 
 	@Autowired
 	private ResourceService resourceService;
@@ -301,12 +304,23 @@ public class ResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("live/finish")
-	public ReturnVoOne<String> finishLive(String liveResourceId) {
+	public ReturnVoOne<String> finishLive(final String liveResourceId) {
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
-			boolean flag = handleLiveFinishService.finishLive(liveResourceId);
-			String msg = flag == true ? "结束课程成功" : "结束课程失败";
-			returnVoOne.setMsg(msg);
+			boolean flag = resourceService.updateLiveResourceLivingPath(liveResourceId);
+			log.info("liveResourceId =" + liveResourceId + ":更新数据库,直播路径设置为空.结果为:" + (flag == true ? "success" : "fail"));
+			if (flag) {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						handleLiveFinishService.finishLive(liveResourceId);
+					}
+				}).start();
+
+				returnVoOne.setMsg("结束课程成功");
+			} else {
+				returnVoOne.setMsg("结束课程失败,更新直播路径为空失败");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnVoOne.setCode(Constants.FAILED);
