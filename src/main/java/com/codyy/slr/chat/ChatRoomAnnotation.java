@@ -1,10 +1,12 @@
 package com.codyy.slr.chat;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.websocket.OnClose;
@@ -15,74 +17,149 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/chat")
+import org.apache.log4j.Logger;
+
+import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSONObject;
+import com.codyy.slr.constant.Constants;
+import com.codyy.slr.entity.User;
+import com.codyy.slr.thread.ConfigThreadLocal;
+import com.codyy.slr.util.TokenUtils;
+import com.codyy.slr.util.UUIDUtils;
+import com.codyy.slr.vo.ChatVo;
+
+@ServerEndpoint(value = "/chat/{resourceId}/{token}")
 public class ChatRoomAnnotation {
 
-    private static final String GUEST_PREFIX = "Guest";
-    private static final AtomicInteger connectionIds = new AtomicInteger(0);
-    private static final Set<ChatRoomAnnotation> connections =
-            new CopyOnWriteArraySet<>();
-    private static final Map<String, Session> map = new HashMap<String, Session>();
+	private static final Logger log = Logger.getLogger("ChatRoomAnnotation");
 
-    private final String nickname;
-    private Session session;
+	private static final Set<ChatRoomAnnotation> connections = new CopyOnWriteArraySet<>();
+	private static final Map<String, Session> resIdUserIdToClientMap = new ConcurrentHashMap<String, Session>();
+	private static final Map<String, String> resIdtokenToAgentMap = new ConcurrentHashMap<String, String>();
+	// 统计每个资源在线聊天人数
+	private static final Map<String, AtomicInteger> resourceIdCountMap = new ConcurrentHashMap<String, AtomicInteger>();
 
-    public ChatRoomAnnotation() {
-        nickname = GUEST_PREFIX + connectionIds.getAndIncrement();
-    }
+	private Session session;
 
-    @OnOpen
-    public void start(Session session, @PathParam(value="roomId") String roomId) {
-        this.session = session;
-        connections.add(this);
-        map.put(roomId+"_"+nickname, session);
-        String message = String.format("* %s %s", nickname, "has joined.");
-        broadcast(message, roomId);
-    }
+	private User user;
 
-    @OnClose
-    public void end(@PathParam(value="roomId") String roomId) {
-        connections.remove(this);
-        map.remove(roomId+"_"+nickname);
-        String message = String.format("* %s %s",
-                nickname, "has disconnected.");
-        broadcast(message, roomId);
-    }
+	@OnOpen
+	public void start(Session session, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
+		String agent = ConfigThreadLocal.getVal();
+		User user = getUser(token + agent);
+		if (!userHasExist(user)) {
+			throw new Exception();
+		}
 
-    @OnMessage
-    public void incoming(String message, @PathParam(value="roomId") String roomId) {
-        // Never trust the client
-    	// TODO: 过滤输入的内容
-    	broadcast(nickname+":"+message, roomId);
-    }
+		this.user = user;
+		this.session = session;
 
-    @OnError
-    public void onError(Throwable t) throws Throwable {
-        System.out.println("Chat Error: " + t.toString());
-    }
+		if (resIdUserIdToClientMap.get(concatKey(resourceId, user.getUserId())) == null) {
+			connections.add(this);
 
-    private void broadcast(String msg, String roomId) {
-        for (ChatRoomAnnotation client : connections) {
-            try {
-                synchronized (client) {
-                	if(map.get(roomId+"_"+client.nickname) != null){
-                		(map.get(roomId+"_"+client.nickname)).getBasicRemote().sendText(msg);
-                	}
-                    //client.session.getBasicRemote().sendText(msg);
-                }
-            } catch (IOException e) {
-            	System.out.println("Chat Error: Failed to send message to client");
-            	map.remove(roomId+"_"+client.nickname);
-                connections.remove(client);
-                try {
-                    client.session.close();
-                } catch (IOException e1) {
-                    // Ignore
-                }
-                String message = String.format("* %s %s",
-                        client.nickname, "has been disconnected.");
-                broadcast(message, roomId);
-            }
-        }
-    }
+			if (resourceIdCountMap.get(resourceId) == null) {
+				resourceIdCountMap.put(resourceId, new AtomicInteger(0));
+			}
+			// 自增一
+			resourceIdCountMap.get(resourceId).incrementAndGet();
+		}
+		System.out.println("connections" + connections);
+		resIdUserIdToClientMap.put(concatKey(resourceId, user.getUserId()), session);
+		resIdtokenToAgentMap.put(concatKey(resourceId, token), agent);
+
+		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "加入聊天", resourceIdCountMap.get(resourceId), false, false,
+				String.valueOf(new Date().getTime()));
+
+		broadcast(vo, resourceId);
+
+	}
+
+	@OnClose
+	public void end(@PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) {
+		connections.remove(this);
+		resIdUserIdToClientMap.remove(concatKey(resourceId, user.getUserId()));
+		resIdtokenToAgentMap.remove(concatKey(resourceId, token));
+
+		int nowNum = 0;
+		if (resourceIdCountMap.get(resourceId) != null) {
+			nowNum = resourceIdCountMap.get(resourceId).decrementAndGet();
+			if (nowNum <= 0) {
+				resourceIdCountMap.remove(resourceId);
+			}
+		}
+		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "离开聊天", resourceIdCountMap.get(resourceId), false, false,
+				String.valueOf(new Date().getTime()));
+		broadcast(vo, resourceId);
+	}
+
+	@OnMessage
+	public void incoming(String messageJsonObj, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
+
+		ChatVo vo = JSONObject.parseObject(messageJsonObj, ChatVo.class);
+
+		if (StringUtils.isEmpty(vo.getId())) {
+			vo.setId(UUIDUtils.getUUID());
+			vo.setAuthor(user.getRealname());
+			vo.setDelFlag(false);
+			vo.setDelAuth(false);
+			vo.setOnlineCount(resourceIdCountMap.get(resourceId));
+		} else {
+			vo.setDelFlag(true);
+		}
+
+		broadcast(vo, resourceId);
+	}
+
+	@OnError
+	public void onError(Throwable t) throws Throwable {
+		log.error(("Chat Error: " + t.toString()));
+	}
+
+	private void broadcast(ChatVo vo, String resourceId) {
+		for (ChatRoomAnnotation client : connections) {
+			try {
+				synchronized (client) {
+					if (resIdUserIdToClientMap.get(concatKey(resourceId, client.user.getUserId())) != null) { // 判断是否在同一个房间
+
+						String userType = client.user.getUserType();
+						if (Constants.ADMIN.equalsIgnoreCase(userType) || Constants.SUPER_ADMIN.equalsIgnoreCase(userType)) {
+							vo.setDelAuth(true);
+						}
+
+						(resIdUserIdToClientMap.get(concatKey(resourceId, client.user.getUserId()))).getBasicRemote().sendText(JSONObject.toJSONString(vo));
+					}
+
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				try {
+					client.session.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+
+	}
+
+	private String concatKey(String resourceId, String userId) {
+		return resourceId + "_" + userId;
+	}
+
+	private User getUser(String key) {
+		try {
+			return TokenUtils.getUserFromCache(key);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private boolean userHasExist(User user) {
+		if (user == null || "0".equals(user.getUserId())) {
+			return false;
+		}
+		return true;
+	}
+
 }
