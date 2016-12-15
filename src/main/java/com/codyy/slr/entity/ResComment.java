@@ -3,7 +3,6 @@ package com.codyy.slr.entity;
 import java.util.Date;
 import java.util.List;
 
-import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
 
 /**
@@ -39,11 +38,11 @@ public class ResComment {
 	}
 
 	public boolean validate() {
-		String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
-
+		/*String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
+		
 		if (StringUtils.isEmpty(resCommentRegEx) || !commentContent.matches(resCommentRegEx)) {
 			return false;
-		}
+		}*/
 		return true;
 	}
 
