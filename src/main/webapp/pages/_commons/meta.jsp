@@ -18,9 +18,9 @@ ROOT_SERVER = "${ROOT_SERVER}";
 ROOT_SERVER_CHAT = "${ROOT_CHAT}/chat";
 </script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/myLayer/layer/skin/layer.css">
-<link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/common.css">
+<%-- <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/common.css">
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/micblog_new.css">
-<link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/group_new2.css">
+<link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/group_new2.css"> --%>
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery-2.2.4.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery.serializejson.min.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/myLayer/layer/layer.js" ></script>
