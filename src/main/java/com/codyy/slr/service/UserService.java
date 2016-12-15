@@ -48,6 +48,7 @@ public class UserService {
 						user.setOpt(Constants.EDIT_DELETE);
 					}
 				}
+
 				if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
 					user.setUserType_chinese(Constants.SUPER_ADMIN_Chinese);
 				} else if (Constants.ADMIN.equals(user.getUserType())) {
@@ -57,6 +58,7 @@ public class UserService {
 				} else {
 					user.setUserType_chinese(Constants.STUDENT_Chinese);
 				}
+
 			}
 		}
 		page.setData(userList);
@@ -102,6 +104,13 @@ public class UserService {
 		return userMapper.selectByPrimaryKey(userId);
 	}
 
+	/**
+	 * 
+	 * @Description: 根据用户名或密码查找用户
+	 * @param map
+	 * @return
+	 *
+	 */
 	public User getUserByUserNameAndPw(Map<String, Object> map) {
 		return userMapper.getUserByNameAndPw(map);
 	}
