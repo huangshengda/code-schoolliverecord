@@ -83,7 +83,7 @@
 		totalPages = ValueCheck.getNumber(gData.totalPages,0),
 		curPage = ValueCheck.getNumber(gData.curPage,1),
 		data = gData.data;
-		var htmlStr = '<div class="cd-g-header">共<span class="totalnums" >'+totalDatas+'</span>条数据。</div>';
+		var htmlStr = '<div class="cd-g-header">共<span class="totalnums" >'+totalDatas+'</span>条数据</div>';
 		htmlStr += '<div class="cd-g-context" ></div>';
 		htmlStr += '<div class="cd-g-paging" ></div>';
 		$("#"+containerId).html(htmlStr);

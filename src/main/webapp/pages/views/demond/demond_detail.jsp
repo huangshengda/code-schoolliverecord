@@ -90,14 +90,14 @@ i{font-style:normal;}
 .commtent-text-btn:hover{color:#ff9c00;}
 .commtent-remove:hover{color:#f00;}
 .level2-comments{margin-top:20px;}
-
-
+.ft12{font-size:12px;}
+.container .l-title span{color:#999;}
 </style>
 </head>
 <body>
 <%@ include file="../../_commons/navbar.jsp"%>
 <!-- 点播课程详情 start-->
-<div class="container" >
+<div class="container mt40" >
 	<p class="l-title">汉语言文学（第一节）
 		<span class="ft12">
 			<i class="iconfont icon-play-times"></i>123</span>

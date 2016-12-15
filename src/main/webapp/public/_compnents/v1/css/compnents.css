@@ -75,12 +75,12 @@
 }
 .cd-g-table td span{
 	cursor: pointer;
-	color: #03a9f4;
+	
 	margin: 0px 5px;
 }
-.cd-g-table td span:hover{
+/* .cd-g-table td span:hover{
 	border-bottom: 1px solid #03a9f4;
-}
+} */
 .cd-g-paging{
 	padding-top: 20px;
 	text-align: center;
@@ -103,11 +103,11 @@
 }
 .cd-g-paging li:hover{
 	background-color: #dddddd;
-	color: #03a9f4;
+	color: #34a150;
 }
 .cd-g-paging li.active{
 	background-color: #f3f3f3;
-	color: #03a9f4;
+	color: #34a150;
 }
 /**  表格样式，结束   **/
 

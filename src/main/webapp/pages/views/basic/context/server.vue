@@ -65,7 +65,7 @@ var servEdit = function(params, dom) {
 		title: '编辑服务器',
 		skin: 'layui-layer-rim',
 		//加上边框
-		area: ['450px', '375px'],
+		area: ['450px', '288px'],
 		//宽高
 		content: $("#editServer"),
 		btn: ['确定', '取消'],
@@ -93,7 +93,7 @@ var servEdit = function(params, dom) {
  * 表格中的操作---删除服务器
 **/
 var servDel = function(params, dom) {
-	layer.alert('确定删除该行数据?',
+	layer.alert('确认删除该服务器吗?',
 	function(index) {
 		var serverid = params.serverId;
 		var servidParams = {
@@ -171,7 +171,7 @@ var config = {
               type: 1,
               title: '添加服务器',
               skin: 'layui-layer-rim', //加上边框
-              area: ['450px', '375px'], //宽高
+              area: ['450px', '288px'], //宽高
               btn: ['确定', '取消'],
               content: $("#addServer"),
               yes:function(index,layero){
@@ -194,3 +194,7 @@ var config = {
     }
  } 
 </script>
+<style>
+	#addServer input,#editServer input{width:249px;}
+
+</style>

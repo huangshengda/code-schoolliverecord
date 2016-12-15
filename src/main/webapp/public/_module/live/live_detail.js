@@ -53,7 +53,7 @@ $(function() {
  					//+'<span>5分钟之前</span>'
  					+'<p class="s-flow">'+msg+'</p>';
 				if(delAuth){
-					htmlStr += '<i class="iconfont icon-delete chat-delete fr" data-id="'+id+'"></i>'
+					htmlStr += '<i class="iconfont icon-delete chat-delete fr c9" data-id="'+id+'"></i>'
 				}
 				$(htmlStr).appendTo("#chat_context");
 			}
