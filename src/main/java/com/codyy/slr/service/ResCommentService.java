@@ -44,7 +44,7 @@ public class ResCommentService {
 		List<String> commentIdList = new ArrayList<String>();
 		for (ResCommentVo comment : list) {
 			// 是否有删除权限
-			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
+			if (comment.getCommentUserId().equals(page.getMap().get("userId"))) {
 				comment.setDelAuth(true);
 			}
 			commentIdList.add(comment.getResourceCommentId());
@@ -57,7 +57,7 @@ public class ResCommentService {
 		Map<String, List<ResCommentVo>> groupListMap = MapUtils.newHashMap();
 		for (ResCommentVo comment : subList) {
 			// 是否有删除权限
-			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
+			if (comment.getCommentUserId().equals(page.getMap().get("userId"))) {
 				comment.setDelAuth(true);
 			}
 			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
