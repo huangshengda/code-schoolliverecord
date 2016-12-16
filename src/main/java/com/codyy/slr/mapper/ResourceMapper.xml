@@ -75,7 +75,7 @@
 		res.LIVING_FLAG livingFlag,
 		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,res.SUBJECT_ID subjectId,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
 		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName,
-		GROUP_CONCAT(cl.CLASSLEVEL_ID ORDER BY cl.SORT ASC SEPARATOR '/') classlevelId
+		GROUP_CONCAT(cl.CLASSLEVEL_ID ORDER BY cl.SORT ASC SEPARATOR ',') classlevelId
 		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
 		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
 		rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
