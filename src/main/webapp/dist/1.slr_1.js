@@ -4534,7 +4534,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "id": "courseList"
 	    }
-	  }, [(_vm.posts.data != null) ? _c('div', _vm._l((_vm.posts.data), function(post) {
+	  }, [(_vm.posts.data != '') ? _c('div', _vm._l((_vm.posts.data), function(post) {
 	    return _c('div', {
 	      staticClass: "row"
 	    }, [_c('div', {

@@ -3,7 +3,7 @@
   <div class="s-title"><span></span><h3 class="fb">直播课程</h3></div>
 <!-- 展示直播列表  start -->
   <div id="courseList">
-  	<div v-if="posts.data != null">
+  	<div v-if="posts.data != ''">
      <div class="row" v-for="post in posts.data" >
       <div class="col-md-4 tel c4">{{post.resourceName}}</div>
       <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName | cutStr}}</span>/{{post.subjectName}}/{{post.author}}</div>
