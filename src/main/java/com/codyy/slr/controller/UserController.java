@@ -63,7 +63,9 @@ public class UserController {
 			if (user != null) {
 				user.setToken(UUIDUtils.getUUID());
 				// token+agent作为key 增加破解难度
-				TokenUtils.putUserIdToCache(user.getToken() + agent, user);
+				TokenUtils.putUserIdToCache(user.getToken(), agent, user);
+				// token放入session
+				req.getSession().setAttribute("token", user.getToken());
 				if ("TEACHER".equals(user.getUserType())) {
 					user.setColumn(Constants.COLUMN_MY_COURSE);
 				} else if ("STUDENT".endsWith(user.getUserType())) {
@@ -98,7 +100,7 @@ public class UserController {
 		try {
 			String agent = req.getHeader("User-Agent");
 			User user = (User) req.getAttribute("user");
-			TokenUtils.removeUserFormCache(user.getToken() + agent);
+			TokenUtils.removeUserFormCache(user.getToken(), agent);
 		} catch (Exception e) {
 			one.setMsg("退出失败");
 			one.setCode(Constants.FAILED);
@@ -293,11 +295,11 @@ public class UserController {
 		User user = null;
 		String agent = req.getHeader("User-Agent");
 		try {
-			user = TokenUtils.getUserFromCache(token + agent);
+			user = TokenUtils.getUserFromCache(token, agent);
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
+			new ReturnVoOne<User>(Constants.FAILED, "获取失败", user);
 			e.printStackTrace();
 		}
-		return new ReturnVoOne<User>(1, "获取成功", user);
+		return new ReturnVoOne<User>(Constants.SUCCESS, "获取成功", user);
 	}
 }
