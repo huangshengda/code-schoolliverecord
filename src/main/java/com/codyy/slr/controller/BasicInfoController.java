@@ -85,7 +85,7 @@ public class BasicInfoController {
 				} else if ("logoPath".equalsIgnoreCase(info.getInfoName())) {
 					String logoPath = info.getInfoValue();
 					if (logoPath.startsWith("/public")) {
-						param.setLogoPath(logoPath);
+						param.setLogoPath(Constants.ROOT_SERVER + logoPath);
 					} else {
 						param.setLogoPath(Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + logoPath);
 					}
