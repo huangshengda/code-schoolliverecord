@@ -5,16 +5,17 @@ $(function(){
 				$('#res_name').val(retVO.data.resourceName);
 				$("#subjectId").val(retVO.data.subjectId);
 				$("#auth").val(retVO.data.author);
+				$("#classlevelIds").val(retVO.data.classlevelId);
 				var classId = retVO.data.classlevelId.split('/');
-				var chkbox = $(".chose-grade");
-				var classVal = chkbox.val().split(',');
-				for(var i =0;i<classId.length;i++){
+				var chkbox = $('input[name="classlevelIds"]');
+
+				/*for(var i =0;i<classId.length;i++){
 					for(var i =0;i<classVal.length;i++){
 						if(classId[i]==classVal[i]){
 							chkbox.attr("checked",true);
 						}
 					}
-				}
+				}*/
 					/*if(classVal[i]==classId[i]){*/
 						
 					/*	chkbox.attr("checked",true);
