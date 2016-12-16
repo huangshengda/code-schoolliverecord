@@ -116,7 +116,7 @@ public class ClasslevelController {
 		try {
 			Classlevel clel = classlevelService.getClasslevelByName(classlevel.getClasslevelName());
 			if ((clel != null) && (!clel.getClasslevelId().equals(classlevel.getClasslevelId()))) {
-				msg = "学科名称重复";
+				msg = "年级名称重复";
 				code = Constants.FAILED;
 			} else {
 				if (classlevelService.modifyClasslevel(classlevel) != 1) {

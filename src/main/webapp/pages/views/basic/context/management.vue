@@ -91,10 +91,13 @@
 				function(retVO) {
 					if (retVO.code == 1) {
 						_self.show();
+						layer.msg(retVO.msg);
+						layer.close(index);
+					}
+					if (retVO.code == 0) {
+						layer.msg(retVO.msg);
 					}
 				});
-				layer.close(index);
-				layer.msg('编辑成功!');
 			}
 		}
 	});
@@ -110,10 +113,10 @@
 		CDUtil.ajaxPost("/base/subject/delete", nanidParams,function(retVO) {
 		if (retVO.code == 1) {
 				_self.show();
+				layer.msg(retVO.msg);
+				layer.close(index);
 			}
 		});
-		layer.close(index);
-		layer.msg('删除成功!');
 	});
       },
       /*添加学科*/
@@ -136,12 +139,15 @@
       				CDUtil.ajaxPost("/base/subject/add",addparams,function(retVO){
       					if (retVO.code == 1) {
 							_self.show();
+							layer.close(index);
+							layer.msg(retVO.msg);
+							$('#addsubject')[0].reset();
 						}
 						if (retVO.code == 0) {
-								layer.msg(retVO.msg);
-							}
+							layer.msg(retVO.msg);
+						}
       				});
-      				layer.close(index);
+      			
       			}
               }
            });

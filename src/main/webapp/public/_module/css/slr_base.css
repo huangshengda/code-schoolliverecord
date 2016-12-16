@@ -296,7 +296,9 @@ tr:nth-child(2n) {
 #courseList .col-md-4 a {
 	color: #34a150;
 }
-
+.tac {
+    margin: 30px 0;
+}
 /*   点播 */
 .d-search {
 	background-color: #fff;

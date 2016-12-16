@@ -10,7 +10,6 @@ public class DirInfo {
 
 	private String absPath;// 绝对路径
 	private String relPath;// 相对路径
-	private String strDate;// 日期 20151010
 
 	public String getAbsPath() {
 		return absPath;
@@ -28,12 +27,15 @@ public class DirInfo {
 		this.relPath = relPath;
 	}
 
-	public String getStrDate() {
-		return strDate;
-	}
-
-	public void setStrDate(String strDate) {
-		this.strDate = strDate;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("DirInfo [absPath=");
+		builder.append(absPath);
+		builder.append(", relPath=");
+		builder.append(relPath);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

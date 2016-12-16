@@ -18,7 +18,7 @@
 			</div>
 			<!-- 中间内容 --右侧-->
 			<div class="s-right fr">
-				<input type="text" placeholder="输入课程或老师" name="resourceNameKey" id="s-resource">
+				<input type="text" placeholder="输入课程或老师" name="resourceNameKey" id="s_resource" @keyup.enter="searchKey">
 				<i class="iconfont icon-search" @click="searchKey"></i>
 			</div>
 		</div>
@@ -178,7 +178,7 @@ window.openDemondDetail=function(resourceId){
      	},
 /** 根据关键字排序**/
      	searchKey:function(){
-     		var sourceName = $('#s-resource').val();
+     		var sourceName = $('#s_resource').val();
      		this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
      		this.showdemand();
      	},

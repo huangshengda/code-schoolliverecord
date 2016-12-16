@@ -1,28 +1,23 @@
 $(function(){
-	if(sessionStorage.getItem("resourceId") != ""){
+	/*if(sessionStorage.getItem("resourceId") != ""){
 		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
 			if (retVO.code == 1) {
 				$('#res_name').val(retVO.data.resourceName);
 				$("#subjectId").val(retVO.data.subjectId);
 				$("#auth").val(retVO.data.author);
-				$("#classlevelIds").val(retVO.data.classlevelId);
 				var classId = retVO.data.classlevelId.split('/');
-				var chkbox = $('input[name="classlevelIds"]');
-
-				/*for(var i =0;i<classId.length;i++){
-					for(var i =0;i<classVal.length;i++){
-						if(classId[i]==classVal[i]){
-							chkbox.attr("checked",true);
-						}
+				$("#classlevelIds").val(retVO.data.classlevelId);
+				var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
+				$checkbox.slice(1).each(function(){
+					var $value= $(this).attr("value");
+					console.log($value);
+					if($value.indexOf(classId)){
+						$(this).prop("checked",true)
 					}
-				}*/
-					/*if(classVal[i]==classId[i]){*/
-						
-					/*	chkbox.attr("checked",true);
-					}*/		
-				}
-			})
-		}	
+				})
+			}
+		})
+	}*/	
 	var laryIndex = null ;	
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
@@ -41,6 +36,7 @@ $(function(){
 	});
 	
 	CDUtil.ajaxPost("/base/classlevel/list",{},function(retVO){
+		$("#classlevelIds").val("");
 		var dataVO = retVO.data;
 		var allChose = '<span><input type="checkbox" class="chose-grade all" value="';
 		var htmlStr = '';
@@ -54,6 +50,32 @@ $(function(){
 		});
 		allChose += '" data-type="all">全部</span>';
 		$(allChose+htmlStr).appendTo("#show_chose_grade");
+		if(sessionStorage.getItem("resourceId") != ""){
+			CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
+				if (retVO.code == 1) {
+					$('#res_name').val(retVO.data.resourceName);
+					$("#subjectId").val(retVO.data.subjectId);
+					$("#auth").val(retVO.data.author);
+					var classId = retVO.data.classlevelId.split('/');
+					$("#classlevelIds").val(retVO.data.classlevelId);
+					var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
+					$checkbox.slice(1).each(function(){
+						var $this=$(this);
+						var $value= $this.attr("value");
+						console.log($value);
+						if(classId.indexOf($value)){
+							$(this).prop("checked",true)
+						}
+		/*				for(var i=0,l=classId.length;i<l;i++){
+							if($value===classId[i]){
+								$this.prop("checked",true);
+							}
+						}*/
+					})
+					
+				}
+			})
+		}
 	});
 	$("#show_chose_grade").on("click",".chose-grade",function(){
 		var checked = $(this).prop("checked");
@@ -261,6 +283,7 @@ $(function(){
 			  icon: 1,
 			  skin: 'layer-ext-moon'
 			});
+			$('#form_save_videoup')[0].reset();
 		});
 	});
 });

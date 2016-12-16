@@ -1,11 +1,10 @@
 package com.codyy.slr.chat;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -33,7 +32,7 @@ public class ChatRoomAnnotation {
 
 	private static final Logger log = Logger.getLogger("ChatRoomAnnotation");
 
-	private static final Set<ChatRoomAnnotation> connections = new CopyOnWriteArraySet<>();
+	private static final Map<String, ChatRoomAnnotation> connections = new ConcurrentHashMap<String, ChatRoomAnnotation>();
 	private static final Map<String, Session> resIdUserIdToClientMap = new ConcurrentHashMap<String, Session>();
 	private static final Map<String, String> resIdtokenToAgentMap = new ConcurrentHashMap<String, String>();
 	// 统计每个资源在线聊天人数
@@ -46,7 +45,7 @@ public class ChatRoomAnnotation {
 	@OnOpen
 	public void start(Session session, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
 		String agent = ConfigThreadLocal.getVal();
-		User user = getUser(token + agent);
+		User user = getUser(token, agent);
 		if (!userHasExist(user)) {
 			throw new Exception();
 		}
@@ -55,7 +54,7 @@ public class ChatRoomAnnotation {
 		this.session = session;
 
 		if (resIdUserIdToClientMap.get(concatKey(resourceId, user.getUserId())) == null) {
-			connections.add(this);
+			connections.put(user.getUserId(), this);
 
 			if (resourceIdCountMap.get(resourceId) == null) {
 				resourceIdCountMap.put(resourceId, new AtomicInteger(0));
@@ -63,9 +62,12 @@ public class ChatRoomAnnotation {
 			// 自增一
 			resourceIdCountMap.get(resourceId).incrementAndGet();
 		}
-		System.out.println("connections" + connections);
 		resIdUserIdToClientMap.put(concatKey(resourceId, user.getUserId()), session);
 		resIdtokenToAgentMap.put(concatKey(resourceId, token), agent);
+
+		log.info("start--connections:" + connections.size());
+		log.info("start--resIdUserIdToClientMap:" + resIdUserIdToClientMap.size());
+		log.info("start--resIdtokenToAgentMap:" + resIdtokenToAgentMap.size());
 
 		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "加入聊天", resourceIdCountMap.get(resourceId), false, false,
 				String.valueOf(new Date().getTime()));
@@ -76,9 +78,13 @@ public class ChatRoomAnnotation {
 
 	@OnClose
 	public void end(@PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) {
-		connections.remove(this);
+		connections.remove(user.getUserId());
 		resIdUserIdToClientMap.remove(concatKey(resourceId, user.getUserId()));
 		resIdtokenToAgentMap.remove(concatKey(resourceId, token));
+
+		log.info("end--connections:" + connections.size());
+		log.info("end--resIdUserIdToClientMap:" + resIdUserIdToClientMap.size());
+		log.info("end--resIdtokenToAgentMap:" + resIdtokenToAgentMap.size());
 
 		int nowNum = 0;
 		if (resourceIdCountMap.get(resourceId) != null) {
@@ -116,7 +122,8 @@ public class ChatRoomAnnotation {
 	}
 
 	private void broadcast(ChatVo vo, String resourceId) {
-		for (ChatRoomAnnotation client : connections) {
+		Collection<ChatRoomAnnotation> connectionsList = connections.values();
+		for (ChatRoomAnnotation client : connectionsList) {
 			try {
 				synchronized (client) {
 					if (resIdUserIdToClientMap.get(concatKey(resourceId, client.user.getUserId())) != null) { // 判断是否在同一个房间
@@ -125,7 +132,6 @@ public class ChatRoomAnnotation {
 						if (Constants.ADMIN.equalsIgnoreCase(userType) || Constants.SUPER_ADMIN.equalsIgnoreCase(userType)) {
 							vo.setDelAuth(true);
 						}
-
 						(resIdUserIdToClientMap.get(concatKey(resourceId, client.user.getUserId()))).getBasicRemote().sendText(JSONObject.toJSONString(vo));
 					}
 
@@ -146,9 +152,9 @@ public class ChatRoomAnnotation {
 		return resourceId + "_" + userId;
 	}
 
-	private User getUser(String key) {
+	private User getUser(String token, String agent) {
 		try {
-			return TokenUtils.getUserFromCache(key);
+			return TokenUtils.getUserFromCache(token, agent);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 			return null;

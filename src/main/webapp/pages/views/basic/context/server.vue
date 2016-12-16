@@ -78,10 +78,13 @@ var servEdit = function(params, dom) {
 				var editparams = $('#editServer').serialize();
 				CDUtil.ajaxPost("/base/dmsserver/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
-						servSearch();
-						layer.close(index);
-				layer.msg('编辑成功!');
-				$('#editServer')[0].reset();
+							servSearch();
+							layer.msg(retVO.msg);
+							layer.close(index);
+							$('#editServer')[0].reset();
+						}
+					if (retVO.code == 0) {
+						layer.msg(retVO.msg);
 					}
 				});
 				
@@ -102,10 +105,13 @@ var servDel = function(params, dom) {
 		CDUtil.ajaxPost("/base/dmsserver/delete", servidParams,function(retVO) {
 			if (retVO.code == 1) {
 				servSearch();
+				layer.msg(retVO.msg);
+				layer.close(index);
+			}
+			if (retVO.code == 0) {
+				layer.msg(retVO.msg);
 			}
 		});
-		layer.close(index);
-		layer.msg('删除成功!');
 	});
 };
 /**
@@ -184,9 +190,15 @@ var config = {
       				CDUtil.ajaxPost("/base/dmsserver/add",addparams,function(retVO){
       					if (retVO.code == 1) {
 							servSearch();
+							layer.msg(retVO.msg);
+							layer.close(index);
+							$('#addServer')[0].reset();
+						}
+						if (retVO.code == 0) {
+							layer.msg(retVO.msg);
 						}
       				});
-      				layer.close(index);
+      				
       			}
               }
            });

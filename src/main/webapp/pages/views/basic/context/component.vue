@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-  <div class="subBtn"><button class="btn fr" @click="add">添加年级</button></div>
+  <div class="subBtn"><button class="btn fr" @click="addgrd">添加年级</button></div>
  <div class="dashboard">
   <!-- 表单 start -->
     <form action="" id="grade">
@@ -91,34 +91,40 @@
 				function(retVO) {
 					if (retVO.code == 1) {
 						_self.show();
+						layer.msg(retVO.msg);
+						layer.close(index);
+					}
+					if (retVO.code == 0) {
+						layer.msg(retVO.msg);
 					}
 				});
-				layer.close(index);
-				layer.msg('编辑成功!');
+				
 			}
 		}
 	});
    },
-      /*删除年级*/
-      manDel: function(classlevelId){
+/*删除年级*/
+  manDel: function(classlevelId){
       var _self = this;
-      	layer.alert('确定删除该行数据?',
-		function(index) {
+      layer.alert('确定删除该行数据?',function(index) {
 			var nanidParams = {
-			classlevelId: classlevelId
-		};
-		CDUtil.ajaxPost("/base/classlevel/delete", nanidParams,function(retVO) {
-		if (retVO.code == 1) {
+				classlevelId: classlevelId
+			};
+		CDUtil.ajaxPost("/base/classlevel/delete", nanidParams,function(retVO){
+			if (retVO.code == 1) {
 				_self.show();
+				layer.msg(retVO.msg);
+				layer.close(index);
+			}
+			if (retVO.code == 0) {
+				layer.msg(retVO.msg);
 			}
 		});
-		layer.close(index);
-		layer.msg('删除成功!');
 	});
-      },
-      /*添加年级*/
-       add: function(){
-       var _self = this;
+},
+     /*添加年级*/
+    addgrd: function(){
+       	var _self = this;
           layer.open({
              type: 1,
               title: '添加年级',
@@ -134,15 +140,16 @@
        			if(result==true){
               		var addparams = $('#addgrade').serialize();
       				CDUtil.ajaxPost("/base/classlevel/add",addparams,function(retVO){
-      				console.log(retVO);
       					if (retVO.code == 1) {
 							_self.show();
+							layer.msg(retVO.msg);
+							layer.close(index);
+							$('#addgrade')[0].reset();
 						}
 						if (retVO.code == 0) {
-								layer.msg(retVO.msg);
+							layer.msg(retVO.msg);
 						}
       				});
-      				layer.close(index);
       			}
               }
            });
