@@ -91,7 +91,7 @@ public class ResCommentController {
 
 	/**
 	 * 
-	 * @Description: 获取资源评论(一级评论,二级评论前五条)  
+	 * @Description: 获取资源评论(一级评论,二级评论)  
 	 * @param page
 	 * @param resourceId
 	 * @param req
