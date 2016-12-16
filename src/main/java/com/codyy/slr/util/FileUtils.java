@@ -135,17 +135,31 @@ public class FileUtils {
 	 * @throws IOException
 	 */
 	public static DirInfo creatDir(Date date, String path) throws IOException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String strDate = sdf.format(date);
-		String pathStr = path + Constants.PATH_SEPARATOR + strDate;
-		Path dir = Paths.get(pathStr);
-		if (!Files.exists(dir)) {
-			Files.createDirectory(dir);
+		SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+		SimpleDateFormat sdfmd = new SimpleDateFormat("MMdd");
+		String strYear = sdfy.format(date);
+		String strmd = sdfmd.format(date);
+
+		// 相对路径
+		String relPath = Constants.PATH_SEPARATOR + strYear + Constants.PATH_SEPARATOR + strmd;
+
+		// 一级绝对路径
+		String abshStrOne = path + Constants.PATH_SEPARATOR + strYear;
+		// 二级绝对路径
+		String abshStrTwo = path + Constants.PATH_SEPARATOR + strYear + Constants.PATH_SEPARATOR + strmd;
+
+		Path dirOne = Paths.get(abshStrOne);
+		Path dirTwo = Paths.get(abshStrTwo);
+
+		if (!Files.exists(dirOne)) {
+			Files.createDirectory(dirOne);
+		}
+		if (!Files.exists(dirTwo)) {
+			Files.createDirectory(dirTwo);
 		}
 		DirInfo info = new DirInfo();
-		info.setRelPath(Constants.PATH_SEPARATOR + strDate);
-		info.setAbsPath(pathStr);
-		info.setStrDate(strDate);
+		info.setRelPath(relPath);
+		info.setAbsPath(abshStrTwo);
 		return info;
 	}
 
