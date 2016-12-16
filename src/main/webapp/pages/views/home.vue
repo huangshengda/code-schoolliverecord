@@ -91,6 +91,7 @@ methods:{
 					layer.close(laryIndex);
 					sessionStorage.clear();
       				window.location.href = ROOT_SERVER+"/#/index";
+      				window.location.reload();
 				});
       		}
       	});
@@ -103,12 +104,13 @@ methods:{
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			laryIndex = layer.confirm('未登录暂无权限访问', {
+      			layerIndex = layer.confirm('未登录暂无权限访问', {
 					btn: ['确定']
 				},function() {
-					layer.close(laryIndex);
+					layer.close(layerIndex);
 					sessionStorage.clear();
       				window.location.href = ROOT_SERVER+"/#/index";
+      				window.location.reload();
 				});
       		}
       	});

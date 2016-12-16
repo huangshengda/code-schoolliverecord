@@ -276,12 +276,12 @@ export default {
 								userSearch();
 								layer.msg(retVO.msg);
 								layer.close(index);
+								$('#adduser')[0].reset();
 							}
 							if (retVO.code == 0) {
 								layer.msg(retVO.msg);
 							}
 						});
-						$('#adduser')[0].reset();
 					}
 				}
 			});

@@ -30,10 +30,9 @@
 <%@ include file="../../_commons/navbar.jsp"%>
 <!-- 直播课程详情 start-->
 <div class="container mt40">
-	<p class="l-title">汉语言文学（第一节）
-		<span class="ft12">
-			<!--<i class="iconfont icon-play-times"></i>123</span>  -->
-		<small class="ft12">一年级/语文/谢春华</small>
+	<p class="l-title">
+		<span id="resource_name" >汉语言文学（第一节）</span>
+		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
 	</p>
 	<div class="row" >
 		<div class="col-md-9" >
@@ -42,7 +41,7 @@
 		<div class="col-md-3" >
 			<div class="l-right fr">
 				<div class="chat-bland" id="console">
-		          <div class="right-head ft16">交流区（26人）</div>
+		          <div class="right-head ft16">交流区（<span id="online_count">0</span>人）</div>
 		          <div class="v-recommend" >
 		         	<ul id="chat_context" >
 		         		<!-- <li class="chat-li" id="7635aef91820487590c58f907724c72f" data-timestamp="true"  >

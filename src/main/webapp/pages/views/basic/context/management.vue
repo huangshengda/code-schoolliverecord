@@ -141,6 +141,7 @@
 							_self.show();
 							layer.close(index);
 							layer.msg(retVO.msg);
+							$('#addsubject')[0].reset();
 						}
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);

@@ -8,6 +8,13 @@ $(function() {
 		flashBuilder = vm.module["playerBuilder"];
 		CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
 		if (retVO.code == 1) {
+			//课程名称，年级、学科、主讲教师
+			var resourceName = retVO.data.resourceName;
+			var classlevelName = retVO.data.classlevelName;
+			var subjectName = retVO.data.subjectName;//学科
+			var author = retVO.data.author;//
+			$("#resource_name").html(resourceName);
+			$("#resource_info").html(classlevelName+"/"+subjectName+"/"+author);
 			pms = retVO.data.storePath;
 			var streamName = retVO.data.resourceId;
 			buildPlayer(document.getElementsByClassName("vedio")[0], streamName, "mix");
@@ -38,6 +45,7 @@ $(function() {
 
 		Chat.socket.onmessage = function(retVO) {
 			var dataVO = eval('(' + retVO.data + ')');
+			console.log(dataVO);
 			var delFlag = dataVO.delFlag;
 			var id = dataVO.id;
 			if(delFlag){
@@ -48,6 +56,7 @@ $(function() {
 				delAuth = dataVO.delAuth,
 				timestamp = dataVO.timestamp,
 				times = new Date().getTime();
+				$("#online_count").html(dataVO.onlineCount);
 				var htmlStr = '<li class="chat-li" id="'+id+'" data-timestamp="'+timestamp+'"  >'
  					+'<span class="fb mr20">'+author+'</span>'
  					//+'<span>5分钟之前</span>'

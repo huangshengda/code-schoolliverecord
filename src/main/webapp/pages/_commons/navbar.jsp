@@ -39,7 +39,6 @@
 $(function(){
 	var params = {};
 	CDUtil.ajaxPost("/menu",{},function(retVO){
-		console.log(retVO);
 		var menus = retVO.data;
 		$(menus).each(function(i,menu){
 			var id = menu.id,
@@ -94,14 +93,14 @@ $(function(){
 		}
 	});
 	$("#logout").click(function(){
-		laryIndex = layer.confirm('是否确定退出用户登录？',{btn: ['确定', '取消']},function(){
+		layerIndex = layer.confirm('是否确定退出用户登录？',{btn: ['确定', '取消']},function(){
+			layer.close(layerIndex);
+			layer.msg("等待退出登录. . .");
 			CDUtil.ajaxPost("/loginout",{},function(retVO){
 		        $("#user_info").hide();
 		        $("#login_button").show();
 		        sessionStorage.clear();
-		        layer.close(laryIndex);
-		        //window.close();
-		        window.location.href = ROOT_SERVER+"/#/index";
+		        window.location = ROOT_SERVER+"/#/index";
 		    });
 		});
 	});

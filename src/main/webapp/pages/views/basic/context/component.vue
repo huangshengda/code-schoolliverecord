@@ -144,6 +144,7 @@
 							_self.show();
 							layer.msg(retVO.msg);
 							layer.close(index);
+							$('#addgrade')[0].reset();
 						}
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);
