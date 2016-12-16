@@ -65,7 +65,8 @@
 		curPage = ValueCheck.getNumber(gData.curPage,1),
 		data = gData.data;
 		var htmlStr = '<div class="cd-g-context" ></div>';
-		htmlStr += '<div class="cd-g-paging" ></div>';
+		htmlStr += '<div class="clear"></div>';
+		htmlStr += '<div class="cd-g-paging"></div>';
 		$("#"+containerId).html(htmlStr);
 		Paging.initPagingContext(containerId,data,spellHtmlFun,optParams);
 		if(pagingFlag){
