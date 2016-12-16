@@ -6581,8 +6581,9 @@ webpackJsonp([0,6],{
 	        $("#user_info").hide();
 	        $("#login_button").show();
 	        sessionStorage.clear();
+	        window.location.href = ROOT_SERVER + "/#/onDemand";
+	        window.location.reload();
 	      });
-	      window.location.reload();
 	    },
 	    editPwd: function editPwd() {
 	      window.open(ROOT_SERVER + "/front/path/editpwd?token=" + sessionStorage.getItem("token"));

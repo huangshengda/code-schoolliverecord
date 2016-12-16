@@ -4469,6 +4469,7 @@ webpackJsonp([1,6],[
 	    },
 	    openMore: function openMore() {
 	      window.location.href = ROOT_SERVER + "/#/onDemand";
+	      window.location.reload();
 	    }
 	  }
 	};
@@ -4519,12 +4520,8 @@ webpackJsonp([1,6],[
 	    staticClass: "s-title demanBtm"
 	  }, [_c('span'), _c('h3', {
 	    staticClass: "demanCour fb fl"
-	  }, [_vm._v("点播课程")]), _c('a', {
-	    staticClass: "fr",
-	    attrs: {
-	      "href": "javascript:;",
-	      "target": "_blank"
-	    },
+	  }, [_vm._v("点播课程")]), _c('div', {
+	    staticClass: "movede fr",
 	    on: {
 	      "click": _vm.openMore
 	    }
