@@ -11,7 +11,6 @@ import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.UserMapper;
 import com.codyy.slr.entity.User;
-import com.codyy.slr.util.SecurityUtils;
 import com.codyy.slr.util.UUIDUtils;
 
 @Service
@@ -74,7 +73,6 @@ public class UserService {
 	 */
 	public int addUser(User user) {
 		user.setDeleteFlag("N");
-		user.setPassword(SecurityUtils.MD5String(user.getPassword()));
 		user.setUserId(UUIDUtils.getUUID());
 		user.setCreateTime(new Date());
 		return userMapper.insertSelective(user);

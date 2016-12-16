@@ -20,9 +20,8 @@ $(function(){
 					/*	chkbox.attr("checked",true);
 					}*/		
 				}
-			}
-		});
-	}	
+			})
+		}	
 	var laryIndex = null ;	
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
