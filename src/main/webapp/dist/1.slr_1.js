@@ -3129,6 +3129,7 @@ webpackJsonp([1,6],[
 									servSearch();
 									layer.msg(retVO.msg);
 									layer.close(index);
+									$('#addServer')[0].reset();
 								}
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);

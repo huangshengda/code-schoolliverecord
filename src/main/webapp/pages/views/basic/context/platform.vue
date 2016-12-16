@@ -85,6 +85,7 @@ export default {
       			if (retVO.code == 1) {
 					layer.msg(retVO.msg);
 					layer.close(index);
+					$('#platform')[0].reset();
 				}
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);

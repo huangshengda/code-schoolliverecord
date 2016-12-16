@@ -61,16 +61,16 @@ $(function(){
 					var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
 					$checkbox.slice(1).each(function(){
 						var $this=$(this);
-						var $value= $this.attr("value").toString();
+						var $value= $this.attr("value");
 						console.log($value);
-						/*if(classId.indexOf($value)){
+						if(classId.indexOf($value)){
 							$(this).prop("checked",true)
-						}*/
-						for(var i=0,l=classId.length;i<l;i++){
+						}
+		/*				for(var i=0,l=classId.length;i<l;i++){
 							if($value===classId[i]){
 								$this.prop("checked",true);
 							}
-						}
+						}*/
 					})
 					
 				}
@@ -283,6 +283,7 @@ $(function(){
 			  icon: 1,
 			  skin: 'layer-ext-moon'
 			});
+			$('#form_save_videoup')[0].reset();
 		});
 	});
 });
