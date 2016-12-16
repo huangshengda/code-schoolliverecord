@@ -1,7 +1,6 @@
 package com.codyy.slr.entity;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * 
@@ -25,7 +24,7 @@ public class ResComment {
 
 	private Date createTime;
 
-	private List<String> opt;
+	private boolean delAuth = false;
 
 	public boolean validate() {
 		/*String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
@@ -36,12 +35,12 @@ public class ResComment {
 		return true;
 	}
 
-	public List<String> getOpt() {
-		return opt;
+	public boolean isDelAuth() {
+		return delAuth;
 	}
 
-	public void setOpt(List<String> opt) {
-		this.opt = opt;
+	public void setDelAuth(boolean delAuth) {
+		this.delAuth = delAuth;
 	}
 
 	public String getResourceCommentId() {
