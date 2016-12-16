@@ -487,22 +487,25 @@
 		$("#"+temId).remove();
 		return str;
 	}
-		/*String.prototype.visualLength = function(){
-			var ruler = $("#ruler"); 
-			ruler.text(this); 
-			return ruler[0].offsetWidth; 
-		};
-		var sub = function(str, n){
-			for(var i = 1; i < str.length; i++){ 
-				var data = str.substr(0, i) + '...';
-				if(data.visualLength() >= n){ 
-					return data; 
-				} 
+	
+	/**
+	 * 随机生成sequence序列
+	 * 
+	 * @returns
+	 */
+	ValueCheck.getSequence = function(){
+		function fRandomBy(under, over) {
+			switch (arguments.length) {
+			case 1:
+				return parseInt(Math.random() * under + 1);
+			case 2:
+				return parseInt(Math.random() * (over - under + 1) + under);
+			default:
+				return 0;
 			}
-			return str; 
-		};*/
-		
-
+		}
+		return new Date().getTime()+"_"+fRandomBy(1,100);
+	}
 	
 	ValueCheck.addStaticMethod = function(nmSpace, obj, ftn) {
 	};
