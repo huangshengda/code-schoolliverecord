@@ -74,6 +74,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 初始化前天需要的数据 -->
+	<filter>
+		<filter-name>InitDataFilter</filter-name>
+		<filter-class>com.codyy.slr.filter.InitDataFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>InitDataFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- token 验证-->
 	<filter>
 		<filter-name>tokenFilter</filter-name>

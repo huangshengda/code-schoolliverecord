@@ -50,14 +50,6 @@ public class TokenFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		resp.setContentType("text/html;charset=UTF-8");
 
-		// HttpSession session = req.getSession();
-		// String token = session.getAttribute("token");
-
-		// 添加项目路径
-		req.setAttribute("ROOT_UI", Constants.ROOT_UI);
-		req.setAttribute("ROOT_SERVER", Constants.ROOT_SERVER);
-		req.setAttribute("ROOT_CHAT", Constants.ROOT_CHAT);
-
 		String uri = req.getRequestURI();
 
 		if (uri.indexOf("/chat/") != -1) {
