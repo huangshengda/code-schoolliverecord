@@ -70,9 +70,10 @@ public class ResCommentService {
 			if (groupListMap.containsKey(comment.getResourceCommentId())) {
 				List<ResCommentVo> childrenCommentList = groupListMap.get(comment.getResourceCommentId());
 				comment.setChildrenCommentSize(childrenCommentList.size());
-				if (childrenCommentList.size() > 5) {
+				// 二级评论设计显示前5条
+				/*if (childrenCommentList.size() > 5) {
 					childrenCommentList = childrenCommentList.subList(0, 5);
-				}
+				}*/
 				comment.setChildrenCommentList(childrenCommentList);
 			} else {
 				comment.setChildrenCommentList(new ArrayList<ResCommentVo>());
