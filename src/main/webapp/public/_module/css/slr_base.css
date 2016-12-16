@@ -260,7 +260,7 @@ tr:nth-child(2n) {
 	margin: 10px 15px 10px 1px;
 }
 
-.s-title a {
+.s-title .movede{
 	font-size: 14px;
 	color: #444;
 	font-weight: normal;
