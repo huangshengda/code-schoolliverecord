@@ -83,7 +83,11 @@ export default {
         	console.log(platParams);
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
       			if (retVO.code == 1) {
-					layer.msg('保存成功!');
+					layer.msg(retVO.msg);
+					layer.close(index);
+				}
+				if (retVO.code == 0) {
+					layer.msg(retVO.msg);
 				}
       		});
       	}

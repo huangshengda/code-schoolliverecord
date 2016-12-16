@@ -90,10 +90,10 @@ window.mySub = function(newPage){
 		CDUtil.ajaxPost("/resource/delete", reidParams,function(retVO) {
 			if (retVO.code == 1) {
 				mySub();
+				layer.msg(retVO.msg);
+				layer.close(index);
 			}
 		});
-		layer.close(index);
-		layer.msg('删除成功!');
 	});
 };
 

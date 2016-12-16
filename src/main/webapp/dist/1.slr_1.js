@@ -975,7 +975,7 @@ webpackJsonp([1,6],[
 /* 39 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -1022,10 +1022,13 @@ webpackJsonp([1,6],[
 			CDUtil.ajaxPost("/resource/comment/delete", comidParams, function (retVO) {
 				if (retVO.code == 1) {
 					comSearch();
+					layer.msg(retVO.msg);
+					layer.close(index);
+				}
+				if (retVO.code == 0) {
+					layer.msg(retVO.msg);
 				}
 			});
-			layer.close(index);
-			layer.msg('删除成功!');
 		});
 	};
 	/**
@@ -1347,10 +1350,13 @@ webpackJsonp([1,6],[
 	            CDUtil.ajaxPost("/base/classlevel/update", editparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
+	                layer.msg(retVO.msg);
+	                layer.close(index);
+	              }
+	              if (retVO.code == 0) {
+	                layer.msg(retVO.msg);
 	              }
 	            });
-	            layer.close(index);
-	            layer.msg('编辑成功!');
 	          }
 	        }
 	      });
@@ -1365,14 +1371,17 @@ webpackJsonp([1,6],[
 	        CDUtil.ajaxPost("/base/classlevel/delete", nanidParams, function (retVO) {
 	          if (retVO.code == 1) {
 	            _self.show();
+	            layer.msg(retVO.msg);
+	            layer.close(index);
+	          }
+	          if (retVO.code == 0) {
+	            layer.msg(retVO.msg);
 	          }
 	        });
-	        layer.close(index);
-	        layer.msg('删除成功!');
 	      });
 	    },
 	    /*添加年级*/
-	    add: function add() {
+	    addgrd: function addgrd() {
 	      var _self = this;
 	      layer.open({
 	        type: 1,
@@ -1389,15 +1398,15 @@ webpackJsonp([1,6],[
 	          if (result == true) {
 	            var addparams = $('#addgrade').serialize();
 	            CDUtil.ajaxPost("/base/classlevel/add", addparams, function (retVO) {
-	              console.log(retVO);
 	              if (retVO.code == 1) {
 	                _self.show();
+	                layer.msg(retVO.msg);
+	                layer.close(index);
 	              }
 	              if (retVO.code == 0) {
 	                layer.msg(retVO.msg);
 	              }
 	            });
-	            layer.close(index);
 	          }
 	        }
 	      });
@@ -1445,7 +1454,7 @@ webpackJsonp([1,6],[
 	  }, [_c('button', {
 	    staticClass: "btn fr",
 	    on: {
-	      "click": _vm.add
+	      "click": _vm.addgrd
 	    }
 	  }, [_vm._v("添加年级")])]), _vm._v(" "), _c('div', {
 	    staticClass: "dashboard"
@@ -1752,10 +1761,13 @@ webpackJsonp([1,6],[
 					CDUtil.ajaxPost("/base/user/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
 							userSearch();
+							layer.msg(retVO.msg);
+							layer.close(index);
+						}
+						if (retVO.code == 0) {
+							layer.msg(retVO.msg);
 						}
 					});
-					layer.close(index);
-					layer.msg('编辑成功!');
 				}
 			}
 		});
@@ -1772,10 +1784,13 @@ webpackJsonp([1,6],[
 			CDUtil.ajaxPost("/base/user/delete", useridParams, function (retVO) {
 				if (retVO.code == 1) {
 					userSearch();
+					layer.msg(retVO.msg);
+					layer.close(index);
+				}
+				if (retVO.code == 0) {
+					layer.msg(retVO.msg);
 				}
 			});
-			layer.close(index);
-			layer.msg('删除成功!');
 		});
 	};
 
@@ -1877,12 +1892,13 @@ webpackJsonp([1,6],[
 							CDUtil.ajaxPost("/base/user/add", addparams, function (retVO) {
 								if (retVO.code == 1) {
 									userSearch();
+									layer.msg(retVO.msg);
+									layer.close(index);
 								}
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
 								}
 							});
-							layer.close(index);
 							$('#adduser')[0].reset();
 						}
 					}
@@ -2345,10 +2361,13 @@ webpackJsonp([1,6],[
 	            CDUtil.ajaxPost("/base/subject/update", editparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
+	                layer.msg(retVO.msg);
+	                layer.close(index);
+	              }
+	              if (retVO.code == 0) {
+	                layer.msg(retVO.msg);
 	              }
 	            });
-	            layer.close(index);
-	            layer.msg('编辑成功!');
 	          }
 	        }
 	      });
@@ -2363,10 +2382,10 @@ webpackJsonp([1,6],[
 	        CDUtil.ajaxPost("/base/subject/delete", nanidParams, function (retVO) {
 	          if (retVO.code == 1) {
 	            _self.show();
+	            layer.msg(retVO.msg);
+	            layer.close(index);
 	          }
 	        });
-	        layer.close(index);
-	        layer.msg('删除成功!');
 	      });
 	    },
 	    /*添加学科*/
@@ -2389,12 +2408,13 @@ webpackJsonp([1,6],[
 	            CDUtil.ajaxPost("/base/subject/add", addparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
+	                layer.close(index);
+	                layer.msg(retVO.msg);
 	              }
 	              if (retVO.code == 0) {
 	                layer.msg(retVO.msg);
 	              }
 	            });
-	            layer.close(index);
 	          }
 	        }
 	      });
@@ -2696,7 +2716,11 @@ webpackJsonp([1,6],[
 	        console.log(platParams);
 	        CDUtil.ajaxPost("/base/basicinfo/update", platParams, function (retVO) {
 	          if (retVO.code == 1) {
-	            layer.msg('保存成功!');
+	            layer.msg(retVO.msg);
+	            layer.close(index);
+	          }
+	          if (retVO.code == 0) {
+	            layer.msg(retVO.msg);
 	          }
 	        });
 	      }
@@ -2998,9 +3022,12 @@ webpackJsonp([1,6],[
 					CDUtil.ajaxPost("/base/dmsserver/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
 							servSearch();
+							layer.msg(retVO.msg);
 							layer.close(index);
-							layer.msg('编辑成功!');
 							$('#editServer')[0].reset();
+						}
+						if (retVO.code == 0) {
+							layer.msg(retVO.msg);
 						}
 					});
 				}
@@ -3019,10 +3046,13 @@ webpackJsonp([1,6],[
 			CDUtil.ajaxPost("/base/dmsserver/delete", servidParams, function (retVO) {
 				if (retVO.code == 1) {
 					servSearch();
+					layer.msg(retVO.msg);
+					layer.close(index);
+				}
+				if (retVO.code == 0) {
+					layer.msg(retVO.msg);
 				}
 			});
-			layer.close(index);
-			layer.msg('删除成功!');
 		});
 	};
 	/**
@@ -3097,9 +3127,13 @@ webpackJsonp([1,6],[
 							CDUtil.ajaxPost("/base/dmsserver/add", addparams, function (retVO) {
 								if (retVO.code == 1) {
 									servSearch();
+									layer.msg(retVO.msg);
+									layer.close(index);
+								}
+								if (retVO.code == 0) {
+									layer.msg(retVO.msg);
 								}
 							});
-							layer.close(index);
 						}
 					}
 				});
@@ -3280,7 +3314,7 @@ webpackJsonp([1,6],[
 /* 63 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -3339,10 +3373,13 @@ webpackJsonp([1,6],[
 			CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
 				if (retVO.code == 1) {
 					uploadSearch();
+					layer.msg(retVO.msg);
+					layer.close(index);
+				}
+				if (retVO.code == 0) {
+					layer.msg(retVO.msg);
 				}
 			});
-			layer.close(index);
-			layer.msg('删除成功!');
 		});
 	};
 	/**
@@ -3609,7 +3646,7 @@ webpackJsonp([1,6],[
 /* 66 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -3667,10 +3704,13 @@ webpackJsonp([1,6],[
 			CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
 				if (retVO.code == 1) {
 					uploadSearch();
+					layer.msg(retVO.msg);
+					layer.close(index);
+				}
+				if (retVO.code == 0) {
+					layer.msg(retVO.msg);
 				}
 			});
-			layer.close(index);
-			layer.msg('删除成功!');
 		});
 	};
 	/**
@@ -4130,7 +4170,7 @@ webpackJsonp([1,6],[
 	    },
 	    /** 根据关键字排序**/
 	    searchKey: function searchKey() {
-	      var sourceName = $('#s-resource').val();
+	      var sourceName = $('#s_resource').val();
 	      this.params = Object.assign({}, this.params, { resourceNameKey: sourceName });
 	      this.showdemand();
 	    },
@@ -4229,7 +4269,13 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "placeholder": "输入课程或老师",
 	      "name": "resourceNameKey",
-	      "id": "s-resource"
+	      "id": "s_resource"
+	    },
+	    on: {
+	      "keyup": function($event) {
+	        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+	        _vm.searchKey($event)
+	      }
 	    }
 	  }), _vm._v(" "), _c('i', {
 	    staticClass: "iconfont icon-search",
@@ -4488,7 +4534,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "id": "courseList"
 	    }
-	  }, [(_vm.posts.data != null) ? _c('div', _vm._l((_vm.posts.data), function(post) {
+	  }, [(_vm.posts.data != '') ? _c('div', _vm._l((_vm.posts.data), function(post) {
 	    return _c('div', {
 	      staticClass: "row"
 	    }, [_c('div', {
@@ -4771,10 +4817,10 @@ webpackJsonp([1,6],[
 			CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
 				if (retVO.code == 1) {
 					mySub();
+					layer.msg(retVO.msg);
+					layer.close(index);
 				}
 			});
-			layer.close(index);
-			layer.msg('删除成功!');
 		});
 	};
 

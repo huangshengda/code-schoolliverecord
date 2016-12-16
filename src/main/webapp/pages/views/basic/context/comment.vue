@@ -42,10 +42,13 @@ var comDel = function(params, dom) {
 		function(retVO) {
 			if (retVO.code == 1) {
 				comSearch();
+				layer.msg(retVO.msg);
+				layer.close(index);
+			}
+			if (retVO.code == 0) {
+				layer.msg(retVO.msg);
 			}
 		});
-		layer.close(index);
-		layer.msg('删除成功!');
 	});
 };
 /**
