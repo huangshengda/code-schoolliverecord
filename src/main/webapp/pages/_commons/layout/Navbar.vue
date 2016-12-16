@@ -124,8 +124,9 @@ export default{
               $("#user_info").hide();
               $("#login_button").show();
               sessionStorage.clear();
+              window.location.href = ROOT_SERVER+"/#/onDemand";
+       		window.location.reload();
           });
-          window.location.reload();
       },
       editPwd: function(){
       	window.open(ROOT_SERVER+"/front/path/editpwd?token="+sessionStorage.getItem("token"));

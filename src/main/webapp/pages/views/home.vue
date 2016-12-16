@@ -13,7 +13,7 @@
    <div v-else class="tac"><img src="../../public/_compnents/v1/images/empty.png"></div>
   </div>
 <!-- 展示直播列表  end -->
-  <div class="s-title demanBtm"><span></span><h3 class="demanCour fb fl">点播课程</h3><a href="javascript:;" target="_blank" class="fr" @click="openMore">更多</a></div>
+  <div class="s-title demanBtm"><span></span><h3 class="demanCour fb fl">点播课程</h3><div class="movede fr" @click="openMore">更多</div></div>
 <!-- 展示点播列表  start -->
   <div class="demand">
     <div class="col-4" v-for="course in courseList.data" @click="openDemondDetail(course.resourceId)" >
@@ -115,6 +115,7 @@ methods:{
       },
        openMore: function(){
        	window.location.href = ROOT_SERVER+"/#/onDemand";
+       	window.location.reload();
       }
     },
    }   
