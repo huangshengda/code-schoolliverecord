@@ -44,7 +44,7 @@ public class MenuController {
 			}
 
 			String agent = req.getHeader("User-Agent");
-			User user = TokenUtils.getUserFromCache(token + agent);
+			User user = TokenUtils.getUserFromCache(token, agent);
 			if (user == null || "0".equals(user.getUserId())) {
 				return one;
 			}

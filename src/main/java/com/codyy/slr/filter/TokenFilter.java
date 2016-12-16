@@ -50,6 +50,9 @@ public class TokenFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		resp.setContentType("text/html;charset=UTF-8");
 
+		// HttpSession session = req.getSession();
+		// String token = session.getAttribute("token");
+
 		// 添加项目路径
 		req.setAttribute("ROOT_UI", Constants.ROOT_UI);
 		req.setAttribute("ROOT_SERVER", Constants.ROOT_SERVER);
@@ -100,7 +103,7 @@ public class TokenFilter implements Filter {
 		try {
 			// token+agent 作为key 增加破解难度
 			String agent = req.getHeader("User-Agent");
-			User user = TokenUtils.getUserFromCache(token + agent);
+			User user = TokenUtils.getUserFromCache(token, agent);
 			if (user == null || "0".equals(user.getUserId())) {
 				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
 				return;

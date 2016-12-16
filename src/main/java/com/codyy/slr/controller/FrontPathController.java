@@ -79,7 +79,7 @@ public class FrontPathController {
 		}
 		return Constants.FRONT_UPLOAD_PATH;
 	}
-	
+
 	private User getUser(HttpServletRequest req) throws ExecutionException {
 		// 先从header中取token,如果没有再从参数中取
 		String token = req.getHeader("token");
@@ -88,7 +88,7 @@ public class FrontPathController {
 		}
 
 		String agent = req.getHeader("User-Agent");
-		User user = TokenUtils.getUserFromCache(token + agent);
+		User user = TokenUtils.getUserFromCache(token, agent);
 		return user;
 	}
 }

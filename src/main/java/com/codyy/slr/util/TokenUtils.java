@@ -32,15 +32,23 @@ public class TokenUtils {
 		});
 	}
 
-	public static void putUserIdToCache(String token, User user) {
-		tokenCache.put(token, user);
+	/**
+	 * 
+	 * @Description: 保存user
+	 * @param token
+	 * @param agent header中的User-Agent
+	 * @param user
+	 *
+	 */
+	public static void putUserIdToCache(String token, String agent, User user) {
+		tokenCache.put(token + agent, user);
 	}
 
-	public static User getUserFromCache(String token) throws ExecutionException {
-		return tokenCache.get(token);
+	public static User getUserFromCache(String token, String agent) throws ExecutionException {
+		return tokenCache.get(token + agent);
 	}
 
-	public static void removeUserFormCache(String token) throws ExecutionException {
-		tokenCache.invalidate(token);
+	public static void removeUserFormCache(String token, String agent) throws ExecutionException {
+		tokenCache.invalidate(token + agent);
 	}
 }
