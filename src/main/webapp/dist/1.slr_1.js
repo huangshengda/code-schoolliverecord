@@ -4057,7 +4057,7 @@ webpackJsonp([1,6],[
 	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
 	            htmlStr += '</div>';
 	            htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + classLevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
 	            htmlStr += ' </div>';
 	            /*  无消息显示 */
 	            if (data.resourceId == "") {
@@ -4753,7 +4753,7 @@ webpackJsonp([1,6],[
 					htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
 					htmlStr += '</div>';
 					htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-					htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + classLevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+					htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
 					htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
 					htmlStr += ' </div>';
 					/*  无消息显示 */
