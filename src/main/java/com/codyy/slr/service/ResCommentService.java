@@ -45,7 +45,7 @@ public class ResCommentService {
 		for (ResCommentVo comment : list) {
 			// 是否有删除权限
 			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
-				comment.setOpt(Constants.DELETE);
+				comment.setDelAuth(true);
 			}
 			commentIdList.add(comment.getResourceCommentId());
 		}
@@ -58,7 +58,7 @@ public class ResCommentService {
 		for (ResCommentVo comment : subList) {
 			// 是否有删除权限
 			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
-				comment.setOpt(Constants.DELETE);
+				comment.setDelAuth(true);
 			}
 			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
 		}
@@ -70,9 +70,10 @@ public class ResCommentService {
 			if (groupListMap.containsKey(comment.getResourceCommentId())) {
 				List<ResCommentVo> childrenCommentList = groupListMap.get(comment.getResourceCommentId());
 				comment.setChildrenCommentSize(childrenCommentList.size());
-				if (childrenCommentList.size() > 5) {
+				// 二级评论设计显示前5条
+				/*if (childrenCommentList.size() > 5) {
 					childrenCommentList = childrenCommentList.subList(0, 5);
-				}
+				}*/
 				comment.setChildrenCommentList(childrenCommentList);
 			} else {
 				comment.setChildrenCommentList(new ArrayList<ResCommentVo>());
