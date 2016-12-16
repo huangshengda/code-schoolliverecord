@@ -45,7 +45,7 @@ public class ResCommentService {
 		for (ResCommentVo comment : list) {
 			// 是否有删除权限
 			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
-				comment.setOpt(Constants.DELETE);
+				comment.setDelAuth(true);
 			}
 			commentIdList.add(comment.getResourceCommentId());
 		}
@@ -58,7 +58,7 @@ public class ResCommentService {
 		for (ResCommentVo comment : subList) {
 			// 是否有删除权限
 			if (comment.getCommentUserId().equals(page.getMap().get(userId))) {
-				comment.setOpt(Constants.DELETE);
+				comment.setDelAuth(true);
 			}
 			MapUtils.groupValue(groupListMap, comment.getParentCommentId(), comment);
 		}
