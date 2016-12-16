@@ -140,10 +140,13 @@ var userEdit = function(params, dom) {
 				CDUtil.ajaxPost("/base/user/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 						userSearch();
+						layer.msg(retVO.msg);
+						layer.close(index);
+					}
+					if (retVO.code == 0) {
+						layer.msg(retVO.msg);
 					}
 				});
-				layer.close(index);
-				layer.msg('编辑成功!');
 			}
 		}
 	});
@@ -161,10 +164,13 @@ var userDel = function(params, dom) {
 		function(retVO) {
 			if (retVO.code == 1) {
 				userSearch();
+				layer.msg(retVO.msg);
+				layer.close(index);
+			}
+			if (retVO.code == 0) {
+				layer.msg(retVO.msg);
 			}
 		});
-		layer.close(index);
-		layer.msg('删除成功!');
 	});
 };
 
@@ -268,12 +274,13 @@ export default {
 						CDUtil.ajaxPost("/base/user/add", addparams,function(retVO) {
 							if (retVO.code == 1) {
 								userSearch();
+								layer.msg(retVO.msg);
+								layer.close(index);
 							}
 							if (retVO.code == 0) {
 								layer.msg(retVO.msg);
 							}
 						});
-						layer.close(index);
 						$('#adduser')[0].reset();
 					}
 				}
