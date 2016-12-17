@@ -12,6 +12,13 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.util.TokenUtils;
 
+/**
+ * 
+ * @Description: 返回前段路径  
+ * @author huangshengda  
+ * @date 2016年12月17日   
+ *
+ */
 @Controller
 @RequestMapping("/front/path")
 public class FrontPathController {
