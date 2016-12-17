@@ -6577,12 +6577,16 @@ webpackJsonp([0,6],{
 	      }
 	    },
 	    logout: function logout() {
-	      CDUtil.ajaxPost("/loginout", {}, function (retVO) {
-	        $("#user_info").hide();
-	        $("#login_button").show();
-	        sessionStorage.clear();
-	        window.location.href = ROOT_SERVER + "/#/onDemand";
-	        window.location.reload();
+	      layerIndex = layer.confirm('是否确定退出用户登录？', { btn: ['确定', '取消'] }, function () {
+	        layer.close(layerIndex);
+	        layer.msg("等待退出登录. . .");
+	        CDUtil.ajaxPost("/loginout", {}, function (retVO) {
+	          $("#user_info").hide();
+	          $("#login_button").show();
+	          sessionStorage.clear();
+	          window.location.href = ROOT_SERVER + "/#/onDemand";
+	          window.location.reload();
+	        });
 	      });
 	    },
 	    editPwd: function editPwd() {
