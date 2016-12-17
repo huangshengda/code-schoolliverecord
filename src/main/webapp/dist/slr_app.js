@@ -6611,7 +6611,7 @@ webpackJsonp([0,6],{
 	          $("#user_info").hide();
 	          $("#login_button").show();
 	          sessionStorage.clear();
-	          window.location.href = ROOT_SERVER + "/#/onDemand";
+	          window.location.href = ROOT_SERVER + "/#/home";
 	          window.location.reload();
 	        });
 	      });
