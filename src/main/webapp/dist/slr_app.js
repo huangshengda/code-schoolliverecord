@@ -6603,7 +6603,6 @@ webpackJsonp([0,6],{
 	          }
 	          if (retVO.code == 0) {
 	            layer.msg(retVO.msg);
-	            alert(retVO.msg);
 	          }
 	        });
 	      }
