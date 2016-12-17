@@ -48,8 +48,8 @@ $(function() {
 			htmlStr += '<li data-resoureceId="'+cour.resourceId+'" ><div class="media-left">'
 					+'<img class="media-object" src="'+cour.thumbPath+'" data-holder-rendered="true" style="width: 149px; height:84px;">'
 					+'</div><div class="media-right">'
-					+'<p class="c4">'+cour.resourceName+'</p>'
-					+'<p class="ft12 c6">'+cour.classlevelName+'&nbsp;'+cour.subjectName+'&nbsp;'+cour.author+'</p>'
+					+'<p class="c4" title="'+cour.resourceName+'" >'+cour.resourceName+'</p>'
+					+'<p class="ft12 c6" title="'+cour.classlevelName+'&nbsp;'+cour.subjectName+'&nbsp;'+cour.author+'" >'+cour.classlevelName+'&nbsp;'+cour.subjectName+'&nbsp;'+cour.author+'</p>'
 					+'<p class="ft12 c6">'
 					+'<i class="iconfont icon-play-times"></i>&nbsp;'+cour.viewCnt+'</p>'
 					+'</div></li>';
@@ -227,18 +227,22 @@ $(function() {
 	
 	//点击删除评论一级
 	$("#comment_one_list").on("click",".comment-one-del",function(){
-		var oneDom = $(this).parents(".com-comments-level1");
-		var commentId = $(oneDom).attr("data-resourcecommentid");
-		params.resourceCommentId = commentId;
-		console.log(params);
-		CDUtil.ajaxPost("/resource/comment/delete",params,function(retVO){
-			if(retVO.code == 1){
-				layer.msg('删除成功');
-				//searchCommentOne(params.curPage);
-				searchCommentOne();
-			}else{
-				layer.msg('删除失败');
-			}
+		var thisDom = this;
+		layerIndex = layer.confirm('确定删除该评论吗？',{btn: ['确定', '取消']},function(){
+			layer.close(layerIndex);
+			var oneDom = $(thisDom).parents(".com-comments-level1");
+			var commentId = $(oneDom).attr("data-resourcecommentid");
+			params.resourceCommentId = commentId;
+			console.log(params);
+			CDUtil.ajaxPost("/resource/comment/delete",params,function(retVO){
+				if(retVO.code == 1){
+					layer.msg('删除成功');
+					//searchCommentOne(params.curPage);
+					searchCommentOne();
+				}else{
+					layer.msg('删除失败');
+				}
+			});
 		});
 	});
 	
@@ -306,6 +310,9 @@ $(function() {
 				$(htmlStr).appendTo(twoDom);
 				var comTwoLen = ValueCheck.getNumber($(oneDom).attr("data-commenttwolenght"),0)
 				$(oneDom).attr("data-commenttwolenght",comTwoLen+1);
+				$(txDom).removeAttr("data-replyUserId");
+				$(txDom).removeAttr("data-replyUserName");
+				$(txDom).val("");
 			}else{
 				layer.msg('回复失败');
 			}
@@ -326,18 +333,22 @@ $(function() {
 	});
 	//点击删除评论二级
 	$("#comment_one_list").on("click",".comment-two-del",function(){
-		var oneDom = $(this).parents(".com-comments-level1").get(0);
-		var twoDom = $(this).parents(".com-comments-level2");
-		var commentId = $(twoDom).attr("data-resourcecommentid");
-		CDUtil.ajaxPost("/resource/comment/delete",{resourceCommentId: commentId},function(retVO){
-			if(retVO.code == 1){
-				var layerIndex = layer.msg('删除成功');
-				$(twoDom).remove();
-				var comTwoLen = ValueCheck.getNumber($(oneDom).attr("data-commenttwolenght"),1)
-				$(oneDom).attr("data-commenttwolenght",comTwoLen-1);
-			}else{
-				layer.msg('删除失败');
-			}
+		var thisDom = this;
+		layerIndex = layer.confirm('确定删除该评论吗？',{btn: ['确定', '取消']},function(){
+			layer.close(layerIndex);
+			var oneDom = $(thisDom).parents(".com-comments-level1").get(0);
+			var twoDom = $(thisDom).parents(".com-comments-level2");
+			var commentId = $(twoDom).attr("data-resourcecommentid");
+			CDUtil.ajaxPost("/resource/comment/delete",{resourceCommentId: commentId},function(retVO){
+				if(retVO.code == 1){
+					layerIndex = layer.msg('删除成功');
+					$(twoDom).remove();
+					var comTwoLen = ValueCheck.getNumber($(oneDom).attr("data-commenttwolenght"),1)
+					$(oneDom).attr("data-commenttwolenght",comTwoLen-1);
+				}else{
+					layer.msg('删除失败');
+				}
+			});
 		});
 	});
 	
