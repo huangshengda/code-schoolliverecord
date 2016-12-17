@@ -189,24 +189,22 @@ public class ResourceService {
 		boolean result = false;
 		String resourceId = res.getResourceId();
 
-		int delResult = resourceMapper.delResIDRClslevelID(resourceId);
+		resourceMapper.delResIDRClslevelID(resourceId);
 
-		if (delResult == 1) {
-			int mResult = resourceMapper.modifyResource(res);
-			if (mResult == 1) {
-				if (StringUtils.isNotBlank(res.getClasslevelId())) {
-					String[] ids = res.getClasslevelId().split(",");
-					List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-					for (String id : ids) {
-						Map<String, String> map = new HashMap<String, String>();
-						map.put("resourceId", resourceId);
-						map.put("classlevelId", id);
-						list.add(map);
-					}
-					int addResult = resourceMapper.addResIdClslevelIdList(list);
-					if (addResult == list.size()) {
-						result = true;
-					}
+		int mResult = resourceMapper.modifyResource(res);
+		if (mResult == 1) {
+			if (StringUtils.isNotBlank(res.getClasslevelId())) {
+				String[] ids = res.getClasslevelId().split(",");
+				List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+				for (String id : ids) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("resourceId", resourceId);
+					map.put("classlevelId", id);
+					list.add(map);
+				}
+				int addResult = resourceMapper.addResIdClslevelIdList(list);
+				if (addResult == list.size()) {
+					result = true;
 				}
 			}
 		}
