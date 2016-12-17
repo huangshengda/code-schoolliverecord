@@ -12,8 +12,8 @@
 	<div class="d-main">
 		<div class="search">
 			<!-- 中间内容 --左侧-->
-			<div class="s-left">"<i class="sub-tit">全部</i>"相关课程&nbsp;&nbsp;共{{pages}}条
-				<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
+			<div class="s-left">"<i class="sub-tit">全部</i>&nbsp;<i class="grade-tit">全部</i>&nbsp;<i class="key"></i>"相关课程&nbsp;&nbsp;共{{pages}}条
+				<span data-sort="desc" @click="sortByTime" class="active">按时间<i class="iconfont icon-low"></i></span>
 				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
 			</div>
 			<!-- 中间内容 --右侧-->
@@ -124,6 +124,11 @@ window.openDemondDetail=function(resourceId){
     		$(event.target).addClass("active").siblings().removeClass("active");
     		console.log(classlevelName);
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
+			if(classlevelName == ''){
+     	 		$('.grade-tit').text('全部');
+     	 	}else{
+     	 		$('.grade-tit').text(classlevelName);
+     	 	}
 			this.showdemand();
      	},
 /** 获取选择的学科参数**/
@@ -183,6 +188,11 @@ window.openDemondDetail=function(resourceId){
      	searchKey:function(){
      		var sourceName = $('#s_resource').val();
      		this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
+     		if(sourceName==''){
+     	 		$('.key').text('');
+     	 	}else{
+     	 		$('.key').text(sourceName);
+     	 	}
      		this.showdemand();
      	},
 /** 获取年级列表 **/

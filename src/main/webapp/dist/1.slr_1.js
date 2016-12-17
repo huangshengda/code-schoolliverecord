@@ -4121,6 +4121,11 @@ webpackJsonp([1,6],[
 	      $(event.target).addClass("active").siblings().removeClass("active");
 	      console.log(classlevelName);
 	      this.params = Object.assign({}, this.params, { classlevelName: classlevelName });
+	      if (classlevelName == '') {
+	        $('.grade-tit').text('全部');
+	      } else {
+	        $('.grade-tit').text(classlevelName);
+	      }
 	      this.showdemand();
 	    },
 	    /** 获取选择的学科参数**/
@@ -4180,6 +4185,11 @@ webpackJsonp([1,6],[
 	    searchKey: function searchKey() {
 	      var sourceName = $('#s_resource').val();
 	      this.params = Object.assign({}, this.params, { resourceNameKey: sourceName });
+	      if (sourceName == '') {
+	        $('.key').text('');
+	      } else {
+	        $('.key').text(sourceName);
+	      }
 	      this.showdemand();
 	    },
 	    /** 获取年级列表 **/
@@ -4252,7 +4262,12 @@ webpackJsonp([1,6],[
 	    staticClass: "s-left"
 	  }, [_vm._v("\""), _c('i', {
 	    staticClass: "sub-tit"
-	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
+	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
+	    staticClass: "grade-tit"
+	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
+	    staticClass: "key"
+	  }), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
+	    staticClass: "active",
 	    attrs: {
 	      "data-sort": "desc"
 	    },
@@ -4474,7 +4489,7 @@ webpackJsonp([1,6],[
 	      var params = {};
 	      CDUtil.ajaxPost("/home/live/list", params, function (retVO) {
 	        _self.posts = retVO;
-	      });
+	      }, false);
 	    },
 	    /** 获取点播列表的方法 **/
 	    showdemand: function showdemand() {
@@ -4482,7 +4497,7 @@ webpackJsonp([1,6],[
 	      var params = {};
 	      CDUtil.ajaxPost("/demand/list", params, function (retVO) {
 	        _self.courseList = retVO; //JSON.parse(retVO);
-	      });
+	      }, false);
 	    },
 	    /** 跳转到直播详情页 **/
 	    openLiveDetail: function openLiveDetail(resourceId) {

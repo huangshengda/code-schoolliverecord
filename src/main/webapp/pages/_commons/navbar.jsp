@@ -44,11 +44,10 @@ $(function(){
 			var id = menu.id,
 			name = menu.name,
 			url = menu.url;
-			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'" >'+name+'</a></span>';
+			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'">'+name+'</a></span>';
 			$(htmlStr).appendTo("#sys_slr_nav");
 		});
 	});
-	
 	if(sessionStorage.getItem("loginFlag") == "1"){
         $("#user_info").show();
         $("#login_button").hide();

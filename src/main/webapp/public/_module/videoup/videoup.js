@@ -191,7 +191,6 @@ $(function(){
 			var len = dataVO.length;
 			var rows = Math.ceil(len/3);
 			var larH = 150+150*rows;
-			debugger;
 			$(dataVO).each(function(i,data){
 				var resourceId = data.imgId,
 				imgSrc = data.imgPath,
