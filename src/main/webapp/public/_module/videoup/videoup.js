@@ -191,6 +191,7 @@ $(function(){
 			var len = dataVO.length;
 			var rows = Math.ceil(len/3);
 			var larH = 150+150*rows;
+			debugger;
 			$(dataVO).each(function(i,data){
 				var resourceId = data.imgId,
 				imgSrc = data.imgPath,
@@ -267,7 +268,10 @@ $(function(){
 			  icon: 1,
 			  skin: 'layer-ext-moon'
 			});
-			$('#form_save_videoup')[0].reset();
+			setTimeout(function(){
+				window.location.href = ROOT_SERVER+"/#/basic/upload";
+			},1000);
+			//$('#form_save_videoup')[0].reset();
 		});
 	});
 });
