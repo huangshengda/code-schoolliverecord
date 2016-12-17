@@ -88,7 +88,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull,password" id="add_password">
+            <input type="password" name="password" data-vali="notnull,password" id="add_password">
           </span>
         </div>
         <div class="cd-f-eve">
