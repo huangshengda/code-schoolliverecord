@@ -58,7 +58,6 @@ $(function(){
       }
 	var laryIndex = null;
 	$("#login_button").click(function(){
-		console.log(this);
 		laryIndex = layer.open({
 	          type: 1,
 	          title: '登录',
@@ -81,6 +80,7 @@ $(function(){
 	     	//提交数据给到后台处理
 			CDUtil.ajaxPost("/login",params,function(retVO){
 			  if(retVO.code == 1){
+				layer.msg(retVO.msg);  
 				layer.close(laryIndex);
 				$("#user_info").show();
 				$("#login_button").hide();
@@ -89,6 +89,9 @@ $(function(){
 				sessionStorage.realname = retVO.data.realname;
 				$("#user_realname").html(retVO.data.realname);
 			  }
+			  if (retVO.code == 0) {
+					layer.msg(retVO.msg);
+				}
 			});
 		}
 	});
@@ -100,7 +103,7 @@ $(function(){
 		        $("#user_info").hide();
 		        $("#login_button").show();
 		        sessionStorage.clear();
-		        window.location = ROOT_SERVER+"/#/index";
+		        window.location.href = ROOT_SERVER+"/#/index";
 		        window.location.reload();
 		    });
 		});
