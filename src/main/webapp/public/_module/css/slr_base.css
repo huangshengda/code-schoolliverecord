@@ -511,7 +511,6 @@ tr:nth-child(2n) {
 
 /* #login{display: none;} */
 #login .cd-f-eve {
-	margin-bottom: 20px;
 	width: 100%;
 	margin-top: 0;
 }
@@ -521,18 +520,13 @@ tr:nth-child(2n) {
 }
 
 #login .cd-f-value,#login .cd-f-value input {
-	width: 230px;
-	text-indent: 10px;
+	width: 235px;
 }
 
 #login input[type=checkbox] {
 	width: 15px;
 	height: 15px;
 	vertical-align: top;
-}
-
-#login button {
-	width: 100%;
 }
 
 .ml30 {
