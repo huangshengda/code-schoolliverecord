@@ -105,6 +105,7 @@ $(function(){
 		        sessionStorage.clear();
 		        window.location.href = ROOT_SERVER+"/#/index";
 		        window.location.reload();
+		        window.location.href = ROOT_SERVER+"/#/index";
 		    });
 		});
 	});
