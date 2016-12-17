@@ -74,8 +74,9 @@ jQuery.fn.extend({
 		}); 
 	}, 
 
-	setCaret: function(){ 
-		//if(!$.browser.msie) return; 
+	setCaret: function(){
+		//if(!$.browser.msie) return;
+		return;
 		var initSetCaret = function(){ 
 			var textObj = $(this).get(0); 
 			textObj.caretPos = document.selection.createRange().duplicate(); 

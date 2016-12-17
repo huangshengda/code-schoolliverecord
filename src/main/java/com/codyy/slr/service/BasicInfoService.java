@@ -45,7 +45,7 @@ public class BasicInfoService {
 					imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
 
 			BasicInfo info = new BasicInfo("title", param.getTitle());
-			BasicInfo info1 = new BasicInfo("logoPath", imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
+			BasicInfo info1 = new BasicInfo("logoPath", imageDirInfo.getRelPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
 			BasicInfo info2 = new BasicInfo("buttomMsg", param.getButtomMsg());
 			List<BasicInfo> list = new ArrayList<BasicInfo>();
 			list.add(info);
