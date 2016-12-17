@@ -2,7 +2,6 @@ package com.codyy.slr.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +14,6 @@ import com.codyy.slr.dao.ResCommentMapper;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.util.DateUtils;
 import com.codyy.slr.util.MapUtils;
-import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ResCommentVo;
 
 /**
@@ -106,8 +104,6 @@ public class ResCommentService {
 	 * 添加评论
 	 */
 	public boolean addResComment(ResComment comment) {
-		comment.setResourceCommentId(UUIDUtils.getUUID());
-		comment.setCreateTime(new Date());
 		return commentDao.insert(comment) == 1;
 	}
 

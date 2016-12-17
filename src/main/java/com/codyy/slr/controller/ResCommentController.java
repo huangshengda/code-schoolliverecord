@@ -1,5 +1,6 @@
 package com.codyy.slr.controller;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.service.ResCommentService;
+import com.codyy.slr.service.UserService;
+import com.codyy.slr.util.DateUtils;
 import com.codyy.slr.util.MapUtils;
 import com.codyy.slr.util.MySqlKeyWordUtils;
+import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.ResCommentVo;
 import com.codyy.slr.vo.ReturnVoList;
 import com.codyy.slr.vo.ReturnVoOne;
@@ -33,6 +38,9 @@ public class ResCommentController {
 	@Autowired
 	private ResCommentService resCommentService;
 
+	@Autowired
+	private UserService userService;
+
 	/**
 	 *  
 	 * @Description: 添加评论  
@@ -40,11 +48,10 @@ public class ResCommentController {
 	 * @return
 	 *
 	 */
-	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("/resource/comment/add")
-	public ReturnVoOne addResComment(ResComment resComment, HttpServletRequest req) {
-		ReturnVoOne returnVoOne = new ReturnVoOne();
+	public ReturnVoOne<ResCommentVo> addResComment(ResCommentVo resComment, HttpServletRequest req) {
+		ReturnVoOne<ResCommentVo> returnVoOne = new ReturnVoOne<>();
 		try {
 			// 校验参数
 			if (!resComment.validate()) {
@@ -55,8 +62,19 @@ public class ResCommentController {
 
 			User user = (User) req.getAttribute("user");
 			resComment.setCommentUserId(user.getUserId());
+			resComment.setResourceCommentId(UUIDUtils.getUUID());
+			resComment.setCreateTime(new Date());
 			boolean flag = resCommentService.addResComment(resComment);
-			if (!flag) {
+			if (flag) {
+				resComment.setUserName(user.getRealname());
+				resComment.setDelAuth(true);
+				if (!StringUtils.isEmpty(resComment.getReplyToUserId()) && !"-1".equalsIgnoreCase(resComment.getReplyToUserId())) {
+					User userReply = userService.selectByPrimaryKey(resComment.getReplyToUserId());
+					resComment.setReplyToUserName(userReply.getRealname());
+					resComment.setCreateTimeStr(DateUtils.format(resComment.getCreateTime(), "yyyy-MM-dd HH:mm"));
+				}
+				returnVoOne.setData(resComment);
+			} else {
 				returnVoOne.setCode(Constants.FAILED);
 				returnVoOne.setMsg("添加评论失败");
 			}
