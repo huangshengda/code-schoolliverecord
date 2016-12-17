@@ -66,7 +66,7 @@ methods:{
         var params = {};
         CDUtil.ajaxPost("/home/live/list",params,function(retVO){
           _self.posts = retVO;
-        });
+        },false);
       },
 /** 获取点播列表的方法 **/
        showdemand:function(){
@@ -74,7 +74,7 @@ methods:{
         var params = {};
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
             _self.courseList = retVO;//JSON.parse(retVO);
-        })
+        },false)
       },
 /** 跳转到直播详情页 **/
       openLiveDetail: function(resourceId){

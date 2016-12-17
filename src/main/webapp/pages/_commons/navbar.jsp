@@ -100,8 +100,7 @@ $(function(){
 		        $("#user_info").hide();
 		        $("#login_button").show();
 		        sessionStorage.clear();
-		        window.location = ROOT_SERVER+"/#/index";
-		        window.location.reload();
+		        window.location.href = ROOT_SERVER+"/#/index";
 		    });
 		});
 	});

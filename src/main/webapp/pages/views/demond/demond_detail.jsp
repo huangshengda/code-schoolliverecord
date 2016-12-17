@@ -37,7 +37,7 @@
 									<i class="iconfont icon-face"></i>
 								</span>
 								<button class="fr smp-button one" type="button" id="comment_one_save" >评论</button>
-								<span class="textarea-ft-cont-pos"><i class="limitCount orange">150</i>/150</span>
+								<span class="textarea-ft-cont-pos"><i id="comment_one_count" class="limitCount orange">150</i>/150</span>
 							</div>
 						</div>
 						<h3 class="com-comments-h3">全部评论(<span id="comment_one_totalDatas" >0</span>条)</h3>
