@@ -37,6 +37,36 @@
  </nav>
 <script type="text/javascript">
 $(function(){
+	/**登录**/
+	function loginIn(){
+		var result = Validation.validation({
+		       containerId: "login",
+		     });
+		     if(result==true){
+		       	var data = { 
+					userName: $("#username").val(), 
+					userPwd: md5($("#password").val()), 
+					CheckCode: $("#auto").val()
+		      	};
+		       	//提交数据给Login.ashx页面处理 
+		     	//提交数据给到后台处理
+				CDUtil.ajaxPost("/login",params,function(retVO){
+				  if(retVO.code == 1){
+					layer.msg(retVO.msg);  
+					layer.close(laryIndex);
+					$("#user_info").show();
+					$("#login_button").hide();
+					sessionStorage.loginFlag = "1";
+					sessionStorage.token = retVO.data.token;
+					sessionStorage.realname = retVO.data.realname;
+					$("#user_realname").html(retVO.data.realname);
+				  }
+				  if (retVO.code == 0) {
+						layer.msg(retVO.msg);
+					}
+				});
+			}
+	}
 	var params = {};
 	CDUtil.ajaxPost("/menu",{},function(retVO){
 		var menus = retVO.data;
@@ -65,33 +95,12 @@ $(function(){
 	          content: $("#login")
 	      });
 	});
-	$("loginIn").click(function(){
-		var result = Validation.validation({
-	       containerId: "login",
-	     });
-	     if(result==true){
-	       	var data = { 
-				userName: $("#username").val(), 
-				userPwd: md5($("#password").val()), 
-				CheckCode: $("#auto").val()
-	      	};
-	       	//提交数据给Login.ashx页面处理 
-	     	//提交数据给到后台处理
-			CDUtil.ajaxPost("/login",params,function(retVO){
-			  if(retVO.code == 1){
-				layer.msg(retVO.msg);  
-				layer.close(laryIndex);
-				$("#user_info").show();
-				$("#login_button").hide();
-				sessionStorage.loginFlag = "1";
-				sessionStorage.token = retVO.data.token;
-				sessionStorage.realname = retVO.data.realname;
-				$("#user_realname").html(retVO.data.realname);
-			  }
-			  if (retVO.code == 0) {
-					layer.msg(retVO.msg);
-				}
-			});
+	$("#loginIn").click(function(){
+		loginIn();
+	});
+	$("#login").bind('keyup', function(event) {
+		if (event.keyCode == "13") {
+			loginIn();
 		}
 	});
 	$("#logout").click(function(){

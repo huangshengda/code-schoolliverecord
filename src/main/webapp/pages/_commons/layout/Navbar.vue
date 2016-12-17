@@ -17,7 +17,7 @@
         <button class="btn fr" id="login_button" @click="login">登录</button>
       </div>
 <!-- 编辑用户弹窗表单 start -->
-  <form action="" id="login" class="layBox mt40">
+  <form action="" id="login" class="layBox mt40" @keyup.enter="loginIn">
    <div class="cd-f-row">
         <div class="cd-f-eve login-use-name">
           <span class="cd-f-name input-left-img iconfont icon-login-name"></span>
@@ -125,8 +125,8 @@ export default{
           var self= this;
           //提交数据给到后台处理
           CDUtil.ajaxPost("/login",params,function(retVO){
-          	self.userType= retVO.data.userType;
             if(retVO.code == 1){
+            	self.userType= retVO.data.userType;
            	 layer.msg(retVO.msg);
               layer.close(laryIndex);
               $("#user_info").show();

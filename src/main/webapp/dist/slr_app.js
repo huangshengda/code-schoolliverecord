@@ -6589,8 +6589,8 @@ webpackJsonp([0,6],{
 	        var self = this;
 	        //提交数据给到后台处理
 	        CDUtil.ajaxPost("/login", params, function (retVO) {
-	          self.userType = retVO.data.userType;
 	          if (retVO.code == 1) {
+	            self.userType = retVO.data.userType;
 	            layer.msg(retVO.msg);
 	            layer.close(laryIndex);
 	            $("#user_info").show();
@@ -6615,7 +6615,7 @@ webpackJsonp([0,6],{
 	          $("#user_info").hide();
 	          $("#login_button").show();
 	          sessionStorage.clear();
-	          window.location.href = ROOT_SERVER + "/#/home";
+	          window.location.href = ROOT_SERVER + "/#/index";
 	          window.location.reload();
 	        });
 	      });
@@ -6959,6 +6959,12 @@ webpackJsonp([0,6],{
 	    attrs: {
 	      "action": "",
 	      "id": "login"
+	    },
+	    on: {
+	      "keyup": function($event) {
+	        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+	        _vm.loginIn($event)
+	      }
 	    }
 	  }, [_c('div', {
 	    staticClass: "cd-f-row"

@@ -2056,7 +2056,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-value"
 	  }, [_c('input', {
 	    attrs: {
-	      "type": "text",
+	      "type": "password",
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "666666"
@@ -2090,10 +2090,9 @@ webpackJsonp([1,6],[
 	    }
 	  }, [_vm._v("学生")])])])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _c('form', {
+	  return _c('div', {
 	    staticClass: "layBox",
 	    attrs: {
-	      "action": "",
 	      "id": "adduser"
 	    }
 	  }, [_c('div', {
@@ -2109,7 +2108,8 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "name": "username",
 	      "id": "add_username",
-	      "data-vali": "notnull,username"
+	      "data-vali": "notnull,username",
+	      "value": ""
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -2122,7 +2122,8 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "name": "realname",
 	      "data-vali": "notnull",
-	      "id": "add_realname"
+	      "id": "add_realname",
+	      "value": ""
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -2135,7 +2136,8 @@ webpackJsonp([1,6],[
 	      "type": "password",
 	      "name": "password",
 	      "data-vali": "notnull,password",
-	      "id": "add_password"
+	      "id": "add_password",
+	      "value": ""
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -2147,7 +2149,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "name": "userType",
 	      "data-vali": "notnull",
-	      "id": "add_userType"
+	      "id": "add_userType",
+	      "value": ""
 	    }
 	  }, [_c('option', {
 	    attrs: {
