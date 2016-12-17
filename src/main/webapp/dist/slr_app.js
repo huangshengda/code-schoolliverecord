@@ -6591,6 +6591,7 @@ webpackJsonp([0,6],{
 	        CDUtil.ajaxPost("/login", params, function (retVO) {
 	          self.userType = retVO.data.userType;
 	          if (retVO.code == 1) {
+	            layer.msg(retVO.msg);
 	            layer.close(laryIndex);
 	            $("#user_info").show();
 	            $("#login_button").hide();
@@ -6599,6 +6600,10 @@ webpackJsonp([0,6],{
 	            sessionStorage.realname = retVO.data.realname;
 	            $("#user_realname").html(retVO.data.realname);
 	            window.location.reload();
+	          }
+	          if (retVO.code == 0) {
+	            layer.msg(retVO.msg);
+	            alert(retVO.msg);
 	          }
 	        });
 	      }
