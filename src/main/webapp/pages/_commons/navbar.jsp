@@ -102,8 +102,10 @@ $(function(){
 		        $("#user_info").hide();
 		        $("#login_button").show();
 		        sessionStorage.clear();
-		        window.location.href = ROOT_SERVER+"/#/index";
-		        window.location.reload();
+		        setTimeout(function(){
+		        	window.location.href = ROOT_SERVER+"/#/index";
+		        	//window.close();   	
+		        },1000);
 		    });
 		});
 	});

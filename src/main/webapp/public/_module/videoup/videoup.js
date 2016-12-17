@@ -14,6 +14,12 @@ $(function(){
 		});
 		allChose += ' >全部</option>';
 		$(allChose+htmlStr).appendTo("#subjectId");
+		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
+			var data = retVO.data;
+			if (retVO.code == 1) {
+				$("#subjectId").val(data.subjectId);
+			}
+		});
 	});
 	
 	CDUtil.ajaxPost("/base/classlevel/list",{},function(retVO){
@@ -31,33 +37,50 @@ $(function(){
 		});
 		allChose += '" data-type="all">全部</span>';
 		$(allChose+htmlStr).appendTo("#show_chose_grade");
+		if(sessionStorage.getItem("resourceId") != ""){
+			CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
+				var data = retVO.data;
+				if (retVO.code == 1) {
+					var classlevelIds = data.classlevelId;
+					$("#classlevelIds").val(classlevelIds);
+					$(".chose-grade.others").each(function(i,dom){
+						var classlevelId = $(dom).val();
+						if(classlevelIds.indexOf(classlevelId)>-1){
+							$(dom).prop("checked",true);
+						}
+					});
+				}
+			});
+		}
 	});
+	
 	/**编辑上传信息--start**/
 	if(sessionStorage.getItem("resourceId") != ""){
 		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
+			var data = retVO.data;
 			if (retVO.code == 1) {
 				$('#res_name').val(retVO.data.resourceName);
-				$("#subjectId").val(retVO.data.subjectId);
 				$("#auth").val(retVO.data.author);
-				var classId = retVO.data.classlevelId.split('/');
-				$("#classlevelIds").val(retVO.data.classlevelId);
-				var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
-				$checkbox.slice(1).each(function(){
-					var $this=$(this);
-					var $value= $this.attr("value");
-					console.log($value);
-					if(classId.indexOf($value)){
-						$(this).prop("checked",true)
-					}
-					/*for(var i=0,l=classId.length;i<l;i++){
-						if($value===classId[i]){
-							$this.prop("checked",true);
-						}
-					}*/
-				});
-				var  htmlStr ='';
-				htmlStr += 
-				$("#show_fileup_detail").html(htmlStr);	
+				$("#video_resourceId").val(data.resourceId);
+				$("#video_name").val(data.video_name);
+				$("#video_size").val(data.size);
+				$("#video_img_resourceId").val(data.video_img_resourceId);
+				
+				var sequence = H5fileup.getSequence();
+				var  htmlStr ='<div class="up-item" id="'+sequence+'" data-resourceid="'+data.resourceId+'">'
+					+'<div class="inb vat"><p>'
+						+'<span class="showfile-name substr" id="'+sequence+'_name">'+data.video_name+'</span>'
+						+'<input class="showfile-name-input" type="text" id="'+sequence+'_name_input" value="'+data.video_img_resourceId+'">'
+						+'<span id="'+sequence+'_type">.'+data.type+'</span>'
+						+'<span class="ml10">'+(Math.round(data.size * 100 / (1024 * 1024)) / 100)+'M</span>'
+						+'</p>'
+						+'<div class="progress w300 mr20"><div class="progress-bar progress-bar-striped active" id="'+sequence+'_process" '
+							+'role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>'
+					+'</div>'
+					+'</div>'
+					+'<div class="inb"><img src="'+data.thumbPath+'" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'
+					+'<div type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;">上传本地图片<input type="file" value="" class="input-fileup local-img" style="width: 125px;" accept="image/png,image/jpeg"></div></div><i class="iconfont icon-delete del-fileup"></i></div>';
+				$("#show_fileup_detail").html(htmlStr);
 			}
 		})
 	}
@@ -257,7 +280,7 @@ $(function(){
 	 */
 	$("#save_video_info").click(function(){
 		var params = $('#form_save_videoup').serializeJSON();
-		//console.log(typeof(params));
+		console.log(params);
 		var result = Validation.validation({
 			containerId: "form_save_videoup"
 		});

@@ -125,8 +125,8 @@ export default{
           var self= this;
           //提交数据给到后台处理
           CDUtil.ajaxPost("/login",params,function(retVO){
-          	self.userType= retVO.data.userType;
             if(retVO.code == 1){
+            self.userType= retVO.data.userType;
            	 layer.msg(retVO.msg);
               layer.close(laryIndex);
               $("#user_info").show();
@@ -136,10 +136,9 @@ export default{
               sessionStorage.realname = retVO.data.realname;
               $("#user_realname").html(retVO.data.realname);
                window.location.reload();
-            }
-             if (retVO.code == 0) {
-					layer.msg(retVO.msg);
-				}
+            }else if (retVO.code == 0){
+				layer.msg(retVO.msg);
+			}
           });
         }
       },
