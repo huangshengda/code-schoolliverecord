@@ -34,7 +34,7 @@
         <div class="cd-f-eve">
            <input type="checkbox" id="auto" name="auto" class="ml30">自动登录
         </div>
-        <div class="cd-f-eve">
+        <div class="cd-f-eve login-btn">
           <button type="button" class="lay-btn gray-btn" @click="loginIn">登录</button>
         </div>
     </div>
@@ -120,6 +120,9 @@ export default{
         }
       },
       logout: function(){
+      layerIndex = layer.confirm('是否确定退出用户登录？',{btn: ['确定', '取消']},function(){
+			layer.close(layerIndex);
+			layer.msg("等待退出登录. . .");
          CDUtil.ajaxPost("/loginout",{},function(retVO){
               $("#user_info").hide();
               $("#login_button").show();
@@ -127,6 +130,7 @@ export default{
               window.location.href = ROOT_SERVER+"/#/onDemand";
        		window.location.reload();
           });
+        });
       },
       editPwd: function(){
       	window.open(ROOT_SERVER+"/front/path/editpwd?token="+sessionStorage.getItem("token"));
@@ -134,4 +138,7 @@ export default{
    }
 }
 </script>
-<style>.login_button{margin-top:30px;}</style>
+<style>
+.login_button{margin-top:30px;}
+.login-btn{text-align:center;}
+</style>
