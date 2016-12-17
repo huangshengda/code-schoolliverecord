@@ -16,7 +16,7 @@ a:hover,a:active,a:visited,a:focus {
 	text-decoration: none;
 }
 
-input[type="text"], textarea {
+input[type="text"], textarea,input[type="password"] {
 	text-indent: 10px;
 }
 
@@ -428,7 +428,7 @@ tr:nth-child(2n) {
 	line-height: 26px;
 	color: #FFF;
 	background-color: #000;
-	opacity: .6;
+	opacity: .4;
 	bottom: 0;
 	width: 280px;
 }
@@ -620,3 +620,4 @@ table{table-layout:fixed;}
 
 table tr td{ overflow:hidden;text-overflow:ellipsis;}
 #logo_img{width:242px;height:50px;}
+.s-left .sub-tit{font-style:normal}

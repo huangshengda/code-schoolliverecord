@@ -24,6 +24,7 @@
 	.sysprint-img.active{border: 1px solid #337ab7;}
 	.m10{margin: 10px;}
 	.p10{padding: 10px;}
+	.smp-main{margin-top: 40px;border: 1px solid #ddd;}
 </style>
 </head>
 <body>
