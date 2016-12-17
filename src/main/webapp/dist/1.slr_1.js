@@ -1402,6 +1402,7 @@ webpackJsonp([1,6],[
 	                _self.show();
 	                layer.msg(retVO.msg);
 	                layer.close(index);
+	                $('#addgrade')[0].reset();
 	              }
 	              if (retVO.code == 0) {
 	                layer.msg(retVO.msg);
@@ -1894,12 +1895,12 @@ webpackJsonp([1,6],[
 									userSearch();
 									layer.msg(retVO.msg);
 									layer.close(index);
+									$('#adduser')[0].reset();
 								}
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
 								}
 							});
-							$('#adduser')[0].reset();
 						}
 					}
 				});
@@ -2410,6 +2411,7 @@ webpackJsonp([1,6],[
 	                _self.show();
 	                layer.close(index);
 	                layer.msg(retVO.msg);
+	                $('#addsubject')[0].reset();
 	              }
 	              if (retVO.code == 0) {
 	                layer.msg(retVO.msg);
@@ -2718,6 +2720,7 @@ webpackJsonp([1,6],[
 	          if (retVO.code == 1) {
 	            layer.msg(retVO.msg);
 	            layer.close(index);
+	            $('#platform')[0].reset();
 	          }
 	          if (retVO.code == 0) {
 	            layer.msg(retVO.msg);
@@ -4035,10 +4038,10 @@ webpackJsonp([1,6],[
 	      window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
 	    } else {
 	      //alert("用户信息失效");
-	      laryIndex = layer.confirm('未登录暂无权限访问', {
+	      layerIndex = layer.confirm('未登录暂无权限访问', {
 	        btn: ['确定']
 	      }, function () {
-	        layer.close(laryIndex);
+	        layer.close(layerIndex);
 	        sessionStorage.clear();
 	        window.location.href = ROOT_SERVER + "/#/index";
 	      });
@@ -4492,6 +4495,7 @@ webpackJsonp([1,6],[
 	            layer.close(laryIndex);
 	            sessionStorage.clear();
 	            window.location.href = ROOT_SERVER + "/#/index";
+	            window.location.reload();
 	          });
 	        }
 	      });
@@ -4504,12 +4508,13 @@ webpackJsonp([1,6],[
 	          window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
 	        } else {
 	          //alert("用户信息失效");
-	          laryIndex = layer.confirm('未登录暂无权限访问', {
+	          layerIndex = layer.confirm('未登录暂无权限访问', {
 	            btn: ['确定']
 	          }, function () {
-	            layer.close(laryIndex);
+	            layer.close(layerIndex);
 	            sessionStorage.clear();
 	            window.location.href = ROOT_SERVER + "/#/index";
+	            window.location.reload();
 	          });
 	        }
 	      });

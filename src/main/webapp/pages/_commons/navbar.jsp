@@ -101,6 +101,7 @@ $(function(){
 		        $("#login_button").show();
 		        sessionStorage.clear();
 		        window.location = ROOT_SERVER+"/#/index";
+		        window.location.reload();
 		    });
 		});
 	});
