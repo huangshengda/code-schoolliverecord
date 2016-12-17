@@ -1,23 +1,4 @@
 $(function(){
-	/*if(sessionStorage.getItem("resourceId") != ""){
-		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
-			if (retVO.code == 1) {
-				$('#res_name').val(retVO.data.resourceName);
-				$("#subjectId").val(retVO.data.subjectId);
-				$("#auth").val(retVO.data.author);
-				var classId = retVO.data.classlevelId.split('/');
-				$("#classlevelIds").val(retVO.data.classlevelId);
-				var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
-				$checkbox.slice(1).each(function(){
-					var $value= $(this).attr("value");
-					console.log($value);
-					if($value.indexOf(classId)){
-						$(this).prop("checked",true)
-					}
-				})
-			}
-		})
-	}*/	
 	var laryIndex = null ;	
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
@@ -50,33 +31,37 @@ $(function(){
 		});
 		allChose += '" data-type="all">全部</span>';
 		$(allChose+htmlStr).appendTo("#show_chose_grade");
-		if(sessionStorage.getItem("resourceId") != ""){
-			CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
-				if (retVO.code == 1) {
-					$('#res_name').val(retVO.data.resourceName);
-					$("#subjectId").val(retVO.data.subjectId);
-					$("#auth").val(retVO.data.author);
-					var classId = retVO.data.classlevelId.split('/');
-					$("#classlevelIds").val(retVO.data.classlevelId);
-					var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
-					$checkbox.slice(1).each(function(){
-						var $this=$(this);
-						var $value= $this.attr("value");
-						console.log($value);
-						if(classId.indexOf($value)){
-							$(this).prop("checked",true)
-						}
-		/*				for(var i=0,l=classId.length;i<l;i++){
-							if($value===classId[i]){
-								$this.prop("checked",true);
-							}
-						}*/
-					})
-					
-				}
-			})
-		}
 	});
+	/**编辑上传信息--start**/
+	if(sessionStorage.getItem("resourceId") != ""){
+		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
+			if (retVO.code == 1) {
+				$('#res_name').val(retVO.data.resourceName);
+				$("#subjectId").val(retVO.data.subjectId);
+				$("#auth").val(retVO.data.author);
+				var classId = retVO.data.classlevelId.split('/');
+				$("#classlevelIds").val(retVO.data.classlevelId);
+				var $checkbox=$("#classlevelIds").parent().find(".chose-grade.others");
+				$checkbox.slice(1).each(function(){
+					var $this=$(this);
+					var $value= $this.attr("value");
+					console.log($value);
+					if(classId.indexOf($value)){
+						$(this).prop("checked",true)
+					}
+					/*for(var i=0,l=classId.length;i<l;i++){
+						if($value===classId[i]){
+							$this.prop("checked",true);
+						}
+					}*/
+				});
+				var  htmlStr ='';
+				htmlStr += 
+				$("#show_fileup_detail").html(htmlStr);	
+			}
+		})
+	}
+/**编辑上传信息--end**/
 	$("#show_chose_grade").on("click",".chose-grade",function(){
 		var checked = $(this).prop("checked");
 		//console.log(checked);
