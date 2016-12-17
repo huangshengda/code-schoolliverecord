@@ -57,7 +57,7 @@ $(function(){
 			$(".l-way-auto .l-way-check").attr("data-select","0");
 		}
 	});
-//登录框获取焦点
+	//登录框获取焦点
 	$(".login-input").focus(function(){
 		$(this).parent().parent().addClass("focus");
 		$(this).parent().parent().siblings().removeClass("focus");
@@ -151,7 +151,7 @@ export default{
               $("#user_info").hide();
               $("#login_button").show();
               sessionStorage.clear();
-              window.location.href = ROOT_SERVER+"/#/home";
+              window.location.href = ROOT_SERVER+"/#/index";
        		window.location.reload();
           });
         });
