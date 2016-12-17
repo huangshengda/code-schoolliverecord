@@ -129,11 +129,11 @@ window.openDemondDetail=function(resourceId){
 /** 获取选择的学科参数**/
      	subjectsearch: function(subjectName,event){
      		$(event.target).addClass("active").siblings().removeClass("active");
-     		console.log(subjectName);
      		this.params= Object.assign({},this.params,{subjectName:subjectName});
-     	 	$('.sub-tit').text(subjectName);
      	 	if(subjectName==''){
      	 		$('.sub-tit').text('全部');
+     	 	}else{
+     	 		$('.sub-tit').text(subjectName);
      	 	}
      	 	this.showdemand();
      	},
