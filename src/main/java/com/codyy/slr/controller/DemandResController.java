@@ -19,16 +19,11 @@ import com.codyy.slr.vo.ResourceVo;
 import com.codyy.slr.vo.ReturnVoList;
 
 /**
- * File Description      : 点播资源
- * Author                : GuangY
- * Create Date           : 2016/11/15
- * Reviewed By           :
- * Reviewed Date         :
- * Modified By           :
- * Modified Date         :
- * Comments              :
- * CopyRight             : COPYRIGHT(c) www.codyy.com   All Rights Reserved(2016)
- * *******************************************************************************************
+ * 
+ * @Description: 点播资源 
+ * @author huangshengda  
+ * @date 2016年12月17日   
+ *
  */
 
 @Controller
