@@ -54,7 +54,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" id="edit_password" value="666666">
+            <input type="password" name="password" id="edit_password" value="666666">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -76,25 +76,25 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="username" id="add_username" data-vali="notnull,username">
+            <input type="text" name="username" id="add_username" data-vali="notnull,username" value="">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname" data-vali="notnull" id="add_realname">
+            <input type="text" name="realname" data-vali="notnull" id="add_realname" value="">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" data-vali="notnull,password" id="add_password">
+            <input type="password" name="password" data-vali="notnull,password" id="add_password" value="">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>角色:</label></span>
           <span class="cd-f-value">
-            <select name="userType" data-vali="notnull" id="add_userType">
+            <select name="userType" data-vali="notnull" id="add_userType" value="">
            	 	<option value="-1">请选择</option>
             	<option value="ADMIN">管理员</option>
             	<option value="TEACHER">老师</option>
