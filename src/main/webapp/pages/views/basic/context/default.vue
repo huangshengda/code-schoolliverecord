@@ -23,7 +23,7 @@
             <select name="userType" id="search_userType">
             	<option value="-1">请选择</option>
             	<option value="ADMIN">管理员</option>
-            	<option value="TEACHER">老师</option>
+            	<option value="TEACHER">教师</option>
             	<option value="STUDENT">学生</option>
             </select>
           </span>
@@ -63,7 +63,7 @@
              <select name="userType" id="edit_userType">
              <option value="-1">请选择</option>
              <option value="ADMIN">管理员</option>
-            <option value="TEACHER">老师</option>
+            <option value="TEACHER">教师</option>
             <option value="STUDENT">学生</option></select>
           </span>
         </div>
@@ -97,7 +97,7 @@
             <select name="userType" data-vali="notnull" id="add_userType" value="">
            	 	<option value="-1">请选择</option>
             	<option value="ADMIN">管理员</option>
-            	<option value="TEACHER">老师</option>
+            	<option value="TEACHER">教师</option>
             	<option value="STUDENT">学生</option>
             </select>
           </span>
@@ -204,7 +204,7 @@ var config = {
 	thead: [{
 		name: "用户名",
 		valuekey: "username",
-		width: "100px"
+		css:"width: 130px;"
 	},
 	{
 		name: "姓名",

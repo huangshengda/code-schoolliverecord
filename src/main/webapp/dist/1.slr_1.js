@@ -1825,7 +1825,7 @@ webpackJsonp([1,6],[
 		thead: [{
 			name: "用户名",
 			valuekey: "username",
-			width: "100px"
+			css: "width: 130px;"
 		}, {
 			name: "姓名",
 			valuekey: "realname"
@@ -2002,7 +2002,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "value": "TEACHER"
 	    }
-	  }, [_vm._v("老师")]), _vm._v(" "), _c('option', {
+	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "STUDENT"
 	    }
@@ -2083,7 +2083,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "value": "TEACHER"
 	    }
-	  }, [_vm._v("老师")]), _vm._v(" "), _c('option', {
+	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "STUDENT"
 	    }
@@ -2164,7 +2164,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "value": "TEACHER"
 	    }
-	  }, [_vm._v("老师")]), _vm._v(" "), _c('option', {
+	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
 	    attrs: {
 	      "value": "STUDENT"
 	    }
@@ -2675,6 +2675,7 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
+	//
 
 	/**
 	 * Vue组件对象
@@ -2698,7 +2699,6 @@ webpackJsonp([1,6],[
 	    },
 	    /** 表单操作--上传图片**/
 	    impup: function impup() {
-	      console.log($("#thispage_fileup"));
 	      var fileDom = $("#thispage_fileup")[0];
 	      var file = fileDom.files[0];
 	      var fileupUrl = ROOT_SERVER + "/image/upload?token=" + sessionStorage.getItem("token");
@@ -2719,7 +2719,6 @@ webpackJsonp([1,6],[
 	      });
 	      if (result == true) {
 	        var platParams = $('#platform').serialize();
-	        console.log(platParams);
 	        CDUtil.ajaxPost("/base/basicinfo/update", platParams, function (retVO) {
 	          if (retVO.code == 1) {
 	            layer.msg(retVO.msg);
@@ -2788,7 +2787,14 @@ webpackJsonp([1,6],[
 	      "value": "",
 	      "data-vali": "notnull"
 	    }
-	  })])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+	  })])])]), _vm._v(" "), _c('input', {
+	    attrs: {
+	      "type": "hidden",
+	      "name": "thumbFlag",
+	      "value": "",
+	      "id": "update_img"
+	    }
+	  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve mt40"
 	  }, [_vm._m(3), _vm._v(" "), _c('span', [_c('button', {
 	    staticClass: "lay-btn green-btn mr20",
@@ -3434,7 +3440,7 @@ webpackJsonp([1,6],[
 		//用来展示表格控件的div的id
 		containerId: "use_to_load_grid",
 		//用来展示表格的表头数据
-		thead: [{ name: "资源名称", valuekey: "resourceName" }, { name: "年级", valuekey: "classlevelName", css: "width: 130px;" }, { name: "学科", valuekey: "subjectName" }, { name: "主讲教师", valuekey: "author" }, { name: "上传人", valuekey: "creatName" }, { name: "操作", valuekey: "opt", type: "opt" }],
+		thead: [{ name: "资源名称", valuekey: "resourceName" }, { name: "年级", valuekey: "classlevelName", css: "width: 130px;" }, { name: "学科", valuekey: "subjectName" }, { name: "主讲教师", valuekey: "author" }, { name: "操作", valuekey: "opt", type: "opt" }],
 		//用来展示表格的数据
 		//这个应该是后台返回的部分
 		gData: {},
@@ -4410,7 +4416,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\nbody{background-color:#fff;\n}\n.s-title .demanCour{margin:0;\n}\n", ""]);
+	exports.push([module.id, "\n.s-title .demanCour{margin:0;\n}\r\n", ""]);
 
 	// exports
 
