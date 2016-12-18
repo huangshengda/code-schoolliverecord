@@ -621,3 +621,5 @@ table{table-layout:fixed;}
 table tr td{ overflow:hidden;text-overflow:ellipsis;}
 #logo_img{width:242px;height:50px;}
 .s-left .sub-tit,.s-left .grade-tit,.s-left .key{font-style:normal}
+/*footer*/
+.srl-foot{background: #f6f6f6 none repeat scroll 0 0;padding: 20px;width: 100%;margin-top: 40px;}

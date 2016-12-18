@@ -309,6 +309,10 @@ $(function(){
 		if(!result){return;}
 		if(resourceId != undefined && resourceId != ""){
 			CDUtil.ajaxPost("/resource/update",params,function(retVO){
+				if(retVO.code == 0){
+					layer.msg("修改视频信息失败");
+					return;
+				}
 				layer.alert('修改视频信息成功', {
 				  icon: 1,
 				  skin: 'layer-ext-moon'
@@ -319,6 +323,10 @@ $(function(){
 			});
 		}else{
 			CDUtil.ajaxPost("/resource/addresource",params,function(retVO){
+				if(retVO.code == 0){
+					layer.msg("修改视频信息失败");
+					return;
+				}
 				layer.alert('上传视频成功！', {
 				  icon: 1,
 				  skin: 'layer-ext-moon'
