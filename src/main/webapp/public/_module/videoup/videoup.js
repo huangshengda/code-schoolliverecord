@@ -318,7 +318,7 @@ $(function(){
 				  skin: 'layer-ext-moon'
 				});
 				setTimeout(function(){
-					//window.location.href = ROOT_SERVER+"/#/basic/upload";
+					window.location.href = ROOT_SERVER+"/#/basic/upload";
 				},1000);
 			});
 		}else{
