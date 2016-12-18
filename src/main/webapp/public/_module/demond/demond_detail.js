@@ -28,6 +28,11 @@ $(function() {
 			//课程名称，年级、学科、主讲教师
 			var resourceName = retVO.data.resourceName;
 			var classlevelName = retVO.data.classlevelName;
+			if(classlevelName.length>7){
+				var classlevelName= classlevelName.substr(0,7) + "...";
+			}else{
+				var classlevelName= classlevelName;
+			}
 			var subjectName = retVO.data.subjectName;//学科
 			var author = retVO.data.author;//
 			$("#resource_name").html(resourceName);
