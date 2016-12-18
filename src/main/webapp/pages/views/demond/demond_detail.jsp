@@ -18,7 +18,7 @@
 .ft12{font-size: 14px;}
 .col-md-3 .l-right{width:300px;}
 .col-md-3 .v-recommend li{margin-top: 0;padding: 8px 10px;}
-.com-comments{margin-top:30px;}
+.mt30{margin-top:30px;}
 </style>
 </head>
 <body>
@@ -32,7 +32,7 @@
 	<div class="row" >
 		<div class="col-md-9" >
 			<div class="vedio" id="video_player_content"></div>
-			<div id="" style="border: 1px solid #dddddd;">
+			<div id="" style="border: 1px solid #dddddd;" class="mt30">
 				<div class="com-comments mb20" >
 					<h2 class="com-comments-h2">评价</h2>
 					<div class="com-commonts-area clearfix" id="comment_area">
