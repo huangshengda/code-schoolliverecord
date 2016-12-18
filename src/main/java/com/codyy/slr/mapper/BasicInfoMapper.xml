@@ -9,10 +9,6 @@
     INFO_NAME, INFO_VALUE
   </sql>
 	
-	<!-- <update id="updateBasicInfo" parameterType = "com.codyy.slr.entity.BasicInfo">
-		update basic_info set info_value = #{item.infoValue} where info_name = #{item.infoName}
-	</update> -->
-
 	<update id="updateBasicInfo"  parameterType="java.util.List">
 	      <foreach collection="list" item="item" index="index" open="" close="" separator=";">
 				update basic_info 

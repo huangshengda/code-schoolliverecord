@@ -35,21 +35,25 @@ public class BasicInfoService {
 	 * @return
 	 *
 	 */
-	public boolean updateBasicInfo(BasicInfoVo param) {
+	public boolean updateBasicInfo(BasicInfoVo param, boolean thumbFlag) {
 
 		try {
-			// 1.创建图片文件夹
-			DirInfo imageDirInfo = FileUtils.creatDir(new Date(), Constants.IMG_PATH);
-			// 2.移动图片
-			FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + param.getLogoPath(),
-					imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
+			List<BasicInfo> list = new ArrayList<BasicInfo>();
+
+			if (thumbFlag) {
+				// 1.创建图片文件夹
+				DirInfo imageDirInfo = FileUtils.creatDir(new Date(), Constants.IMG_PATH);
+				// 2.移动图片
+				FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + param.getLogoPath(),
+						imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
+
+				BasicInfo info1 = new BasicInfo("logoPath", imageDirInfo.getRelPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
+				list.add(info1);
+			}
 
 			BasicInfo info = new BasicInfo("title", param.getTitle());
-			BasicInfo info1 = new BasicInfo("logoPath", imageDirInfo.getRelPath() + Constants.PATH_SEPARATOR + param.getLogoPath());
 			BasicInfo info2 = new BasicInfo("buttomMsg", param.getButtomMsg());
-			List<BasicInfo> list = new ArrayList<BasicInfo>();
 			list.add(info);
-			list.add(info1);
 			list.add(info2);
 
 			return basicInfoMapper.updateBasicInfo(list) == 1;
@@ -59,7 +63,24 @@ public class BasicInfoService {
 		}
 	}
 
-	public List<BasicInfo> getBasicInfo() {
-		return basicInfoMapper.getBasicInfo();
+	public BasicInfoVo getBasicInfo() {
+		BasicInfoVo param = new BasicInfoVo();
+		List<BasicInfo> list = basicInfoMapper.getBasicInfo();
+		for (BasicInfo info : list) {
+			if ("title".equalsIgnoreCase(info.getInfoName())) {
+				param.setTitle(info.getInfoValue());
+			} else if ("logoPath".equalsIgnoreCase(info.getInfoName())) {
+				String logoPath = info.getInfoValue();
+				if (logoPath.startsWith("/public")) {
+					param.setLogoPath(Constants.ROOT_SERVER + logoPath);
+				} else {
+					param.setLogoPath(Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + logoPath);
+				}
+			} else {
+				param.setButtomMsg(info.getInfoValue());
+			}
+		}
+
+		return param;
 	}
 }
