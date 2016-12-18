@@ -189,7 +189,7 @@ public class ResourceController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping(value = "/update")
-	public ReturnVoOne modifyResource(AddLiveResourceParam res, String resourceId) {
+	public ReturnVoOne modifyResource(AddUploadResourceParam res, String resourceId) {
 		ReturnVoOne result = null;
 		ResourceVo resVo = new ResourceVo();
 		try {
@@ -197,7 +197,7 @@ public class ResourceController {
 			resVo.setAuthor(res.getAuthor());
 			resVo.setClasslevelId(res.getClasslevelIds());
 			resVo.setSubjectId(res.getSubjectId());
-			resVo.setResourceName(res.getResourceName());
+			resVo.setResourceName(res.getResNickName());
 
 			if (resourceService.modifyResource(resVo)) {
 				result = new ReturnVoOne();
