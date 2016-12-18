@@ -32,14 +32,45 @@ params = {};//用来定义页面和后台交互的公共传参对象
  */
 TOKEN_FLAG = "${token}";
 LOGIN_FLAG = sessionStorage.getItem("loginFlag");
+AUTO_LOGIN_FLAG = localStorage.getItem("SLR_LOGINFLAG");
 sessionStorage.setItem("token",TOKEN_FLAG);
+var autoLogin = function(){
+	debugger;
+	var logintime = localStorage.getItem("SLR_LOGINTIME");
+	var username = localStorage.getItem("SLR_USERNAME");
+	var password = localStorage.getItem("SLR_PASSWORD");
+	var nowtime = new Date().getTime();
+	if((nowtime-logintime)>7*24*60*60*1000){
+		localStorage.removeItem("SLR_LOGINFLAG");
+		localStorage.removeItem("SLR_LOGINTIME");
+		localStorage.removeItem("SLR_USERNAME");
+		localStorage.removeItem("SLR_PASSWORD");
+		return;
+	}
+	CDUtil.ajaxPost("/login",{username: username,password: password},function(retVO){
+        if(retVO.code == 1){
+        	localStorage.setItem("SLR_LOGINTIME", new Date().getTime());
+			$("#user_info").show();
+			$("#login_button").hide();
+			sessionStorage.setItem("loginFlag", "1");
+			sessionStorage.setItem("token", retVO.data.token);
+			sessionStorage.setItem("realname", retVO.data.realname);
+			$("#user_realname").html(retVO.data.realname);
+			 window.location.reload();
+        }else{
+			layer.msg("用户自动登录失效，请手动登录");
+		}
+      },false);
+}
 if(TOKEN_FLAG != "" && LOGIN_FLAG != "1"){
 	CDUtil.ajaxPost("/token/getuser",{token: TOKEN_FLAG},function(retVO){
 		if(retVO.code == 1){
 			sessionStorage.setItem("loginFlag", "1");
-		}else if (retVO.code == 0) {
-			layer.msg(retVO.msg);
+		}else{
+			autoLogin();
 		}
 	},false);
+}else if(AUTO_LOGIN_FLAG == "1" && LOGIN_FLAG != "1"){
+	autoLogin();
 }
 </script>

@@ -1,4 +1,10 @@
 $(function() {
+	var resourceId = sessionStorage.getItem("resourceId");
+	if(resourceId == undefined){
+		layerIndex = layer.confirm('缺少资源信息，请返回首页',{btn: ['确定', '取消']},function(){
+			window.location.href = ROOT_SERVER+"/#/index";
+		});
+	}
 	
 	var SWF_ID = "evideo_" + new Date().getTime();
 	var SWF_NAME = ROOT_UI_PUBLIC + "/evideo/evideo.swf";
@@ -19,7 +25,7 @@ $(function() {
 		//这里可以设置播放设置播放视频宽高
 		divId, width, height, "10.0.0", "expressInstall.swf", flashvars, params, attributes);
 	}
-	var resourceId = sessionStorage.getItem("resourceId");
+	
 	/**
 	 * 获取播放视频的url
 	 */

@@ -68,7 +68,18 @@ $(function(){
 				});
 			}
 	}
-	var params = {};
+	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
+  		if(retVO.code == 2){
+  			$("#user_info").hide();
+    		$("#login_button").show();
+    		sessionStorage.clear();
+  		}else if(retVO.code == 1){
+  			$("#user_info").show();
+			$("#login_button").hide();
+			sessionStorage.setItem("realname", retVO.data.realname);
+			$("#user_realname").html(retVO.data.realname);
+  		}
+  	});
 	CDUtil.ajaxPost("/menu",{},function(retVO){
 		var menus = retVO.data;
 		$(menus).each(function(i,menu){

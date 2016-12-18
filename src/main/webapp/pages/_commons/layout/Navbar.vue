@@ -129,6 +129,12 @@ export default{
             if(retVO.code == 1){
             	self.userType= retVO.data.userType;
            	 layer.msg(retVO.msg);
+           	 	if($("#auto").prop("checked")){
+           	 		localStorage.setItem("SLR_LOGINFLAG","1");
+           	 		localStorage.setItem("SLR_LOGINTIME", new Date().getTime());
+           	 		localStorage.setItem("SLR_USERNAME", params.username);
+           	 		localStorage.setItem("SLR_PASSWORD", params.password);
+           	 	}
               layer.close(laryIndex);
               $("#user_info").show();
               $("#login_button").hide();
@@ -149,6 +155,10 @@ export default{
 			layer.close(layerIndex);
 			layer.msg("等待退出登录. . .");
          CDUtil.ajaxPost("/loginout",{},function(retVO){
+         	localStorage.removeItem("SLR_LOGINFLAG","1");
+           	 		localStorage.removeItem("SLR_LOGINTIME", new Date().getTime());
+           	 		localStorage.removeItem("SLR_USERNAME", params.username);
+           	 		localStorage.removeItem("SLR_PASSWORD", params.password);
               $("#user_info").hide();
               $("#login_button").show();
               sessionStorage.clear();

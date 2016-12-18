@@ -1,5 +1,10 @@
 $(function() {
 	var resourceId = sessionStorage.getItem("resourceId");
+	if(resourceId == undefined){
+		layerIndex = layer.confirm('缺少资源信息，请返回首页',{btn: ['确定', '取消']},function(){
+			window.location.href = ROOT_SERVER+"/#/index";
+		});
+	}
 	var token = sessionStorage.getItem("token");
 	var liveUrl = "",
 		dmc = "",
