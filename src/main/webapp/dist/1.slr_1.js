@@ -4462,7 +4462,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\nbody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\r\n", ""]);
+	exports.push([module.id, "\nbody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n", ""]);
 
 	// exports
 
