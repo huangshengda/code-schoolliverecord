@@ -36,7 +36,6 @@ LOGIN_FLAG = sessionStorage.getItem("loginFlag");
 AUTO_LOGIN_FLAG = localStorage.getItem("SLR_LOGINFLAG");
 sessionStorage.setItem("token",TOKEN_FLAG);
 var autoLogin = function(){
-	debugger;
 	var logintime = localStorage.getItem("SLR_LOGINTIME");
 	var username = localStorage.getItem("SLR_USERNAME");
 	var password = localStorage.getItem("SLR_PASSWORD");
@@ -59,6 +58,13 @@ var autoLogin = function(){
 			$("#user_realname").html(retVO.data.realname);
 			 window.location.reload();
         }else{
+        	localStorage.removeItem("SLR_LOGINFLAG");
+   	 		localStorage.removeItem("SLR_LOGINTIME");
+   	 		localStorage.removeItem("SLR_USERNAME");
+   	 		localStorage.removeItem("SLR_PASSWORD");
+   	 		LOGIN_FLAG = null;
+   	 		AUTO_LOGIN_FLAG = null;
+   	 		window.location.href = ROOT_SERVER+"/#/index";
 			layer.msg("用户自动登录失效，请手动登录");
 		}
       },false);
