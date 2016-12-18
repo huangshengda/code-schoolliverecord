@@ -189,15 +189,23 @@ public class ResourceController {
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping(value = "/update")
-	public ReturnVoOne modifyResource(ResourceVo res) {
+	public ReturnVoOne modifyResource(AddUploadResourceParam res, String resourceId) {
 		ReturnVoOne result = null;
+		ResourceVo resVo = new ResourceVo();
 		try {
-			if (resourceService.modifyResource(res)) {
+			resVo.setResourceId(resourceId);
+			resVo.setAuthor(res.getAuthor());
+			resVo.setClasslevelId(res.getClasslevelIds());
+			resVo.setSubjectId(res.getSubjectId());
+			resVo.setResourceName(res.getResNickName());
+
+			if (resourceService.modifyResource(resVo)) {
 				result = new ReturnVoOne();
 			} else {
 				result = new ReturnVoOne(Constants.FAILED, "编辑资源失败");
 			}
 		} catch (Exception e) {
+			result = new ReturnVoOne(Constants.FAILED, "编辑资源异常");
 			e.printStackTrace();
 		}
 		return result;
