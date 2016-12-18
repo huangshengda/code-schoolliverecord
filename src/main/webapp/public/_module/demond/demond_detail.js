@@ -5,6 +5,12 @@ $(function() {
 			window.location.href = ROOT_SERVER+"/#/index";
 		});
 	}
+	//添加播放次数
+	CDUtil.ajaxPost("/resource/viewcnt/addone", {resourceId: resourceId},function(retVO) {
+		if(retVO.code == 1){
+			$("#play_times").html(retVO.data);
+		}
+	});
 	
 	var SWF_ID = "evideo_" + new Date().getTime();
 	var SWF_NAME = ROOT_UI_PUBLIC + "/evideo/evideo.swf";
@@ -113,7 +119,8 @@ $(function() {
 		CDUtil.ajaxPost("/resource/comment/add",params,function(retVO){
 			if(retVO.code == 1){
 				layer.msg('评论成功');
-				$("#comment_one_textarea").val("")
+				$("#comment_one_textarea").val("");
+				$("#comment_one_count").html(150);
 				searchCommentOne();
 			}else{
 				layer.msg('评论失败');
@@ -267,7 +274,7 @@ $(function() {
 		if(replyUserId == undefined){
 			$(this).attr("data-replyUserId",userId);
 			$(this).attr("data-replyUserName",replyUserName);
-			$(this).val(userName+"回复"+$(oneDom).attr("data-username")+"：");
+			$(this).attr("placeholder",userName+"回复"+$(oneDom).attr("data-username")+"：");
 		}
 	});
 	
@@ -287,7 +294,7 @@ $(function() {
 		var wDom = $(this).parents(".comment-two-write").get(0);
 		var txDom = $(wDom).children(".comment-two-textarea").get(0);
 		var value = $(txDom).val();
-		value = value.substr((value.indexOf("：")+1));
+		//value = value.substr((value.indexOf("：")+1));
 		if(value == ""){
 			layer.msg('评论不能为空');
 			return;
@@ -324,6 +331,7 @@ $(function() {
 				$(txDom).removeAttr("data-replyUserId");
 				$(txDom).removeAttr("data-replyUserName");
 				$(txDom).val("");
+				$(txDom).attr("placeholder","请添加评论");
 			}else{
 				layer.msg('回复失败');
 			}
@@ -340,7 +348,8 @@ $(function() {
 		var replyUserId = $(twoDom).attr("data-commentUserId");
 		$(txDom).attr("data-replyUserId",replyUserId);
 		$(txDom).attr("data-replyUserName",replyUserId);
-		$(txDom).val(userName+"回复"+replyName+"：");
+		$(txDom).attr("placeholder",userName+"回复"+replyName+"：");
+		$(txDom).focus();
 	});
 	//点击删除评论二级
 	$("#comment_one_list").on("click",".comment-two-del",function(){

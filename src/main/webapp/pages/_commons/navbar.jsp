@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <nav role="navigation" class="navbar navbar-default"> 
   <div class="wamp"> 
-   <img src="${ROOT_UI}/public/_module/images/logo.png" class="inb" /> 
+   <img src="${basicInfo.logoPath}" id="logo_img" class="inb">
    <div class="head inb">
     <div class="navHead" id="sys_slr_nav" > 
     <%--  <span><a href="${ROOT_SERVER}/#/index" class="router-link-active">首页 </a></span>

@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">
-<title>上传课程资源</title>
 <%@ include file="../../_commons/meta.jsp" %>
 <script type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
 <style type="text/css">

@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>直播详情页</title>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">  
-  <meta name="viewport" content="width=device-width">
-  <%@ include file="../../_commons/meta.jsp"%>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">  
+<meta name="viewport" content="width=device-width">
+<%@ include file="../../_commons/meta.jsp"%>
 <script type="text/javascript" src="${ROOT_UI}/public/_tools/tool.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/public/player_flash/player_flash.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_live.js" ></script>
