@@ -139,8 +139,8 @@ var config = {
 	//用来展示表格的表头数据
 	thead: [
           		{name:"序号",valuekey:"sort"},
-               	{name:"服务器名称",valuekey:"serverName"},
-                {name:"DMS 地址",valuekey:"serverValue"},
+               	{name:"服务器名称",valuekey:"serverName",css:"width: 130px;"},
+                {name:"DMS 地址",valuekey:"serverValue",css:"width: 130px;"},
                 {name:"操作",valuekey:"opt",type:"opt"}
            ],
 	//用来展示表格的数据

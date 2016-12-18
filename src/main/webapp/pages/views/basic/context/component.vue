@@ -8,7 +8,7 @@
       <thead><th>年级</th><th>排序</th><th>操作</th></thead>
       <tbody id="sort">
         <tr v-for="(grade,index) in grades.data">
-        <td :data-id="grade.classlevelId">{{grade.classlevelName}}</td>
+        <td :data-id="grade.classlevelId" :title="grade.classlevelName">{{grade.classlevelName}}</td>
          <td><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
         <td class="colorTd"><span @click="manEdit(grade.classlevelName,grade.classlevelId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.classlevelId)">删除</span></td></tr>
       </tbody>
@@ -190,4 +190,11 @@
 <style>
 .colorTd{color:#03a9f4}
 .colorTd span{cursor: pointer;}
+#sort td {
+    white-space: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
 </style>
