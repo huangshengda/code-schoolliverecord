@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 /**
- * 后台返回的用户在线标示
- */
-TOKEN_FLAG = "${token}";
-/**
  * 前端资源文件的根目录
  */
 ROOT_UI = "${ROOT_UI}";
@@ -30,3 +26,20 @@ params = {};//用来定义页面和后台交互的公共传参对象
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_manifest.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_common.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_base.js" ></script>
+<script type="text/javascript" >
+/**
+ * 后台返回的用户在线标示
+ */
+TOKEN_FLAG = "${token}";
+LOGIN_FLAG = sessionStorage.getItem("loginFlag");
+sessionStorage.setItem("token",TOKEN_FLAG);
+if(TOKEN_FLAG != "" && LOGIN_FLAG != "1"){
+	CDUtil.ajaxPost("/token/getuser",{token: TOKEN_FLAG},function(retVO){
+		if(retVO.code == 1){
+			sessionStorage.setItem("loginFlag", "1");
+		}else if (retVO.code == 0) {
+			layer.msg(retVO.msg);
+		}
+	},false);
+}
+</script>

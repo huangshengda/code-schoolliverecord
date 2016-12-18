@@ -6072,7 +6072,7 @@ webpackJsonp([0,6],{
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\App.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\App.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -6083,9 +6083,9 @@ webpackJsonp([0,6],{
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-51064ce0", __vue_options__)
+	    hotAPI.createRecord("data-v-effdf01a", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-51064ce0", __vue_options__)
+	    hotAPI.reload("data-v-effdf01a", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] App.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -6152,7 +6152,7 @@ webpackJsonp([0,6],{
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Navbar.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Navbar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -6163,9 +6163,9 @@ webpackJsonp([0,6],{
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-0e8dd020", __vue_options__)
+	    hotAPI.createRecord("data-v-4c23c3a6", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-0e8dd020", __vue_options__)
+	    hotAPI.reload("data-v-4c23c3a6", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Navbar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -6549,10 +6549,11 @@ webpackJsonp([0,6],{
 	          $("#user_info").hide();
 	          $("#login_button").show();
 	          sessionStorage.clear();
-	        } else {
+	        } else if (retVO.code == 1) {
 	          $("#user_info").show();
 	          $("#login_button").hide();
-	          $("#user_realname").html(sessionStorage.getItem("realname"));
+	          sessionStorage.setItem("realname", retVO.data.realname);
+	          $("#user_realname").html(retVO.data.realname);
 	        }
 	      });
 	      /**获取导航**/
@@ -7036,7 +7037,7 @@ webpackJsonp([0,6],{
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(26).rerender("data-v-0e8dd020", module.exports)
+	     __webpack_require__(26).rerender("data-v-4c23c3a6", module.exports)
 	  }
 	}
 
@@ -7057,7 +7058,7 @@ webpackJsonp([0,6],{
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(26).rerender("data-v-51064ce0", module.exports)
+	     __webpack_require__(26).rerender("data-v-effdf01a", module.exports)
 	  }
 	}
 
