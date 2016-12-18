@@ -2090,9 +2090,10 @@ webpackJsonp([1,6],[
 	    }
 	  }, [_vm._v("学生")])])])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _c('div', {
+	  return _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
+	      "action": "",
 	      "id": "adduser"
 	    }
 	  }, [_c('div', {
