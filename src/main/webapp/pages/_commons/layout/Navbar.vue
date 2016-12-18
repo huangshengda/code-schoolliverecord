@@ -85,10 +85,11 @@ export default{
       			$("#user_info").hide();
         		$("#login_button").show();
         		sessionStorage.clear();
-      		}else{
+      		}else if(retVO.code == 1){
       			$("#user_info").show();
 				$("#login_button").hide();
-				$("#user_realname").html(sessionStorage.getItem("realname"));
+				sessionStorage.setItem("realname", retVO.data.realname);
+				$("#user_realname").html(retVO.data.realname);
       		}
       	});
       	/**获取导航**/
