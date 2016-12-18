@@ -20,6 +20,7 @@
             </div>
           </span>
         </div>
+        <input type="hidden" name="thumbFlag" value="" id="update_img">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>网站底部:</label></span>
           <span class="cd-f-value ">
@@ -59,7 +60,6 @@ export default {
     	},
      /** 表单操作--上传图片**/
         impup: function(){
-        	console.log($("#thispage_fileup"));
         	var fileDom = $("#thispage_fileup")[0];
         	var file = fileDom.files[0];
         	var fileupUrl = ROOT_SERVER+"/image/upload?token="+sessionStorage.getItem("token");
@@ -80,7 +80,6 @@ export default {
         });
        	if(result==true){
         	var platParams = $('#platform').serialize();
-        	console.log(platParams);
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
       			if (retVO.code == 1) {
 					layer.msg(retVO.msg);

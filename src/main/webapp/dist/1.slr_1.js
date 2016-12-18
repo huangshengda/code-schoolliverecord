@@ -2675,6 +2675,7 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
+	//
 
 	/**
 	 * Vue组件对象
@@ -2709,6 +2710,7 @@ webpackJsonp([1,6],[
 	        var resourceId = dataVO.resourceId;
 	        H5fileup.showImgAuto(file, "thispage_fileup_img");
 	        $("#img_resourceId").val(resourceId);
+	        $("#update_img").val('ture');
 	      });
 	    },
 	    /** 表单操作--保存**/
@@ -2719,7 +2721,6 @@ webpackJsonp([1,6],[
 	      });
 	      if (result == true) {
 	        var platParams = $('#platform').serialize();
-	        console.log(platParams);
 	        CDUtil.ajaxPost("/base/basicinfo/update", platParams, function (retVO) {
 	          if (retVO.code == 1) {
 	            layer.msg(retVO.msg);
@@ -2788,7 +2789,14 @@ webpackJsonp([1,6],[
 	      "value": "",
 	      "data-vali": "notnull"
 	    }
-	  })])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+	  })])])]), _vm._v(" "), _c('input', {
+	    attrs: {
+	      "type": "hidden",
+	      "name": "thumbFlag",
+	      "value": "",
+	      "id": "update_img"
+	    }
+	  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve mt40"
 	  }, [_vm._m(3), _vm._v(" "), _c('span', [_c('button', {
 	    staticClass: "lay-btn green-btn mr20",

@@ -111,7 +111,6 @@ var config = {
                   {name:"年级",valuekey:"classlevelName",css:"width: 130px;"},
                   {name:"学科",valuekey:"subjectName"},
                   {name:"主讲教师",valuekey:"author"},
-                  {name:"上传人",valuekey:"creatName"},
                   {name:"操作",valuekey:"opt",type:"opt"}
           ],
 	//用来展示表格的数据
