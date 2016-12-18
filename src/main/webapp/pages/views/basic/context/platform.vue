@@ -84,8 +84,8 @@ export default {
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
       			if (retVO.code == 1) {
 					layer.msg(retVO.msg);
-					layer.close(index);
 					$('#platform')[0].reset();
+				    location.reload();
 				}
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
