@@ -121,9 +121,12 @@ public class DmsServerController {
 	public ReturnVoOne<DmsServer> delDmsServer(String serverId) {
 		int code = Constants.SUCCESS;
 		String msg = "删除成功";
-		dmsServerService.delDmsServer(serverId);
-		msg = "删除失败";
-		code = Constants.FAILED;
+		try {
+			dmsServerService.delDmsServer(serverId);
+		} catch (Exception e) {
+			msg = "删除失败";
+			code = Constants.FAILED;
+		}
 
 		return new ReturnVoOne<DmsServer>(code, msg);
 	}
