@@ -78,13 +78,13 @@ $(function(){
 					userId:$('#user_id').val(),
 				};
      			CDUtil.ajaxPost("/base/user/update",pwdParams,function(retVO){
+     				if (retVO.code == 0) {
+						layer.msg(retVO.msg);
+					}
      				if (retVO.code == 1) {
 						layer.msg(retVO.msg);
 						window.location.href = ROOT_SERVER+"/#/index";
 				        window.location.reload();
-					}
-     				if (retVO.code == 0) {
-						layer.msg(retVO.msg);
 					}
      			});
       			}else{
