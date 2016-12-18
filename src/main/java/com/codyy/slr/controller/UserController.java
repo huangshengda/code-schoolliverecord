@@ -290,12 +290,20 @@ public class UserController {
 	 *
 	 */
 	@ResponseBody
-	@RequestMapping("/token/getUser")
+	@RequestMapping("/token/getuser")
 	public ReturnVoOne<User> getUserByToken(String token, HttpServletRequest req) {
 		User user = null;
 		String agent = req.getHeader("User-Agent");
 		try {
 			user = TokenUtils.getUserFromCache(token, agent);
+			if ("TEACHER".equals(user.getUserType())) {
+				user.setColumn(Constants.COLUMN_MY_COURSE);
+			} else if ("STUDENT".endsWith(user.getUserType())) {
+				user.setColumn(Constants.COLUMN);
+			} else {
+				user.setColumn(Constants.COLUMN_BASE);
+			}
+			user.setPassword(null);
 		} catch (ExecutionException e) {
 			new ReturnVoOne<User>(Constants.FAILED, "获取失败", user);
 			e.printStackTrace();
