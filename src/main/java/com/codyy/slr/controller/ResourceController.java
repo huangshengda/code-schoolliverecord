@@ -212,6 +212,10 @@ public class ResourceController {
 		ReturnVoOne<ResourceVo> result = null;
 		try {
 			ResourceVo resVo = resourceService.getResource(resourceId);
+			String thumbPath = resVo.getThumbPath();
+			resVo.setThumbName(thumbPath.substring(thumbPath.lastIndexOf("/") + 1));
+			String storePath = resVo.getStorePath();
+			resVo.setType(storePath.substring(storePath.lastIndexOf(".") + 1));
 			result = new ReturnVoOne<ResourceVo>(resVo);
 		} catch (Exception e) {
 			result = new ReturnVoOne<ResourceVo>(Constants.FAILED, "查询失败");
