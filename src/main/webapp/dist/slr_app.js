@@ -13,11 +13,11 @@ webpackJsonp([0,6],{
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _router = __webpack_require__(85);
+	var _router = __webpack_require__(87);
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _vueResource = __webpack_require__(87);
+	var _vueResource = __webpack_require__(89);
 
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 
@@ -6060,7 +6060,7 @@ webpackJsonp([0,6],{
 	__vue_exports__ = __webpack_require__(3)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(84)
+	var __vue_template__ = __webpack_require__(86)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -6140,7 +6140,7 @@ webpackJsonp([0,6],{
 	__vue_exports__ = __webpack_require__(10)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(83)
+	var __vue_template__ = __webpack_require__(85)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -6908,7 +6908,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 83:
+/***/ 85:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -7053,7 +7053,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 84:
+/***/ 86:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -7074,7 +7074,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 85:
+/***/ 87:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7083,7 +7083,7 @@ webpackJsonp([0,6],{
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _vueRouter = __webpack_require__(86);
+	var _vueRouter = __webpack_require__(88);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
@@ -7126,7 +7126,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 86:
+/***/ 88:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9193,7 +9193,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 87:
+/***/ 89:
 /***/ function(module, exports) {
 
 	/*!

@@ -16,11 +16,11 @@
             <img src="" width="360" height="70" id="thispage_fileup_img" file-name="" file-path="" class="show">
             <div class="btn btn-default smp-fileupshow mt10" >上传logo
               <input type="file" id="thispage_fileup" @change="impup();"  class="smp-fileupinput"/>
-              <input type="hidden" id="img_resourceId" name="logoPath" value="" data-vali="notnull" />
+              <input type="hidden" id="img_resourceId" name="logoPath" value="" />
             </div>
           </span>
+          <input type="hidden" id="msg_img" value="false" name="thumbFlag">
         </div>
-        <input type="hidden" name="thumbFlag" value="" id="update_img">
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>网站底部:</label></span>
           <span class="cd-f-value ">
@@ -70,6 +70,7 @@ export default {
 				var resourceId = dataVO.resourceId;
 				H5fileup.showImgAuto(file,"thispage_fileup_img");
 				$("#img_resourceId").val(resourceId);	
+				$("#msg_img").val(true);
 			});
         },
           /** 表单操作--保存**/

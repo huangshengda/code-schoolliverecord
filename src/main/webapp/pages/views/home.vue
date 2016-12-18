@@ -71,7 +71,7 @@ methods:{
 /** 获取点播列表的方法 **/
        showdemand:function(){
         var _self = this;
-        var params = {};
+        var params = {pageSize:8};
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
             _self.courseList = retVO;//JSON.parse(retVO);
         },false)
@@ -123,5 +123,6 @@ methods:{
    }   
 </script>
 <style>
+body{background-color: #fff;}
 .s-title .demanCour{margin:0;}
 </style>
