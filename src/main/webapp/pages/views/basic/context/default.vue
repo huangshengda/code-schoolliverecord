@@ -13,7 +13,7 @@
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
-          <span class="cd-f-value ">
+          <span class="cd-f-value">
             <input type="text" name="realname" id="search_realname" data-vali="notnull" maxlength="10">
           </span>
         </div>
