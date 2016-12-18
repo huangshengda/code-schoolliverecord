@@ -33,6 +33,7 @@
 <div class="wamp">
 	<div class="smp-main">
 		<form action="" class="up-subject" id="form_save_videoup" >
+			<input type="hidden" id="resourceId" name="resourceId" />
 			<div class="cd-f-row">
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
@@ -80,6 +81,7 @@
 						<input type="hidden" id="video_name" data-vali="notnull" />
 						<input type="hidden" id="video_size" name="size" data-vali="notnull" />
 						<input type="hidden" id="video_img_resourceId" name="thumbName" data-vali="notnull" />
+						<input type="hidden" id="video_img_flag" name="thumbFlag" />
 					</span>
 				</div>
 				<div class="cd-f-eve">

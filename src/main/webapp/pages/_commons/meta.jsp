@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 /**
+ * 后台返回的用户在线标示
+ */
+TOKEN_FLAG = "";
+/**
  * 前端资源文件的根目录
  */
 ROOT_UI = "${ROOT_UI}";
@@ -13,11 +17,11 @@ publicPath = ROOT_UI_PUBLIC;
  */
 ROOT_SERVER = "${ROOT_SERVER}";
 /**  
- * 在线聊天后台地址根目录
+ * 在线聊天后台地址
  */
 ROOT_SERVER_CHAT = "${ROOT_CHAT}/chat";
-var layerIndex = null;//用来定义页面提示框的层，方便关闭
-var params = {};//用来定义页面和后台交互的公共传参对象
+layerIndex = null;//用来定义页面提示框的层，方便关闭
+params = {};//用来定义页面和后台交互的公共传参对象
 </script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/myLayer/layer/skin/layer.css">
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery-2.2.4.js" ></script>
