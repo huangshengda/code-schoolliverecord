@@ -35,11 +35,20 @@ TOKEN_FLAG = "${token}";
 LOGIN_FLAG = sessionStorage.getItem("loginFlag");
 AUTO_LOGIN_FLAG = localStorage.getItem("SLR_LOGINFLAG");
 sessionStorage.setItem("token",TOKEN_FLAG);
+/**
+ * 自动登录验证。
+ * 
+ * 首先验证Session级别的Token，Token验证失败启动自动登录的Local级别验证。
+ * 如果自动登录验证失败，重定向到首页。
+ */
 var autoLogin = function(){
 	var logintime = localStorage.getItem("SLR_LOGINTIME");
 	var username = localStorage.getItem("SLR_USERNAME");
 	var password = localStorage.getItem("SLR_PASSWORD");
 	var nowtime = new Date().getTime();
+	if(logintime == null){
+		logintime = nowtime;
+	}
 	if((nowtime-logintime)>7*24*60*60*1000){
 		localStorage.removeItem("SLR_LOGINFLAG");
 		localStorage.removeItem("SLR_LOGINTIME");
@@ -56,7 +65,9 @@ var autoLogin = function(){
 			sessionStorage.setItem("token", retVO.data.token);
 			sessionStorage.setItem("realname", retVO.data.realname);
 			$("#user_realname").html(retVO.data.realname);
-			 window.location.reload();
+			setTimeout(function(){
+   	 			window.location.reload();
+   	 		},100);
         }else{
         	localStorage.removeItem("SLR_LOGINFLAG");
    	 		localStorage.removeItem("SLR_LOGINTIME");
@@ -64,11 +75,14 @@ var autoLogin = function(){
    	 		localStorage.removeItem("SLR_PASSWORD");
    	 		LOGIN_FLAG = null;
    	 		AUTO_LOGIN_FLAG = null;
-   	 		window.location.href = ROOT_SERVER+"/#/index";
-			layer.msg("用户自动登录失效，请手动登录");
+   	 		console.log(window.location.href);
+   	 		setTimeout(function(){
+   	 			window.location.href = ROOT_SERVER+"/#/index";
+   	 		},100);
 		}
       },false);
 }
+//验证Session级别的Token验证。
 if(TOKEN_FLAG != "" && LOGIN_FLAG != "1"){
 	CDUtil.ajaxPost("/token/getuser",{token: TOKEN_FLAG},function(retVO){
 		if(retVO.code == 1){

@@ -26,7 +26,7 @@
 <div class="container" >
 	<p class="l-title">
 		<span id="resource_name" style="margin-right: 15px;" >汉语言文学（第一节）</span>
-		<span><i class="iconfont icon-play-times"></i><span id="play_times" >0</span></span>
+		<span><i class="iconfont icon-play-times"></i><span id="play_times" class="ft12" >0</span></span>
 		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
 	</p>
 	<div class="row" >
