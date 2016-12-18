@@ -273,12 +273,18 @@ public class UserController {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("/token/hasexpire")
-	public ReturnVoOne tokenHasExpire() {
-		// 过滤器已经校验了token
-		return new ReturnVoOne();
+	public ReturnVoOne<User> tokenHasExpire(HttpServletRequest req) {
+		ReturnVoOne<User> one = new ReturnVoOne<User>();
+		try {
+			User user = (User) req.getAttribute("user");
+			one.setData(user);
+		} catch (Exception e) {
+			one.setCode(Constants.FAILED);
+			one.setMsg("出现异常");
+		}
+		return one;
 	}
 
 	/**
