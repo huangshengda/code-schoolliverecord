@@ -52,6 +52,7 @@ $(function(){
 		     	//提交数据给到后台处理
 				CDUtil.ajaxPost("/login",params,function(retVO){
 				  if(retVO.code == 1){
+					  self.userType= retVO.data.userType;
 					layer.msg(retVO.msg);  
 					layer.close(laryIndex);
 					$("#user_info").show();
@@ -111,10 +112,11 @@ $(function(){
 		        $("#user_info").hide();
 		        $("#login_button").show();
 		        sessionStorage.clear();
-		        setTimeout(function(){
-		        	//window.location.href = ROOT_SERVER+"/#/index";
-		        	window.close();
-		        },1000);
+		       // window.location.href = ROOT_SERVER+"/#/index";
+		        setTimeout(function () {
+		        	 window.close();
+       			}, 1000);
+		        //window.location.reload();
 		    });
 		});
 	});
