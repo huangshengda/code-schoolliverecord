@@ -1243,7 +1243,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\r\n", ""]);
+	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n#sort td {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    -o-text-overflow: ellipsis;\r\n    text-overflow: ellipsis;\n}\r\n", ""]);
 
 	// exports
 
@@ -1471,7 +1471,8 @@ webpackJsonp([1,6],[
 	  }, _vm._l((_vm.grades.data), function(grade, index) {
 	    return _c('tr', [_c('td', {
 	      attrs: {
-	        "data-id": grade.classlevelId
+	        "data-id": grade.classlevelId,
+	        "title": grade.classlevelName
 	      }
 	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
@@ -1828,7 +1829,8 @@ webpackJsonp([1,6],[
 			css: "width: 130px;"
 		}, {
 			name: "姓名",
-			valuekey: "realname"
+			valuekey: "realname",
+			css: "width: 130px;"
 		}, {
 			name: "角色",
 			valuekey: "userType_chinese"
@@ -2259,7 +2261,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\r\n", ""]);
+	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n#sort td {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    -o-text-overflow: ellipsis;\r\n    text-overflow: ellipsis;\n}\r\n", ""]);
 
 	// exports
 
@@ -2487,7 +2489,8 @@ webpackJsonp([1,6],[
 	  }, _vm._l((_vm.grades.data), function(grade, index) {
 	    return _c('tr', [_c('td', {
 	      attrs: {
-	        "data-id": grade.subjectId
+	        "data-id": grade.subjectId,
+	        "title": grade.subjectName
 	      }
 	    }, [_vm._v(_vm._s(grade.subjectName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
@@ -3091,7 +3094,7 @@ webpackJsonp([1,6],[
 		//用来展示表格控件的div的id
 		containerId: "use_to_load_grid",
 		//用来展示表格的表头数据
-		thead: [{ name: "序号", valuekey: "sort" }, { name: "服务器名称", valuekey: "serverName" }, { name: "DMS 地址", valuekey: "serverValue" }, { name: "操作", valuekey: "opt", type: "opt" }],
+		thead: [{ name: "序号", valuekey: "sort" }, { name: "服务器名称", valuekey: "serverName", css: "width: 130px;" }, { name: "DMS 地址", valuekey: "serverValue", css: "width: 130px;" }, { name: "操作", valuekey: "opt", type: "opt" }],
 		//用来展示表格的数据
 		//这个应该是后台返回的部分
 		gData: {},

@@ -208,7 +208,8 @@ var config = {
 	},
 	{
 		name: "姓名",
-		valuekey: "realname"
+		valuekey: "realname",
+		css:"width: 130px;"
 	},
 	{
 		name: "角色",
