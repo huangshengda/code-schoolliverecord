@@ -3,7 +3,7 @@
 /**
  * 后台返回的用户在线标示
  */
-TOKEN_FLAG = "";
+TOKEN_FLAG = "${token}";
 /**
  * 前端资源文件的根目录
  */
@@ -16,7 +16,7 @@ publicPath = ROOT_UI_PUBLIC;
  * 服务端的根目录（可以有多个服务端
  */
 ROOT_SERVER = "${ROOT_SERVER}";
-/**  
+/**
  * 在线聊天后台地址
  */
 ROOT_SERVER_CHAT = "${ROOT_CHAT}/chat";

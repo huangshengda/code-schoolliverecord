@@ -81,7 +81,7 @@
 						<input type="hidden" id="video_name" data-vali="notnull" />
 						<input type="hidden" id="video_size" name="size" data-vali="notnull" />
 						<input type="hidden" id="video_img_resourceId" name="thumbName" data-vali="notnull" />
-						<input type="hidden" id="video_img_flag" name="thumbFlag" />
+						<input type="hidden" id="video_img_flag" name="thumbFlag" value="0" />
 					</span>
 				</div>
 				<div class="cd-f-eve">
