@@ -1,5 +1,11 @@
+/**
+ * 视频的编辑和新增页面
+ * 
+ * 使用resourceId用来区分是编辑or新增视频的逻辑
+ */
 $(function(){
-	var laryIndex = null ;	
+	var laryIndex = null ;
+	var resourceId = sessionStorage.getItem("resourceId");
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
 		var allChose = '<option value="';
@@ -14,12 +20,14 @@ $(function(){
 		});
 		allChose += ' >全部</option>';
 		$(allChose+htmlStr).appendTo("#subjectId");
-		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
-			var data = retVO.data;
-			if (retVO.code == 1) {
-				$("#subjectId").val(data.subjectId);
-			}
-		});
+		if(resourceId != undefined && resourceId != ""){
+			CDUtil.ajaxPost("/resource/get",{resourceId: resourceId},function(retVO){
+				var data = retVO.data;
+				if (retVO.code == 1) {
+					$("#subjectId").val(data.subjectId);
+				}
+			});
+		}
 	});
 	
 	CDUtil.ajaxPost("/base/classlevel/list",{},function(retVO){
@@ -37,7 +45,7 @@ $(function(){
 		});
 		allChose += '" data-type="all">全部</span>';
 		$(allChose+htmlStr).appendTo("#show_chose_grade");
-		if(sessionStorage.getItem("resourceId") != ""){
+		if(resourceId != undefined && resourceId != ""){
 			CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
 				var data = retVO.data;
 				if (retVO.code == 1) {
@@ -55,22 +63,24 @@ $(function(){
 	});
 	
 	/**编辑上传信息--start**/
-	if(sessionStorage.getItem("resourceId") != ""){
+	if(resourceId != undefined && resourceId != ""){
+		$(".fileup-button").hide();
+		$("#resourceId").val(resourceId);
 		CDUtil.ajaxPost("/resource/get",{resourceId:sessionStorage.getItem("resourceId")},function(retVO){
 			var data = retVO.data;
 			if (retVO.code == 1) {
 				$('#res_name').val(retVO.data.resourceName);
 				$("#auth").val(retVO.data.author);
 				$("#video_resourceId").val(data.resourceId);
-				$("#video_name").val(data.video_name);
+				$("#video_name").val(data.resourceName);
 				$("#video_size").val(data.size);
-				$("#video_img_resourceId").val(data.video_img_resourceId);
+				$("#video_img_resourceId").val(data.thumbName);
 				
 				var sequence = H5fileup.getSequence();
 				var  htmlStr ='<div class="up-item" id="'+sequence+'" data-resourceid="'+data.resourceId+'">'
 					+'<div class="inb vat"><p>'
-						+'<span class="showfile-name substr" id="'+sequence+'_name">'+data.video_name+'</span>'
-						+'<input class="showfile-name-input" type="text" id="'+sequence+'_name_input" value="'+data.video_img_resourceId+'">'
+						+'<span class="showfile-name substr" id="'+sequence+'_name">'+data.resourceName+'</span>'
+						+'<input class="showfile-name-input" type="text" id="'+sequence+'_name_input" value="'+data.thumbName+'">'
 						+'<span id="'+sequence+'_type">.'+data.type+'</span>'
 						+'<span class="ml10">'+(Math.round(data.size * 100 / (1024 * 1024)) / 100)+'M</span>'
 						+'</p>'
@@ -79,12 +89,16 @@ $(function(){
 					+'</div>'
 					+'</div>'
 					+'<div class="inb"><img src="'+data.thumbPath+'" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'
-					+'<div type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;">上传本地图片<input type="file" value="" class="input-fileup local-img" style="width: 125px;" accept="image/png,image/jpeg"></div></div><i class="iconfont icon-delete del-fileup"></i></div>';
+					+'<div type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;">上传本地图片<input type="file" value="" class="input-fileup local-img" style="width: 125px;" accept="image/png,image/jpeg"></div></div></div>';
 				$("#show_fileup_detail").html(htmlStr);
 			}
-		})
+		});
 	}
-/**编辑上传信息--end**/
+	/**编辑上传信息--end**/
+	
+	/**
+	 * 控制选择年级的逻辑
+	 */
 	$("#show_chose_grade").on("click",".chose-grade",function(){
 		var checked = $(this).prop("checked");
 		//console.log(checked);
@@ -112,7 +126,7 @@ $(function(){
 	});
 	
 	/**
-	 * 当点击上传按钮，选中文件后
+	 * 当点击上传按钮，选中文件发生改变激活重新上传
 	 */
 	$("#fileup_video").change(function(){
 		var file = this.files[0];
@@ -176,18 +190,18 @@ $(function(){
 	/**
 	 * 点击可以修改上传文件的名称
 	**/
-	$("#show_fileup_detail").on("click",".showfile-name",function(){
+	/*$("#show_fileup_detail").on("click",".showfile-name",function(){
 		var oldName = $(this).html();
 		var topDom = $(this).parents(".up-item").get(0);
 		var seq = topDom.id;
 		$("#"+seq+"_name_input").val(oldName);
 		$("#"+seq+"_name").hide();
 		$("#"+seq+"_name_input").show();
-	});
+	});*/
 	/**
 	 * 输入名称后移出焦点确定名称
 	 */
-	$("#show_fileup_detail").on("blur",".showfile-name-input",function(){
+	/*$("#show_fileup_detail").on("blur",".showfile-name-input",function(){
 		var newName = $(this).val();
 		var topDom = $(this).parents(".up-item").get(0);
 		var seq = topDom.id;
@@ -195,7 +209,7 @@ $(function(){
 		$("#"+seq+"_name_input").hide();
 		$("#"+seq+"_name").show();
 		$("#video_name").val(newName+$("#"+seq+"_type").html());
-	});
+	});*/
 	/**
 	 * 显示选择系统截图作为封面事件
 	**/
@@ -240,6 +254,9 @@ $(function(){
 		$("#chose_sysimg .sysprint-img").removeClass("active");
 		$(this).addClass("active");
 	});
+	/**
+	 * 选择系统截图做封面，点击确认
+	 */
 	$("#chose_sysimg_sure").click(function(){
 		layer.close(laryIndex);
 		var seq = $("#chose_sysimg").attr("data-squence");
@@ -248,6 +265,9 @@ $(function(){
 		$("#"+seq+"_show_img").attr("src", $(activeDom).attr("src"));
 		$("#video_img_resourceId").val(resourceId);
 	});
+	/**
+	 * 选择系统截图做封面，点击取消
+	 */
 	$("#chose_sysimg_cancel").click(function(){
 		layer.close(laryIndex);
 	});
@@ -266,6 +286,7 @@ $(function(){
 			var resourceId = dataVO.resourceId;
 			H5fileup.showImgAuto(file,seq+"_show_img");
 			$("#video_img_resourceId").val(resourceId);
+			$("#video_img_flag").val("1");
 		});
 	});
 	/**
@@ -286,15 +307,26 @@ $(function(){
 		});
 		//console.log(result);
 		if(!result){return;}
-		CDUtil.ajaxPost("/resource/addresource",params,function(retVO){
-			layer.alert('上传视频成功！', {
-			  icon: 1,
-			  skin: 'layer-ext-moon'
+		if(resourceId != undefined && resourceId != ""){
+			CDUtil.ajaxPost("/resource/update",params,function(retVO){
+				layer.alert('修改视频信息成功', {
+				  icon: 1,
+				  skin: 'layer-ext-moon'
+				});
+				setTimeout(function(){
+					window.location.href = ROOT_SERVER+"/#/basic/upload";
+				},1000);
 			});
-			setTimeout(function(){
-				window.location.href = ROOT_SERVER+"/#/basic/upload";
-			},1000);
-			//$('#form_save_videoup')[0].reset();
-		});
+		}else{
+			CDUtil.ajaxPost("/resource/addresource",params,function(retVO){
+				layer.alert('上传视频成功！', {
+				  icon: 1,
+				  skin: 'layer-ext-moon'
+				});
+				setTimeout(function(){
+					window.location.href = ROOT_SERVER+"/#/basic/upload";
+				},1000);
+			});
+		}
 	});
 });
