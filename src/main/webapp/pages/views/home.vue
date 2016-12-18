@@ -123,6 +123,5 @@ methods:{
    }   
 </script>
 <style>
- body{background-color:#fff;}
 .s-title .demanCour{margin:0;}
 </style>
