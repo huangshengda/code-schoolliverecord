@@ -9,7 +9,7 @@ $(function(){
 	CDUtil.ajaxPost("/base/subject/list",{},function(retVO){
 		var dataVO = retVO.data;
 		var allChose = '<option value="';
-		var htmlStr = '<option value="">全选</option>';
+		var htmlStr = '';
 		$(dataVO).each(function(i,data){
 			if(i>0){
 				allChose += ","+data.subjectId;
@@ -19,7 +19,7 @@ $(function(){
 			htmlStr += '<option value="'+data.subjectId+'">'+data.subjectName+'</option>';
 		});
 		allChose += ' >全部</option>';
-		$(allChose+htmlStr).appendTo("#subjectId");
+		$(htmlStr).appendTo("#subjectId");
 		if(resourceId != undefined && resourceId != ""){
 			CDUtil.ajaxPost("/resource/get",{resourceId: resourceId},function(retVO){
 				var data = retVO.data;

@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">  
-<title>点播详情</title>
 <meta name="viewport" content="width=device-width">
 <%@ include file="../../_commons/meta.jsp"%>
 <script type="text/javascript" src="${ROOT_UI}/public/evideo/js-swf.js" ></script>
@@ -27,6 +26,7 @@
 <div class="container" >
 	<p class="l-title">
 		<span id="resource_name" style="margin-right: 15px;" >汉语言文学（第一节）</span>
+		<span><i class="iconfont icon-play-times"></i><span id="play_times" >0</span></span>
 		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
 	</p>
 	<div class="row" >
@@ -34,10 +34,10 @@
 			<div class="vedio" id="video_player_content"></div>
 			<div id="" style="border: 1px solid #dddddd;" class="mt30">
 				<div class="com-comments mb20" >
-					<h2 class="com-comments-h2">评价</h2>
+					<h2 class="com-comments-h2">用户评论</h2>
 					<div class="com-commonts-area clearfix" id="comment_area">
 						<div class="counterBox">
-							<textarea name="" id="comment_one_textarea" limit-len="150" limit="1,150" limitmsg="很抱歉，输入字数超出最大长度150个字符" class="mb10 edit-wb-frame"></textarea>
+							<textarea name="" id="comment_one_textarea" placeholder="请添加评论" limit-len="150" limit="1,150" limitmsg="很抱歉，输入字数超出最大长度150个字符" class="mb10 edit-wb-frame"></textarea>
 							<div class="clearfix">
 								<span id="commonts_first_face" class="e-xpression">
 									<i class="iconfont icon-face"></i>

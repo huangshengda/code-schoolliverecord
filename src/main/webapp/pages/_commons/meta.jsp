@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<title>${basicInfo.title}</title>
 <script type="text/javascript">
 /**
  * 前端资源文件的根目录
