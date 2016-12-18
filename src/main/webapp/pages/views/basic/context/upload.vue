@@ -104,7 +104,7 @@ var config = {
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
 	 thead: [{name:"资源名称",valuekey:"resourceName"},
-                  {name:"年级",valuekey:"classlevelName"},
+                  {name:"年级",valuekey:"classlevelName",css:"width: 130px;"},
                   {name:"学科",valuekey:"subjectName"},
                   {name:"主讲教师",valuekey:"author"},
                   {name:"上传人",valuekey:"creatName"},
