@@ -26,9 +26,27 @@ public class ResourceVo {
 	private String sourceType;
 	private String livingFlag;
 	private List<String> opt;
+	private String type;
+	private String thumbName;
 
 	public ResourceVo() {
 		super();
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getThumbName() {
+		return thumbName;
+	}
+
+	public void setThumbName(String thumbName) {
+		this.thumbName = thumbName;
 	}
 
 	public String getClasslevelName() {
