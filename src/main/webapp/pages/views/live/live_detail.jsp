@@ -24,6 +24,9 @@
 .chat-delete:hover{
 	font-size: 18px;
 }
+.l-title {font-size: 18px;}
+.l-title span{margin: 0px;}
+.ft12{font-size: 14px;}
 </style>
 </head>
 <body>
@@ -31,7 +34,7 @@
 <!-- 直播课程详情 start-->
 <div class="container mt40">
 	<p class="l-title">
-		<span id="resource_name" >汉语言文学（第一节）</span>
+		<span id="resource_name" style="margin-right: 15px;"  >汉语言文学（第一节）</span>
 		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
 	</p>
 	<div class="row" >

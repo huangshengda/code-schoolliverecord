@@ -13,6 +13,9 @@
 <script  type="text/javascript" src="${ROOT_UI}/public/_module/demond/demond_detail.js"></script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/comment.css">
 <style type="text/css">
+.l-title {font-size: 18px;}
+.l-title span{margin: 0px;}
+.ft12{font-size: 14px;}
 </style>
 </head>
 <body>
@@ -20,7 +23,7 @@
 <!-- 点播课程详情 start-->
 <div class="container" >
 	<p class="l-title">
-		<span id="resource_name" >汉语言文学（第一节）</span>
+		<span id="resource_name" style="margin-right: 15px;" >汉语言文学（第一节）</span>
 		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
 	</p>
 	<div class="row" >
