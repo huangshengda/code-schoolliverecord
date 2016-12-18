@@ -155,10 +155,10 @@ export default{
 			layer.close(layerIndex);
 			layer.msg("等待退出登录. . .");
          CDUtil.ajaxPost("/loginout",{},function(retVO){
-         	localStorage.removeItem("SLR_LOGINFLAG","1");
-           	 		localStorage.removeItem("SLR_LOGINTIME", new Date().getTime());
-           	 		localStorage.removeItem("SLR_USERNAME", params.username);
-           	 		localStorage.removeItem("SLR_PASSWORD", params.password);
+         	localStorage.removeItem("SLR_LOGINFLAG");
+           	 		localStorage.removeItem("SLR_LOGINTIME");
+           	 		localStorage.removeItem("SLR_USERNAME");
+           	 		localStorage.removeItem("SLR_PASSWORD");
               $("#user_info").hide();
               $("#login_button").show();
               sessionStorage.clear();
