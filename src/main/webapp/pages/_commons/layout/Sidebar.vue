@@ -46,7 +46,6 @@ export default {
           parent = p
         }
       }
-
       if ('expanded' in parent.meta && parent !== lastMatched) {
         parent.meta.expanded = true
       }
