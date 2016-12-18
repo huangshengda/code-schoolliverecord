@@ -320,7 +320,6 @@ webpackJsonp([1,6],[
 	          parent = p;
 	        }
 	      }
-
 	      if ('expanded' in parent.meta && parent !== lastMatched) {
 	        parent.meta.expanded = true;
 	      }
@@ -1969,7 +1968,7 @@ webpackJsonp([1,6],[
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
 	  }, [_c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value "
+	    staticClass: "cd-f-value"
 	  }, [_c('input', {
 	    attrs: {
 	      "type": "text",
