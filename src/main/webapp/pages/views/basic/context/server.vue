@@ -186,7 +186,7 @@ var config = {
           			containerId: "addServer",
         		});
        			if(result==true){
-              		var addparams = $('#addServer').serialize();
+              		var addparams = $('#addServer').serializeJSON();
       				CDUtil.ajaxPost("/base/dmsserver/add",addparams,function(retVO){
       					if (retVO.code == 1) {
 							servSearch();
