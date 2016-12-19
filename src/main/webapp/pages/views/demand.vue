@@ -212,6 +212,3 @@ window.openDemondDetail=function(resourceId){
     }
    }
 </script>
-<style>
-body{background-color: #f5f8fa;}
-</style>

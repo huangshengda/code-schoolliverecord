@@ -159,10 +159,12 @@ export default {
   }
 .menu-level1 a.router-link-active{
   color:#34a150;
+  display:block;
+  width:100%;
+  background-color: #f0f0f0;
 }
 .menu-level1:hover,.menu-level1:visited,.menu-level1:active{
   background-color: #f0f0f0;
   a{color:#34a150;}
 }
-.menu-list li.active div{background-color: #f0f0f0;}
 </style>

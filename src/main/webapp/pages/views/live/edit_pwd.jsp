@@ -58,7 +58,7 @@
   <!-- 修改密码  end-->
 <script type="text/javascript">
 $(function(){
-	CDUtil.ajaxPost("/token/getUser",{token:sessionStorage.getItem("token")},function(retVO){
+	CDUtil.ajaxPost("/token/getuser",{token:sessionStorage.getItem("token")},function(retVO){
 		if (retVO.code == 1) {
 			$('#user_name').text(retVO.data.username);
 			$("#user_id").val(retVO.data.userId);

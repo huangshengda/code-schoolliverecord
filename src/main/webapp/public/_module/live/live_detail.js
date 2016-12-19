@@ -65,7 +65,7 @@ $(function() {
 				var htmlStr = '<li class="chat-li" id="'+id+'" data-timestamp="'+timestamp+'"  >'
  					+'<span class="fb mr20">'+author+'</span>'
  					//+'<span>5分钟之前</span>'
- 					+'<p class="s-flow">'+msg+'</p>';
+ 					+'<p class="chat-context">'+msg+'</p>';
 				if(delAuth){
 					htmlStr += '<i class="iconfont icon-delete chat-delete fr c9" data-id="'+id+'"></i>'
 				}
