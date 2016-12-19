@@ -12,7 +12,6 @@ webpackJsonp([2,6],[
 
 	window.jquery = $;
 	window.jQuery = $;
-	//console.log($);
 
 	/**  加载接口开发的前端Mock  **/
 	/*window.Mock = require('../public/mock/dist/mock-min');*/
@@ -848,7 +847,9 @@ webpackJsonp([2,6],[
 /* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	/**
 	 * 功能描述：扩展部分用于全局的公共方法。
@@ -870,6 +871,19 @@ webpackJsonp([2,6],[
 	  * callback：请求结束后回调，isToken：是否进行token验证（默认需要）,isCrossDomain：是否跨域（非必填，默认不跨域）。
 	  */
 		CDUtil.ajaxPost = function (url, params, callback, isToken, isCrossDomain) {
+			if (typeof params == "string") {
+				params = eval('(' + params + ')');
+				console.log(typeof params === 'undefined' ? 'undefined' : _typeof(params));
+			}
+			for (var key in params) {
+				var value = params[key];
+				if (value == undefined) {
+					value = params.key;
+				}
+				value = CDUtil.html2Escape(params[key]);
+				console.log(value);
+				params[key] = value;
+			};
 			if (isToken == undefined) {
 				isToken = true;
 			}
