@@ -57,7 +57,7 @@
 		          <div class="chat-btm mt20">
 		          	<div class="bar"></div>
 		          	<div class="c-text">
-		            	<textarea id="chat"></textarea>
+		            	<textarea id="chat" maxlength="150"></textarea>
 		            	<button class="commit fr" id="chat_send">发表</button>
 		            	<div class="clear"></div>
 		          	</div>
