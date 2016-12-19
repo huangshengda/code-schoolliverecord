@@ -99,9 +99,9 @@
 			<img alt="..." class="img-thumbnail sysprint-img" src="http://localhost:8080/SchoolLiveRecord/download/img/temp/6b72694694424ae895f62378e4c74d92_001.png"  >
 		</div> -->
 	</div>
-	<div style="height: 60px;">
-		<button type="button" class="gray-btn lay-btn fr" id="chose_sysimg_cancel" >取消</button>
-		<button type="button" class="green-btn lay-btn fr" id="chose_sysimg_sure" >确定</button>
+	<div style="height: 60px;text-align: center;">
+		<button type="button" class="green-btn lay-btn mr15" id="chose_sysimg_sure" >确定</button>
+		<button type="button" class="gray-btn lay-btn" id="chose_sysimg_cancel" >取消</button>
 	</div>
 </div>
 <script type="text/javascript"></script>
