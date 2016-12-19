@@ -101,6 +101,7 @@ $(function(){
 	 */
 	$("#show_chose_grade").on("click",".chose-grade",function(){
 		var checked = $(this).prop("checked");
+		//console.log(checked);
 		if(checked){
 			var value = $(this).val();
 			$("#classlevelIds").val(value);
@@ -299,9 +300,11 @@ $(function(){
 	 */
 	$("#save_video_info").click(function(){
 		var params = $('#form_save_videoup').serializeJSON();
+		console.log(params);
 		var result = Validation.validation({
 			containerId: "form_save_videoup"
 		});
+		//console.log(result);
 		if(!result){return;}
 		if(resourceId != undefined && resourceId != ""){
 			CDUtil.ajaxPost("/resource/update",params,function(retVO){
