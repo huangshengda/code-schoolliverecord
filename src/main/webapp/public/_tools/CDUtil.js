@@ -37,7 +37,10 @@
 					$("#user_info").hide();
 			        $("#login_button").show();
 			        sessionStorage.clear();
-			        //window.location.href = ROOT_SERVER+"/#/index";
+			        localStorage.removeItem("SLR_LOGINFLAG");
+		   	 		localStorage.removeItem("SLR_LOGINTIME");
+		   	 		localStorage.removeItem("SLR_USERNAME");
+		   	 		localStorage.removeItem("SLR_PASSWORD");
 				}
 				if(typeof(callback) == "function" ){
 					callback(retVO);
@@ -146,6 +149,6 @@
 		}
 	};
 	return CDUtil;
-});	
+});
 //window.CDUtil = CDUtil;
 //})(window,document);
