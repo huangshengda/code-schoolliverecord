@@ -86,7 +86,7 @@
           		containerId: "editgrade",
         	});
        		if(result==true){
-				var editparams = $('#editgrade').serialize();
+				var editparams = $('#editgrade').serializeJSON();
 				CDUtil.ajaxPost("/base/classlevel/update", editparams,
 				function(retVO) {
 					if (retVO.code == 1) {
@@ -138,7 +138,7 @@
           			containerId: "addgrade",
         		});
        			if(result==true){
-              		var addparams = $('#addgrade').serialize();
+              		var addparams = $('#addgrade').serializeJSON();
       				CDUtil.ajaxPost("/base/classlevel/add",addparams,function(retVO){
       					if (retVO.code == 1) {
 							_self.show();
