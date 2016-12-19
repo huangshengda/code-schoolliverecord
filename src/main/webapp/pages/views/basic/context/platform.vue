@@ -15,7 +15,7 @@
           <span class="cd-f-value ">
             <img src="" width="360" height="70" id="thispage_fileup_img" file-name="" file-path="" class="show">
             <div class="btn btn-default smp-fileupshow mt10" >上传logo
-              <input type="file" id="thispage_fileup" @change="impup();"  class="smp-fileupinput"/>
+              <input type="file" id="thispage_fileup" @change="impup();"  class="smp-fileupinput" accept="image/png,image/jpeg" />
               <input type="hidden" id="img_resourceId" name="logoPath" value="" />
             </div>
           </span>
@@ -53,7 +53,6 @@ export default {
       			if (retVO.code == 1) {
 					$('#basic_tit').val(retVO.data.title);
 					$('#thispage_fileup_img').attr('src',retVO.data.logoPath);
-					console.log(retVO.data.logoPath);
 					$('#basic_btm').val(retVO.data.buttomMsg);
 				}
       		});

@@ -6,7 +6,6 @@
 
 window.jquery = $;
 window.jQuery = $;
-//console.log($);
 
 /**  加载接口开发的前端Mock  **/
 /*window.Mock = require('../public/mock/dist/mock-min');*/
