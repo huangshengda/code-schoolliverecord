@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>直播详情页</title>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">  
-  <meta name="viewport" content="width=device-width">
-  <%@ include file="../../_commons/meta.jsp"%>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">  
+<meta name="viewport" content="width=device-width">
+<%@ include file="../../_commons/meta.jsp"%>
 <script type="text/javascript" src="${ROOT_UI}/public/_tools/tool.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/public/player_flash/player_flash.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_live.js" ></script>
@@ -24,6 +23,9 @@
 .chat-delete:hover{
 	font-size: 18px;
 }
+.l-title {font-size: 18px;}
+.l-title span{margin: 0px;}
+.ft12{font-size: 14px;}
 </style>
 </head>
 <body>
@@ -31,7 +33,7 @@
 <!-- 直播课程详情 start-->
 <div class="container mt40">
 	<p class="l-title">
-		<span id="resource_name" >汉语言文学（第一节）</span>
+		<span id="resource_name" style="margin-right: 15px;"  >汉语言文学（第一节）</span>
 		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
 	</p>
 	<div class="row" >

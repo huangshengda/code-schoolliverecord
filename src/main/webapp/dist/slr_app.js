@@ -13,11 +13,11 @@ webpackJsonp([0,6],{
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _router = __webpack_require__(84);
+	var _router = __webpack_require__(87);
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _vueResource = __webpack_require__(86);
+	var _vueResource = __webpack_require__(89);
 
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 
@@ -6060,7 +6060,7 @@ webpackJsonp([0,6],{
 	__vue_exports__ = __webpack_require__(3)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(83)
+	var __vue_template__ = __webpack_require__(86)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -6072,20 +6072,20 @@ webpackJsonp([0,6],{
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\App.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\App.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(26)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-51064ce0", __vue_options__)
+	    hotAPI.createRecord("data-v-effdf01a", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-51064ce0", __vue_options__)
+	    hotAPI.reload("data-v-effdf01a", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] App.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -6137,10 +6137,10 @@ webpackJsonp([0,6],{
 	__webpack_require__(5)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(9)
+	__vue_exports__ = __webpack_require__(10)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(82)
+	var __vue_template__ = __webpack_require__(85)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -6152,20 +6152,20 @@ webpackJsonp([0,6],{
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Navbar.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Navbar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
 	/* hot reload */
 	if (true) {(function () {
-	  var hotAPI = __webpack_require__(25)
+	  var hotAPI = __webpack_require__(26)
 	  hotAPI.install(__webpack_require__(1), false)
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-0e8dd020", __vue_options__)
+	    hotAPI.createRecord("data-v-4c23c3a6", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-0e8dd020", __vue_options__)
+	    hotAPI.reload("data-v-4c23c3a6", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Navbar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -6184,7 +6184,7 @@ webpackJsonp([0,6],{
 	var content = __webpack_require__(6);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
+	var update = __webpack_require__(9)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(true) {
@@ -6210,7 +6210,7 @@ webpackJsonp([0,6],{
 
 
 	// module
-	exports.push([module.id, "\n.login_button{margin-top:30px;\n}", ""]);
+	exports.push([module.id, "\n.login_button{margin-top:30px;\n}\n#login .login-btn{text-align:center;margin-top:30px;\n}\n#login .login-use-name:hover,#login .login-use-name.focus,#login .login-password:hover,#login .login-password.focus\n{border: 2px solid #1bc840;\n}\n.login-use-name, .login-password {\n    clear: both;\n    margin: 5px auto 10px;\n    height: 48px;\n    width: 284px;\n    border: 2px solid #dcddde;\n    border-radius: 3px;\n}\n.login-input {\n    height: 44px;\n    text-indent: 10px;\n    outline: none;\n    border: none;\n    background: #fff;\n    width: 232px;\n    float: left;\n}\n.input-left-img {\n    width: 46px;\n    height: 100%;\n    line-height: 48px;\n    font-size: 24px;\n    color: #fff;\n    text-align: center;\n    vertical-align: middle;\n    display: inline-block;\n    background: #dcddde;\n    float: left;\n}\n.login-use-name.focus .input-left-img, .login-password.focus .input-left-img {\n    background: #1bc840;\n}\n.l-way-auto{\n    cursor: pointer;\n}\n.l-way-check {\n    width: 18px;\n    height: 18px;\n    border: 2px solid #d0d0d0;\n    position: relative;\n    overflow: hidden;\n    float: left;\n    margin-right: 5px;\n}\n.l-way-check input {\n    position: absolute;\n    top: 30px;\n}\n.gray-btn{\n    border-color: transparent;\n    color: #fff;\n    background-color: #1BC840;\n}\n.gray-btn:HOVER {\n    background-color: #34A150;\n}\n#login .cd-f-row{width: 285px;margin: 0 auto;\n}\n#login .cd-f-value{margin-left:0;\n}\n.lw-checked {\n    background: url(" + __webpack_require__(8) + ") center center no-repeat;\n}\n#login .login-use-name{margin-bottom: 30px;margin-top: 10px;\n}\n", ""]);
 
 	// exports
 
@@ -6218,6 +6218,13 @@ webpackJsonp([0,6],{
 /***/ },
 
 /***/ 8:
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUZGOUJBODcyRDVCMTFFNkJGQjg5NEIyOUQwNEFDMjAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUZGOUJBODgyRDVCMTFFNkJGQjg5NEIyOUQwNEFDMjAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1RkY5QkE4NTJENUIxMUU2QkZCODk0QjI5RDA0QUMyMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RkY5QkE4NjJENUIxMUU2QkZCODk0QjI5RDA0QUMyMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoK0k4gAAACOSURBVHjaYvz//z8DJYCJgUJAsQEsMMa6deuI1SMNxMpAfCgoKAhhAJFAEYgPALEoEPMA8T8WMjSDXJAA0kxKGKBrXoItELmBWI4UzegGtAHxLSD2JFYzugFzgPgTEK+HGkJQM7oBl4HYBcmQI4Q0YwvES0iGiBPSjJKQ0AyxAGIZUGIhFD2MQz8zAQQYAPR4JHnwQxlkAAAAAElFTkSuQmCC"
+
+/***/ },
+
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -6440,16 +6447,16 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 9:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _menu = __webpack_require__(10);
+	var _menu = __webpack_require__(11);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
@@ -6498,8 +6505,28 @@ webpackJsonp([0,6],{
 	//
 	//
 	//
-	//
 
+	$(function () {
+	  //登录模拟复选框
+	  $(".l-way-auto").on("click", function () {
+	    var dataSelect = $(".l-way-auto .l-way-check").attr("data-select"),
+	        _input = $(".l-way-check input");
+	    if (dataSelect == 0) {
+	      $(".l-way-auto .l-way-check").addClass("lw-checked");
+	      _input.prop("checked", true);
+	      $(".l-way-auto .l-way-check").attr("data-select", "1");
+	    } else if (dataSelect == 1) {
+	      $(".l-way-auto .l-way-check").removeClass("lw-checked");
+	      _input.prop("checked", false);
+	      $(".l-way-auto .l-way-check").attr("data-select", "0");
+	    }
+	  });
+	  //登录框获取焦点
+	  $(".login-input").focus(function () {
+	    $(this).parent().parent().addClass("focus");
+	    $(this).parent().parent().siblings().removeClass("focus");
+	  });
+	});
 	var laryIndex;
 	exports.default = {
 	  data: function data() {
@@ -6518,14 +6545,12 @@ webpackJsonp([0,6],{
 	    init: function init() {
 	      var _self = this;
 	      CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
-	        if (retVO.code == 2) {
-	          $("#user_info").hide();
-	          $("#login_button").show();
-	          sessionStorage.clear();
-	        } else {
+	        if (retVO.code == 1) {
 	          $("#user_info").show();
 	          $("#login_button").hide();
-	          $("#user_realname").html(sessionStorage.getItem("realname"));
+	          sessionStorage.setItem("realname", retVO.data.realname);
+	          $("#user_realname").html(retVO.data.realname);
+	        } else {//没有用户登录。
 	        }
 	      });
 	      /**获取导航**/
@@ -6544,7 +6569,7 @@ webpackJsonp([0,6],{
 	        type: 1,
 	        title: '登录',
 	        skin: 'layui-layer-rim', //加上边框
-	        area: ['450px', '375px'], //宽高
+	        area: ['450px', '360px'], //宽高
 	        content: $("#login")
 	      });
 	    },
@@ -6562,8 +6587,15 @@ webpackJsonp([0,6],{
 	        var self = this;
 	        //提交数据给到后台处理
 	        CDUtil.ajaxPost("/login", params, function (retVO) {
-	          self.userType = retVO.data.userType;
 	          if (retVO.code == 1) {
+	            self.userType = retVO.data.userType;
+	            layer.msg(retVO.msg);
+	            if ($("#auto").prop("checked")) {
+	              localStorage.setItem("SLR_LOGINFLAG", "1");
+	              localStorage.setItem("SLR_LOGINTIME", new Date().getTime());
+	              localStorage.setItem("SLR_USERNAME", params.username);
+	              localStorage.setItem("SLR_PASSWORD", params.password);
+	            }
 	            layer.close(laryIndex);
 	            $("#user_info").show();
 	            $("#login_button").hide();
@@ -6573,6 +6605,9 @@ webpackJsonp([0,6],{
 	            $("#user_realname").html(retVO.data.realname);
 	            window.location.reload();
 	          }
+	          if (retVO.code == 0) {
+	            layer.msg(retVO.msg);
+	          }
 	        });
 	      }
 	    },
@@ -6581,10 +6616,14 @@ webpackJsonp([0,6],{
 	        layer.close(layerIndex);
 	        layer.msg("等待退出登录. . .");
 	        CDUtil.ajaxPost("/loginout", {}, function (retVO) {
+	          localStorage.removeItem("SLR_LOGINFLAG");
+	          localStorage.removeItem("SLR_LOGINTIME");
+	          localStorage.removeItem("SLR_USERNAME");
+	          localStorage.removeItem("SLR_PASSWORD");
 	          $("#user_info").hide();
 	          $("#login_button").show();
 	          sessionStorage.clear();
-	          window.location.href = ROOT_SERVER + "/#/onDemand";
+	          window.location.href = ROOT_SERVER + "/#/index";
 	          window.location.reload();
 	        });
 	      });
@@ -6597,14 +6636,14 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 10:
+/***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var lazyLoading = function lazyLoading(resolve, name) {
 	  __webpack_require__.e/* nsure */(1, function (require) {
-	    resolve(__webpack_require__(11)("./" + name + '.vue'));
+	    resolve(__webpack_require__(12)("./" + name + '.vue'));
 	  });
 	};
 	var CHANNEL = {};
@@ -6735,7 +6774,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 25:
+/***/ 26:
 /***/ function(module, exports) {
 
 	var Vue // late bind
@@ -6866,7 +6905,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 82:
+/***/ 85:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -6928,11 +6967,17 @@ webpackJsonp([0,6],{
 	    attrs: {
 	      "action": "",
 	      "id": "login"
+	    },
+	    on: {
+	      "keyup": function($event) {
+	        if (_vm._k($event.keyCode, "enter", 13)) { return; }
+	        _vm.loginIn($event)
+	      }
 	    }
 	  }, [_c('div', {
 	    staticClass: "cd-f-row"
 	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
+	    staticClass: "cd-f-eve login-btn"
 	  }, [_c('button', {
 	    staticClass: "lay-btn gray-btn",
 	    attrs: {
@@ -6944,39 +6989,49 @@ webpackJsonp([0,6],{
 	  }, [_vm._v("登录")])])])]), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('div', {
-	    staticClass: "cd-f-eve"
+	    staticClass: "cd-f-eve login-use-name"
 	  }, [_c('span', {
-	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-name input-left-img iconfont icon-login-name"
+	  }), _vm._v(" "), _c('span', {
 	    staticClass: "cd-f-value"
 	  }, [_c('input', {
+	    staticClass: "login-input",
 	    attrs: {
 	      "type": "text",
 	      "id": "username",
 	      "name": "username",
 	      "data-vali": "notnull,username",
-	      "value": "admin"
+	      "placeholder": "用户名",
+	      "maxlength": "30"
+	    }
+	  })])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
+	  return _c('div', {
+	    staticClass: "cd-f-eve login-password"
+	  }, [_c('span', {
+	    staticClass: "cd-f-name input-left-img iconfont icon-password"
+	  }), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('input', {
+	    staticClass: "login-input",
+	    attrs: {
+	      "type": "password",
+	      "id": "password",
+	      "name": "password",
+	      "data-vali": "notnull,password",
+	      "placeholder": "密码"
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
-	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("密码:")])]), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('input', {
+	    staticClass: "l-way-auto"
+	  }, [_c('div', {
+	    staticClass: "l-way-check",
 	    attrs: {
-	      "type": "password",
-	      "id": "password",
-	      "name": "password",
-	      "data-vali": "notnull,password",
-	      "value": "123456"
+	      "data-select": "0"
 	    }
-	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
-	  return _c('div', {
-	    staticClass: "cd-f-eve"
 	  }, [_c('input', {
 	    staticClass: "ml30",
 	    attrs: {
@@ -6984,18 +7039,18 @@ webpackJsonp([0,6],{
 	      "id": "auto",
 	      "name": "auto"
 	    }
-	  }), _vm._v("自动登录\n        ")])
+	  })]), _vm._v("自动登录")])])
 	}]}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-0e8dd020", module.exports)
+	     __webpack_require__(26).rerender("data-v-4c23c3a6", module.exports)
 	  }
 	}
 
 /***/ },
 
-/***/ 83:
+/***/ 86:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -7010,13 +7065,13 @@ webpackJsonp([0,6],{
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(25).rerender("data-v-51064ce0", module.exports)
+	     __webpack_require__(26).rerender("data-v-effdf01a", module.exports)
 	  }
 	}
 
 /***/ },
 
-/***/ 84:
+/***/ 87:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7025,11 +7080,11 @@ webpackJsonp([0,6],{
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _vueRouter = __webpack_require__(85);
+	var _vueRouter = __webpack_require__(88);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	var _menu = __webpack_require__(10);
+	var _menu = __webpack_require__(11);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
@@ -7068,7 +7123,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 85:
+/***/ 88:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9135,7 +9190,7 @@ webpackJsonp([0,6],{
 
 /***/ },
 
-/***/ 86:
+/***/ 89:
 /***/ function(module, exports) {
 
 	/*!

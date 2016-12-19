@@ -4,17 +4,30 @@ import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
+import com.codyy.slr.service.BasicInfoService;
 import com.codyy.slr.util.TokenUtils;
+import com.codyy.slr.vo.BasicInfoVo;
 
+/**
+ * 
+ * @Description: 返回前段路径  
+ * @author huangshengda  
+ * @date 2016年12月17日   
+ *
+ */
 @Controller
 @RequestMapping("/front/path")
 public class FrontPathController {
+
+	@Autowired
+	private BasicInfoService basicInfoService;
 
 	@RequestMapping("demond")
 	public String getDemondPath(HttpServletRequest req) {
@@ -25,10 +38,13 @@ public class FrontPathController {
 			} else {
 				req.setAttribute("token", user.getToken());
 			}
+			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
+			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Constants.FRONT_INDEX_PATH;
 		}
+
 		return Constants.FRONT_DEMOND_PATH;
 	}
 
@@ -41,6 +57,8 @@ public class FrontPathController {
 			} else {
 				req.setAttribute("token", user.getToken());
 			}
+			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
+			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Constants.FRONT_INDEX_PATH;
@@ -57,6 +75,8 @@ public class FrontPathController {
 			} else {
 				req.setAttribute("token", user.getToken());
 			}
+			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
+			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Constants.FRONT_INDEX_PATH;
@@ -73,6 +93,8 @@ public class FrontPathController {
 			} else {
 				req.setAttribute("token", user.getToken());
 			}
+			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
+			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Constants.FRONT_INDEX_PATH;

@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">
-<title>上传课程资源</title>
 <%@ include file="../../_commons/meta.jsp" %>
 <script type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
 <style type="text/css">
@@ -24,6 +23,7 @@
 	.sysprint-img.active{border: 1px solid #337ab7;}
 	.m10{margin: 10px;}
 	.p10{padding: 10px;}
+	.smp-main{margin-top: 40px;border: 1px solid #ddd;}
 </style>
 </head>
 <body>
@@ -32,6 +32,7 @@
 <div class="wamp">
 	<div class="smp-main">
 		<form action="" class="up-subject" id="form_save_videoup" >
+			<input type="hidden" id="resourceId" name="resourceId" />
 			<div class="cd-f-row">
 				<div class="cd-f-eve">
 					<span class="cd-f-name">
@@ -79,6 +80,7 @@
 						<input type="hidden" id="video_name" data-vali="notnull" />
 						<input type="hidden" id="video_size" name="size" data-vali="notnull" />
 						<input type="hidden" id="video_img_resourceId" name="thumbName" data-vali="notnull" />
+						<input type="hidden" id="video_img_flag" name="thumbFlag" value="0" />
 					</span>
 				</div>
 				<div class="cd-f-eve">

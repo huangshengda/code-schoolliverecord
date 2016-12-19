@@ -12,8 +12,8 @@
 	<div class="d-main">
 		<div class="search">
 			<!-- 中间内容 --左侧-->
-			<div class="s-left">"<span class="sub-tit">全部</span>"相关课程&nbsp;&nbsp;共{{pages}}条
-				<span data-sort="desc" @click="sortByTime">按时间<i class="iconfont icon-low"></i></span>
+			<div class="s-left">"<i class="sub-tit">全部</i>&nbsp;<i class="grade-tit">全部</i>&nbsp;<i class="key"></i>"相关课程&nbsp;&nbsp;共{{pages}}条
+				<span data-sort="desc" @click="sortByTime" class="active">按时间<i class="iconfont icon-low"></i></span>
 				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
 			</div>
 			<!-- 中间内容 --右侧-->
@@ -124,14 +124,22 @@ window.openDemondDetail=function(resourceId){
     		$(event.target).addClass("active").siblings().removeClass("active");
     		console.log(classlevelName);
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
+			if(classlevelName == ''){
+     	 		$('.grade-tit').text('全部');
+     	 	}else{
+     	 		$('.grade-tit').text(classlevelName);
+     	 	}
 			this.showdemand();
      	},
 /** 获取选择的学科参数**/
      	subjectsearch: function(subjectName,event){
      		$(event.target).addClass("active").siblings().removeClass("active");
-     		console.log(subjectName);
      		this.params= Object.assign({},this.params,{subjectName:subjectName});
-     	 	$('.sub-tit').text(subjectName);
+     	 	if(subjectName==''){
+     	 		$('.sub-tit').text('全部');
+     	 	}else{
+     	 		$('.sub-tit').text(subjectName);
+     	 	}
      	 	this.showdemand();
      	},
 /** 根据时间排序**/
@@ -149,7 +157,7 @@ window.openDemondDetail=function(resourceId){
      			$(e.target).attr("data-sort","asc");
      			this.params.orderType="asc";
      		}else{
-     			$(e.target).attr("data-sort","asc");
+     			$(e.target).attr("data-sort","desc");
      			this.params.orderType="desc";
      		}
      		this.params= Object.assign({}, this.params,{orderBy:"createTime"});
@@ -170,7 +178,7 @@ window.openDemondDetail=function(resourceId){
      			$(e.target).attr("data-sort","asc");
      			this.params.orderType="asc";
      		}else{
-     			$(e.target).attr("data-sort","asc");
+     			$(e.target).attr("data-sort","desc");
      			this.params.orderType="desc";
      		}
      		this.params= Object.assign({}, this.params,{orderBy:"viewCnt"});
@@ -180,6 +188,11 @@ window.openDemondDetail=function(resourceId){
      	searchKey:function(){
      		var sourceName = $('#s_resource').val();
      		this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
+     		if(sourceName==''){
+     	 		$('.key').text('');
+     	 	}else{
+     	 		$('.key').text(sourceName);
+     	 	}
      		this.showdemand();
      	},
 /** 获取年级列表 **/
@@ -201,3 +214,6 @@ window.openDemondDetail=function(resourceId){
     }
    }
 </script>
+<style>
+body{background-color: #f5f8fa;}
+</style>

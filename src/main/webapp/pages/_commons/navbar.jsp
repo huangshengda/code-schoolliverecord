@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <nav role="navigation" class="navbar navbar-default"> 
   <div class="wamp"> 
-   <img src="${ROOT_UI}/public/_module/images/logo.png" class="inb" /> 
+   <img src="${basicInfo.logoPath}" id="logo_img" class="inb">
    <div class="head inb">
     <div class="navHead" id="sys_slr_nav" > 
     <%--  <span><a href="${ROOT_SERVER}/#/index" class="router-link-active">首页 </a></span>
@@ -37,18 +37,59 @@
  </nav>
 <script type="text/javascript">
 $(function(){
-	var params = {};
+	/**登录**/
+	function loginIn(){
+		var result = Validation.validation({
+		       containerId: "login",
+		     });
+		     if(result==true){
+		       	var data = { 
+					userName: $("#username").val(), 
+					userPwd: md5($("#password").val()), 
+					CheckCode: $("#auto").val()
+		      	};
+		       	//提交数据给Login.ashx页面处理 
+		     	//提交数据给到后台处理
+				CDUtil.ajaxPost("/login",params,function(retVO){
+				  if(retVO.code == 1){
+					  self.userType= retVO.data.userType;
+					layer.msg(retVO.msg);  
+					layer.close(laryIndex);
+					$("#user_info").show();
+					$("#login_button").hide();
+					sessionStorage.loginFlag = "1";
+					sessionStorage.token = retVO.data.token;
+					sessionStorage.realname = retVO.data.realname;
+					$("#user_realname").html(retVO.data.realname);
+				  }
+				  if (retVO.code == 0) {
+						layer.msg(retVO.msg);
+					}
+				});
+			}
+	}
+	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
+  		if(retVO.code == 2){
+  			$("#user_info").hide();
+    		$("#login_button").show();
+    		sessionStorage.clear();
+  		}else if(retVO.code == 1){
+  			$("#user_info").show();
+			$("#login_button").hide();
+			sessionStorage.setItem("realname", retVO.data.realname);
+			$("#user_realname").html(retVO.data.realname);
+  		}
+  	});
 	CDUtil.ajaxPost("/menu",{},function(retVO){
 		var menus = retVO.data;
 		$(menus).each(function(i,menu){
 			var id = menu.id,
 			name = menu.name,
 			url = menu.url;
-			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'" >'+name+'</a></span>';
+			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'">'+name+'</a></span>';
 			$(htmlStr).appendTo("#sys_slr_nav");
 		});
 	});
-	
 	if(sessionStorage.getItem("loginFlag") == "1"){
         $("#user_info").show();
         $("#login_button").hide();
@@ -58,7 +99,6 @@ $(function(){
       }
 	var laryIndex = null;
 	$("#login_button").click(function(){
-		console.log(this);
 		laryIndex = layer.open({
 	          type: 1,
 	          title: '登录',
@@ -67,44 +107,33 @@ $(function(){
 	          content: $("#login")
 	      });
 	});
-	$("loginIn").click(function(){
-		var result = Validation.validation({
-	       containerId: "login",
-	     });
-	     if(result==true){
-	       	var data = { 
-				userName: $("#username").val(), 
-				userPwd: md5($("#password").val()), 
-				CheckCode: $("#auto").val()
-	      	};
-	       	//提交数据给Login.ashx页面处理 
-	     	//提交数据给到后台处理
-			CDUtil.ajaxPost("/login",params,function(retVO){
-			  if(retVO.code == 1){
-				layer.close(laryIndex);
-				$("#user_info").show();
-				$("#login_button").hide();
-				sessionStorage.loginFlag = "1";
-				sessionStorage.token = retVO.data.token;
-				sessionStorage.realname = retVO.data.realname;
-				$("#user_realname").html(retVO.data.realname);
-			  }
-			});
+	$("#loginIn").click(function(){
+		loginIn();
+	});
+	$("#login").bind('keyup', function(event) {
+		if (event.keyCode == "13") {
+			loginIn();
 		}
 	});
 	$("#logout").click(function(){
 		layerIndex = layer.confirm('是否确定退出用户登录？',{btn: ['确定', '取消']},function(){
+			localStorage.removeItem("SLR_LOGINFLAG","1");
+   	 		localStorage.removeItem("SLR_LOGINTIME", new Date().getTime());
+   	 		localStorage.removeItem("SLR_USERNAME", params.username);
+   	 		localStorage.removeItem("SLR_PASSWORD", params.password);
 			layer.close(layerIndex);
 			layer.msg("等待退出登录. . .");
 			CDUtil.ajaxPost("/loginout",{},function(retVO){
 		        $("#user_info").hide();
 		        $("#login_button").show();
 		        sessionStorage.clear();
-		        window.location = ROOT_SERVER+"/#/index";
-		        window.location.reload();
+		       // window.location.href = ROOT_SERVER+"/#/index";
+		        setTimeout(function () {
+		        	 window.close();
+       			}, 1000);
+		        //window.location.reload();
 		    });
 		});
 	});
 });
 </script>
- 

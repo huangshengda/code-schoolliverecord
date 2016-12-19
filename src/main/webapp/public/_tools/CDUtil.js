@@ -15,9 +15,12 @@
 	 * 
 	 * 传入参数：
 	 * url：请求链接，params：传递参数{key:value,key:value}，
-	 * callback：请求结束后回调，isCrossDomain：是否跨域（非必填，默认不跨域）。
+	 * callback：请求结束后回调，isToken：是否进行token验证（默认需要）,isCrossDomain：是否跨域（非必填，默认不跨域）。
 	 */
-	CDUtil.ajaxPost = function(url,params,callback,isCrossDomain){
+	CDUtil.ajaxPost = function(url,params,callback,isToken,isCrossDomain){
+		if(isToken==undefined){
+			isToken = true;
+		}
 		var _config = {
 			url: url,
 			type: 'POST',
@@ -30,9 +33,14 @@
 				}*/
 				//sessionStorage.setItem('token',retVO.data.token)
 				if(retVO.code == "2"){//用户登录信息失效
+					//layer.msg("用户信息失效. . .");
 					$("#user_info").hide();
 			        $("#login_button").show();
 			        sessionStorage.clear();
+			        localStorage.removeItem("SLR_LOGINFLAG");
+		   	 		localStorage.removeItem("SLR_LOGINTIME");
+		   	 		localStorage.removeItem("SLR_USERNAME");
+		   	 		localStorage.removeItem("SLR_PASSWORD");
 				}
 				if(typeof(callback) == "function" ){
 					callback(retVO);
@@ -45,10 +53,11 @@
 		if(isCrossDomain){
 			_config.crossDomain = isCrossDomain;
 		}
-		//_config.crossDomain = true;
-		_config.beforeSend=function(xhr){
-			xhr.setRequestHeader('token', sessionStorage.getItem('token'))
-		}; //<span style="font-family: Arial, Helvetica, sans-serif;">$.cookie('token') 这是从cookie中获取token</span>
+		if(isToken){
+			_config.beforeSend=function(xhr){
+				xhr.setRequestHeader('token', sessionStorage.getItem('token'))
+			};
+		}
 		$.ajax(_config);
 	};
 	/**
@@ -140,6 +149,6 @@
 		}
 	};
 	return CDUtil;
-});	
+});
 //window.CDUtil = CDUtil;
 //})(window,document);

@@ -16,37 +16,32 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.service.CommonsService;
 
 /**
- * File Description      : 公共请求：图片、视频流下载
- * Author                : GuangY
- * Create Date           : 2016/11/17
- * Reviewed By           :
- * Reviewed Date         :
- * Modified By           :
- * Modified Date         :
- * Comments              :
- * CopyRight             : COPYRIGHT(c) www.codyy.com   All Rights Reserved(2016)
- * *******************************************************************************************
+ * 
+ * @Description: 公共请求：图片、视频流下载 
+ * @author huangshengda  
+ * @date 2016年12月17日   
+ *
  */
 
 @Controller
 @RequestMapping("/download")
 public class CommonsController {
-	
+
 	@Autowired
 	private CommonsService commonsService;
-	
+
 	/**
 	 * 获取图片
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/img/{type}/**")
-	public void getImg(HttpServletRequest req, HttpServletResponse res, @PathVariable(value="type") String type) {
+	public void getImg(HttpServletRequest req, HttpServletResponse res, @PathVariable(value = "type") String type) {
 		String imgPath = extractPathFromPattern(req);
 		try {
-			if (type.equalsIgnoreCase(Constants.IMG_TEMP)){
+			if (type.equalsIgnoreCase(Constants.IMG_TEMP)) {
 				commonsService.sendFileAsResponse(req, res, imgPath, Constants.TEMP);
-			} else if (type.equalsIgnoreCase(Constants.IMG_REAL)){
+			} else if (type.equalsIgnoreCase(Constants.IMG_REAL)) {
 				commonsService.sendFileAsResponse(req, res, imgPath, Constants.IMG_PATH);
 			}
 		} catch (Exception e) {
@@ -58,7 +53,7 @@ public class CommonsController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 获取视频流
 	 * @param req
@@ -66,13 +61,13 @@ public class CommonsController {
 	 * @param videoPath
 	 */
 	@RequestMapping(value = "/video/{type}/**")
-	public void getVideo(HttpServletRequest req, HttpServletResponse res, @PathVariable(value="type") String type) {
+	public void getVideo(HttpServletRequest req, HttpServletResponse res, @PathVariable(value = "type") String type) {
 		String videoPath = extractPathFromPattern(req);
-		
+
 		try {
-			if (type.equalsIgnoreCase(Constants.RECORD)){
+			if (type.equalsIgnoreCase(Constants.RECORD)) {
 				commonsService.sendFileAsResponse(req, res, videoPath, Constants.LIVE_PATH);
-			} else if (type.equalsIgnoreCase(Constants.UPLOAD)){
+			} else if (type.equalsIgnoreCase(Constants.UPLOAD)) {
 				commonsService.sendFileAsResponse(req, res, videoPath, Constants.UPLOAD_PATH);
 			}
 		} catch (Exception e) {
@@ -84,11 +79,10 @@ public class CommonsController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 把指定URL后的字符串全部截断当成参数
 	// 这么做是为了防止URL中包含中文或者特殊字符（/等）时，匹配不了的问题
-	private static String extractPathFromPattern(final HttpServletRequest request)
-	{
+	private static String extractPathFromPattern(final HttpServletRequest request) {
 		String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 		String bestMatchPattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
 		return new AntPathMatcher().extractPathWithinPattern(bestMatchPattern, path);

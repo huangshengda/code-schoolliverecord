@@ -29,10 +29,10 @@ window.openDemondDetail=function(resourceId){
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			laryIndex = layer.confirm('未登录暂无权限访问', {
+      			layerIndex = layer.confirm('未登录暂无权限访问', {
 					btn: ['确定']
 				},function() {
-					layer.close(laryIndex);
+					layer.close(layerIndex);
 					sessionStorage.clear();
       				window.location.href = ROOT_SERVER+"/#/index";
 				});
@@ -63,8 +63,8 @@ window.mySub = function(newPage){
     			}else{
     				var classLevelName= data.classlevelName;
     			}
-				var htmlStr = '<div class="col-4" onClick="openDemondDetail(\''+data.resourceId+'\')">';
-				htmlStr += '<div class="demandImg">';
+				var htmlStr = '<div class="col-4">';
+				htmlStr += '<div class="demandImg" onClick="openDemondDetail(\''+data.resourceId+'\')">';
 				htmlStr += '<img src='+data.thumbPath+' width="280" height="157">';       
 				htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>'+data.viewCnt+'</span></div> ';  
 				htmlStr += '</div>' ;
@@ -96,7 +96,6 @@ window.mySub = function(newPage){
 		});
 	});
 };
-
 export default {  
 		data() {
 		    return data

@@ -1,4 +1,5 @@
 @charset "utf-8";
+body{background-color: #f5f8fa;}
 /* 自己添加的属性 */
 .mt40 {
 	margin-top: 40px;
@@ -16,7 +17,7 @@ a:hover,a:active,a:visited,a:focus {
 	text-decoration: none;
 }
 
-input[type="text"], textarea {
+input[type="text"], textarea,input[type="password"] {
 	text-indent: 10px;
 }
 
@@ -428,7 +429,7 @@ tr:nth-child(2n) {
 	line-height: 26px;
 	color: #FFF;
 	background-color: #000;
-	opacity: .6;
+	opacity: .4;
 	bottom: 0;
 	width: 280px;
 }
@@ -511,7 +512,6 @@ tr:nth-child(2n) {
 
 /* #login{display: none;} */
 #login .cd-f-eve {
-	margin-bottom: 20px;
 	width: 100%;
 	margin-top: 0;
 }
@@ -521,18 +521,13 @@ tr:nth-child(2n) {
 }
 
 #login .cd-f-value,#login .cd-f-value input {
-	width: 230px;
-	text-indent: 10px;
+	width: 235px;
 }
 
 #login input[type=checkbox] {
 	width: 15px;
 	height: 15px;
 	vertical-align: top;
-}
-
-#login button {
-	width: 100%;
 }
 
 .ml30 {
@@ -626,3 +621,6 @@ table{table-layout:fixed;}
 
 table tr td{ overflow:hidden;text-overflow:ellipsis;}
 #logo_img{width:242px;height:50px;}
+.s-left .sub-tit,.s-left .grade-tit,.s-left .key{font-style:normal}
+/*footer*/
+.srl-foot{background: #f6f6f6 none repeat scroll 0 0;padding: 20px;width: 100%;margin-top: 40px;}

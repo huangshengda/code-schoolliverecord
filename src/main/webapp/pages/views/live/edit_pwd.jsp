@@ -30,19 +30,19 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>原密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="prePassword" data-vali="notnull" id="pre_pwd"> 
+            <input type="password" name="prePassword" data-vali="notnull" id="pre_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>新密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull,password" id="new_pwd"> 
+            <input type="password" name="password" data-vali="notnull,password" id="new_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>确认密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" data-vali="notnull" id="rel_pwd"> 
+            <input type="password" name="password" data-vali="notnull" id="rel_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve mt40">
@@ -78,11 +78,13 @@ $(function(){
 					userId:$('#user_id').val(),
 				};
      			CDUtil.ajaxPost("/base/user/update",pwdParams,function(retVO){
-     				if (retVO.code == 1) {
-						layer.msg('修改成功!');
-					}
      				if (retVO.code == 0) {
 						layer.msg(retVO.msg);
+					}
+     				if (retVO.code == 1) {
+						layer.msg(retVO.msg);
+						window.location.href = ROOT_SERVER+"/#/index";
+				        window.location.reload();
 					}
      			});
       			}else{

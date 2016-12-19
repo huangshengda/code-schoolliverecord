@@ -66,15 +66,15 @@ methods:{
         var params = {};
         CDUtil.ajaxPost("/home/live/list",params,function(retVO){
           _self.posts = retVO;
-        });
+        },false);
       },
 /** 获取点播列表的方法 **/
        showdemand:function(){
         var _self = this;
-        var params = {};
+        var params = {pageSize:8};
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
             _self.courseList = retVO;//JSON.parse(retVO);
-        })
+        },false)
       },
 /** 跳转到直播详情页 **/
       openLiveDetail: function(resourceId){
@@ -123,6 +123,6 @@ methods:{
    }   
 </script>
 <style>
- body{background-color:#fff;}
-.s-title .demanCour{margin:0;}
+	body{background-color: #fff;}
+	.s-title .demanCour{margin:0;}
 </style>

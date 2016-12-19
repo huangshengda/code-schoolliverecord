@@ -157,7 +157,7 @@ public class ResourceService {
 		page.setMap(map);
 
 		List<ResourceVo> list = resourceMapper.getResourcePageList(page);
-		String contextpath = Constants.ROOT_SERVER + "/download/img";
+		String contextpath = Constants.ROOT_SERVER + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL;
 		if (list.size() >= 1) {
 			for (ResourceVo resourceVo : list) {
 				resourceVo.setOpt(Constants.DELETE);
@@ -175,7 +175,7 @@ public class ResourceService {
 		ResourceVo resVo = resourceMapper.getResource(resourceId);
 
 		if (resVo != null) {
-			resVo.setThumbPath(contextpath + "/download/img" + resVo.getThumbPath());
+			resVo.setThumbPath(contextpath + "/download/img" + Constants.PATH_SEPARATOR + Constants.IMG_REAL + resVo.getThumbPath());
 			if (resVo.getLivingFlag().equals("N")) {
 				resVo.setStorePath(contextpath + "/download/video/" + resVo.getSourceType() + resVo.getStorePath());
 			}

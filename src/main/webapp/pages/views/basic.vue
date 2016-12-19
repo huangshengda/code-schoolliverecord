@@ -22,6 +22,7 @@
 	}
 </script>
 <style>
+body{background-color: #f5f8fa;}
 	.left{width:240px;border:1px solid #ddd;margin-right:10px;background-color: #fff;padding:0 15px;text-align: center;margin-top:40px;min-height: 600px;}
 	.right{width:880px;}
 	.main{margin-top:10px;}

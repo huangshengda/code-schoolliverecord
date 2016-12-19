@@ -117,7 +117,11 @@
   <!-- 更新资源信息 -->
   <update id="modifyResource" parameterType="com.codyy.slr.vo.ResourceVo" >
     UPDATE resource SET RESOURCE_NAME=#{resourceName,jdbcType=VARCHAR},SUBJECT_ID=#{subjectId,jdbcType=VARCHAR},
-    AUTHOR=#{author,jdbcType=VARCHAR} WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
+    AUTHOR=#{author,jdbcType=VARCHAR}
+    <if test="thumbPath != null and thumbPath != '' ">
+    	, THUMB_PATH = #{thumbPath, jdbcType=VARCHAR}
+    </if>
+     WHERE RESOURCE_ID=#{resourceId,jdbcType=VARCHAR}
   </update>
   
   <!-- 删除资源与年级的关系 -->

@@ -35,7 +35,6 @@ public class LiveSchedule {
 		log.info("finishLive start");
 		// 1 查找为结束的直播课程
 		List<String> liveResourceIdList = resourceService.getNotFinishLiveResIds();
-		System.out.println(liveResourceIdList);
 		if (CollectionUtils.isEmpty(liveResourceIdList)) {
 			log.info("liveResourceIdList is empty.");
 		} else {

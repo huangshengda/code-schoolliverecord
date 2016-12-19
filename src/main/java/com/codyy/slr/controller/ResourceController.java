@@ -1,6 +1,7 @@
 package com.codyy.slr.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +21,12 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.parambean.AddLiveResourceParam;
 import com.codyy.slr.parambean.AddUploadResourceParam;
+import com.codyy.slr.parambean.DirInfo;
 import com.codyy.slr.parambean.SearchResourceParam;
 import com.codyy.slr.service.HandleLiveFinishService;
 import com.codyy.slr.service.HandleVideoService;
 import com.codyy.slr.service.ResourceService;
+import com.codyy.slr.util.FileUtils;
 import com.codyy.slr.util.MySqlKeyWordUtils;
 import com.codyy.slr.util.ParamUtils;
 import com.codyy.slr.util.UUIDUtils;
@@ -184,20 +187,43 @@ public class ResourceController {
 	}
 
 	/**
-	 * 编辑保存资源
+	 * 
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 * @param res
+	 * @param resourceId
+	 * @param thumbFlag 1表示新上传图片
+	 * @return
+	 *
 	 */
 	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping(value = "/update")
-	public ReturnVoOne modifyResource(ResourceVo res) {
+	public ReturnVoOne modifyResource(AddUploadResourceParam res, String resourceId, String thumbFlag) {
 		ReturnVoOne result = null;
+		ResourceVo resVo = new ResourceVo();
 		try {
-			if (resourceService.modifyResource(res)) {
+			resVo.setResourceId(resourceId);
+			resVo.setAuthor(res.getAuthor());
+			resVo.setClasslevelId(res.getClasslevelIds());
+			resVo.setSubjectId(res.getSubjectId());
+			resVo.setResourceName(res.getResNickName());
+
+			if ("1".equals(thumbFlag)) {
+				// 1.创建图片文件夹
+				DirInfo imageDirInfo = FileUtils.creatDir(new Date(), Constants.IMG_PATH);
+				// 2.移动图片
+				FileUtils.moveFile(Constants.TEMP + Constants.PATH_SEPARATOR + res.getThumbName(),
+						imageDirInfo.getAbsPath() + Constants.PATH_SEPARATOR + res.getThumbName());
+				resVo.setThumbPath(imageDirInfo.getRelPath() + Constants.PATH_SEPARATOR + res.getThumbName());
+			}
+
+			if (resourceService.modifyResource(resVo)) {
 				result = new ReturnVoOne();
 			} else {
 				result = new ReturnVoOne(Constants.FAILED, "编辑资源失败");
 			}
 		} catch (Exception e) {
+			result = new ReturnVoOne(Constants.FAILED, "编辑资源异常");
 			e.printStackTrace();
 		}
 		return result;
@@ -212,6 +238,10 @@ public class ResourceController {
 		ReturnVoOne<ResourceVo> result = null;
 		try {
 			ResourceVo resVo = resourceService.getResource(resourceId);
+			String thumbPath = resVo.getThumbPath();
+			resVo.setThumbName(thumbPath.substring(thumbPath.lastIndexOf("/") + 1));
+			String storePath = resVo.getStorePath();
+			resVo.setType(storePath.substring(storePath.lastIndexOf(".") + 1));
 			result = new ReturnVoOne<ResourceVo>(resVo);
 		} catch (Exception e) {
 			result = new ReturnVoOne<ResourceVo>(Constants.FAILED, "查询失败");

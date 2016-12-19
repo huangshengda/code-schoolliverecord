@@ -16,9 +16,10 @@
             <img src="" width="360" height="70" id="thispage_fileup_img" file-name="" file-path="" class="show">
             <div class="btn btn-default smp-fileupshow mt10" >上传logo
               <input type="file" id="thispage_fileup" @change="impup();"  class="smp-fileupinput"/>
-              <input type="hidden" id="img_resourceId" name="logoPath" value="" data-vali="notnull" />
+              <input type="hidden" id="img_resourceId" name="logoPath" value="" />
             </div>
           </span>
+          <input type="hidden" id="msg_img" value="false" name="thumbFlag">
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>网站底部:</label></span>
@@ -59,7 +60,6 @@ export default {
     	},
      /** 表单操作--上传图片**/
         impup: function(){
-        	console.log($("#thispage_fileup"));
         	var fileDom = $("#thispage_fileup")[0];
         	var file = fileDom.files[0];
         	var fileupUrl = ROOT_SERVER+"/image/upload?token="+sessionStorage.getItem("token");
@@ -70,6 +70,7 @@ export default {
 				var resourceId = dataVO.resourceId;
 				H5fileup.showImgAuto(file,"thispage_fileup_img");
 				$("#img_resourceId").val(resourceId);	
+				$("#msg_img").val(true);
 			});
         },
           /** 表单操作--保存**/
@@ -80,12 +81,11 @@ export default {
         });
        	if(result==true){
         	var platParams = $('#platform').serialize();
-        	console.log(platParams);
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
       			if (retVO.code == 1) {
 					layer.msg(retVO.msg);
-					layer.close(index);
 					$('#platform')[0].reset();
+				    location.reload();
 				}
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
