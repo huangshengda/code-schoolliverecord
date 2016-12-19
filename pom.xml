@@ -151,7 +151,7 @@
 			</excludes>
 		</resource>
 		<resource>
-			<directory>config</directory>
+			<directory>src/main/resource</directory>
 			<filtering>true</filtering>
 		</resource>
 	</resources>
