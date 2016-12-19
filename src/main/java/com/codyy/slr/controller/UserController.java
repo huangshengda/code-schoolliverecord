@@ -66,6 +66,13 @@ public class UserController {
 				TokenUtils.putUserIdToCache(user.getToken(), agent, user);
 				// token放入session
 				req.getSession().setAttribute("token", user.getToken());
+				if ("TEACHER".equals(user.getUserType())) {
+					user.setColumn(Constants.COLUMN_MY_COURSE);
+				} else if ("STUDENT".endsWith(user.getUserType())) {
+					user.setColumn(Constants.COLUMN);
+				} else {
+					user.setColumn(Constants.COLUMN_BASE);
+				}
 				user.setPassword(null);
 			} else {
 				code = Constants.FAILED;
@@ -266,12 +273,18 @@ public class UserController {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
 	@ResponseBody
 	@RequestMapping("/token/hasexpire")
-	public ReturnVoOne tokenHasExpire() {
-		// 过滤器已经校验了token
-		return new ReturnVoOne();
+	public ReturnVoOne<User> tokenHasExpire(HttpServletRequest req) {
+		ReturnVoOne<User> one = new ReturnVoOne<User>();
+		try {
+			User user = (User) req.getAttribute("user");
+			one.setData(user);
+		} catch (Exception e) {
+			one.setCode(Constants.FAILED);
+			one.setMsg("出现异常");
+		}
+		return one;
 	}
 
 	/**
@@ -283,12 +296,20 @@ public class UserController {
 	 *
 	 */
 	@ResponseBody
-	@RequestMapping("/token/getUser")
+	@RequestMapping("/token/getuser")
 	public ReturnVoOne<User> getUserByToken(String token, HttpServletRequest req) {
 		User user = null;
 		String agent = req.getHeader("User-Agent");
 		try {
 			user = TokenUtils.getUserFromCache(token, agent);
+			if ("TEACHER".equals(user.getUserType())) {
+				user.setColumn(Constants.COLUMN_MY_COURSE);
+			} else if ("STUDENT".endsWith(user.getUserType())) {
+				user.setColumn(Constants.COLUMN);
+			} else {
+				user.setColumn(Constants.COLUMN_BASE);
+			}
+			user.setPassword(null);
 		} catch (ExecutionException e) {
 			new ReturnVoOne<User>(Constants.FAILED, "获取失败", user);
 			e.printStackTrace();
