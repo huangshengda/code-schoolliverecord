@@ -71,6 +71,7 @@
 		</div>
 	</div>
 </div>
+<%@ include file="../../_commons/footer.jsp"%>
 <!-- 点播课程详情  end-->
 <script type="text/javascript">
 
