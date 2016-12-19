@@ -14,10 +14,14 @@
 .chat-li{
 	position: relative;
 }
+.chat-context{
+	word-break:break-all;
+	word-wrap:break-word;
+}
 .chat-delete{
 	cursor: pointer;
 	position: absolute;
-	top: 10px;
+	top: 0px;
 	right: 0px;
 }
 .chat-delete:hover{
