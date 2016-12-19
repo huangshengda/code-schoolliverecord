@@ -13,7 +13,6 @@ var router = new Router({
     }
   ]
 })
-console.log(router)
 
 function generateRoutes (menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {

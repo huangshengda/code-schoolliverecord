@@ -164,9 +164,7 @@
 			tr.prev().before(tr);
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
-			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
-			 	 console.log(retVO);
-			 	 });
+			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){});
 			 });
      },
      /**下移**/

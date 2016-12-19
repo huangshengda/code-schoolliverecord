@@ -18,6 +18,19 @@
 	 * callback：请求结束后回调，isToken：是否进行token验证（默认需要）,isCrossDomain：是否跨域（非必填，默认不跨域）。
 	 */
 	CDUtil.ajaxPost = function(url,params,callback,isToken,isCrossDomain){
+		if(typeof(params) == "string"){
+			params = eval('(' + params + ')');
+			console.log(typeof(params));
+		}
+		for(var key in params){
+			var value = params[key];
+			if(value == undefined){
+				value = params.key;
+			}
+			value = CDUtil.html2Escape(params[key]);
+			console.log(value);
+			params[key] = value;
+		};
 		if(isToken==undefined){
 			isToken = true;
 		}
