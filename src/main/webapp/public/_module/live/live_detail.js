@@ -70,6 +70,7 @@ $(function() {
 					htmlStr += '<i class="iconfont icon-delete chat-delete fr c9" data-id="'+id+'"></i>'
 				}
 				$(htmlStr).appendTo("#chat_context");
+				$("#chat_context").scrollTop($("#chat_context").height());
 			}
 			$("#chat").val("");
 		};
