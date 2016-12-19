@@ -25,8 +25,8 @@ webpackJsonp([1,6],[
 		"./basic/context/source.vue": 63,
 		"./basic/context/upload.vue": 66,
 		"./demand.vue": 69,
-		"./home.vue": 74,
-		"./mySubject.vue": 80
+		"./home.vue": 72,
+		"./mySubject.vue": 78
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -124,7 +124,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\nbody{background-color: #f5f8fa;\n}\n.left{width:240px;border:1px solid #ddd;margin-right:10px;background-color: #fff;padding:0 15px;text-align: center;margin-top:40px;min-height: 600px;\n}\n.right{width:880px;\n}\n.main{margin-top:10px;\n}\n.subBtn{height:40px;\n}\n.dashboard{border:1px solid #ddd;background-color: #fff;padding: 20px;\n}\n.layBox{display: none;\n}\r\n", ""]);
+	exports.push([module.id, "\n.left{width:240px;border:1px solid #ddd;margin-right:10px;background-color: #fff;padding:0 15px;text-align: center;margin-top:40px;min-height: 600px;\n}\n.right{width:880px;\n}\n.main{margin-top:10px;\n}\n.subBtn{height:40px;\n}\n.dashboard{border:1px solid #ddd;background-color: #fff;padding: 20px;\n}\n.layBox{display: none;\n}\n", ""]);
 
 	// exports
 
@@ -244,7 +244,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.menu[data-v-3444557c]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-3444557c]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-3444557c]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-3444557c]{\n  color:#34a150;\n}\n.menu-level1[data-v-3444557c]:hover,.menu-level1[data-v-3444557c]:visited,.menu-level1[data-v-3444557c]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n.menu-list li.active div[data-v-3444557c]{background-color: #f0f0f0;\n}\n", ""]);
+	exports.push([module.id, "\n.menu[data-v-3444557c]{\n    position: fixed;\n    z-index: 1;\n    left: 0;\n    top: 90px;\n    bottom: 0;\n    width: inherit;\n    border-right: 1px solid #e7e7e7;\n    background-color: #ddd;\n    padding-top: 20px;\nul{\n      margin: 0;\n      list-style: none;\n}\n}\n.menu-list[data-v-3444557c]{\n    padding-left: 0;\nul{\n      padding-left: 0;\n}\na{\n      display: block;\n      line-height: 2;\n      color: #333;\n      text-decoration: none;\n}\n}\n.menu-level1[data-v-3444557c]{\n    height: 32px;\n    line-height: 32px;\n    margin-top:20px;\n& .is-active, .menu-level2 .router-link-active{\n      background-color: #00d1b2;\n      color: #fff !important;\n}\n&.has-chlidren{\n      position: relative;\n&:after{\n        content: '\\E080';\n        font-family: 'Glyphicons Halflings';\n        position: absolute;\n        top: 0;\n        right: 10px;\n        transition: transform .5s ease-in;\n}\n.menu-level2{\n        display: none;\n}\n&.unfold{\n&:after{\n          transform: rotate(90deg);\n}\n.menu-level2{\n          display: block;\n          padding-left: 40px;\na{\n            padding-left: 10px;\n            margin-right: 10px;\n}\n}\n}\n}\n}\n.menu-level1 a.router-link-active[data-v-3444557c]{\n  color:#34a150;\n  display:block;\n  width:100%;\n  background-color: #f0f0f0;\n}\n.menu-level1[data-v-3444557c]:hover,.menu-level1[data-v-3444557c]:visited,.menu-level1[data-v-3444557c]:active{\n  background-color: #f0f0f0;\na{color:#34a150;\n}\n}\n", ""]);
 
 	// exports
 
@@ -3960,14 +3960,11 @@ webpackJsonp([1,6],[
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
-	/* styles */
-	__webpack_require__(70)
-
 	/* script */
-	__vue_exports__ = __webpack_require__(72)
+	__vue_exports__ = __webpack_require__(70)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(73)
+	var __vue_template__ = __webpack_require__(71)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4002,46 +3999,6 @@ webpackJsonp([1,6],[
 
 /***/ },
 /* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(71);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(71, function() {
-				var newContent = __webpack_require__(71);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(7)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\nbody{background-color: #f5f8fa;\n}\r\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 72 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4263,7 +4220,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 73 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4312,9 +4269,9 @@ webpackJsonp([1,6],[
 	  }, [_c('div', {
 	    staticClass: "s-left"
 	  }, [_vm._v("\""), _c('i', {
-	    staticClass: "sub-tit"
-	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
 	    staticClass: "grade-tit"
+	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
+	    staticClass: "sub-tit"
 	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
 	    staticClass: "key"
 	  }), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
@@ -4377,20 +4334,20 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 74 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(75)
+	__webpack_require__(73)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(77)
+	__vue_exports__ = __webpack_require__(75)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(78)
+	var __vue_template__ = __webpack_require__(76)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4424,13 +4381,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 75 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(76);
+	var content = __webpack_require__(74);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -4439,8 +4396,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(76, function() {
-				var newContent = __webpack_require__(76);
+			module.hot.accept(74, function() {
+				var newContent = __webpack_require__(74);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4450,7 +4407,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 76 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -4458,13 +4415,13 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\nbody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n", ""]);
+	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 77 */
+/* 75 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4517,6 +4474,12 @@ webpackJsonp([1,6],[
 	      courseList: ""
 	    };
 	  },
+	  mounted: function mounted() {
+	    $("body").addClass("bgBody");
+	  },
+	  beforeDestroy: function beforeDestroy() {
+	    $("body").removeClass("bgBody");
+	  },
 	  created: function created() {
 	    this.show(), this.showdemand();
 	  },
@@ -4530,6 +4493,7 @@ webpackJsonp([1,6],[
 	      }
 	    }
 	  },
+
 	  methods: {
 	    isShow: function isShow() {
 	      return this.data.length;
@@ -4597,7 +4561,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 78 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4636,7 +4600,7 @@ webpackJsonp([1,6],[
 	    staticClass: "tac"
 	  }, [_c('img', {
 	    attrs: {
-	      "src": __webpack_require__(79)
+	      "src": __webpack_require__(77)
 	    }
 	  })]), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "s-title demanBtm"
@@ -4700,26 +4664,26 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 79 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "8bed79dd627549783788bf671a45567f.png";
 
 /***/ },
-/* 80 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(81)
+	__webpack_require__(79)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(83)
+	__vue_exports__ = __webpack_require__(81)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(84)
+	var __vue_template__ = __webpack_require__(82)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4753,13 +4717,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 81 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(82);
+	var content = __webpack_require__(80);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -4768,8 +4732,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(82, function() {
-				var newContent = __webpack_require__(82);
+			module.hot.accept(80, function() {
+				var newContent = __webpack_require__(80);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4779,7 +4743,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 82 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -4793,7 +4757,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 83 */
+/* 81 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4917,7 +4881,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 84 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;

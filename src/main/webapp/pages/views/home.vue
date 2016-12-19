@@ -43,6 +43,12 @@ data() {
         courseList:"",
     }
   },
+  mounted() {
+  	$("body").addClass("bgBody");
+  },
+  beforeDestroy(){
+    	$("body").removeClass("bgBody");
+    },
  created () {    
       this.show(),
       this.showdemand()
@@ -56,6 +62,7 @@ data() {
     		}
     	}
     },
+    
 methods:{
      isShow: function(){
        return this.data.length 
@@ -123,6 +130,6 @@ methods:{
    }   
 </script>
 <style>
-	body{background-color: #fff;}
+	.bgBody{background-color: #fff;}
 	.s-title .demanCour{margin:0;}
 </style>
