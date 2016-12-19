@@ -1673,17 +1673,12 @@ webpackJsonp([2,6],[
 					htmlStr += '>';
 					if (this.type == "opt") {
 						var opts = dataRow[this["valuekey"]];
-						if (!opts) {
+						console.log(dataRow);
+						console.log(this["valuekey"]);
+						console.log(opts);
+						if (opts != undefined && opts != null) {
 							$.each(optName, function (type, text) {
 								htmlStr += '<span data-opttype="' + type + '" >' + text + '</span>';
-							});
-						} else {
-							$(opts).each(function () {
-								if (optName[this] == undefined) {
-									htmlStr += '<span data-opttype="' + this + '" >操作配置错误</span>';
-								} else {
-									htmlStr += '<span data-opttype="' + this + '" >' + optName[this] + '</span>';
-								}
 							});
 						}
 					} else if (this.type == "clickable") {
