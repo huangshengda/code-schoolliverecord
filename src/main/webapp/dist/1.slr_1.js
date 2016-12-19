@@ -1346,7 +1346,7 @@ webpackJsonp([1,6],[
 	            containerId: "editgrade"
 	          });
 	          if (result == true) {
-	            var editparams = $('#editgrade').serialize();
+	            var editparams = $('#editgrade').serializeJSON();
 	            CDUtil.ajaxPost("/base/classlevel/update", editparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
@@ -1396,7 +1396,7 @@ webpackJsonp([1,6],[
 	            containerId: "addgrade"
 	          });
 	          if (result == true) {
-	            var addparams = $('#addgrade').serialize();
+	            var addparams = $('#addgrade').serializeJSON();
 	            CDUtil.ajaxPost("/base/classlevel/add", addparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
@@ -2362,7 +2362,7 @@ webpackJsonp([1,6],[
 	            containerId: "editsubject"
 	          });
 	          if (result == true) {
-	            var editparams = $('#editsubject').serialize();
+	            var editparams = $('#editsubject').serializeJSON();
 	            CDUtil.ajaxPost("/base/subject/update", editparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
@@ -2409,7 +2409,7 @@ webpackJsonp([1,6],[
 	            containerId: "addsubject"
 	          });
 	          if (result == true) {
-	            var addparams = $('#addsubject').serialize();
+	            var addparams = $('#addsubject').serializeJSON();
 	            CDUtil.ajaxPost("/base/subject/add", addparams, function (retVO) {
 	              if (retVO.code == 1) {
 	                _self.show();
