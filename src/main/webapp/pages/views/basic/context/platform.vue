@@ -79,7 +79,7 @@ export default {
           	containerId: "platform",
         });
        	if(result==true){
-        	var platParams = $('#platform').serialize();
+        	var platParams = $('#platform').serializeJSON();
       		CDUtil.ajaxPost("/base/basicinfo/update",platParams,function(retVO){
       			if (retVO.code == 1) {
 					layer.msg(retVO.msg);
