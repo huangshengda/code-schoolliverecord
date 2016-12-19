@@ -12,7 +12,7 @@
 	<div class="d-main">
 		<div class="search">
 			<!-- 中间内容 --左侧-->
-			<div class="s-left">"<i class="sub-tit">全部</i>&nbsp;<i class="grade-tit">全部</i>&nbsp;<i class="key"></i>"相关课程&nbsp;&nbsp;共{{pages}}条
+			<div class="s-left">"<i class="grade-tit">全部</i>&nbsp;<i class="sub-tit">全部</i>&nbsp;<i class="key"></i>"相关课程&nbsp;&nbsp;共{{pages}}条
 				<span data-sort="desc" @click="sortByTime" class="active">按时间<i class="iconfont icon-low"></i></span>
 				<span data-sort="desc" @click="sortByHot">按热门<i class="iconfont icon-low"></i></span>
 			</div>
@@ -121,8 +121,6 @@ window.openDemondDetail=function(resourceId){
       },
 /** 获取选择的年级参数**/
     	gradesearch: function(classlevelName,event){
-    		$(event.target).addClass("active").siblings().removeClass("active");
-    		console.log(classlevelName);
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
 			if(classlevelName == ''){
      	 		$('.grade-tit').text('全部');

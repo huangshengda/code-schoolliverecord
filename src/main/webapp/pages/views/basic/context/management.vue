@@ -86,7 +86,7 @@
           		containerId: "editsubject",
         	});
        		if(result==true){
-				var editparams = $('#editsubject').serialize();
+				var editparams = $('#editsubject').serializeJSON();
 				CDUtil.ajaxPost("/base/subject/update", editparams,
 				function(retVO) {
 					if (retVO.code == 1) {
@@ -135,7 +135,7 @@
           			containerId: "addsubject",
         		});
        			if(result==true){
-              		var addparams = $('#addsubject').serialize();
+              		var addparams = $('#addsubject').serializeJSON();
       				CDUtil.ajaxPost("/base/subject/add",addparams,function(retVO){
       					if (retVO.code == 1) {
 							_self.show();

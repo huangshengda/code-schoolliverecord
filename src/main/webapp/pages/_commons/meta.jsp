@@ -75,7 +75,6 @@ var autoLogin = function(){
    	 		localStorage.removeItem("SLR_PASSWORD");
    	 		LOGIN_FLAG = null;
    	 		AUTO_LOGIN_FLAG = null;
-   	 		console.log(window.location.href);
    	 		setTimeout(function(){
    	 			window.location.href = ROOT_SERVER+"/#/index";
    	 		},100);
