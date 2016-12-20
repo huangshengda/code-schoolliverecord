@@ -115,6 +115,9 @@ $(function(){
 			loginIn();
 		}
 	});
+	$("#user_realname").click(function(){
+		window.open(ROOT_SERVER+"/front/path/editpwd?token="+sessionStorage.getItem("token"));
+	});
 	$("#logout").click(function(){
 		layerIndex = layer.confirm('是否确定退出用户登录？',{btn: ['确定', '取消']},function(){
 			localStorage.removeItem("SLR_LOGINFLAG","1");
