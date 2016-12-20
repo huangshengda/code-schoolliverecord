@@ -1,5 +1,5 @@
 <template>
-<div class="content">
+<div class="content" id="user_form">
   <div class="subBtn"><button class="btn fr" @click="addUser">添加用户</button></div>
   <div class="dashboard">
   <!-- 条件 start -->
@@ -8,7 +8,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value ">
-            <input type="text" name="username" id="search_username" data-vali="notnull,username" maxlength="18">
+            <input type="text" name="username" id="search_username" data-vali="username" maxlength="18">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -54,7 +54,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" id="edit_password" value="666666">
+            <input type="password" name="password" id="edit_password" value="" data-vali="password" maxlength="18"> 
           </span>
         </div>
         <div class="cd-f-eve">
@@ -76,19 +76,19 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>用户名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="username" id="add_username" data-vali="notnull,username" value="">
+            <input type="text" name="username" id="add_username" data-vali="username" value="">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>姓名:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="realname" data-vali="notnull" id="add_realname" value="">
+            <input type="text" name="realname" data-vali="notnull" id="add_realname" value="" maxlength="10">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" data-vali="notnull,password" id="add_password" value="">
+            <input type="password" name="password" data-vali="password" id="add_password" value="666666">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -116,6 +116,7 @@ var userEdit = function(params, dom) {
 	$('#edit_username').text(params.username);
 	$('#edit_realname').val(params.realname);
 	$('#edit_userId').val(params.userId);
+	$('#edit_password').val((params.password).substr(0,18));
 	layer.open({
 		type: 1,
 		title: '编辑用户',
@@ -131,11 +132,11 @@ var userEdit = function(params, dom) {
           		containerId: "edituser",
         	});
        		if(result==true){
-				/*var editparams = $('#edituser').serialize();*/
 				var editparams = { 
           			userType: $("#edit_userType").val(), 
           			password: md5($("#edit_password").val()), 
            			realname: $("#edit_realname").val(),
+           			userId: $("#edit_userId").val()
          		};
 				CDUtil.ajaxPost("/base/user/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
@@ -251,6 +252,7 @@ export default {
 		userSear: userSearch,
 		/*** 添加用户**/
 		addUser: function() {
+			var _self = this;
 			layer.open({
 				type: 1,
 				title: '添加用户',
@@ -274,7 +276,7 @@ export default {
          				 };
 						CDUtil.ajaxPost("/base/user/add", addparams,function(retVO) {
 							if (retVO.code == 1) {
-								userSearch();
+								_self.userSear();
 								layer.msg(retVO.msg);
 								layer.close(index);
 								$('#adduser')[0].reset();
@@ -290,3 +292,7 @@ export default {
 	}
 }
 </script>
+<style>
+#user_form .cd-f-value input,#user_form .cd-f-value select{width:180px;}
+#user_form #condition input,#user_form #condition select{width:152px;}
+</style>

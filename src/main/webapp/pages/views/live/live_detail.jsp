@@ -9,6 +9,7 @@
 <script type="text/javascript" src="${ROOT_UI}/public/_tools/tool.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/public/player_flash/player_flash.js"></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_live.js" ></script>
+<script type="text/javascript" src="${ROOT_UI}/public/qqFace/js/jquery.qqFace.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/_module/live/live_detail.js"></script>
 <style type="text/css">
 .chat-li{
@@ -30,6 +31,17 @@
 .l-title {font-size: 18px;}
 .l-title span{margin: 0px;}
 .ft12{font-size: 14px;}
+#facebox td{width:40px;}
+.icon-face {
+    color: #f1b93c;
+    font-size: 20px;
+}
+.qqFace {
+    margin-top: 4px;
+    background: #fff;
+    padding: 2px;
+    border: 1px #dfe6f6 solid;
+}
 </style>
 </head>
 <body>
@@ -62,7 +74,12 @@
 		          	<div class="bar"></div>
 		          	<div class="c-text">
 		            	<textarea id="chat" maxlength="150"></textarea>
-		            	<button class="commit fr" id="chat_send">发表</button>
+		            	<div>
+		            		<span class="emotion">
+								<i class="iconfont icon-face"></i>
+							</span>
+		            		<button class="commit fr" id="chat_send">发表</button>
+		            	</div>
 		            	<div class="clear"></div>
 		          	</div>
 		          </div>

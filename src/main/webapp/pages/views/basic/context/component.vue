@@ -9,7 +9,12 @@
       <tbody id="sort">
         <tr v-for="(grade,index) in grades.data">
         <td :data-id="grade.classlevelId" :title="grade.classlevelName">{{grade.classlevelName}}</td>
-         <td><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        <td v-if="index===0"><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        <template v-else> 
+         <td v-if="index===(grades.data.length-1)"><i class="iconfont icon-moveup" @click="upbtn"></i></td>
+         <td v-else><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        </template>
+        
         <td class="colorTd"><span @click="manEdit(grade.classlevelName,grade.classlevelId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.classlevelId)">删除</span></td></tr>
       </tbody>
     </table>
@@ -164,7 +169,8 @@
 			tr.prev().before(tr);
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
-			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){});
+			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
+			 	 });
 			 });
      },
      /**下移**/
@@ -179,8 +185,6 @@
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){});
 			 });
-			
-			
      },
     }
    }

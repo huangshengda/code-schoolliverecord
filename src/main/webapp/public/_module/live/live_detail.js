@@ -1,4 +1,10 @@
 $(function() {
+	$('.emotion').qqFace({
+		id : 'facebox', 
+		assign:'chat', 
+		path:ROOT_UI+'/public/qqFace/arclist/'	//表情存放的路径
+
+	});
 	var resourceId = sessionStorage.getItem("resourceId");
 	if(resourceId == undefined){
 		layerIndex = layer.confirm('缺少资源信息，请返回首页',{btn: ['确定', '取消']},function(){
@@ -65,7 +71,7 @@ $(function() {
 				var htmlStr = '<li class="chat-li" id="'+id+'" data-timestamp="'+timestamp+'"  >'
  					+'<span class="fb mr20">'+author+'</span>'
  					//+'<span>5分钟之前</span>'
- 					+'<p class="chat-context">'+msg+'</p>';
+ 					+'<p class="chat-context">'+replace_em(msg)+'</p>';
 				if(delAuth){
 					htmlStr += '<i class="iconfont icon-delete chat-delete fr c9" data-id="'+id+'"></i>'
 				}
@@ -183,3 +189,10 @@ $(function() {
 		}
 	}
 });
+function replace_em(str){
+	str = str.replace(/\</g,'&lt;');
+	str = str.replace(/\>/g,'&gt;');
+	str = str.replace(/\n/g,'<br/>');
+	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="'+ROOT_UI+'/public/qqFace/arclist/$1.gif" border="0" />');
+	return str;
+}

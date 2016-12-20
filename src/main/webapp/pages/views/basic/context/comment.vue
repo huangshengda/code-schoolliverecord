@@ -38,8 +38,7 @@ var comDel = function(params, dom) {
 		var comidParams = {
 			resourceCommentId: comId
 		};
-		CDUtil.ajaxPost("/resource/comment/delete", comidParams,
-		function(retVO) {
+		CDUtil.ajaxPost("/resource/comment/delete", comidParams,function(retVO) {
 			if (retVO.code == 1) {
 				comSearch();
 				layer.msg(retVO.msg);
@@ -65,6 +64,7 @@ var comSearch = function(newPage) {
 		realname: $("#search_realname").val(),
 	};
 	CDUtil.ajaxPost("/base/resource/comment/list", cParams,function(retVO) {
+	console.log(retVO);
 		cParams.curPage=retVO.curPage;
 		config.gData = retVO;
 		Grid.initGrid(config,function(){});
@@ -78,7 +78,7 @@ var config = {
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
 	 thead: [{name:"评论",valuekey:"commentContent",css:"width:300px"},
-             {name:"来源",valuekey:"resourceName",css:"width:200px"},
+             {name:"来源",valuekey:"resourceName",css:"width:200px",typ:"clickable",optCode:"laiyuan"},
              {name:"评论人",valuekey:"realName"},
              {name:"操作",valuekey:"opt",type:"opt"}
           ],
@@ -98,6 +98,7 @@ var config = {
 	//表格中的行操作方法
 	optFuns: {
 		del_fun: comDel,
+		laiyuan:function(params){alert(params);}
 		
 	}
 }

@@ -19,14 +19,14 @@ webpackJsonp([1,6],[
 		"./basic/context/comment.vue": 39,
 		"./basic/context/component.vue": 42,
 		"./basic/context/default.vue": 47,
-		"./basic/context/management.vue": 50,
-		"./basic/context/platform.vue": 55,
-		"./basic/context/server.vue": 58,
-		"./basic/context/source.vue": 63,
-		"./basic/context/upload.vue": 66,
-		"./demand.vue": 69,
-		"./home.vue": 72,
-		"./mySubject.vue": 78
+		"./basic/context/management.vue": 52,
+		"./basic/context/platform.vue": 57,
+		"./basic/context/server.vue": 60,
+		"./basic/context/source.vue": 65,
+		"./basic/context/upload.vue": 68,
+		"./demand.vue": 71,
+		"./home.vue": 74,
+		"./mySubject.vue": 80
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -1045,6 +1045,7 @@ webpackJsonp([1,6],[
 			realname: $("#search_realname").val()
 		};
 		CDUtil.ajaxPost("/base/resource/comment/list", cParams, function (retVO) {
+			console.log(retVO);
 			cParams.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
@@ -1305,6 +1306,11 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
 
 	/*vue组件*/
 	exports.default = {
@@ -1472,7 +1478,17 @@ webpackJsonp([1,6],[
 	        "data-id": grade.classlevelId,
 	        "title": grade.classlevelName
 	      }
-	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), _c('td', [_c('i', {
+	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), (index === 0) ? _c('td', [_c('i', {
+	      staticClass: "iconfont icon-movedown downbtn",
+	      on: {
+	        "click": _vm.downbtn
+	      }
+	    })]) : [(index === (_vm.grades.data.length - 1)) ? _c('td', [_c('i', {
+	      staticClass: "iconfont icon-moveup",
+	      on: {
+	        "click": _vm.upbtn
+	      }
+	    })]) : _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
 	        "click": _vm.upbtn
@@ -1482,7 +1498,7 @@ webpackJsonp([1,6],[
 	      on: {
 	        "click": _vm.downbtn
 	      }
-	    })]), _vm._v(" "), _c('td', {
+	    })]), _vm._v(" ")], _vm._v(" "), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
 	    }, [_c('span', {
 	      on: {
@@ -1496,7 +1512,7 @@ webpackJsonp([1,6],[
 	          _vm.manDel(grade.classlevelId)
 	        }
 	      }
-	    }, [_vm._v("删除")])])])
+	    }, [_vm._v("删除")])])], true)
 	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "grade",
 	    attrs: {
@@ -1573,11 +1589,14 @@ webpackJsonp([1,6],[
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
+	/* styles */
+	__webpack_require__(48)
+
 	/* script */
-	__vue_exports__ = __webpack_require__(48)
+	__vue_exports__ = __webpack_require__(50)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(49)
+	var __vue_template__ = __webpack_require__(51)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -1612,6 +1631,46 @@ webpackJsonp([1,6],[
 
 /***/ },
 /* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(49);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(49, function() {
+				var newContent = __webpack_require__(49);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(7)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n#user_form .cd-f-value input,#user_form .cd-f-value select{width:180px;\n}\n#user_form #condition input,#user_form #condition select{width:152px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 50 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1737,6 +1796,7 @@ webpackJsonp([1,6],[
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
 		$('#edit_userId').val(params.userId);
+		$('#edit_password').val(params.password.substr(0, 18));
 		layer.open({
 			type: 1,
 			title: '编辑用户',
@@ -1752,11 +1812,11 @@ webpackJsonp([1,6],[
 					containerId: "edituser"
 				});
 				if (result == true) {
-					/*var editparams = $('#edituser').serialize();*/
 					var editparams = {
 						userType: $("#edit_userType").val(),
 						password: md5($("#edit_password").val()),
-						realname: $("#edit_realname").val()
+						realname: $("#edit_realname").val(),
+						userId: $("#edit_userId").val()
 					};
 					CDUtil.ajaxPost("/base/user/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
@@ -1869,6 +1929,7 @@ webpackJsonp([1,6],[
 			userSear: userSearch,
 			/*** 添加用户**/
 			addUser: function addUser() {
+				var _self = this;
 				layer.open({
 					type: 1,
 					title: '添加用户',
@@ -1892,7 +1953,7 @@ webpackJsonp([1,6],[
 							};
 							CDUtil.ajaxPost("/base/user/add", addparams, function (retVO) {
 								if (retVO.code == 1) {
-									userSearch();
+									_self.userSear();
 									layer.msg(retVO.msg);
 									layer.close(index);
 									$('#adduser')[0].reset();
@@ -1909,12 +1970,15 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('div', {
-	    staticClass: "content"
+	    staticClass: "content",
+	    attrs: {
+	      "id": "user_form"
+	    }
 	  }, [_c('div', {
 	    staticClass: "subBtn"
 	  }, [_c('button', {
@@ -1958,7 +2022,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "name": "username",
 	      "id": "search_username",
-	      "data-vali": "notnull,username",
+	      "data-vali": "username",
 	      "maxlength": "18"
 	    }
 	  })])])
@@ -2058,7 +2122,9 @@ webpackJsonp([1,6],[
 	      "type": "password",
 	      "name": "password",
 	      "id": "edit_password",
-	      "value": "666666"
+	      "value": "",
+	      "data-vali": "password",
+	      "maxlength": "18"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -2108,7 +2174,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "name": "username",
 	      "id": "add_username",
-	      "data-vali": "notnull,username",
+	      "data-vali": "username",
 	      "value": ""
 	    }
 	  })])]), _vm._v(" "), _c('div', {
@@ -2123,7 +2189,8 @@ webpackJsonp([1,6],[
 	      "name": "realname",
 	      "data-vali": "notnull",
 	      "id": "add_realname",
-	      "value": ""
+	      "value": "",
+	      "maxlength": "10"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -2135,9 +2202,9 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "password",
 	      "name": "password",
-	      "data-vali": "notnull,password",
+	      "data-vali": "password",
 	      "id": "add_password",
-	      "value": ""
+	      "value": "666666"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -2178,20 +2245,20 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(51)
+	__webpack_require__(53)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(53)
+	__vue_exports__ = __webpack_require__(55)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(54)
+	var __vue_template__ = __webpack_require__(56)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2225,13 +2292,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(52);
+	var content = __webpack_require__(54);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -2240,8 +2307,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(52, function() {
-				var newContent = __webpack_require__(52);
+			module.hot.accept(54, function() {
+				var newContent = __webpack_require__(54);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2251,7 +2318,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -2265,7 +2332,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2273,6 +2340,10 @@ webpackJsonp([1,6],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	//
+	//
+	//
+	//
 	//
 	//
 	//
@@ -2432,13 +2503,11 @@ webpackJsonp([1,6],[
 	      var tr = $this.parents('tr');
 	      var _index = tr.index();
 	      var _str = "";
-	      /*if (_index != 0) {*/
 	      tr.prev().before(tr);
 	      $("#sort tr").each(function () {
 	        _str += $(this).find('td').attr("data-id") + ",";
 	      });
 	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {});
-	      /*}*/
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
@@ -2448,19 +2517,17 @@ webpackJsonp([1,6],[
 	      var trLength = $this.length;
 	      var _index = tr.index();
 	      var _str = "";
-	      /*	if (_index != trLength - 1){ */
 	      tr.next().after(tr);
 	      $("#sort tr").each(function () {
 	        _str += $(this).find('td').attr("data-id") + ",";
 	      });
 	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {});
-	      /*}*/
 	    }
 	  }
 	};
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -2490,7 +2557,17 @@ webpackJsonp([1,6],[
 	        "data-id": grade.subjectId,
 	        "title": grade.subjectName
 	      }
-	    }, [_vm._v(_vm._s(grade.subjectName))]), _vm._v(" "), _c('td', [_c('i', {
+	    }, [_vm._v(_vm._s(grade.subjectName))]), _vm._v(" "), (index === 0) ? _c('td', [_c('i', {
+	      staticClass: "iconfont icon-movedown downbtn",
+	      on: {
+	        "click": _vm.downbtn
+	      }
+	    })]) : [(index === (_vm.grades.data.length - 1)) ? _c('td', [_c('i', {
+	      staticClass: "iconfont icon-moveup",
+	      on: {
+	        "click": _vm.upbtn
+	      }
+	    })]) : _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
 	        "click": _vm.upbtn
@@ -2500,7 +2577,7 @@ webpackJsonp([1,6],[
 	      on: {
 	        "click": _vm.downbtn
 	      }
-	    })]), _vm._v(" "), _c('td', {
+	    })]), _vm._v(" ")], _vm._v(" "), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
 	    }, [_c('span', {
 	      on: {
@@ -2514,7 +2591,7 @@ webpackJsonp([1,6],[
 	          _vm.manDel(grade.subjectId)
 	        }
 	      }
-	    }, [_vm._v("删除")])])])
+	    }, [_vm._v("删除")])])], true)
 	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "grade",
 	    attrs: {
@@ -2585,17 +2662,17 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(56)
+	__vue_exports__ = __webpack_require__(58)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(57)
+	var __vue_template__ = __webpack_require__(59)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2629,7 +2706,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2736,7 +2813,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -2860,20 +2937,20 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(59)
+	__webpack_require__(61)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(61)
+	__vue_exports__ = __webpack_require__(63)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(62)
+	var __vue_template__ = __webpack_require__(64)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -2907,13 +2984,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(60);
+	var content = __webpack_require__(62);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -2922,8 +2999,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(60, function() {
-				var newContent = __webpack_require__(60);
+			module.hot.accept(62, function() {
+				var newContent = __webpack_require__(62);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2933,7 +3010,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -2947,7 +3024,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3157,7 +3234,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3282,17 +3359,17 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(64)
+	__vue_exports__ = __webpack_require__(66)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(65)
+	var __vue_template__ = __webpack_require__(67)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3326,7 +3403,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3387,7 +3464,7 @@ webpackJsonp([1,6],[
 			};
 			CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
 				if (retVO.code == 1) {
-					uploadSearch();
+					sourseSearch();
 					layer.msg(retVO.msg);
 					layer.close(index);
 				}
@@ -3414,7 +3491,7 @@ webpackJsonp([1,6],[
 	/**
 	 * 进行查询上传信息的方法
 	**/
-	var uploadSearch = function uploadSearch(newPage) {
+	var sourseSearch = function sourseSearch(newPage) {
 		if (newPage == "undefined") {
 			newPage = 1;
 		}
@@ -3448,7 +3525,7 @@ webpackJsonp([1,6],[
 		//是否需要分页，true：需要，不写默认需要
 		pagingFlag: true,
 		//执行页面查询的方法
-		searchFun: uploadSearch,
+		searchFun: sourseSearch,
 		//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
 		optParams: ["resourceId", "classlevelName", "resourceName", "subjectName", "author", "creatName"],
 		//表格中的行操作名称
@@ -3476,12 +3553,12 @@ webpackJsonp([1,6],[
 			};
 		},
 		created: function created() {
-			this.search_one(), this.showclass(), this.showsubject();
+			this.sourSearch(), this.showclass(), this.showsubject();
 		},
 
 		methods: {
 			/*查询列表数据*/
-			search_one: uploadSearch,
+			sourSearch: sourseSearch,
 			/*获取年级列表*/
 			showclass: function showclass() {
 				var _self = this;
@@ -3502,7 +3579,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3558,7 +3635,7 @@ webpackJsonp([1,6],[
 	    },
 	    on: {
 	      "click": function($event) {
-	        _vm.search_one(1)
+	        _vm.sourSearch(1)
 	      }
 	    }
 	  }, [_vm._v("查询")])])]), _vm._v(" "), _vm._v(" "), _c('div', {
@@ -3614,17 +3691,17 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(67)
+	__vue_exports__ = __webpack_require__(69)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(68)
+	var __vue_template__ = __webpack_require__(70)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3658,7 +3735,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3752,10 +3829,10 @@ webpackJsonp([1,6],[
 		var params = {
 			curPage: newPage,
 			pageSize: 20,
-			resourceNameKey: $("#search_resourceName").val(),
-			authorKey: $("#search_author").val(),
-			classlevelName: $("#search_classlevelName").val(),
-			subjectName: $("#search_subjectName").val(),
+			resourceNameKey: $("#search_upName").val(),
+			authorKey: $("#search_upauthor").val(),
+			classlevelName: $("#search_upclasslevelName").val(),
+			subjectName: $("#search_upsubjectName").val(),
 			sourceType: "UPLOAD"
 		};
 		CDUtil.ajaxPost("/resource/list", params, function (retVO) {
@@ -3804,12 +3881,12 @@ webpackJsonp([1,6],[
 			};
 		},
 		created: function created() {
-			this.search_one(), this.showclass(), this.showsubject();
+			this.upSearch(), this.showclass(), this.showsubject();
 		},
 
 		methods: {
 			/*查询列表数据*/
-			search_one: uploadSearch,
+			upSearch: uploadSearch,
 			/*获取年级列表*/
 			showclass: function showclass() {
 				var _self = this;
@@ -3835,7 +3912,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3867,7 +3944,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "classlevelName",
-	      "id": "search_classlevelName"
+	      "id": "search_upclasslevelName"
 	    }
 	  }, [_c('option', {
 	    attrs: {
@@ -3883,7 +3960,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "data-vali": "notnull",
 	      "name": "subjectName",
-	      "id": "search_subjectName"
+	      "id": "search_upsubjectName"
 	    }
 	  }, [_c('option', {
 	    attrs: {
@@ -3898,7 +3975,7 @@ webpackJsonp([1,6],[
 	    },
 	    on: {
 	      "click": function($event) {
-	        _vm.search_one(1)
+	        _vm.upSearch(1)
 	      }
 	    }
 	  }, [_vm._v("查询")])])]), _vm._v(" "), _vm._v(" "), _c('div', {
@@ -3918,7 +3995,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "data-vali": "notnull",
 	      "name": "resourceName",
-	      "id": "search_resourceName",
+	      "id": "search_upName",
 	      "maxlength": "30"
 	    }
 	  })])])
@@ -3934,7 +4011,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "data-vali": "notnull",
 	      "name": "author",
-	      "id": "search_author"
+	      "id": "search_upauthor"
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3954,17 +4031,17 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* script */
-	__vue_exports__ = __webpack_require__(70)
+	__vue_exports__ = __webpack_require__(72)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(71)
+	var __vue_template__ = __webpack_require__(73)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3998,7 +4075,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4221,7 +4298,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4335,20 +4412,20 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(73)
+	__webpack_require__(75)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(75)
+	__vue_exports__ = __webpack_require__(77)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(76)
+	var __vue_template__ = __webpack_require__(78)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4382,13 +4459,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(74);
+	var content = __webpack_require__(76);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -4397,8 +4474,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(74, function() {
-				var newContent = __webpack_require__(74);
+			module.hot.accept(76, function() {
+				var newContent = __webpack_require__(76);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4408,7 +4485,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -4422,7 +4499,7 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 75 */
+/* 77 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4562,7 +4639,7 @@ webpackJsonp([1,6],[
 	};
 
 /***/ },
-/* 76 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -4601,7 +4678,7 @@ webpackJsonp([1,6],[
 	    staticClass: "tac"
 	  }, [_c('img', {
 	    attrs: {
-	      "src": __webpack_require__(77)
+	      "src": __webpack_require__(79)
 	    }
 	  })]), _vm._v(" ")]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "s-title demanBtm"
@@ -4665,26 +4742,26 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 77 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "8bed79dd627549783788bf671a45567f.png";
 
 /***/ },
-/* 78 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 
 	/* styles */
-	__webpack_require__(79)
+	__webpack_require__(81)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(81)
+	__vue_exports__ = __webpack_require__(83)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(82)
+	var __vue_template__ = __webpack_require__(84)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4718,13 +4795,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 79 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(80);
+	var content = __webpack_require__(82);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -4733,8 +4810,8 @@ webpackJsonp([1,6],[
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(80, function() {
-				var newContent = __webpack_require__(80);
+			module.hot.accept(82, function() {
+				var newContent = __webpack_require__(82);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4744,7 +4821,7 @@ webpackJsonp([1,6],[
 	}
 
 /***/ },
-/* 80 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(7)();
@@ -4758,13 +4835,13 @@ webpackJsonp([1,6],[
 
 
 /***/ },
-/* 81 */
+/* 83 */
 /***/ function(module, exports) {
 
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	//
 	//
@@ -4791,98 +4868,100 @@ webpackJsonp([1,6],[
 	var _data = { mycourceList: "", pages: "" };
 	/****点击进入点播详情页****/
 	window.openDemondDetail = function (resourceId) {
-		CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
-			if (retVO.code == 1) {
-				sessionStorage.setItem("resourceId", resourceId);
-				window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
-			} else {
-				//alert("用户信息失效");
-				layerIndex = layer.confirm('未登录暂无权限访问', {
-					btn: ['确定']
-				}, function () {
-					layer.close(layerIndex);
-					sessionStorage.clear();
-					window.location.href = ROOT_SERVER + "/#/index";
-				});
-			}
-		});
+	  CDUtil.ajaxPost("/token/hasexpire", {}, function (retVO) {
+	    if (retVO.code == 1) {
+	      sessionStorage.setItem("resourceId", resourceId);
+	      window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
+	    } else {
+	      //alert("用户信息失效");
+	      layerIndex = layer.confirm('未登录暂无权限访问', {
+	        btn: ['确定']
+	      }, function () {
+	        layer.close(layerIndex);
+	        sessionStorage.clear();
+	        window.location.href = ROOT_SERVER + "/#/index";
+	      });
+	    }
+	  });
 	};
 	window.mySub = function (newPage) {
-		if (newPage == "undefined") {
-			newPage = 1;
-		}
-		var _self = this;
-		var params = { curPage: newPage, pageSize: 2 };
-		CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
-			_data.mycourceList = retVO;
-			_data.pages = retVO.totalDatas;
-			var htmlStr = "";
-			var config = {
-				//用来展示表格控件的div的id
-				containerId: "sub_list",
-				//这个应该是后台返回的部分
-				gData: retVO,
-				//是否需要分页，true：需要，不写默认需要
-				pagingFlag: true,
-				//用来拼接单个循环体的回调方法。
-				spellHtmlFun: function spellHtmlFun(data) {
-					if (data.classlevelName.length > 7) {
-						var classLevelName = data.classlevelName.substr(0, 7) + "...";
-					} else {
-						var classLevelName = data.classlevelName;
-					}
-					var htmlStr = '<div class="col-4">';
-					htmlStr += '<div class="demandImg" onClick="openDemondDetail(\'' + data.resourceId + '\')">';
-					htmlStr += '<img src=' + data.thumbPath + ' width="280" height="157">';
-					htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
-					htmlStr += '</div>';
-					htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-					htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
-					htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
-					htmlStr += ' </div>';
-					/*  无消息显示 */
-					if (data.resourceId == "") {
-						htmlStr += '<div id="sub_list"><p>暂无相关数据</p></div>';
-					}
-					return htmlStr;
-				},
-				//执行页面查询的方法
-				searchFun: mySub
-			};
-			Paging.initPaging(config, function () {});
-		});
+	  if (newPage == "undefined") {
+	    newPage = 1;
+	  }
+	  var _self = this;
+	  var params = { curPage: newPage, pageSize: 16 };
+	  CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
+	    _data.mycourceList = retVO;
+	    _data.pages = retVO.totalDatas;
+	    var htmlStr = "";
+	    var config = {
+	      //用来展示表格控件的div的id
+	      containerId: "sub_list",
+	      //这个应该是后台返回的部分
+	      gData: retVO,
+	      //是否需要分页，true：需要，不写默认需要
+	      pagingFlag: true,
+	      //用来拼接单个循环体的回调方法。
+	      spellHtmlFun: function spellHtmlFun(data) {
+	        if (data.classlevelName.length > 7) {
+	          var classLevelName = data.classlevelName.substr(0, 7) + "...";
+	        } else {
+	          var classLevelName = data.classlevelName;
+	        }
+	        var htmlStr = '<div class="col-4">';
+	        htmlStr += '<div class="demandImg" onClick="openDemondDetail(\'' + data.resourceId + '\')">';
+	        htmlStr += '<img src=' + data.thumbPath + ' width="280" height="157">';
+	        htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+	        htmlStr += '</div>';
+	        htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
+	        htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+	        htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
+	        htmlStr += ' </div>';
+	        /*  无消息显示 */
+	        if (data.resourceId == "") {
+	          htmlStr += '<div id="sub_list"><p>暂无相关数据</p></div>';
+	        }
+	        return htmlStr;
+	      },
+	      //执行页面查询的方法
+	      searchFun: mySub
+	    };
+	    Paging.initPaging(config, function () {});
+	  });
 	};
 	window.mysubjectDel = function (resourceId) {
-		layer.alert('删除后则该资源在点播列表同步删除?', function (index) {
-			var reidParams = { resourceId: resourceId };
-			CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
-				if (retVO.code == 1) {
-					mySub();
-					layer.msg(retVO.msg);
-					layer.close(index);
-				}
-			});
-		});
+	  layer.alert('删除后则该资源在点播列表同步删除?', function (index) {
+	    var reidParams = { resourceId: resourceId };
+	    CDUtil.ajaxPost("/resource/delete", reidParams, function (retVO) {
+	      if (retVO.code == 1) {
+	        mySub();
+	        layer.msg(retVO.msg);
+	        layer.close(index);
+	      }
+	    });
+	  });
 	};
 	exports.default = {
-		data: function data() {
-			return _data;
-		},
-		created: function created() {
-			this.showdemand();
-		},
+	  data: function data() {
+	    return _data;
+	  },
+	  created: function created() {
+	    this.showdemand();
+	  },
 
-		methods: {
-			showdemand: mySub,
-			/*跳转到上传资源页面*/
-			openUploadup: function openUploadup() {
-				window.open(ROOT_UI + "/front/path/upload?token=" + sessionStorage.getItem("token"));
-			}
-		}
+	  methods: {
+	    showdemand: mySub,
+	    /*跳转到上传资源页面*/
+	    openUploadup: function openUploadup() {
+	      sessionStorage.setItem("mysub", "subject");
+	      sessionStorage.removeItem("resourceId");
+	      window.open(ROOT_UI + "/front/path/upload?token=" + sessionStorage.getItem("token"));
+	    }
+	  }
 	};
 
 /***/ },
-/* 82 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;

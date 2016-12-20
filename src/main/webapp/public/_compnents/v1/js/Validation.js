@@ -43,15 +43,16 @@ data-vali的值域集合有：
 	//匹配不通过时，对应的提示
 	Validation.errorMsg = {
 		notnull: "不能为空",
-		username: "用户名不合法",
-		password: "密码不合法",
+		username: "用户名有非法字符，请重输",
+		password: "密码有非法字符，请重输",
 		number: "必须是整数",
 		float: "必须是数字",
 		phone: "手机号不合法",
 		telphone: "固定电话不合法",
 		email: "邮箱不合法",
 		idcard: "身份证不合法",
-		areacode: "邮编不合法"
+		areacode: "邮编不合法",
+		special: "不能输入特殊字符"
 	};
 	/**
 	 * 本方法适用于使用data-vali-*做规则验证。
@@ -99,7 +100,7 @@ data-vali的值域集合有：
 		});
 		//验证通过，如果设置提交方法，自动发起，否则返回ture
 		if(result){
-			if (typeof(submitFun) === "function") {
+			if(typeof(submitFun) === "function") {
 				submitFun();
 			}else{
 				return result;
@@ -164,6 +165,11 @@ data-vali的值域集合有：
 		}else if(vali.indexOf("areacode")>-1){
 			if(!ValueCheck.isAreacode(value)){
 				msg = Validation.errorMsg["areacode"];
+			}
+		}else if(vali.indexOf("special")>-1){
+			rgxStr = /[`~!@#$^&*()=|{}':;',\\[\\]/;
+			if(rgxStr.test(value)){
+				msg = Validation.errorMsg["special"];
 			}
 		}
 		return msg;

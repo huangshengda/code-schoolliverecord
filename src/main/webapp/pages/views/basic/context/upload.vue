@@ -8,28 +8,28 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>资源名称:</label></span>
           <span class="cd-f-value ">
-            <input type="text" data-vali="notnull" name="resourceName" id="search_resourceName" maxlength="30">
+            <input type="text" data-vali="notnull" name="resourceName" id="search_upName" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>主讲教师:</label></span>
           <span class="cd-f-value ">
-            <input type="text" data-vali="notnull" name="author" id="search_author">
+            <input type="text" data-vali="notnull" name="author" id="search_upauthor">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>年级:</label></span>
           <span class="cd-f-value ">
-            <select data-vali="notnull" name="classlevelName" id="search_classlevelName"><option value="">请选择年级</option><option v-for="grade in classList.data">{{grade.classlevelName}}</option></select>
+            <select data-vali="notnull" name="classlevelName" id="search_upclasslevelName"><option value="">请选择年级</option><option v-for="grade in classList.data">{{grade.classlevelName}}</option></select>
           </span>
         </div>   
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>学科:</label></span>
           <span class="cd-f-value ">
-            <select data-vali="notnull" name="subjectName" id="search_subjectName"><option value="">全部</option><option v-for="subject in subjectList.data">{{subject.subjectName}}</option></select>
+            <select data-vali="notnull" name="subjectName" id="search_upsubjectName"><option value="">全部</option><option v-for="subject in subjectList.data">{{subject.subjectName}}</option></select>
           </span>
         </div>   
-        <button class="sBtn" type="button" @click="search_one(1)">查询</button>
+        <button class="sBtn" type="button" @click="upSearch(1)">查询</button>
       </div>
     </form>
     <!-- 表单 start -->
@@ -86,10 +86,10 @@ var uploadSearch = function(newPage) {
 	var params = {
 		curPage: newPage,
 		pageSize: 20,
-		resourceNameKey: $("#search_resourceName").val(),
-		authorKey: $("#search_author").val(),
-		classlevelName: $("#search_classlevelName").val(),
-		subjectName: $("#search_subjectName").val(),
+		resourceNameKey: $("#search_upName").val(),
+		authorKey: $("#search_upauthor").val(),
+		classlevelName: $("#search_upclasslevelName").val(),
+		subjectName: $("#search_upsubjectName").val(),
 		sourceType:"UPLOAD",
 	};
 	CDUtil.ajaxPost("/resource/list",params,function(retVO) {
@@ -144,13 +144,13 @@ export default {
     	}
   	},
   	created () {    
-    	this.search_one(),
+    	this.upSearch(),
    		this.showclass(),
     	this.showsubject()
     },
 	methods: {
 		/*查询列表数据*/
-		search_one: uploadSearch,
+		upSearch: uploadSearch,
 		 /*获取年级列表*/
   		showclass:function(){
    			var _self = this;

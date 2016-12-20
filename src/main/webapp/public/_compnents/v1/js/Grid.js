@@ -160,7 +160,6 @@
 						htmlStr += ' style="cursor: pointer;" data-opttype="'+this.optCode+'" ' ;
 					}
 					htmlStr += '>'+dataRow[this.valuekey]+'</span>';
-					
 				}else{
 					//给字段提供自定义convertor转换的方法
 					if(typeof(this.convertor)=="function"){

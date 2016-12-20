@@ -213,6 +213,7 @@ $(function(){
 	 * 显示选择系统截图作为封面事件
 	**/
 	$("#show_fileup_detail").on("click",".sysprint-img-button",function(){
+		var index = layer.load(2);
 		$("#show_sysprint_img").html("");
 		var topDom = $(this).parents(".up-item").get(0);
 		var seq = topDom.id;
@@ -222,7 +223,7 @@ $(function(){
 		CDUtil.ajaxPost("/resource/sysscreenshot/get",params,function(retVO){
 			var dataVO = retVO.data;
 			if(ValueCheck.isNull(dataVO)){
-				layer.msg('暂无系统截图!');
+				layer.msg(retVO.msg);
 			}
 			var len = dataVO.length;
 			var rows = Math.ceil(len/3);
@@ -243,6 +244,7 @@ $(function(){
 		          area: ['700px',larH+'px'], //宽高
 		          content: $("#chose_sysimg")
 		      });
+			layer.close(index); 
 		});
 	});
 	/**
@@ -307,30 +309,34 @@ $(function(){
 		if(resourceId != undefined && resourceId != ""){
 			CDUtil.ajaxPost("/resource/update",params,function(retVO){
 				if(retVO.code == 0){
-					layer.msg("修改视频信息失败");
+					layer.msg(retVO.msg);
 					return;
 				}
 				layer.alert('修改视频信息成功', {
 				  icon: 1,
 				  skin: 'layer-ext-moon'
 				});
-				setTimeout(function(){
-					window.location.href = ROOT_SERVER+"/#/basic/upload";
-				},1000);
+					setTimeout(function(){
+						window.location.href = ROOT_SERVER+"/#/basic/upload";
+					},1000);
 			});
 		}else{
 			CDUtil.ajaxPost("/resource/addresource",params,function(retVO){
 				if(retVO.code == 0){
-					layer.msg("修改视频信息失败");
+					layer.msg(retVO.msg);
 					return;
 				}
-				layer.alert('上传视频成功！', {
-				  icon: 1,
-				  skin: 'layer-ext-moon'
-				});
-				setTimeout(function(){
-					window.location.href = ROOT_SERVER+"/#/basic/upload";
-				},1000);
+				layer.msg('上传视频成功！');
+				
+				if(sessionStorage.getItem("mysub")=="subject"){
+					setTimeout(function(){
+						window.location.href = ROOT_SERVER+"/#/mySubject";
+					},1000);
+				}else{
+					setTimeout(function(){
+						window.location.href = ROOT_SERVER+"/#/basic/upload";
+					},1000);
+				}
 			});
 		}
 	});

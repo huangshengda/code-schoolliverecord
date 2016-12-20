@@ -44,7 +44,7 @@ window.mySub = function(newPage){
      		newPage=1;
      	}
         var _self = this;
-		var params = {curPage: newPage ,pageSize: 2,};
+		var params = {curPage: newPage ,pageSize:16,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
           data.mycourceList = retVO;
           data.pages = retVO.totalDatas;
@@ -107,6 +107,8 @@ export default {
      showdemand: mySub,
 	/*跳转到上传资源页面*/
     	openUploadup: function(){
+    		sessionStorage.setItem("mysub","subject");
+    		sessionStorage.removeItem("resourceId");
     		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
     	}
      }

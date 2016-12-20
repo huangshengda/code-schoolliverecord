@@ -29,7 +29,7 @@
             <select data-vali="notnull" name="subjectName" id="search_subjectName"><option value="">全部</option><option v-for="subject in subjectList.data">{{subject.subjectName}}</option></select>
           </span>
         </div>   
-        <button class="sBtn" type="button" @click="search_one(1)">查询</button>
+        <button class="sBtn" type="button" @click="sourSearch(1)">查询</button>
       </div>
     </form>
     <!-- 表单 start -->
@@ -53,7 +53,7 @@ var uploadDel = function(params, dom) {
 		CDUtil.ajaxPost("/resource/delete", reidParams,
 		function(retVO) {
 			if (retVO.code == 1) {
-				uploadSearch();
+				sourseSearch();
 				layer.msg(retVO.msg);
 				layer.close(index);
 			}
@@ -80,7 +80,7 @@ var uploadEdit = function(params, dom) {
 /**
  * 进行查询上传信息的方法
 **/
-var uploadSearch = function(newPage) {
+var sourseSearch = function(newPage) {
 	if(newPage == "undefined"){
      		newPage=1;
      }
@@ -119,7 +119,7 @@ var config = {
 	//是否需要分页，true：需要，不写默认需要
 	pagingFlag: true,
 	//执行页面查询的方法
-	searchFun: uploadSearch,
+	searchFun: sourseSearch,
 	//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
 	optParams: ["resourceId","classlevelName","resourceName","subjectName","author","creatName"],
 	//表格中的行操作名称
@@ -147,13 +147,13 @@ export default {
     	}
   	},
   	created () {    
-    	this.search_one(),
+    	this.sourSearch(),
    		this.showclass(),
     	this.showsubject()
     },
 	methods: {
 		/*查询列表数据*/
-		search_one: uploadSearch,
+		sourSearch: sourseSearch,
 		 /*获取年级列表*/
   		showclass:function(){
    			var _self = this;

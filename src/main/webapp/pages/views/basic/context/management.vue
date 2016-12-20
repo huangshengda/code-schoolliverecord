@@ -9,7 +9,11 @@
       <tbody id="sort">
         <tr v-for="(grade,index) in grades.data">
         <td :data-id="grade.subjectId" :title="grade.subjectName">{{grade.subjectName}}</td>
-         <td><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        <td v-if="index===0"><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        <template v-else> 
+         <td v-if="index===(grades.data.length-1)"><i class="iconfont icon-moveup" @click="upbtn"></i></td>
+         <td v-else><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+        </template>
         <td class="colorTd"><span @click="manEdit(grade.subjectName,grade.subjectId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.subjectId)">删除</span></td></tr>
       </tbody>
     </table>
@@ -159,13 +163,11 @@
      	var tr = $this.parents('tr');
      	var _index=tr.index() ;
      	var _str="";
-     	/*if (_index != 0) {*/
 			tr.prev().before(tr);
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 });
 			 CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){});
-		/*}*/
      },
      /**下移**/
      downbtn:function(event){
@@ -175,13 +177,11 @@
     	 var trLength = $this.length; 
     	 var _index=tr.index() ;
     	 var _str="";
-     /*	if (_index != trLength - 1){ */
 			tr.next().after(tr);
 			$("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 });
 			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){});
-		/*}*/
      },
     }
    }
