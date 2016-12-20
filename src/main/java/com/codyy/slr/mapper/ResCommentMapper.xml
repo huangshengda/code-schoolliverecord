@@ -99,7 +99,7 @@
 	<select id = "getAllResCommentPageList" resultType="com.codyy.slr.vo.ResCommentVo" parameterType="com.codyy.slr.common.page.Page">
 	
 	SELECT
-		rc.COMMENT_CONTENT commentContent,rc.RESOURCE_COMMENT_ID resourceCommentId,u.REALNAME realName,res.RESOURCE_NAME resourceName
+		rc.COMMENT_CONTENT commentContent,rc.RESOURCE_COMMENT_ID resourceCommentId,u.REALNAME realName,res.RESOURCE_NAME resourceName,res.RESOURCE_ID resourceId
 	FROM
 	res_comment rc
 	LEFT JOIN USER u ON u.USER_ID = rc.COMMENT_USER_ID

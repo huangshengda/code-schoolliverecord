@@ -228,6 +228,7 @@ public class UserController {
 		String password;
 		int code = Constants.SUCCESS;
 		String msg = "操作成功";
+		int count = 0;
 		if (StringUtils.isNotEmpty(prePassword)) {// 修改密码
 			password = user.getPassword();
 			user = userService.selectByPrimaryKey(user.getUserId());
@@ -258,7 +259,11 @@ public class UserController {
 					return new ReturnVoOne<User>(Constants.FAILED, "用户类型错误");
 				}
 				try {
-					userService.editUser(user);
+					count = userService.editUser(user);
+					if (count != 1) {
+						code = Constants.FAILED;
+						msg = "操作失败";
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					code = Constants.FAILED;
