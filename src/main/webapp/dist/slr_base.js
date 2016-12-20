@@ -1673,9 +1673,6 @@ webpackJsonp([2,6],[
 					htmlStr += '>';
 					if (this.type == "opt") {
 						var opts = dataRow[this["valuekey"]];
-						console.log(dataRow);
-						console.log(this["valuekey"]);
-						console.log(opts);
 						if (opts != undefined && opts != null) {
 							$.each(optName, function (type, text) {
 								htmlStr += '<span data-opttype="' + type + '" >' + text + '</span>';
