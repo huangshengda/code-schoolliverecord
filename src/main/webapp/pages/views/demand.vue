@@ -121,6 +121,7 @@ window.openDemondDetail=function(resourceId){
       },
 /** 获取选择的年级参数**/
     	gradesearch: function(classlevelName,event){
+    		$(event.target).addClass("active").siblings().removeClass("active");
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
 			if(classlevelName == ''){
      	 		$('.grade-tit').text('全部');
