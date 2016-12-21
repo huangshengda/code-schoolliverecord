@@ -312,10 +312,7 @@ $(function(){
 					layer.msg(retVO.msg);
 					return;
 				}
-				layer.alert('修改视频信息成功', {
-				  icon: 1,
-				  skin: 'layer-ext-moon'
-				});
+				layer.msg('修改视频信息成功');
 					setTimeout(function(){
 						window.location.href = ROOT_SERVER+"/#/basic/upload";
 					},1000);

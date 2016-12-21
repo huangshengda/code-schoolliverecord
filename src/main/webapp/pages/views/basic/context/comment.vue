@@ -1,5 +1,5 @@
 <template>
-<div class="content">
+<div class="content" id="comment">
 <div class="subBtn"></div>
   <div class="dashboard">
   <!-- 条件 start -->
@@ -77,8 +77,8 @@ var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
-	 thead: [{name:"评论",valuekey:"commentContent",css:"width:300px"},
-             {name:"来源",valuekey:"resourceName",css:"width:200px",typ:"clickable",optCode:"laiyuan"},
+	 thead: [{name:"评论",valuekey:"commentContent",css:"width:350px"},
+             {name:"来源",valuekey:"resourceName",css:"width:200px",type:"clickable",optCode:"laiyuan"},
              {name:"评论人",valuekey:"realName"},
              {name:"操作",valuekey:"opt",type:"opt"}
           ],
@@ -90,7 +90,7 @@ var config = {
 	//执行页面查询的方法
 	searchFun: comSearch,
 	//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-	optParams: ["resourceCommentId","commentUserId","parentCommentId","commentContent","resourceName","realName"],
+	optParams: ["resourceCommentId","commentUserId","resourceId","parentCommentId","commentContent","resourceName","realName"],
 	//表格中的行操作名称
 	optName: {
 		del_fun: "删除",
@@ -98,7 +98,10 @@ var config = {
 	//表格中的行操作方法
 	optFuns: {
 		del_fun: comDel,
-		laiyuan:function(params){alert(params);}
+		laiyuan: function(params){
+			sessionStorage.setItem("resourceId",params.resourceId);
+			window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
+		}
 		
 	}
 }
