@@ -42,14 +42,18 @@ public class ClasslevelService {
 		int count = 0;
 		int code = Constants.SUCCESS;
 		String msg = "添加成功";
+		int sort = 0;
 		List<Classlevel> list = classlevelMapper.getClasslevelList(null);
 		for (Classlevel s : list) {
+			if (sort < s.getSort()) {
+				sort = s.getSort();
+			}
 			if (Classlevel.getClasslevelName().equals(s.getClasslevelName())) {
 				count++;
 			}
 		}
 		if (count == 0) {
-			Classlevel.setSort(list.size() + 1);
+			Classlevel.setSort(sort + 1);
 			Classlevel.setCreateTime(new Date());
 			Classlevel.setDeleteFlag("N");
 			Classlevel.setClasslevelId(UUIDUtils.getUUID());
