@@ -35,11 +35,15 @@ public class LiveSchedule {
 		log.info("finishLive start");
 		// 1 查找为结束的直播课程
 		List<String> liveResourceIdList = resourceService.getNotFinishLiveResIds();
+		log.info("结束课程：" + liveResourceIdList);
 		if (CollectionUtils.isEmpty(liveResourceIdList)) {
 			log.info("liveResourceIdList is empty.");
 		} else {
 			for (String liveResourceId : liveResourceIdList) {
+				boolean flag = resourceService.updateLiveResourceLivingPath(liveResourceId);
+				log.info("liveResourceId =" + liveResourceId + ":更新数据库,直播路径设置为空.结果为:" + (flag == true ? "success" : "fail"));
 				handleLiveFinishService.finishLive(liveResourceId);
+
 			}
 		}
 		log.info("finishLive end.");
