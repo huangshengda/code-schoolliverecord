@@ -111,13 +111,15 @@ public class ResCommentService {
 	 * 删除评论
 	 */
 	public void deleteResComment(ResComment comment) {
-		if (comment.getParentCommentId() == null) {
-			List<ResCommentVo> subList = commentDao.getSubResCommentList(Arrays.asList(comment.getResourceCommentId()));
-			for (ResCommentVo view : subList) {
-				commentDao.deleteByPrimaryKey(view.getResourceCommentId());
-			}
+		List<ResCommentVo> subList = commentDao.getSubResCommentList(Arrays.asList(comment.getResourceCommentId()));
+		List<String> commentIdList = new ArrayList<String>();
+		for (ResCommentVo view : subList) {
+			commentIdList.add(view.getResourceCommentId());
 		}
-		commentDao.deleteByPrimaryKey(comment.getResourceCommentId());
+
+		commentIdList.add(comment.getResourceCommentId());
+
+		commentDao.delBatchComment(commentIdList);
 	}
 
 	public ResCommentVo getCommentByKeyId(String commentId) {

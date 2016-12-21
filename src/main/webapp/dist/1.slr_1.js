@@ -1058,7 +1058,7 @@ webpackJsonp([1,6],[
 		//用来展示表格控件的div的id
 		containerId: "use_to_load_grid",
 		//用来展示表格的表头数据
-		thead: [{ name: "评论", valuekey: "commentContent", css: "width:300px" }, { name: "来源", valuekey: "resourceName", css: "width:200px" }, { name: "评论人", valuekey: "realName" }, { name: "操作", valuekey: "opt", type: "opt" }],
+		thead: [{ name: "评论", valuekey: "commentContent", css: "width:350px" }, { name: "来源", valuekey: "resourceName", css: "width:200px", type: "clickable", optCode: "laiyuan" }, { name: "评论人", valuekey: "realName" }, { name: "操作", valuekey: "opt", type: "opt" }],
 		//用来展示表格的数据
 		//这个应该是后台返回的部分
 		gData: {},
@@ -1067,14 +1067,18 @@ webpackJsonp([1,6],[
 		//执行页面查询的方法
 		searchFun: comSearch,
 		//需要用来配合表格行操作的属性，不写默认不做任何数据缓存。
-		optParams: ["resourceCommentId", "commentUserId", "parentCommentId", "commentContent", "resourceName", "realName"],
+		optParams: ["resourceCommentId", "commentUserId", "resourceId", "parentCommentId", "commentContent", "resourceName", "realName"],
 		//表格中的行操作名称
 		optName: {
 			del_fun: "删除"
 		},
 		//表格中的行操作方法
 		optFuns: {
-			del_fun: comDel
+			del_fun: comDel,
+			laiyuan: function laiyuan(params) {
+				sessionStorage.setItem("resourceId", params.resourceId);
+				window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
+			}
 
 		}
 	};
@@ -1097,7 +1101,10 @@ webpackJsonp([1,6],[
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('div', {
-	    staticClass: "content"
+	    staticClass: "content",
+	    attrs: {
+	      "id": "comment"
+	    }
 	  }, [_c('div', {
 	    staticClass: "subBtn"
 	  }), _vm._v(" "), _c('div', {
@@ -4271,11 +4278,6 @@ webpackJsonp([1,6],[
 	    searchKey: function searchKey() {
 	      var sourceName = $('#s_resource').val();
 	      this.params = Object.assign({}, this.params, { resourceNameKey: sourceName });
-	      if (sourceName == '') {
-	        $('.key').text('');
-	      } else {
-	        $('.key').text(sourceName);
-	      }
 	      this.showdemand();
 	    },
 	    /** 获取年级列表 **/
@@ -4350,9 +4352,7 @@ webpackJsonp([1,6],[
 	    staticClass: "grade-tit"
 	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
 	    staticClass: "sub-tit"
-	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
-	    staticClass: "key"
-	  }), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
+	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
 	    staticClass: "active",
 	    attrs: {
 	      "data-sort": "desc"

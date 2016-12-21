@@ -6605,9 +6605,6 @@ webpackJsonp([0,6],{
 	            $("#user_realname").html(retVO.data.realname);
 	            window.location.reload();
 	          }
-	          if (retVO.code == 0) {
-	            layer.msg(retVO.msg);
-	          }
 	        });
 	      }
 	    },

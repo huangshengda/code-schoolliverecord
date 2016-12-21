@@ -2508,8 +2508,8 @@ webpackJsonp([2,6],[
 				}
 			}
 			if (vali.indexOf("username") > -1) {
-				console.log(value);
 				rgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]{6,18}$/g;
+
 				if (!rgxStr.test(value)) {
 					msg = Validation.errorMsg["username"];
 				}
@@ -2548,7 +2548,7 @@ webpackJsonp([2,6],[
 					msg = Validation.errorMsg["areacode"];
 				}
 			} else if (vali.indexOf("special") > -1) {
-				rgxStr = /[`~!@#$^&*()=|{}':;',\\[\\]/;
+				rgxStr = /[`~!<>@#$^&*()=|{}':;',\\[\\]/;
 				if (rgxStr.test(value)) {
 					msg = Validation.errorMsg["special"];
 				}

@@ -8,22 +8,24 @@ import com.codyy.slr.vo.ResCommentVo;
 
 public interface ResCommentMapper {
 
-		int deleteByPrimaryKey(String resourceCommentId);
+	int deleteByPrimaryKey(String resourceCommentId);
 
-	    int insert(ResComment record);
+	int insert(ResComment record);
 
-	    ResComment selectByPrimaryKey(String resourceCommentId);
+	ResComment selectByPrimaryKey(String resourceCommentId);
 
-	    List<ResCommentVo> getResCommentPageList(Page page);
-	    
-	    List<ResCommentVo> getSubResCommentList(List<String> list);
-	    
-	    List<ResCommentVo> getSubResCommentPageList(Page page);
-	    
-	    ResCommentVo getCommentByKeyId(String commentId);
-	    
-	    int getResCommentCount(String resourceId);
+	List<ResCommentVo> getResCommentPageList(Page page);
 
-		List<ResCommentVo> getAllResCommentPageList(Page page);
+	List<ResCommentVo> getSubResCommentList(List<String> list);
+
+	List<ResCommentVo> getSubResCommentPageList(Page page);
+
+	ResCommentVo getCommentByKeyId(String commentId);
+
+	int getResCommentCount(String resourceId);
+
+	List<ResCommentVo> getAllResCommentPageList(Page page);
+
+	void delBatchComment(List<String> commentIds);
 
 }
