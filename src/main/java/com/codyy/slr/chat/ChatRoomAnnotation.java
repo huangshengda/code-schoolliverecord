@@ -1,9 +1,11 @@
 package com.codyy.slr.chat;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -32,15 +34,15 @@ public class ChatRoomAnnotation {
 
 	private static final Logger log = Logger.getLogger("ChatRoomAnnotation");
 
-	private static final Map<String, ChatRoomAnnotation> connections = new ConcurrentHashMap<String, ChatRoomAnnotation>();
-	private static final Map<String, Session> resIdUserIdToClientMap = new ConcurrentHashMap<String, Session>();
-	private static final Map<String, String> resIdtokenToAgentMap = new ConcurrentHashMap<String, String>();
+	private static final Set<ChatRoomAnnotation> connections = Collections.synchronizedSet(new HashSet<ChatRoomAnnotation>());
 	// 统计每个资源在线聊天人数
 	private static final Map<String, AtomicInteger> resourceIdCountMap = new ConcurrentHashMap<String, AtomicInteger>();
 
 	private Session session;
 
 	private User user;
+
+	private String resourceId;
 
 	@OnOpen
 	public void start(Session session, @PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) throws Exception {
@@ -52,22 +54,18 @@ public class ChatRoomAnnotation {
 
 		this.user = user;
 		this.session = session;
+		this.resourceId = resourceId;
 
-		if (resIdUserIdToClientMap.get(concatKey(resourceId, user.getUserId())) == null) {
-			connections.put(user.getUserId(), this);
+		connections.add(this);
 
-			if (resourceIdCountMap.get(resourceId) == null) {
-				resourceIdCountMap.put(resourceId, new AtomicInteger(0));
-			}
-			// 自增一
-			resourceIdCountMap.get(resourceId).incrementAndGet();
+		if (resourceIdCountMap.get(resourceId) == null) {
+			resourceIdCountMap.put(resourceId, new AtomicInteger(0));
 		}
-		resIdUserIdToClientMap.put(concatKey(resourceId, user.getUserId()), session);
-		resIdtokenToAgentMap.put(concatKey(resourceId, token), agent);
+		// 自增一
+		resourceIdCountMap.get(resourceId).incrementAndGet();
 
 		log.info("start--connections:" + connections.size());
-		log.info("start--resIdUserIdToClientMap:" + resIdUserIdToClientMap.size());
-		log.info("start--resIdtokenToAgentMap:" + resIdtokenToAgentMap.size());
+		log.info("start--resourceIdCountMap:" + resourceIdCountMap.size());
 
 		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "加入聊天", resourceIdCountMap.get(resourceId), false, false,
 				String.valueOf(new Date().getTime()));
@@ -78,13 +76,7 @@ public class ChatRoomAnnotation {
 
 	@OnClose
 	public void end(@PathParam(value = "resourceId") String resourceId, @PathParam(value = "token") String token) {
-		connections.remove(user.getUserId());
-		resIdUserIdToClientMap.remove(concatKey(resourceId, user.getUserId()));
-		resIdtokenToAgentMap.remove(concatKey(resourceId, token));
-
-		log.info("end--connections:" + connections.size());
-		log.info("end--resIdUserIdToClientMap:" + resIdUserIdToClientMap.size());
-		log.info("end--resIdtokenToAgentMap:" + resIdtokenToAgentMap.size());
+		connections.remove(this);
 
 		int nowNum = 0;
 		if (resourceIdCountMap.get(resourceId) != null) {
@@ -95,6 +87,10 @@ public class ChatRoomAnnotation {
 		}
 		ChatVo vo = new ChatVo(UUIDUtils.getUUID(), user.getRealname(), "离开聊天", resourceIdCountMap.get(resourceId), false, false,
 				String.valueOf(new Date().getTime()));
+
+		log.info("end--connections:" + connections.size());
+		log.info("end--resourceIdCountMap:" + resourceIdCountMap.size());
+
 		broadcast(vo, resourceId);
 	}
 
@@ -113,6 +109,9 @@ public class ChatRoomAnnotation {
 			vo.setDelFlag(true);
 		}
 
+		log.info("incoming--connections:" + connections.size());
+		log.info("incoming--resourceIdCountMap:" + resourceIdCountMap.size());
+
 		broadcast(vo, resourceId);
 	}
 
@@ -122,17 +121,17 @@ public class ChatRoomAnnotation {
 	}
 
 	private void broadcast(ChatVo vo, String resourceId) {
-		Collection<ChatRoomAnnotation> connectionsList = connections.values();
+		Set<ChatRoomAnnotation> connectionsList = connections;
 		for (ChatRoomAnnotation client : connectionsList) {
 			try {
 				synchronized (client) {
-					if (resIdUserIdToClientMap.get(concatKey(resourceId, client.user.getUserId())) != null) { // 判断是否在同一个房间
-
+					vo.setDelAuth(false);
+					if (client.resourceId.equals(resourceId)) {
 						String userType = client.user.getUserType();
 						if (Constants.ADMIN.equalsIgnoreCase(userType) || Constants.SUPER_ADMIN.equalsIgnoreCase(userType)) {
 							vo.setDelAuth(true);
 						}
-						(resIdUserIdToClientMap.get(concatKey(resourceId, client.user.getUserId()))).getBasicRemote().sendText(JSONObject.toJSONString(vo));
+						client.session.getBasicRemote().sendText(JSONObject.toJSONString(vo));
 					}
 
 				}
@@ -146,10 +145,6 @@ public class ChatRoomAnnotation {
 			}
 		}
 
-	}
-
-	private String concatKey(String resourceId, String userId) {
-		return resourceId + "_" + userId;
 	}
 
 	private User getUser(String token, String agent) {
