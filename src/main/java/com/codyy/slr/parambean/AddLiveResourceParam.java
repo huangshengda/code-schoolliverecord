@@ -1,6 +1,5 @@
 package com.codyy.slr.parambean;
 
-import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.entity.Resource;
 
 /**
@@ -19,26 +18,6 @@ public class AddLiveResourceParam {
 	private String thumbPath;// 封面路径
 	private String storePath;// 存储路径
 	private long size;
-
-	public boolean validate() {
-		String resNameRegEx = "[a-zA-Z0-9\u4E00-\u9FA5]{1,20}";// 中文 字母 数字
-
-		String authorRegEx = "[a-zA-Z0-9\u4E00-\u9FA5]{1,10}";// 中文 字母 数字
-
-		if (StringUtils.isEmpty(resourceName) || !resourceName.matches(resNameRegEx)) {
-			return false;
-		}
-
-		if (StringUtils.isEmpty(author) || !author.matches(authorRegEx)) {
-			return false;
-		}
-
-		if (StringUtils.isEmpty(classlevelIds)) {
-			return false;
-		}
-
-		return true;
-	}
 
 	public long getSize() {
 		return size;
