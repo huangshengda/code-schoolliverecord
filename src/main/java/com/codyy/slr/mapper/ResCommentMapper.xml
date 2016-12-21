@@ -72,6 +72,13 @@
 		order by t.CREATE_TIME
 	</select>
 	
+		<select id="delBatchComment" parameterType="java.util.List">
+		delete from RES_COMMENT where RESOURCE_COMMENT_ID in 
+		<foreach  collection="list"  item="id"   open="("  separator=","  close=")">  
+			#{id}  
+		</foreach>  
+	</select>
+	
 	<select id="getCommentByKeyId" resultType="com.codyy.slr.vo.ResCommentVo" parameterType="java.lang.String">
 		select <include refid="Base_Column_List2"/>,u.realname USERNAME,u2.realname replyToUserName,
 		from res_comment t
