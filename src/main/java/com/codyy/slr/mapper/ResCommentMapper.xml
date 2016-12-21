@@ -118,6 +118,7 @@
 	 <if test="map.keywords != null and map.keywords != ''">
 	and (res.RESOURCE_NAME like CONCAT('%',#{map.keywords},'%') ESCAPE '/' or rc.COMMENT_CONTENT like CONCAT('%',#{map.keywords},'%') ESCAPE '/')
 	</if>
+	order by rc.CREATE_TIME desc
 	</select>
 	
 </mapper>

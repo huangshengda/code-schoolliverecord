@@ -34,15 +34,19 @@ public class SubjectService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int count = 0;
 		int code = Constants.SUCCESS;
+		int sort = 0;
 		String msg = "添加成功";
 		List<Subject> list = subjectMapper.getSubjectList(null);
 		for (Subject s : list) {
+			if (sort < s.getSort()) {
+				sort = s.getSort();
+			}
 			if (subject.getSubjectName().equals(s.getSubjectName())) {
 				count++;
 			}
 		}
 		if (count == 0) {
-			subject.setSort(list.size() + 1);
+			subject.setSort(sort + 1);
 			subject.setCreateTime(new Date());
 			subject.setDeleteFlag("N");
 			subject.setSubjectId(UUIDUtils.getUUID());
