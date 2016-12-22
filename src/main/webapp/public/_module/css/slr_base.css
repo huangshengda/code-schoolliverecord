@@ -501,7 +501,7 @@ tr:nth-child(2n) {
 }
 
 .head-out {
-	margin-top: 30px;
+	margin-top: 36px;
 	color: #fff;
 }
 
@@ -610,8 +610,11 @@ tr:nth-child(2n) {
     font-weight: bold;
 }
 #login_button {
-	margin-top: 30px;
+	margin-top: 36px;
+    color: #fff;
+    cursor: pointer;
 }
+#login_button i{font-size: 22px;}
 .left a,.right span{color:#444;}
 #sort a{color:#444;}
 #sort i{cursor: pointer;}

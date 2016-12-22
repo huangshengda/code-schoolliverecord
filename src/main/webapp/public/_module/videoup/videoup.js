@@ -239,7 +239,7 @@ $(function(){
 			});
 			laryIndex = layer.open({
 		          type: 1,
-		          title: '选择系统截图做为视频封面',
+		          title: '选择系统截图作为视频封面',
 		          skin: 'layui-layer-rim', //加上边框
 		          area: ['700px',larH+'px'], //宽高
 		          content: $("#chose_sysimg")

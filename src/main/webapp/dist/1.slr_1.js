@@ -975,7 +975,7 @@ webpackJsonp([1,6],[
 /* 40 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -1010,6 +1010,12 @@ webpackJsonp([1,6],[
 	//
 	//
 
+	//获取face表情图片。
+	var replace_em = function replace_em(str) {
+		var _strData;
+		_strData = str.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\n/g, '<br/>').replace(/\[em_([0-9]*)\]/g, '<img src="' + ROOT_UI + '/public/qqFace/arclist/$1.gif" border="0" />');
+		return _strData;
+	};
 	/**
 	 * 表格中的操作---删除评论
 	**/
@@ -1058,7 +1064,10 @@ webpackJsonp([1,6],[
 		//用来展示表格控件的div的id
 		containerId: "use_to_load_grid",
 		//用来展示表格的表头数据
-		thead: [{ name: "评论", valuekey: "commentContent", css: "width:350px" }, { name: "来源", valuekey: "resourceName", css: "width:200px", type: "clickable", optCode: "laiyuan" }, { name: "评论人", valuekey: "realName" }, { name: "操作", valuekey: "opt", type: "opt" }],
+		thead: [{ name: "评论", valuekey: "commentContent", css: "width:350px", convertor: function convertor(one) {
+				console.log(one);
+				return replace_em(one);
+			} }, { name: "来源", valuekey: "resourceName", css: "width:200px", type: "clickable", optCode: "laiyuan" }, { name: "评论人", valuekey: "realName" }, { name: "操作", valuekey: "opt", type: "opt" }],
 		//用来展示表格的数据
 		//这个应该是后台返回的部分
 		gData: {},
@@ -1395,6 +1404,8 @@ webpackJsonp([1,6],[
 	    },
 	    /*添加年级*/
 	    addgrd: function addgrd() {
+	      $('#addgrade')[0].reset();
+	      $(".cd-f-vali").remove();
 	      var _self = this;
 	      layer.open({
 	        type: 1,
@@ -1427,6 +1438,7 @@ webpackJsonp([1,6],[
 	    },
 	    /**上移**/
 	    upbtn: function upbtn(event) {
+	      var _self = this;
 	      var el = event.target;
 	      var $this = $(el);
 	      var tr = $this.parents('tr');
@@ -1435,11 +1447,16 @@ webpackJsonp([1,6],[
 	      tr.prev().before(tr);
 	      $("#sort tr").each(function () {
 	        _str += $(this).find('td').attr("data-id") + ",";
-	        CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {});
+	        CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
+	          if (retVO.code == 1) {
+	            _self.show();
+	          }
+	        });
 	      });
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
+	      var _self = this;
 	      var el = event.target;
 	      var $this = $(el);
 	      var tr = $this.parents('tr');
@@ -1448,7 +1465,11 @@ webpackJsonp([1,6],[
 	      tr.next().after(tr);
 	      $("#sort tr").each(function () {
 	        _str += $(this).find('td').attr("data-id") + ",";
-	        CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {});
+	        CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
+	          if (retVO.code == 1) {
+	            _self.show();
+	          }
+	        });
 	      });
 	    }
 	  }
@@ -1936,6 +1957,8 @@ webpackJsonp([1,6],[
 			userSear: userSearch,
 			/*** 添加用户**/
 			addUser: function addUser() {
+				$('#adduser')[0].reset();
+				$(".cd-f-vali").remove();
 				var _self = this;
 				layer.open({
 					type: 1,
@@ -2473,6 +2496,8 @@ webpackJsonp([1,6],[
 	    },
 	    /*添加学科*/
 	    add: function add() {
+	      $('#addsubject')[0].reset();
+	      $(".cd-f-vali").remove();
 	      var _self = this;
 	      layer.open({
 	        type: 1,
@@ -2505,6 +2530,7 @@ webpackJsonp([1,6],[
 	    },
 	    /**上移**/
 	    upbtn: function upbtn(event) {
+	      var _self = this;
 	      var el = event.target;
 	      var $this = $(el);
 	      var tr = $this.parents('tr');
@@ -2514,10 +2540,15 @@ webpackJsonp([1,6],[
 	      $("#sort tr").each(function () {
 	        _str += $(this).find('td').attr("data-id") + ",";
 	      });
-	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {});
+	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
+	        if (retVO.code == 1) {
+	          _self.show();
+	        }
+	      });
 	    },
 	    /**下移**/
 	    downbtn: function downbtn(event) {
+	      var _self = this;
 	      var el = event.target;
 	      var $this = $(el);
 	      var tr = $this.parents('tr');
@@ -2528,7 +2559,11 @@ webpackJsonp([1,6],[
 	      $("#sort tr").each(function () {
 	        _str += $(this).find('td').attr("data-id") + ",";
 	      });
-	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {});
+	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
+	        if (retVO.code == 1) {
+	          _self.show();
+	        }
+	      });
 	    }
 	  }
 	};
@@ -2790,6 +2825,7 @@ webpackJsonp([1,6],[
 	      H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 	        retVO = eval('(' + retVO + ')');
 	        var dataVO = retVO.data;
+	        if (dataVO.code == 0) {}
 	        var resourceId = dataVO.resourceId;
 	        H5fileup.showImgAuto(file, "thispage_fileup_img");
 	        $("#img_resourceId").val(resourceId);
@@ -3116,7 +3152,7 @@ webpackJsonp([1,6],[
 					containerId: "editServer"
 				});
 				if (result == true) {
-					var editparams = $('#editServer').serialize();
+					var editparams = $('#editServer').serializeJSON();
 					CDUtil.ajaxPost("/base/dmsserver/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
 							servSearch();
@@ -3208,6 +3244,8 @@ webpackJsonp([1,6],[
 		methods: {
 			server: servSearch,
 			add: function add() {
+				$('#addServer')[0].reset();
+				$(".cd-f-vali").remove();
 				layer.open({
 					type: 1,
 					title: '添加服务器',
@@ -3336,7 +3374,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "serverName",
-	      "data-vali": "notnull"
+	      "data-vali": "notnull",
+	      "maxlength": "30"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -3350,7 +3389,8 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "serverValue",
-	      "data-vali": "notnull"
+	      "data-vali": "notnull",
+	      "maxlength": "30"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
@@ -4214,22 +4254,12 @@ webpackJsonp([1,6],[
 	    gradesearch: function gradesearch(classlevelName, event) {
 	      $(event.target).addClass("active").siblings().removeClass("active");
 	      this.params = Object.assign({}, this.params, { classlevelName: classlevelName });
-	      if (classlevelName == '') {
-	        $('.grade-tit').text('全部');
-	      } else {
-	        $('.grade-tit').text(classlevelName);
-	      }
 	      this.showdemand();
 	    },
 	    /** 获取选择的学科参数**/
 	    subjectsearch: function subjectsearch(subjectName, event) {
 	      $(event.target).addClass("active").siblings().removeClass("active");
 	      this.params = Object.assign({}, this.params, { subjectName: subjectName });
-	      if (subjectName == '') {
-	        $('.sub-tit').text('全部');
-	      } else {
-	        $('.sub-tit').text(subjectName);
-	      }
 	      this.showdemand();
 	    },
 	    /** 根据时间排序**/
@@ -4348,11 +4378,7 @@ webpackJsonp([1,6],[
 	    staticClass: "search"
 	  }, [_c('div', {
 	    staticClass: "s-left"
-	  }, [_vm._v("\""), _c('i', {
-	    staticClass: "grade-tit"
-	  }, [_vm._v("全部")]), _vm._v(" "), _c('i', {
-	    staticClass: "sub-tit"
-	  }, [_vm._v("全部")]), _vm._v("\"相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
+	  }, [_vm._v("相关课程  共" + _vm._s(_vm.pages) + "条\r\n\t\t\t\t"), _c('span', {
 	    staticClass: "active",
 	    attrs: {
 	      "data-sort": "desc"

@@ -31,13 +31,13 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器名称:</label></span>
           <span class="cd-f-value" name="serverName">
-            <input type="text" name="serverName" data-vali="notnull">
+            <input type="text" name="serverName" data-vali="notnull" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="serverValue" data-vali="notnull">
+            <input type="text" name="serverValue" data-vali="notnull" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -75,7 +75,7 @@ var servEdit = function(params, dom) {
           		containerId: "editServer",
         	});
        		if(result==true){
-				var editparams = $('#editServer').serialize();
+				var editparams = $('#editServer').serializeJSON();
 				CDUtil.ajaxPost("/base/dmsserver/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 							servSearch();
@@ -173,6 +173,8 @@ var config = {
      methods: {
     	server: servSearch,
       	add: function(){
+      		$('#addServer')[0].reset();
+      		$(".cd-f-vali").remove();
           layer.open({
               type: 1,
               title: '添加服务器',

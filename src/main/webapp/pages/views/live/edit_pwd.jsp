@@ -36,7 +36,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>新密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" data-vali="notnull,password" id="new_pwd"> 
+            <input type="password" name="password" data-vali="password" id="new_pwd"> 
           </span>
         </div>
         <div class="cd-f-eve">

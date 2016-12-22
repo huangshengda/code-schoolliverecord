@@ -3,7 +3,6 @@ $(function() {
 		id : 'facebox', 
 		assign:'chat', 
 		path:ROOT_UI+'/public/qqFace/arclist/'	//表情存放的路径
-
 	});
 	var resourceId = sessionStorage.getItem("resourceId");
 	if(resourceId == undefined){
@@ -22,10 +21,16 @@ $(function() {
 			//课程名称，年级、学科、主讲教师
 			var resourceName = retVO.data.resourceName;
 			var classlevelName = retVO.data.classlevelName;
+			if(classlevelName.length>7){
+				var classlevelName= classlevelName.substr(0,7) + "...";
+			}else{
+				var classlevelName= classlevelName;
+			}
 			var subjectName = retVO.data.subjectName;//学科
 			var author = retVO.data.author;//
 			$("#resource_name").html(resourceName);
 			$("#resource_info").html(classlevelName+"/"+subjectName+"/"+author);
+			$("#resource_info").attr("title",retVO.data.classlevelName);
 			pms = retVO.data.storePath;
 			var streamName = retVO.data.resourceId;
 			buildPlayer(document.getElementsByClassName("vedio")[0], streamName, "mix");
@@ -114,7 +119,7 @@ $(function() {
 		var len = ValueCheck.lengthStr(msg);
 		if(len == 0){
 			
-		}else if(len < 141){
+		}else if(len < 150){
 			var params = {
 				msg: msg,
 				timestamp: new Date().getTime()
@@ -137,6 +142,9 @@ $(function() {
 	 * 点击发表按钮事件
 	 */
 	$('#chat_send').click(function() {
+		if($("#chat").val()==''){
+			alert("请输入内容");
+		}
 		readyMsg();
 	});
 	

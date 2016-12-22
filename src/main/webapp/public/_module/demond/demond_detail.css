@@ -35,6 +35,7 @@ body{
 .l-title span {
 	margin:0 25px;
 	color:#666;
+	cursor: pointer;
 }
 .l-title small {
 	color:#666;

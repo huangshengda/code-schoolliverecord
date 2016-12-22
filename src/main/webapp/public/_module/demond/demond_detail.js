@@ -49,6 +49,8 @@ $(function() {
 			var author = retVO.data.author;//
 			$("#resource_name").html(resourceName);
 			$("#resource_info").html(classlevelName+"/"+subjectName+"/"+author);
+			console.log(retVO.data.classlevelName);
+			$("#resource_info").attr("title",retVO.data.classlevelName);
 			var videoUrl = retVO.data.storePath+"?token=" + sessionStorage.getItem("token");
 			var width = $("#video_player_content").width();
 			var height = width*9/16+60;

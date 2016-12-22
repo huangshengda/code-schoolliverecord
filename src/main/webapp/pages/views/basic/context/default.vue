@@ -252,6 +252,8 @@ export default {
 		userSear: userSearch,
 		/*** 添加用户**/
 		addUser: function() {
+			$('#adduser')[0].reset();
+      		$(".cd-f-vali").remove();
 			var _self = this;
 			layer.open({
 				type: 1,

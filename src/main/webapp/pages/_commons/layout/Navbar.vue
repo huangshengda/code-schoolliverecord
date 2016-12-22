@@ -14,7 +14,7 @@
           <span class="g-line">|</span>
           <i class="iconfont icon-sign-out" @click="logout" ></i>
         </div>
-        <button class="btn fr" id="login_button" @click="login">登录</button>
+        <div class="fr" id="login_button" @click="login"><i class="iconfont icon-login-name"></i>登录</div>
       </div>
 <!-- 编辑用户弹窗表单 start -->
   <form action="" id="login" class="layBox mt40" @keyup.enter="loginIn">
@@ -125,7 +125,7 @@ export default{
           CDUtil.ajaxPost("/login",params,function(retVO){
             if(retVO.code == 1){
             	self.userType= retVO.data.userType;
-           	 layer.msg(retVO.msg);
+           	 	layer.msg(retVO.msg);
            	 	if($("#auto").prop("checked")){
            	 		localStorage.setItem("SLR_LOGINFLAG","1");
            	 		localStorage.setItem("SLR_LOGINTIME", new Date().getTime());
@@ -141,9 +141,9 @@ export default{
               $("#user_realname").html(retVO.data.realname);
                window.location.reload();
             }
-             if (retVO.code == 0) {
-					layer.msg(retVO.msg);
-				}
+             if (retVO.code == 0 && $("#username").val() !='' &&　$("#password").val() !=''){
+             	layer.msg(retVO.msg);	
+             }
           });
         }
       },

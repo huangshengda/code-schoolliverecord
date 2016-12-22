@@ -43,8 +43,12 @@ data-vali的值域集合有：
 	//匹配不通过时，对应的提示
 	Validation.errorMsg = {
 		notnull: "不能为空",
-		username: "用户名有非法字符，请重输",
-		password: "密码有非法字符，请重输",
+		ousername:"用户名为6-18位字符",
+		tusername: "用户名有非法字符，请重输",
+		susername:"用户名不能为空",
+		spassword: "密码不能为空",
+		tpassword: "密码有非法字符，请重输",
+		opassword: "密码为6-18位字符",
 		number: "必须是整数",
 		float: "必须是数字",
 		phone: "手机号不合法",
@@ -52,7 +56,6 @@ data-vali的值域集合有：
 		email: "邮箱不合法",
 		idcard: "身份证不合法",
 		areacode: "邮编不合法",
-		special: "不能输入特殊字符"
 	};
 	/**
 	 * 本方法适用于使用data-vali-*做规则验证。
@@ -121,22 +124,32 @@ data-vali的值域集合有：
 	Validation.matchRule = function(vali,value){
 		var msg = "";
 		var rgxStr = "" ;
+		var orgxStr = "" ;
+		var trgxStr = "" ;
 		if(vali.indexOf("notnull")>-1){
 			if($.trim(value) == ""){
 				msg = Validation.errorMsg["notnull"];
 			}
 		}
 		if(vali.indexOf("username")>-1){
-			rgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]{6,18}$/g;
-
-			if(!rgxStr.test(value)){
-				msg = Validation.errorMsg["username"];
+			orgxStr = /^.{6,18}$/;
+			trgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]$/;
+			if($.trim(value) == ""){
+				msg = Validation.errorMsg["susername"];
+			}else if(!orgxStr.test(value)){
+				msg = Validation.errorMsg["ousername"];
+			}else if(trgxStr.test(value)){
+				msg = Validation.errorMsg["tusername"];
 			}
 		}else if(vali.indexOf("password")>-1){
-			console.log(value);
-			rgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]{6,18}$/g;
-			if(!rgxStr.test(value)){
-				msg = Validation.errorMsg["password"];
+			orgxStr = /^.{6,18}$/;
+			trgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]$/;
+			if($.trim(value) == ""){
+				msg = Validation.errorMsg["spassword"];
+			}else if(!orgxStr.test(value)){
+				msg = Validation.errorMsg["opassword"];
+			}else if(trgxStr.test(value)){
+				msg = Validation.errorMsg["tpassword"];
 			}
 		}else if(vali.indexOf("number")>-1){
 			if(!ValueCheck.isNumber(value)){
@@ -165,11 +178,6 @@ data-vali的值域集合有：
 		}else if(vali.indexOf("areacode")>-1){
 			if(!ValueCheck.isAreacode(value)){
 				msg = Validation.errorMsg["areacode"];
-			}
-		}else if(vali.indexOf("special")>-1){
-			rgxStr = /[`~!<>@#$^&*()=|{}':;',\\[\\]/;
-			if(rgxStr.test(value)){
-				msg = Validation.errorMsg["special"];
 			}
 		}
 		return msg;

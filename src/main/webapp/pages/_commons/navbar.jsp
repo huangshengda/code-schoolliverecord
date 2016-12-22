@@ -14,7 +14,8 @@
         <span class="g-line">|</span>
         <i class="iconfont icon-sign-out" id="logout" ></i>
    </div>
-   <button class="btn fr" id="login_button" style="display: none;" >登录</button>
+   <div class="fr" id="login_button" style="display: none;"><i class="iconfont icon-login-name"></i>登录</div>
+  <!--  <button class="btn fr" id="login_button" style="display: none;" >登录</button> -->
   </div>
   <form action="" id="login" class="layBox mt40 layui-layer-wrap" style="display: none;"> 
    <div class="cd-f-row"> 
@@ -62,9 +63,9 @@ $(function(){
 					sessionStorage.realname = retVO.data.realname;
 					$("#user_realname").html(retVO.data.realname);
 				  }
-				  if (retVO.code == 0) {
-						layer.msg(retVO.msg);
-					}
+				  if (retVO.code == 0 && $("#username").val() !='' &&　$("#password").val() !=''){
+		             	layer.msg(retVO.msg);	
+		             }
 				});
 			}
 	}

@@ -25,9 +25,9 @@
 <!-- 点播课程详情 start-->
 <div class="container" >
 	<p class="l-title">
-		<span id="resource_name" style="margin-right: 15px;" >汉语言文学（第一节）</span>
+		<span id="resource_name" style="margin-right: 15px;" ></span>
 		<span><i class="iconfont icon-play-times"></i><span id="play_times" class="ft12" >0</span></span>
-		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
+		<span id="resource_info" class="ft12" title=""></span>
 	</p>
 	<div class="row" >
 		<div class="col-md-9" >

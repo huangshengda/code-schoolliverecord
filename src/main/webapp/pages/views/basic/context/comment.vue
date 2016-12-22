@@ -28,6 +28,12 @@
 </div>
 </template>
 <script>
+//获取face表情图片。
+var replace_em=function (str){
+	var _strData;
+		_strData = str.replace(/\</g,'&lt;').replace(/\>/g,'&gt;').replace(/\n/g,'<br/>').replace(/\[em_([0-9]*)\]/g,'<img src="'+ROOT_UI+'/public/qqFace/arclist/$1.gif" border="0" />');
+		return _strData;
+	}
 /**
  * 表格中的操作---删除评论
 **/    			
@@ -77,7 +83,10 @@ var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
-	 thead: [{name:"评论",valuekey:"commentContent",css:"width:350px"},
+	 thead: [{name:"评论",valuekey:"commentContent",css:"width:350px",convertor: function(one){
+	 			console.log(one);
+	 			return replace_em(one);
+	 		}},
              {name:"来源",valuekey:"resourceName",css:"width:200px",type:"clickable",optCode:"laiyuan"},
              {name:"评论人",valuekey:"realName"},
              {name:"操作",valuekey:"opt",type:"opt"}

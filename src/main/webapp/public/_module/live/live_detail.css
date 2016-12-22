@@ -64,3 +64,33 @@
   }
 .c-text button{ margin-right: 9px;padding:2px 14px;margin-top:8px;margin-bottom:4px;background-color: #f5f8fa;border: 1px solid #b2b7bf;}
 #chat_context li{margin-top:20px;}
+.chat-li{
+	position: relative;
+}
+.chat-context{
+	word-break:break-all;
+	word-wrap:break-word;
+}
+.chat-delete{
+	cursor: pointer;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.chat-delete:hover{
+	font-size: 18px;
+}
+.l-title {font-size: 18px;}
+.l-title span{margin: 0px;cursor: pointer;}
+.ft12{font-size: 14px;}
+#facebox td{width:40px;}
+.icon-face {
+    color: #f1b93c;
+    font-size: 20px;
+}
+.qqFace {
+    margin-top: 4px;
+    background: #fff;
+    padding: 2px;
+    border: 1px #dfe6f6 solid;
+}

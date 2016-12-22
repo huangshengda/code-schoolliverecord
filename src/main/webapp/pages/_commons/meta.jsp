@@ -18,11 +18,13 @@ ROOT_SERVER = "${ROOT_SERVER}";
  */
 ROOT_SERVER_CHAT = "${ROOT_CHAT}/chat";
 layerIndex = null;//用来定义页面提示框的层，方便关闭
+params = {};//用来定义页面和后台交互的公共传参对象
 </script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/myLayer/layer/skin/layer.css">
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery-2.2.4.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/jquery/jquery.serializejson.min.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/myLayer/layer/layer.js" ></script>
+<script type="text/javascript" src="${ROOT_UI}/public/qqFace/js/jquery.qqFace.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_manifest.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_common.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_base.js" ></script>

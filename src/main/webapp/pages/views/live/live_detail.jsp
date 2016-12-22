@@ -11,46 +11,14 @@
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_live.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/qqFace/js/jquery.qqFace.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/public/_module/live/live_detail.js"></script>
-<style type="text/css">
-.chat-li{
-	position: relative;
-}
-.chat-context{
-	word-break:break-all;
-	word-wrap:break-word;
-}
-.chat-delete{
-	cursor: pointer;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-}
-.chat-delete:hover{
-	font-size: 18px;
-}
-.l-title {font-size: 18px;}
-.l-title span{margin: 0px;}
-.ft12{font-size: 14px;}
-#facebox td{width:40px;}
-.icon-face {
-    color: #f1b93c;
-    font-size: 20px;
-}
-.qqFace {
-    margin-top: 4px;
-    background: #fff;
-    padding: 2px;
-    border: 1px #dfe6f6 solid;
-}
-</style>
 </head>
 <body>
 <%@ include file="../../_commons/navbar.jsp"%>
 <!-- 直播课程详情 start-->
 <div class="container mt40">
 	<p class="l-title">
-		<span id="resource_name" style="margin-right: 15px;"  >汉语言文学（第一节）</span>
-		<span id="resource_info" class="ft12">一年级/语文/谢春华</span>
+		<span id="resource_name" style="margin-right: 15px;"  ></span>
+		<span id="resource_info" class="ft12" title=""></span>
 	</p>
 	<div class="row" >
 		<div class="col-md-9" >

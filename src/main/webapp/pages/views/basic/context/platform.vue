@@ -66,6 +66,9 @@ export default {
         	H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
 				retVO = eval('(' + retVO + ')');
 				var dataVO = retVO.data;
+				if(dataVO.code == 0){
+					
+				}
 				var resourceId = dataVO.resourceId;
 				H5fileup.showImgAuto(file,"thispage_fileup_img");
 				$("#img_resourceId").val(resourceId);	

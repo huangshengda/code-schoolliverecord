@@ -129,6 +129,8 @@
 },
      /*添加年级*/
     addgrd: function(){
+    	$('#addgrade')[0].reset();
+      	$(".cd-f-vali").remove();
        	var _self = this;
           layer.open({
              type: 1,
@@ -161,6 +163,7 @@
       },     
      /**上移**/
      upbtn: function(event){ 
+    	var _self = this;
     	var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
@@ -170,11 +173,15 @@
 			 $("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
+			 	 	if (retVO.code == 1) {
+						_self.show();
+					}
 			 	 });
 			 });
      },
      /**下移**/
      downbtn:function(event){
+     	var _self = this;
 		var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
@@ -183,7 +190,11 @@
 			tr.next().after(tr);
 			$("#sort tr").each(function() {
 			 	_str += $(this).find('td').attr("data-id") + ",";
-			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){});
+			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
+			 		if (retVO.code == 1) {
+						_self.show();
+					}
+			 	});
 			 });
      },
     }

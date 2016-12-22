@@ -6605,6 +6605,9 @@ webpackJsonp([0,6],{
 	            $("#user_realname").html(retVO.data.realname);
 	            window.location.reload();
 	          }
+	          if (retVO.code == 0 && $("#username").val() != '' && $("#password").val() != '') {
+	            layer.msg(retVO.msg);
+	          }
 	        });
 	      }
 	    },
@@ -6951,15 +6954,17 @@ webpackJsonp([0,6],{
 	    on: {
 	      "click": _vm.logout
 	    }
-	  })]), _vm._v(" "), _c('button', {
-	    staticClass: "btn fr",
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "fr",
 	    attrs: {
 	      "id": "login_button"
 	    },
 	    on: {
 	      "click": _vm.login
 	    }
-	  }, [_vm._v("登录")])]), _vm._v(" "), _vm._v(" "), _c('form', {
+	  }, [_c('i', {
+	    staticClass: "iconfont icon-login-name"
+	  }), _vm._v("登录")])]), _vm._v(" "), _vm._v(" "), _c('form', {
 	    staticClass: "layBox mt40",
 	    attrs: {
 	      "action": "",
