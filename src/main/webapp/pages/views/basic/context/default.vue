@@ -54,7 +54,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" id="edit_password" value="" data-vali="password" maxlength="18"> 
+            <input type="text" name="password" id="edit_password" value="" data-vali="password" maxlength="18"> 
           </span>
         </div>
         <div class="cd-f-eve">
@@ -88,7 +88,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" data-vali="password" id="add_password" value="666666">
+            <input type="text" name="password" data-vali="password" id="add_password" value="666666">
           </span>
         </div>
         <div class="cd-f-eve">
@@ -147,6 +147,14 @@ var userEdit = function(params, dom) {
 					if (retVO.code == 0) {
 						layer.msg(retVO.msg);
 					}
+					if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						 setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
+					}
 				});
 			}
 		}
@@ -171,6 +179,14 @@ var userDel = function(params, dom) {
 			if (retVO.code == 0) {
 				layer.msg(retVO.msg);
 			}
+			if(retVO.code == 2){
+				layer.msg("用户信息失效，请重新登录！");
+				setTimeout(function () {
+		        	// window.close();
+		        	window.location.href = ROOT_SERVER+"/#/index";
+		        	window.location.reload();
+       		}, 1000);
+		}
 		});
 	});
 };
@@ -190,6 +206,14 @@ var userSearch = function(newPage) {
 		userType: $("#search_userType").val()
 	};
 	CDUtil.ajaxPost("/base/user/list",params,function(retVO) {
+		if(retVO.code == 2){
+			layer.msg("用户信息失效，请重新登录！");
+			setTimeout(function () {
+		        // window.close();
+		      	window.location.href = ROOT_SERVER+"/#/index";
+		     	window.location.reload();
+       		}, 1000);
+		}
 		config.gData = retVO;
 		Grid.initGrid(config, function(){});
 	});
@@ -251,7 +275,7 @@ export default {
 	methods: {
 		userSear: userSearch,
 		/*** 添加用户**/
-		addUser: function() {
+		addUser: function(){
 			$('#adduser')[0].reset();
       		$(".cd-f-vali").remove();
 			var _self = this;
@@ -286,6 +310,14 @@ export default {
 							if (retVO.code == 0) {
 								layer.msg(retVO.msg);
 							}
+							if(retVO.code == 2){
+								layer.msg("用户信息失效，请重新登录！");
+								setTimeout(function () {
+		        				// window.close();
+		        				window.location.href = ROOT_SERVER+"/#/index";
+		        				window.location.reload();
+       						}, 1000);
+					}
 						});
 					}
 				}

@@ -66,9 +66,6 @@ export default {
         	H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
 				retVO = eval('(' + retVO + ')');
 				var dataVO = retVO.data;
-				if(dataVO.code == 0){
-					
-				}
 				var resourceId = dataVO.resourceId;
 				H5fileup.showImgAuto(file,"thispage_fileup_img");
 				$("#img_resourceId").val(resourceId);	
@@ -91,6 +88,14 @@ export default {
 				}
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
+				}
+				if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
 				}
       		});
       	}

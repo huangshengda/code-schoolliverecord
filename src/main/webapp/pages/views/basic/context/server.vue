@@ -86,6 +86,14 @@ var servEdit = function(params, dom) {
 					if (retVO.code == 0) {
 						layer.msg(retVO.msg);
 					}
+					if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
+					}
 				});
 				
 			}
@@ -110,6 +118,14 @@ var servDel = function(params, dom) {
 			}
 			if (retVO.code == 0) {
 				layer.msg(retVO.msg);
+			}
+			if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
 			}
 		});
 	});
@@ -199,6 +215,14 @@ var config = {
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);
 						}
+						if(retVO.code == 2){
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+		        				// window.close();
+		        				window.location.href = ROOT_SERVER+"/#/index";
+		        				window.location.reload();
+       						}, 1000);
+						}
       				});
       				
       			}
@@ -210,5 +234,4 @@ var config = {
 </script>
 <style>
 	#addServer input,#editServer input{width:249px;}
-
 </style>

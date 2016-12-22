@@ -5,8 +5,8 @@
   <div id="courseList">
   	<div v-if="posts.data != ''">
      <div class="row" v-for="post in posts.data" >
-      <div class="col-md-4 tel c4">{{post.resourceName}}</div>
-      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName">{{post.classlevelName | cutStr}}</span>/{{post.subjectName}}/{{post.author}}</div>
+      <div class="col-md-4 tel c4">{{post.resourceName | unescape}}</div>
+      <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName | unescape">{{post.classlevelName | cutStr  | unescape}}</span>/{{post.subjectName  | unescape}}/{{post.author  | unescape}}</div>
       <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
     </div>
   </div>
@@ -21,8 +21,8 @@
       <img :src="course.thumbPath" width="285" height="160" >
       <div class="home-times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div>        
       </div>
-      <p class="c4 tel" :title="course.resourceName">{{course.resourceName}}</p>
-      <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName | cutStr}}</span>&nbsp;{{course.subjectName}}&nbsp;{{course.author}}</p>
+      <p class="c4 tel" :title="course.resourceName  | unescape">{{course.resourceName | unescape}}</p>
+      <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName | cutStr  | unescape}}</span>&nbsp;{{course.subjectName | unescape}}&nbsp;{{course.author | unescape}}</p>
     </div>
   </div>
 <!-- 展示点播列表  end -->
@@ -60,7 +60,15 @@ data() {
     		}else{
     			return value;
     		}
-    	}
+    	},
+    	unescape:function (html) {
+  			  return html
+     			 .replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+      			.replace(/&lt;/g, "<")
+      			.replace(/&gt;/g, ">")
+     			 .replace(/&quot;/g, "\"")
+     			 .replace(/&#39;/g, "\'");
+  		}
     },
     
 methods:{
@@ -92,14 +100,13 @@ methods:{
         		window.open(ROOT_SERVER+"/front/path/live?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			laryIndex = layer.confirm('未登录暂无权限访问', {
-					btn: ['确定']
-				},function() {
-					layer.close(laryIndex);
-					sessionStorage.clear();
-      				window.location.href = ROOT_SERVER+"/#/index";
-      				window.location.reload();
-				});
+      			laryIndex = layer.open({
+         		 	type: 1,
+       			 	title: '登录',
+         			skin: 'layui-layer-rim', //加上边框
+          			area: ['450px', '360px'], //宽高
+          			content: $("#login")
+      			});
       		}
       	});
       },
@@ -111,14 +118,13 @@ methods:{
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			layerIndex = layer.confirm('未登录暂无权限访问', {
-					btn: ['确定']
-				},function() {
-					layer.close(layerIndex);
-					sessionStorage.clear();
-      				window.location.href = ROOT_SERVER+"/#/index";
-      				window.location.reload();
-				});
+      			laryIndex = layer.open({
+         		 	type: 1,
+       			 	title: '登录',
+         			skin: 'layui-layer-rim', //加上边框
+          			area: ['450px', '360px'], //宽高
+          			content: $("#login")
+      			});
       		}
       	});
       },

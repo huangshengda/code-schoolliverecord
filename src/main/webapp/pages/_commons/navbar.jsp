@@ -133,7 +133,9 @@ $(function(){
 		        sessionStorage.clear();
 		       // window.location.href = ROOT_SERVER+"/#/index";
 		        setTimeout(function () {
-		        	 window.close();
+		        	// window.close();
+		        	window.location.href = ROOT_SERVER+"/#/index";
+		        	//window.location.reload();
        			}, 1000);
 		        //window.location.reload();
 		    });

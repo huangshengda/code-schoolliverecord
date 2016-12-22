@@ -53,6 +53,14 @@ var comDel = function(params, dom) {
 			if (retVO.code == 0) {
 				layer.msg(retVO.msg);
 			}
+			if(retVO.code == 2){
+				layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+		        	// window.close();
+		        	window.location.href = ROOT_SERVER+"/#/index";
+		        	window.location.reload();
+       			}, 1000);
+			}
 		});
 	});
 };
@@ -70,10 +78,17 @@ var comSearch = function(newPage) {
 		realname: $("#search_realname").val(),
 	};
 	CDUtil.ajaxPost("/base/resource/comment/list", cParams,function(retVO) {
-	console.log(retVO);
 		cParams.curPage=retVO.curPage;
 		config.gData = retVO;
 		Grid.initGrid(config,function(){});
+		if(retVO.code == 2){
+				layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+		        	// window.close();
+		        	window.location.href = ROOT_SERVER+"/#/index";
+		        	window.location.reload();
+       			}, 1000);
+		}
 	});
 };
 /**

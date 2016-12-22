@@ -14,13 +14,13 @@
 	}
 	Grid.fn = Grid.prototype = {
 		init: function() {
-			console.log("初始化---Grid对象");
+			//console.log("初始化---Grid对象");
 			this.objectName = "Grid";
 			return this;
 		},
 		testInit: function() {
 			// 直接打印对象
-			console.log(this.objectName);
+			//console.log(this.objectName);
 			return this;
 		}
 	};
@@ -62,11 +62,11 @@
 		optName: {add_fun:"新增",del_fun:"删除"},
 		//表格中的行操作方法
 		optFuns: {add_fun:function(params,dom){
-				console.log(params);
-				console.log(dom);
+				//console.log(params);
+				//console.log(dom);
 			},del_fun:function(params,dom){
-				console.log(params);
-				console.log(dom);
+				//console.log(params);
+				//console.log(dom);
 			}
 		}
 	};

@@ -7,7 +7,6 @@
 <%@ include file="../../_commons/meta.jsp" %>
 <script type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
 <style type="text/css">
-	body{background-color: #f5f8fa;} 
 	.cd-f-eve{width:100%;margin-bottom:30px;} .cd-f-name{width:100px;} 
 	input[type="checkbox"]{ width: 13px; height: 13px; vertical-align: middle; margin-right: 3px; } 
 	.upbtn{ width: 125px; height: 30px; background-color: #f5f8fa; border: 1px solid #dcdcdc; } 

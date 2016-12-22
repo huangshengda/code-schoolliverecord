@@ -59,6 +59,14 @@ var uploadDel = function(params, dom) {
 			if (retVO.code == 0) {
 				layer.msg(retVO.msg);
 			}
+			if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
+			}
 		});
 	});
 };
@@ -96,6 +104,14 @@ var uploadSearch = function(newPage) {
 		params.curPage=retVO.curPage;
 		config.gData = retVO;
 		Grid.initGrid(config,function(){});
+		if(retVO.code == 2){
+			layer.msg("用户信息失效，请重新登录！");
+			setTimeout(function () {
+		      // window.close();
+		      window.location.href = ROOT_SERVER+"/#/index";
+		      window.location.reload();
+       		}, 1000);
+		}
 	});
 };
 //进行表格分页的配置
