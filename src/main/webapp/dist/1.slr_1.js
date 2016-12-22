@@ -1034,6 +1034,14 @@ webpackJsonp([1,6],[
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
 				}
+				if (retVO.code == 2) {
+					layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+						// window.close();
+						window.location.href = ROOT_SERVER + "/#/index";
+						window.location.reload();
+					}, 1000);
+				}
 			});
 		});
 	};
@@ -1051,10 +1059,17 @@ webpackJsonp([1,6],[
 			realname: $("#search_realname").val()
 		};
 		CDUtil.ajaxPost("/base/resource/comment/list", cParams, function (retVO) {
-			console.log(retVO);
 			cParams.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
+			if (retVO.code == 2) {
+				layer.msg("用户信息失效，请重新登录！");
+				setTimeout(function () {
+					// window.close();
+					window.location.href = ROOT_SERVER + "/#/index";
+					window.location.reload();
+				}, 1000);
+			}
 		});
 	};
 	/**
@@ -1272,7 +1287,7 @@ webpackJsonp([1,6],[
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	//
 	//
@@ -1330,149 +1345,189 @@ webpackJsonp([1,6],[
 
 	/*vue组件*/
 	exports.default = {
-	  data: function data() {
-	    return {
-	      grades: ""
-	    };
-	  },
-	  created: function created() {
-	    this.show();
-	  },
+		data: function data() {
+			return {
+				grades: ""
+			};
+		},
+		created: function created() {
+			this.show();
+		},
 
-	  methods: {
-	    /*显示表单数据*/
-	    show: function show() {
-	      var _self = this;
-	      var params = {};
-	      CDUtil.ajaxPost("/base/classlevel/list", params, function (retVO) {
-	        _self.grades = retVO;
-	      });
-	    },
-	    /*编辑年级*/
-	    manEdit: function manEdit(classlevelName, classlevelId) {
-	      var _self = this;
-	      $('#edit-classlevelName').val(classlevelName);
-	      $('#edit-classlevelId').val(classlevelId);
-	      layer.open({
-	        type: 1,
-	        title: '编辑年级',
-	        skin: 'layui-layer-rim',
-	        //加上边框
-	        area: ['450px', '240px'],
-	        //宽高
-	        content: $("#editgrade"),
-	        btn: ['确定', '取消'],
-	        yes: function yes(index, layero) {
-	          //添加表单验证--Validation
-	          var result = Validation.validation({
-	            containerId: "editgrade"
-	          });
-	          if (result == true) {
-	            var editparams = $('#editgrade').serializeJSON();
-	            CDUtil.ajaxPost("/base/classlevel/update", editparams, function (retVO) {
-	              if (retVO.code == 1) {
-	                _self.show();
-	                layer.msg(retVO.msg);
-	                layer.close(index);
-	              }
-	              if (retVO.code == 0) {
-	                layer.msg(retVO.msg);
-	              }
-	            });
-	          }
-	        }
-	      });
-	    },
-	    /*删除年级*/
-	    manDel: function manDel(classlevelId) {
-	      var _self = this;
-	      layer.alert('确定删除该行数据?', function (index) {
-	        var nanidParams = {
-	          classlevelId: classlevelId
-	        };
-	        CDUtil.ajaxPost("/base/classlevel/delete", nanidParams, function (retVO) {
-	          if (retVO.code == 1) {
-	            _self.show();
-	            layer.msg(retVO.msg);
-	            layer.close(index);
-	          }
-	          if (retVO.code == 0) {
-	            layer.msg(retVO.msg);
-	          }
-	        });
-	      });
-	    },
-	    /*添加年级*/
-	    addgrd: function addgrd() {
-	      $('#addgrade')[0].reset();
-	      $(".cd-f-vali").remove();
-	      var _self = this;
-	      layer.open({
-	        type: 1,
-	        title: '添加年级',
-	        skin: 'layui-layer-rim', //加上边框
-	        area: ['450px', '240px'], //宽高
-	        content: $("#addgrade"),
-	        btn: ['确定', '取消'],
-	        yes: function yes(index, layero) {
-	          //添加表单验证--Validation
-	          var result = Validation.validation({
-	            containerId: "addgrade"
-	          });
-	          if (result == true) {
-	            var addparams = $('#addgrade').serializeJSON();
-	            CDUtil.ajaxPost("/base/classlevel/add", addparams, function (retVO) {
-	              if (retVO.code == 1) {
-	                _self.show();
-	                layer.msg(retVO.msg);
-	                layer.close(index);
-	                $('#addgrade')[0].reset();
-	              }
-	              if (retVO.code == 0) {
-	                layer.msg(retVO.msg);
-	              }
-	            });
-	          }
-	        }
-	      });
-	    },
-	    /**上移**/
-	    upbtn: function upbtn(event) {
-	      var _self = this;
-	      var el = event.target;
-	      var $this = $(el);
-	      var tr = $this.parents('tr');
-	      var _index = tr.index();
-	      var _str = "";
-	      tr.prev().before(tr);
-	      $("#sort tr").each(function () {
-	        _str += $(this).find('td').attr("data-id") + ",";
-	        CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
-	          if (retVO.code == 1) {
-	            _self.show();
-	          }
-	        });
-	      });
-	    },
-	    /**下移**/
-	    downbtn: function downbtn(event) {
-	      var _self = this;
-	      var el = event.target;
-	      var $this = $(el);
-	      var tr = $this.parents('tr');
-	      var _index = tr.index();
-	      var _str = "";
-	      tr.next().after(tr);
-	      $("#sort tr").each(function () {
-	        _str += $(this).find('td').attr("data-id") + ",";
-	        CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
-	          if (retVO.code == 1) {
-	            _self.show();
-	          }
-	        });
-	      });
-	    }
-	  }
+		methods: {
+			/*显示表单数据*/
+			show: function show() {
+				var _self = this;
+				var params = {};
+				CDUtil.ajaxPost("/base/classlevel/list", params, function (retVO) {
+					_self.grades = retVO;
+				});
+			},
+			/*编辑年级*/
+			manEdit: function manEdit(classlevelName, classlevelId) {
+				var _self = this;
+				$('#edit-classlevelName').val(classlevelName);
+				$('#edit-classlevelId').val(classlevelId);
+				layer.open({
+					type: 1,
+					title: '编辑年级',
+					skin: 'layui-layer-rim',
+					//加上边框
+					area: ['450px', '240px'],
+					//宽高
+					content: $("#editgrade"),
+					btn: ['确定', '取消'],
+					yes: function yes(index, layero) {
+						//添加表单验证--Validation
+						var result = Validation.validation({
+							containerId: "editgrade"
+						});
+						if (result == true) {
+							var editparams = $('#editgrade').serializeJSON();
+							CDUtil.ajaxPost("/base/classlevel/update", editparams, function (retVO) {
+								if (retVO.code == 1) {
+									_self.show();
+									layer.msg(retVO.msg);
+									layer.close(index);
+								}
+								if (retVO.code == 0) {
+									layer.msg(retVO.msg);
+								}
+								if (retVO.code == 2) {
+									layer.msg("用户信息失效，请重新登录！");
+									setTimeout(function () {
+										// window.close();
+										window.location.href = ROOT_SERVER + "/#/index";
+										window.location.reload();
+									}, 1000);
+								}
+							});
+						}
+					}
+				});
+			},
+			/*删除年级*/
+			manDel: function manDel(classlevelId) {
+				var _self = this;
+				layer.alert('确定删除该行数据?', function (index) {
+					var nanidParams = {
+						classlevelId: classlevelId
+					};
+					CDUtil.ajaxPost("/base/classlevel/delete", nanidParams, function (retVO) {
+						if (retVO.code == 1) {
+							_self.show();
+							layer.msg(retVO.msg);
+							layer.close(index);
+						}
+						if (retVO.code == 0) {
+							layer.msg(retVO.msg);
+						}
+						if (retVO.code == 2) {
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+								// window.close();
+								window.location.href = ROOT_SERVER + "/#/index";
+								window.location.reload();
+							}, 1000);
+						}
+					});
+				});
+			},
+			/*添加年级*/
+			addgrd: function addgrd() {
+				$('#addgrade')[0].reset();
+				$(".cd-f-vali").remove();
+				var _self = this;
+				layer.open({
+					type: 1,
+					title: '添加年级',
+					skin: 'layui-layer-rim', //加上边框
+					area: ['450px', '240px'], //宽高
+					content: $("#addgrade"),
+					btn: ['确定', '取消'],
+					yes: function yes(index, layero) {
+						//添加表单验证--Validation
+						var result = Validation.validation({
+							containerId: "addgrade"
+						});
+						if (result == true) {
+							var addparams = $('#addgrade').serializeJSON();
+							CDUtil.ajaxPost("/base/classlevel/add", addparams, function (retVO) {
+								if (retVO.code == 1) {
+									_self.show();
+									layer.msg(retVO.msg);
+									layer.close(index);
+									$('#addgrade')[0].reset();
+								}
+								if (retVO.code == 0) {
+									layer.msg(retVO.msg);
+								}
+								if (retVO.code == 2) {
+									layer.msg("用户信息失效，请重新登录！");
+									setTimeout(function () {
+										// window.close();
+										window.location.href = ROOT_SERVER + "/#/index";
+										window.location.reload();
+									}, 1000);
+								}
+							});
+						}
+					}
+				});
+			},
+			/**上移**/
+			upbtn: function upbtn(event) {
+				var _self = this;
+				var el = event.target;
+				var $this = $(el);
+				var tr = $this.parents('tr');
+				var _index = tr.index();
+				var _str = "";
+				tr.prev().before(tr);
+				$("#sort tr").each(function () {
+					_str += $(this).find('td').attr("data-id") + ",";
+					CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
+						if (retVO.code == 1) {
+							_self.show();
+						}
+						if (retVO.code == 2) {
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+								// window.close();
+								window.location.href = ROOT_SERVER + "/#/index";
+								window.location.reload();
+							}, 1000);
+						}
+					});
+				});
+			},
+			/**下移**/
+			downbtn: function downbtn(event) {
+				var _self = this;
+				var el = event.target;
+				var $this = $(el);
+				var tr = $this.parents('tr');
+				var _index = tr.index();
+				var _str = "";
+				tr.next().after(tr);
+				$("#sort tr").each(function () {
+					_str += $(this).find('td').attr("data-id") + ",";
+					CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
+						if (retVO.code == 1) {
+							_self.show();
+						}
+						if (retVO.code == 2) {
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+								// window.close();
+								window.location.href = ROOT_SERVER + "/#/index";
+								window.location.reload();
+							}, 1000);
+						}
+					});
+				});
+			}
+		}
 	};
 
 /***/ },
@@ -1855,6 +1910,14 @@ webpackJsonp([1,6],[
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);
 						}
+						if (retVO.code == 2) {
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+								// window.close();
+								window.location.href = ROOT_SERVER + "/#/index";
+								window.location.reload();
+							}, 1000);
+						}
 					});
 				}
 			}
@@ -1878,6 +1941,14 @@ webpackJsonp([1,6],[
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
 				}
+				if (retVO.code == 2) {
+					layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+						// window.close();
+						window.location.href = ROOT_SERVER + "/#/index";
+						window.location.reload();
+					}, 1000);
+				}
 			});
 		});
 	};
@@ -1897,6 +1968,14 @@ webpackJsonp([1,6],[
 			userType: $("#search_userType").val()
 		};
 		CDUtil.ajaxPost("/base/user/list", params, function (retVO) {
+			if (retVO.code == 2) {
+				layer.msg("用户信息失效，请重新登录！");
+				setTimeout(function () {
+					// window.close();
+					window.location.href = ROOT_SERVER + "/#/index";
+					window.location.reload();
+				}, 1000);
+			}
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
 		});
@@ -1990,6 +2069,14 @@ webpackJsonp([1,6],[
 								}
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
+								}
+								if (retVO.code == 2) {
+									layer.msg("用户信息失效，请重新登录！");
+									setTimeout(function () {
+										// window.close();
+										window.location.href = ROOT_SERVER + "/#/index";
+										window.location.reload();
+									}, 1000);
 								}
 							});
 						}
@@ -2149,7 +2236,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-value"
 	  }, [_c('input', {
 	    attrs: {
-	      "type": "password",
+	      "type": "text",
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "",
@@ -2230,7 +2317,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-value"
 	  }, [_c('input', {
 	    attrs: {
-	      "type": "password",
+	      "type": "text",
 	      "name": "password",
 	      "data-vali": "password",
 	      "id": "add_password",
@@ -2368,7 +2455,7 @@ webpackJsonp([1,6],[
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	//
 	//
@@ -2425,147 +2512,186 @@ webpackJsonp([1,6],[
 
 	/*vue组件*/
 	exports.default = {
-	  data: function data() {
-	    return {
-	      grades: ""
-	    };
-	  },
-	  created: function created() {
-	    this.show();
-	  },
+		data: function data() {
+			return {
+				grades: ""
+			};
+		},
+		created: function created() {
+			this.show();
+		},
 
-	  methods: {
-	    /*显示表单数据*/
-	    show: function show() {
-	      var _self = this;
-	      var params = {};
-	      CDUtil.ajaxPost("/base/subject/list", params, function (retVO) {
-	        _self.grades = retVO;
-	      });
-	    },
-	    /*编辑学科*/
-	    manEdit: function manEdit(subjectName, subjectId) {
-	      var _self = this;
-	      $('#edit-subjectName').val(subjectName);
-	      $('#edit-subjectId').val(subjectId);
-	      layer.open({
-	        type: 1,
-	        title: '编辑学科',
-	        skin: 'layui-layer-rim',
-	        //加上边框
-	        area: ['450px', '240px'],
-	        //宽高
-	        content: $("#editsubject"),
-	        btn: ['确定', '取消'],
-	        yes: function yes(index, layero) {
-	          //添加表单验证--Validation
-	          var result = Validation.validation({
-	            containerId: "editsubject"
-	          });
-	          if (result == true) {
-	            var editparams = $('#editsubject').serializeJSON();
-	            CDUtil.ajaxPost("/base/subject/update", editparams, function (retVO) {
-	              if (retVO.code == 1) {
-	                _self.show();
-	                layer.msg(retVO.msg);
-	                layer.close(index);
-	              }
-	              if (retVO.code == 0) {
-	                layer.msg(retVO.msg);
-	              }
-	            });
-	          }
-	        }
-	      });
-	    },
-	    /*删除学科*/
-	    manDel: function manDel(subjectId) {
-	      var _self = this;
-	      layer.alert('确定删除该行数据?', function (index) {
-	        var nanidParams = {
-	          subjectId: subjectId
-	        };
-	        CDUtil.ajaxPost("/base/subject/delete", nanidParams, function (retVO) {
-	          if (retVO.code == 1) {
-	            _self.show();
-	            layer.msg(retVO.msg);
-	            layer.close(index);
-	          }
-	        });
-	      });
-	    },
-	    /*添加学科*/
-	    add: function add() {
-	      $('#addsubject')[0].reset();
-	      $(".cd-f-vali").remove();
-	      var _self = this;
-	      layer.open({
-	        type: 1,
-	        title: '添加学科',
-	        skin: 'layui-layer-rim', //加上边框
-	        area: ['450px', '240px'], //宽高
-	        content: $("#addsubject"),
-	        btn: ['确定', '取消'],
-	        yes: function yes(index, layero) {
-	          //添加表单验证--Validation
-	          var result = Validation.validation({
-	            containerId: "addsubject"
-	          });
-	          if (result == true) {
-	            var addparams = $('#addsubject').serializeJSON();
-	            CDUtil.ajaxPost("/base/subject/add", addparams, function (retVO) {
-	              if (retVO.code == 1) {
-	                _self.show();
-	                layer.close(index);
-	                layer.msg(retVO.msg);
-	                $('#addsubject')[0].reset();
-	              }
-	              if (retVO.code == 0) {
-	                layer.msg(retVO.msg);
-	              }
-	            });
-	          }
-	        }
-	      });
-	    },
-	    /**上移**/
-	    upbtn: function upbtn(event) {
-	      var _self = this;
-	      var el = event.target;
-	      var $this = $(el);
-	      var tr = $this.parents('tr');
-	      var _index = tr.index();
-	      var _str = "";
-	      tr.prev().before(tr);
-	      $("#sort tr").each(function () {
-	        _str += $(this).find('td').attr("data-id") + ",";
-	      });
-	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
-	        if (retVO.code == 1) {
-	          _self.show();
-	        }
-	      });
-	    },
-	    /**下移**/
-	    downbtn: function downbtn(event) {
-	      var _self = this;
-	      var el = event.target;
-	      var $this = $(el);
-	      var tr = $this.parents('tr');
-	      var trLength = $this.length;
-	      var _index = tr.index();
-	      var _str = "";
-	      tr.next().after(tr);
-	      $("#sort tr").each(function () {
-	        _str += $(this).find('td').attr("data-id") + ",";
-	      });
-	      CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
-	        if (retVO.code == 1) {
-	          _self.show();
-	        }
-	      });
-	    }
-	  }
+		methods: {
+			/*显示表单数据*/
+			show: function show() {
+				var _self = this;
+				var params = {};
+				CDUtil.ajaxPost("/base/subject/list", params, function (retVO) {
+					_self.grades = retVO;
+				});
+			},
+			/*编辑学科*/
+			manEdit: function manEdit(subjectName, subjectId) {
+				var _self = this;
+				$('#edit-subjectName').val(subjectName);
+				$('#edit-subjectId').val(subjectId);
+				layer.open({
+					type: 1,
+					title: '编辑学科',
+					skin: 'layui-layer-rim',
+					//加上边框
+					area: ['450px', '240px'],
+					//宽高
+					content: $("#editsubject"),
+					btn: ['确定', '取消'],
+					yes: function yes(index, layero) {
+						//添加表单验证--Validation
+						var result = Validation.validation({
+							containerId: "editsubject"
+						});
+						if (result == true) {
+							var editparams = $('#editsubject').serializeJSON();
+							CDUtil.ajaxPost("/base/subject/update", editparams, function (retVO) {
+								if (retVO.code == 1) {
+									_self.show();
+									layer.msg(retVO.msg);
+									layer.close(index);
+								}
+								if (retVO.code == 0) {
+									layer.msg(retVO.msg);
+								}
+								if (retVO.code == 2) {
+									layer.msg("用户信息失效，请重新登录！");
+									setTimeout(function () {
+										// window.close();
+										window.location.href = ROOT_SERVER + "/#/index";
+										window.location.reload();
+									}, 1000);
+								}
+							});
+						}
+					}
+				});
+			},
+			/*删除学科*/
+			manDel: function manDel(subjectId) {
+				var _self = this;
+				layer.alert('确定删除该行数据?', function (index) {
+					var nanidParams = {
+						subjectId: subjectId
+					};
+					CDUtil.ajaxPost("/base/subject/delete", nanidParams, function (retVO) {
+						if (retVO.code == 1) {
+							_self.show();
+							layer.msg(retVO.msg);
+							layer.close(index);
+						}
+						if (retVO.code == 2) {
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+								window.location.href = ROOT_SERVER + "/#/index";
+								window.location.reload();
+							}, 1000);
+						}
+					});
+				});
+			},
+			/*添加学科*/
+			add: function add() {
+				$('#addsubject')[0].reset();
+				$(".cd-f-vali").remove();
+				var _self = this;
+				layer.open({
+					type: 1,
+					title: '添加学科',
+					skin: 'layui-layer-rim', //加上边框
+					area: ['450px', '240px'], //宽高
+					content: $("#addsubject"),
+					btn: ['确定', '取消'],
+					yes: function yes(index, layero) {
+						//添加表单验证--Validation
+						var result = Validation.validation({
+							containerId: "addsubject"
+						});
+						if (result == true) {
+							var addparams = $('#addsubject').serializeJSON();
+							CDUtil.ajaxPost("/base/subject/add", addparams, function (retVO) {
+								if (retVO.code == 1) {
+									_self.show();
+									layer.close(index);
+									layer.msg(retVO.msg);
+									$('#addsubject')[0].reset();
+								}
+								if (retVO.code == 0) {
+									layer.msg(retVO.msg);
+								}
+								if (retVO.code == 2) {
+									layer.msg("用户信息失效，请重新登录！");
+									setTimeout(function () {
+										// window.close();
+										window.location.href = ROOT_SERVER + "/#/index";
+										window.location.reload();
+									}, 1000);
+								}
+							});
+						}
+					}
+				});
+			},
+			/**上移**/
+			upbtn: function upbtn(event) {
+				var _self = this;
+				var el = event.target;
+				var $this = $(el);
+				var tr = $this.parents('tr');
+				var _index = tr.index();
+				var _str = "";
+				tr.prev().before(tr);
+				$("#sort tr").each(function () {
+					_str += $(this).find('td').attr("data-id") + ",";
+				});
+				CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+					if (retVO.code == 2) {
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+							// window.close();
+							window.location.href = ROOT_SERVER + "/#/index";
+							window.location.reload();
+						}, 1000);
+					}
+				});
+			},
+			/**下移**/
+			downbtn: function downbtn(event) {
+				var _self = this;
+				var el = event.target;
+				var $this = $(el);
+				var tr = $this.parents('tr');
+				var trLength = $this.length;
+				var _index = tr.index();
+				var _str = "";
+				tr.next().after(tr);
+				$("#sort tr").each(function () {
+					_str += $(this).find('td').attr("data-id") + ",";
+				});
+				CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+					if (retVO.code == 2) {
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+							// window.close();
+							window.location.href = ROOT_SERVER + "/#/index";
+							window.location.reload();
+						}, 1000);
+					}
+				});
+			}
+		}
 	};
 
 /***/ },
@@ -2825,7 +2951,6 @@ webpackJsonp([1,6],[
 	      H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 	        retVO = eval('(' + retVO + ')');
 	        var dataVO = retVO.data;
-	        if (dataVO.code == 0) {}
 	        var resourceId = dataVO.resourceId;
 	        H5fileup.showImgAuto(file, "thispage_fileup_img");
 	        $("#img_resourceId").val(resourceId);
@@ -2848,6 +2973,14 @@ webpackJsonp([1,6],[
 	          }
 	          if (retVO.code == 0) {
 	            layer.msg(retVO.msg);
+	          }
+	          if (retVO.code == 2) {
+	            layer.msg("用户信息失效，请重新登录！");
+	            setTimeout(function () {
+	              // window.close();
+	              window.location.href = ROOT_SERVER + "/#/index";
+	              window.location.reload();
+	            }, 1000);
 	          }
 	        });
 	      }
@@ -3061,7 +3194,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n#addServer input,#editServer input{width:249px;\n}\n\n", ""]);
+	exports.push([module.id, "\n#addServer input,#editServer input{width:249px;\n}\n", ""]);
 
 	// exports
 
@@ -3163,6 +3296,14 @@ webpackJsonp([1,6],[
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);
 						}
+						if (retVO.code == 2) {
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+								// window.close();
+								window.location.href = ROOT_SERVER + "/#/index";
+								window.location.reload();
+							}, 1000);
+						}
 					});
 				}
 			}
@@ -3185,6 +3326,14 @@ webpackJsonp([1,6],[
 				}
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
+				}
+				if (retVO.code == 2) {
+					layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+						// window.close();
+						window.location.href = ROOT_SERVER + "/#/index";
+						window.location.reload();
+					}, 1000);
 				}
 			});
 		});
@@ -3269,6 +3418,14 @@ webpackJsonp([1,6],[
 								}
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
+								}
+								if (retVO.code == 2) {
+									layer.msg("用户信息失效，请重新登录！");
+									setTimeout(function () {
+										// window.close();
+										window.location.href = ROOT_SERVER + "/#/index";
+										window.location.reload();
+									}, 1000);
 								}
 							});
 						}
@@ -3518,6 +3675,14 @@ webpackJsonp([1,6],[
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
 				}
+				if (retVO.code == 2) {
+					layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+						// window.close();
+						window.location.href = ROOT_SERVER + "/#/index";
+						window.location.reload();
+					}, 1000);
+				}
 			});
 		});
 	};
@@ -3555,6 +3720,14 @@ webpackJsonp([1,6],[
 			params.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
+			if (retVO.code == 2) {
+				layer.msg("用户信息失效，请重新登录！");
+				setTimeout(function () {
+					// window.close();
+					window.location.href = ROOT_SERVER + "/#/index";
+					window.location.reload();
+				}, 1000);
+			}
 		});
 	};
 
@@ -3849,6 +4022,14 @@ webpackJsonp([1,6],[
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
 				}
+				if (retVO.code == 2) {
+					layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+						// window.close();
+						window.location.href = ROOT_SERVER + "/#/index";
+						window.location.reload();
+					}, 1000);
+				}
 			});
 		});
 	};
@@ -3886,6 +4067,14 @@ webpackJsonp([1,6],[
 			params.curPage = retVO.curPage;
 			config.gData = retVO;
 			Grid.initGrid(config, function () {});
+			if (retVO.code == 2) {
+				layer.msg("用户信息失效，请重新登录！");
+				setTimeout(function () {
+					// window.close();
+					window.location.href = ROOT_SERVER + "/#/index";
+					window.location.reload();
+				}, 1000);
+			}
 		});
 	};
 	//进行表格分页的配置
@@ -4173,12 +4362,12 @@ webpackJsonp([1,6],[
 	      window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
 	    } else {
 	      //alert("用户信息失效");
-	      layerIndex = layer.confirm('未登录暂无权限访问', {
-	        btn: ['确定']
-	      }, function () {
-	        layer.close(layerIndex);
-	        sessionStorage.clear();
-	        window.location.href = ROOT_SERVER + "/#/index";
+	      laryIndex = layer.open({
+	        type: 1,
+	        title: '登录',
+	        skin: 'layui-layer-rim', //加上边框
+	        area: ['450px', '360px'], //宽高
+	        content: $("#login")
 	      });
 	    }
 	  });
@@ -4595,6 +4784,9 @@ webpackJsonp([1,6],[
 	      } else {
 	        return value;
 	      }
+	    },
+	    unescape: function unescape(html) {
+	      return html.replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "\'");
 	    }
 	  },
 
@@ -4627,13 +4819,12 @@ webpackJsonp([1,6],[
 	          window.open(ROOT_SERVER + "/front/path/live?token=" + sessionStorage.getItem("token"));
 	        } else {
 	          //alert("用户信息失效");
-	          laryIndex = layer.confirm('未登录暂无权限访问', {
-	            btn: ['确定']
-	          }, function () {
-	            layer.close(laryIndex);
-	            sessionStorage.clear();
-	            window.location.href = ROOT_SERVER + "/#/index";
-	            window.location.reload();
+	          laryIndex = layer.open({
+	            type: 1,
+	            title: '登录',
+	            skin: 'layui-layer-rim', //加上边框
+	            area: ['450px', '360px'], //宽高
+	            content: $("#login")
 	          });
 	        }
 	      });
@@ -4646,13 +4837,12 @@ webpackJsonp([1,6],[
 	          window.open(ROOT_UI + "/front/path/demond?token=" + sessionStorage.getItem("token"));
 	        } else {
 	          //alert("用户信息失效");
-	          layerIndex = layer.confirm('未登录暂无权限访问', {
-	            btn: ['确定']
-	          }, function () {
-	            layer.close(layerIndex);
-	            sessionStorage.clear();
-	            window.location.href = ROOT_SERVER + "/#/index";
-	            window.location.reload();
+	          laryIndex = layer.open({
+	            type: 1,
+	            title: '登录',
+	            skin: 'layui-layer-rim', //加上边框
+	            area: ['450px', '360px'], //宽高
+	            content: $("#login")
 	          });
 	        }
 	      });
@@ -4683,14 +4873,14 @@ webpackJsonp([1,6],[
 	      staticClass: "row"
 	    }, [_c('div', {
 	      staticClass: "col-md-4 tel c4"
-	    }, [_vm._v(_vm._s(post.resourceName))]), _vm._v(" "), _c('div', {
+	    }, [_vm._v(_vm._s(_vm._f("unescape")(post.resourceName)))]), _vm._v(" "), _c('div', {
 	      staticClass: "col-md-4 tel"
 	    }, [_c('span', {
 	      staticClass: "sub-code",
 	      attrs: {
-	        "title": post.classlevelName
+	        "title": _vm._f("unescape")(post.classlevelName)
 	      }
-	    }, [_vm._v(_vm._s(_vm._f("cutStr")(post.classlevelName)))]), _vm._v("/" + _vm._s(post.subjectName) + "/" + _vm._s(post.author))]), _vm._v(" "), _c('div', {
+	    }, [_vm._v(_vm._s(_vm._f("unescape")(_vm._f("cutStr")(post.classlevelName))))]), _vm._v("/" + _vm._s(_vm._f("unescape")(post.subjectName)) + "/" + _vm._s(_vm._f("unescape")(post.author)))]), _vm._v(" "), _c('div', {
 	      staticClass: "col-md-4",
 	      on: {
 	        "click": function($event) {
@@ -4742,16 +4932,16 @@ webpackJsonp([1,6],[
 	    }), _vm._v(_vm._s(course.viewCnt))])])]), _vm._v(" "), _c('p', {
 	      staticClass: "c4 tel",
 	      attrs: {
-	        "title": course.resourceName
+	        "title": _vm._f("unescape")(course.resourceName)
 	      }
-	    }, [_vm._v(_vm._s(course.resourceName))]), _vm._v(" "), _c('p', {
+	    }, [_vm._v(_vm._s(_vm._f("unescape")(course.resourceName)))]), _vm._v(" "), _c('p', {
 	      staticClass: "ft12 c9 tel"
 	    }, [_c('span', {
 	      staticClass: "sub-code",
 	      attrs: {
 	        "title": course.classlevelName
 	      }
-	    }, [_vm._v(_vm._s(_vm._f("cutStr")(course.classlevelName)))]), _vm._v(" " + _vm._s(course.subjectName) + " " + _vm._s(course.author))])])
+	    }, [_vm._v(_vm._s(_vm._f("unescape")(_vm._f("cutStr")(course.classlevelName))))]), _vm._v(" " + _vm._s(_vm._f("unescape")(course.subjectName)) + " " + _vm._s(_vm._f("unescape")(course.author)))])])
 	  })), _vm._v(" ")])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
 	  return _c('div', {

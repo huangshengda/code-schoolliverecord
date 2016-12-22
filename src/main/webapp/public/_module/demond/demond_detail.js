@@ -11,7 +11,6 @@ $(function() {
 			$("#play_times").html(retVO.data);
 		}
 	});
-	
 	var SWF_ID = "evideo_" + new Date().getTime();
 	var SWF_NAME = ROOT_UI_PUBLIC + "/evideo/evideo.swf";
 	function EmbedSWF_SWF(divId, mp4Url,width,height) {
@@ -179,8 +178,10 @@ $(function() {
 				+'</p>'
 				+'<p class="clearfix">'
 					+'<span class="com-comments-time">'+data.createTimeStr+'</span>'
+					+'<span class="list_hide">'
 					+'<span class="commtent-text-btn comment-two-reply fr" style="display: block;" data-show="0">回复</span>'
 					+(data.delAuth?'<span class="commtent-text-btn comment-two-del fr mr20" style="display: block;" data-show="0">删除</span>':'')
+					+'</span>'
 				+'</p>'
 			+'</div>'
 		});
@@ -323,9 +324,11 @@ $(function() {
 					+'</p>'
 					+'<p class="clearfix">'
 						+'<span class="com-comments-time">'+data.createTimeStr+'</span>'
+						+'<span class="list_hide">'
 						+'<span class="commtent-text-btn comment-two-reply fr" style="display: block;" data-show="0">回复</span>'
 						+(data.delAuth?'<span class="commtent-text-btn comment-two-del fr mr20" style="display: block;" data-show="0">删除</span>':'')
-					+'</p>'
+						+'</span>'
+						+'</p>'
 				+'</div>';
 				$(htmlStr).appendTo(twoDom);
 				var comTwoLen = ValueCheck.getNumber($(oneDom).attr("data-commenttwolenght"),0)
@@ -373,6 +376,9 @@ $(function() {
 			});
 		});
 	});
+	$('.com-comments-level1').hover(function(){
+		$(this).find('.commtent-text-btn').show();
+	})
 	
 });
 function replace_em(str){

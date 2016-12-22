@@ -41,13 +41,13 @@ window.openDemondDetail=function(resourceId){
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
-      			layerIndex = layer.confirm('未登录暂无权限访问', {
-					btn: ['确定']
-				},function() {
-					layer.close(layerIndex);
-					sessionStorage.clear();
-      				window.location.href = ROOT_SERVER+"/#/index";
-				});
+      			laryIndex = layer.open({
+         		 	type: 1,
+       			 	title: '登录',
+         			skin: 'layui-layer-rim', //加上边框
+          			area: ['450px', '360px'], //宽高
+          			content: $("#login")
+      			});
       		}
     });
 };

@@ -101,6 +101,14 @@
 					if (retVO.code == 0) {
 						layer.msg(retVO.msg);
 					}
+					if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
+					}
 				});
 			}
 		}
@@ -115,10 +123,17 @@
 			subjectId: subjectId
 		};
 		CDUtil.ajaxPost("/base/subject/delete", nanidParams,function(retVO) {
-		if (retVO.code == 1) {
+			if (retVO.code == 1) {
 				_self.show();
 				layer.msg(retVO.msg);
 				layer.close(index);
+			}
+			if(retVO.code == 2){
+				layer.msg("用户信息失效，请重新登录！");
+				setTimeout(function () {
+		        	window.location.href = ROOT_SERVER+"/#/index";
+		        	window.location.reload();
+       			}, 1000);
 			}
 		});
 	});
@@ -152,6 +167,14 @@
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);
 						}
+						if(retVO.code == 2){
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+		        				// window.close();
+		        				window.location.href = ROOT_SERVER+"/#/index";
+		        				window.location.reload();
+       						}, 1000);
+						}
       				});
       			
       			}
@@ -174,6 +197,14 @@
 			 	if (retVO.code == 1) {
 					_self.show();
 				}
+				if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
+					}
 			 });
      },
      /**下移**/
@@ -192,6 +223,14 @@
 			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 				if (retVO.code == 1) {
 					_self.show();
+				}
+				if(retVO.code == 2){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
 				}
 			});
      },
