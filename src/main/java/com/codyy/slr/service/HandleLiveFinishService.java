@@ -69,8 +69,9 @@ public class HandleLiveFinishService {
 				int concatTimes = 0;
 				while (concatTimes < Constants.CONCAT_VIDEO_TIMES && !concatFlag) {
 					concatFlag = handleVideoService.concatVideos(fileStrList, absFilePathStr);
+					concatTimes++;
 				}
-				log.info(logPrefix + ": 合并文件结束. 合并第" + (concatTimes + 1) + "次,result: " + boolean2Str(concatFlag));
+				log.info(logPrefix + ": 合并文件结束. 合并第" + (concatTimes) + "次,result: " + boolean2Str(concatFlag));
 
 				if (concatFlag) {
 					// 5.删除文件
@@ -96,12 +97,13 @@ public class HandleLiveFinishService {
 					while (shotImgTimes < Constants.SHOT_IMG_TIMES && !shotImgFlag) {
 						imgPathlist = handleVideoService.getShotImgs(absFilePathStr, liveResourceId, 1, thumbPathInfo.getAbsPath());
 						shotImgFlag = !CollectionUtils.isEmpty(imgPathlist);
+						shotImgTimes++;
 					}
 					if (shotImgFlag) {
 						thumbPath = thumbPathInfo.getRelPath() + Constants.PATH_SEPARATOR + imgPathlist.get(0);
 						finishSuccessFlag = true;
 					}
-					log.info(logPrefix + "截图第" + (shotImgTimes + 1) + ",图片 " + thumbPath);
+					log.info(logPrefix + "截图第" + (shotImgTimes) + "次,图片 " + thumbPath);
 				}
 
 			}

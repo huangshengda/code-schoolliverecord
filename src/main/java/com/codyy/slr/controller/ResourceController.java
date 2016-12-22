@@ -281,12 +281,6 @@ public class ResourceController {
 	public ReturnVoOne<String> addLiveResource(AddLiveResourceParam param, String livePath) {
 		ReturnVoOne<String> returnVoOne = new ReturnVoOne<String>();
 		try {
-			// 校验参数
-			if (!param.validate() || StringUtils.isEmpty(livePath)) {
-				returnVoOne.setCode(Constants.FAILED);
-				returnVoOne.setMsg("参数不合法");
-				return returnVoOne;
-			}
 
 			String liveResourceId = UUIDUtils.getUUID();
 			boolean flag = resourceService.addLiveResource(param, liveResourceId, livePath);
