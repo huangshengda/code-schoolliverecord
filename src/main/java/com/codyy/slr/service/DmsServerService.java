@@ -1,5 +1,6 @@
 package com.codyy.slr.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,8 @@ public class DmsServerService {
 		}
 		if (count == 0) {
 			dmsServer.setServerId(UUIDUtils.getUUID());
+			dmsServer.setCreateTime(new Date());
+			dmsServer.setLastModifyTime(new Date());
 			if (dmsServerMapper.insertSelective(dmsServer) != 1) {
 				msg = "添加失败";
 				code = Constants.FAILED;

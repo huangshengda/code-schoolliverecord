@@ -37,6 +37,12 @@
       <if test="serverValue != null" >
         SERVER_VALUE,
       </if>
+      <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="serverId != null" >
@@ -48,6 +54,12 @@
       <if test="serverValue != null" >
         #{serverValue,jdbcType=VARCHAR},
       </if>
+       <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.codyy.slr.entity.DmsServer" >
@@ -58,6 +70,9 @@
       </if>
       <if test="serverValue != null" >
         SERVER_VALUE = #{serverValue,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where SERVER_ID = #{serverId,jdbcType=VARCHAR}
@@ -77,6 +92,7 @@ where 1=1
 <if test  = "map.dmsServerName != null">
  and  t.SERVER_NAME = #{map.dmsServerName}
 </if>
+order by t.LAST_MODIFY_TIME desc
 </select>
   
   

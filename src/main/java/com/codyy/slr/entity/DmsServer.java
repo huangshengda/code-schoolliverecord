@@ -1,5 +1,7 @@
 package com.codyy.slr.entity;
 
+import java.util.Date;
+
 /**
  * 
  * @Description: DMSServer地址bean  
@@ -13,6 +15,26 @@ public class DmsServer {
 	private String serverName;
 
 	private String serverValue;
+
+	private Date lastModifyTime;
+
+	private Date createTime;
+
+	public Date getLastModifyTime() {
+		return lastModifyTime;
+	}
+
+	public void setLastModifyTime(Date lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
 	public String getServerId() {
 		return serverId;

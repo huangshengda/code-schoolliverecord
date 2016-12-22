@@ -1,6 +1,7 @@
 package com.codyy.slr.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,6 +151,7 @@ public class DmsServerController {
 		try {
 			List<DmsServerVo> list = dmsServerService.getDmsServerList(page);
 			if ((list.size() == 0) || ((list.size() == 1) && (dmsServer.getServerId().equals(list.get(0).getServerId())))) {
+				dmsServer.setLastModifyTime(new Date());
 				if (dmsServerService.modifyDmsServer(dmsServer) != 1) {
 					msg = "编辑失败";
 					code = Constants.FAILED;
