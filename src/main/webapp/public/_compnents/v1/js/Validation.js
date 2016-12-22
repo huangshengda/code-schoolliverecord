@@ -56,6 +56,7 @@ data-vali的值域集合有：
 		email: "邮箱不合法",
 		idcard: "身份证不合法",
 		areacode: "邮编不合法",
+		headcode:"请输入以rtmp://开头的链接",
 	};
 	/**
 	 * 本方法适用于使用data-vali-*做规则验证。
@@ -178,6 +179,13 @@ data-vali的值域集合有：
 		}else if(vali.indexOf("areacode")>-1){
 			if(!ValueCheck.isAreacode(value)){
 				msg = Validation.errorMsg["areacode"];
+			}
+		}else if(vali.indexOf("headcode")>-1){
+			orgxStr = /^rtmp:///;
+			if($.trim(value) == ""){
+				msg = Validation.errorMsg["notnull"];
+			}else if(!orgxStr.test(value)){
+				msg = Validation.errorMsg["headcode"];
 			}
 		}
 		return msg;

@@ -12,9 +12,7 @@
 <script  type="text/javascript" src="${ROOT_UI}/public/_module/demond/demond_detail.js"></script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/comment.css">
 <style type="text/css">
-.l-title {font-size: 18px;margin-top:30px;}
 .l-title span{margin: 0px;}
-.ft12{font-size: 14px;}
 .col-md-3 .l-right{width:300px;}
 .col-md-3 .v-recommend li{margin-top: 0;padding: 8px 10px;}
 .mt30{margin-top:30px;}

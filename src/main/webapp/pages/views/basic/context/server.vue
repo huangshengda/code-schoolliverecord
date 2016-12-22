@@ -19,7 +19,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="serverValue" id="search_serverValue" data-vali="notnull">
+            <input type="text" name="serverValue" id="search_serverValue" data-vali="headcode">
           </span>
         </div>
     </div>
@@ -37,7 +37,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="serverValue" data-vali="notnull" maxlength="30">
+            <input type="text" name="serverValue" data-vali="headcode" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">

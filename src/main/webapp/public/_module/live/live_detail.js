@@ -75,12 +75,12 @@ $(function() {
 				$("#online_count").html(dataVO.onlineCount);
 				var htmlStr = '<li class="chat-li" id="'+id+'" data-timestamp="'+timestamp+'"  >'
  					+'<span class="fb mr20">'+author+'</span>'
- 					//+'<span>5分钟之前</span>'
+ 					+'<span class="fb mr20 c9 norm ft12">'+ValueCheck.longToDateYMDHM(timestamp)+'</span>'
  					+'<p class="chat-context">'+replace_em(msg)+'</p>';
 				if(delAuth){
 					htmlStr += '<i class="iconfont icon-delete chat-delete fr c9" data-id="'+id+'"></i>'
 				}
-				$(htmlStr).appendTo("#chat_context");
+				$("#chat_context").prepend(htmlStr);
 				$("#chat_context").scrollTop($("#chat_context").height());
 			}
 			$("#chat").val("");

@@ -198,7 +198,7 @@
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
 			 	 	if (retVO.code == 1) {
-						_self.show();
+						//_self.show();
 					}
 					if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -224,7 +224,7 @@
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
 			 		if (retVO.code == 1) {
-						_self.show();
+						//_self.show();
 					}
 					if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");

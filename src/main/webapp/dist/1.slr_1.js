@@ -1488,7 +1488,7 @@ webpackJsonp([1,6],[
 					_str += $(this).find('td').attr("data-id") + ",";
 					CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
 						if (retVO.code == 1) {
-							_self.show();
+							//_self.show();
 						}
 						if (retVO.code == 2) {
 							layer.msg("用户信息失效，请重新登录！");
@@ -1514,7 +1514,7 @@ webpackJsonp([1,6],[
 					_str += $(this).find('td').attr("data-id") + ",";
 					CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
 						if (retVO.code == 1) {
-							_self.show();
+							//_self.show();
 						}
 						if (retVO.code == 2) {
 							layer.msg("用户信息失效，请重新登录！");
@@ -2651,9 +2651,7 @@ webpackJsonp([1,6],[
 					_str += $(this).find('td').attr("data-id") + ",";
 				});
 				CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
-					if (retVO.code == 1) {
-						_self.show();
-					}
+					if (retVO.code == 1) {}
 					if (retVO.code == 2) {
 						layer.msg("用户信息失效，请重新登录！");
 						setTimeout(function () {
@@ -2679,7 +2677,7 @@ webpackJsonp([1,6],[
 				});
 				CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
 					if (retVO.code == 1) {
-						_self.show();
+						//_self.show();
 					}
 					if (retVO.code == 2) {
 						layer.msg("用户信息失效，请重新登录！");
@@ -3504,7 +3502,7 @@ webpackJsonp([1,6],[
 	      "type": "text",
 	      "name": "serverValue",
 	      "id": "search_serverValue",
-	      "data-vali": "notnull"
+	      "data-vali": "headcode"
 	    }
 	  })])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;
@@ -3546,7 +3544,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "type": "text",
 	      "name": "serverValue",
-	      "data-vali": "notnull",
+	      "data-vali": "headcode",
 	      "maxlength": "30"
 	    }
 	  })])]), _vm._v(" "), _c('div', {

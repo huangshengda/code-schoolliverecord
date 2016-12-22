@@ -195,7 +195,7 @@
 			 });
 			 CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 			 	if (retVO.code == 1) {
-					_self.show();
+			 		
 				}
 				if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -222,7 +222,7 @@
 			 });
 			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 				if (retVO.code == 1) {
-					_self.show();
+					//_self.show();
 				}
 				if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");

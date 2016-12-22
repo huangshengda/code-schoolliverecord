@@ -175,7 +175,7 @@ $(function(){
             +'<p id="'+sequence+'_status" >上传中</p>'
             +'</div>'
             +'<div class="inb">'
-            +'<img src="../images/video.png" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'
+            +'<img src="'+ROOT_UI+'/public/_module/images/video.png" width="140" height="80" class="mr20 vab" id="'+sequence+'_show_img">'
             +'<button type="button" class="upbtn sysprint-img-button mr20" >选择系统截图</button>'
             +'<div type="button" class="btn fileup-button mr20" style="position: relative;width: 125px;height: 30px;" >'
             +'上传本地图片'
