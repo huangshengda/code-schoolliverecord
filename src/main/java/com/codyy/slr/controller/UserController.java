@@ -56,7 +56,7 @@ public class UserController {
 		if ((StringUtils.isEmpty(user.getUsername())) || (StringUtils.isEmpty(user.getPassword()))) {
 			return new ReturnVoOne<User>(0, "用户名或密码为空");
 		}
-		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
+		map.put("username", user.getUsername());
 		map.put("password", user.getPassword());
 		try {
 			user = userService.getUserByUserNameAndPw(map);
