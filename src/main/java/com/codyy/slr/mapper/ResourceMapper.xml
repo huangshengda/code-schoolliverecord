@@ -137,7 +137,7 @@
 			from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
 			JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
 			rrc.CLASSLEVEL_ID=cl.CLASSLEVEL_ID
-			where res.LIVING_FLAG = 'N' and res.DELETE_FLAG='N'
+			where res.LIVING_FLAG = 'N' and res.DELETE_FLAG='N' and res.STORE_PATH is not null and res.STORE_PATH != ''
 			GROUP BY res.RESOURCE_ID
 			ORDER BY
 		(
