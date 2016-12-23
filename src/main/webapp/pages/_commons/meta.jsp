@@ -93,5 +93,16 @@ if(TOKEN_FLAG != "" && LOGIN_FLAG != "1"){
 	},false);
 }else if(AUTO_LOGIN_FLAG == "1" && LOGIN_FLAG != "1"){
 	autoLogin();
+}else if(TOKEN_FLAG != "" && LOGIN_FLAG == "1"){
+	CDUtil.ajaxPost("/token/getuser",{token: TOKEN_FLAG},function(retVO){
+		if(retVO.code == 1){
+			
+		}else if(retVO.code == 2){
+			sessionStorage.clear();
+			setTimeout(function(){
+				window.location.href = ROOT_SERVER+"/#/index";
+   	 		},100);
+		}
+	},false);
 }
 </script>
