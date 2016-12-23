@@ -155,7 +155,7 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", user.getUsername());
 		int count = 0;
-		if ((user.getUsername().matches(usernameRegex)) && (user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {
+		if ((user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {
 			// 用户类型判断
 			if ("ADMIN".equals(user.getUserType())) {
 				user.setUserType(Constants.ADMIN);
