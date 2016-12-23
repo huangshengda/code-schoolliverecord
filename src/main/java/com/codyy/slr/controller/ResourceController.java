@@ -169,12 +169,6 @@ public class ResourceController {
 	public ReturnVoOne addResource(AddUploadResourceParam param, HttpServletRequest req) {
 		ReturnVoOne returnVoOne = new ReturnVoOne();
 		User user = (User) req.getAttribute("user");
-		// 校验参数
-		if (!param.validate()) {
-			returnVoOne.setCode(Constants.FAILED);
-			returnVoOne.equals("参数不合法");
-			return returnVoOne;
-		}
 
 		boolean flag = resourceService.addResource(param, user.getUserId());
 
