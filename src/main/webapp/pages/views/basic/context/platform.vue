@@ -61,6 +61,20 @@ export default {
         impup: function(){
         	var fileDom = $("#thispage_fileup")[0];
         	var file = fileDom.files[0];
+        	var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
+        	var filename = file.name;
+			var ldot = filename.lastIndexOf(".");
+			var name = filename.substring(0,ldot);
+			var type = filename.substring(ldot+1).toLowerCase();
+			var refuseType = "$png$jpg$";
+			if(refuseType.indexOf("$"+type+"$")<0){
+				layer.msg("选择文件格式不正确");
+				return;
+			}
+			if(size>5){
+				layer.msg("图片太大，请小于5M");
+				return;
+			}
         	var fileupUrl = ROOT_SERVER+"/image/upload?token="+sessionStorage.getItem("token");
         	var sequence = H5fileup.getSequence();
         	H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
