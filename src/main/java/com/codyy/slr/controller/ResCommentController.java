@@ -53,12 +53,6 @@ public class ResCommentController {
 	public ReturnVoOne<ResCommentVo> addResComment(ResCommentVo resComment, HttpServletRequest req) {
 		ReturnVoOne<ResCommentVo> returnVoOne = new ReturnVoOne<>();
 		try {
-			// 校验参数
-			if (!resComment.validate()) {
-				returnVoOne.setCode(Constants.FAILED);
-				returnVoOne.equals("参数不合法");
-				return returnVoOne;
-			}
 
 			User user = (User) req.getAttribute("user");
 			resComment.setCommentUserId(user.getUserId());
