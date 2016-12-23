@@ -22,7 +22,7 @@ public class ProgressServlet extends HttpServlet {
 		ReturnVoOne<Integer> one = new ReturnVoOne<Integer>();
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
-		FileUploadStatus status = (FileUploadStatus) session.getAttribute("status");
+		FileUploadStatus status = (FileUploadStatus) session.getAttribute(request.getParameter("sequence"));
 		try {
 			if (status == null) {
 				one.setData(0);

@@ -3,6 +3,7 @@ body{background-color: #f5f8fa;}
 /* 自己添加的属性 */
 .norm{font-weight: normal;}
 .ft16{font-size: 16px;}
+.ft14{font-size: 14px;}
 .mt40 {
 	margin-top: 40px;
 }
@@ -124,7 +125,6 @@ input,select {
 .c4 {
 	color: #444;
 }
-
 .c6 {
 	color: #666;
 }
@@ -237,8 +237,7 @@ tr:nth-child(2n) {
 	height: 26px;
 	line-height: 26px;
 	color: #FFF;
-	background-color: #000;
-	opacity: .6;
+	background-color:rgba(0,0,0,0.6);
 	bottom: 0;
 	width: 285px;
 }
@@ -362,6 +361,7 @@ tr:nth-child(2n) {
 .s-left span {
 	margin-left: 30px;
 }
+.s-left span .iconfont{font-size:12px;}
 .s-left span:first-child{margin-left:20px;}
 .s-left span:hover {
 	cursor: pointer;
@@ -430,8 +430,7 @@ tr:nth-child(2n) {
 	height: 26px;
 	line-height: 26px;
 	color: #FFF;
-	background-color: #000;
-	opacity: .4;
+	background-color:rgba(0,0,0,0.6);
 	bottom: 0;
 	width: 280px;
 }
@@ -630,3 +629,10 @@ table tr td{ overflow:hidden;text-overflow:ellipsis;}
 /*footer*/
 .srl-foot{background: #f6f6f6 none repeat scroll 0 0;padding: 20px;width: 100%;margin-top: 40px;}
 .icon-face{cursor: pointer;}
+.upTit{display: inline-block;
+    font-size: 12px;
+    color: #999;
+    vertical-align: middle;
+    margin-left: 10px;}
+.demn-tit{font-size:12px;}
+.ml20{margin-left:20px;}

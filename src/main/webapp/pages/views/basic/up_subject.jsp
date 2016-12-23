@@ -8,13 +8,13 @@
 <script type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
 <style type="text/css">
 	.cd-f-eve{width:100%;margin-bottom:30px;} .cd-f-name{width:100px;} 
-	input[type="checkbox"]{ width: 13px; height: 13px; vertical-align: middle; margin-right: 3px; } 
+	input[type="checkbox"]{ width: 13px; height: 13px; vertical-align: middle; margin:0;margin-right: 3px; } 
 	.upbtn{ width: 125px; height: 30px; background-color: #f5f8fa; border: 1px solid #dcdcdc; } 
 	.cd-f-value span{margin-right:30px;} .up-item{background-color:#f5f8fa;padding:15px;margin-bottom:10px;} 
 	.w300{width: 300px;} .w800{width: 800px;} 
 	.sysprint-img-button{display: none;}
 	.input-fileup{ position: absolute; top: 0px; left: 0px; z-index: 9; height: 28px; opacity: 0; cursor: pointer !important; } 
-	.del-fileup{ margin-top: 45px; float: right; } .del-fileup:hover{ cursor: pointer; } 
+	.del-fileup{ margin-top: 30px; float: right; } .del-fileup:hover{ cursor: pointer; } 
 	.showfile-name{ display: inline-block; vertical-align: top; margin: 0px !important; max-width: 200px !important; cursor: pointer; } 
 	.showfile-name-input{ display: none; }
 	.gray-btn{background-color: #C6CAC7;}
@@ -23,6 +23,8 @@
 	.m10{margin: 10px;}
 	.p10{padding: 10px;}
 	.smp-main{margin-top: 40px;border: 1px solid #ddd;}
+	.up-list .progress{height:15px;}
+	.up-list .progress .progress-bar{background-color: #ffba00;line-height:15px;}
 </style>
 </head>
 <body>
@@ -71,21 +73,24 @@
 						<label class="cd-f-notnull">*</label>
 						<label>课程视频:</label></span>
 					<span class="cd-f-value">
-						<div class="btn fileup-button" style="position: relative;width: 150px;height: 28px;">上传视频文件
+						<div class="btn fileup-button inb" style="position: relative;width: 150px;height: 28px;">上传视频文件
 							<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4,.flv">
 						</div>
-						<div class="up-list mt20" id="show_fileup_detail"></div>
+						<p class="ft12 c9 ml20 inb">注：视频格式支持mp4、flv，最大2G。</p>
+						<div class="up-list mt20" id="show_fileup_detail">
+							
+						</div>
 						<input type="hidden" id="video_resourceId" name="resName" data-vali="notnull" />
 						<input type="hidden" id="video_name" data-vali="notnull" />
 						<input type="hidden" id="video_size" name="size" data-vali="notnull" />
 						<input type="hidden" id="video_img_resourceId" name="thumbName" data-vali="notnull" />
 						<input type="hidden" id="video_img_flag" name="thumbFlag" value="0" />
+						
 					</span>
+					
 				</div>
-				<div class="cd-f-eve">
-					<span class="cd-f-name"></span>
-					<span class="cd-f-value ">
-						<button class="green-btn lay-btn" type="button" id="save_video_info" >保存</button></span>
+				<div class="tac">
+					<button class="green-btn lay-btn" type="button" id="save_video_info" >保存</button></span>
 				</div>
 			</div>
 		</form>

@@ -5,9 +5,9 @@
 .qqFace table td img{cursor:pointer;border:1px #fff solid;}
 .qqFace table td img:hover{border:1px #0066cc solid;}
 /*评论区域*/
-.com-comments{border:1px solid #dcdcdc;background-color:#fff;}
+.com-comments{border:1px solid #dcdcdc;background-color:#fff;margin-bottom:0;}
 .com-comments-h2{font-size:16px;text-indent:20px;height:40px;line-height:40px;background-color:#f7f7f7;border-bottom:1px solid #dcdcdc;}
-.com-commonts-area{margin:20px 20px 10px 20px;}
+.com-commonts-area{margin:20px 20px 0 20px;}
 .com-commonts-area .edit-wb-frame{width:100%;}
 .com-comarea-h80{margin:0;}
 .com-comarea-h80 textarea{height:80px;}
@@ -24,7 +24,7 @@ i{font-style:normal;}
 .com-comments-img-r:hover .commtent-text-btn,.com-comments-img-r:hover .commtent-remove,.com-comments-img-r.showbtn .commtent-text-btn{display:inline-block;}
 .com-comments-img-r.showbtn:hover .commtent-remove{display:none;}
 .com-comments-img-r:hover .commtent-text-btn.hide{display: inline-block!important;}
-.com-comments-level1{padding-top:20px;margin-bottom:20px;border-top:1px solid #dcdcdc;}
+.com-comments-level1{padding-top:20px;border-top:1px solid #dcdcdc;}
 .com-comments-level2{background-color:#f7f7f7;margin-left:50px;padding:20px;margin-top:20px;clear:both;}
 .com-comments-level2 .edit-wb-frame{height:40px;}
 .com-comments-level2 .com-comments-img-r{color:#666;}
@@ -33,12 +33,12 @@ i{font-style:normal;}
 .commtent-remove:hover{color:#f00;}
 .level2-comments{margin-top:20px;}
 .com-comments{border: 0px;}
-.com-comments-level1{padding: 10px;cursor: pointer;}
+.com-comments-level1{padding:15px 10px;cursor: pointer;}
 .com-comments-level1:hover{background: #f7f7f7;}
 .com-comments-level2{padding: 10px;margin-top: 2px;margin-left: 0px;}
 .comment-username{color: #58ABF9;font-size: 16px;}
 .comment-one-content{word-break:break-all;word-wrap:break-word;}
-.comment-two{margin-left: 50px;min-height: 80px;display: none;}
+.comment-two{margin-left: 50px;min-height: 80px;display: none;margin-top:10px;}
 .comment-two-textarea{height: 40px;width: 100%;}
 .comment-two-more{cursor: pointer;line-height: 30px;text-align: center;cursor: pointer;}
 .comment-two-more:hover{color: #58ABF9;}

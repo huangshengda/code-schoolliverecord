@@ -66,7 +66,7 @@ $(function() {
 			htmlStr += '<li data-resoureceId="'+cour.resourceId+'" ><div class="media-left">'
 					+'<img class="media-object" src="'+cour.thumbPath+'" data-holder-rendered="true" style="width: 149px; height:84px;">'
 					+'</div><div class="media-right">'
-					+'<p class="c4" title="'+cour.resourceName+'" >'+cour.resourceName+'</p>'
+					+'<p class="c4 ft14" title="'+cour.resourceName+'" >'+cour.resourceName+'</p>'
 					+'<p class="ft12 c6" title="'+cour.classlevelName+'&nbsp;'+cour.subjectName+'&nbsp;'+cour.author+'" >'+cour.classlevelName+'&nbsp;'+cour.subjectName+'&nbsp;'+cour.author+'</p>'
 					+'<p class="ft12 c6">'
 					+'<i class="iconfont icon-play-times"></i>&nbsp;'+cour.viewCnt+'</p>'
@@ -376,9 +376,6 @@ $(function() {
 			});
 		});
 	});
-	$('.com-comments-level1').hover(function(){
-		$(this).find('.commtent-text-btn').show();
-	})
 	
 });
 function replace_em(str){

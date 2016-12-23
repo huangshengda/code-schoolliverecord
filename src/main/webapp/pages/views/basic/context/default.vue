@@ -54,7 +54,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="password" id="edit_password" value="" data-vali="password" maxlength="18"> 
+            <input type="password" name="password" id="edit_password" value="" data-vali="password" maxlength="18"> 
           </span>
         </div>
         <div class="cd-f-eve">

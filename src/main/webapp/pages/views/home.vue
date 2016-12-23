@@ -21,7 +21,7 @@
       <img :src="course.thumbPath" width="285" height="160" >
       <div class="home-times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div>        
       </div>
-      <p class="c4 tel" :title="course.resourceName  | unescape">{{course.resourceName | unescape}}</p>
+      <p class="c4 tel ft16" :title="course.resourceName  | unescape">{{course.resourceName | unescape}}</p>
       <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName | cutStr  | unescape}}</span>&nbsp;{{course.subjectName | unescape}}&nbsp;{{course.author | unescape}}</p>
     </div>
   </div>
@@ -63,11 +63,8 @@ data() {
     	},
     	unescape:function (html) {
   			  return html
-     			 .replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;')
       			.replace(/&lt;/g, "<")
       			.replace(/&gt;/g, ">")
-     			 .replace(/&quot;/g, "\"")
-     			 .replace(/&#39;/g, "\'");
   		}
     },
     
@@ -138,4 +135,5 @@ methods:{
 <style>
 	.bgBody{background-color: #fff;}
 	.s-title .demanCour{margin:0;}
+	.ft12{font-size:12px;}
 </style>

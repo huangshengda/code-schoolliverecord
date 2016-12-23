@@ -193,7 +193,8 @@ $(function(){
             +'</div>'
             +'</div>'
             +'<i class="iconfont icon-delete del-fileup"></i>'
-            +'</div>';
+            +'</div>'
+			+'<p class="ft12 c9">注：图片格式支持png、jpg，最大5M。</p>';
             return htmlStr;
 	}
 	/**

@@ -48,7 +48,7 @@ public class UploadImageServlet extends HttpServlet {
 		// 4.通过工厂建立ServletFileUpload对象
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		// 5.设置精度监听
-		MyProgressListener getBarListener = new MyProgressListener(req);
+		MyProgressListener getBarListener = new MyProgressListener(req.getSession(), req.getParameter("sequence"));
 		upload.setProgressListener(getBarListener);
 
 		// 6.设置文件最大值

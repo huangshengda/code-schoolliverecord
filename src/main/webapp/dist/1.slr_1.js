@@ -1275,7 +1275,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n#sort td {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    -o-text-overflow: ellipsis;\r\n    text-overflow: ellipsis;\n}\r\n", ""]);
+	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n#sort td {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    -o-text-overflow: ellipsis;\r\n    text-overflow: ellipsis;\n}\n#sort tr:first-of-type td .icon-moveup{display:none\n}\n#sort tr:last-of-type td .icon-movedown{display:none\n}\r\n", ""]);
 
 	// exports
 
@@ -1289,11 +1289,6 @@ webpackJsonp([1,6],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	//
-	//
-	//
-	//
-	//
 	//
 	//
 	//
@@ -1561,17 +1556,7 @@ webpackJsonp([1,6],[
 	        "data-id": grade.classlevelId,
 	        "title": grade.classlevelName
 	      }
-	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), (index === 0) ? _c('td', [_c('i', {
-	      staticClass: "iconfont icon-movedown downbtn",
-	      on: {
-	        "click": _vm.downbtn
-	      }
-	    })]) : [(index === (_vm.grades.data.length - 1)) ? _c('td', [_c('i', {
-	      staticClass: "iconfont icon-moveup",
-	      on: {
-	        "click": _vm.upbtn
-	      }
-	    })]) : _c('td', [_c('i', {
+	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
 	        "click": _vm.upbtn
@@ -1581,7 +1566,7 @@ webpackJsonp([1,6],[
 	      on: {
 	        "click": _vm.downbtn
 	      }
-	    })]), _vm._v(" ")], _vm._v(" "), _vm._v(" "), _c('td', {
+	    })]), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
 	    }, [_c('span', {
 	      on: {
@@ -1595,7 +1580,7 @@ webpackJsonp([1,6],[
 	          _vm.manDel(grade.classlevelId)
 	        }
 	      }
-	    }, [_vm._v("删除")])])], true)
+	    }, [_vm._v("删除")])])])
 	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "grade",
 	    attrs: {
@@ -2236,7 +2221,7 @@ webpackJsonp([1,6],[
 	    staticClass: "cd-f-value"
 	  }, [_c('input', {
 	    attrs: {
-	      "type": "text",
+	      "type": "password",
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "",
@@ -2443,7 +2428,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n#sort td {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    -o-text-overflow: ellipsis;\r\n    text-overflow: ellipsis;\n}\r\n", ""]);
+	exports.push([module.id, "\n.colorTd{color:#03a9f4\n}\n.colorTd span{cursor: pointer;\n}\n#sort td {\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    -o-text-overflow: ellipsis;\r\n    text-overflow: ellipsis;\n}\n#sort tr:first-of-type td .icon-moveup{display:none\n}\n#sort tr:last-of-type td .icon-movedown{display:none\n}\r\n", ""]);
 
 	// exports
 
@@ -2457,10 +2442,6 @@ webpackJsonp([1,6],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	//
-	//
-	//
-	//
 	//
 	//
 	//
@@ -2723,17 +2704,7 @@ webpackJsonp([1,6],[
 	        "data-id": grade.subjectId,
 	        "title": grade.subjectName
 	      }
-	    }, [_vm._v(_vm._s(grade.subjectName))]), _vm._v(" "), (index === 0) ? _c('td', [_c('i', {
-	      staticClass: "iconfont icon-movedown downbtn",
-	      on: {
-	        "click": _vm.downbtn
-	      }
-	    })]) : [(index === (_vm.grades.data.length - 1)) ? _c('td', [_c('i', {
-	      staticClass: "iconfont icon-moveup",
-	      on: {
-	        "click": _vm.upbtn
-	      }
-	    })]) : _c('td', [_c('i', {
+	    }, [_vm._v(_vm._s(grade.subjectName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
 	        "click": _vm.upbtn
@@ -2743,7 +2714,7 @@ webpackJsonp([1,6],[
 	      on: {
 	        "click": _vm.downbtn
 	      }
-	    })]), _vm._v(" ")], _vm._v(" "), _vm._v(" "), _c('td', {
+	    })]), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
 	    }, [_c('span', {
 	      on: {
@@ -2757,7 +2728,7 @@ webpackJsonp([1,6],[
 	          _vm.manDel(grade.subjectId)
 	        }
 	      }
-	    }, [_vm._v("删除")])])], true)
+	    }, [_vm._v("删除")])])])
 	  }))])]), _vm._v(" "), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "grade",
 	    attrs: {
@@ -2920,6 +2891,7 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
+	//
 
 	/**
 	 * Vue组件对象
@@ -3033,7 +3005,7 @@ webpackJsonp([1,6],[
 	      "file-path": ""
 	    }
 	  }), _vm._v(" "), _c('div', {
-	    staticClass: "btn btn-default smp-fileupshow mt10"
+	    staticClass: "btn btn-default smp-fileupshow mt10 inb"
 	  }, [_vm._v("上传logo\r\n              "), _c('input', {
 	    staticClass: "smp-fileupinput",
 	    attrs: {
@@ -3053,7 +3025,9 @@ webpackJsonp([1,6],[
 	      "name": "logoPath",
 	      "value": ""
 	    }
-	  })])]), _vm._v(" "), _c('input', {
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "upTit"
+	  }, [_vm._v("注：图片格式支持png、jpg，最大5M。")])]), _vm._v(" "), _c('input', {
 	    attrs: {
 	      "type": "hidden",
 	      "id": "msg_img",
@@ -4436,8 +4410,8 @@ webpackJsonp([1,6],[
 	            htmlStr += '<img src=' + data.thumbPath + ' width="280" height="157">';
 	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
 	            htmlStr += '</div>';
-	            htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
-	            htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
+	            htmlStr += '<p class="c4 tel ft16">' + data.resourceName + '</p>';
+	            htmlStr += '<p class="demn-tit c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
 	            htmlStr += ' </div>';
 	            /*  无消息显示 */
 	            if (data.resourceId == "") {
@@ -4588,7 +4562,7 @@ webpackJsonp([1,6],[
 	      "click": _vm.sortByTime
 	    }
 	  }, [_vm._v("按时间"), _c('i', {
-	    staticClass: "iconfont icon-low"
+	    staticClass: "iconfont icon-low ft12"
 	  })]), _vm._v(" "), _c('span', {
 	    attrs: {
 	      "data-sort": "desc"
@@ -4597,7 +4571,7 @@ webpackJsonp([1,6],[
 	      "click": _vm.sortByHot
 	    }
 	  }, [_vm._v("按热门"), _c('i', {
-	    staticClass: "iconfont icon-low"
+	    staticClass: "iconfont icon-low ft12"
 	  })])]), _vm._v(" "), _vm._v(" "), _c('div', {
 	    staticClass: "s-right fr"
 	  }, [_c('input', {
@@ -4720,7 +4694,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n", ""]);
+	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n.ft12{font-size:12px;\n}\n", ""]);
 
 	// exports
 
@@ -4798,7 +4772,7 @@ webpackJsonp([1,6],[
 	      }
 	    },
 	    unescape: function unescape(html) {
-	      return html.replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#39;/g, "\'");
+	      return html.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 	    }
 	  },
 
@@ -4942,7 +4916,7 @@ webpackJsonp([1,6],[
 	    }, [_c('i', {
 	      staticClass: "iconfont icon-play-times"
 	    }), _vm._v(_vm._s(course.viewCnt))])])]), _vm._v(" "), _c('p', {
-	      staticClass: "c4 tel",
+	      staticClass: "c4 tel ft16",
 	      attrs: {
 	        "title": _vm._f("unescape")(course.resourceName)
 	      }
@@ -5141,7 +5115,7 @@ webpackJsonp([1,6],[
 	        htmlStr += '<img src=' + data.thumbPath + ' width="280" height="157">';
 	        htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
 	        htmlStr += '</div>';
-	        htmlStr += '<p class="c4 tel">' + data.resourceName + '</p>';
+	        htmlStr += '<p class="c4 tel ft16">' + data.resourceName + '</p>';
 	        htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
 	        htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
 	        htmlStr += ' </div>';
