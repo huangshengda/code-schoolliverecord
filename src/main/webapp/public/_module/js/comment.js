@@ -143,7 +143,7 @@
 	
 	CommentWrap.prototype.init = function(){
 		this.config.containerDiv = $('#'+this.config.containerId);
-		this.config.containerDiv.addClass('mt20');
+		//this.config.containerDiv.addClass('mt20');
 		var html = '<div class="com-comments">'
 						+'<h2 class="com-comments-h2">评价</h2>'
 						+'<div class="com-commonts-area clearfix" id="">'

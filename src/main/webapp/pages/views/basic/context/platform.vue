@@ -14,10 +14,11 @@
           <span class="cd-f-name vat"><label class="cd-f-notnull">*</label><label>网站logo:</label></span>
           <span class="cd-f-value ">
             <img src="" width="360" height="70" id="thispage_fileup_img" file-name="" file-path="" class="show">
-            <div class="btn btn-default smp-fileupshow mt10" >上传logo
+            <div class="btn btn-default smp-fileupshow mt10 inb">上传logo
               <input type="file" id="thispage_fileup" @change="impup();"  class="smp-fileupinput" accept="image/png,image/jpeg" />
               <input type="hidden" id="img_resourceId" name="logoPath" value="" />
             </div>
+            <div class="upTit">注：图片格式支持png、jpg，最大5M。</div>
           </span>
           <input type="hidden" id="msg_img" value="false" name="thumbFlag">
         </div>

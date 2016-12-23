@@ -36,9 +36,9 @@ body{
 }
 .l-title span {
 	margin:0 25px;
-	color:#666;
 	cursor: pointer;
 }
+.l-title span.mr15{margin-right:15px;}
 .l-title small {
 	color:#666;
 }
@@ -133,6 +133,7 @@ body{
 	width:823px;
 	height:40px;
 }
+.ft14{font-size:14px;}
 .item-Head {
 	clear:both;
 	margin:20px 0;
@@ -148,4 +149,4 @@ body{
 	text-align:center;
 }
 /* 点播课程详情  end*/
-.list_hide{display:none;}
+.s-left .iconfont{font-size:12px;}
