@@ -128,6 +128,7 @@ $(function(){
 	 * 当点击上传按钮，选中文件发生改变激活重新上传
 	 */
 	$("#fileup_video").change(function(){
+		$("#show_fileup_detail").html("");
 		var file = this.files[0];
 		var sequence = H5fileup.getSequence();
 		var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
@@ -135,6 +136,15 @@ $(function(){
 		var ldot = filename.lastIndexOf(".");
 		var name = filename.substring(0,ldot);
 		var type = filename.substring(ldot+1).toLowerCase();
+		var refuseType = "$flv$mp4$";
+		if(refuseType.indexOf("$"+type+"$")<0){
+			layer.msg("选择文件格式不正确");
+			return;
+		}
+		if(size>2048){
+			layer.msg("视频太大，请小于2G");
+			return;
+		}
 		var htmlStr = spellShowFileup(sequence,size,name,type);
 		$("#video_name").val(filename);
 		$("#show_fileup_detail").html(htmlStr);
@@ -278,6 +288,20 @@ $(function(){
 	$("#show_fileup_detail").on("change",".local-img",function(){
 		var file = this.files[0];
 		var sequence = H5fileup.getSequence();
+		var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
+    	var filename = file.name;
+		var ldot = filename.lastIndexOf(".");
+		var name = filename.substring(0,ldot);
+		var type = filename.substring(ldot+1).toLowerCase();
+		var refuseType = "$png$jpg$";
+		if(refuseType.indexOf("$"+type+"$")<0){
+			layer.msg("选择文件格式不正确");
+			return;
+		}
+		if(size>5){
+			layer.msg("图片太大，请小于5M");
+			return;
+		}
 		var topDom = $(this).parents(".up-item").get(0);
 		var seq = topDom.id;
 		var fileupUrl = ROOT_SERVER+"/image/upload?token="+sessionStorage.getItem("token");
@@ -325,7 +349,6 @@ $(function(){
 					return;
 				}
 				layer.msg('上传视频成功！');
-				
 				if(sessionStorage.getItem("mysub")=="subject"){
 					setTimeout(function(){
 						window.location.href = ROOT_SERVER+"/#/mySubject";

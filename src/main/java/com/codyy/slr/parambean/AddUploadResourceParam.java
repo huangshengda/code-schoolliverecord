@@ -1,6 +1,5 @@
 package com.codyy.slr.parambean;
 
-import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.entity.Resource;
 
 /**
@@ -27,26 +26,6 @@ public class AddUploadResourceParam {
 		resource.setResourceName(this.resNickName);
 		resource.setSize(this.size);
 		return resource;
-	}
-
-	public boolean validate() {
-		String resNameRegEx = "[a-zA-Z0-9\u4E00-\u9FA5]{1,150}";// 中文 字母 数字
-
-		String authorRegEx = "[a-zA-Z0-9\u4E00-\u9FA5]{1,20}";// 中文 字母 数字
-
-		if (StringUtils.isEmpty(resNickName) || !resNickName.matches(resNameRegEx)) {
-			return false;
-		}
-
-		if (StringUtils.isEmpty(author) || !author.matches(authorRegEx)) {
-			return false;
-		}
-
-		if (StringUtils.isEmpty(classlevelIds)) {
-			return false;
-		}
-
-		return true;
 	}
 
 	public String getResNickName() {

@@ -26,15 +26,6 @@ public class ResComment {
 
 	private boolean delAuth = false;
 
-	public boolean validate() {
-		/*String resCommentRegEx = "[\\w\\]{1,150}";// 中文 字母 数字
-		
-		if (StringUtils.isEmpty(resCommentRegEx) || !commentContent.matches(resCommentRegEx)) {
-			return false;
-		}*/
-		return true;
-	}
-
 	public boolean isDelAuth() {
 		return delAuth;
 	}
