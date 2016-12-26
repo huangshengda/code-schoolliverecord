@@ -65,7 +65,9 @@ public class HandleVideoService {
 
 		// 截图失败尝试次数
 		for (int i = 0; i < Constants.SHOT_IMG_TIMES; i++) {
+			long startTime = System.currentTimeMillis();
 			imgs = getShotImgs(videoPath, resId, Constants.SHOT_NUM, Constants.TEMP);
+			log.info("获取截图消耗时间:" + (System.currentTimeMillis() - startTime));
 			if (imgs != null && !imgs.isEmpty()) {
 				break;
 			}
@@ -104,7 +106,7 @@ public class HandleVideoService {
 
 			String startTime = "1"; // 截图开始开始时间
 			String rnum = "1"; // 每隔1秒截一张图
-			String endTime = "" + (imgNum * 10); // 截图终止时间
+			String endTime = "" + (imgNum * 5); // 截图终止时间
 
 			if (imgNum == 1) { // 只截一张图
 				if (videoTime >= 5) { // 视频总时长大于5秒,取第5秒的图片
@@ -114,7 +116,7 @@ public class HandleVideoService {
 					endTime = "1";
 				}
 			} else { // 截多张图
-				rnum = "0.1"; // 每隔10秒截一张图
+				rnum = "1/5"; // 每隔10秒截一张图
 			}
 
 			CommandLine cmdLine = new CommandLine(PATH);
@@ -122,14 +124,11 @@ public class HandleVideoService {
 			cmdLine.addArgument(startTime);
 			cmdLine.addArgument("-i");
 			cmdLine.addArgument(videoPath);
-			cmdLine.addArgument("-y");
-			cmdLine.addArgument("-f");
-			cmdLine.addArgument("image2");
-			cmdLine.addArgument("-r");
-			cmdLine.addArgument(rnum);
+			cmdLine.addArgument("-vf");
+			cmdLine.addArgument("fps=" + rnum);
 			cmdLine.addArgument("-t");
 			cmdLine.addArgument(endTime);
-			cmdLine.addArgument(desDir + "/" + resId + "_%3d.png");
+			cmdLine.addArgument(desDir + "/" + resId + "_%3d.jpg");
 
 			DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 			DefaultExecutor executor = new DefaultExecutor();
@@ -150,7 +149,7 @@ public class HandleVideoService {
 		}
 
 		Path dir = Paths.get(desDir);
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.png")) {
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, resId + "_*.jpg")) {
 			for (Path e : stream) {
 				list.add(e.getFileName().toString());
 			}
