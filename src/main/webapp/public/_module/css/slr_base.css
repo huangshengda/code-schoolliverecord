@@ -516,7 +516,10 @@ tr:nth-child(2n) {
 	width: 100%;
 	margin-top: 0;
 }
-
+#login .cd-f-eve:nth-child(3){margin-top:20px;}
+#login .cd-f-vali{
+	margin-top: 50px;
+}
 #login .cd-f-value,#login .cd-f-name {
 	margin-right: 0;
 }
@@ -615,13 +618,78 @@ tr:nth-child(2n) {
     color: #fff;
     cursor: pointer;
 }
+#login .login-btn{text-align:center;margin-top:30px;}
+#login .login-use-name:hover,#login .login-use-name.focus,#login .login-password:hover,#login .login-password.focus
+{border: 2px solid #1bc840;}
+.login-use-name, .login-password {
+    clear: both;
+    margin: 5px auto 10px;
+    height: 48px;
+    width: 284px;
+    border: 2px solid #dcddde;
+    border-radius: 3px;
+}
+.login-input {
+    height: 44px;
+    text-indent: 10px;
+    outline: none;
+    border: none;
+    background: #fff;
+    width: 232px;
+    float: left;
+}
+.input-left-img {
+    width: 46px;
+    height: 100%;
+    line-height: 48px;
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    background: #dcddde;
+    float: left;
+}
+.login-use-name.focus .input-left-img, .login-password.focus .input-left-img {
+    background: #1bc840;
+}
+.l-way-auto{
+    cursor: pointer;
+}
+.l-way-check {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d0d0d0;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    margin-right: 5px;
+}
+.l-way-check input {
+    position: absolute;
+    top: 30px;
+}
+.gray-btn{
+    border-color: transparent;
+    color: #fff;
+    background-color: #1BC840;
+}
+.gray-btn:HOVER {
+    background-color: #34A150;
+}
+#login .cd-f-row{width: 285px;margin: 0 auto;}
+#login .cd-f-value{margin-left:0;}
+.lw-checked {
+    background: url(../../../public/_module/images/select.png) center center no-repeat;
+}
+#login .login-use-name{margin-bottom: 30px;margin-top: 10px;}
 #login_button i{font-size: 22px;}
 .left a,.right span{color:#444;}
 #sort a{color:#444;}
 #sort i{cursor: pointer;}
 .layui-layer-btn{text-align:center;}
 
-table{table-layout:fixed;}
+table{table-layout:fixed;border-collapse : separate;}
 
 table tr td{ overflow:hidden;text-overflow:ellipsis;}
 #logo_img{width:242px;height:50px;}
@@ -636,3 +704,19 @@ table tr td{ overflow:hidden;text-overflow:ellipsis;}
     margin-left: 10px;}
 .demn-tit{font-size:12px;}
 .ml20{margin-left:20px;}
+#addServer input,#editServer input{width:245px;}
+#sort td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: none;
+    border-right: none;
+}
+.colorTd{color:#03a9f4}
+.colorTd span{cursor: pointer;}
+#sort tr:first-of-type td .icon-moveup{display:none}
+#sort tr:last-of-type td .icon-movedown{display:none}
+.cd-g-table td{cursor: pointer;}
+.c-text textarea#chat{text-indent: 0;}
+.data-none{display:none;text-align:center;}
+::-ms-clear{display: none;}

@@ -9,7 +9,7 @@
       <tbody id="sort">
         <tr v-for="(grade,index) in grades.data">
         <td :data-id="grade.subjectId" :title="grade.subjectName">{{grade.subjectName}}</td>
-         <td><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>
+         <td><i class="iconfont icon-moveup upbtn" @click="upBtn"></i><i class="iconfont icon-movedown downbtn" @click="downBtn"></i></td>
         <td class="colorTd"><span @click="manEdit(grade.subjectName,grade.subjectId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.subjectId)">删除</span></td></tr>
       </tbody>
     </table>
@@ -107,6 +107,9 @@
 					}
 				});
 			}
+		},
+		end: function() {
+			$(".cd-f-vali").remove();
 		}
 	});
       },
@@ -178,7 +181,7 @@
            });
       },     
      /**上移**/
-     upbtn: function(event){ 
+     upBtn: function(event){ 
     	var _self = this;
     	var el = event.target;
     	var $this = $(el);
@@ -191,6 +194,7 @@
 			 });
 			 CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 			 	if (retVO.code == 1) {
+			 		_self.show();
 				}
 				if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -203,7 +207,7 @@
 			 });
      },
      /**下移**/
-     downbtn:function(event){
+     downBtn:function(event){
      	var _self = this;
 		var el = event.target;
     	var $this = $(el);
@@ -217,7 +221,7 @@
 			 });
 			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 				if (retVO.code == 1) {
-					//_self.show();
+					_self.show();
 				}
 				if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -232,16 +236,3 @@
     }
    }
 </script>
-<style>
-.colorTd{color:#03a9f4}
-.colorTd span{cursor: pointer;}
-#sort td {
-    white-space: nowrap;
-    overflow: hidden;
-    white-space: nowrap;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-}
-#sort tr:first-of-type td .icon-moveup{display:none}
-#sort tr:last-of-type td .icon-movedown{display:none}
-</style>

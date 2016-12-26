@@ -119,7 +119,7 @@ var config = {
 	//用来展示表格控件的div的id
 	containerId: "use_to_load_grid",
 	//用来展示表格的表头数据
-	 thead: [{name:"资源名称",valuekey:"resourceName"},
+	 thead: [{name:"资源名称",valuekey:"resourceName",css:"width: 130px;"},
                   {name:"年级",valuekey:"classlevelName",css:"width: 130px;"},
                   {name:"学科",valuekey:"subjectName"},
                   {name:"主讲教师",valuekey:"author"},

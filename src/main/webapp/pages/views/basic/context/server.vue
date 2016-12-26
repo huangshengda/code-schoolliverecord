@@ -13,13 +13,13 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器名称:</label></span>
           <span class="cd-f-value" name="serverName">
-            <input type="text" name="serverName" id="search_serverName" data-vali="notnull">
+            <input type="text" name="serverName" id="search_serverName" data-vali="notnull" maxlength="30">
           </span>
         </div>
         <div class="cd-f-eve">
           <span class="cd-f-name"><label class="cd-f-notnull">*</label><label>服务器地址:</label></span>
           <span class="cd-f-value">
-            <input type="text" name="serverValue" id="search_serverValue" data-vali="headcode">
+            <input type="text" name="serverValue" id="search_serverValue" data-vali="headcode" maxlength="30">
           </span>
         </div>
     </div>
@@ -82,6 +82,7 @@ var servEdit = function(params, dom) {
 							layer.msg(retVO.msg);
 							layer.close(index);
 							$('#editServer')[0].reset();
+							$(".cd-f-vali").remove();
 						}
 					if (retVO.code == 0) {
 						layer.msg(retVO.msg);
@@ -97,6 +98,9 @@ var servEdit = function(params, dom) {
 				});
 				
 			}
+		},
+		end: function() {
+			$(".cd-f-vali").remove();
 		}
 	});
 };
@@ -232,6 +236,3 @@ var config = {
     }
  } 
 </script>
-<style>
-	#addServer input,#editServer input{width:249px;}
-</style>

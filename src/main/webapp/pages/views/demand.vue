@@ -24,8 +24,9 @@
 		</div>
 		<div class="clear"></div>
 <!-- 中间内容-列表 start-->
-		<div class="list mt30" id="de_list">
-			
+		<div class="list mt30">
+			<p class="data-none"><img src="'+ROOT_UI_PUBLIC+'../../public/_compnents/v1/images/grid_have_nodata.png" /></p>
+			<div id="de_list"></div>
 			<div class="clear"></div>
 <!-- 中间内容-列表 end-->
 		</div>
@@ -38,6 +39,7 @@ window.openDemondDetail=function(resourceId){
 	CDUtil.ajaxPost("/token/hasexpire",{},function(retVO){
       		if(retVO.code == 1){
       			sessionStorage.setItem("resourceId",resourceId);
+      			sessionStorage.setItem("nav","demand");
         		window.open(ROOT_UI+"/front/path/demond?token="+sessionStorage.getItem("token"));
       		}else{
       			//alert("用户信息失效");
@@ -83,6 +85,12 @@ window.openDemondDetail=function(resourceId){
        _self.params.curPage=newPage;
 		var params = this.params;
         CDUtil.ajaxPost("/demand/list",params,function(retVO){
+        	/*  无消息显示 */
+				if(retVO.totalDatas == 0){
+					$('.data-none').show();
+				}else{
+					$('.data-none').hide();
+				}
           _self.courseList = retVO;
           _self.pages = retVO.totalDatas;
           var config = {   
@@ -104,13 +112,9 @@ window.openDemondDetail=function(resourceId){
 				htmlStr += '<img src='+data.thumbPath+' width="280" height="157">';       
 				htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>'+data.viewCnt+'</span></div> ';  
 				htmlStr += '</div>' ;
-				htmlStr += '<p class="c4 tel ft16">'+data.resourceName+'</p>' ;
+				htmlStr += '<p class="c4 tel ft16" title='+data.resourceName+'>'+data.resourceName+'</p>' ;
 				htmlStr += '<p class="demn-tit c9 tel"><span class="sub-code" title='+data.classlevelName+'>'+classLevelName+'</span>&nbsp;'+data.subjectName+'&nbsp;'+data.author+'</p>' ;    
 				htmlStr += ' </div>';	
-				/*  无消息显示 */
-				if(data.resourceId == ""){
-					htmlStr +='<div id="de_list"><p>暂无相关数据</p></div>';
-				}
 				return htmlStr;
 			},
          	 //执行页面查询的方法
@@ -123,10 +127,12 @@ window.openDemondDetail=function(resourceId){
     	gradesearch: function(classlevelName,event){
     		$(event.target).addClass("active").siblings().removeClass("active");
 			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
+			console.log(classlevelName);
 			this.showdemand();
      	},
 /** 获取选择的学科参数**/
      	subjectsearch: function(subjectName,event){
+     	console.log(subjectName);
      		$(event.target).addClass("active").siblings().removeClass("active");
      		this.params= Object.assign({},this.params,{subjectName:subjectName});
      	 	this.showdemand();

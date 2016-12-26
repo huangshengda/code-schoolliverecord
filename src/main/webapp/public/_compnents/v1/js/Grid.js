@@ -150,8 +150,8 @@
 				if(this.type == "opt"){
 					var opts = dataRow[this["valuekey"]];
 					if(opts!=undefined&&opts!=null){
-						$.each(optName,function(type,text){
-							htmlStr += '<span data-opttype="'+type+'" >'+text+'</span>';
+						$.each(opts,function(i,type){
+							htmlStr += '<span data-opttype="'+type+'" >'+optName[type]+'</span>';
 						});
 					}
 				}else if(this.type == "clickable"){

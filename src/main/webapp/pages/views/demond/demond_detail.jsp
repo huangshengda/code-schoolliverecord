@@ -11,12 +11,6 @@
 <script type="text/javascript" src="${ROOT_UI}/public/qqFace/js/jquery.qqFace.js" ></script>
 <script  type="text/javascript" src="${ROOT_UI}/public/_module/demond/demond_detail.js"></script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/comment/css/comment.css">
-<style type="text/css">
-.l-title span{margin: 0px;}
-.col-md-3 .l-right{width:300px;}
-.col-md-3 .v-recommend li{margin-top: 0;padding: 8px 10px;}
-.mt30{margin-top:30px;}
-</style>
 </head>
 <body>
 <%@ include file="../../_commons/navbar.jsp"%>

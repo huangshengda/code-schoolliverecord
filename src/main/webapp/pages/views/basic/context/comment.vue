@@ -84,7 +84,6 @@ var comSearch = function(newPage) {
 		if(retVO.code == 2){
 				layer.msg("用户信息失效，请重新登录！");
 					setTimeout(function () {
-		        	// window.close();
 		        	window.location.href = ROOT_SERVER+"/#/index";
 		        	window.location.reload();
        			}, 1000);
