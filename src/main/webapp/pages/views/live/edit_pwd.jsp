@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="renderer" content="webkit">  
-  <title>修改用户密码</title>
   <meta name="viewport" content="width=device-width">
   <%@ include file="../../_commons/meta.jsp"%>
   <style>

@@ -150,3 +150,7 @@ body{
 }
 /* 点播课程详情  end*/
 .s-left .iconfont{font-size:12px;}
+.l-title span{margin: 0px;}
+.col-md-3 .l-right{width:300px;}
+.col-md-3 .v-recommend li{margin-top: 0;padding: 8px 10px;}
+.mt30{margin-top:30px;}

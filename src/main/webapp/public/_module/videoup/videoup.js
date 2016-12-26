@@ -109,6 +109,7 @@ $(function(){
 			}
 		}else{
 			$(".chose-grade.all").prop("checked",false);
+			$(".chose-grade.others").prop("checked",false);
 		}
 		var value = "";
 		$(".chose-grade.others").each(function(i,dom){
@@ -197,29 +198,6 @@ $(function(){
 			+'<p class="ft12 c9">注：图片格式支持png、jpg，最大5M。</p>';
             return htmlStr;
 	}
-	/**
-	 * 点击可以修改上传文件的名称
-	**/
-	/*$("#show_fileup_detail").on("click",".showfile-name",function(){
-		var oldName = $(this).html();
-		var topDom = $(this).parents(".up-item").get(0);
-		var seq = topDom.id;
-		$("#"+seq+"_name_input").val(oldName);
-		$("#"+seq+"_name").hide();
-		$("#"+seq+"_name_input").show();
-	});*/
-	/**
-	 * 输入名称后移出焦点确定名称
-	 */
-	/*$("#show_fileup_detail").on("blur",".showfile-name-input",function(){
-		var newName = $(this).val();
-		var topDom = $(this).parents(".up-item").get(0);
-		var seq = topDom.id;
-		$("#"+seq+"_name").html(newName);
-		$("#"+seq+"_name_input").hide();
-		$("#"+seq+"_name").show();
-		$("#video_name").val(newName+$("#"+seq+"_type").html());
-	});*/
 	/**
 	 * 显示选择系统截图作为封面事件
 	**/
@@ -329,7 +307,6 @@ $(function(){
 		var result = Validation.validation({
 			containerId: "form_save_videoup"
 		});
-		//console.log(result);
 		if(!result){return;}
 		if(resourceId != undefined && resourceId != ""){
 			CDUtil.ajaxPost("/resource/update",params,function(retVO){
@@ -338,9 +315,15 @@ $(function(){
 					return;
 				}
 				layer.msg('修改视频信息成功');
+				if(sessionStorage.getItem("upload")=="source"){
+					setTimeout(function(){
+						window.location.href = ROOT_SERVER+"/#/basic/source";
+					},1000);
+				}else{
 					setTimeout(function(){
 						window.location.href = ROOT_SERVER+"/#/basic/upload";
 					},1000);
+				}
 			});
 		}else{
 			CDUtil.ajaxPost("/resource/addresource",params,function(retVO){

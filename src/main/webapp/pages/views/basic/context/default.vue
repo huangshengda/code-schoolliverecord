@@ -143,6 +143,7 @@ var userEdit = function(params, dom) {
 						userSearch();
 						layer.msg(retVO.msg);
 						layer.close(index);
+						$(".cd-f-vali").remove();
 					}
 					if (retVO.code == 0) {
 						layer.msg(retVO.msg);
@@ -157,6 +158,9 @@ var userEdit = function(params, dom) {
 					}
 				});
 			}
+		},
+		end: function() {
+			$(".cd-f-vali").remove();
 		}
 	});
 };
