@@ -2,6 +2,7 @@ package com.codyy.slr.vo;
 
 import java.util.List;
 
+import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.ResComment;
 
 /**
@@ -55,7 +56,7 @@ public class ResCommentVo extends ResComment {
 	}
 
 	public List<String> getOpt() {
-		return opt;
+		return opt = Constants.DELETE;
 	}
 
 	public String getRealName() {
