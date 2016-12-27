@@ -33,7 +33,12 @@ params = {};//用来定义页面和后台交互的公共传参对象
  * 后台返回的用户在线标示
  */
 TOKEN_FLAG = "${token}";
-console.log("默认加载出来的后台TOKEN_FLAG---"+TOKEN_FLAG);
+//console.log("默认加载出来的后台TOKEN_FLAG---"+TOKEN_FLAG);
+if(TOKEN_FLAG == ""){
+	setTimeout(function(){
+		window.location.href = ROOT_SERVER+"/#/index";
+	},500);
+}
 LOGIN_FLAG = sessionStorage.getItem("loginFlag");
 AUTO_LOGIN_FLAG = localStorage.getItem("SLR_LOGINFLAG");
 sessionStorage.setItem("token",TOKEN_FLAG);

@@ -289,6 +289,19 @@
 	};
 	
 	/**
+	 * 将大文件分割成小块
+	 * 
+	 * @param file
+	 * @param eveSize
+	 * @returns {Array}
+	 */
+	H5fileup.splitFile = function(file,eveSize){
+		var splitFiles = [];
+		
+		return splitFiles;
+	}
+	
+	/**
 	 * 生成上传的图片预览
 	 * 
 	 * @param file ,imgId
