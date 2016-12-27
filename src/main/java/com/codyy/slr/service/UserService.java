@@ -43,8 +43,6 @@ public class UserService {
 				} else {
 					if (user.getUserId().equals(userLogin.getUserId())) {
 						user.setOpt(Constants.EDIT);
-					} else if (user.getUserType().contains(Constants.ADMIN)) {
-						userIter.remove();
 					} else {
 						user.setOpt(Constants.EDIT_DELETE);
 					}
