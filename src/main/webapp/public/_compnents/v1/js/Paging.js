@@ -53,6 +53,12 @@
 		//执行页面查询的方法
 		searchFun: function(){}
 	};
+	/**
+	 * 初始化分页控件的入口
+	 * 
+	 * @param _config
+	 * @param callback
+	 */
 	Paging.initPaging = function(_config,callback){
 		var containerId = _config.containerId,
 		gData = _config.gData,
@@ -77,14 +83,23 @@
 			callback(gData);
 		}
 	};
+	/**
+	 * 分页空间内容区拼接
+	 */
 	Paging.initPagingContext = function(containerId,data,spellHtmlFun,optParams){
 		var context = $("#"+containerId).children(".cd-g-context").get(0);
 		var htmlStr = '';
 		$(data).each(function(){
+			/**
+			 * 单个循环体的UI回调方法
+			 */
 			htmlStr += spellHtmlFun(this,optParams);
 		});
 		$(context).html(htmlStr);
 	};
+	/**
+	 * 拼接分页部分UI。
+	 */
 	Paging.initPagingHtml = function(containerId,totalPages,curPage){
 		if(totalPages<2)return;
 		var pagingDom = $("#"+containerId).children(".cd-g-paging").get(0);
@@ -174,6 +189,11 @@
 		$(pagingDom).html(htmlStr);
 		$(pagingDom).show();
 	};
+	/**
+	 * 绑定分页事件
+	 * @param containerId
+	 * @param searchFun
+	 */
 	Paging.initPagingEvent = function(containerId,searchFun){
 		var pagingDom = $("#"+containerId).children(".cd-g-paging").get(0);
 		var curPage = parseInt($(pagingDom).attr("data-curpage"));
@@ -204,8 +224,15 @@
 			searchFun(newPage);
 		});
 	};
+	
+	/**
+	 * 静态方法拓展区
+	 */
 	Paging.addStaticMethod = function(nmSpace, obj, ftn) {
 	};
+	/**
+	 * 对象方法拓展区
+	 */
 	Paging.addObjectMethod = function(nmSpace, obj, ftn) {
 	};
 	return Paging;
