@@ -35,8 +35,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	private final String usernameRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|\\-|=|\\\\|/|<|>]{6,18}$";
-
 	/**
 	 * 
 	 * @Description: 用户登录

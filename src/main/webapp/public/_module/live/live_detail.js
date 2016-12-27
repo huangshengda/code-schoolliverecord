@@ -80,7 +80,7 @@ $(function() {
 				if(delAuth){
 					htmlStr += '<i class="iconfont icon-delete chat-delete fr c9" data-id="'+id+'"></i>'
 				}
-				$("#chat_context").prepend(htmlStr);
+				$("#chat_context").append(htmlStr);
 				$("#chat_context").scrollTop($("#chat_context").height());
 			}
 			$("#chat").val("");
@@ -119,7 +119,7 @@ $(function() {
 		var len = ValueCheck.lengthStr(msg);
 		if(len == 0){
 			
-		}else if(len < 150){
+		}else if(len < 151){
 			var params = {
 				msg: msg,
 				timestamp: new Date().getTime()

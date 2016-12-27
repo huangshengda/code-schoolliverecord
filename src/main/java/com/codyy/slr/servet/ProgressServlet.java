@@ -20,6 +20,7 @@ public class ProgressServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		ReturnVoOne<Integer> one = new ReturnVoOne<Integer>();
+		response.reset();
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		FileUploadStatus status = (FileUploadStatus) session.getAttribute(request.getParameter("sequence"));
@@ -29,7 +30,6 @@ public class ProgressServlet extends HttpServlet {
 				response.getWriter().write(JSONObject.toJSONString(one));
 				return;
 			}
-			response.reset();
 			if (status.getPContentLength() == 0) {
 				one.setData(0);
 			} else {

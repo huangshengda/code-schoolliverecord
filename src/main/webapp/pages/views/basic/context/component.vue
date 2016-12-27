@@ -9,7 +9,7 @@
       <tbody id="sort">
         <tr v-for="(grade,index) in grades.data">
         <td :data-id="grade.classlevelId" :title="grade.classlevelName">{{grade.classlevelName}}</td>
-         <td><i class="iconfont icon-moveup upbtn" @click="upbtn"></i><i class="iconfont icon-movedown downbtn" @click="downbtn"></i></td>   
+         <td><i class="iconfont icon-moveup upbtn" @click="upBtn"></i><i class="iconfont icon-movedown downbtn" @click="downBtn"></i></td>   
         <td class="colorTd"><span @click="manEdit(grade.classlevelName,grade.classlevelId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.classlevelId)">删除</span></td></tr>
       </tbody>
     </table>
@@ -93,6 +93,7 @@
 						_self.show();
 						layer.msg(retVO.msg);
 						layer.close(index);
+						$(".cd-f-vali").remove();
 					}
 					if (retVO.code == 0) {
 						layer.msg(retVO.msg);
@@ -108,6 +109,9 @@
 				});
 				
 			}
+		},
+		end: function() {
+			$(".cd-f-vali").remove();
 		}
 	});
    },
@@ -168,20 +172,20 @@
 							layer.msg(retVO.msg);
 						}
 						if(retVO.code == 2){
-				layer.msg("用户信息失效，请重新登录！");
-				setTimeout(function () {
-		        	// window.close();
-		        	window.location.href = ROOT_SERVER+"/#/index";
-		        	window.location.reload();
-       			}, 1000);
-			}
+							layer.msg("用户信息失效，请重新登录！");
+							setTimeout(function () {
+		        			// window.close();
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       						}, 1000);
+						}
       				});
       			}
               }
            });
       },     
      /**上移**/
-     upbtn: function(event){ 
+     upBtn: function(event){ 
     	var _self = this;
     	var el = event.target;
     	var $this = $(el);
@@ -193,7 +197,7 @@
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
 			 	 	if (retVO.code == 1) {
-						//_self.show();
+						_self.show();
 					}
 					if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -207,7 +211,7 @@
 			 });
      },
      /**下移**/
-     downbtn:function(event){
+     downBtn:function(event){
      	var _self = this;
 		var el = event.target;
     	var $this = $(el);
@@ -219,7 +223,7 @@
 			 	_str += $(this).find('td').attr("data-id") + ",";
 			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
 			 		if (retVO.code == 1) {
-						//_self.show();
+						_self.show();
 					}
 					if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -235,16 +239,3 @@
     }
    }
 </script>
-<style>
-.colorTd{color:#03a9f4}
-.colorTd span{cursor: pointer;}
-#sort td {
-    white-space: nowrap;
-    overflow: hidden;
-    white-space: nowrap;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-}
-#sort tr:first-of-type td .icon-moveup{display:none}
-#sort tr:last-of-type td .icon-movedown{display:none}
-</style>

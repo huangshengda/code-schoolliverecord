@@ -21,11 +21,11 @@
    <div class="cd-f-row"> 
     <div class="cd-f-eve"> 
      <span class="cd-f-name"> <label>用户名:</label> </span> 
-     <span class="cd-f-value"> <input type="text" id="username" name="username" data-vali="notnull,username" value="admin" /> </span> 
+     <span class="cd-f-value"> <input type="text" id="username" name="username" data-vali="notnull" value="admin" /> </span> 
     </div>
     <div class="cd-f-eve"> 
      <span class="cd-f-name"><label>密码:</label></span> 
-     <span class="cd-f-value"><input type="password" id="password" name="password" data-vali="notnull,password" value="123456" /></span>
+     <span class="cd-f-value"><input type="password" id="password" name="password" data-vali="notnull" value="123456" /></span>
     </div>
     <div class="cd-f-eve">
      <input type="checkbox" id="auto" name="auto" class="ml30" />自动登录 
@@ -90,7 +90,13 @@ $(function(){
 			var htmlStr = '<span><a id="'+id+'_menu" href="${ROOT_SERVER}/#'+url+'">'+name+'</a></span>';
 			$(htmlStr).appendTo("#sys_slr_nav");
 		});
+		if(sessionStorage.getItem("nav")=="demand"){
+			$(".navHead span").eq(1).css({"border-bottom":"2px solid #fff"});
+		}else if(sessionStorage.getItem("nav")=="basic"){
+			$(".navHead span").eq(2).css({"border-bottom":"2px solid #fff"});
+		}
 	});
+	
 	if(sessionStorage.getItem("loginFlag") == "1"){
         $("#user_info").show();
         $("#login_button").hide();
@@ -117,6 +123,7 @@ $(function(){
 		}
 	});
 	$("#user_realname").click(function(){
+		sessionStorage.setItem("nav","basic");
 		window.open(ROOT_SERVER+"/front/path/editpwd?token="+sessionStorage.getItem("token"));
 	});
 	$("#logout").click(function(){
@@ -141,5 +148,6 @@ $(function(){
 		    });
 		});
 	});
+
 });
 </script>
