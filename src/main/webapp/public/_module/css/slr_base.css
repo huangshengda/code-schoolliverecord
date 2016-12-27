@@ -19,7 +19,8 @@ li {
 a:hover,a:active,a:visited,a:focus {
 	text-decoration: none;
 }
-
+.wd750{width:750px;}
+.wd550{width:550px;}
 input[type="text"], textarea,input[type="password"] {
 	text-indent: 10px;
 }

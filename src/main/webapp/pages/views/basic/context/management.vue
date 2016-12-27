@@ -186,11 +186,17 @@
     	var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
-     	var _index=tr.index() ;
+     	var $index= tr.index();
      	var _str="";
-			tr.prev().before(tr);
-			 $("#sort tr").each(function() {
-			 	_str += $(this).find('td').attr("data-id") + ",";
+			 $("#sort tr").each(function(index,value) {
+				 if(index== $index-1){
+					 _str += $(this).next().find('td').attr("data-id") + ",";
+				 }else if( index== $index ){
+				 	_str += $(this).prev().find('td').attr("data-id") + ",";
+				 }else{
+				 	_str += $(this).find('td').attr("data-id") + ",";
+				 }
+			 	
 			 });
 			 CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 			 	if (retVO.code == 1) {
@@ -209,15 +215,19 @@
      /**下移**/
      downBtn:function(event){
      	var _self = this;
-		var el = event.target;
+    	var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
-    	 var trLength = $this.length; 
-    	 var _index=tr.index() ;
-    	 var _str="";
-			tr.next().after(tr);
-			$("#sort tr").each(function() {
-			 	_str += $(this).find('td').attr("data-id") + ",";
+     	var $index= tr.index();
+     	var _str="";
+			$("#sort tr").each(function(index,value) {
+				 if(index == $index+1){
+					 _str += $(this).prev().find('td').attr("data-id") + ",";
+				 }else if( index == $index){
+				 	_str += $(this).next().find('td').attr("data-id") + ",";
+				 }else{
+				 	_str += $(this).find('td').attr("data-id") + ",";
+				 }
 			 });
 			CDUtil.ajaxPost("/base/subject/sort",{subjectIds:_str},function(retVO){
 				if (retVO.code == 1) {

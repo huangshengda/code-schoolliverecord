@@ -200,6 +200,8 @@ $(function() {
 function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
 	str = str.replace(/\>/g,'&gt;');
+	str = str.replace(/\'/g,'&apos;');
+	str = str.replace(/\"/g,'&quot;');
 	str = str.replace(/\n/g,'<br/>');
 	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="'+ROOT_UI+'/public/qqFace/arclist/$1.gif" border="0" />');
 	return str;

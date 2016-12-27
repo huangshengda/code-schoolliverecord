@@ -1649,55 +1649,65 @@ webpackJsonp([1,6],[
 				});
 			},
 			/**上移**/
-			upBtn: function upBtn(event) {
+			up: function up(event) {
 				var _self = this;
 				var el = event.target;
 				var $this = $(el);
 				var tr = $this.parents('tr');
-				var _index = tr.index();
+				var $index = tr.index();
 				var _str = "";
-				tr.prev().before(tr);
-				$("#sort tr").each(function () {
-					_str += $(this).find('td').attr("data-id") + ",";
-					CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
-						if (retVO.code == 1) {
-							_self.show();
-						}
-						if (retVO.code == 2) {
-							layer.msg("用户信息失效，请重新登录！");
-							setTimeout(function () {
-								// window.close();
-								window.location.href = ROOT_SERVER + "/#/index";
-								window.location.reload();
-							}, 1000);
-						}
-					});
+				$("#sort tr").each(function (index, value) {
+					if (index == $index - 1) {
+						_str += $(this).next().find('td').attr("data-id") + ",";
+					} else if (index == $index) {
+						_str += $(this).prev().find('td').attr("data-id") + ",";
+					} else {
+						_str += $(this).find('td').attr("data-id") + ",";
+					}
+				});
+				CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+					if (retVO.code == 2) {
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+							// window.close();
+							window.location.href = ROOT_SERVER + "/#/index";
+							window.location.reload();
+						}, 1000);
+					}
 				});
 			},
 			/**下移**/
-			downBtn: function downBtn(event) {
+			down: function down(event) {
 				var _self = this;
 				var el = event.target;
 				var $this = $(el);
 				var tr = $this.parents('tr');
-				var _index = tr.index();
+				var $index = tr.index();
 				var _str = "";
-				tr.next().after(tr);
-				$("#sort tr").each(function () {
-					_str += $(this).find('td').attr("data-id") + ",";
-					CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
-						if (retVO.code == 1) {
-							_self.show();
-						}
-						if (retVO.code == 2) {
-							layer.msg("用户信息失效，请重新登录！");
-							setTimeout(function () {
-								// window.close();
-								window.location.href = ROOT_SERVER + "/#/index";
-								window.location.reload();
-							}, 1000);
-						}
-					});
+				$("#sort tr").each(function (index, value) {
+					if (index == $index + 1) {
+						_str += $(this).prev().find('td').attr("data-id") + ",";
+					} else if (index == $index) {
+						_str += $(this).next().find('td').attr("data-id") + ",";
+					} else {
+						_str += $(this).find('td').attr("data-id") + ",";
+					}
+				});
+				CDUtil.ajaxPost("/base/classlevel/sort", { classlevelIds: _str }, function (retVO) {
+					if (retVO.code == 1) {
+						_self.show();
+					}
+					if (retVO.code == 2) {
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+							// window.close();
+							window.location.href = ROOT_SERVER + "/#/index";
+							window.location.reload();
+						}, 1000);
+					}
 				});
 			}
 		}
@@ -1737,12 +1747,12 @@ webpackJsonp([1,6],[
 	    }, [_vm._v(_vm._s(grade.classlevelName))]), _vm._v(" "), _c('td', [_c('i', {
 	      staticClass: "iconfont icon-moveup upbtn",
 	      on: {
-	        "click": _vm.upBtn
+	        "click": _vm.up
 	      }
 	    }), _c('i', {
 	      staticClass: "iconfont icon-movedown downbtn",
 	      on: {
-	        "click": _vm.downBtn
+	        "click": _vm.down
 	      }
 	    })]), _vm._v(" "), _c('td', {
 	      staticClass: "colorTd"
@@ -2830,11 +2840,16 @@ webpackJsonp([1,6],[
 				var el = event.target;
 				var $this = $(el);
 				var tr = $this.parents('tr');
-				var _index = tr.index();
+				var $index = tr.index();
 				var _str = "";
-				tr.prev().before(tr);
-				$("#sort tr").each(function () {
-					_str += $(this).find('td').attr("data-id") + ",";
+				$("#sort tr").each(function (index, value) {
+					if (index == $index - 1) {
+						_str += $(this).next().find('td').attr("data-id") + ",";
+					} else if (index == $index) {
+						_str += $(this).prev().find('td').attr("data-id") + ",";
+					} else {
+						_str += $(this).find('td').attr("data-id") + ",";
+					}
 				});
 				CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
 					if (retVO.code == 1) {
@@ -2856,12 +2871,16 @@ webpackJsonp([1,6],[
 				var el = event.target;
 				var $this = $(el);
 				var tr = $this.parents('tr');
-				var trLength = $this.length;
-				var _index = tr.index();
+				var $index = tr.index();
 				var _str = "";
-				tr.next().after(tr);
-				$("#sort tr").each(function () {
-					_str += $(this).find('td').attr("data-id") + ",";
+				$("#sort tr").each(function (index, value) {
+					if (index == $index + 1) {
+						_str += $(this).prev().find('td').attr("data-id") + ",";
+					} else if (index == $index) {
+						_str += $(this).next().find('td').attr("data-id") + ",";
+					} else {
+						_str += $(this).find('td').attr("data-id") + ",";
+					}
 				});
 				CDUtil.ajaxPost("/base/subject/sort", { subjectIds: _str }, function (retVO) {
 					if (retVO.code == 1) {
@@ -4621,15 +4640,15 @@ webpackJsonp([1,6],[
 	    /** 获取选择的年级参数**/
 	    gradesearch: function gradesearch(classlevelName, event) {
 	      $(event.target).addClass("active").siblings().removeClass("active");
-	      this.params = Object.assign({}, this.params, { classlevelName: classlevelName });
-	      console.log(classlevelName);
+	      //this.params= Object.assign({},this.params,{classlevelName:classlevelName});
+	      this.$set(this.params, 'classlevelName', classlevelName);
 	      this.showdemand();
 	    },
 	    /** 获取选择的学科参数**/
 	    subjectsearch: function subjectsearch(subjectName, event) {
-	      console.log(subjectName);
 	      $(event.target).addClass("active").siblings().removeClass("active");
-	      this.params = Object.assign({}, this.params, { subjectName: subjectName });
+	      //this.params= Object.assign({},this.params,{subjectName:subjectName});
+	      this.$set(this.params, 'subjectName', subjectName);
 	      this.showdemand();
 	    },
 	    /** 根据时间排序**/
@@ -4650,7 +4669,8 @@ webpackJsonp([1,6],[
 	        $(e.target).attr("data-sort", "desc");
 	        this.params.orderType = "desc";
 	      }
-	      this.params = Object.assign({}, this.params, { orderBy: "createTime" });
+	      //this.params= Object.assign({}, this.params,{orderBy:"createTime"});
+	      this.$set(this.params, 'orderBy', "createTime");
 	      this.showdemand();
 	    },
 	    /** 根据热度排序**/
@@ -4671,13 +4691,15 @@ webpackJsonp([1,6],[
 	        $(e.target).attr("data-sort", "desc");
 	        this.params.orderType = "desc";
 	      }
-	      this.params = Object.assign({}, this.params, { orderBy: "viewCnt" });
+	      //this.params= Object.assign({}, this.params,{orderBy:"viewCnt"});
+	      this.$set(this.params, 'orderBy', "viewCnt");
 	      this.showdemand();
 	    },
 	    /** 根据关键字排序**/
 	    searchKey: function searchKey() {
 	      var sourceName = $('#s_resource').val();
-	      this.params = Object.assign({}, this.params, { resourceNameKey: sourceName });
+	      //this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
+	      this.$set(this.params, 'resourceNameKey', sourceName);
 	      this.showdemand();
 	    },
 	    /** 获取年级列表 **/

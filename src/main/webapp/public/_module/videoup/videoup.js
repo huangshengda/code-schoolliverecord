@@ -101,6 +101,9 @@ $(function(){
 	 */
 	$("#show_chose_grade").on("click",".chose-grade",function(){
 		var checked = $(this).prop("checked");
+		if(!checked){
+			$(".chose-grade.others").prop("checked",false);
+		}
 		if(checked){
 			var value = $(this).val();
 			$("#classlevelIds").val(value);
@@ -109,7 +112,7 @@ $(function(){
 			}
 		}else{
 			$(".chose-grade.all").prop("checked",false);
-			$(".chose-grade.others").prop("checked",false);
+			//$(".chose-grade.others").prop("checked",false);
 		}
 		var value = "";
 		$(".chose-grade.others").each(function(i,dom){

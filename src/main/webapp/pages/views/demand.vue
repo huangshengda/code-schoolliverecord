@@ -126,15 +126,15 @@ window.openDemondDetail=function(resourceId){
 /** 获取选择的年级参数**/
     	gradesearch: function(classlevelName,event){
     		$(event.target).addClass("active").siblings().removeClass("active");
-			this.params= Object.assign({},this.params,{classlevelName:classlevelName});
-			console.log(classlevelName);
+			//this.params= Object.assign({},this.params,{classlevelName:classlevelName});
+			this.$set(this.params,'classlevelName',classlevelName);
 			this.showdemand();
      	},
 /** 获取选择的学科参数**/
      	subjectsearch: function(subjectName,event){
-     	console.log(subjectName);
      		$(event.target).addClass("active").siblings().removeClass("active");
-     		this.params= Object.assign({},this.params,{subjectName:subjectName});
+     		//this.params= Object.assign({},this.params,{subjectName:subjectName});
+     		this.$set(this.params,'subjectName',subjectName);
      	 	this.showdemand();
      	},
 /** 根据时间排序**/
@@ -155,7 +155,8 @@ window.openDemondDetail=function(resourceId){
      			$(e.target).attr("data-sort","desc");
      			this.params.orderType="desc";
      		}
-     		this.params= Object.assign({}, this.params,{orderBy:"createTime"});
+     		//this.params= Object.assign({}, this.params,{orderBy:"createTime"});
+     		this.$set(this.params,'orderBy',"createTime");
      		this.showdemand();
      	},
 /** 根据热度排序**/
@@ -176,13 +177,15 @@ window.openDemondDetail=function(resourceId){
      			$(e.target).attr("data-sort","desc");
      			this.params.orderType="desc";
      		}
-     		this.params= Object.assign({}, this.params,{orderBy:"viewCnt"});
+     		//this.params= Object.assign({}, this.params,{orderBy:"viewCnt"});
+     		this.$set(this.params,'orderBy',"viewCnt");
      		this.showdemand();
      	},
 /** 根据关键字排序**/
      	searchKey:function(){
      		var sourceName = $('#s_resource').val();
-     		this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
+     		//this.params= Object.assign({}, this.params,{resourceNameKey:sourceName});
+     		this.$set(this.params,'resourceNameKey',sourceName);
      		this.showdemand();
      	},
 /** 获取年级列表 **/

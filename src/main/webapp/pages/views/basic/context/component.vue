@@ -9,7 +9,7 @@
       <tbody id="sort">
         <tr v-for="(grade,index) in grades.data">
         <td :data-id="grade.classlevelId" :title="grade.classlevelName">{{grade.classlevelName}}</td>
-         <td><i class="iconfont icon-moveup upbtn" @click="upBtn"></i><i class="iconfont icon-movedown downbtn" @click="downBtn"></i></td>   
+         <td><i class="iconfont icon-moveup upbtn" @click="up"></i><i class="iconfont icon-movedown downbtn" @click="down"></i></td>   
         <td class="colorTd"><span @click="manEdit(grade.classlevelName,grade.classlevelId)">编辑</span>&nbsp;&nbsp;&nbsp;<span @click="manDel(grade.classlevelId)">删除</span></td></tr>
       </tbody>
     </table>
@@ -185,19 +185,26 @@
            });
       },     
      /**上移**/
-     upBtn: function(event){ 
-    	var _self = this;
+     up: function(event){ 
+     	var _self = this;
     	var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
-     	var _index=tr.index() ;
+     	var $index= tr.index();
      	var _str="";
-			tr.prev().before(tr);
-			 $("#sort tr").each(function() {
-			 	_str += $(this).find('td').attr("data-id") + ",";
-			 	 CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
+			 $("#sort tr").each(function(index,value) {
+				 if(index== $index-1){
+					 _str += $(this).next().find('td').attr("data-id") + ",";
+				 }else if( index== $index ){
+				 	_str += $(this).prev().find('td').attr("data-id") + ",";
+				 }else{
+				 	_str += $(this).find('td').attr("data-id") + ",";
+				 }
+			 	
+			 });
+			  CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
 			 	 	if (retVO.code == 1) {
-						_self.show();
+						_self.show()
 					}
 					if(retVO.code == 2){
 						layer.msg("用户信息失效，请重新登录！");
@@ -208,33 +215,37 @@
        					}, 1000);
 					}
 			 	 });
-			 });
      },
      /**下移**/
-     downBtn:function(event){
+     down:function(event){
      	var _self = this;
-		var el = event.target;
+    	var el = event.target;
     	var $this = $(el);
      	var tr = $this.parents('tr');
-    	 var _index=tr.index() ;
-    	 var _str="";
-			tr.next().after(tr);
-			$("#sort tr").each(function() {
-			 	_str += $(this).find('td').attr("data-id") + ",";
-			 	CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
-			 		if (retVO.code == 1) {
-						_self.show();
-					}
-					if(retVO.code == 2){
-						layer.msg("用户信息失效，请重新登录！");
-						setTimeout(function () {
-		        			// window.close();
-		        			window.location.href = ROOT_SERVER+"/#/index";
-		        			window.location.reload();
-       					}, 1000);
-					}
-			 	});
+     	var $index= tr.index();
+     	var _str="";
+			$("#sort tr").each(function(index,value) {
+				 if(index == $index+1){
+					 _str += $(this).prev().find('td').attr("data-id") + ",";
+				 }else if( index == $index){
+				 	_str += $(this).next().find('td').attr("data-id") + ",";
+				 }else{
+				 	_str += $(this).find('td').attr("data-id") + ",";
+				 }
 			 });
+			CDUtil.ajaxPost("/base/classlevel/sort",{classlevelIds:_str},function(retVO){
+			 	if (retVO.code == 1) {
+					_self.show();
+				}
+				if(retVO.code == 2){
+					layer.msg("用户信息失效，请重新登录！");
+					setTimeout(function () {
+		        		// window.close();
+		        		window.location.href = ROOT_SERVER+"/#/index";
+		        		window.location.reload();
+       				}, 1000);
+				}
+			});
      },
     }
    }
