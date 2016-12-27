@@ -133,7 +133,18 @@
 	case t1.USER_TYPE
 	  when 'SUPER_ADMIN' then '0'
 	  else '1' end  
-	sort from user t1
+	sort from (
+	<choose>
+	<when test="map.loginUserType != null and map.loginUserType == 'SUPER_ADMIN'">
+	select * from user
+	</when>
+	<otherwise>
+	select * from user u where u.USER_TYPE not like '%ADMIN%' 
+	union 
+	select * from user u where u.USER_ID = #{map.userId}
+	</otherwise>
+	</choose>
+	) t1 
 	)  t
 	WHERE
 	t.DELETE_FLAG = 'N' 

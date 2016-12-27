@@ -122,14 +122,17 @@ public class UserController {
 	public ReturnVoList<User> getUserList(HttpServletRequest req, Page page, User user) throws ExecutionException {
 		int code = Constants.SUCCESS;
 		String msg = "查询成功";
-
 		Map<String, Object> map = new HashMap<String, Object>();
+		// 查询条件
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
 		map.put("userType", user.getUserType());
-		map.put("user", req.getAttribute("user"));
-		page.setMap(map);
+		// 登陆者信息
 		user = (User) req.getAttribute("user");
+		map.put("loginUserType", user.getUserType());
+		map.put("userId", user.getUserId());
+		map.put("user", user);
+		page.setMap(map);
 		try {
 			page = userService.getUserList(page);
 		} catch (Exception e) {
@@ -153,7 +156,7 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", user.getUsername());
 		int count = 0;
-		if ((user.getRealname().length() > 0) && (user.getRealname().length() < 11)) {
+		if (StringUtils.isNotEmpty(user.getRealname())) {
 			// 用户类型判断
 			if ("ADMIN".equals(user.getUserType())) {
 				user.setUserType(Constants.ADMIN);
