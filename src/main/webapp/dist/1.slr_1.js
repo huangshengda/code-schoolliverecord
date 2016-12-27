@@ -3179,7 +3179,7 @@ webpackJsonp([1,6],[
 						if (retVO.code == 1) {
 							layer.msg(retVO.msg);
 							$('#platform')[0].reset();
-							location.reload();
+							window.location.reload();
 						}
 						if (retVO.code == 0) {
 							layer.msg(retVO.msg);
@@ -3879,6 +3879,7 @@ webpackJsonp([1,6],[
 	**/
 	var uploadEdit = function uploadEdit(params, dom) {
 		sessionStorage.setItem("upload", "source");
+		sessionStorage.setItem("nav", "basic");
 		sessionStorage.setItem("resourceId", params.resourceId);
 		window.open(ROOT_UI + "/front/path/upload?token=" + sessionStorage.getItem("token"));
 	};
@@ -4231,8 +4232,9 @@ webpackJsonp([1,6],[
 	/**
 	 * 表格中的操作---编辑上传资源
 	**/
-	var uploadEdit = function uploadEdit(params, dom) {
+	var upEdit = function upEdit(params, dom) {
 		sessionStorage.setItem("resourceId", params.resourceId);
+		sessionStorage.setItem("nav", "basic");
 		window.open(ROOT_UI + "/front/path/upload?token=" + sessionStorage.getItem("token"));
 	};
 	/**
@@ -4289,7 +4291,7 @@ webpackJsonp([1,6],[
 		//表格中的行操作方法
 		optFuns: {
 			view_fun: uploadView,
-			edit_fun: uploadEdit,
+			edit_fun: upEdit,
 			del_fun: uploadDel
 		}
 	};
@@ -5383,6 +5385,7 @@ webpackJsonp([1,6],[
 	    openUploadup: function openUploadup() {
 	      sessionStorage.setItem("mysub", "subject");
 	      sessionStorage.removeItem("resourceId");
+	      sessionStorage.setItem("nav", "basic");
 	      window.open(ROOT_UI + "/front/path/upload?token=" + sessionStorage.getItem("token"));
 	    }
 	  }

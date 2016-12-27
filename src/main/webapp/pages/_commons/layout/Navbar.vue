@@ -141,7 +141,9 @@ export default{
                window.location.reload();
             }
              if (retVO.code == 0 && $("#username").val() !='' &&　$("#password").val() !=''){
-             	layer.msg(retVO.msg);	
+             	setTimeout(function () {
+		        	layer.msg(retVO.msg);
+       			}, 1000);	
              }
           });
         }

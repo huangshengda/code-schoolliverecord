@@ -1903,6 +1903,7 @@ webpackJsonp([2,6],[
 	  * @param fileupDom
 	  */
 		H5fileup.initFileupChange = function (_config, fileupDom) {
+			//初始化配置项
 			var allow_type = _config.allow_type == undefined ? false : _config.allow_type.toLowerCase(),
 			    refuse_type = _config.refuse_type == undefined ? false : _config.refuse_type.toLowerCase(),
 			    auto_up = _config.auto_up == undefined ? true : _config.multi_up,
@@ -1914,30 +1915,22 @@ webpackJsonp([2,6],[
 			    callback = _config.callback;
 			fileList = fileupDom;
 			var length = fileList.files.length;
+			//判断是否支持累计上传
 			if (!multi_up) {
 				$("#" + show_container).html("");
 			}
-
-			//		var upFileList = H5fileup.filterFileup(fileList,allow_type,refuse_type);
-			//		var upLength = upFileList.length;
-			//console.log(new Date().getTime());
 			for (var i = 0; i < length; i++) {
 				var file = fileList.files[i];
 				if (file) {
-					//console.log(e);
 					//获取全局唯一标示
 					var sequence = H5fileup.getSequence();
+					//过滤文件大小，名称，类型属性
 					var size = Math.round(file.size * 100 / (1024 * 1024)) / 100;
-					//过滤文件大小
-
 					var filename = file.name;
 					var ldot = filename.lastIndexOf(".");
 					var name = filename.substring(0, ldot);
 					var type = filename.substring(ldot + 1).toLowerCase();
-					//过滤文件类型。
-					if (allow_type) {
-						if (allow_type.indexOf("$") > -1 && allow_type.indexOf("$" + type + "$") < 0) {}
-					}
+					//显示上传文件过程的回调方法。
 					if (typeof show_fun === "function") {
 						this.fileup_loading(true);
 						show_fun(file, { size: size, name: name, type: type, sequence: sequence, i: i });
@@ -2156,7 +2149,14 @@ webpackJsonp([2,6],[
 				document.getElementById(imgId).src = evt.target.result;
 			};
 		};
+
+		/**
+	  * 静态方法拓展区
+	  */
 		H5fileup.addStaticMethod = function (nmSpace, obj, ftn) {};
+		/**
+	  * 对象方法拓展区
+	  */
 		H5fileup.addObjectMethod = function (nmSpace, obj, ftn) {};
 
 		return H5fileup;
@@ -2213,6 +2213,12 @@ webpackJsonp([2,6],[
 			//执行页面查询的方法
 			searchFun: function searchFun() {}
 		};
+		/**
+	  * 初始化分页控件的入口
+	  * 
+	  * @param _config
+	  * @param callback
+	  */
 		Paging.initPaging = function (_config, callback) {
 			var containerId = _config.containerId,
 			    gData = _config.gData,
@@ -2237,14 +2243,23 @@ webpackJsonp([2,6],[
 				callback(gData);
 			}
 		};
+		/**
+	  * 分页空间内容区拼接
+	  */
 		Paging.initPagingContext = function (containerId, data, spellHtmlFun, optParams) {
 			var context = $("#" + containerId).children(".cd-g-context").get(0);
 			var htmlStr = '';
 			$(data).each(function () {
+				/**
+	    * 单个循环体的UI回调方法
+	    */
 				htmlStr += spellHtmlFun(this, optParams);
 			});
 			$(context).html(htmlStr);
 		};
+		/**
+	  * 拼接分页部分UI。
+	  */
 		Paging.initPagingHtml = function (containerId, totalPages, curPage) {
 			if (totalPages < 2) return;
 			var pagingDom = $("#" + containerId).children(".cd-g-paging").get(0);
@@ -2332,6 +2347,11 @@ webpackJsonp([2,6],[
 			$(pagingDom).html(htmlStr);
 			$(pagingDom).show();
 		};
+		/**
+	  * 绑定分页事件
+	  * @param containerId
+	  * @param searchFun
+	  */
 		Paging.initPagingEvent = function (containerId, searchFun) {
 			var pagingDom = $("#" + containerId).children(".cd-g-paging").get(0);
 			var curPage = parseInt($(pagingDom).attr("data-curpage"));
@@ -2362,7 +2382,14 @@ webpackJsonp([2,6],[
 				searchFun(newPage);
 			});
 		};
+
+		/**
+	  * 静态方法拓展区
+	  */
 		Paging.addStaticMethod = function (nmSpace, obj, ftn) {};
+		/**
+	  * 对象方法拓展区
+	  */
 		Paging.addObjectMethod = function (nmSpace, obj, ftn) {};
 		return Paging;
 	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));

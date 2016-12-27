@@ -109,6 +109,7 @@ export default {
     	openUploadup: function(){
     		sessionStorage.setItem("mysub","subject");
     		sessionStorage.removeItem("resourceId");
+    		sessionStorage.setItem("nav","basic");
     		window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
     	}
      }

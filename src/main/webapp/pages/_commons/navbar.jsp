@@ -64,7 +64,9 @@ $(function(){
 					$("#user_realname").html(retVO.data.realname);
 				  }
 				  if (retVO.code == 0 && $("#username").val() !='' &&　$("#password").val() !=''){
-		             	layer.msg(retVO.msg);	
+					  setTimeout(function () {
+				        	layer.msg(retVO.msg);
+		       			}, 1000);	
 		             }
 				});
 			}
