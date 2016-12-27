@@ -50,6 +50,7 @@
 	 * @param fileupDom
 	 */
 	H5fileup.initFileupChange = function(_config,fileupDom){
+		//初始化配置项
 		var allow_type = _config.allow_type==undefined?false:_config.allow_type.toLowerCase(),
 		refuse_type = _config.refuse_type==undefined?false:_config.refuse_type.toLowerCase(),
 		auto_up = _config.auto_up == undefined?true:_config.multi_up,
@@ -61,33 +62,22 @@
 		callback = _config.callback;
 		fileList = fileupDom;
 		var length = fileList.files.length;
+		//判断是否支持累计上传
 		if(!multi_up){
 			$("#"+show_container).html("");
 		}
-		
-		
-//		var upFileList = H5fileup.filterFileup(fileList,allow_type,refuse_type);
-//		var upLength = upFileList.length;
-		//console.log(new Date().getTime());
 		for (var i = 0; i < length; i++) {
 			var file = fileList.files[i];
 			if (file) {
-				//console.log(e);
 				//获取全局唯一标示
 				var sequence = H5fileup.getSequence();
+				//过滤文件大小，名称，类型属性
 				var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
-				//过滤文件大小
-				
 				var filename = file.name;
 				var ldot = filename.lastIndexOf(".");
 				var name = filename.substring(0,ldot);
 				var type = filename.substring(ldot+1).toLowerCase();
-				//过滤文件类型。
-				if(allow_type){
-					if(allow_type.indexOf("$")>-1 && allow_type.indexOf("$"+type+"$")<0){
-						
-					}
-				}
+				//显示上传文件过程的回调方法。
 				if(typeof show_fun === "function"){
 					this.fileup_loading(true);
 					show_fun(file,{size: size,name: name,type: type,sequence: sequence,i: i});
@@ -310,8 +300,15 @@
 			document.getElementById(imgId).src = evt.target.result;
 		}
 	}
+	
+	/**
+	 * 静态方法拓展区
+	 */
 	H5fileup.addStaticMethod = function(nmSpace, obj, ftn) {
 	};
+	/**
+	 * 对象方法拓展区
+	 */
 	H5fileup.addObjectMethod = function(nmSpace, obj, ftn) {
 	};
 
