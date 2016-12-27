@@ -1,6 +1,7 @@
 package com.codyy.slr.service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,8 @@ public class UserService {
 		List<User> userList = userMapper.getUserListPageList(page);
 		if ((User) page.getMap().get("user") != null) {
 			userLogin = (User) page.getMap().get("user");
-			for (User user : userList) {
+			for (Iterator<User> userIter = userList.iterator(); userIter.hasNext();) {
+				User user = userIter.next();
 				if (Constants.SUPER_ADMIN.equals(userLogin.getUserType())) {
 					if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
 						user.setOpt(Constants.EDIT);
@@ -41,13 +43,10 @@ public class UserService {
 				} else {
 					if (user.getUserId().equals(userLogin.getUserId())) {
 						user.setOpt(Constants.EDIT);
-					} else if (user.getUserType().contains(Constants.ADMIN)) {
-						user.setOpt(null);
 					} else {
 						user.setOpt(Constants.EDIT_DELETE);
 					}
 				}
-
 				if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
 					user.setUserType_chinese(Constants.SUPER_ADMIN_Chinese);
 				} else if (Constants.ADMIN.equals(user.getUserType())) {
@@ -57,7 +56,6 @@ public class UserService {
 				} else {
 					user.setUserType_chinese(Constants.STUDENT_Chinese);
 				}
-
 			}
 		}
 		page.setData(userList);

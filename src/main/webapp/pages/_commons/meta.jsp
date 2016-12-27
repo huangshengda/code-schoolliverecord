@@ -33,6 +33,7 @@ params = {};//用来定义页面和后台交互的公共传参对象
  * 后台返回的用户在线标示
  */
 TOKEN_FLAG = "${token}";
+console.log("默认加载出来的后台TOKEN_FLAG---"+TOKEN_FLAG);
 LOGIN_FLAG = sessionStorage.getItem("loginFlag");
 AUTO_LOGIN_FLAG = localStorage.getItem("SLR_LOGINFLAG");
 sessionStorage.setItem("token",TOKEN_FLAG);
@@ -83,7 +84,7 @@ var autoLogin = function(){
       },false);
 }
 //验证Session级别的Token验证。
-if(TOKEN_FLAG != "" && LOGIN_FLAG != "1"){
+if(TOKEN_FLAG != "" && LOGIN_FLAG != "1"){//满足有TOKEN但是未登录
 	CDUtil.ajaxPost("/token/getuser",{token: TOKEN_FLAG},function(retVO){
 		if(retVO.code == 1){
 			sessionStorage.setItem("loginFlag", "1");
