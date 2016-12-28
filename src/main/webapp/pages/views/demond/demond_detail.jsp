@@ -18,7 +18,7 @@
 <div class="container" >
 	<p class="l-title">
 		<span id="resource_name" style="margin-right: 15px;" ></span>
-		<span class="c9 mr15 ft12"><i class="iconfont icon-play-times"></i><span id="play_times" class="ft12" >0</span></span>
+		<span class="c9 mr15 ft12"><i class="iconfont icon-play-times ft18"></i><span id="play_times" class="ft12" >0</span></span>
 		<span id="resource_info" class="ft12 c6" title=""></span>
 	</p>
 	<div class="row" >

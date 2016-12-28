@@ -2052,10 +2052,13 @@ webpackJsonp([1,6],[
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
 		$('#edit_userId').val(params.userId);
-		$('#edit_password').val(params.password);
-		$("input#edit_password").keyup(function () {
+		$("#edit_password").val(params.password);
+		var pwd = $("#edit_password").val();
+		$("input#edit_password").change(function () {
 			$("#edit_password").attr("data-vali", "password");
+			var pwd = md5($("#edit_password").val());
 		});
+		console.log(pwd);
 		$("#edit_password").attr("data-vali", "");
 		layer.open({
 			type: 1,
@@ -2074,14 +2077,12 @@ webpackJsonp([1,6],[
 				if (result == true) {
 					var editparams = {
 						userType: $("#edit_userType").val(),
-						password: md5($("#edit_password").val()),
+						password: pwd,
 						realname: $("#edit_realname").val(),
 						userId: $("#edit_userId").val()
 					};
-
 					CDUtil.ajaxPost("/base/user/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
-							console.log("success");
 							userSearch();
 							layer.msg(retVO.msg);
 							layer.close(index);
@@ -4632,7 +4633,7 @@ webpackJsonp([1,6],[
 	            var htmlStr = '<div class="col-4" onClick="openDemondDetail(\'' + data.resourceId + '\')">';
 	            htmlStr += '<div class="demandImg">';
 	            htmlStr += '<img src=' + data.thumbPath + ' width="280" height="157">';
-	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+	            htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times ft20"></i>' + data.viewCnt + '</span></div> ';
 	            htmlStr += '</div>';
 	            htmlStr += '<p class="c4 tel ft16" title=' + data.resourceName + '>' + data.resourceName + '</p>';
 	            htmlStr += '<p class="demn-tit c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
@@ -4926,7 +4927,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n.ft12{font-size:12px;\n}\n#courseList .iconfont{font-size:20px;\n}\n", ""]);
+	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n.ft12{font-size:12px;\n}\n", ""]);
 
 	// exports
 
@@ -5108,7 +5109,7 @@ webpackJsonp([1,6],[
 	        }
 	      }
 	    }, [_c('i', {
-	      staticClass: "iconfont icon-avpic"
+	      staticClass: "iconfont icon-avpic ft20"
 	    }), _vm._v("进入直播")])])
 	  })) : _c('div', {
 	    staticClass: "tac"
@@ -5148,7 +5149,7 @@ webpackJsonp([1,6],[
 	    }, [_c('span', {
 	      staticClass: "fr"
 	    }, [_c('i', {
-	      staticClass: "iconfont icon-play-times"
+	      staticClass: "iconfont icon-play-times ft20"
 	    }), _vm._v(_vm._s(course.viewCnt))])])]), _vm._v(" "), _c('p', {
 	      staticClass: "c4 tel ft16",
 	      attrs: {
@@ -5347,7 +5348,7 @@ webpackJsonp([1,6],[
 	        var htmlStr = '<div class="col-4">';
 	        htmlStr += '<div class="demandImg" onClick="openDemondDetail(\'' + data.resourceId + '\')">';
 	        htmlStr += '<img src=' + data.thumbPath + ' width="280" height="157">';
-	        htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>' + data.viewCnt + '</span></div> ';
+	        htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times ft20"></i>' + data.viewCnt + '</span></div> ';
 	        htmlStr += '</div>';
 	        htmlStr += '<p class="c4 tel ft16" title=' + data.resourceName + '>' + data.resourceName + '</p>';
 	        htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';

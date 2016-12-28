@@ -116,10 +116,13 @@ var userEdit = function(params, dom) {
 	$('#edit_username').text(params.username);
 	$('#edit_realname').val(params.realname);
 	$('#edit_userId').val(params.userId);
-	$('#edit_password').val(params.password);
-	$("input#edit_password").keyup(function(){
+	$("#edit_password").val(params.password);
+	var pwd = $("#edit_password").val();
+	$("input#edit_password").change(function(){
    		$("#edit_password").attr("data-vali","password");
+   		var pwd = md5($("#edit_password").val());
 	});
+	console.log(pwd);
 	$("#edit_password").attr("data-vali","");
 	layer.open({
 		type: 1,
@@ -138,11 +141,10 @@ var userEdit = function(params, dom) {
        		if(result==true){
 				var editparams = { 
           			userType: $("#edit_userType").val(), 
-          			password: md5($("#edit_password").val()), 
+          			password: pwd, 
            			realname: $("#edit_realname").val(),
            			userId: $("#edit_userId").val()
          		};
-         		
 				CDUtil.ajaxPost("/base/user/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 						userSearch();

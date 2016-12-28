@@ -218,6 +218,7 @@ tr:nth-child(2n) {
 	color: #333;
 	margin-bottom: calc(5px*4);
 	cursor: pointer;
+	min-height:225px;
 }
 
 .demand .col-4 p {
@@ -368,7 +369,8 @@ tr:nth-child(2n) {
 	cursor: pointer;
 	color: rgb(28,200,64);
 }
-
+.ft20{font-size:20px;}
+.ft18{font-size:18px;}
 .s-right {
 	position: relative;
 }
@@ -385,6 +387,7 @@ tr:nth-child(2n) {
 	margin-top: 3px;
 	border: 1px solid #ececec;
 	border-radius: 1px;
+	cursor: pointer;
 }
 
       
@@ -400,6 +403,7 @@ tr:nth-child(2n) {
 	color: #333;
 	margin-bottom: calc(5px*4);
 	position: relative;
+	min-height:225px;
 }
 
 .list .col-4 p {

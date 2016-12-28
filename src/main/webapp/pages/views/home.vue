@@ -7,7 +7,7 @@
      <div class="row" v-for="post in posts.data" >
       <div class="col-md-4 tel c4">{{post.resourceName | unescape}}</div>
       <div class="col-md-4 tel"><span class="sub-code" :title="post.classlevelName | unescape">{{post.classlevelName | cutStr  | unescape}}</span>/{{post.subjectName  | unescape}}/{{post.author  | unescape}}</div>
-      <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic"></i>进入直播</a></div>
+      <div class="col-md-4" @click="openLiveDetail(post.resourceId)" ><i class="iconfont icon-avpic ft20"></i>进入直播</a></div>
     </div>
   </div>
    <div v-else class="tac"><img src="../../public/_compnents/v1/images/empty.png"></div>
@@ -19,7 +19,7 @@
     <div class="col-4" v-for="course in courseList.data" @click="openDemondDetail(course.resourceId)" >
       <div class="home-img">
       <img :src="course.thumbPath" width="285" height="160" >
-      <div class="home-times"><span class="fr"><i class="iconfont icon-play-times"></i>{{course.viewCnt}}</span></div>        
+      <div class="home-times"><span class="fr"><i class="iconfont icon-play-times ft20"></i>{{course.viewCnt}}</span></div>        
       </div>
       <p class="c4 tel ft16" :title="course.resourceName  | unescape">{{course.resourceName | unescape}}</p>
       <p class="ft12 c9 tel"><span class="sub-code" :title="course.classlevelName">{{course.classlevelName | cutStr  | unescape}}</span>&nbsp;{{course.subjectName | unescape}}&nbsp;{{course.author | unescape}}</p>
@@ -139,5 +139,4 @@ methods:{
 	.bgBody{background-color: #fff;}
 	.s-title .demanCour{margin:0;}
 	.ft12{font-size:12px;}
-	#courseList .iconfont{font-size:20px;}
 </style>

@@ -66,7 +66,7 @@ window.mySub = function(newPage){
 				var htmlStr = '<div class="col-4">';
 				htmlStr += '<div class="demandImg" onClick="openDemondDetail(\''+data.resourceId+'\')">';
 				htmlStr += '<img src='+data.thumbPath+' width="280" height="157">';       
-				htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times"></i>'+data.viewCnt+'</span></div> ';  
+				htmlStr += '<div class="times"><span class="fr"><i class="iconfont icon-play-times ft20"></i>'+data.viewCnt+'</span></div> ';  
 				htmlStr += '</div>' ;
 				htmlStr += '<p class="c4 tel ft16" title='+data.resourceName+'>'+data.resourceName+'</p>' ;
 				htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title='+data.classlevelName+'>'+classLevelName+'</span>&nbsp;'+data.subjectName+'&nbsp;'+data.author+'</p>' ;
