@@ -28,4 +28,6 @@ public interface ResCommentMapper {
 
 	void delBatchComment(List<String> commentIds);
 
+	int delCommentByResId(String resourceId);
+
 }

@@ -22,7 +22,7 @@ public class UserService {
 	/**
 	 * 
 	 * @Description: 获取deleteFlag为N的用户,
-	 * 				根据不同登陆者类型返回不同操作项
+	 * 				根据不同登录者类型返回不同操作项
 	 * @param page
 	 * @return
 	 *

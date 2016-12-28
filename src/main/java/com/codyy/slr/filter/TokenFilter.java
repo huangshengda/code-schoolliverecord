@@ -97,7 +97,7 @@ public class TokenFilter implements Filter {
 			String agent = req.getHeader("User-Agent");
 			User user = TokenUtils.getUserFromCache(token, agent);
 			if (user == null || "0".equals(user.getUserId())) {
-				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登陆")));
+				resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.NOT_LOGGIN, "未登录")));
 				return;
 			}
 			req.setAttribute("user", user);

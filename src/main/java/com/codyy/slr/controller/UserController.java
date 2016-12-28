@@ -50,7 +50,7 @@ public class UserController {
 		String agent = req.getHeader("User-Agent");
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code = Constants.SUCCESS;
-		String msg = "登陆成功";
+		String msg = "登录成功";
 		if ((StringUtils.isEmpty(user.getUsername())) || (StringUtils.isEmpty(user.getPassword()))) {
 			return new ReturnVoOne<User>(0, "用户名或密码为空");
 		}
@@ -78,7 +78,7 @@ public class UserController {
 			}
 		} catch (Exception e) {
 			code = Constants.FAILED;
-			msg = "登陆失败";
+			msg = "登录失败";
 			e.printStackTrace();
 		}
 		return new ReturnVoOne<User>(code, msg, user);
@@ -127,7 +127,7 @@ public class UserController {
 		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
 		map.put("userType", user.getUserType());
-		// 登陆者信息
+		// 登录者信息
 		user = (User) req.getAttribute("user");
 		map.put("loginUserType", user.getUserType());
 		map.put("userId", user.getUserId());
@@ -291,7 +291,7 @@ public class UserController {
 
 	/**
 	 * 
-	 * @Description: 根据token获取登陆者信息
+	 * @Description: 根据token获取登录者信息
 	 * @param token
 	 * @param req
 	 * @return
