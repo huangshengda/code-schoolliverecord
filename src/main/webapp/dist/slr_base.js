@@ -2043,7 +2043,6 @@ webpackJsonp([2,6],[
 	  */
 		H5fileup.startFileup = function (file, fileupUrl, sequence, callback) {
 			var longS = new Date().getTime();
-			var oMyForm = new FormData();
 			var formData = new FormData(); //构造空对象，下面用append 方法赋值。  
 			//formData.append("sequence", sequence);
 			formData.append("file", file);
@@ -2064,16 +2063,6 @@ webpackJsonp([2,6],[
 				success: function success(ret) {
 					if (typeof callback == "function") {
 						callback(ret);
-					}
-				},
-				complete: function complete() {
-					var longE = new Date().getTime();
-					if (longE - longS < 1000) {
-						setTimeout(function () {
-							H5fileup.fileup_loading(false);
-						}, 1000);
-					} else {
-						H5fileup.fileup_loading(false);
 					}
 				}
 			});
@@ -2146,7 +2135,18 @@ webpackJsonp([2,6],[
 	  */
 		H5fileup.splitFile = function (file, eveSize) {
 			var splitFiles = [];
-
+			var size = file.size;
+			var len = Math.ceil(size / eveSize);
+			var start = 0;
+			var end = eveSize;
+			for (var i = 0; i < len; i++) {
+				start = i * eveSize;
+				end = (i + 1) * eveSize;
+				if (end > size) {
+					end = size;
+				}
+				splitFiles[i] = file.slice(start, end);
+			}
 			return splitFiles;
 		};
 

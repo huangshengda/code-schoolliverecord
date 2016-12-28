@@ -47,7 +47,7 @@ webpackJsonp([0,6],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*!
-	 * Vue.js v2.1.7
+	 * Vue.js v2.1.8
 	 * (c) 2014-2016 Evan You
 	 * Released under the MIT License.
 	 */
@@ -130,10 +130,10 @@ webpackJsonp([0,6],{
 	 */
 	function cached (fn) {
 	  var cache = Object.create(null);
-	  return function cachedFn (str) {
+	  return (function cachedFn (str) {
 	    var hit = cache[str];
 	    return hit || (cache[str] = fn(str))
-	  }
+	  })
 	}
 
 	/**
@@ -1348,7 +1348,7 @@ webpackJsonp([0,6],{
 	    }
 	    for (var i = 0; i < type.length && !valid; i++) {
 	      var assertedType = assertType(value, type[i]);
-	      expectedTypes.push(assertedType.expectedType);
+	      expectedTypes.push(assertedType.expectedType || '');
 	      valid = assertedType.valid;
 	    }
 	  }
@@ -1839,9 +1839,8 @@ webpackJsonp([0,6],{
 	  if (this.active) {
 	    // remove self from vm's watcher list
 	    // this is a somewhat expensive operation so we skip it
-	    // if the vm is being destroyed or is performing a v-for
-	    // re-render (the watcher list is then filtered by v-for).
-	    if (!this.vm._isBeingDestroyed && !this.vm._vForRemoving) {
+	    // if the vm is being destroyed.
+	    if (!this.vm._isBeingDestroyed) {
 	      remove$1(this.vm._watchers, this);
 	    }
 	    var i = this.deps.length;
@@ -1981,6 +1980,14 @@ webpackJsonp([0,6],{
 
 	function initComputed (vm, computed) {
 	  for (var key in computed) {
+	    /* istanbul ignore if */
+	    if (("development") !== 'production' && key in vm) {
+	      warn(
+	        "existing instance property \"" + key + "\" will be " +
+	        "overwritten by a computed property with the same name.",
+	        vm
+	      );
+	    }
 	    var userDef = computed[key];
 	    if (typeof userDef === 'function') {
 	      computedSharedDefinition.get = makeComputedGetter(userDef, vm);
@@ -3699,7 +3706,7 @@ webpackJsonp([0,6],{
 	  get: isServerRendering
 	});
 
-	Vue$2.version = '2.1.7';
+	Vue$2.version = '2.1.8';
 
 	/*  */
 
@@ -4526,6 +4533,8 @@ webpackJsonp([0,6],{
 	          }
 	        }
 	      }
+	    } else if (elm.data !== vnode.text) {
+	      elm.data = vnode.text;
 	    }
 	    return true
 	  }
@@ -4537,7 +4546,7 @@ webpackJsonp([0,6],{
 	        vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
 	      )
 	    } else {
-	      return _toString(vnode.text) === node.data
+	      return node.nodeType === (vnode.isComment ? 8 : 3)
 	    }
 	  }
 
@@ -5321,8 +5330,10 @@ webpackJsonp([0,6],{
 	  var css = data.css;
 	  var type = data.type;
 	  var enterClass = data.enterClass;
+	  var enterToClass = data.enterToClass;
 	  var enterActiveClass = data.enterActiveClass;
 	  var appearClass = data.appearClass;
+	  var appearToClass = data.appearToClass;
 	  var appearActiveClass = data.appearActiveClass;
 	  var beforeEnter = data.beforeEnter;
 	  var enter = data.enter;
@@ -5352,6 +5363,7 @@ webpackJsonp([0,6],{
 
 	  var startClass = isAppear ? appearClass : enterClass;
 	  var activeClass = isAppear ? appearActiveClass : enterActiveClass;
+	  var toClass = isAppear ? appearToClass : enterToClass;
 	  var beforeEnterHook = isAppear ? (beforeAppear || beforeEnter) : beforeEnter;
 	  var enterHook = isAppear ? (typeof appear === 'function' ? appear : enter) : enter;
 	  var afterEnterHook = isAppear ? (afterAppear || afterEnter) : afterEnter;
@@ -5366,6 +5378,7 @@ webpackJsonp([0,6],{
 
 	  var cb = el._enterCb = once(function () {
 	    if (expectsCSS) {
+	      removeTransitionClass(el, toClass);
 	      removeTransitionClass(el, activeClass);
 	    }
 	    if (cb.cancelled) {
@@ -5398,9 +5411,10 @@ webpackJsonp([0,6],{
 	  beforeEnterHook && beforeEnterHook(el);
 	  if (expectsCSS) {
 	    addTransitionClass(el, startClass);
+	    addTransitionClass(el, activeClass);
 	    nextFrame(function () {
+	      addTransitionClass(el, toClass);
 	      removeTransitionClass(el, startClass);
-	      addTransitionClass(el, activeClass);
 	      if (!cb.cancelled && !userWantsControl) {
 	        whenTransitionEnds(el, type, cb);
 	      }
@@ -5439,6 +5453,7 @@ webpackJsonp([0,6],{
 	  var css = data.css;
 	  var type = data.type;
 	  var leaveClass = data.leaveClass;
+	  var leaveToClass = data.leaveToClass;
 	  var leaveActiveClass = data.leaveActiveClass;
 	  var beforeLeave = data.beforeLeave;
 	  var leave = data.leave;
@@ -5458,6 +5473,7 @@ webpackJsonp([0,6],{
 	      el.parentNode._pending[vnode.key] = null;
 	    }
 	    if (expectsCSS) {
+	      removeTransitionClass(el, leaveToClass);
 	      removeTransitionClass(el, leaveActiveClass);
 	    }
 	    if (cb.cancelled) {
@@ -5490,9 +5506,10 @@ webpackJsonp([0,6],{
 	    beforeLeave && beforeLeave(el);
 	    if (expectsCSS) {
 	      addTransitionClass(el, leaveClass);
+	      addTransitionClass(el, leaveActiveClass);
 	      nextFrame(function () {
+	        addTransitionClass(el, leaveToClass);
 	        removeTransitionClass(el, leaveClass);
-	        addTransitionClass(el, leaveActiveClass);
 	        if (!cb.cancelled && !userWantsControl) {
 	          whenTransitionEnds(el, type, cb);
 	        }
@@ -5527,6 +5544,9 @@ webpackJsonp([0,6],{
 	    enterClass: (name + "-enter"),
 	    leaveClass: (name + "-leave"),
 	    appearClass: (name + "-enter"),
+	    enterToClass: (name + "-enter-to"),
+	    leaveToClass: (name + "-leave-to"),
+	    appearToClass: (name + "-enter-to"),
 	    enterActiveClass: (name + "-enter-active"),
 	    leaveActiveClass: (name + "-leave-active"),
 	    appearActiveClass: (name + "-enter-active")
@@ -5794,10 +5814,13 @@ webpackJsonp([0,6],{
 	  type: String,
 	  enterClass: String,
 	  leaveClass: String,
+	  enterToClass: String,
+	  leaveToClass: String,
 	  enterActiveClass: String,
 	  leaveActiveClass: String,
 	  appearClass: String,
-	  appearActiveClass: String
+	  appearActiveClass: String,
+	  appearToClass: String
 	};
 
 	// in case the child is also an abstract component, e.g. <keep-alive>
@@ -5839,6 +5862,10 @@ webpackJsonp([0,6],{
 	      return true
 	    }
 	  }
+	}
+
+	function isSameChild (child, oldChild) {
+	  return oldChild.key === child.key && oldChild.tag === child.tag
 	}
 
 	var Transition = {
@@ -5913,11 +5940,10 @@ webpackJsonp([0,6],{
 	      child.data.show = true;
 	    }
 
-	    if (oldChild && oldChild.data && oldChild.key !== key) {
+	    if (oldChild && oldChild.data && !isSameChild(child, oldChild)) {
 	      // replace old child transition data with fresh one
 	      // important for dynamic transitions!
-	      var oldData = oldChild.data.transition = extend({}, data);
-
+	      var oldData = oldChild && (oldChild.data.transition = extend({}, data));
 	      // handle transition mode
 	      if (mode === 'out-in') {
 	        // return placeholder node and queue update when leave finishes
@@ -6128,6 +6154,15 @@ webpackJsonp([0,6],{
 	  return this._mount(el, hydrating)
 	};
 
+	if (("development") !== 'production' &&
+	    inBrowser && typeof console !== 'undefined') {
+	  console[console.info ? 'info' : 'log'](
+	    "You are running Vue in development mode.\n" +
+	    "Make sure to turn on production mode when deploying for production.\n" +
+	    "See more tips at https://vuejs.org/guide/deployment.html"
+	  );
+	}
+
 	// devtools global hook
 	/* istanbul ignore next */
 	setTimeout(function () {
@@ -6138,8 +6173,8 @@ webpackJsonp([0,6],{
 	      ("development") !== 'production' &&
 	      inBrowser && !isEdge && /Chrome\/\d+/.test(window.navigator.userAgent)
 	    ) {
-	      console.log(
-	        'Download the Vue Devtools for a better development experience:\n' +
+	      console[console.info ? 'info' : 'log'](
+	        'Download the Vue Devtools extension for a better development experience:\n' +
 	        'https://github.com/vuejs/vue-devtools'
 	      );
 	    }
@@ -6174,7 +6209,7 @@ webpackJsonp([0,6],{
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\App.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\App.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -6185,9 +6220,9 @@ webpackJsonp([0,6],{
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-51064ce0", __vue_options__)
+	    hotAPI.createRecord("data-v-effdf01a", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-51064ce0", __vue_options__)
+	    hotAPI.reload("data-v-effdf01a", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] App.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -6251,7 +6286,7 @@ webpackJsonp([0,6],{
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "D:\\Codyywokspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Navbar.vue"
+	__vue_options__.__file = "E:\\CodyyWorkspace\\slrSpace\\SchoolLiveRecord\\src\\main\\webapp\\pages\\_commons\\layout\\Navbar.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -6262,9 +6297,9 @@ webpackJsonp([0,6],{
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-0e8dd020", __vue_options__)
+	    hotAPI.createRecord("data-v-4c23c3a6", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-0e8dd020", __vue_options__)
+	    hotAPI.reload("data-v-4c23c3a6", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Navbar.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -6878,7 +6913,7 @@ webpackJsonp([0,6],{
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-0e8dd020", module.exports)
+	     __webpack_require__(23).rerender("data-v-4c23c3a6", module.exports)
 	  }
 	}
 
@@ -6899,7 +6934,7 @@ webpackJsonp([0,6],{
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     __webpack_require__(23).rerender("data-v-51064ce0", module.exports)
+	     __webpack_require__(23).rerender("data-v-effdf01a", module.exports)
 	  }
 	}
 
