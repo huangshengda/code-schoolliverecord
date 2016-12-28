@@ -82,8 +82,6 @@ $(function() {
 				}
 				$("#chat_context").append(htmlStr);
 				$("#chat_context").scrollTop($("#chat_context").height());
-				console.log(msg);
-				console.log(htmlStr);
 			}
 			$("#chat").val("");
 		};
@@ -123,7 +121,7 @@ $(function() {
 			
 		}else if(len < 151){
 			var params = {
-				msg: replace_em(msg),
+				msg: replace(msg),
 				timestamp: new Date().getTime()
 			};
 			console.log(params);
@@ -200,12 +198,16 @@ $(function() {
 		}
 	}
 });
+function replace(str){
+	str = str.replace(/"/g, '&quot;');
+	str = str.replace(/'/g, '&#39;');
+	return str;
+}
 function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
 	str = str.replace(/\>/g,'&gt;');
 	str = str.replace(/\n/g,'<br/>');
-	str = str.replace(/"/g, '&quot;');
-	str = str.replace(/'/g, '&#39;');
+	
 	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="'+ROOT_UI+'/public/qqFace/arclist/$1.gif" border="0" />');
 	return str;
 }

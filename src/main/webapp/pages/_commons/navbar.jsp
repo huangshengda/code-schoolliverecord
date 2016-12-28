@@ -53,7 +53,7 @@ $(function(){
 		     	//提交数据给到后台处理
 				CDUtil.ajaxPost("/login",params,function(retVO){
 				  if(retVO.code == 1){
-					  self.userType= retVO.data.userType;
+					self.userType= retVO.data.userType;
 					layer.msg(retVO.msg);  
 					layer.close(laryIndex);
 					$("#user_info").show();
@@ -113,7 +113,10 @@ $(function(){
 	          title: '登录',
 	          skin: 'layui-layer-rim', //加上边框
 	          area: ['450px', '375px'], //宽高
-	          content: $("#login")
+	          content: $("#login"),
+	          end: function() {
+	  			$(".cd-f-vali").remove();
+	  		}
 	      });
 	});
 	$("#loginIn").click(function(){

@@ -2052,7 +2052,11 @@ webpackJsonp([1,6],[
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
 		$('#edit_userId').val(params.userId);
-		$('#edit_password').val(params.password.substr(0, 18));
+		$('#edit_password').val(params.password);
+		$("input#edit_password").keyup(function () {
+			$("#edit_password").attr("data-vali", "password");
+		});
+		$("#edit_password").attr("data-vali", "");
 		layer.open({
 			type: 1,
 			title: '编辑用户',
@@ -2074,8 +2078,10 @@ webpackJsonp([1,6],[
 						realname: $("#edit_realname").val(),
 						userId: $("#edit_userId").val()
 					};
+
 					CDUtil.ajaxPost("/base/user/update", editparams, function (retVO) {
 						if (retVO.code == 1) {
+							console.log("success");
 							userSearch();
 							layer.msg(retVO.msg);
 							layer.close(index);
@@ -2364,7 +2370,7 @@ webpackJsonp([1,6],[
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "",
-	      "data-vali": "password",
+	      "data-vali": "",
 	      "maxlength": "18"
 	    },
 	    domProps: {
@@ -4920,7 +4926,7 @@ webpackJsonp([1,6],[
 
 
 	// module
-	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n.ft12{font-size:12px;\n}\n", ""]);
+	exports.push([module.id, "\n.bgBody{background-color: #fff;\n}\n.s-title .demanCour{margin:0;\n}\n.ft12{font-size:12px;\n}\n#courseList .iconfont{font-size:20px;\n}\n", ""]);
 
 	// exports
 

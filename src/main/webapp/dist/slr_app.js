@@ -6397,7 +6397,10 @@ webpackJsonp([0,6],{
 	        title: '登录',
 	        skin: 'layui-layer-rim', //加上边框
 	        area: ['450px', '360px'], //宽高
-	        content: $("#login")
+	        content: $("#login"),
+	        end: function end() {
+	          $(".cd-f-vali").remove();
+	        }
 	      });
 	    },
 	    loginIn: function loginIn() {
