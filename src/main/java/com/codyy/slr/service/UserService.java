@@ -36,7 +36,7 @@ public class UserService {
 				User user = userIter.next();
 				if (Constants.SUPER_ADMIN.equals(userLogin.getUserType())) {
 					if (Constants.SUPER_ADMIN.equals(user.getUserType())) {
-						user.setOpt(Constants.EDIT);
+						user.setOpt(null);
 					} else {
 						user.setOpt(Constants.EDIT_DELETE);
 					}
