@@ -99,20 +99,23 @@ $(function(){
 	/**
 	 * 控制选择年级的逻辑
 	 */
+	$("#show_chose_grade").on("click",".all",function(){
+			    if(this.checked){ 
+			    	$(".chose-grade.others").prop("checked",true);
+			    }else{ 
+			    	$(".chose-grade.others").prop("checked",false);
+			    } 
+			  });
 	$("#show_chose_grade").on("click",".chose-grade",function(){
 		var checked = $(this).prop("checked");
-		if(!checked){
-			$(".chose-grade.others").prop("checked",false);
-		}
 		if(checked){
 			var value = $(this).val();
 			$("#classlevelIds").val(value);
-			if($(this).hasClass("all")){
+			/*if($(this).hasClass("all")){
 				$(".chose-grade.others").prop("checked",true);
-			}
+			}*/
 		}else{
 			$(".chose-grade.all").prop("checked",false);
-			//$(".chose-grade.others").prop("checked",false);
 		}
 		var value = "";
 		$(".chose-grade.others").each(function(i,dom){
@@ -322,6 +325,7 @@ $(function(){
 					setTimeout(function(){
 						window.location.href = ROOT_SERVER+"/#/basic/source";
 					},1000);
+					sessionStorage.removeItem("upload");
 				}else{
 					setTimeout(function(){
 						window.location.href = ROOT_SERVER+"/#/basic/upload";
