@@ -8,12 +8,15 @@
 					共{{pages}}个资源
 				</div>
 				<div class="clear"></div>
+				<div class="man-list">
+					<p class="data-none"><img src="'+ROOT_UI_PUBLIC+'../../public/_compnents/v1/images/grid_have_nodata.png" /></p>
 				<!-- 中间内容-列表 start-->
 				  <div class="list mt40"  id="sub_list">
 				     
 				   </div>
 				   <div class="clear"></div>
 				   <!-- 中间内容-列表 end-->
+				 </div>
 			</div>
 			<!-- 中间内容 end-->
 		</div>
@@ -46,6 +49,12 @@ window.mySub = function(newPage){
         var _self = this;
 		var params = {curPage: newPage ,pageSize:16,};
         CDUtil.ajaxPost("/resource/myresource/list",params,function(retVO){
+        	/*  无消息显示 */
+       			if(retVO.totalDatas == 0){
+					$('.data-none').show();
+				}else{
+					$('.data-none').hide();
+				}
           data.mycourceList = retVO;
           data.pages = retVO.totalDatas;
           var htmlStr = "";
@@ -72,10 +81,6 @@ window.mySub = function(newPage){
 				htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title='+data.classlevelName+'>'+classLevelName+'</span>&nbsp;'+data.subjectName+'&nbsp;'+data.author+'</p>' ;
 				htmlStr += '<div class="sub-del" onClick="mysubjectDel(\''+data.resourceId+'\')"><i class="iconfont icon-delete"></i></div>' ;       
 				htmlStr += ' </div>';	
-				/*  无消息显示 */
-				if(data.resourceId == ""){
-					htmlStr +='<div id="sub_list"><p>暂无相关数据</p></div>';
-				}
 				return htmlStr;
 			},
          	 //执行页面查询的方法
