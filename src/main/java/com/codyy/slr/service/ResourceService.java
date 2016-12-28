@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
+import com.codyy.slr.dao.ResCommentMapper;
 import com.codyy.slr.dao.ResourceMapper;
 import com.codyy.slr.entity.Resource;
 import com.codyy.slr.entity.User;
@@ -31,6 +32,9 @@ public class ResourceService {
 
 	@Autowired
 	private ResourceMapper resourceMapper;
+
+	@Autowired
+	private ResCommentMapper resCommentMapper;
 
 	public boolean addResource(AddUploadResourceParam param, String createUserId) {
 
@@ -127,6 +131,9 @@ public class ResourceService {
 		res.setResourceId(resourceId);
 		res.setDeleteUserId(user.getUserId());
 		res.setDeleteTime(new Date());
+
+		// 删除该资源的评论
+		resCommentMapper.delCommentByResId(resourceId);
 
 		return resourceMapper.delResByResId(res);
 	}

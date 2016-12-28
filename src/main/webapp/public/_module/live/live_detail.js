@@ -121,9 +121,10 @@ $(function() {
 			
 		}else if(len < 151){
 			var params = {
-				msg: msg,
+				msg: replace(msg),
 				timestamp: new Date().getTime()
 			};
+			console.log(params);
 			Chat.sendMessage(params);
 		}else{//弹框提示
 			alert("聊天内容太长");
@@ -197,12 +198,16 @@ $(function() {
 		}
 	}
 });
+function replace(str){
+	str = str.replace(/"/g, '&quot;');
+	str = str.replace(/'/g, '&#39;');
+	return str;
+}
 function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
 	str = str.replace(/\>/g,'&gt;');
-	str = str.replace(/\'/g,'&apos;');
-	str = str.replace(/\"/g,'&quot;');
 	str = str.replace(/\n/g,'<br/>');
+	
 	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="'+ROOT_UI+'/public/qqFace/arclist/$1.gif" border="0" />');
 	return str;
 }

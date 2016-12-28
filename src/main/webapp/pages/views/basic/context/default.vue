@@ -54,7 +54,7 @@
         <div class="cd-f-eve">
           <span class="cd-f-name"><label>密码:</label></span>
           <span class="cd-f-value">
-            <input type="password" name="password" id="edit_password" value="" data-vali="password" maxlength="18"> 
+            <input type="password" name="password" id="edit_password" value="" data-vali="" maxlength="18"> 
           </span>
         </div>
         <div class="cd-f-eve">
@@ -116,7 +116,11 @@ var userEdit = function(params, dom) {
 	$('#edit_username').text(params.username);
 	$('#edit_realname').val(params.realname);
 	$('#edit_userId').val(params.userId);
-	$('#edit_password').val((params.password).substr(0,18));
+	$('#edit_password').val(params.password);
+	$("input#edit_password").keyup(function(){
+   		$("#edit_password").attr("data-vali","password");
+	});
+	$("#edit_password").attr("data-vali","");
 	layer.open({
 		type: 1,
 		title: '编辑用户',
@@ -138,6 +142,7 @@ var userEdit = function(params, dom) {
            			realname: $("#edit_realname").val(),
            			userId: $("#edit_userId").val()
          		};
+         		
 				CDUtil.ajaxPost("/base/user/update", editparams,function(retVO) {
 					if (retVO.code == 1) {
 						userSearch();

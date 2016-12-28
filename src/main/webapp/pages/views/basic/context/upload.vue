@@ -80,8 +80,9 @@ var uploadView = function(params, dom) {
 /**
  * 表格中的操作---编辑上传资源
 **/
-var uploadEdit = function(params, dom) {
+var upEdit = function(params, dom) {
 	sessionStorage.setItem("resourceId",params.resourceId);
+	sessionStorage.setItem("nav","basic");
    window.open(ROOT_UI+"/front/path/upload?token="+sessionStorage.getItem("token"));
 };
 /**
@@ -144,7 +145,7 @@ var config = {
 	//表格中的行操作方法
 	optFuns: {
 		view_fun: uploadView,
-		edit_fun: uploadEdit,
+		edit_fun: upEdit,
 		del_fun: uploadDel,
 	}
 };

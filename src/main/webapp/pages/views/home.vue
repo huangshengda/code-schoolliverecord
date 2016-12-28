@@ -139,4 +139,5 @@ methods:{
 	.bgBody{background-color: #fff;}
 	.s-title .demanCour{margin:0;}
 	.ft12{font-size:12px;}
+	#courseList .iconfont{font-size:20px;}
 </style>

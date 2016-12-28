@@ -106,7 +106,10 @@ export default{
           title: '登录',
           skin: 'layui-layer-rim', //加上边框
           area: ['450px', '360px'], //宽高
-          content: $("#login")
+          content: $("#login"),
+          end: function() {
+			$(".cd-f-vali").remove();
+		}
       });
     },
     loginIn:function(){
@@ -141,7 +144,9 @@ export default{
                window.location.reload();
             }
              if (retVO.code == 0 && $("#username").val() !='' &&　$("#password").val() !=''){
-             	layer.msg(retVO.msg);	
+             	setTimeout(function () {
+		        	layer.msg(retVO.msg);
+       			}, 1000);	
              }
           });
         }

@@ -99,7 +99,7 @@ export default {
       			if (retVO.code == 1) {
 					layer.msg(retVO.msg);
 					$('#platform')[0].reset();
-				    location.reload();
+				    window.location.reload();
 				}
 				if (retVO.code == 0) {
 					layer.msg(retVO.msg);
