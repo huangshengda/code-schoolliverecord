@@ -2048,18 +2048,17 @@ webpackJsonp([1,6],[
 	 * 表格中的操作---编辑用户
 	**/
 	var userEdit = function userEdit(params, dom) {
+		$("#edit_password").attr("data-vali", "");
 		$("#edit_userType option[value='" + params.userType + "']").prop("selected", true);
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
 		$('#edit_userId').val(params.userId);
 		$("#edit_password").val(params.password);
 		var pwd = $("#edit_password").val();
-		$("input#edit_password").change(function () {
+		$("#edit_password").change(function () {
 			$("#edit_password").attr("data-vali", "password");
-			var pwd = md5($("#edit_password").val());
+			pwd = md5($("#edit_password").val());
 		});
-		console.log(pwd);
-		$("#edit_password").attr("data-vali", "");
 		layer.open({
 			type: 1,
 			title: '编辑用户',
@@ -2371,8 +2370,7 @@ webpackJsonp([1,6],[
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "",
-	      "data-vali": "",
-	      "maxlength": "18"
+	      "data-vali": ""
 	    },
 	    domProps: {
 	      "value": ""
