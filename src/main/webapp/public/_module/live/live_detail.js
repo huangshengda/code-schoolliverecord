@@ -18,7 +18,7 @@ $(function() {
 		flashBuilder = vm.module["playerBuilder"];
 		CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
 			if(!retVO.data.storePath || retVO.data.livingFlag != 'Y'){
-				$('.vedio').html('<img src="ROOT_UI+"/public/_module/images/vedioend.png"">');
+				layer.msg("直播课程已结束！");
 			}
 			if (retVO.code == 1) {
 			//课程名称，年级、学科、主讲教师
