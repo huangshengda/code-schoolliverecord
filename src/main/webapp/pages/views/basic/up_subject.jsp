@@ -55,7 +55,7 @@
 						<label>课程视频:</label></span>
 					<span class="cd-f-value">
 						<div class="btn fileup-button inb" style="position: relative;width: 150px;height: 28px;">上传视频文件
-							<input type="file" value="" class="input-fileup" id="fileup_video" accept="video/mp4,.flv">
+							<input type="file" value="" class="input-fileup" id="fileup_video"  readonly unselectable="on" accept="video/mp4,.flv">
 						</div>
 						<p class="ft12 c9 ml20 inb">注：视频格式支持mp4、flv，最大2G。</p>
 						<div class="up-list mt20" id="show_fileup_detail">
