@@ -15,7 +15,7 @@ import com.codyy.slr.vo.ReturnVoList;
 
 /**
  * 
- * @Description: 首页资源信息查询
+ * @Description: 首页资源信息查询 
  * @author huangshengda  
  * @date 2016年12月17日   
  *
