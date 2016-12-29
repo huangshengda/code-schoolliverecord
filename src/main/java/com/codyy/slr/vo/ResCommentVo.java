@@ -41,6 +41,7 @@ public class ResCommentVo extends ResComment {
 	/**
 	 * 操作权限
 	 */
+	@SuppressWarnings("unused")
 	private List<String> opt;
 
 	private String realName;
