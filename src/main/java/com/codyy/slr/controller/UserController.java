@@ -103,9 +103,12 @@ public class UserController {
 			String agent = req.getHeader("User-Agent");
 			User user = (User) req.getAttribute("user");
 			TokenUtils.removeUserFormCache(user.getToken(), agent);
+			// 销毁session
+			req.getSession().invalidate();
 		} catch (Exception e) {
 			one.setMsg("退出失败");
 			one.setCode(Constants.FAILED);
+			log.error(e.toString());
 		}
 		one.setData(Constants.COLUMN);
 		return one;
