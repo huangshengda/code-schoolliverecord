@@ -34,7 +34,7 @@ public class SubjectController {
 
 	/**
 	 * 
-	 * @Description: 获取学科
+	 * @Description:  获取学科
 	 * @param subjectName
 	 * @return
 	 *
