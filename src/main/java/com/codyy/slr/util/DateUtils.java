@@ -10,14 +10,17 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
+
 public class DateUtils {
+	private static final Logger log = Logger.getLogger(DateUtils.class);
 
 	public static String PATTERN_DATE = "yyyy-MM-dd";
 	public static String PATTERN_DATETIME = "yyyy-MM-dd HH:mm:ss";
 	private static String defaultPattern = PATTERN_DATETIME;
 	private static SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.US);
 	private static final Log LOGGER = LogFactory.getLog(DateUtils.class);
-	
+
 	public static String format(Date date) {
 		return format(date, defaultPattern);
 	}
@@ -67,7 +70,7 @@ public class DateUtils {
 			Date date = parseDate(strDate, defaultPattern);
 			return date;
 		} catch (ParseException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			throw new RuntimeException(e);
 		}
 	}
@@ -397,7 +400,7 @@ public class DateUtils {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		int currentMonth = Integer.parseInt(StringUtils.substringBetween(date, "-"));
-		//System.out.println(currentMonth);
+		// System.out.println(currentMonth);
 		LOGGER.info(currentMonth);
 		String now = null;
 		try {
@@ -414,7 +417,7 @@ public class DateUtils {
 			c.set(Calendar.DATE, 1);
 			now = sdf.format(c.getTime());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return now;
@@ -447,19 +450,19 @@ public class DateUtils {
 
 			now = sdf.format(c.getTime());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return now;
 	}
-	
-	public static List<Date> getTimeSection(String timeType){
-		
+
+	public static List<Date> getTimeSection(String timeType) {
+
 		List<Date> dates = new ArrayList<Date>();
-		if(timeType.equals("week")){//获取当前周开始时间和结束时间
+		if (timeType.equals("week")) {// 获取当前周开始时间和结束时间
 			dates.add(getMondayDate(new Date()));
 			dates.add(getSundayDate(new Date()));
-		}else if(timeType.equals("month")){
+		} else if (timeType.equals("month")) {
 			Calendar calendar = Calendar.getInstance();
 			int year = calendar.get(Calendar.YEAR);
 			int month = calendar.get(Calendar.MONTH);
@@ -469,10 +472,10 @@ public class DateUtils {
 			dates.add(calendar.getTime());
 			calendar.roll(Calendar.DAY_OF_MONTH, -1);
 			calendar.set(Calendar.HOUR_OF_DAY, 23);
-			calendar.set(Calendar.MINUTE,59);
+			calendar.set(Calendar.MINUTE, 59);
 			calendar.set(Calendar.SECOND, 59);
 			dates.add(calendar.getTime());
-		}else if(timeType.equals("year")){
+		} else if (timeType.equals("year")) {
 			Calendar calendar = Calendar.getInstance();
 			int year = calendar.get(Calendar.YEAR);
 			calendar.clear();
@@ -481,56 +484,56 @@ public class DateUtils {
 			calendar.set(Calendar.MONTH, 11);
 			calendar.roll(Calendar.DAY_OF_MONTH, -1);
 			calendar.set(Calendar.HOUR_OF_DAY, 23);
-			calendar.set(Calendar.MINUTE,59);
+			calendar.set(Calendar.MINUTE, 59);
 			calendar.set(Calendar.SECOND, 59);
 			dates.add(calendar.getTime());
 		}
-		
+
 		return dates;
 	}
-	
-	public static Date getMondayDate(Date date){
+
+	public static Date getMondayDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
-		day = (day+6)%7;
-		day = day==0?7:day;
-		calendar.add(Calendar.DAY_OF_YEAR, 1-day);
+		day = (day + 6) % 7;
+		day = day == 0 ? 7 : day;
+		calendar.add(Calendar.DAY_OF_YEAR, 1 - day);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
 		return calendar.getTime();
 	}
-	
-	public static Date getSundayDate(Date date){
+
+	public static Date getSundayDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
-		day = (day+6)%7;
-		day = day==0?7:day;
-		calendar.add(Calendar.DAY_OF_YEAR, 7-day);
+		day = (day + 6) % 7;
+		day = day == 0 ? 7 : day;
+		calendar.add(Calendar.DAY_OF_YEAR, 7 - day);
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
 		calendar.set(Calendar.MINUTE, 59);
 		calendar.set(Calendar.SECOND, 59);
 		return calendar.getTime();
 	}
-	
-	//home.util --mv-->common.util
-	
-	public static Date getMondayDate(){
+
+	// home.util --mv-->common.util
+
+	public static Date getMondayDate() {
 		Calendar calendar = Calendar.getInstance();
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
-		day = (day+6)%7;
-		day = day==0?7:day;
-		calendar.add(Calendar.DAY_OF_YEAR, 1-day);
+		day = (day + 6) % 7;
+		day = day == 0 ? 7 : day;
+		calendar.add(Calendar.DAY_OF_YEAR, 1 - day);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
 		return calendar.getTime();
 	}
-	
+
 	/**
 	 * 
 	* @Title: getMondayDateFormatChina 
@@ -541,22 +544,22 @@ public class DateUtils {
 	* @author yaodaqing 
 	* @date 2016年8月15日 下午1:57:17
 	 */
-	public static String getMondayDateFormatChina(){
+	public static String getMondayDateFormatChina() {
 		return datetimeFormat.format(getMondayDate());
 	}
-	
-	public static Date getSundayDate(){
+
+	public static Date getSundayDate() {
 		Calendar calendar = Calendar.getInstance();
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
-		day = (day+6)%7;
-		day = day==0?7:day;
-		calendar.add(Calendar.DAY_OF_YEAR, 7-day);
+		day = (day + 6) % 7;
+		day = day == 0 ? 7 : day;
+		calendar.add(Calendar.DAY_OF_YEAR, 7 - day);
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
 		calendar.set(Calendar.MINUTE, 59);
 		calendar.set(Calendar.SECOND, 59);
 		return calendar.getTime();
 	}
-	
+
 	/**
 	 * 
 	* @Title: getSundayDateFormatchina 
@@ -567,10 +570,10 @@ public class DateUtils {
 	* @author yaodaqing 
 	* @date 2016年8月15日 下午1:58:46
 	 */
-	public static String getSundayDateFormatChina(){
+	public static String getSundayDateFormatChina() {
 		return datetimeFormat.format(getSundayDate());
 	}
-	
+
 	/**
 	 * 
 	* @Title: getTodayEndDateFormatChina 
@@ -581,21 +584,21 @@ public class DateUtils {
 	* @author yaodaqing 
 	* @date 2016年8月15日 下午2:00:39
 	 */
-	public static String getTodayEndDateFormatChina(){
-		return format((new Date()),PATTERN_DATE) + " 23:59:59";
+	public static String getTodayEndDateFormatChina() {
+		return format((new Date()), PATTERN_DATE) + " 23:59:59";
 	}
-	
+
 	public static void main(String[] args) {
-		//System.out.println(DateUtils.getLastDayOfMonth(new Date()));
+		// System.out.println(DateUtils.getLastDayOfMonth(new Date()));
 		System.out.println(getMondayDateFormatChina());
 		System.out.println(getTodayEndDateFormatChina());
 		System.out.println(getSundayDateFormatChina());
 	}
-	
-	public static Date addWeeksOfHome(Date date,int num){
+
+	public static Date addWeeksOfHome(Date date, int num) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		calendar.add(Calendar.DAY_OF_YEAR, num*7);
+		calendar.add(Calendar.DAY_OF_YEAR, num * 7);
 		return calendar.getTime();
 	}
 
@@ -606,7 +609,7 @@ public class DateUtils {
 	 * @param date
 	 * @return
 	 */
-	public static Date getFisrtDayOfMonth(Date date){
+	public static Date getFisrtDayOfMonth(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -616,7 +619,7 @@ public class DateUtils {
 		calendar.set(Calendar.MILLISECOND, 0);
 		return calendar.getTime();
 	}
-	
+
 	/**
 	 * 返回当月的最后一天 
 	 * 
@@ -624,17 +627,18 @@ public class DateUtils {
 	 * @param date
 	 * @return
 	 */
-	public static Date getLastDayOfMonth(Date date){
+	public static Date getLastDayOfMonth(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		calendar.add(Calendar.MONTH , 1);
+		calendar.add(Calendar.MONTH, 1);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
-		calendar.add(Calendar.DATE ,-1);
+		calendar.add(Calendar.DATE, -1);
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
 		calendar.set(Calendar.MINUTE, 59);
 		calendar.set(Calendar.SECOND, 59);
 		return calendar.getTime();
 	}
+
 	/**
 	 * 
 	 * getDayOfWeek:(获取一周中的第几天)
@@ -642,8 +646,8 @@ public class DateUtils {
 	 * @param date
 	 * @author lijunfeng
 	 */
-	public static int  getDayOfWeek(Date date){
-		if(date!=null){
+	public static int getDayOfWeek(Date date) {
+		if (date != null) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
 			return calendar.get(Calendar.DAY_OF_WEEK);

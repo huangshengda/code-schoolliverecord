@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ import com.codyy.slr.vo.ReturnVoOne;
 @RequestMapping("/base/subject")
 public class SubjectController {
 
+	private static final Logger log = Logger.getLogger(SubjectController.class);
+
 	@Autowired
 	SubjectService subjectService;
 
@@ -50,7 +53,7 @@ public class SubjectController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "查询失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoList<Subject>(code, msg, subjectList);
 	}
@@ -75,7 +78,7 @@ public class SubjectController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<Subject>(code, msg);
 	}
@@ -128,7 +131,7 @@ public class SubjectController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<Subject>(code, msg);
 	}
@@ -161,7 +164,7 @@ public class SubjectController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "排序失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<Subject>(code, msg);
 	}

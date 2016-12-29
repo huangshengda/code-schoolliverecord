@@ -14,6 +14,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
@@ -30,6 +32,9 @@ import com.codyy.slr.vo.ReturnVoOne;
  *
  */
 public class TokenFilter implements Filter {
+
+	private static final Logger log = Logger.getLogger(TokenFilter.class);
+
 	// 不需要过滤的路径
 	private List<String> excludePath;
 
@@ -104,7 +109,7 @@ public class TokenFilter implements Filter {
 			chain.doFilter(req, resp);
 		} catch (ExecutionException e) {
 			resp.getWriter().write(JSONObject.toJSONString(new ReturnVoOne(Constants.FAILED, "请求失败")));
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 

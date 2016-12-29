@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ import com.codyy.slr.vo.ReturnVoOne;
 @Controller
 @RequestMapping("base/dmsserver")
 public class DmsServerController {
+
+	private static final Logger log = Logger.getLogger(DmsServerController.class);
 
 	@Autowired
 	DmsServerService dmsServerService;
@@ -59,7 +62,7 @@ public class DmsServerController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "查询失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoList<DmsServerVo>(page, code, msg);
 	}
@@ -80,7 +83,7 @@ public class DmsServerController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "查询失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoList<DmsServerVo>(code, msg, dmsServerList);
 	}
@@ -105,7 +108,7 @@ public class DmsServerController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<DmsServer>(code, msg);
 	}
@@ -164,7 +167,8 @@ public class DmsServerController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
+			;
 		}
 		return new ReturnVoOne<DmsServer>(code, msg);
 	}

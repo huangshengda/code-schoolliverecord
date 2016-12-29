@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.AntPathMatcher;
@@ -27,6 +28,8 @@ import com.codyy.slr.service.CommonsService;
 @RequestMapping("/download")
 public class CommonsController {
 
+	private static final Logger log = Logger.getLogger(CommonsController.class);
+
 	@Autowired
 	private CommonsService commonsService;
 
@@ -48,9 +51,9 @@ public class CommonsController {
 			try {
 				res.sendError(404);
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				log.error(e1.toString());
 			}
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 
@@ -76,7 +79,7 @@ public class CommonsController {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 

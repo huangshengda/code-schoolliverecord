@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,9 @@ import com.codyy.slr.vo.ReturnVoOne;
 @Controller
 @RequestMapping("base/classlevel")
 public class ClasslevelController {
+
+	private static final Logger log = Logger.getLogger(ClasslevelController.class);
+
 	@Autowired
 	ClasslevelService classlevelService;
 
@@ -49,7 +53,7 @@ public class ClasslevelController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoList<Classlevel>(code, msg, classlevelList);
 	}
@@ -74,7 +78,7 @@ public class ClasslevelController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<Classlevel>(code, msg);
 	}
@@ -127,7 +131,7 @@ public class ClasslevelController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "操作失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<Classlevel>(code, msg);
 	}
@@ -160,7 +164,7 @@ public class ClasslevelController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "排序失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<Classlevel>(code, msg);
 	}

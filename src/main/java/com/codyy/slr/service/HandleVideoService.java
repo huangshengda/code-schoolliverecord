@@ -154,7 +154,7 @@ public class HandleVideoService {
 				list.add(e.getFileName().toString());
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return list;
@@ -207,7 +207,7 @@ public class HandleVideoService {
 				return time;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return 0;

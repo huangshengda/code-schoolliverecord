@@ -120,7 +120,7 @@ public class HandleLiveFinishService {
 
 			log.info(logPrefix + "finishLive end.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			log.info(logPrefix + "finish fail.");
 		}
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,8 @@ import com.codyy.slr.vo.ReturnVoOne;
  */
 @Controller
 public class ResCommentController {
+
+	private static final Logger log = Logger.getLogger(ResCommentController.class);
 
 	@Autowired
 	private ResCommentService resCommentService;
@@ -73,7 +76,7 @@ public class ResCommentController {
 				returnVoOne.setMsg("添加评论失败");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.setMsg("添加评论失败");
 		}
@@ -123,7 +126,7 @@ public class ResCommentController {
 			page = resCommentService.getResCommentPageList(page);
 			returnVoList = new ReturnVoList<ResCommentVo>(page);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			returnVoList.setCode(Constants.FAILED);
 			returnVoList.setMsg("操作失败");
 		}
@@ -149,7 +152,7 @@ public class ResCommentController {
 			page = resCommentService.getSubResCommentPageList(page);
 			returnVoList = new ReturnVoList<ResCommentVo>(page);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			returnVoList.setCode(Constants.FAILED);
 			returnVoList.setMsg("操作失败");
 		}
@@ -179,7 +182,7 @@ public class ResCommentController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "获取评论失败";
-			e.printStackTrace();
+			log.error(e.toString());
 			return new ReturnVoList<ResCommentVo>(code, msg, null);
 		}
 		ReturnVoList<ResCommentVo> returnVoList = new ReturnVoList<ResCommentVo>(page, code, msg);

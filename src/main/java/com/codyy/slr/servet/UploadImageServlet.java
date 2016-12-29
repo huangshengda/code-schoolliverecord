@@ -98,7 +98,7 @@ public class UploadImageServlet extends HttpServlet {
 			one.setCode(Constants.FAILED);
 			one.setMsg("上传异常");
 			resp.getWriter().write(JSONObject.toJSONString(one));
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 

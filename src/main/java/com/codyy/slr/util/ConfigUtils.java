@@ -9,8 +9,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 /**
  * 配置文件
@@ -20,7 +19,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class ConfigUtils {
 
-	private static final Log logger = LogFactory.getLog(ConfigUtils.class);
+	private static final Logger log = Logger.getLogger(ConfigUtils.class);
 
 	private static final String DEPLOY_CONFIG_PROPERTIES = "deploy-config.properties";
 
@@ -40,14 +39,14 @@ public class ConfigUtils {
 				map.put(entry.getKey().toString(), entry.getValue().toString());
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error("load upload.properties wrong");
+			log.error("load upload.properties wrong");
+			log.error(e.toString());
 		} finally {
 			try {
 				deployIn.close();
 				operationIn.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error(e.toString());
 			}
 		}
 	}
