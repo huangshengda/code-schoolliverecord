@@ -217,12 +217,11 @@ $(function(){
 		var params = {resourcePath: resourceId};
 		CDUtil.ajaxPost("/resource/sysscreenshot/get",params,function(retVO){
 			if(retVO.code == 0){
-				layer.close(index); 
+				layer.close(index);
+				layer.msg(retVO.msg);
+				return;
 			}
 			var dataVO = retVO.data;
-			if(ValueCheck.isNull(dataVO)){
-				layer.msg(retVO.msg);
-			}
 			var len = dataVO.length;
 			var rows = Math.ceil(len/3);
 			var larH = 150+150*rows;
