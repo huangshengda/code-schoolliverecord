@@ -4337,6 +4337,7 @@ webpackJsonp([1,6],[
 			/*跳转到上传资源页面*/
 			openUploadup: function openUploadup() {
 				sessionStorage.removeItem("resourceId");
+				sessionStorage.setItem("nav", "basic");
 				window.open(ROOT_UI + "/front/path/upload?token=" + sessionStorage.getItem("token"));
 			}
 		}
