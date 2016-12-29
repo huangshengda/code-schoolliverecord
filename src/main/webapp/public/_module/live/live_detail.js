@@ -17,6 +17,7 @@ $(function() {
 		tool = vm.module["tool"],
 		flashBuilder = vm.module["playerBuilder"];
 		CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
+			console.log(retVO);
 		if (retVO.code == 1) {
 			//课程名称，年级、学科、主讲教师
 			var resourceName = retVO.data.resourceName;
