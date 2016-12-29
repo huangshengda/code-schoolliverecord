@@ -2048,18 +2048,17 @@ webpackJsonp([1,6],[
 	 * 表格中的操作---编辑用户
 	**/
 	var userEdit = function userEdit(params, dom) {
+		$("#edit_password").attr("data-vali", "");
 		$("#edit_userType option[value='" + params.userType + "']").prop("selected", true);
 		$('#edit_username').text(params.username);
 		$('#edit_realname').val(params.realname);
 		$('#edit_userId').val(params.userId);
 		$("#edit_password").val(params.password);
 		var pwd = $("#edit_password").val();
-		$("input#edit_password").change(function () {
+		$("#edit_password").change(function () {
 			$("#edit_password").attr("data-vali", "password");
-			var pwd = md5($("#edit_password").val());
+			pwd = md5($("#edit_password").val());
 		});
-		console.log(pwd);
-		$("#edit_password").attr("data-vali", "");
 		layer.open({
 			type: 1,
 			title: '编辑用户',
@@ -2371,8 +2370,7 @@ webpackJsonp([1,6],[
 	      "name": "password",
 	      "id": "edit_password",
 	      "value": "",
-	      "data-vali": "",
-	      "maxlength": "18"
+	      "data-vali": ""
 	    },
 	    domProps: {
 	      "value": ""
@@ -5301,6 +5299,9 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
+	//
+	//
+	//
 
 	var _data = { mycourceList: "", pages: "" };
 	/****点击进入点播详情页****/
@@ -5328,6 +5329,12 @@ webpackJsonp([1,6],[
 	  var _self = this;
 	  var params = { curPage: newPage, pageSize: 16 };
 	  CDUtil.ajaxPost("/resource/myresource/list", params, function (retVO) {
+	    /*  无消息显示 */
+	    if (retVO.totalDatas == 0) {
+	      $('.data-none').show();
+	    } else {
+	      $('.data-none').hide();
+	    }
 	    _data.mycourceList = retVO;
 	    _data.pages = retVO.totalDatas;
 	    var htmlStr = "";
@@ -5354,10 +5361,6 @@ webpackJsonp([1,6],[
 	        htmlStr += '<p class="ft12 c9 tel"><span class="sub-code" title=' + data.classlevelName + '>' + classLevelName + '</span>&nbsp;' + data.subjectName + '&nbsp;' + data.author + '</p>';
 	        htmlStr += '<div class="sub-del" onClick="mysubjectDel(\'' + data.resourceId + '\')"><i class="iconfont icon-delete"></i></div>';
 	        htmlStr += ' </div>';
-	        /*  无消息显示 */
-	        if (data.resourceId == "") {
-	          htmlStr += '<div id="sub_list"><p>暂无相关数据</p></div>';
-	        }
 	        return htmlStr;
 	      },
 	      //执行页面查询的方法
@@ -5420,15 +5423,25 @@ webpackJsonp([1,6],[
 	    staticClass: "search"
 	  }, [_vm._v("\n\t\t\t\t共" + _vm._s(_vm.pages) + "个资源\n\t\t\t")]), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  }), _vm._v(" "), _c('div', {
+	  }), _vm._v(" "), _vm._m(0)])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "man-list"
+	  }, [_c('p', {
+	    staticClass: "data-none"
+	  }, [_c('img', {
+	    attrs: {
+	      "src": "'+ROOT_UI_PUBLIC+'../../public/_compnents/v1/images/grid_have_nodata.png"
+	    }
+	  })]), _vm._v(" "), _c('div', {
 	    staticClass: "list mt40",
 	    attrs: {
 	      "id": "sub_list"
 	    }
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "clear"
-	  })])])])
-	},staticRenderFns: []}
+	  })])
+	}]}
 	if (true) {
 	  module.hot.accept()
 	  if (module.hot.data) {
