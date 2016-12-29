@@ -30,6 +30,8 @@ public class CommonsController {
 
 	private static final Logger log = Logger.getLogger(CommonsController.class);
 
+	private static final Logger log = Logger.getLogger(CommonsController.class);
+
 	@Autowired
 	private CommonsService commonsService;
 
