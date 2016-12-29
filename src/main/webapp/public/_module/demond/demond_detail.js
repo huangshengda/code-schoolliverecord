@@ -307,11 +307,16 @@ $(function() {
 		params.resourceId = resourceId;
 		params.commentContent = value;
 		params.parentCommentId = $(oneDom).attr("data-resourceCommentId");
+		//alert($(txDom).attr("data-replyUserId"));
 		params.replyToUserId = $(txDom).attr("data-replyUserId");
+		if(params.replyToUserId == undefined || params.replyToUserId == null){
+			params.replyToUserId = $(wDom).attr("data-replyUserId");
+		}
 		CDUtil.ajaxPost("/resource/comment/add",params,function(retVO){
 			if(retVO.code == 1){
 				layer.msg('回复成功');
 				var data = retVO.data;
+				//alert(data.replyToUserName);
 				var htmlStr = '<div class="com-comments-level2" style="cursor: pointer;" '
 					+' data-commentUserId="'+data.commentUserId+'" data-parentCommentId="'+data.parentCommentId+'"'
 					+' data-userName="'+data.userName+'" data-resourceCommentId="'+data.resourceCommentId+'" >'
@@ -345,12 +350,15 @@ $(function() {
 	$("#comment_one_list").on("click",".comment-two-reply",function(){
 		var twoDom = $(this).parents(".com-comments-level2");
 		var topDom = $(this).parents(".comment-two");
+		var wDom = $(topDom).find(".comment-two-write").get(0);
 		var txDom = $(topDom).find(".comment-two-textarea").get(0);
 		var userName = sessionStorage.getItem("realname");
 		var replyName = $(twoDom).attr("data-username");
 		var replyUserId = $(twoDom).attr("data-commentUserId");
+		$(wDom).attr("data-replyUserId",replyUserId);
+		$(wDom).attr("data-replyUserName",replyName);
 		$(txDom).attr("data-replyUserId",replyUserId);
-		$(txDom).attr("data-replyUserName",replyUserId);
+		$(txDom).attr("data-replyUserName",replyName);
 		$(txDom).attr("placeholder",userName+"回复"+replyName+"：");
 		$(txDom).focus();
 	});
