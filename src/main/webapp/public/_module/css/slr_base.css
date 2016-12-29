@@ -387,9 +387,8 @@ tr:nth-child(2n) {
 	margin-top: 3px;
 	border: 1px solid #ececec;
 	border-radius: 1px;
-	cursor: pointer;
 }
-
+.s-right .icon-search{cursor: pointer;}
       
     /* 列表 */
 .list {
