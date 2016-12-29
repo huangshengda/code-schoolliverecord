@@ -60,7 +60,7 @@ public class LiveSchedule {
 			FileUtils.delDirectory(Constants.TEMP);
 		} catch (IOException e) {
 			log.info("del file fail");
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		log.info("del directory end.");
 	}

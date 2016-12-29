@@ -7,14 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.fastjson.JSONObject;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.vo.ReturnVoOne;
 
 public class ProgressServlet extends HttpServlet {
-	/**
-	 * 
-	 */
+
+	private static final Logger log = Logger.getLogger(ProgressServlet.class);
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -39,12 +41,12 @@ public class ProgressServlet extends HttpServlet {
 		} catch (IOException e) {
 			one.setCode(Constants.FAILED);
 			one.setMsg("获取进度失败");
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		try {
 			response.getWriter().write(JSONObject.toJSONString(one));
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 

@@ -85,7 +85,7 @@ public class ResourceController {
 			result = new ReturnVoList<ResourceVo>(page);
 		} catch (Exception e) {
 			result = new ReturnVoList<ResourceVo>(Constants.FAILED, "查询失败", null);
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return result;
@@ -111,7 +111,7 @@ public class ResourceController {
 			result = new ReturnVoList<ResourceVo>(page);
 		} catch (Exception e) {
 			result = new ReturnVoList<ResourceVo>(Constants.FAILED, "查询失败", null);
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return result;
@@ -155,7 +155,7 @@ public class ResourceController {
 			result = new ReturnVoOne();
 		} catch (Exception e) {
 			result = new ReturnVoOne(Constants.FAILED, "删除失败");
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return result;
 	}
@@ -218,7 +218,7 @@ public class ResourceController {
 			}
 		} catch (Exception e) {
 			result = new ReturnVoOne(Constants.FAILED, "编辑资源异常");
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return result;
 	}
@@ -241,7 +241,7 @@ public class ResourceController {
 			result = new ReturnVoOne<ResourceVo>(resVo);
 		} catch (Exception e) {
 			result = new ReturnVoOne<ResourceVo>(Constants.FAILED, "查询失败");
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return result;
 	}
@@ -264,7 +264,7 @@ public class ResourceController {
 			}
 		} catch (Exception e) {
 			result = new ReturnVoOne<List<Map<String, String>>>(Constants.FAILED, "截图失败");
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return result;
 	}
@@ -289,7 +289,7 @@ public class ResourceController {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.setMsg("添加资源失败");
 		}
@@ -312,7 +312,7 @@ public class ResourceController {
 			}
 			returnVoOne.setData(msg);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.setMsg("获取信息失败");
 		}
@@ -337,7 +337,7 @@ public class ResourceController {
 							Thread.sleep(Constants.CONTACT_VIODE_THREAD_WAIT_TIME * 1000);
 						} catch (InterruptedException e) {
 							log.error("liveResourceId =" + liveResourceId + " :合并视频,线程等待时间出错.");
-							e.printStackTrace();
+							log.error(e.toString());
 						}
 						handleLiveFinishService.finishLive(liveResourceId);
 					}
@@ -348,7 +348,7 @@ public class ResourceController {
 				returnVoOne.setMsg("结束课程失败,更新直播路径为空失败");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			returnVoOne.setCode(Constants.FAILED);
 			returnVoOne.setMsg("结束课程异常");
 		}

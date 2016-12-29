@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +26,8 @@ import com.codyy.slr.vo.ReturnVoOne;
 */
 @Controller
 public class MenuController {
+
+	private static final Logger log = Logger.getLogger(MenuController.class);
 
 	@RequestMapping("menu")
 	@ResponseBody
@@ -55,7 +58,7 @@ public class MenuController {
 				list.add(Constants.MYCOURSE_MENU);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			one.setCode(Constants.FAILED);
 			one.setMsg("获取菜单失败");
 		}

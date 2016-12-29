@@ -36,7 +36,7 @@ public class DelFileThread implements Runnable {
 					log.info("delete " + fileStr + " success.");
 				} catch (IOException e) {
 					log.info("delete " + fileStr + " fail.");
-					e.printStackTrace();
+					log.error(e.toString());
 				}
 			}
 		}

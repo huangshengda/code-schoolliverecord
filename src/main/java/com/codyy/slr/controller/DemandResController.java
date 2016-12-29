@@ -3,6 +3,7 @@ package com.codyy.slr.controller;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ import com.codyy.slr.vo.ReturnVoList;
 @Controller
 @RequestMapping("/demand")
 public class DemandResController {
+
+	private static final Logger log = Logger.getLogger(DemandResController.class);
 
 	@Autowired
 	private DemandResService demandResService;
@@ -77,7 +80,7 @@ public class DemandResController {
 			result = new ReturnVoList<ResourceVo>(page);
 		} catch (Exception e) {
 			result = new ReturnVoList<ResourceVo>(Constants.FAILED, "查询失败", null);
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 		return result;

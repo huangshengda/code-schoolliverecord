@@ -136,7 +136,7 @@ public class ChatRoomAnnotation {
 
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error(e.toString());
 				try {
 					client.session.close();
 				} catch (IOException e1) {
@@ -151,7 +151,7 @@ public class ChatRoomAnnotation {
 		try {
 			return TokenUtils.getUserFromCache(token, agent);
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return null;
 		}
 	}
