@@ -216,6 +216,9 @@ $(function(){
 		var resourceId = $(topDom).attr("data-resourceid");
 		var params = {resourcePath: resourceId};
 		CDUtil.ajaxPost("/resource/sysscreenshot/get",params,function(retVO){
+			if(retVO.code == 0){
+				layer.close(index); 
+			}
 			var dataVO = retVO.data;
 			if(ValueCheck.isNull(dataVO)){
 				layer.msg(retVO.msg);
