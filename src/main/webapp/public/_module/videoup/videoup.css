@@ -6,7 +6,7 @@ input[type="checkbox"]{ width: 13px; height: 13px; vertical-align: middle; margi
 .w300{width: 300px;} 
 .w800{width: 800px;} 
 .sysprint-img-button{display: none;}
-.input-fileup{ position: absolute; top: 0px; left: 0px; z-index: 9; height: 28px; opacity: 0; cursor: pointer !important; } 
+.input-fileup{ position: absolute; top: 0px; left: 0px; z-index: 9; height: 28px; opacity: 0; cursor: pointer !important; font-size: 0px;} 
 .del-fileup{ margin-top: 30px; float: right; } .del-fileup:hover{ cursor: pointer; } 
 .showfile-name{ display: inline-block; vertical-align: top; margin: 0px !important; max-width: 200px !important; cursor: pointer; } 
 .showfile-name-input{ display: none; }
