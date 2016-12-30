@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ import com.codyy.slr.vo.BasicInfoVo;
 @RequestMapping("/front/path")
 public class FrontPathController {
 
+	private static final Logger log = Logger.getLogger(FrontPathController.class);
+
 	@Autowired
 	private BasicInfoService basicInfoService;
 
@@ -41,7 +44,7 @@ public class FrontPathController {
 			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
 			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return Constants.FRONT_INDEX_PATH;
 		}
 
@@ -60,7 +63,7 @@ public class FrontPathController {
 			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
 			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return Constants.FRONT_INDEX_PATH;
 		}
 		return Constants.FRONT_LIVE_PATH;
@@ -78,7 +81,7 @@ public class FrontPathController {
 			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
 			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return Constants.FRONT_INDEX_PATH;
 		}
 		return Constants.FRONT_DEITPWD_PATH;
@@ -96,7 +99,7 @@ public class FrontPathController {
 			BasicInfoVo infoVo = basicInfoService.getBasicInfo();
 			req.setAttribute("basicInfo", infoVo);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return Constants.FRONT_INDEX_PATH;
 		}
 		return Constants.FRONT_UPLOAD_PATH;

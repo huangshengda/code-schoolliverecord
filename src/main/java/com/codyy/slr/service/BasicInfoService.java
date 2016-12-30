@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ import com.codyy.slr.vo.BasicInfoVo;
  */
 @Service
 public class BasicInfoService {
+
+	private static final Logger log = Logger.getLogger(BasicInfoService.class);
 
 	@Autowired
 	private BasicInfoMapper basicInfoMapper;
@@ -58,7 +61,7 @@ public class BasicInfoService {
 
 			return basicInfoMapper.updateBasicInfo(list) == 1;
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return false;
 		}
 	}

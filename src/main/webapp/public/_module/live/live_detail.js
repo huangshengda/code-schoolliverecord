@@ -17,8 +17,10 @@ $(function() {
 		tool = vm.module["tool"],
 		flashBuilder = vm.module["playerBuilder"];
 		CDUtil.ajaxPost("/resource/get", {resourceId: resourceId},function(retVO){
-			console.log(retVO);
-		if (retVO.code == 1) {
+			if(!retVO.data.storePath || retVO.data.livingFlag != 'Y'){
+				layer.msg("直播课程已结束！");
+			}
+			if (retVO.code == 1) {
 			//课程名称，年级、学科、主讲教师
 			var resourceName = retVO.data.resourceName;
 			var classlevelName = retVO.data.classlevelName;

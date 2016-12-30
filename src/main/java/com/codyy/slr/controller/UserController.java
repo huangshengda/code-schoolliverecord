@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,9 @@ import com.codyy.slr.vo.ReturnVoOne;
  */
 @Controller
 public class UserController {
+
+	private static final Logger log = Logger.getLogger(UserController.class);
+
 	@Autowired
 	private UserService userService;
 
@@ -60,7 +64,7 @@ public class UserController {
 			user = userService.getUserByUserNameAndPw(map);
 			if (user != null) {
 				user.setToken(UUIDUtils.getUUID());
-				// token+agent作为key 增加破解难度
+				// token+agent作为key增加破解难度
 				TokenUtils.putUserIdToCache(user.getToken(), agent, user);
 				// token放入session
 				req.getSession().setAttribute("token", user.getToken());
@@ -79,7 +83,7 @@ public class UserController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "登录失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<User>(code, msg, user);
 	}
@@ -99,9 +103,12 @@ public class UserController {
 			String agent = req.getHeader("User-Agent");
 			User user = (User) req.getAttribute("user");
 			TokenUtils.removeUserFormCache(user.getToken(), agent);
+			// 销毁session
+			req.getSession().invalidate();
 		} catch (Exception e) {
 			one.setMsg("退出失败");
 			one.setCode(Constants.FAILED);
+			log.error(e.toString());
 		}
 		one.setData(Constants.COLUMN);
 		return one;
@@ -138,7 +145,7 @@ public class UserController {
 		} catch (Exception e) {
 			code = Constants.FAILED;
 			msg = "查询失败";
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoList<User>(page, code, msg);
 	}
@@ -172,7 +179,7 @@ public class UserController {
 				try {
 					count = userService.addUser(user);
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error(e.toString());
 					return new ReturnVoOne<User>(Constants.FAILED, "操作失败");
 				}
 			} else {
@@ -204,7 +211,7 @@ public class UserController {
 		try {
 			count = userService.deleteByPrimaryKey(userId);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			return new ReturnVoOne<User>(Constants.FAILED, "操作失败");
 		}
 
@@ -240,7 +247,7 @@ public class UserController {
 				} catch (Exception e) {
 					code = Constants.FAILED;
 					msg = "操作失败";
-					e.printStackTrace();
+					log.error(e.toString());
 				}
 			} else {
 				code = Constants.FAILED;
@@ -265,7 +272,7 @@ public class UserController {
 					msg = "操作失败";
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error(e.toString());
 				code = Constants.FAILED;
 				msg = "操作失败";
 			}
@@ -314,7 +321,7 @@ public class UserController {
 			user.setPassword(null);
 		} catch (ExecutionException e) {
 			new ReturnVoOne<User>(Constants.FAILED, "获取失败", user);
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return new ReturnVoOne<User>(Constants.SUCCESS, "获取成功", user);
 	}

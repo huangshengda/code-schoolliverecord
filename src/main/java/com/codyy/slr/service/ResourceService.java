@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,8 @@ import com.codyy.slr.vo.ResourceVo;
 
 @Service
 public class ResourceService {
+
+	private static final Logger log = Logger.getLogger(ResourceService.class);
 
 	@Autowired
 	private ResourceMapper resourceMapper;
@@ -87,7 +90,7 @@ public class ResourceService {
 			}
 		} catch (IOException e) {
 			flag = false;
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 		return flag;
 
