@@ -35,7 +35,7 @@ public class ChatRoomAnnotation {
 	private static final Logger log = Logger.getLogger("ChatRoomAnnotation");
 
 	private static final Set<ChatRoomAnnotation> connections = Collections.synchronizedSet(new HashSet<ChatRoomAnnotation>());
-	// 统计每个资源在线聊天人数
+	// 统计每个资源在线聊 天人数
 	private static final Map<String, AtomicInteger> resourceIdCountMap = new ConcurrentHashMap<String, AtomicInteger>();
 
 	private Session session;
