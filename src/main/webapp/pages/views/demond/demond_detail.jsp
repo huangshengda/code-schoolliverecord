@@ -18,8 +18,10 @@
 <div class="container" >
 	<p class="l-title">
 		<span id="resource_name" style="margin-right: 15px;" ></span>
+		<span id="resource_info" class="ft12 mr15 c6" title=""></span>
 		<span class="c9 mr15 ft12"><i class="iconfont icon-play-times ft18"></i><span id="play_times" class="ft12" >0</span></span>
-		<span id="resource_info" class="ft12 c6" title=""></span>
+		<span class="c9 mr15 ft12" id="down_video"><i class="iconfont icon-download ft18"></i><span class="ft12" id="down_times"></span></span>
+		<input type="hidden" id="video" value="">
 	</p>
 	<div class="row" >
 		<div class="col-md-9" >

@@ -724,3 +724,5 @@ table tr td{ overflow:hidden;text-overflow:ellipsis;}
 .c-text textarea#chat{text-indent: 0;}
 .data-none{display:none;text-align:center;}
 ::-ms-clear{display: none;}
+#batch_user{margin: 35px;}
+#batch_user>div{margin-bottom:20px;}
