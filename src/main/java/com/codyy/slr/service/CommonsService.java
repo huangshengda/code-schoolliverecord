@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
+import com.codyy.slr.util.StringUtils;
+
 /**
  * File Description      : 公共方法:图片、视频流下载
  * Author                : GuangY
@@ -75,7 +77,9 @@ public class CommonsService {
 		response.setContentType("application/x-download");
 		response.setHeader("Content-Range", String.format("bytes %s-%s/%s", start, end, length));
 		response.setHeader("Content-Length", String.format("%s", contentLength));
-		response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+		if (StringUtils.isNotEmpty(range)) {
+			response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+		}
 		// 设置响应客户端内容类型
 
 		int bytesRead;
