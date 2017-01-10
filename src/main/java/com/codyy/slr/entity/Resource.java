@@ -22,6 +22,8 @@ public class Resource {
 
 	private Long viewCnt;
 
+	private Long downlloadCnt;
+
 	private String sourceType;
 
 	private String storePath;
@@ -43,6 +45,14 @@ public class Resource {
 	private long size;
 
 	private Date createTime;
+
+	public Long getDownlloadCnt() {
+		return downlloadCnt;
+	}
+
+	public void setDownlloadCnt(Long downlloadCnt) {
+		this.downlloadCnt = downlloadCnt;
+	}
 
 	public long getSize() {
 		return size;
@@ -182,9 +192,45 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [resourceId=" + resourceId + ", resourceName=" + resourceName + ", subjectId=" + subjectId + ", author=" + author + ", thumbPath="
-				+ thumbPath + ", viewCnt=" + viewCnt + ", sourceType=" + sourceType + ", storePath=" + storePath + ", livingPath=" + livingPath
-				+ ", livingFlag=" + livingFlag + ", deleteFlag=" + deleteFlag + ", deleteUserId=" + deleteUserId + ", deleteTime=" + deleteTime
-				+ ", createUserId=" + createUserId + ", userId=" + userId + ", createTime=" + createTime + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Resource [resourceId=");
+		builder.append(resourceId);
+		builder.append(", resourceName=");
+		builder.append(resourceName);
+		builder.append(", subjectId=");
+		builder.append(subjectId);
+		builder.append(", author=");
+		builder.append(author);
+		builder.append(", thumbPath=");
+		builder.append(thumbPath);
+		builder.append(", viewCnt=");
+		builder.append(viewCnt);
+		builder.append(", downlloadCnt=");
+		builder.append(downlloadCnt);
+		builder.append(", sourceType=");
+		builder.append(sourceType);
+		builder.append(", storePath=");
+		builder.append(storePath);
+		builder.append(", livingPath=");
+		builder.append(livingPath);
+		builder.append(", livingFlag=");
+		builder.append(livingFlag);
+		builder.append(", deleteFlag=");
+		builder.append(deleteFlag);
+		builder.append(", deleteUserId=");
+		builder.append(deleteUserId);
+		builder.append(", deleteTime=");
+		builder.append(deleteTime);
+		builder.append(", createUserId=");
+		builder.append(createUserId);
+		builder.append(", userId=");
+		builder.append(userId);
+		builder.append(", size=");
+		builder.append(size);
+		builder.append(", createTime=");
+		builder.append(createTime);
+		builder.append("]");
+		return builder.toString();
 	}
+
 }
