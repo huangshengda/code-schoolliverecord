@@ -62,7 +62,7 @@ $(function() {
 	 * 点击下载视频
 	 */
 	$('#down_video').click(function(){
-		var video = $("#video").val();
+		var video = $("#video").val()+ "&resourceId=" + resourceId;
 		window.location=video; 
 		//下载次数
 		CDUtil.ajaxPost("/resource/downloadcnt/addone", {resourceId: resourceId},function(retVO) {
