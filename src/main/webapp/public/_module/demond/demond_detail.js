@@ -67,7 +67,10 @@ $(function() {
 		//下载次数
 		CDUtil.ajaxPost("/resource/downloadcnt/addone", {resourceId: resourceId},function(retVO) {
 			if(retVO.code == 1){
-				
+				$("#down_times").html(retVO.data);
+			}
+			if (retVO.code == 0) {
+				layer.msg(retVO.msg);
 			}
 		});
 	});
