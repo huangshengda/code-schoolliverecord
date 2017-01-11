@@ -4,6 +4,7 @@ import static java.nio.file.StandardOpenOption.READ;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.file.Files;
@@ -15,7 +16,12 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.codyy.slr.dao.ResourceMapper;
+import com.codyy.slr.util.StringUtils;
+import com.codyy.slr.vo.ResourceVo;
 
 /**
  * File Description      : 公共方法:图片、视频流下载
@@ -35,6 +41,9 @@ public class CommonsService {
 	private static final int BUFFER_LENGTH = 1024 * 16;
 	private static final long EXPIRE_TIME = 1000 * 60 * 60 * 24;
 	private static final Pattern RANGE_PATTERN = Pattern.compile("bytes=(?<start>\\d*)-(?<end>\\d*)");
+
+	@Autowired
+	private ResourceMapper resourceMapper;
 
 	/**
 	 * 把文件作为流返回给客服端
@@ -67,6 +76,20 @@ public class CommonsService {
 		int contentLength = end - start + 1;
 
 		response.reset();
+
+		ResourceVo vo = resourceMapper.getResource(req.getParameter("resourceId"));
+
+		if (vo != null) {
+			String showFileName = vo.getResourceName() + "." + realPath.substring(realPath.indexOf(".") + 1);
+			String userAgent = req.getHeader("User-Agent").toLowerCase();
+			if (userAgent.indexOf("msie") > 0 || userAgent.indexOf("trident") > 0) {// IE
+				showFileName = URLEncoder.encode(showFileName, "UTF-8");
+			} else {
+				showFileName = new String(showFileName.getBytes("utf-8"), "iso8859-1");
+			}
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + showFileName + "\"");
+		}
+
 		response.setBufferSize(BUFFER_LENGTH);
 		response.setHeader("Accept-Ranges", "bytes");
 		response.setDateHeader("Last-Modified", Files.getLastModifiedTime(file).toMillis());
@@ -75,7 +98,9 @@ public class CommonsService {
 		response.setContentType("application/x-download");
 		response.setHeader("Content-Range", String.format("bytes %s-%s/%s", start, end, length));
 		response.setHeader("Content-Length", String.format("%s", contentLength));
-		response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+		if (StringUtils.isNotEmpty(range)) {
+			response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+		}
 		// 设置响应客户端内容类型
 
 		int bytesRead;
