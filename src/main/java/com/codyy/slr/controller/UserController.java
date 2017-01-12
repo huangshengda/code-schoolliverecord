@@ -51,7 +51,12 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("login")
 	public ReturnVoOne<User> login(User user, HttpServletRequest req) {
+
 		String agent = req.getHeader("User-Agent");
+		// 单点登录
+		if (StringUtils.isNotEmpty(req.getParameter("User-Agent"))) {
+			agent = req.getParameter("User-Agent");
+		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code = Constants.SUCCESS;
 		String msg = "登录成功";

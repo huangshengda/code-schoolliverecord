@@ -16,6 +16,7 @@ import com.codyy.slr.util.UUIDUtils;
 
 @Service
 public class UserService {
+
 	@Autowired
 	private UserMapper userMapper;
 

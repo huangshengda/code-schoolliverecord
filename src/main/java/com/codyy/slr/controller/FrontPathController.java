@@ -1,5 +1,7 @@
 package com.codyy.slr.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,12 +10,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.service.BasicInfoService;
+import com.codyy.slr.service.UserService;
+import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.util.TokenUtils;
+import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.vo.BasicInfoVo;
 
 /**
@@ -31,6 +36,30 @@ public class FrontPathController {
 
 	@Autowired
 	private BasicInfoService basicInfoService;
+
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping("index")
+	public String getIndex(HttpServletRequest req, RedirectAttributes attr) {
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("username", attr.getFlashAttributes().get("username"));
+			map.put("password", attr.getFlashAttributes().get("password"));
+			User user = userService.getUserByUserNameAndPw(map);
+			if (user != null) {
+				user.setToken(UUIDUtils.getUUID());
+				// token+agent作为key增加破解难度
+				String agent = req.getHeader("User-Agent");
+				TokenUtils.putUserIdToCache(user.getToken(), agent, user);
+				// token放入session
+				req.getSession().setAttribute("token", user.getToken());
+			}
+		} catch (Exception e) {
+			log.error("", e);
+		}
+		return Constants.FRONT_INDEX_PATH;
+	}
 
 	@RequestMapping("demond")
 	public String getDemondPath(HttpServletRequest req) {
