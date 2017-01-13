@@ -59,7 +59,7 @@ public class UserController {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code = Constants.SUCCESS;
-		String msg = "登录成功";
+		String msg = "操作成功";
 		if ((StringUtils.isEmpty(user.getUsername())) || (StringUtils.isEmpty(user.getPassword()))) {
 			return new ReturnVoOne<User>(0, "用户名或密码为空");
 		}
@@ -87,7 +87,7 @@ public class UserController {
 			}
 		} catch (Exception e) {
 			code = Constants.FAILED;
-			msg = "登录失败";
+			msg = "操作失败失败";
 			log.error(e.toString());
 		}
 		return new ReturnVoOne<User>(code, msg, user);
