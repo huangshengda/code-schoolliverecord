@@ -21,6 +21,7 @@ public class ResourceVo {
 	private String thumbPath;
 	private String storePath;
 	private int viewCnt;
+	private int downloadCnt;
 	private String creatName;
 	private String size;
 	private String sourceType;
@@ -28,6 +29,14 @@ public class ResourceVo {
 	private List<String> opt;
 	private String type;
 	private String thumbName;
+
+	public int getDownloadCnt() {
+		return downloadCnt;
+	}
+
+	public void setDownloadCnt(int downloadCnt) {
+		this.downloadCnt = downloadCnt;
+	}
 
 	public ResourceVo() {
 		super();

@@ -14,7 +14,7 @@ import com.codyy.slr.vo.ReturnVoOne;
  * 
  * @Description: 网站基础信息(标题,图片,底部信息)
  * @author huangshengda  
- * @date 2016年12月6日   
+ * @date 2016年12月6日    
  *
  */
 @Controller

@@ -356,7 +356,7 @@ public class ResourceController {
 	}
 
 	/**
-	 * 结束直播课程
+	 * 资源阅览量加一
 	 */
 	@ResponseBody
 	@RequestMapping("viewcnt/addone")
@@ -373,6 +373,28 @@ public class ResourceController {
 		} catch (Exception e) {
 			one.setCode(Constants.FAILED);
 			one.setMsg("资源阅览量加一更新异常");
+		}
+		return one;
+	}
+
+	/**
+	 * 资源下载量加一
+	 */
+	@ResponseBody
+	@RequestMapping("downloadcnt/addone")
+	public ReturnVoOne<Integer> addResDownloadCnt(String resourceId) {
+		ReturnVoOne<Integer> one = new ReturnVoOne<Integer>();
+		try {
+			boolean flag = resourceService.addResDownloadCnt(resourceId);
+			if (!flag) {
+				one.setMsg("资源下载量加一更新失败");
+				one.setCode(Constants.FAILED);
+			}
+			int downloadcnt = resourceService.getResource(resourceId).getDownloadCnt();
+			one.setData(downloadcnt);
+		} catch (Exception e) {
+			one.setCode(Constants.FAILED);
+			one.setMsg("资源下载量加一更新异常");
 		}
 		return one;
 	}

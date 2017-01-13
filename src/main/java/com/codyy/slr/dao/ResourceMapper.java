@@ -95,4 +95,12 @@ public interface ResourceMapper {
 	 *
 	 */
 	int addResViewCnt(@Param("resourceId") String resourceId);
+
+	/**
+	 * 
+	 * @Description:资源下载加一
+	 * @return
+	 *
+	 */
+	int addResDownloadCnt(@Param("resourceId") String resourceId);
 }

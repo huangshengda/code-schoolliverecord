@@ -74,7 +74,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- 初始化前天需要的数据 -->
+	<!-- 初始化前端需要的数据 -->
 	<filter>
 		<filter-name>InitDataFilter</filter-name>
 		<filter-class>com.codyy.slr.filter.InitDataFilter</filter-class>
@@ -91,7 +91,7 @@
 		<init-param>
 			<param-name>excludePath</param-name>
 			<param-value>/login;/home/live/list;/demand/list;/base/classlevel/list;/base/subject/list;/resource/live/add;
-						 /resource/live/hasfinish;/front/path/live;/front/path/demond;/front/path/upload;base/dmsserver/list;
+						 /resource/live/hasfinish;/front/path/live;/front/path/demond;/front/path/upload;/front/path/index;base/dmsserver/list;
 						 /base/dmsserver/list/unpaged;/menu;/resource/live/finish;/base/basicinfo/get</param-value>
 		</init-param>
 	</filter>

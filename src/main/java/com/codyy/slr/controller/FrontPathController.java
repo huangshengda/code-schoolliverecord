@@ -1,18 +1,20 @@
 package com.codyy.slr.controller;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.druid.util.StringUtils;
 import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.service.BasicInfoService;
+import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.util.TokenUtils;
 import com.codyy.slr.vo.BasicInfoVo;
 
@@ -31,6 +33,16 @@ public class FrontPathController {
 
 	@Autowired
 	private BasicInfoService basicInfoService;
+
+	@RequestMapping("index")
+	public void getIndex(HttpServletRequest req, HttpServletResponse response, String token) throws IOException {
+		try {
+			req.getSession().setAttribute("token", token);
+		} catch (Exception e) {
+			log.error("", e);
+		}
+		response.sendRedirect(Constants.ROOT_SERVER);
+	}
 
 	@RequestMapping("demond")
 	public String getDemondPath(HttpServletRequest req) {

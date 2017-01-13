@@ -1,6 +1,11 @@
 <template>
 <div class="content" id="user_form">
-  <div class="subBtn"><button class="btn fr" @click="addUser">添加用户</button></div>
+  <div class="subBtn fr">
+  	<button class="btn mr15" @click="addUser">添加用户</button>
+  	<button class="btn mr15" @click="batchAdd">批量添加</button>
+  	<button class="btn" @click="">导出</button>
+  </div>
+  <div class="clear"></div>
   <div class="dashboard">
   <!-- 条件 start -->
     <form action="" id="condition">
@@ -105,6 +110,13 @@
     </div>
   </form>
 <!-- 添加用户弹窗表单 end -->
+<!-- 批量添加用户弹窗表单 start -->
+  <form action="" id="batch_user" class="layBox">
+   <div><button class="btn">模板下载</button></div>
+   <div>请先下载模板，录入数据后导入</div>
+   <div>Excel导入：<button class="btn">浏览</button></div>
+  </form>
+<!-- 批量添加用户弹窗表单 end -->
 </div>
 </template>
 <script>
@@ -332,6 +344,21 @@ export default {
 					}
 				}
 			});
+		},
+		batchAdd: function(){
+			layer.open({
+				type: 1,
+				title: '批量添加',
+				skin: 'layui-layer-rim',
+				//加上边框
+				area: ['450px', '300px'],
+				//宽高
+				btn: ['确定', '取消'],
+				content: $("#batch_user"),
+				yes: function(index, layero){
+					
+				}
+			})
 		}
 	}
 }

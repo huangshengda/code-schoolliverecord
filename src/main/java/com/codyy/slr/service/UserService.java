@@ -34,6 +34,7 @@ import com.codyy.slr.vo.ValueBean;
 
 @Service
 public class UserService {
+
 	@Autowired
 	private UserMapper userMapper;
 	final String PasswordRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|-|=|\\|/|<|>]{6,18}$";

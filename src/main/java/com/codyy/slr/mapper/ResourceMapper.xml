@@ -39,7 +39,7 @@
   	<!-- 获取资源信息 -->
   	<select id="getResourcePageList" resultType="com.codyy.slr.vo.ResourceVo" parameterType="com.codyy.slr.common.page.Page">
 		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,
-		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,DOWNLOAD_CNT downloadCnt,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
 		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName
 		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
 		JOIN resource_r_classlevel rrc ON res.RESOURCE_ID=rrc.RESOURCE_ID JOIN classlevel cl ON
@@ -73,7 +73,7 @@
 		select res.RESOURCE_ID resourceId,res.RESOURCE_NAME resourceName,res.AUTHOR author,res.SOURCE_TYPE sourceType,
 		(case when res.LIVING_FLAG = 'Y' then res.LIVING_PATH else res.STORE_PATH end) storePath,res.SIZE size,
 		res.LIVING_FLAG livingFlag,
-		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,res.SUBJECT_ID subjectId,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
+		res.THUMB_PATH thumbPath,res.VIEW_CNT viewCnt,DOWNLOAD_CNT downloadCnt,res.SUBJECT_ID subjectId,sub.SUBJECT_NAME subjectName,u.REALNAME creatName,
 		GROUP_CONCAT(cl.CLASSLEVEL_NAME ORDER BY cl.SORT ASC SEPARATOR '/') classlevelName,
 		GROUP_CONCAT(cl.CLASSLEVEL_ID ORDER BY cl.SORT ASC SEPARATOR ',') classlevelId
 		from resource res left join user u on res.CREATE_USER_ID = u.USER_ID left join subject sub on res.SUBJECT_ID = sub.SUBJECT_ID 
@@ -166,6 +166,10 @@
   
   <update id="addResViewCnt" parameterType = "java.lang.String">
   	update resource set VIEW_CNT = VIEW_CNT + 1 where RESOURCE_ID = #{resourceId};
+  </update>
+  
+  <update id="addResDownloadCnt" parameterType = "java.lang.String">
+  	update resource set DOWNLOAD_CNT = DOWNLOAD_CNT + 1 where RESOURCE_ID = #{resourceId};
   </update>
   
 </mapper>
