@@ -178,5 +178,68 @@
   </if>
   </select>
   
+  <!-- 批量添加用户 -->
+	<insert id="insertUsers" parameterType="java.util.List">
+		insert into base_user
+		(USER_ID,
+        USERNAME,
+        REALNAME,
+        PASSWORD,
+        USER_TYPE)
+		<foreach collection="list" item="items" open="(" close=")" separator="union all">
+			select 
+				#{items.userId},
+				#{items.username},
+				#{items.password},
+				#{items.realname},
+				#{items.userType},
+				#{items.createTime}
+			from dual
+		</foreach>
+	</insert>
   
+  <select id = "getUserExportList" resultType =  "com.codyy.slr.vo.UserExportModel">
+  SELECT 
+  t.USERNAME,t.REALNAME,
+	case t.USER_TYPE
+	when 'SUPER_ADMIN' then '超级管理员'
+	when 'ADMIN' then '管理员'
+	when 'TEACHER' then '教师'
+	else '学生' end USER_TYPE
+	FROM (
+		select t1.*, 
+		case t1.USER_TYPE
+		  when 'SUPER_ADMIN' then '0'
+		  else '1' end  
+		sort from (
+			<choose>
+			<when test="loginUserType != null and loginUserType == 'SUPER_ADMIN'">
+			select * from user
+			</when>
+			<otherwise>
+			select * from user u where u.USER_TYPE not like '%ADMIN%' 
+			union 
+			select * from user u where u.USER_ID = #{userId}
+			</otherwise>
+			</choose>
+		) t1 
+	)  t
+	WHERE
+	t.DELETE_FLAG = 'N' 
+	 <if test="username != null" >
+	AND
+	t.USERNAME like CONCAT('%',#{username},'%') ESCAPE '/'
+	</if>
+	 <if test="realname != null" >
+	AND
+	t.REALNAME like CONCAT('%',#{realname},'%') ESCAPE '/'
+	</if>
+	 <if test="userType != null and userType != '-1'" >
+	AND
+	t.USER_TYPE like CONCAT('%',#{userType},'%') ESCAPE '/'
+	</if>
+	ORDER BY t.sort, t.CREATE_TIME DESC
+  </select>
+  
+
 </mapper>

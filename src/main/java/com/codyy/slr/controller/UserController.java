@@ -1,17 +1,32 @@
 package com.codyy.slr.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
@@ -324,5 +339,104 @@ public class UserController {
 			log.error(e.toString());
 		}
 		return new ReturnVoOne<User>(Constants.SUCCESS, "获取成功", user);
+	}
+
+	/**
+	 * 
+	 * importUser:批量导入用户
+	 * 
+	 */
+	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
+	@ResponseBody
+	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token) throws IOException, ExecutionException {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.TEXT_PLAIN);
+		;
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("UTF-8");
+		resolver.setMaxInMemorySize(1024 * 1024);
+		resolver.setServletContext(request.getSession().getServletContext());
+		MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
+		Map<String, MultipartFile> filemap = multiRequest.getFileMap();
+		if (filemap.size() == 0) {
+			return new ReturnVoOne<User>(Constants.FAILED, "文件错误");
+		}
+		MultipartFile multiFile = filemap.values().iterator().next();
+		String excelName = multiFile.getOriginalFilename();
+		String excelType = excelName.substring(excelName.indexOf(".") + 1);
+		InputStream in = multiFile.getInputStream();
+		String tempName = UUIDUtils.getUUID();
+		String basePath = request.getServletContext().getRealPath("/WEB-INF/temp") + File.separator;
+		String tempPath = basePath + tempName + "." + excelType;
+		File descFile = new File(tempPath);
+		FileUtils.copyInputStreamToFile(in, descFile);
+		String agent = request.getHeader("User-Agent");
+		User user = TokenUtils.getUserFromCache(token, agent);
+		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType, user);
+		descFile.delete();
+		return result;
+	}
+
+	/**
+	 * 
+	 * downLoadErrorDetail:下载错误信息(批量上传用户时的错误)
+	 */
+	@RequestMapping("/downLoadErrorDetail")
+	public void downLoadErrorDetail(String fileName, HttpServletResponse response, HttpServletRequest request) {
+		response.setContentType("application/x-msdownload");
+		response.setHeader("Content-Disposition", "attachment; filename=errorDetail.xls");
+		try {
+			OutputStream out = response.getOutputStream();
+			String path = request.getServletContext().getRealPath("/");
+			File file = new File(path, "WEB-INF/temp/" + fileName);
+			InputStream in = new FileInputStream(file);
+			StreamUtils.copy(in, out);
+			file.delete();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 导出学生
+	 * @param request
+	 * @param response
+	 * @throws ExecutionException 
+	 */
+	@RequestMapping("exporUserList")
+	public void exporStutList(HttpServletRequest request, String userName, HttpServletResponse response, User user) throws ExecutionException {
+		String agent = request.getHeader("User-Agent");
+		User userLogin = TokenUtils.getUserFromCache(user.getToken(), agent);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("username", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getUsername()));
+		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
+		map.put("userType", user.getUserType());
+		map.put("loginUserType", userLogin.getUserType());
+		response.setContentType("application/x-msdownload");
+		response.setHeader("Content-Disposition", "attachment; filename=studentExportTemplate.xls");
+		try {
+			OutputStream out = response.getOutputStream();
+			HSSFWorkbook workbook = userService.getStudentListForExport(map);
+			workbook.write(out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@RequestMapping("downloadUserModel")
+	public void downoadOrgUserModel(HttpServletRequest request, HttpServletResponse response) {
+		String titleName = "UserImportTemplate";
+		response.setContentType("application/x-msdownload");
+		response.setHeader("Content-Disposition", "attachment; filename=" + titleName);
+		try {
+			OutputStream out = response.getOutputStream();
+			String path = request.getServletContext().getRealPath("/");
+			File file = new File(path, "WEB-INF/template/" + titleName);
+			InputStream in = new FileInputStream(file);
+			StreamUtils.copy(in, out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
