@@ -385,9 +385,9 @@ public class UserController {
 	@ResponseBody
 	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token, String filename) {
 		String excelType = filename.substring(filename.indexOf(".") + 1);
-		String tempName = UUIDUtils.getUUID();
+		String tempName = filename;
 		String basePath = Constants.TEMP;
-		String tempPath = basePath + tempName + "." + excelType;
+		String tempPath = basePath + tempName;
 		File descFile = new File(tempPath);
 		String agent = request.getHeader("User-Agent");
 		User user = new User();
