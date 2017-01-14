@@ -2056,12 +2056,7 @@ webpackJsonp([1,6],[
 	//
 	//
 	//
-	//
-	//
-	//
-	//
 
-	$(function () {});
 	/**
 	 * 表格中的操作---编辑用户
 	**/
@@ -2286,16 +2281,17 @@ webpackJsonp([1,6],[
 			},
 			output: function output() {
 				//批量导出
-				window.location.href = '/exporUserList.do?token=' + sessionStorage.getItem("token") + '&userName=' + $("#search_username").val() + '&realname=' + $("#search_realname").val() + '&userType=' + $("#search_userType").val();
+				window.location.href = ROOT_SERVER + '/exporUserList.do?token=' + sessionStorage.getItem("token") + '&userName=' + $("#search_username").val() + '&realname=' + $("#search_realname").val() + '&userType=' + $("#search_userType").val();
+			},
+			//模板下载
+			mbdown: function mbdown() {
+				window.location.href = ROOT_SERVER + '/downloadUserModel.do?token=' + sessionStorage.getItem("token");
 			},
 			viewFile: function viewFile() {
-				var file = $('#view_file').files[0];
+				var file = document.getElementById("view_file").files[0];
 				var sequence = H5fileup.getSequence();
-
-				console.log(file);
 				var size = Math.round(file.size * 100 / (1024 * 1024)) / 100;
 				var filename = file.name;
-
 				var ldot = filename.lastIndexOf(".");
 				var name = filename.substring(0, ldot);
 				var type = filename.substring(ldot + 1).toLowerCase();
@@ -2308,24 +2304,17 @@ webpackJsonp([1,6],[
 					layer.msg("视频太大，请小于2G");
 					return;
 				}
-				var htmlStr = spellShowFileup(sequence, size, name, type);
-				$("#video_name").val(filename);
-				$("#show_fileup_detail").html(htmlStr);
+
 				var fileupUrl = ROOT_SERVER + "/video/upload?token=" + sessionStorage.getItem("token");
 				H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 					retVO = eval('(' + retVO + ')');
-					var dataVO = retVO.data;
-					var resourceId = dataVO.resourceId;
-					$("#" + sequence).attr("data-resourceId", resourceId);
-					$("#video_resourceId").val(resourceId);
-					$("#video_size").val(file.size);
-					$("#" + sequence).find(".sysprint-img-button").show();
-					$("#" + sequence + "_status").html("上传成功！");
+					$('#sourceId').val(retVO.data.resourceId);
 				});
 				var fileupProUrl = ROOT_SERVER + "/getUploadProgress?token=" + sessionStorage.getItem("token");
 				H5fileup.progressFileup(sequence, fileupProUrl, function (retVO) {});
 			},
 			batchAdd: function batchAdd() {
+				var bcParams = { filename: $("#sourceId").val() };
 				layer.open({
 					type: 1,
 					title: '批量添加',
@@ -2337,11 +2326,14 @@ webpackJsonp([1,6],[
 					content: $("#batch_user"),
 					yes: function yes(index, layero) {
 						if ($('#view_file').val() !== '') {
-							CDUtil.ajaxPost("/importUser", function (retVO) {
+							CDUtil.ajaxPost("/importUser", bcParams, function (retVO) {
+								console.log(76688);
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
 								}
-								if (retVO.code == 1) {}
+								if (retVO.code == 1) {
+									console.log(11111);
+								}
 								if (retVO.code == 2) {}
 							});
 						}
@@ -2608,7 +2600,12 @@ webpackJsonp([1,6],[
 	      "action": "",
 	      "id": "batch_user"
 	    }
-	  }, [_vm._m(11), _vm._v(" "), _c('div', [_vm._v("请先下载模板，录入数据后导入")]), _vm._v(" "), _c('div', [_vm._v("Excel导入："), _c('input', {
+	  }, [_c('div', [_c('div', {
+	    staticClass: "btn",
+	    on: {
+	      "click": _vm.mbdown
+	    }
+	  }, [_vm._v("模板下载")])]), _vm._v(" "), _c('div', [_vm._v("请先下载模板，录入数据后导入")]), _vm._v(" "), _c('div', [_vm._v("Excel导入："), _c('input', {
 	    attrs: {
 	      "type": "file",
 	      "placeholder": "浏览",
@@ -2620,44 +2617,16 @@ webpackJsonp([1,6],[
 	      "value": ""
 	    },
 	    on: {
-	      "click": _vm.viewFile
+	      "change": _vm.viewFile
 	    }
 	  })]), _vm._v(" "), _c('input', {
 	    attrs: {
 	      "type": "hidden",
-	      "id": "video_resourceId",
-	      "name": "resName",
-	      "data-vali": "notnull"
-	    }
-	  }), _vm._v(" "), _c('input', {
-	    attrs: {
-	      "type": "hidden",
-	      "id": "video_name",
-	      "data-vali": "notnull"
-	    }
-	  }), _vm._v(" "), _c('input', {
-	    attrs: {
-	      "type": "hidden",
-	      "id": "video_size",
-	      "name": "size",
-	      "data-vali": "notnull"
-	    }
-	  }), _vm._v(" "), _c('input', {
-	    attrs: {
-	      "type": "hidden",
-	      "id": "video_img_resourceId",
-	      "name": "thumbName",
-	      "data-vali": "notnull"
-	    }
-	  }), _vm._v(" "), _c('input', {
-	    attrs: {
-	      "type": "hidden",
-	      "id": "video_img_flag",
-	      "name": "thumbFlag",
-	      "value": "0"
+	      "value": "",
+	      "id": "sourceId"
 	    },
 	    domProps: {
-	      "value": "0"
+	      "value": ""
 	    }
 	  })])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2749,13 +2718,6 @@ webpackJsonp([1,6],[
 	  return _c('span', {
 	    staticClass: "cd-f-name"
 	  }, [_c('label', [_vm._v("角色:")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('a', {
-	    staticClass: "btn",
-	    attrs: {
-	      "href": "/downloadUserModel.do"
-	    }
-	  }, [_vm._v("模板下载")])])
 	}]}
 	if (true) {
 	  module.hot.accept()

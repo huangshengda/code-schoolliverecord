@@ -112,9 +112,10 @@
 <!-- 添加用户弹窗表单 end -->
 <!-- 批量添加用户弹窗表单 start -->
   <form action="" id="batch_user" class="layBox">
-   <div><button class="btn" @click="mbdown">模板下载</button></div>
+   <div><div class="btn" @click="mbdown">模板下载</div></div>
    <div>请先下载模板，录入数据后导入</div>
-   <div>Excel导入：<input type="file" placeholder="浏览" @click="viewFile" id="view_file" value="" accept="video/.xls"></div>
+   <div>Excel导入：<input type="file" placeholder="浏览" @change="viewFile" id="view_file" value="" accept="video/.xls"></div>
+  <input type="hidden" value="" id="sourceId">
   </form>
 <!-- 批量添加用户弹窗表单 end -->
 </div>
@@ -349,18 +350,15 @@ export default {
 		//批量导出
 			window.location.href = ROOT_SERVER+'/exporUserList.do?token='+sessionStorage.getItem("token")+'&userName='+$("#search_username").val()+'&realname='+$("#search_realname").val()+'&userType='+$("#search_userType").val();
 		},
+		//模板下载
 		mbdown:function(){
-			window.location.href = ROOT_SERVER+'/exporUserList.do';
+			window.location.href = ROOT_SERVER+'/downloadUserModel.do?token='+sessionStorage.getItem("token");
 		},
-		/downloadUserModel.do
 		viewFile:function(){
-			var file = $('#view_file').files[0]; 
+			var file = document.getElementById("view_file").files[0]; 
 			var sequence = H5fileup.getSequence();
-		
-			console.log(file);
 			var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
 			var filename = file.name;
-			
 			var ldot = filename.lastIndexOf(".");
 			var name = filename.substring(0,ldot);
 			var type = filename.substring(ldot+1).toLowerCase();
@@ -373,19 +371,11 @@ export default {
 				layer.msg("视频太大，请小于2G");
 				return;
 			}
-			var htmlStr = spellShowFileup(sequence,size,name,type);
-			$("#video_name").val(filename);
-			$("#show_fileup_detail").html(htmlStr);
+			
 			var fileupUrl = ROOT_SERVER+"/video/upload?token="+sessionStorage.getItem("token");
 			H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
 				retVO = eval('(' + retVO + ')');
-				var dataVO = retVO.data;
-				var resourceId = dataVO.resourceId;
-				$("#"+sequence).attr("data-resourceId",resourceId);
-				$("#video_resourceId").val(resourceId);
-				$("#video_size").val(file.size);
-				$("#"+sequence).find(".sysprint-img-button").show();
-				$("#"+sequence+"_status").html("上传成功！");
+				$('#sourceId').val(retVO.data.resourceId);
 			});
 			var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
 			H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
@@ -393,6 +383,7 @@ export default {
 			});
 		},
 		batchAdd: function(){
+		 	var bcParams = {filename: $("#sourceId").val(), };
 			layer.open({
 				type: 1,
 				title: '批量添加',
@@ -404,15 +395,15 @@ export default {
 				content: $("#batch_user"),
 				yes: function(index, layero){
 					if($('#view_file').val()!==''){
-						CDUtil.ajaxPost("/importUser",function(retVO) {
+						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
 							if(retVO.code==0){
 								layer.msg(retVO.msg);
 							}
 							if(retVO.code==1){
-								
+								console.log(11111);
 							}
 							if(retVO.code==2){
-							
+								
 							}
 						})
 					}
