@@ -383,7 +383,7 @@ export default {
 			});
 		},
 		batchAdd: function(){
-		 	var bcParams = {filename: $("#sourceId").val(), };
+		 	var bcParams = {filename: $("#sourceId").val()};
 			layer.open({
 				type: 1,
 				title: '批量添加',

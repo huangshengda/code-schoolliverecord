@@ -2327,7 +2327,6 @@ webpackJsonp([1,6],[
 					yes: function yes(index, layero) {
 						if ($('#view_file').val() !== '') {
 							CDUtil.ajaxPost("/importUser", bcParams, function (retVO) {
-								console.log(76688);
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
 								}
@@ -2622,11 +2621,7 @@ webpackJsonp([1,6],[
 	  })]), _vm._v(" "), _c('input', {
 	    attrs: {
 	      "type": "hidden",
-	      "value": "",
 	      "id": "sourceId"
-	    },
-	    domProps: {
-	      "value": ""
 	    }
 	  })])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
