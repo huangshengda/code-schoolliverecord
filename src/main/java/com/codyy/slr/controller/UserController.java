@@ -383,21 +383,11 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token, String filename) {
+	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename) {
 		String excelType = filename.substring(filename.indexOf(".") + 1);
-		String tempName = filename;
 		String basePath = Constants.TEMP;
-		String tempPath = basePath + tempName;
-		File descFile = new File(tempPath);
-		String agent = request.getHeader("User-Agent");
-		User user = new User();
-		try {
-			user = TokenUtils.getUserFromCache(token, agent);
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType, user);
-		descFile.delete();
+		String tempPath = basePath + filename;
+		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType);
 		return result;
 	}
 

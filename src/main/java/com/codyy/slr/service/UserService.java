@@ -131,7 +131,7 @@ public class UserService {
 		return userMapper.getUserByNameAndPw(map);
 	}
 
-	public ReturnVoOne<User> importUser(String tempPath, String basePath, String excelType, User user) {
+	public ReturnVoOne<User> importUser(String tempPath, String basePath, String excelType) {
 		File file = new File(tempPath);
 		if (!file.exists()) {
 			return new ReturnVoOne<User>(0, "导入失败！");
