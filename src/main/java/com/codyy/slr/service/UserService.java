@@ -151,14 +151,12 @@ public class UserService {
 		}
 		UserImportModel orgUser;
 		boolean canInsert = true;
-		String userId;
 		String username;
 		String realname;
 		String password;
 		String userType;
 		String message;
 		Map<String, String> tempuser = new HashMap<String, String>();
-		Date date = new Date();
 		int size = list.size();
 		List<UserImporErroModel> errorList = new ArrayList<UserImporErroModel>();
 		UserImporErroModel errorModel;

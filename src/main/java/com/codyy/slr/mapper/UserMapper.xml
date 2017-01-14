@@ -198,14 +198,15 @@
 		</foreach>
 	</insert>
   
-  <select id = "getUserExportList" resultType =  "com.codyy.slr.vo.UserExportModel">
+  <select id = "getUserExportList" resultType =  "com.codyy.slr.vo.UserExportModel" parameterType="java.util.Map">
   SELECT 
-  t.USERNAME,t.REALNAME,
+	t.USERNAME username,
+	t.REALNAME realname,
 	case t.USER_TYPE
-	when 'SUPER_ADMIN' then '超级管理员'
-	when 'ADMIN' then '管理员'
-	when 'TEACHER' then '教师'
-	else '学生' end USER_TYPE
+		when 'SUPER_ADMIN' then '超级管理员'
+		when 'ADMIN' then '管理员'
+		when 'TEACHER' then '教师'
+	else '学生' end userType
 	FROM (
 		select t1.*, 
 		case t1.USER_TYPE
