@@ -13,20 +13,14 @@ import java.util.concurrent.ExecutionException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.constant.Constants;
@@ -351,9 +345,10 @@ public class UserController {
 	 * importUser:批量导入用户
 	 * 
 	 */
-	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/importUser", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token) throws IOException, ExecutionException {
+	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token) throws IOException,
+			ExecutionException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
@@ -379,6 +374,31 @@ public class UserController {
 		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType, user);
 		descFile.delete();
 		return result;
+	}*/
+
+	/**
+	 * 
+	 * importUser:批量导入用户
+	 * 
+	 */
+	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
+	@ResponseBody
+	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token, String filename) {
+		String excelType = filename.substring(filename.indexOf(".") + 1);
+		String tempName = UUIDUtils.getUUID();
+		String basePath = Constants.TEMP;
+		String tempPath = basePath + tempName + "." + excelType;
+		File descFile = new File(tempPath);
+		String agent = request.getHeader("User-Agent");
+		User user = new User();
+		try {
+			user = TokenUtils.getUserFromCache(token, agent);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType, user);
+		descFile.delete();
+		return result;
 	}
 
 	/**
@@ -392,7 +412,7 @@ public class UserController {
 		try {
 			OutputStream out = response.getOutputStream();
 			String path = request.getServletContext().getRealPath("/");
-			File file = new File(path, "WEB-INF/temp/" + fileName);
+			File file = new File(path, Constants.TEMP + fileName);
 			InputStream in = new FileInputStream(file);
 			StreamUtils.copy(in, out);
 			file.delete();
