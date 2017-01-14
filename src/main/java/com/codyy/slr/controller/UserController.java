@@ -356,7 +356,6 @@ public class UserController {
 	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token) throws IOException, ExecutionException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
-		;
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxInMemorySize(1024 * 1024);
@@ -418,7 +417,7 @@ public class UserController {
 		map.put("userType", user.getUserType());
 		map.put("loginUserType", userLogin.getUserType());
 		response.setContentType("application/x-msdownload");
-		response.setHeader("Content-Disposition", "attachment; filename=studentExportTemplate.xls");
+		response.setHeader("Content-Disposition", "attachment; filename=userExportTemplate.xls");
 		try {
 			OutputStream out = response.getOutputStream();
 			HSSFWorkbook workbook = userService.getStudentListForExport(map);
@@ -431,13 +430,13 @@ public class UserController {
 
 	@RequestMapping("downloadUserModel")
 	public void downoadOrgUserModel(HttpServletRequest request, HttpServletResponse response) {
-		String titleName = "UserImportTemplate";
+		String titleName = "UserImportTemplate.xls";
 		response.setContentType("application/x-msdownload");
 		response.setHeader("Content-Disposition", "attachment; filename=" + titleName);
 		try {
 			OutputStream out = response.getOutputStream();
 			String path = request.getServletContext().getRealPath("/");
-			File file = new File(path, "WEB-INF/template/" + titleName);
+			File file = new File(path, "template/" + titleName);
 			InputStream in = new FileInputStream(file);
 			StreamUtils.copy(in, out);
 		} catch (IOException e) {
