@@ -175,3 +175,5 @@ table tr td{overflow:hidden;text-overflow:ellipsis;}
 ::-ms-clear{display: none;}
 #batch_user{margin: 35px;}
 #batch_user>div{margin-bottom:20px;}
+input#view_file{display:inline-block;}
+#batch_user a{color:#444;}
