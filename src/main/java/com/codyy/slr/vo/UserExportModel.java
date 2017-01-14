@@ -6,33 +6,33 @@ import com.codyy.slr.util.doc.annotation.ExcelHeader;
 @ExcelHeader(headerName = "用户列表")
 public class UserExportModel {
 	@ExcelColumn(columnName = "用户名")
-	private ValueBean userName;
+	private String username;
 	@ExcelColumn(columnName = "姓名")
-	private ValueBean realname;
+	private String realname;
 	@ExcelColumn(columnName = "角色")
-	private ValueBean userType;
+	private String userType;
 
-	public ValueBean getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(ValueBean userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public ValueBean getRealname() {
+	public String getRealname() {
 		return realname;
 	}
 
-	public void setRealname(ValueBean realname) {
+	public void setRealname(String realname) {
 		this.realname = realname;
 	}
 
-	public ValueBean getUserType() {
+	public String getUserType() {
 		return userType;
 	}
 
-	public void setUserType(ValueBean userType) {
+	public void setUserType(String userType) {
 		this.userType = userType;
 	}
 
