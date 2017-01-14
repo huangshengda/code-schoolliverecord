@@ -263,7 +263,7 @@ public class UserService {
 				e.printStackTrace();
 				return new ReturnVoOne<User>(0, "导入失败！");
 			}
-			return new ReturnVoOne<User>(0, fileName);
+			return new ReturnVoOne<User>(2, fileName);
 		}
 	}
 
