@@ -28,6 +28,7 @@ params = {};//用来定义页面和后台交互的公共传参对象
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_manifest.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_common.js" ></script>
 <script type="text/javascript" src="${ROOT_UI}/dist/slr_base.js" ></script>
+<script type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
 <script type="text/javascript" >
 /**
  * 后台返回的用户在线标示
