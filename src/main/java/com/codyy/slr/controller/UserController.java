@@ -386,7 +386,7 @@ public class UserController {
 	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename) {
 		String excelType = filename.substring(filename.indexOf(".") + 1);
 		String basePath = Constants.TEMP;
-		String tempPath = basePath + filename;
+		String tempPath = basePath + File.separator + filename;
 		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType);
 		return result;
 	}
