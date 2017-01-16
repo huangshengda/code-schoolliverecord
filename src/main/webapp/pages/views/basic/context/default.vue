@@ -374,7 +374,7 @@ export default {
 			var fileupUrl = ROOT_SERVER+"/video/upload?token="+sessionStorage.getItem("token");
 			H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
 				retVO = eval('(' + retVO + ')');
-				
+				$('#sourceId').val(retVO.data.resourceId);
 			});
 			var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
 			H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
@@ -396,7 +396,8 @@ export default {
 				yes: function(index, layero){
 					if($('#view_file').val()==''){
 						layer.msg('未选择需要导入的文档！');
-					}else{
+					}
+					if($('#view_file').val()!=''){
 						var link = $('#sourceId').val();
 		 				var bcParams = {filename: link};
 						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
@@ -416,11 +417,12 @@ export default {
 									btn: ['确认', '取消'],
 									shadeClose: false,
 									yes: function(indexone, layero){
+										$('#batch_user')[0].reset();
 										//下载问题明细
 										window.location.href = ROOT_SERVER+'/downLoadErrorDetail.do?token='+toke+'&fileName='+link;
 										layer.close(indexone);
 									},
-									no: function(indexone, layero){
+									end: function(){
 										$('#batch_user')[0].reset();
 									}
 								})
