@@ -2309,8 +2309,6 @@ webpackJsonp([1,6],[
 					retVO = eval('(' + retVO + ')');
 					$('#sourceId').val(retVO.data.resourceId);
 				});
-				var fileupProUrl = ROOT_SERVER + "/getUploadProgress?token=" + sessionStorage.getItem("token");
-				H5fileup.progressFileup(sequence, fileupProUrl, function (retVO) {});
 			},
 			batchAdd: function batchAdd() {
 				var toke = sessionStorage.getItem("token");
@@ -2350,7 +2348,7 @@ webpackJsonp([1,6],[
 										yes: function yes(indexone, layero) {
 											$('#batch_user')[0].reset();
 											//下载问题明细
-											window.location.href = ROOT_SERVER + '/downLoadErrorDetail.do?token=' + toke + '&fileName=' + link;
+											window.location.href = ROOT_SERVER + '/downLoadErrorDetail.do?token=' + toke + '&fileName=' + retVO.msg;
 											layer.close(indexone);
 										},
 										end: function end() {
