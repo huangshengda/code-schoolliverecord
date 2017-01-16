@@ -394,19 +394,23 @@ export default {
 						layer.msg('未选择需要导入的文档！');
 					}
 					if($('#view_file').val()!=''){
+						var indexLode = layer.load(2);
 						var link = $('#sourceId').val();
 		 				var bcParams = {filename: link};
 						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
 							if(retVO.code==0){
 								layer.msg(retVO.msg);
+								layer.close(indexLode);
 							}
 							if(retVO.code==1){
+								layer.close(indexLode);
 								_self.userSear();
 								layer.msg(retVO.msg);
 								layer.close(index);
 								$('#batch_user')[0].reset();
 							}
 							if(retVO.code==2){
+								layer.close(indexLode);
 								layer.open({
 									title:'请确认',
 									content: '导入失败，是否下载问题明细？',
