@@ -1,6 +1,11 @@
 <template>
 <div class="content" id="user_form">
-  <div class="subBtn"><button class="btn fr" @click="addUser">添加用户</button></div>
+  <div class="subBtn fr">
+  	<button class="btn mr15" @click="addUser">添加用户</button>
+  	<button class="btn mr15" @click="batchAdd">批量添加</button>
+  	<button class="btn" @click="output">导出</button>
+  </div>
+  <div class="clear"></div>
   <div class="dashboard">
   <!-- 条件 start -->
     <form action="" id="condition">
@@ -105,6 +110,14 @@
     </div>
   </form>
 <!-- 添加用户弹窗表单 end -->
+<!-- 批量添加用户弹窗表单 start -->
+  <form action="" id="batch_user" class="layBox">
+   <div><div class="btn" @click="mbdown">模板下载</div></div>
+   <div>请先下载模板，录入数据后导入</div>
+   <div>Excel导入：<input type="file" placeholder="浏览" @change="viewFile" id="view_file" value="" accept=".xls,.xlsx"></div>
+  </form>
+    <input type="hidden" value="" id="sourceId">
+<!-- 批量添加用户弹窗表单 end -->
 </div>
 </template>
 <script>
@@ -332,6 +345,92 @@ export default {
 					}
 				}
 			});
+		},
+		output:function(){
+		//批量导出
+			window.location.href = ROOT_SERVER+'/exporUserList.do?token='+sessionStorage.getItem("token")+'&username='+$("#search_username").val()+'&realname='+$("#search_realname").val()+'&userType='+$("#search_userType").val();
+		},
+		//模板下载
+		mbdown:function(){
+			window.location.href = ROOT_SERVER+'/downloadUserModel.do?token='+sessionStorage.getItem("token");
+		},
+		viewFile:function(){
+			var file = document.getElementById("view_file").files[0]; 
+			var sequence = H5fileup.getSequence();
+			var size = (Math.round(file.size * 100 / (1024 * 1024)) / 100);
+			var filename = file.name;
+			var ldot = filename.lastIndexOf(".");
+			var name = filename.substring(0,ldot);
+			var type = filename.substring(ldot+1).toLowerCase();
+			var refuseType = "$xls$xlsx$";
+			if(refuseType.indexOf("$"+type+"$")<0){
+				layer.msg("选择文件格式不正确");
+				return;
+			}
+			if(size>2048){
+				layer.msg("文件太大，请小于5M");
+				return;
+			}
+			var fileupUrl = ROOT_SERVER+"/batchuser/upload?token="+sessionStorage.getItem("token");
+			H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
+				retVO = eval('(' + retVO + ')');
+				$('#sourceId').val(retVO.data.resourceId);
+			});
+		},
+		batchAdd: function(){
+			var toke = sessionStorage.getItem("token");
+			var _self = this;
+			layer.open({
+				type: 1,
+				title: '批量添加',
+				skin: 'layui-layer-rim',
+				//加上边框
+				area: ['450px', '350px'],
+				//宽高
+				btn: ['确定', '取消'],
+				content: $("#batch_user"),
+				yes: function(index, layero){
+					if($('#view_file').val()==''){
+						layer.msg('未选择需要导入的文档！');
+					}
+					if($('#view_file').val()!=''){
+						var indexLode = layer.load(2);
+						var link = $('#sourceId').val();
+		 				var bcParams = {filename: link};
+						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
+							if(retVO.code==0){
+								layer.msg(retVO.msg);
+								layer.close(indexLode);
+							}
+							if(retVO.code==1){
+								layer.close(indexLode);
+								_self.userSear();
+								layer.msg(retVO.msg);
+								layer.close(index);
+								$('#batch_user')[0].reset();
+							}
+							if(retVO.code==2){
+								layer.close(indexLode);
+								layer.open({
+									title:'请确认',
+									content: '导入失败，是否下载问题明细？',
+									btn: ['确认', '取消'],
+									shadeClose: false,
+									yes: function(indexone, layero){
+										$('#batch_user')[0].reset();
+										//下载问题明细
+										window.location.href = ROOT_SERVER+'/downLoadErrorDetail.do?token='+toke+'&fileName='+retVO.msg;
+										layer.close(indexone);
+									},
+									end: function(){
+										$('#batch_user')[0].reset();
+									}
+								})
+							}
+						})
+					}
+				}
+			})
 		}
 	}
 }

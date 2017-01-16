@@ -11,6 +11,7 @@ $(function() {
 			$("#play_times").html(retVO.data);
 		}
 	});
+	
 	var SWF_ID = "evideo_" + new Date().getTime();
 	var SWF_NAME = ROOT_UI_PUBLIC + "/evideo/evideo.swf";
 	function EmbedSWF_SWF(divId, mp4Url,width,height) {
@@ -48,15 +49,31 @@ $(function() {
 			var author = retVO.data.author;//
 			$("#resource_name").html(resourceName);
 			$("#resource_info").html(classlevelName+"/"+subjectName+"/"+author);
-			console.log(retVO.data.classlevelName);
+			$("#down_times").html(retVO.data.downloadCnt);
 			$("#resource_info").attr("title",retVO.data.classlevelName);
 			var videoUrl = retVO.data.storePath+"?token=" + sessionStorage.getItem("token");
+			$("#video").val(videoUrl);
 			var width = $("#video_player_content").width();
 			var height = width*9/16+60;
 			EmbedSWF_SWF("video_player_content", videoUrl,width,height);
 		}
 	});
-	
+	/**
+	 * 点击下载视频
+	 */
+	$('#down_video').click(function(){
+		var video = $("#video").val()+ "&resourceId=" + resourceId;
+		window.location=video; 
+		//下载次数
+		CDUtil.ajaxPost("/resource/downloadcnt/addone", {resourceId: resourceId},function(retVO) {
+			if(retVO.code == 1){
+				$("#down_times").html(retVO.data);
+			}
+			if (retVO.code == 0) {
+				layer.msg(retVO.msg);
+			}
+		});
+	});
 	/**
 	 * 获取精品课程列表信息
 	 */
@@ -82,8 +99,6 @@ $(function() {
 		var url = ROOT_SERVER+"/front/path/demond?token="+token;
 		window.location.href = url;
 	});
-	
-	
 	/**
 	 * 评论
 	 */

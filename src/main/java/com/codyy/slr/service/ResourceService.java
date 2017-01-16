@@ -258,4 +258,8 @@ public class ResourceService {
 		return resourceMapper.addResViewCnt(resourceId) == 1;
 	}
 
+	public boolean addResDownloadCnt(String resourceId) {
+		return resourceMapper.addResDownloadCnt(resourceId) == 1;
+	}
+
 }

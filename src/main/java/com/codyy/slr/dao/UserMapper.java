@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.codyy.slr.common.page.Page;
 import com.codyy.slr.entity.User;
+import com.codyy.slr.vo.UserExportModel;
 
 public interface UserMapper {
 	int deleteByPrimaryKey(String userId);
@@ -24,5 +25,9 @@ public interface UserMapper {
 	User getUserByUserName(Map<String, Object> map);
 
 	User getUserByNameAndPw(Map<String, Object> map);
+
+	void insertUsers(List<Object> list);
+
+	List<UserExportModel> getUserExportList(Map<String, Object> map);
 
 }

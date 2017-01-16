@@ -2,7 +2,7 @@ package com.codyy.slr.vo;
 
 /**
  * 
- * @Description: 网站基础信息请求参数bean  
+ * @Description: 网站基础信息请求参数 bean  
  * @author huangshengda  
  * @date 2016年12月2日   
  *
