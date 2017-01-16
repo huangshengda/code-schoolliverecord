@@ -2309,7 +2309,6 @@ webpackJsonp([1,6],[
 				H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 					retVO = eval('(' + retVO + ')');
 					$('#sourceId').val(retVO.data.resourceId);
-					console.log($('#sourceId').val());
 				});
 				var fileupProUrl = ROOT_SERVER + "/getUploadProgress?token=" + sessionStorage.getItem("token");
 				H5fileup.progressFileup(sequence, fileupProUrl, function (retVO) {});
@@ -2328,15 +2327,21 @@ webpackJsonp([1,6],[
 						if ($('#view_file').val() !== '') {
 							var link = $('#sourceId').val();
 							var bcParams = { filename: link };
-							console.log(link);
+							console.log(bcParams);
 							CDUtil.ajaxPost("/importUser", bcParams, function (retVO) {
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
 								}
-								if (retVO.code == 1) {
-									console.log(11111);
+								if (retVO.code == 1) {}
+								if (retVO.code == 2) {
+									layer.open({
+										title: '请确认',
+										content: '导入失败，是否下载问题明细？',
+										btn: ['确认', '取消'],
+										shadeClose: false,
+										yes: function yes() {}, no: function no() {}
+									});
 								}
-								if (retVO.code == 2) {}
 							});
 						}
 					}

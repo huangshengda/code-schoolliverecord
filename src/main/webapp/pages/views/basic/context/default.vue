@@ -114,7 +114,7 @@
   <form action="" id="batch_user" class="layBox">
    <div><div class="btn" @click="mbdown">模板下载</div></div>
    <div>请先下载模板，录入数据后导入</div>
-   <div>Excel导入：<input type="file" placeholder="浏览" @change="viewFile" id="view_file" value="" accept="video/.xls"></div>
+   <div>Excel导入：<input type="file" placeholder="浏览" @change="viewFile" id="view_file" value="" accept=".xls,.xlsx"></div>
   </form>
     <input type="hidden" value="" id="sourceId">
 <!-- 批量添加用户弹窗表单 end -->
@@ -362,7 +362,7 @@ export default {
 			var ldot = filename.lastIndexOf(".");
 			var name = filename.substring(0,ldot);
 			var type = filename.substring(ldot+1).toLowerCase();
-			var refuseType = "$xls$";
+			var refuseType = "$xls$xlsx$";
 			if(refuseType.indexOf("$"+type+"$")<0){
 				layer.msg("选择文件格式不正确");
 				return;
