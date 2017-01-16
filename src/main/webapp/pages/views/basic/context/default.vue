@@ -416,7 +416,6 @@ export default {
 									btn: ['确认', '取消'],
 									shadeClose: false,
 									yes: function(indexone, layero){
-										$('#batch_user')[0].reset();
 										//下载问题明细
 										window.location.href = ROOT_SERVER+'/downLoadErrorDetail.do?token='+toke+'&fileName='+link;
 										layer.close(indexone);
