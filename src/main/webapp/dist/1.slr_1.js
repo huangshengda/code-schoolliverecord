@@ -2309,12 +2309,12 @@ webpackJsonp([1,6],[
 				H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 					retVO = eval('(' + retVO + ')');
 					$('#sourceId').val(retVO.data.resourceId);
+					console.log($('#sourceId').val());
 				});
 				var fileupProUrl = ROOT_SERVER + "/getUploadProgress?token=" + sessionStorage.getItem("token");
 				H5fileup.progressFileup(sequence, fileupProUrl, function (retVO) {});
 			},
 			batchAdd: function batchAdd() {
-				var bcParams = { filename: $("#sourceId").val() };
 				layer.open({
 					type: 1,
 					title: '批量添加',
@@ -2326,6 +2326,9 @@ webpackJsonp([1,6],[
 					content: $("#batch_user"),
 					yes: function yes(index, layero) {
 						if ($('#view_file').val() !== '') {
+							var link = $('#sourceId').val();
+							var bcParams = { filename: link };
+							console.log(link);
 							CDUtil.ajaxPost("/importUser", bcParams, function (retVO) {
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
@@ -2618,12 +2621,16 @@ webpackJsonp([1,6],[
 	    on: {
 	      "change": _vm.viewFile
 	    }
-	  })]), _vm._v(" "), _c('input', {
+	  })])]), _vm._v(" "), _c('input', {
 	    attrs: {
 	      "type": "hidden",
+	      "value": "",
 	      "id": "sourceId"
+	    },
+	    domProps: {
+	      "value": ""
 	    }
-	  })])])
+	  })])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "cd-f-eve"

@@ -115,8 +115,8 @@
    <div><div class="btn" @click="mbdown">模板下载</div></div>
    <div>请先下载模板，录入数据后导入</div>
    <div>Excel导入：<input type="file" placeholder="浏览" @change="viewFile" id="view_file" value="" accept="video/.xls"></div>
-  <input type="hidden" value="" id="sourceId">
   </form>
+    <input type="hidden" value="" id="sourceId">
 <!-- 批量添加用户弹窗表单 end -->
 </div>
 </template>
@@ -379,11 +379,10 @@ export default {
 			});
 			var fileupProUrl = ROOT_SERVER+"/getUploadProgress?token="+sessionStorage.getItem("token");
 			H5fileup.progressFileup(sequence,fileupProUrl,function(retVO){
-			
+				
 			});
 		},
 		batchAdd: function(){
-		 	var bcParams = {filename: $("#sourceId").val()};
 			layer.open({
 				type: 1,
 				title: '批量添加',
@@ -395,15 +394,28 @@ export default {
 				content: $("#batch_user"),
 				yes: function(index, layero){
 					if($('#view_file').val()!==''){
+						var link = $('#sourceId').val();
+		 				var bcParams = {filename: link};
+		 					console.log(bcParams);
 						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
 							if(retVO.code==0){
 								layer.msg(retVO.msg);
 							}
 							if(retVO.code==1){
-								console.log(11111);
+								
 							}
 							if(retVO.code==2){
-								
+								layer.open({
+									title:'请确认',
+									content: '导入失败，是否下载问题明细？',
+									btn: ['确认', '取消'],
+									shadeClose: false,
+									yes: function(){
+										
+									}, no: function(){
+										
+									}
+								})
 							}
 						})
 					}
