@@ -402,7 +402,7 @@ public class UserController {
 		try {
 			OutputStream out = response.getOutputStream();
 			String path = request.getServletContext().getRealPath("/");
-			File file = new File(path, Constants.TEMP + File.separator + fileName);
+			File file = new File(Constants.TEMP + File.separator + fileName);
 			InputStream in = new FileInputStream(file);
 			StreamUtils.copy(in, out);
 			file.delete();

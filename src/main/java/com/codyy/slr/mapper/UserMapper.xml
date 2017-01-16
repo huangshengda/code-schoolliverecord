@@ -180,20 +180,23 @@
   
   <!-- 批量添加用户 -->
 	<insert id="insertUsers" parameterType="java.util.List">
-		insert into base_user
+		insert into user
 		(USER_ID,
         USERNAME,
         REALNAME,
         PASSWORD,
-        USER_TYPE)
+        USER_TYPE,
+        CREATE_TIME,
+        DELETE_FLAG)
 		<foreach collection="list" item="items" open="(" close=")" separator="union all">
 			select 
 				#{items.userId},
 				#{items.username},
-				#{items.password},
 				#{items.realname},
+				#{items.password},
 				#{items.userType},
-				#{items.createTime}
+				#{items.createTime},
+				'N'
 			from dual
 		</foreach>
 	</insert>
