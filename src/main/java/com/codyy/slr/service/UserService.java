@@ -3,6 +3,7 @@ package com.codyy.slr.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -133,12 +134,13 @@ public class UserService {
 
 	public ReturnVoOne<User> importUser(String tempPath, String basePath, String excelType) {
 		File file = new File(tempPath);
+		InputStream in = null;
 		if (!file.exists()) {
 			return new ReturnVoOne<User>(0, "导入失败！");
 		}
 		List<Object> list = new ArrayList<Object>();
 		try {
-			InputStream in = new FileInputStream(file);
+			in = new FileInputStream(file);
 			if (StringUtils.equals(excelType, ExcelUtils.EXCEL_TYPE_XLS)) {
 				list = new ExcelUtils().importExcelData(in, UserImportModel.class);
 			} else {
@@ -147,6 +149,13 @@ public class UserService {
 			in.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			return new ReturnVoOne<User>(0, "导入失败！");
 		}
 		UserImportModel orgUser;
