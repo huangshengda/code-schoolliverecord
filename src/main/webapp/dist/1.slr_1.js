@@ -2295,25 +2295,25 @@ webpackJsonp([1,6],[
 				var ldot = filename.lastIndexOf(".");
 				var name = filename.substring(0, ldot);
 				var type = filename.substring(ldot + 1).toLowerCase();
-				var refuseType = "$xls$";
+				var refuseType = "$xls$xlsx$";
 				if (refuseType.indexOf("$" + type + "$") < 0) {
 					layer.msg("选择文件格式不正确");
 					return;
 				}
 				if (size > 2048) {
-					layer.msg("视频太大，请小于2G");
+					layer.msg("视频太大，请小于5M");
 					return;
 				}
-
 				var fileupUrl = ROOT_SERVER + "/video/upload?token=" + sessionStorage.getItem("token");
 				H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 					retVO = eval('(' + retVO + ')');
-					$('#sourceId').val(retVO.data.resourceId);
 				});
 				var fileupProUrl = ROOT_SERVER + "/getUploadProgress?token=" + sessionStorage.getItem("token");
 				H5fileup.progressFileup(sequence, fileupProUrl, function (retVO) {});
 			},
 			batchAdd: function batchAdd() {
+				var toke = sessionStorage.getItem("token");
+				var _self = this;
 				layer.open({
 					type: 1,
 					title: '批量添加',
@@ -2324,22 +2324,36 @@ webpackJsonp([1,6],[
 					btn: ['确定', '取消'],
 					content: $("#batch_user"),
 					yes: function yes(index, layero) {
-						if ($('#view_file').val() !== '') {
+						if ($('#view_file').val() == '') {
+							layer.msg('未选择需要导入的文档！');
+						} else {
 							var link = $('#sourceId').val();
 							var bcParams = { filename: link };
-							console.log(bcParams);
 							CDUtil.ajaxPost("/importUser", bcParams, function (retVO) {
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);
 								}
-								if (retVO.code == 1) {}
+								if (retVO.code == 1) {
+									_self.userSear();
+									layer.msg(retVO.msg);
+									layer.close(index);
+									$('#batch_user')[0].reset();
+								}
 								if (retVO.code == 2) {
 									layer.open({
 										title: '请确认',
 										content: '导入失败，是否下载问题明细？',
 										btn: ['确认', '取消'],
 										shadeClose: false,
-										yes: function yes() {}, no: function no() {}
+										yes: function yes(indexone, layero) {
+											$('#batch_user')[0].reset();
+											//下载问题明细
+											window.location.href = ROOT_SERVER + '/downLoadErrorDetail.do?token=' + toke + '&fileName=' + link;
+											layer.close(indexone);
+										},
+										no: function no(indexone, layero) {
+											$('#batch_user')[0].reset();
+										}
 									});
 								}
 							});
@@ -2618,7 +2632,7 @@ webpackJsonp([1,6],[
 	      "placeholder": "浏览",
 	      "id": "view_file",
 	      "value": "",
-	      "accept": "video/.xls"
+	      "accept": ".xls,.xlsx"
 	    },
 	    domProps: {
 	      "value": ""
