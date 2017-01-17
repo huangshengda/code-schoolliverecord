@@ -227,6 +227,7 @@ public class UserService {
 				valueBean.valueAppend(message);
 			}
 			errorModel.setRealname(valueBean);
+
 			// 用户类型
 			userType = orgUser.getUserType();
 			valueBean = new ValueBean(userType);
@@ -246,8 +247,9 @@ public class UserService {
 				canInsert = false;
 				valueBean.valueAppend(message);
 			}
+			errorModel.setUserType(valueBean);
+
 			orgUser.setUserType(userType);
-			errorModel.setRealname(valueBean);
 			orgUser.setUserId(UUIDUtils.getUUID());
 			orgUser.setCreateTime(new Date());
 			errorList.add(errorModel);
