@@ -345,42 +345,6 @@ public class UserController {
 	 * importUser:批量导入用户
 	 * 
 	 */
-	/*@RequestMapping(value = "/importUser", method = RequestMethod.POST)
-	@ResponseBody
-	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token) throws IOException,
-			ExecutionException {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.TEXT_PLAIN);
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		resolver.setDefaultEncoding("UTF-8");
-		resolver.setMaxInMemorySize(1024 * 1024);
-		resolver.setServletContext(request.getSession().getServletContext());
-		MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
-		Map<String, MultipartFile> filemap = multiRequest.getFileMap();
-		if (filemap.size() == 0) {
-			return new ReturnVoOne<User>(Constants.FAILED, "文件错误");
-		}
-		MultipartFile multiFile = filemap.values().iterator().next();
-		String excelName = multiFile.getOriginalFilename();
-		String excelType = excelName.substring(excelName.indexOf(".") + 1);
-		InputStream in = multiFile.getInputStream();
-		String tempName = UUIDUtils.getUUID();
-		String basePath = request.getServletContext().getRealPath("/WEB-INF/temp") + File.separator;
-		String tempPath = basePath + tempName + "." + excelType;
-		File descFile = new File(tempPath);
-		FileUtils.copyInputStreamToFile(in, descFile);
-		String agent = request.getHeader("User-Agent");
-		User user = TokenUtils.getUserFromCache(token, agent);
-		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType, user);
-		descFile.delete();
-		return result;
-	}*/
-
-	/**
-	 * 
-	 * importUser:批量导入用户
-	 * 
-	 */
 	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename) {
