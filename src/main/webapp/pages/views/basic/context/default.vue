@@ -348,7 +348,7 @@ export default {
 		},
 		output:function(){
 		//批量导出
-			window.location.href = ROOT_SERVER+'/exporUserList.do?token='+sessionStorage.getItem("token")+'&userName='+$("#search_username").val()+'&realname='+$("#search_realname").val()+'&userType='+$("#search_userType").val();
+			window.location.href = ROOT_SERVER+'/exporUserList.do?token='+sessionStorage.getItem("token")+'&username='+$("#search_username").val()+'&realname='+$("#search_realname").val()+'&userType='+$("#search_userType").val();
 		},
 		//模板下载
 		mbdown:function(){
