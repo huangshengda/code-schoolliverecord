@@ -8,7 +8,7 @@ public class UploadBatchUserFileServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	public UploadBatchUserFileServlet() {
-		super(50, Constants.UPLOAD_BATCHUSER_FILE_TYPE);
+		super(Constants.MAX_UPLOAD_SIZE_BATCHUSER_FILE, Constants.UPLOAD_BATCHUSER_FILE_TYPE);
 	}
 
 }

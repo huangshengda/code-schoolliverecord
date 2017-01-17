@@ -152,6 +152,10 @@ public class Constants {
 	 * 上传图片最大值
 	 */
 	public final static int MAX_UPLOAD_SIZE_IMAGE;
+	/**
+	 * 上传批量用户文件最大值
+	 */
+	public final static int MAX_UPLOAD_SIZE_BATCHUSER_FILE;
 
 	/**
 	 * #实时合并等待时间(等待dms服务器将.temp后缀文件改为.flv文件) 单位(秒)
@@ -215,6 +219,7 @@ public class Constants {
 
 		MAX_UPLOAD_SIZE_VIDEO = StringToInt("max.upload.size.video", 2048);
 		MAX_UPLOAD_SIZE_IMAGE = StringToInt("max.upload.size.image", 5);
+		MAX_UPLOAD_SIZE_BATCHUSER_FILE = StringToInt("max.upload.size.bacthuser.file", 5);
 
 		CONTACT_VIODE_THREAD_WAIT_TIME = StringToInt("contact.video.thread.wait.time", 60);
 
