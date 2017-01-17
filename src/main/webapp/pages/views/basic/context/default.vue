@@ -348,7 +348,7 @@ export default {
 		},
 		output:function(){
 		//批量导出
-			window.location.href = ROOT_SERVER+'/exporUserList.do?token='+sessionStorage.getItem("token")+'&userName='+$("#search_username").val()+'&realname='+$("#search_realname").val()+'&userType='+$("#search_userType").val();
+			window.location.href = ROOT_SERVER+'/exporUserList.do?token='+sessionStorage.getItem("token")+'&username='+$("#search_username").val()+'&realname='+$("#search_realname").val()+'&userType='+$("#search_userType").val();
 		},
 		//模板下载
 		mbdown:function(){
@@ -368,10 +368,10 @@ export default {
 				return;
 			}
 			if(size>2048){
-				layer.msg("视频太大，请小于5M");
+				layer.msg("文件太大，请小于5M");
 				return;
 			}
-			var fileupUrl = ROOT_SERVER+"/video/upload?token="+sessionStorage.getItem("token");
+			var fileupUrl = ROOT_SERVER+"/batchuser/upload?token="+sessionStorage.getItem("token");
 			H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
 				retVO = eval('(' + retVO + ')');
 				$('#sourceId').val(retVO.data.resourceId);

@@ -2281,7 +2281,7 @@ webpackJsonp([1,6],[
 			},
 			output: function output() {
 				//批量导出
-				window.location.href = ROOT_SERVER + '/exporUserList.do?token=' + sessionStorage.getItem("token") + '&userName=' + $("#search_username").val() + '&realname=' + $("#search_realname").val() + '&userType=' + $("#search_userType").val();
+				window.location.href = ROOT_SERVER + '/exporUserList.do?token=' + sessionStorage.getItem("token") + '&username=' + $("#search_username").val() + '&realname=' + $("#search_realname").val() + '&userType=' + $("#search_userType").val();
 			},
 			//模板下载
 			mbdown: function mbdown() {
@@ -2301,10 +2301,10 @@ webpackJsonp([1,6],[
 					return;
 				}
 				if (size > 2048) {
-					layer.msg("视频太大，请小于5M");
+					layer.msg("文件太大，请小于5M");
 					return;
 				}
-				var fileupUrl = ROOT_SERVER + "/video/upload?token=" + sessionStorage.getItem("token");
+				var fileupUrl = ROOT_SERVER + "/batchuser/upload?token=" + sessionStorage.getItem("token");
 				H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 					retVO = eval('(' + retVO + ')');
 					$('#sourceId').val(retVO.data.resourceId);
@@ -2406,44 +2406,7 @@ webpackJsonp([1,6],[
 	    }
 	  }, [_c('div', {
 	    staticClass: "cd-f-row"
-	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(2), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('select', {
-	    attrs: {
-	      "name": "userType",
-	      "id": "search_userType"
-	    }
-	  }, [_c('option', {
-	    attrs: {
-	      "value": "-1"
-	    },
-	    domProps: {
-	      "value": "-1"
-	    }
-	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "ADMIN"
-	    },
-	    domProps: {
-	      "value": "ADMIN"
-	    }
-	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "TEACHER"
-	    },
-	    domProps: {
-	      "value": "TEACHER"
-	    }
-	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "STUDENT"
-	    },
-	    domProps: {
-	      "value": "STUDENT"
-	    }
-	  }, [_vm._v("学生")])])])]), _vm._v(" "), _c('button', {
+	  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('button', {
 	    staticClass: "sBtn",
 	    attrs: {
 	      "type": "button"
@@ -2457,169 +2420,7 @@ webpackJsonp([1,6],[
 	    attrs: {
 	      "id": "use_to_load_grid"
 	    }
-	  })]), _vm._v(" "), _c('form', {
-	    staticClass: "layBox",
-	    attrs: {
-	      "action": "",
-	      "id": "edituser"
-	    }
-	  }, [_c('input', {
-	    attrs: {
-	      "type": "hidden",
-	      "name": "userId",
-	      "id": "edit_userId"
-	    }
-	  }), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-row"
-	  }, [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(5), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('input', {
-	    attrs: {
-	      "type": "password",
-	      "name": "password",
-	      "id": "edit_password",
-	      "value": "",
-	      "data-vali": ""
-	    },
-	    domProps: {
-	      "value": ""
-	    }
-	  })])]), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(6), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('select', {
-	    attrs: {
-	      "name": "userType",
-	      "id": "edit_userType"
-	    }
-	  }, [_c('option', {
-	    attrs: {
-	      "value": "-1"
-	    },
-	    domProps: {
-	      "value": "-1"
-	    }
-	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "ADMIN"
-	    },
-	    domProps: {
-	      "value": "ADMIN"
-	    }
-	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "TEACHER"
-	    },
-	    domProps: {
-	      "value": "TEACHER"
-	    }
-	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "STUDENT"
-	    },
-	    domProps: {
-	      "value": "STUDENT"
-	    }
-	  }, [_vm._v("学生")])])])])])]), _vm._v(" "), _c('form', {
-	    staticClass: "layBox",
-	    attrs: {
-	      "action": "",
-	      "id": "adduser"
-	    }
-	  }, [_c('div', {
-	    staticClass: "cd-f-row"
-	  }, [_c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(7), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('input', {
-	    attrs: {
-	      "type": "text",
-	      "name": "username",
-	      "id": "add_username",
-	      "data-vali": "username",
-	      "value": ""
-	    },
-	    domProps: {
-	      "value": ""
-	    }
-	  })])]), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(8), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('input', {
-	    attrs: {
-	      "type": "text",
-	      "name": "realname",
-	      "data-vali": "notnull",
-	      "id": "add_realname",
-	      "value": "",
-	      "maxlength": "10"
-	    },
-	    domProps: {
-	      "value": ""
-	    }
-	  })])]), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(9), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('input', {
-	    attrs: {
-	      "type": "text",
-	      "name": "password",
-	      "data-vali": "password",
-	      "id": "add_password",
-	      "value": "666666"
-	    },
-	    domProps: {
-	      "value": "666666"
-	    }
-	  })])]), _vm._v(" "), _c('div', {
-	    staticClass: "cd-f-eve"
-	  }, [_vm._m(10), _vm._v(" "), _c('span', {
-	    staticClass: "cd-f-value"
-	  }, [_c('select', {
-	    attrs: {
-	      "name": "userType",
-	      "data-vali": "notnull",
-	      "id": "add_userType",
-	      "value": ""
-	    },
-	    domProps: {
-	      "value": ""
-	    }
-	  }, [_c('option', {
-	    attrs: {
-	      "value": "-1"
-	    },
-	    domProps: {
-	      "value": "-1"
-	    }
-	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "ADMIN"
-	    },
-	    domProps: {
-	      "value": "ADMIN"
-	    }
-	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "TEACHER"
-	    },
-	    domProps: {
-	      "value": "TEACHER"
-	    }
-	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
-	    attrs: {
-	      "value": "STUDENT"
-	    },
-	    domProps: {
-	      "value": "STUDENT"
-	    }
-	  }, [_vm._v("学生")])])])])])]), _vm._v(" "), _c('form', {
+	  })]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('form', {
 	    staticClass: "layBox",
 	    attrs: {
 	      "action": "",
@@ -2638,9 +2439,6 @@ webpackJsonp([1,6],[
 	      "value": "",
 	      "accept": ".xls,.xlsx"
 	    },
-	    domProps: {
-	      "value": ""
-	    },
 	    on: {
 	      "change": _vm.viewFile
 	    }
@@ -2649,9 +2447,6 @@ webpackJsonp([1,6],[
 	      "type": "hidden",
 	      "value": "",
 	      "id": "sourceId"
-	    },
-	    domProps: {
-	      "value": ""
 	    }
 	  })])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2687,11 +2482,50 @@ webpackJsonp([1,6],[
 	    }
 	  })])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
-	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("角色:")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
+	    staticClass: "cd-f-name"
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('select', {
+	    attrs: {
+	      "name": "userType",
+	      "id": "search_userType"
+	    }
+	  }, [_c('option', {
+	    attrs: {
+	      "value": "-1"
+	    }
+	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "ADMIN"
+	    }
+	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "TEACHER"
+	    }
+	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "STUDENT"
+	    }
+	  }, [_vm._v("学生")])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('form', {
+	    staticClass: "layBox",
+	    attrs: {
+	      "action": "",
+	      "id": "edituser"
+	    }
+	  }, [_c('input', {
+	    attrs: {
+	      "type": "hidden",
+	      "name": "userId",
+	      "id": "edit_userId"
+	    }
+	  }), _vm._v(" "), _c('div', {
+	    staticClass: "cd-f-row"
+	  }, [_c('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
@@ -2702,9 +2536,7 @@ webpackJsonp([1,6],[
 	      "id": "edit_username",
 	      "maxlength": "18"
 	    }
-	  })])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
+	  })]), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve"
 	  }, [_c('span', {
 	    staticClass: "cd-f-name"
@@ -2718,31 +2550,130 @@ webpackJsonp([1,6],[
 	      "id": "edit_realname",
 	      "maxlength": "10"
 	    }
-	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("密码:")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
+	  }, [_c('label', [_vm._v("密码:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('input', {
+	    attrs: {
+	      "type": "password",
+	      "name": "password",
+	      "id": "edit_password",
+	      "value": "",
+	      "data-vali": ""
+	    }
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("角色:")])])
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('select', {
+	    attrs: {
+	      "name": "userType",
+	      "id": "edit_userType"
+	    }
+	  }, [_c('option', {
+	    attrs: {
+	      "value": "-1"
+	    }
+	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "ADMIN"
+	    }
+	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "TEACHER"
+	    }
+	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "STUDENT"
+	    }
+	  }, [_vm._v("学生")])])])])])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
+	  return _c('form', {
+	    staticClass: "layBox",
+	    attrs: {
+	      "action": "",
+	      "id": "adduser"
+	    }
+	  }, [_c('div', {
+	    staticClass: "cd-f-row"
+	  }, [_c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("用户名:")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
+	  }, [_c('label', [_vm._v("用户名:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('input', {
+	    attrs: {
+	      "type": "text",
+	      "name": "username",
+	      "id": "add_username",
+	      "data-vali": "username",
+	      "value": ""
+	    }
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("姓名:")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
+	  }, [_c('label', [_vm._v("姓名:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('input', {
+	    attrs: {
+	      "type": "text",
+	      "name": "realname",
+	      "data-vali": "notnull",
+	      "id": "add_realname",
+	      "value": "",
+	      "maxlength": "10"
+	    }
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("密码:")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
+	  }, [_c('label', [_vm._v("密码:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('input', {
+	    attrs: {
+	      "type": "text",
+	      "name": "password",
+	      "data-vali": "password",
+	      "id": "add_password",
+	      "value": "666666"
+	    }
+	  })])]), _vm._v(" "), _c('div', {
+	    staticClass: "cd-f-eve"
+	  }, [_c('span', {
 	    staticClass: "cd-f-name"
-	  }, [_c('label', [_vm._v("角色:")])])
+	  }, [_c('label', [_vm._v("角色:")])]), _vm._v(" "), _c('span', {
+	    staticClass: "cd-f-value"
+	  }, [_c('select', {
+	    attrs: {
+	      "name": "userType",
+	      "data-vali": "notnull",
+	      "id": "add_userType",
+	      "value": ""
+	    }
+	  }, [_c('option', {
+	    attrs: {
+	      "value": "-1"
+	    }
+	  }, [_vm._v("请选择")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "ADMIN"
+	    }
+	  }, [_vm._v("管理员")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "TEACHER"
+	    }
+	  }, [_vm._v("教师")]), _vm._v(" "), _c('option', {
+	    attrs: {
+	      "value": "STUDENT"
+	    }
+	  }, [_vm._v("学生")])])])])])])
 	}]}
 	if (true) {
 	  module.hot.accept()
@@ -3400,9 +3331,6 @@ webpackJsonp([1,6],[
 	      "id": "img_resourceId",
 	      "name": "logoPath",
 	      "value": ""
-	    },
-	    domProps: {
-	      "value": ""
 	    }
 	  })]), _vm._v(" "), _c('div', {
 	    staticClass: "upTit"
@@ -3412,9 +3340,6 @@ webpackJsonp([1,6],[
 	      "id": "msg_img",
 	      "value": "false",
 	      "name": "thumbFlag"
-	    },
-	    domProps: {
-	      "value": "false"
 	    }
 	  })]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
 	    staticClass: "cd-f-eve mt40"
@@ -4162,9 +4087,6 @@ webpackJsonp([1,6],[
 	  }, [_c('option', {
 	    attrs: {
 	      "value": ""
-	    },
-	    domProps: {
-	      "value": ""
 	    }
 	  }, [_vm._v("请选择年级")]), _vm._l((_vm.classList.data), function(grade) {
 	    return _c('option', [_vm._v(_vm._s(grade.classlevelName))])
@@ -4180,9 +4102,6 @@ webpackJsonp([1,6],[
 	    }
 	  }, [_c('option', {
 	    attrs: {
-	      "value": ""
-	    },
-	    domProps: {
 	      "value": ""
 	    }
 	  }, [_vm._v("全部")]), _vm._l((_vm.subjectList.data), function(subject) {
@@ -4526,9 +4445,6 @@ webpackJsonp([1,6],[
 	  }, [_c('option', {
 	    attrs: {
 	      "value": ""
-	    },
-	    domProps: {
-	      "value": ""
 	    }
 	  }, [_vm._v("请选择年级")]), _vm._l((_vm.classList.data), function(grade) {
 	    return _c('option', [_vm._v(_vm._s(grade.classlevelName))])
@@ -4544,9 +4460,6 @@ webpackJsonp([1,6],[
 	    }
 	  }, [_c('option', {
 	    attrs: {
-	      "value": ""
-	    },
-	    domProps: {
 	      "value": ""
 	    }
 	  }, [_vm._v("全部")]), _vm._l((_vm.subjectList.data), function(subject) {
