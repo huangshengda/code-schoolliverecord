@@ -161,6 +161,7 @@ public class Constants {
 	public final static List<String> UPLOAD_VIDEO_TYPE;
 
 	public final static List<String> UPLOAD_IMAGE_TYPE;
+	public final static List<String> UPLOAD_BATCHUSER_FILE_TYPE;
 
 	public final static MenuVo INDEX_MENU;
 	public final static MenuVo DEMAND_MENU;
@@ -198,6 +199,13 @@ public class Constants {
 		}
 
 		UPLOAD_IMAGE_TYPE = Arrays.asList(uploadImageTypeStr.split(";"));
+
+		String uploadBatchUserFileTypeStr = ConfigUtils.getValue("upload.batchuser.file.type");
+		if (StringUtils.isEmpty(uploadBatchUserFileTypeStr)) {
+			uploadBatchUserFileTypeStr = ".xls;.xlsx";
+		}
+
+		UPLOAD_BATCHUSER_FILE_TYPE = Arrays.asList(uploadBatchUserFileTypeStr.split(";"));
 
 		SHOT_NUM = StringToInt("sys.screen.shot", 9);
 		SHOT_IMG_TIME = StringToInt("shot.img.time", 60);
