@@ -421,7 +421,7 @@ public class UserController {
 	 * @throws ExecutionException 
 	 */
 	@RequestMapping("exporUserList")
-	public void exporStutList(HttpServletRequest request, String userName, HttpServletResponse response, User user) throws ExecutionException {
+	public void exporStutList(HttpServletRequest request, HttpServletResponse response, User user) throws ExecutionException {
 		String agent = request.getHeader("User-Agent");
 		User userLogin = TokenUtils.getUserFromCache(user.getToken(), agent);
 		Map<String, Object> map = new HashMap<String, Object>();
