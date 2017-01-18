@@ -393,6 +393,7 @@ public class UserController {
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
 		map.put("userType", user.getUserType());
 		map.put("loginUserType", userLogin.getUserType());
+		map.put("userId", userLogin.getUserId());
 		response.setContentType("application/x-msdownload");
 		response.setHeader("Content-Disposition", "attachment; filename=userExportTemplate.xls");
 		try {
