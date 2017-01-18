@@ -193,7 +193,7 @@ public class UserService {
 					canInsert = false;
 					valueBean.valueAppend(message);
 				} else {
-					tempuser.put(username, (i + 3) + "");
+					tempuser.put(username, (i + 2) + "");
 					orgUser.setUsername(username);
 				}
 			} else {

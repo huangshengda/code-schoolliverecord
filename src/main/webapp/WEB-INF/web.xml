@@ -101,6 +101,10 @@
 	</filter-mapping>
 	
 	<servlet>
+	  <servlet-name>batchUserUpload</servlet-name>
+	  <servlet-class>com.codyy.slr.servet.UploadBatchUserFileServlet</servlet-class>
+	 </servlet>
+	<servlet>
 	  <servlet-name>videoUpload</servlet-name>
 	  <servlet-class>com.codyy.slr.servet.UploadVideoServlet</servlet-class>
 	 </servlet>
@@ -112,6 +116,10 @@
  	 <servlet-name>progressServlet</servlet-name>
   		<servlet-class>com.codyy.slr.servet.ProgressServlet</servlet-class>
  	</servlet>
+	 <servlet-mapping>
+ 		 <servlet-name>batchUserUpload</servlet-name>
+ 		 <url-pattern>/batchuser/upload</url-pattern>
+	 </servlet-mapping>
 	 <servlet-mapping>
  		 <servlet-name>videoUpload</servlet-name>
  		 <url-pattern>/video/upload</url-pattern>
