@@ -132,7 +132,7 @@ public class UserService {
 		return userMapper.getUserByNameAndPw(map);
 	}
 
-	public ReturnVoOne<User> importUser(String tempPath, String basePath, String excelType) {
+	public ReturnVoOne<User> importUser(String tempPath, String basePath, String excelType, String loginUserType) {
 		File file = new File(tempPath);
 		InputStream in = null;
 		if (!file.exists()) {
@@ -233,9 +233,6 @@ public class UserService {
 			valueBean = new ValueBean(userType);
 			userType = strTrim(userType);
 			switch (userType) {
-			case "管理员":
-				userType = "ADMIN";
-				break;
 			case "教师":
 				userType = "TEACHER";
 				break;
