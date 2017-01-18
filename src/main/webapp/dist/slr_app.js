@@ -47,7 +47,7 @@ webpackJsonp([0,6],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*!
-	 * Vue.js v2.1.9
+	 * Vue.js v2.1.10
 	 * (c) 2014-2017 Evan You
 	 * Released under the MIT License.
 	 */
@@ -3758,7 +3758,7 @@ webpackJsonp([0,6],{
 	  get: isServerRendering
 	});
 
-	Vue$2.version = '2.1.9';
+	Vue$2.version = '2.1.10';
 
 	/*  */
 
@@ -5999,7 +5999,9 @@ webpackJsonp([0,6],{
 	    var id = "__transition-" + (this._uid) + "-";
 	    var key = child.key = child.key == null
 	      ? id + child.tag
-	      : child.key.indexOf(id) === 0 ? child.key : id + child.key;
+	      : isPrimitive(child.key)
+	        ? (String(child.key).indexOf(id) === 0 ? child.key : id + child.key)
+	        : child.key;
 	    var data = (child.data || (child.data = {})).transition = extractTransitionData(this);
 	    var oldRawChild = this._vnode;
 	    var oldChild = getRealChild(oldRawChild);
@@ -7065,8 +7067,8 @@ webpackJsonp([0,6],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	  * vue-router v2.1.1
-	  * (c) 2016 Evan You
+	  * vue-router v2.1.2
+	  * (c) 2017 Evan You
 	  * @license MIT
 	  */
 	'use strict';
@@ -7088,11 +7090,14 @@ webpackJsonp([0,6],{
 
 	    data.routerView = true
 
+	    var name = props.name
 	    var route = parent.$route
 	    var cache = parent._routerViewCache || (parent._routerViewCache = {})
+
+	    // determine current view depth, also check to see if the tree
+	    // has been toggled inactive but kept-alive.
 	    var depth = 0
 	    var inactive = false
-
 	    while (parent) {
 	      if (parent.$vnode && parent.$vnode.data.routerView) {
 	        depth++
@@ -7102,30 +7107,33 @@ webpackJsonp([0,6],{
 	      }
 	      parent = parent.$parent
 	    }
-
 	    data.routerViewDepth = depth
+
+	    // render previous view if the tree is inactive and kept-alive
+	    if (inactive) {
+	      return h(cache[name], data, children)
+	    }
+
 	    var matched = route.matched[depth]
+	    // render empty node if no matched route
 	    if (!matched) {
+	      cache[name] = null
 	      return h()
 	    }
 
-	    var name = props.name
-	    var component = inactive
-	      ? cache[name]
-	      : (cache[name] = matched.components[name])
+	    var component = cache[name] = matched.components[name]
 
-	    if (!inactive) {
-	      var hooks = data.hook || (data.hook = {})
-	      hooks.init = function (vnode) {
-	        matched.instances[name] = vnode.child
-	      }
-	      hooks.prepatch = function (oldVnode, vnode) {
-	        matched.instances[name] = vnode.child
-	      }
-	      hooks.destroy = function (vnode) {
-	        if (matched.instances[name] === vnode.child) {
-	          matched.instances[name] = undefined
-	        }
+	    // inject instance registration hooks
+	    var hooks = data.hook || (data.hook = {})
+	    hooks.init = function (vnode) {
+	      matched.instances[name] = vnode.child
+	    }
+	    hooks.prepatch = function (oldVnode, vnode) {
+	      matched.instances[name] = vnode.child
+	    }
+	    hooks.destroy = function (vnode) {
+	      if (matched.instances[name] === vnode.child) {
+	        matched.instances[name] = undefined
 	      }
 	    }
 
@@ -7237,6 +7245,8 @@ webpackJsonp([0,6],{
 
 	/*  */
 
+	var trailingSlashRE = /\/?$/
+
 	function createRoute (
 	  record,
 	  location,
@@ -7280,7 +7290,6 @@ webpackJsonp([0,6],{
 	  return (path || '/') + stringifyQuery(query) + hash
 	}
 
-	var trailingSlashRE = /\/$/
 	function isSameRoute (a, b) {
 	  if (b === START) {
 	    return a === b
@@ -7318,7 +7327,9 @@ webpackJsonp([0,6],{
 
 	function isIncludedRoute (current, target) {
 	  return (
-	    current.path.indexOf(target.path.replace(/\/$/, '')) === 0 &&
+	    current.path.replace(trailingSlashRE, '/').indexOf(
+	      target.path.replace(trailingSlashRE, '/')
+	    ) === 0 &&
 	    (!target.hash || current.hash === target.hash) &&
 	    queryIncludes(current.query, target.query)
 	  )
@@ -7428,11 +7439,13 @@ webpackJsonp([0,6],{
 	  if (e.defaultPrevented) { return }
 	  // don't redirect on right click
 	  /* istanbul ignore if */
-	  if (e.button !== 0) { return }
+	  if (e.button !== undefined && e.button !== 0) { return }
 	  // don't redirect if `target="_blank"`
 	  /* istanbul ignore if */
-	  var target = e.target.getAttribute('target')
-	  if (/\b_blank\b/i.test(target)) { return }
+	  if (e.target && e.target.getAttribute) {
+	    var target = e.target.getAttribute('target')
+	    if (/\b_blank\b/i.test(target)) { return }
+	  }
 
 	  e.preventDefault()
 	  return true
@@ -7611,33 +7624,55 @@ webpackJsonp([0,6],{
 	    // not be rendered (GH Issue #629)
 	    if (true) {
 	      if (route.name && route.children.some(function (child) { return /^\/?$/.test(child.path); })) {
-	        warn(false, ("Named Route '" + (route.name) + "' has a default child route.\n          When navigating to this named route (:to=\"{name: '" + (route.name) + "'\"), the default child route will not be rendered.\n          Remove the name from this route and use the name of the default child route for named links instead.")
+	        warn(
+	          false,
+	          "Named Route '" + (route.name) + "' has a default child route. " +
+	          "When navigating to this named route (:to=\"{name: '" + (route.name) + "'\"), " +
+	          "the default child route will not be rendered. Remove the name from " +
+	          "this route and use the name of the default child route for named " +
+	          "links instead."
 	        )
 	      }
 	    }
 	    route.children.forEach(function (child) {
-	      addRouteRecord(pathMap, nameMap, child, record)
+	      var childMatchAs = matchAs
+	        ? cleanPath((matchAs + "/" + (child.path)))
+	        : undefined
+	      addRouteRecord(pathMap, nameMap, child, record, childMatchAs)
 	    })
 	  }
 
 	  if (route.alias !== undefined) {
 	    if (Array.isArray(route.alias)) {
 	      route.alias.forEach(function (alias) {
-	        addRouteRecord(pathMap, nameMap, { path: alias }, parent, record.path)
+	        var aliasRoute = {
+	          path: alias,
+	          children: route.children
+	        }
+	        addRouteRecord(pathMap, nameMap, aliasRoute, parent, record.path)
 	      })
 	    } else {
-	      addRouteRecord(pathMap, nameMap, { path: route.alias }, parent, record.path)
+	      var aliasRoute = {
+	        path: route.alias,
+	        children: route.children
+	      }
+	      addRouteRecord(pathMap, nameMap, aliasRoute, parent, record.path)
 	    }
 	  }
 
 	  if (!pathMap[record.path]) {
 	    pathMap[record.path] = record
 	  }
+
 	  if (name) {
 	    if (!nameMap[name]) {
 	      nameMap[name] = record
 	    } else if (true) {
-	      warn(false, ("Duplicate named routes definition: { name: \"" + name + "\", path: \"" + (record.path) + "\" }"))
+	      warn(
+	        false,
+	        "Duplicate named routes definition: " +
+	        "{ name: \"" + name + "\", path: \"" + (record.path) + "\" }"
+	      )
 	    }
 	  }
 	}
@@ -8198,6 +8233,9 @@ webpackJsonp([0,6],{
 
 	    if (name) {
 	      var record = nameMap[name]
+	      if (true) {
+	        warn(record, ("Route with name '" + name + "' does not exist"))
+	      }
 	      var paramNames = getRouteRegex(record.path).keys
 	        .filter(function (key) { return !key.optional; })
 	        .map(function (key) { return key.name; })
@@ -8706,7 +8744,10 @@ webpackJsonp([0,6],{
 	/*  */
 
 
-	var genKey = function () { return String(Date.now()); }
+	// use User Timing api (if present) for more accurate key precision
+	var Time = inBrowser ? (window.performance || Date) : Date
+
+	var genKey = function () { return String(Time.now()); }
 	var _key = genKey()
 
 	var HTML5History = (function (History) {
@@ -8831,7 +8872,7 @@ webpackJsonp([0,6],{
 	    }
 	    saveScrollPosition(_key)
 	  } catch (e) {
-	    window.location[replace ? 'assign' : 'replace'](url)
+	    window.location[replace ? 'replace' : 'assign'](url)
 	  }
 	}
 
@@ -8933,8 +8974,8 @@ webpackJsonp([0,6],{
 
 
 	var AbstractHistory = (function (History) {
-	  function AbstractHistory (router) {
-	    History.call(this, router)
+	  function AbstractHistory (router, base) {
+	    History.call(this, router, base)
 	    this.stack = []
 	    this.index = -1
 	  }
@@ -9010,7 +9051,7 @@ webpackJsonp([0,6],{
 	      this.history = new HashHistory(this, options.base, this.fallback)
 	      break
 	    case 'abstract':
-	      this.history = new AbstractHistory(this)
+	      this.history = new AbstractHistory(this, options.base)
 	      break
 	    default:
 	      ("development") !== 'production' && assert(false, ("invalid mode: " + mode))
@@ -9119,6 +9160,7 @@ webpackJsonp([0,6],{
 	}
 
 	VueRouter.install = install
+	VueRouter.version = '2.1.2'
 
 	if (inBrowser && window.Vue) {
 	  window.Vue.use(VueRouter)

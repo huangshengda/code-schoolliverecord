@@ -1,0 +1,1 @@
+alter table resource add COLUMN DOWNLOAD_CNT numeric(10,0) DEFAULT 0;

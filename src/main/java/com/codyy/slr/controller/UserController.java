@@ -345,52 +345,29 @@ public class UserController {
 	 * importUser:批量导入用户
 	 * 
 	 */
-	/*@RequestMapping(value = "/importUser", method = RequestMethod.POST)
-	@ResponseBody
-	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String token) throws IOException,
-			ExecutionException {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.TEXT_PLAIN);
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		resolver.setDefaultEncoding("UTF-8");
-		resolver.setMaxInMemorySize(1024 * 1024);
-		resolver.setServletContext(request.getSession().getServletContext());
-		MultipartHttpServletRequest multiRequest = resolver.resolveMultipart(request);
-		Map<String, MultipartFile> filemap = multiRequest.getFileMap();
-		if (filemap.size() == 0) {
-			return new ReturnVoOne<User>(Constants.FAILED, "文件错误");
-		}
-		MultipartFile multiFile = filemap.values().iterator().next();
-		String excelName = multiFile.getOriginalFilename();
-		String excelType = excelName.substring(excelName.indexOf(".") + 1);
-		InputStream in = multiFile.getInputStream();
-		String tempName = UUIDUtils.getUUID();
-		String basePath = request.getServletContext().getRealPath("/WEB-INF/temp") + File.separator;
-		String tempPath = basePath + tempName + "." + excelType;
-		File descFile = new File(tempPath);
-		FileUtils.copyInputStreamToFile(in, descFile);
-		String agent = request.getHeader("User-Agent");
-		User user = TokenUtils.getUserFromCache(token, agent);
-		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType, user);
-		descFile.delete();
-		return result;
-	}*/
-
-	/**
-	 * 
-	 * importUser:批量导入用户
-	 * 
-	 */
 	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename) {
+	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename, String token) {
 		if (StringUtils.isEmpty(filename)) {
 			return new ReturnVoOne<User>(0, "导入文件为空");
 		}
+		User userLogin = new User();
+		String agent = request.getHeader("User-Agent");
 		String excelType = filename.substring(filename.indexOf(".") + 1);
 		String basePath = Constants.TEMP;
 		String tempPath = basePath + File.separator + filename;
-		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType);
+		try {
+			userLogin = TokenUtils.getUserFromCache(token, agent);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		ReturnVoOne<User> result;
+		try {
+			result = userService.importUser(tempPath, basePath, excelType, userLogin.getUserType());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ReturnVoOne<User>(Constants.FAILED, "请使用正确的模板");
+		}
 		return result;
 	}
 
@@ -429,6 +406,7 @@ public class UserController {
 		map.put("realname", MySqlKeyWordUtils.MySqlKeyWordReplace(user.getRealname()));
 		map.put("userType", user.getUserType());
 		map.put("loginUserType", userLogin.getUserType());
+		map.put("userId", userLogin.getUserId());
 		response.setContentType("application/x-msdownload");
 		response.setHeader("Content-Disposition", "attachment; filename=userExportTemplate.xls");
 		try {
@@ -436,14 +414,14 @@ public class UserController {
 			HSSFWorkbook workbook = userService.getStudentListForExport(map);
 			workbook.write(out);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 	}
 
 	@RequestMapping("downloadUserModel")
 	public void downoadOrgUserModel(HttpServletRequest request, HttpServletResponse response) {
-		String titleName = "UserImportTemplate.xls";
+		String titleName = "userImportTemplate.xls";
 		response.setContentType("application/x-msdownload");
 		response.setHeader("Content-Disposition", "attachment; filename=" + titleName);
 		try {
@@ -453,7 +431,7 @@ public class UserController {
 			InputStream in = new FileInputStream(file);
 			StreamUtils.copy(in, out);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 }

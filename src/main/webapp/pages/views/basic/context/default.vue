@@ -101,7 +101,7 @@
           <span class="cd-f-value">
             <select name="userType" data-vali="notnull" id="add_userType" value="">
            	 	<option value="-1">请选择</option>
-            	<option value="ADMIN">管理员</option>
+           	 	<option value="ADMIN">管理员</option>
             	<option value="TEACHER">教师</option>
             	<option value="STUDENT">学生</option>
             </select>
@@ -302,12 +302,17 @@ export default {
 			$('#adduser')[0].reset();
       		$(".cd-f-vali").remove();
 			var _self = this;
+			CDUtil.ajaxPost("/token/getuser",{token: sessionStorage.getItem("token")},function(retVO){
+				if(retVO.data.userType=="ADMIN"){
+					$('#add_userType option[value="ADMIN"]').hide();
+				}
+			});
 			layer.open({
 				type: 1,
 				title: '添加用户',
 				skin: 'layui-layer-rim',
 				//加上边框
-				area: ['450px', '375px'],
+				area: ['450px','375px'],
 				//宽高
 				btn: ['确定', '取消'],
 				content: $("#adduser"),
@@ -336,11 +341,10 @@ export default {
 							if(retVO.code == 2){
 								layer.msg("用户信息失效，请重新登录！");
 								setTimeout(function () {
-		        				// window.close();
-		        				window.location.href = ROOT_SERVER+"/#/index";
-		        				window.location.reload();
-       						}, 1000);
-					}
+		        					window.location.href = ROOT_SERVER+"/#/index";
+		        					window.location.reload();
+       							}, 1000);
+							}
 						});
 					}
 				}
@@ -373,8 +377,8 @@ export default {
 			}
 			var fileupUrl = ROOT_SERVER+"/batchuser/upload?token="+sessionStorage.getItem("token");
 			H5fileup.startFileup(file,fileupUrl,sequence,function(retVO){
-				retVO = eval('(' + retVO + ')');
-				$('#sourceId').val(retVO.data.resourceId);
+					retVO = eval('(' + retVO + ')');
+					$('#sourceId').val(retVO.data.resourceId);
 			});
 		},
 		batchAdd: function(){
@@ -390,13 +394,23 @@ export default {
 				btn: ['确定', '取消'],
 				content: $("#batch_user"),
 				yes: function(index, layero){
+					if(sessionStorage.getItem("token")==null){
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+		        			window.location.href = ROOT_SERVER+"/#/index";
+		        			window.location.reload();
+       					}, 1000);
+					}
 					if($('#view_file').val()==''){
 						layer.msg('未选择需要导入的文档！');
 					}
 					if($('#view_file').val()!=''){
 						var indexLode = layer.load(2);
 						var link = $('#sourceId').val();
-		 				var bcParams = {filename: link};
+		 				var bcParams = {
+		 					filename: link,
+		 					token:	sessionStorage.getItem("token")
+		 				};
 						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
 							if(retVO.code==0){
 								layer.msg(retVO.msg);
@@ -405,11 +419,18 @@ export default {
 							if(retVO.code==1){
 								layer.close(indexLode);
 								_self.userSear();
-								layer.msg(retVO.msg);
+								layer.msg("添加成功！");
 								layer.close(index);
 								$('#batch_user')[0].reset();
 							}
-							if(retVO.code==2){
+							if(retVO.code == 2){
+								layer.msg("用户信息失效，请重新登录！");
+								setTimeout(function () {
+		        					window.location.href = ROOT_SERVER+"/#/index";
+		        					window.location.reload();
+       							}, 1000);
+							}
+							if(retVO.code==3){
 								layer.close(indexLode);
 								layer.open({
 									title:'请确认',
