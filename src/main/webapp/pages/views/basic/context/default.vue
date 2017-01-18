@@ -101,7 +101,7 @@
           <span class="cd-f-value">
             <select name="userType" data-vali="notnull" id="add_userType" value="">
            	 	<option value="-1">请选择</option>
-            	<option value="ADMIN">管理员</option>
+           	 	<option value="ADMIN">管理员</option>
             	<option value="TEACHER">教师</option>
             	<option value="STUDENT">学生</option>
             </select>
@@ -396,7 +396,10 @@ export default {
 					if($('#view_file').val()!=''){
 						var indexLode = layer.load(2);
 						var link = $('#sourceId').val();
-		 				var bcParams = {filename: link};
+		 				var bcParams = {
+		 					filename: link,
+		 					token:	sessionStorage.getItem("token")
+		 				};
 						CDUtil.ajaxPost("/importUser",bcParams,function(retVO) {
 							if(retVO.code==0){
 								layer.msg(retVO.msg);

@@ -47,7 +47,7 @@ webpackJsonp([0,6],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*!
-	 * Vue.js v2.1.9
+	 * Vue.js v2.1.10
 	 * (c) 2014-2017 Evan You
 	 * Released under the MIT License.
 	 */
@@ -3758,7 +3758,7 @@ webpackJsonp([0,6],{
 	  get: isServerRendering
 	});
 
-	Vue$2.version = '2.1.9';
+	Vue$2.version = '2.1.10';
 
 	/*  */
 
@@ -5999,7 +5999,9 @@ webpackJsonp([0,6],{
 	    var id = "__transition-" + (this._uid) + "-";
 	    var key = child.key = child.key == null
 	      ? id + child.tag
-	      : child.key.indexOf(id) === 0 ? child.key : id + child.key;
+	      : isPrimitive(child.key)
+	        ? (String(child.key).indexOf(id) === 0 ? child.key : id + child.key)
+	        : child.key;
 	    var data = (child.data || (child.data = {})).transition = extractTransitionData(this);
 	    var oldRawChild = this._vnode;
 	    var oldChild = getRealChild(oldRawChild);

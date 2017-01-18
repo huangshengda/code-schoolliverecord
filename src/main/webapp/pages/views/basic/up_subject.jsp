@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit">
 <%@ include file="../../_commons/meta.jsp" %>
-<script type="text/javascript" src="${ROOT_UI}/public/_module/videoup/videoup.js"></script>
 <link rel="stylesheet" type="text/css" href="${ROOT_UI}/public/_module/videoup/videoup.css" />
 </head>
 <body>
