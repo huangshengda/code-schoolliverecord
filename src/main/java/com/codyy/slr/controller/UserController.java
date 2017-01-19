@@ -347,14 +347,27 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/importUser", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename) {
+	public ReturnVoOne<User> importUser(HttpServletResponse response, HttpServletRequest request, String filename, String token) {
 		if (StringUtils.isEmpty(filename)) {
 			return new ReturnVoOne<User>(0, "导入文件为空");
 		}
+		User userLogin = new User();
+		String agent = request.getHeader("User-Agent");
 		String excelType = filename.substring(filename.indexOf(".") + 1);
 		String basePath = Constants.TEMP;
 		String tempPath = basePath + File.separator + filename;
-		ReturnVoOne<User> result = userService.importUser(tempPath, basePath, excelType);
+		try {
+			userLogin = TokenUtils.getUserFromCache(token, agent);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		ReturnVoOne<User> result;
+		try {
+			result = userService.importUser(tempPath, basePath, excelType, userLogin.getUserType());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ReturnVoOne<User>(Constants.FAILED, "请使用正确的模板");
+		}
 		return result;
 	}
 
