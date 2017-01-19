@@ -3,7 +3,6 @@ package com.codyy.slr.util;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import com.codyy.slr.constant.Constants;
 import com.codyy.slr.entity.User;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -20,7 +19,7 @@ public class TokenUtils {
 
 	// 加载类时初始化
 	static {
-		tokenCache = CacheBuilder.newBuilder().expireAfterAccess(Constants.EXPIRE_TIME, TimeUnit.MINUTES).build(new CacheLoader<String, User>() {
+		tokenCache = CacheBuilder.newBuilder().expireAfterAccess(30, TimeUnit.SECONDS).build(new CacheLoader<String, User>() {
 			@Override
 			public User load(String key) throws Exception {
 				// 在cache中查不到时返回
