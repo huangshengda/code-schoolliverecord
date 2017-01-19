@@ -2235,6 +2235,11 @@ webpackJsonp([1,6],[
 				$('#adduser')[0].reset();
 				$(".cd-f-vali").remove();
 				var _self = this;
+				CDUtil.ajaxPost("/token/getuser", { token: sessionStorage.getItem("token") }, function (retVO) {
+					if (retVO.data.userType == "ADMIN") {
+						$('#add_userType option[value="ADMIN"]').hide();
+					}
+				});
 				layer.open({
 					type: 1,
 					title: '添加用户',
@@ -2329,7 +2334,10 @@ webpackJsonp([1,6],[
 						if ($('#view_file').val() != '') {
 							var indexLode = layer.load(2);
 							var link = $('#sourceId').val();
-							var bcParams = { filename: link };
+							var bcParams = {
+								filename: link,
+								token: sessionStorage.getItem("token")
+							};
 							CDUtil.ajaxPost("/importUser", bcParams, function (retVO) {
 								if (retVO.code == 0) {
 									layer.msg(retVO.msg);

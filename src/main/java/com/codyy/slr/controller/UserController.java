@@ -409,14 +409,14 @@ public class UserController {
 			HSSFWorkbook workbook = userService.getStudentListForExport(map);
 			workbook.write(out);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 
 	}
 
 	@RequestMapping("downloadUserModel")
 	public void downoadOrgUserModel(HttpServletRequest request, HttpServletResponse response) {
-		String titleName = "UserImportTemplate.xls";
+		String titleName = "userImportTemplate.xls";
 		response.setContentType("application/x-msdownload");
 		response.setHeader("Content-Disposition", "attachment; filename=" + titleName);
 		try {
@@ -426,7 +426,7 @@ public class UserController {
 			InputStream in = new FileInputStream(file);
 			StreamUtils.copy(in, out);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.toString());
 		}
 	}
 }
