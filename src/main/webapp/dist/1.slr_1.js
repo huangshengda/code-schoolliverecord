@@ -2309,18 +2309,18 @@ webpackJsonp([1,6],[
 					layer.msg("文件太大，请小于5M");
 					return;
 				}
-				if (sessionStorage.getItem("token") == null) {
-					layer.msg("用户信息失效，请重新登录！");
-					setTimeout(function () {
-						// window.close();
-						window.location.href = ROOT_SERVER + "/#/index";
-						window.location.reload();
-					}, 1000);
-				}
 				var fileupUrl = ROOT_SERVER + "/batchuser/upload?token=" + sessionStorage.getItem("token");
 				H5fileup.startFileup(file, fileupUrl, sequence, function (retVO) {
 					retVO = eval('(' + retVO + ')');
 					$('#sourceId').val(retVO.data.resourceId);
+					if (retVO.code == 2) {
+						layer.msg("用户信息失效，请重新登录！");
+						setTimeout(function () {
+							// window.close();
+							window.location.href = ROOT_SERVER + "/#/index";
+							window.location.reload();
+						}, 1000);
+					}
 				});
 			},
 			batchAdd: function batchAdd() {
