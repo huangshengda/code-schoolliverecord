@@ -366,7 +366,7 @@ public class UserController {
 			result = userService.importUser(tempPath, basePath, excelType, userLogin.getUserType());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ReturnVoOne<User>(Constants.FAILED, "请使用正确的模板");
+			return new ReturnVoOne<User>(Constants.FAILED, "导入失败");
 		}
 		return result;
 	}
