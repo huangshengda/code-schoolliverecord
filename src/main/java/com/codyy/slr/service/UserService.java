@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,7 @@ import com.codyy.slr.constant.Constants;
 import com.codyy.slr.dao.UserMapper;
 import com.codyy.slr.entity.User;
 import com.codyy.slr.util.SecurityUtils;
+import com.codyy.slr.util.StringUtils;
 import com.codyy.slr.util.UUIDUtils;
 import com.codyy.slr.util.Validation;
 import com.codyy.slr.util.doc.ExcelAnnocationUtils;
@@ -196,7 +196,7 @@ public class UserService {
 					valueBean.valueAppend(message);
 				} else {
 					tempuser.put(username, (i + 1) + "");
-					orgUser.setUsername(username);
+					orgUser.setUsername(StringUtils.replaceEscapeCharRollback(username));
 				}
 			} else {
 				message = "#用户名长度为6到18个字符！";
@@ -222,7 +222,7 @@ public class UserService {
 			valueBean = new ValueBean(realname);
 			realname = strTrim(realname);
 			if (Validation.strValidate(realname, 1, 10, true)) {
-				orgUser.setRealname(realname);
+				orgUser.setRealname(StringUtils.replaceEscapeCharRollback(realname));
 			} else {
 				message = "#姓名长度限制10个字！";
 				canInsert = false;
@@ -300,6 +300,10 @@ public class UserService {
 
 	public HSSFWorkbook getStudentListForExport(Map<String, Object> map) {
 		List<UserExportModel> userExportList = userMapper.getUserExportList(map);
+		for (UserExportModel user : userExportList) {
+			user.setUsername(StringUtils.replaceEscapeChar(user.getUsername()));
+			user.setRealname(StringUtils.replaceEscapeChar(user.getRealname()));
+		}
 		return ExcelAnnocationUtils.exportExcelData(UserExportModel.class, userExportList);
 	}
 
