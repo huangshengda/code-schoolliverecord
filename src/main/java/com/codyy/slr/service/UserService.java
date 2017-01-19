@@ -138,7 +138,7 @@ public class UserService {
 		File file = new File(tempPath);
 		InputStream in = null;
 		if (!file.exists()) {
-			return new ReturnVoOne<User>(0, "导入失败！");
+			return new ReturnVoOne<User>(Constants.FAILED, "导入失败！");
 		}
 		List<Object> list = new ArrayList<Object>();
 		try {
@@ -158,7 +158,7 @@ public class UserService {
 			} catch (IOException e1) {
 				log.error(e1.toString());
 			}
-			return new ReturnVoOne<User>(0, "导入失败！");
+			return new ReturnVoOne<User>(Constants.FAILED, "导入失败！");
 		}
 		UserImportModel orgUser;
 		boolean canInsert = true;
@@ -255,7 +255,7 @@ public class UserService {
 		}
 		if (canInsert) {
 			if (size == 0) {
-				return new ReturnVoOne<User>(0, "导入失败，导入的数据为空！");
+				return new ReturnVoOne<User>(Constants.FAILED, "导入失败，导入的数据为空！");
 			}
 			userMapper.insertUsers(list);
 
@@ -269,9 +269,9 @@ public class UserService {
 				errorList = null;
 			} catch (Exception e) {
 				log.error(e.toString());
-				return new ReturnVoOne<User>(0, "导入失败！");
+				return new ReturnVoOne<User>(Constants.FAILED, "导入失败！");
 			}
-			return new ReturnVoOne<User>(3, fileName);
+			return new ReturnVoOne<User>(Constants.ERROR, fileName);
 		}
 	}
 
