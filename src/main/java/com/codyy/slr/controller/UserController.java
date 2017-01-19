@@ -368,7 +368,6 @@ public class UserController {
 			e.printStackTrace();
 			return new ReturnVoOne<User>(Constants.FAILED, "请使用正确的模板");
 		}
-
 		return result;
 	}
 
