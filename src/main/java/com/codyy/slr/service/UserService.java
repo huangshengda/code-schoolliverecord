@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,7 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 	final String PasswordRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|-|=|\\|/|<|>]{6,18}$";
+	private static final Logger log = Logger.getLogger(UserService.class);
 
 	/**
 	 * 
@@ -148,13 +150,13 @@ public class UserService {
 			}
 			in.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.toString());
 			try {
 				if (in != null) {
 					in.close();
 				}
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				log.error(e1.toString());
 			}
 			return new ReturnVoOne<User>(0, "导入失败！");
 		}
@@ -193,7 +195,7 @@ public class UserService {
 					canInsert = false;
 					valueBean.valueAppend(message);
 				} else {
-					tempuser.put(username, (i + 2) + "");
+					tempuser.put(username, (i + 1) + "");
 					orgUser.setUsername(username);
 				}
 			} else {
@@ -266,7 +268,7 @@ public class UserService {
 				ou.close();
 				errorList = null;
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error(e.toString());
 				return new ReturnVoOne<User>(0, "导入失败！");
 			}
 			return new ReturnVoOne<User>(2, fileName);
