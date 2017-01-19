@@ -2328,6 +2328,10 @@ webpackJsonp([1,6],[
 					btn: ['确定', '取消'],
 					content: $("#batch_user"),
 					yes: function yes(index, layero) {
+						if (sessionStorage.getItem("token") == null) {
+							layer.msg("用户信息失效，请重新登录！");
+							window.location.reload();
+						}
 						if ($('#view_file').val() == '') {
 							layer.msg('未选择需要导入的文档！');
 						}
@@ -2352,6 +2356,15 @@ webpackJsonp([1,6],[
 								}
 								if (retVO.code == 2) {
 									layer.close(indexLode);
+									if (sessionStorage.getItem("token") == null) {
+										laryIndex = layer.open({
+											type: 1,
+											title: '登录',
+											skin: 'layui-layer-rim', //加上边框
+											area: ['450px', '360px'], //宽高
+											content: $("#login")
+										});
+									}
 									layer.open({
 										title: '请确认',
 										content: '导入失败，是否下载问题明细？',
