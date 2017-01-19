@@ -20,7 +20,7 @@ public class Constants {
 	public static final int SUCCESS = 1;
 	public static final int FAILED = 0;
 	public static final int NOT_LOGGIN = 2;
-	public static final int ERROR = 3;
+	public static final int UPLOAD_BATCHUSER_ERROR = 3;
 
 	public static final List<String> DELETE = Arrays.asList("del_fun");
 	public static final List<String> EDIT = Arrays.asList("edit_fun");

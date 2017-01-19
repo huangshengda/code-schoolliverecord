@@ -271,7 +271,7 @@ public class UserService {
 				log.error(e.toString());
 				return new ReturnVoOne<User>(Constants.FAILED, "导入失败！");
 			}
-			return new ReturnVoOne<User>(Constants.ERROR, fileName);
+			return new ReturnVoOne<User>(Constants.UPLOAD_BATCHUSER_ERROR, fileName);
 		}
 	}
 
