@@ -241,6 +241,9 @@ public class UserService {
 			case "学生":
 				userType = "STUDENT";
 				break;
+			case "管理员":
+				userType = "ADMIN";
+				break;
 			default:
 				message = "#用户类型错误！";
 				canInsert = false;
