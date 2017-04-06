@@ -5,5 +5,8 @@
 
 .classpath
 .project
-.gitignore
 
+
+.idea/
+/maintenance-system.iml
+/.gitignore
