@@ -3,13 +3,15 @@ package com.codyy.slr.util;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * 功能描述：验证类 ，提供常用的转型 <br>
  */
 public class Validation {
 
-	// private static final Log log = LogFactory.getLog(Validation.class);
+	private static final Log log = LogFactory.getLog(Validation.class);
 
 	/**
 	 * 验证整数的正则式
@@ -23,19 +25,19 @@ public class Validation {
 	 * 验证电话号码的正则式
 	 */
 	private static final String P_PHONE = "^\\d+(-\\d+)*$";
-
+	
 	/**
 	 * 验证联系方式的正则（电话||手机）
 	 */
-	// private static final String P_CONTACT_PHONE = "^\\d{7,8}$|^\\d{3,4}-\\d{7,8}$|^1[3|4|5|8][0-9]\\d{4,8}$";
-	// 上述代码在验证手机号码有问题，做出修改
+	//private static final String P_CONTACT_PHONE = "^\\d{7,8}$|^\\d{3,4}-\\d{7,8}$|^1[3|4|5|8][0-9]\\d{4,8}$";
+	//上述代码在验证手机号码有问题，做出修改
 	private static final String P_CONTACT_PHONE = "^\\d{7,8}$|^\\d{3,4}-\\d{7,8}$|^1[3|4|5|7|8][0-9]\\d{8}$";
-
+	
 	/*
 	 * 邮箱有效性验证
 	 */
-	private static final String P_CONTACT_EMAIL = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
-
+	private static final String P_CONTACT_EMAIL = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$" ;
+	
 	/**
 	 * 验证用户名
 	 */
@@ -73,7 +75,7 @@ public class Validation {
 	 * 验证联系方式（电话||手机）
 	 */
 	public static final int CONTACT_PHONE = 5;
-
+	
 	/**
 	 * 验证用户名
 	 */
@@ -101,29 +103,29 @@ public class Validation {
 		}
 		String regex = null;
 		switch (matcher) {
-		case INT:
-			regex = P_INT;
-			break;
-		case FLOAT:
-			regex = P_FLOAT;
-			break;
-		case PHONE:
-			regex = P_PHONE;
-			break;
-		case EMAIL:
-			regex = P_EMAIL;
-			break;
-		case CONTACT_PHONE:
-			regex = P_CONTACT_PHONE;
-			break;
-		case IP:
-			regex = P_IP;
-			break;
-		case ZH_EN_NUMBER:
-			regex = P_ZH_EN_NUMBER;
-			break;
-		default:
-			return false;
+			case INT:
+				regex = P_INT;
+				break;
+			case FLOAT:
+				regex = P_FLOAT;
+				break;
+			case PHONE:
+				regex = P_PHONE;
+				break;
+			case EMAIL:
+				regex = P_EMAIL;
+				break;
+			case CONTACT_PHONE:
+				regex = P_CONTACT_PHONE;
+				break;
+			case IP:
+				regex = P_IP;
+				break;
+			case ZH_EN_NUMBER:
+				regex = P_ZH_EN_NUMBER;
+				break;
+			default:
+				return false;
 		}
 		return Pattern.matches(regex, input);
 	}
@@ -140,74 +142,74 @@ public class Validation {
 		}
 		return false;
 	}
-
-	public static boolean strValidate(String str, int minLength, int maxLength, boolean isRequired) {
-		if (StringUtils.isBlank(str)) {
+	
+	public static boolean strValidate(String str,int minLength,int maxLength,boolean isRequired){
+		if(StringUtils.isBlank(str)){
 			str = "";
 		}
 		str = str.trim();
-		if (isRequired) {
-			if (str.length() == 0) {
+		if(isRequired){
+			if(str.length() == 0){
 				return false;
 			}
-		} else {
-			if (str.length() == 0) {
+		}else{
+			if(str.length() == 0){
 				return true;
 			}
 		}
-		if (str.length() >= minLength && str.length() <= maxLength) {
+		if(str.length()>=minLength && str.length() <=maxLength){
 			return true;
-		} else {
+		}else{
 			return false;
 		}
 
 	}
-
-	public static boolean isContactPhone(String str, boolean isRequired) {
-		if (StringUtils.isBlank(str)) {
+	
+	public static boolean isContactPhone(String str,boolean isRequired){
+		if(StringUtils.isBlank(str)){
 			str = "";
 		}
 		str = str.trim();
-		if (isRequired) {
-			if (str.length() == 0) {
+		if(isRequired){
+			if(str.length() == 0){
 				return false;
 			}
-		} else {
-			if (str.length() == 0) {
+		}else{
+			if(str.length() == 0){
 				return true;
 			}
 		}
 		return Pattern.matches(Validation.P_CONTACT_PHONE, str);
 	}
-
-	public static boolean isContactEmail(String str, boolean isRequired) {
-		if (StringUtils.isBlank(str)) {
-			str = "";
+	
+	public static boolean isContactEmail(String str,boolean isRequired) {
+		if(StringUtils.isBlank(str)) {
+			str = "" ;
 		}
-		str = str.trim();
-		if (isRequired) {
-			if (str.length() == 0) {
-				return false;
-			}
+		str = str.trim() ;
+		if(isRequired) {
+			if(str.length() == 0) {
+				return false ;
+			} 
 		} else {
-			if (str.length() == 0) {
-				return true;
+			if(str.length() == 0) {
+				return true ;
 			}
 		}
-
-		if (str.length() > 50) {
-			return false;
+		
+		if(str.length() > 50) {
+			return false ;
 		}
-
-		return Pattern.matches(Validation.P_CONTACT_EMAIL, str);
+		
+		return Pattern.matches(Validation.P_CONTACT_EMAIL, str) ;
 	}
-
-	public static boolean isUserName(String str) {
-		if (StringUtils.isBlank(str)) {
+	
+	public static boolean isUserName(String str){
+		if(StringUtils.isBlank(str)){
 			str = "";
 		}
 		str = str.trim();
 		return Pattern.matches(Validation.P_USERNAME, str);
 	}
-
+	
 }

@@ -161,7 +161,6 @@ public class ExcelUtils {
 	/*
 	 * 设置Excel文件的第二列的注意事项提示信息的样式
 	 */
-	@SuppressWarnings("unused")
 	private void setWarnerCellStyles(HSSFWorkbook workbook, HSSFSheet sheet) {
 		warnerStyle = workbook.createCellStyle();
 
@@ -484,8 +483,7 @@ public class ExcelUtils {
 		// out.close();
 	}
 
-	public void buildExportDataBySheet(HSSFSheet sheet, String headerTitle, Integer cellHeaderNum, List<String> cellHeader, List<Object> appData,
-			Class<?> clazz) {
+	public void buildExportDataBySheet(HSSFSheet sheet, String headerTitle, Integer cellHeaderNum, List<String> cellHeader, List<Object> appData, Class<?> clazz) {
 		int maxSheetSize = MAX_SHEET_SIZE;
 		if (CollectionUtils.isNotEmpty(appData)) {
 			if (appData.size() > maxSheetSize) {
@@ -577,8 +575,8 @@ public class ExcelUtils {
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 */
-	public List<Object> importExcelData(String filePath, Class<?> clazz)
-			throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelData(String filePath, Class<?> clazz) throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException,
+			InstantiationException, IllegalAccessException {
 
 		POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(filePath));
 		workbook = getHSSFWorkbook(fs);
@@ -599,16 +597,16 @@ public class ExcelUtils {
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 */
-	public List<Object> importExcelData2007(InputStream in, Class<?> clazz)
-			throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelData2007(InputStream in, Class<?> clazz) throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException,
+			InstantiationException, IllegalAccessException {
 		xssfWorkbook = getXSSFWorkbook(in);
 		XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
 		return importExcelData(xssfSheet, clazz);
 	}
 
 	// 导入微信家校通学生档案数据
-	public List<Object> importExcelData2007WX(InputStream in, Class<?> clazz, Integer headerRow, Integer lastRow)
-			throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelData2007WX(InputStream in, Class<?> clazz, Integer headerRow, Integer lastRow) throws FileNotFoundException, IOException,
+			SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
 		xssfWorkbook = getXSSFWorkbook(in);
 		XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
 		return importExcelDataWX(xssfSheet, clazz, headerRow, lastRow);
@@ -627,8 +625,8 @@ public class ExcelUtils {
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 */
-	public List<Object> importExcelData(InputStream in, Class<?> clazz)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelData(InputStream in, Class<?> clazz) throws IOException, SecurityException, NoSuchFieldException, InstantiationException,
+			IllegalAccessException {
 
 		POIFSFileSystem fs = new POIFSFileSystem(in);
 		workbook = getHSSFWorkbook(fs);
@@ -637,8 +635,8 @@ public class ExcelUtils {
 		return importExcelData(sheet, clazz);
 	}
 
-	public List<Object> importExcelData(InputStream in, Class<?> clazz, String... sheetNames)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelData(InputStream in, Class<?> clazz, String... sheetNames) throws IOException, SecurityException, NoSuchFieldException,
+			InstantiationException, IllegalAccessException {
 
 		POIFSFileSystem fs = new POIFSFileSystem(in);
 		workbook = getHSSFWorkbook(fs);
@@ -673,8 +671,8 @@ public class ExcelUtils {
 	 * @throws NoSuchFieldException
 	 * @throws SecurityException
 	 */
-	public List<Object> importExcelData(File file, Class<?> clazz)
-			throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelData(File file, Class<?> clazz) throws FileNotFoundException, IOException, SecurityException, NoSuchFieldException,
+			InstantiationException, IllegalAccessException {
 
 		POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(file));
 		workbook = getHSSFWorkbook(fs);
@@ -713,8 +711,8 @@ public class ExcelUtils {
 	 * 列数必须与列头数保持一致 需要解析数据中是否有错误标记位，有则全部去掉 需要过滤掉全空数据，即每列数据均为空
 	 */
 	// modified by zhangtian 实现类用接口抽象
-	private List<Object> importExcelData(Sheet sheet, Class<?> clazz)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	private List<Object> importExcelData(Sheet sheet, Class<?> clazz) throws IOException, SecurityException, NoSuchFieldException, InstantiationException,
+			IllegalAccessException {
 
 		// === 提取导入数据模板中的列头信息，即第三列的数据
 		Row headerCellRow = sheet.getRow(1);
@@ -848,8 +846,8 @@ public class ExcelUtils {
 	}
 
 	// 导入微信家校通学生档案数据
-	public List<Object> importExcelDataWX(InputStream in, Class<?> clazz, Integer headerRow, Integer lastRow)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelDataWX(InputStream in, Class<?> clazz, Integer headerRow, Integer lastRow) throws IOException, SecurityException,
+			NoSuchFieldException, InstantiationException, IllegalAccessException {
 
 		POIFSFileSystem fs = new POIFSFileSystem(in);
 		workbook = getHSSFWorkbook(fs);
@@ -859,8 +857,8 @@ public class ExcelUtils {
 	}
 
 	// 微信家校通 Excel动态列导入
-	public List<Object> importExcelDataWXForDynamicColumn(InputStream in, Class<?> clazz, Integer headerRow, Integer lastRow)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	public List<Object> importExcelDataWXForDynamicColumn(InputStream in, Class<?> clazz, Integer headerRow, Integer lastRow) throws IOException,
+			SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
 
 		POIFSFileSystem fs = new POIFSFileSystem(in);
 		workbook = getHSSFWorkbook(fs);
@@ -870,8 +868,8 @@ public class ExcelUtils {
 	}
 
 	// modified by AnChangyun 实现类用接口抽象 --微信家校通
-	private List<Object> importExcelDataWX(Sheet sheet, Class<?> clazz, Integer headerRow, Integer lastRow)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	private List<Object> importExcelDataWX(Sheet sheet, Class<?> clazz, Integer headerRow, Integer lastRow) throws IOException, SecurityException,
+			NoSuchFieldException, InstantiationException, IllegalAccessException {
 
 		// === 提取导入数据模板中的列头信息，即第三列的数据
 		Row headerCellRow = sheet.getRow(headerRow);
@@ -1018,8 +1016,8 @@ public class ExcelUtils {
 	}
 
 	// 动态列导入
-	private List<Object> importExcelDataWXForDynamicColumn(Sheet sheet, Class<?> clazz, Integer headerRow, Integer lastRow)
-			throws IOException, SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+	private List<Object> importExcelDataWXForDynamicColumn(Sheet sheet, Class<?> clazz, Integer headerRow, Integer lastRow) throws IOException,
+			SecurityException, NoSuchFieldException, InstantiationException, IllegalAccessException {
 
 		// === 提取导入数据模板中的列头信息，即第三列的数据
 		Row headerCellRow = sheet.getRow(headerRow);
@@ -1131,7 +1129,6 @@ public class ExcelUtils {
 							Field f = obj.getClass().getDeclaredField("map");
 							f.setAccessible(true);
 							Object o = f.get(obj);
-							@SuppressWarnings("unchecked")
 							Map<String, Object> map = (Map<String, Object>) o;
 							if (map == null) {
 								map = new HashMap<>();
@@ -1165,7 +1162,6 @@ public class ExcelUtils {
 	}
 
 	// 微信家校通 Excel动态列导出
-	@SuppressWarnings("unchecked")
 	public HSSFWorkbook exportContainDataExcelSheetForDynamicColumn(Map<String, Object> results, Integer columnOffset) {
 		// ======================== 页签创建 ==========================
 		// === 获取HSSFWorkbook对象
@@ -1242,14 +1238,13 @@ public class ExcelUtils {
 								Object value = field.get(o);
 								if (value != null) {
 									if (value instanceof java.util.Map) {
-										@SuppressWarnings("unchecked")
 										Map<String, Object> map = (Map<String, Object>) value;
 										int size = columnMap.size();
 										for (int k = 0; k < size; k++) {
 											int index = k + columnOffset;
 											cellAppDataCell = row.createCell(index);
-											cellAppDataCell.setCellValue(new HSSFRichTextString(
-													StringUtils.replaceEscapeChar((String) map.get(columnMap.get(String.valueOf(index))))));
+											cellAppDataCell.setCellValue(new HSSFRichTextString(StringUtils.replaceEscapeChar((String) map.get(columnMap
+													.get(String.valueOf(index))))));
 											cellAppDataCell.setCellStyle(dataStyle);
 										}
 										// for (Map.Entry<String, Object> entry
@@ -1435,7 +1430,6 @@ public class ExcelUtils {
 	}
 
 	// 微信家校通 Excel动态列导出模板
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public HSSFWorkbook exportTemplateForDynamicColumn(String header, Map<Integer, Object> results, Integer columnOffset) {
 		// ======================== 页签创建 ==========================
 		// === 获取HSSFWorkbook对象
