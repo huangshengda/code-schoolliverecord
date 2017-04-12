@@ -381,7 +381,7 @@ public class UserController {
 		response.setHeader("Content-Disposition", "attachment; filename=errorDetail.xls");
 		try {
 			OutputStream out = response.getOutputStream();
-			String path = request.getServletContext().getRealPath("/");
+			// String path = request.getServletContext().getRealPath("/");
 			File file = new File(Constants.TEMP + File.separator + fileName);
 			InputStream in = new FileInputStream(file);
 			StreamUtils.copy(in, out);
