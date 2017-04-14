@@ -1,6 +1,7 @@
 package com.codyy.slr.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -182,7 +183,7 @@ public class ResourceController {
 
 	/**
 	 * 
-	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 * @Description: modifyResource  
 	 * @param res
 	 * @param resourceId
 	 * @param thumbFlag 1表示新上传图片
@@ -398,4 +399,27 @@ public class ResourceController {
 		}
 		return one;
 	}
+
+	/**
+	 * 获取结束课程时间差
+	 */
+	@ResponseBody
+	@RequestMapping("difftime/get")
+	public ReturnVoOne<Long> getServerTime() {
+		ReturnVoOne<Long> one = new ReturnVoOne<Long>();
+		try {
+			Date date = new Date();
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
+			calendar.set(Calendar.HOUR_OF_DAY, 19);
+			calendar.set(Calendar.MINUTE, 31);
+			calendar.set(Calendar.SECOND, 59);
+			one.setData(calendar.getTime().getTime() - date.getTime());
+		} catch (Exception e) {
+			one.setCode(Constants.FAILED);
+			one.setMsg("获取服务器时间异常");
+		}
+		return one;
+	}
+
 }
