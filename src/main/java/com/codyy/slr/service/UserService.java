@@ -242,7 +242,13 @@ public class UserService {
 				userType = "STUDENT";
 				break;
 			case "管理员":
-				userType = "ADMIN";
+				if (Constants.SUPER_ADMIN.equals(loginUserType)) {
+					userType = "ADMIN";
+				} else {
+					message = "#用户权限不够，不能添加管理员";
+					canInsert = false;
+					valueBean.valueAppend(message);
+				}
 				break;
 			default:
 				message = "#用户类型错误！";
