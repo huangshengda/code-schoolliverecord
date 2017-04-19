@@ -173,7 +173,27 @@ public class Constants {
 	public final static MenuVo BASIC_MENU;
 	public final static MenuVo MYCOURSE_MENU;
 
+	public final static int DIRECTOR_FINISH_HOUR;
+	public final static int DIRECTOR_FINISH_MIN;
+	public final static int DIRECTOR_FINISH_SEC;
+
 	static {
+		if (StringUtils.isNumeric(ConfigUtils.getValue("director.server.finish.hour"))) {
+			DIRECTOR_FINISH_HOUR = Integer.parseInt(ConfigUtils.getValue("director.server.finish.hour"));
+		} else {
+			DIRECTOR_FINISH_HOUR = 23;
+		}
+		if (StringUtils.isNumeric(ConfigUtils.getValue("director.server.finish.min"))) {
+			DIRECTOR_FINISH_MIN = Integer.parseInt(ConfigUtils.getValue("director.server.finish.min"));
+		} else {
+			DIRECTOR_FINISH_MIN = 59;
+		}
+		if (StringUtils.isNumeric(ConfigUtils.getValue("director.server.finish.sec"))) {
+			DIRECTOR_FINISH_SEC = Integer.parseInt(ConfigUtils.getValue("director.server.finish.sec"));
+		} else {
+			DIRECTOR_FINISH_SEC = 59;
+		}
+
 		INDEX_MENU = new MenuVo(1, "首页", "/index");
 		DEMAND_MENU = new MenuVo(2, "点播", "/onDemand");
 		BASIC_MENU = new MenuVo(3, "基础管理", "/basic");

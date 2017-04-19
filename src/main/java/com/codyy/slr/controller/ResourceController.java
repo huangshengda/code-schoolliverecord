@@ -411,9 +411,9 @@ public class ResourceController {
 			Date date = new Date();
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
-			calendar.set(Calendar.HOUR_OF_DAY, 19);
-			calendar.set(Calendar.MINUTE, 31);
-			calendar.set(Calendar.SECOND, 59);
+			calendar.set(Calendar.HOUR_OF_DAY, Constants.DIRECTOR_FINISH_HOUR);
+			calendar.set(Calendar.MINUTE, Constants.DIRECTOR_FINISH_MIN);
+			calendar.set(Calendar.SECOND, Constants.DIRECTOR_FINISH_SEC);
 			one.setData(calendar.getTime().getTime() - date.getTime());
 		} catch (Exception e) {
 			one.setCode(Constants.FAILED);
