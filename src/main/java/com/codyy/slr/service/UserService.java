@@ -40,6 +40,8 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 	final String PasswordRegex = "^[0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|\\-|=|\\\\|/|<|>]{6,18}$";
+	final String userNameRegex = "^[\u4E00-\u9FA5,0-9a-zA-Z|,|.|;|~|!|@|@|#|$|%|\\^|&|*|(|)|_|+|\\-|=|\\\\|/|<|>]{2,18}$";
+
 	private static final Logger log = Logger.getLogger(UserService.class);
 
 	/**
@@ -131,7 +133,11 @@ public class UserService {
 	 *
 	 */
 	public User getUserByUserNameAndPw(Map<String, Object> map) {
-		return userMapper.getUserByNameAndPw(map);
+		List<User> list = userMapper.getUserByNameAndPw(map);
+		if (list == null || list.size() == 0) {
+			return null;
+		}
+		return list.get(0);
 	}
 
 	public ReturnVoOne<User> importUser(String tempPath, String basePath, String excelType, String loginUserType) {
@@ -183,7 +189,7 @@ public class UserService {
 			valueBean = new ValueBean(username);
 			username = strTrim(username);
 			paramsMap.put("username", username);
-			if (username.matches(PasswordRegex)) {
+			if (username.matches(userNameRegex)) {
 				paramsMap.put("username", username);
 				if (getUserByUserNameAndPw(paramsMap) != null) {
 					message = "#用户名称已存在！";
@@ -199,7 +205,7 @@ public class UserService {
 					orgUser.setUsername(StringUtils.replaceEscapeCharRollback(username));
 				}
 			} else {
-				message = "#用户名长度为6到18个字符！";
+				message = "#用户名长度为2到18个字符！";
 				canInsert = false;
 				valueBean.valueAppend(message);
 			}

@@ -2460,7 +2460,7 @@ webpackJsonp([2,6],[
 		//匹配不通过时，对应的提示
 		Validation.errorMsg = {
 			notnull: "不能为空",
-			ousername: "用户名为6-18位字符",
+			ousername: "用户名为2-18位字符",
 			tusername: "用户名有非法字符，请重输",
 			susername: "用户名不能为空",
 			spassword: "密码不能为空",
@@ -2551,13 +2551,13 @@ webpackJsonp([2,6],[
 				}
 			}
 			if (vali.indexOf("username") > -1) {
-				orgxStr = /^.{6,18}$/;
+				orgxStr = /^.{2,18}$/;
 				trgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]$/;
 				if ($.trim(value) == "") {
 					msg = Validation.errorMsg["susername"];
-				} else if (!orgxStr.test(value)) {
+				} else if (!orgxStr.test($.trim(value))) {
 					msg = Validation.errorMsg["ousername"];
-				} else if (trgxStr.test(value)) {
+				} else if (trgxStr.test($.trim(value))) {
 					msg = Validation.errorMsg["tusername"];
 				}
 			} else if (vali.indexOf("password") > -1) {
@@ -2565,9 +2565,9 @@ webpackJsonp([2,6],[
 				trgxStr = /^[,.;~!@#$%^&*()_+-=\/<>a-zA-Z0-9]$/;
 				if ($.trim(value) == "") {
 					msg = Validation.errorMsg["spassword"];
-				} else if (!orgxStr.test(value)) {
+				} else if (!orgxStr.test($.trim(value))) {
 					msg = Validation.errorMsg["opassword"];
-				} else if (trgxStr.test(value)) {
+				} else if (trgxStr.test($.trim(value))) {
 					msg = Validation.errorMsg["tpassword"];
 				}
 			} else if (vali.indexOf("number") > -1) {

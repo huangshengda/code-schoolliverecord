@@ -24,7 +24,7 @@ public interface UserMapper {
 
 	User getUserByUserName(Map<String, Object> map);
 
-	User getUserByNameAndPw(Map<String, Object> map);
+	List<User> getUserByNameAndPw(Map<String, Object> map);
 
 	void insertUsers(List<Object> list);
 

@@ -33,7 +33,7 @@ public class BasicInfoController {
 	 */
 	@RequestMapping("basicinfo/update")
 	@ResponseBody
-	public ReturnVoOne<BasicInfoVo> modifyBasicInfo(BasicInfoVo param, boolean thumbFlag) {
+	public ReturnVoOne<BasicInfoVo> ModifyBasicInfo(BasicInfoVo param, boolean thumbFlag) {
 		ReturnVoOne<BasicInfoVo> returnVoOne = new ReturnVoOne<BasicInfoVo>();
 		try {
 			boolean flag = basicInfoService.updateBasicInfo(param, thumbFlag);
